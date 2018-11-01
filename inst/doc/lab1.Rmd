@@ -1,0 +1,34 @@
+---
+title: "Lab 1"
+author: "Principles of inference in population ecology"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lab 1}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+> Learning objectives:  
+>   1) blah  
+>   2) blah blah  
+
+# 
+
+# Excercises
+
+```{r eval=FALSE}
+learnr::run_tutorial("", package = "WILD3810")
+```
+
+# Assignment
+
+```{r eval=FALSE}
+WILD3810::get_assignment("Assignment1")
+```

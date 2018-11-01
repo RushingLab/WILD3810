@@ -1,0 +1,26 @@
+---
+title: ""
+author: ""
+date: ""
+output:
+    rmarkdown::html_vignette:
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Schedule (Spring 2019)
+
+```{r schedule}
+library(kableExtra)
+schedule <- data.frame(Week = seq(1:15),
+                       Lecture = NA,
+                       Lab = NA)
+
+schedule %>%
+  kable("html") %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE)
+
+```

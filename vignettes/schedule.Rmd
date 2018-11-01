@@ -1,0 +1,36 @@
+---
+title: "Schedule (Spring 2019)"
+subtitle: "WILD3810: Plant and animal populations"
+author: "Spring 2019"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    keep_md: yes
+vignette: >
+  %\VignetteIndexEntry{Schedule}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE,
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+```{r schedule}
+library(kableExtra)
+schedule <- data.frame(Week = seq(1:15),
+                       '1' = c("[Intro to WILD3810](lecture1.html)", rep(NA, 14)),
+                       '2' = c("[Abundance](lecture1.html)", rep(NA, 14)),
+                       Lab = c("Introduction to R", rep(NA, 14)))
+
+schedule %>%
+  kable("html", col.names = c("Week", "1", "2", "Lab"), align = 'c') %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) %>%
+  add_header_above(c("", "Lecture" = 2, ""))
+
+```
