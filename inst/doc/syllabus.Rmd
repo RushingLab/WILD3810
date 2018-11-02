@@ -19,51 +19,80 @@ knitr::opts_chunk$set(
 )
 ```
 
-## Course policies
-Vignettes are long form documentation commonly included in packages. Because they are part of the distribution of the package, they need to be as compact as possible. The `html_vignette` output type provides a custom style sheet (and tweaks some options) to ensure that the resulting html is as small as possible. The `html_vignette` format:
+Lecture: Monday and Wednesday 10:30-11:20 BNR 314
+Lab: Monday 2:30-4:20 QLIB 304 and 306
+Credits: 3
 
-- Never uses retina figures
-- Has a smaller default figure size
-- Uses a custom CSS stylesheet instead of the default Twitter Bootstrap style
+# INSTRUCTOR
+Dr. Clark Rushing  
+clark.rushing@usu.edu  
+Office: Natural Resources 146  
+Office hours: 
 
-## Vignette Info
+# PREREQUISITES
+WATS 2220 or BIOL 2220; MATH 110 or higher (C- grade or better); STAT 2000 or STAT 3000 (C- grade or better)
 
-Note the various macros within the `vignette` section of the metadata block above. These are required in order to instruct R how to build the vignette. Note that you should change the `title` field and the `\VignetteIndexEntry` to match the title of your vignette.
+# TEXT
 
-## Styles
+The primary text for this class is: 
+> Mills, L.S. 2012. Conservation of Wildlife Populations: Demography, Genetics, and Management. Blackwell Publishing, Malden, MA
 
-The `html_vignette` template includes a basic CSS theme. To override this theme you can specify your own CSS in the document metadata as follows:
+T
 
-    output: 
-      rmarkdown::html_vignette:
-        css: mystyles.css
+In addition, we will use 
 
-## Figures
+# COURSE DESCRIPTION
 
-The figure sizes have been customised so that you can easily put two images side-by-side. 
+This course is designed to introduce and review the factors that regulate and cause change in plant and animal populations.  The relevance of population dynamics to conservation, management, ecology, and evolution will be covered.  We will examine single-species, multi-species, age-structured, size-structured, and spatial models of population dynamics, as well as life history strategies.  In addition to ecological concepts, students will be introduced to mathematical techniques and computer software that will allow them to examine population dynamics on their own as they embark on their careers.  Lecture materials/notes and Lab materials will be posted on Canvas.    
 
-```{r, fig.show='hold'}
-plot(1:10)
-plot(10:1)
-```
+# COURSE OBJECTIVES
 
-You can enable figure captions by `fig_caption: yes` in YAML:
+1)	Understand general concepts of plant & animal population dynamics
+2)	Gain experience using mathematics and computer software to examine dynamics of plant and animal populations
+3)	Apply the following skills learned in other classes:
+a.	Data entry
+b.	Application of basic statistical tests
+c.	Graphical presentation of data and statistical results
+4)	Analyze data and use models to project future plant & animal population conditions resulting from management or anthropogenic disturbances
+5)	Further refine quantitative and critical thinking skills
 
-    output:
-      rmarkdown::html_vignette:
-        fig_caption: yes
 
-Then you can use the chunk option `fig.cap = "Your figure caption."` in **knitr**.
+# COURSE RESOURCES
 
-## More Examples
+# COURSE ACTIVITIES
 
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
+## Labs
 
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
+Labs will consist primarily of computer-oriented sessions designed to help solidify the topics presented in lecture. Recent versions of Microsoft Excel will be the primary software used, but students will also gain a soft introduction to the R programming language, and use R as a port to other software (e.g. Program MARK). Labs will meet in Quinney Library 304, but some students may need to spill over into 306 depending on enrollment.  You are welcome to use your own personal laptop computer. Much of the demonstration of how demography and population dynamics are monitored and assessed in the field will be covered in WILD 2400 and WILD 4750. 
 
-Also a quote using `>`:
 
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
+# HONORS STUDENTS
+
+This class is offered as an Honors Class on a contract basis. Those students wishing to take this class for Honors should contact the instructor during the FIRST week of class.
+
+
+# COURSE POLICIES
+
+## Attendance 
+If you have an anticipated absence, please notify me at least 1 day prior to the absence. It is your responsibility to make up for the materials missed in the event of a lecture or lab absence.  Your attendance on specified exam dates is mandatory.  Exams will be announced 1 week prior to the exam date in class.  Make-up exams will be administered in only the most extreme circumstances.  Excuses for absence due to illness, death in the family, or other unanticipated events will be handled on a case-by-case basis and must be documented.    
+
+
+# ACADEMIC INTEGRITY
+
+Each student has the right and duty to pursue his or her academic experience free of dishonesty. The Honor System is designed to establish the higher level of conduct expected and required of all USU students. Infractions (cheating, falsification, and plagiarism) and their associated penalties are described in the USU Academic Policies and Procedures Manual (www.usu.edu/policies). Click on "C" for cheating, "F" for falsification, and "P" for plagiarism. If you have questions about what may be plagiarism, please discuss it with me.
+
+This syllabus is issued for the convenience of the students; it does not constitute a contract and may be changed by the instructor at any time.
+
+
+# ACCOMMODATIONS FOR DISABILITIES
+
+Students with physical, sensory, emotional or medical impairments may be eligible for reasonable accommodations in accordance with the Americans with Disabilities Act and Section 504 of the Rehabilitation Act of 1973. 
+All accommodations are coordinated through the Disabilities Resource Center (DRC) in Room 101 of the University Inn, 797-2444 voice, 797-0740 TTY, or toll free at 1-800-259-2966. Please contact the DRC as early in the semester as possible. Alternate format materials (Braille, large print or digital) are available with advance notice.
+
+
+# GRADING
+
+There will be 3 exams, and the latter 2 will be comprehensive (i.e. they cover the cumulative material from the beginning of the class).  Exams count toward 70% of your total grade.  Lab assignments will account for the remaining 30% of your grade.  Grades will be assigned as follows: 100 – 90% = A, 89.99 – 87 % = B+, 86.99 – 83% = B, 82.99 – 80 % = B-, 79.99 – 77 % = C+, 76.99 – 73% = C, 72.99 –70 % = C-, 69.99 – 60 % = D, Below 60% = F.  The grading scale may be changed at the discretion of the instructor depending on class performance.  All lab assignments must be turned in on time.  Late assignments are docked 25% of the grade for each day late.  Emphasis will be based on critical thinking.  Thus, exams and lab exercises will consist of problem solving, short answers, and essays.  
+
+# GRADING SCALE
+
