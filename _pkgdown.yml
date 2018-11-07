@@ -23,7 +23,13 @@ navbar:
         - text: "Lecture 1: Introduction to WILD3810"
           href: articles/lecture1.html
         - text: "Lecture 2: Test"
-          href: articles/lecture.html
+          href: articles/lecture2.html
+        - text: "Lecture 3: Test"
+          href: articles/lecture3.html
+        - text: "Lecture 4: Test"
+          href: articles/lecture4.html
+        - text: "Lecture 5: Test"
+          href: articles/lecture5.html
     - icon: fas fa-desktop
       text: "Labs"
       href: Labs/Lab1.html

@@ -2,7 +2,6 @@
 title: "Syllabus"
 subtitle: "WILD3810: Plant and animal populations"
 author: "Spring 2019"
-date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     keep_md: yes
@@ -19,33 +18,35 @@ knitr::opts_chunk$set(
 )
 ```
 
-Lecture: Monday and Wednesday 10:30-11:20 BNR 314
-Lab: Monday 2:30-4:20 QLIB 304 and 306
-Credits: 3
+# LOGISTICS
+
+**Lecture**: Monday and Wednesday 10:30-11:20 BNR 314  
+**Lab**: Monday 2:30-4:20 QLIB 304 and 306  
+**Credits**: 3  
 
 # INSTRUCTOR
 Dr. Clark Rushing  
 clark.rushing@usu.edu  
-Office: Natural Resources 146  
+Office: NR 146  
 Office hours: 
 
 # PREREQUISITES
 WATS 2220 or BIOL 2220; MATH 110 or higher (C- grade or better); STAT 2000 or STAT 3000 (C- grade or better)
 
-# TEXT
-
-The primary text for this class is: 
-> Mills, L.S. 2012. Conservation of Wildlife Populations: Demography, Genetics, and Management. Blackwell Publishing, Malden, MA
-
-T
-
-In addition, we will use 
 
 # COURSE DESCRIPTION
 
-This course is designed to introduce and review the factors that regulate and cause change in plant and animal populations.  The relevance of population dynamics to conservation, management, ecology, and evolution will be covered.  We will examine single-species, multi-species, age-structured, size-structured, and spatial models of population dynamics, as well as life history strategies.  In addition to ecological concepts, students will be introduced to mathematical techniques and computer software that will allow them to examine population dynamics on their own as they embark on their careers.  Lecture materials/notes and Lab materials will be posted on Canvas.    
+This course is designed to introduce and review the factors that regulate and cause change in plant and animal populations.  The relevance of population dynamics to conservation, management, ecology, and evolution will be covered.  We will examine single-species, multi-species, age-structured, size-structured, and spatial models of population dynamics, as well as life history strategies.  In addition to ecological concepts, students will be introduced to mathematical techniques and computer software that will allow them to examine population dynamics on their own as they embark on their careers.  
 
 # COURSE OBJECTIVES
+
+These quantitative skills underpin modern conservation biology, natural resource management, population ecology and related fields, and will increase competitiveness for those seeking careers in these fields. Individuals that have great difficulty with basic mathematics and statistics should not be discouraged, but will have to spend a little more time working on the course material.  
+
+Overall, my three main objectives are for you to: 
+
+1) Gain factual knowledge (terminology, methods, and trends) in plant and animal population ecology. 
+2) Learn to apply course material to conservation, management, and ecological problems (to improve thinking, problem solving, and decisions) using mathematics and computer software. 
+3) Develop specific skills and competencies in problem solving, ecological hypotheses development related to population ecology of plants and animals.
 
 1)	Understand general concepts of plant & animal population dynamics
 2)	Gain experience using mathematics and computer software to examine dynamics of plant and animal populations
@@ -56,15 +57,49 @@ c.	Graphical presentation of data and statistical results
 4)	Analyze data and use models to project future plant & animal population conditions resulting from management or anthropogenic disturbances
 5)	Further refine quantitative and critical thinking skills
 
-
-# COURSE RESOURCES
-
 # COURSE ACTIVITIES
+
+## Lectures
 
 ## Labs
 
 Labs will consist primarily of computer-oriented sessions designed to help solidify the topics presented in lecture. Recent versions of Microsoft Excel will be the primary software used, but students will also gain a soft introduction to the R programming language, and use R as a port to other software (e.g. Program MARK). Labs will meet in Quinney Library 304, but some students may need to spill over into 306 depending on enrollment.  You are welcome to use your own personal laptop computer. Much of the demonstration of how demography and population dynamics are monitored and assessed in the field will be covered in WILD 2400 and WILD 4750. 
 
+
+# COURSE RESOURCES
+
+## Lecture and lab materials
+
+PDF copies of each lecture will be posted on Canvas prior to class. Students are encouraged to download/print lectures ahead of class to aid notetaking. Please note, however, that lecture slides will not contain all of the details that will be discussed during lecture. Therefore, reviewing the slides is *not* a substitute for attending class. 
+
+Lab materials will also be distributed through Canvas prior to each lab. These materials will consist of files containing data and code. These materials can be downloaded prior to or at the beginning of lab. 
+
+## Textbooks
+
+The primary text for this course is: 
+
+> Mills, L.S. 2012. *Conservation of Wildlife Populations: Demography, Genetics, and Management.*
+Blackwell Publishing, Malden, MA
+
+New and used copies can be bought or rented from [Amazon](https://www.amazon.com/Conservation-Wildlife-Populations-Demography-Management/dp/0470671491/ref=sr_1_5?ie=UTF8&qid=1541177542&sr=8-5&keywords=mills+conservation). If you find a cheap copy of the first edition, that is fine. 
+
+Additional readings will be assigned from:
+
+> Powell, L.A. and Gale, G.A. 2015. *Estimation of Parameters for Animal Populations: A Primer for the Rest of Us. Caught Napping Publications.* Lincoln, NE
+
+PDF versions of all chapters are available for free [here](http://larkinpowell.wixsite.com/larkinpowell/estimation-of-parameters-for-animal-pop). Links to purchase hard copies ($17.50) can be found by clicking on the previous link. 
+
+## Software
+
+All computer-based lab activities will use the free programming language [R](https://cran.r-project.org/). In addition, we will run R using [RStudio](https://www.rstudio.com/), a powerful *integrated development environment* (IDE) for R. 
+
+All lab computers will have R and RStudio installed on them so students are not required to install software on their own computers. However, students are free to use their own laptops during lab and having R and RStudio installed will make it easier to complete lab assignments outside of class. Any students wishing to use their own computers **should have both R and RStudio installed and running prior to the first lab**. Detailed instructions for installing both programs can be found [here](http://stat545.com/block000_r-rstudio-install.html). If you plan to use your own computer, be sure to test that you have everything installed correctly by doing the following: 
+
+1) Launch RStudio
+
+2) Put the cursor in the window labelled `Console`. Type the following code followed by enter or return: `x <- 2 * 4`. Next type `x` followed by enter or return. You should see the value 8 print to screen. If yes, you’ve succeeded in installing R and RStudio.
+
+If you encounter any problems with the previous steps, please contact me prior to the first lab. 
 
 # HONORS STUDENTS
 
@@ -73,26 +108,110 @@ This class is offered as an Honors Class on a contract basis. Those students wis
 
 # COURSE POLICIES
 
+## Assignments
+
+All lab assignments must be turned in on time.  Late assignments are docked 25% of the grade for each day late. 
+
 ## Attendance 
 If you have an anticipated absence, please notify me at least 1 day prior to the absence. It is your responsibility to make up for the materials missed in the event of a lecture or lab absence.  Your attendance on specified exam dates is mandatory.  Exams will be announced 1 week prior to the exam date in class.  Make-up exams will be administered in only the most extreme circumstances.  Excuses for absence due to illness, death in the family, or other unanticipated events will be handled on a case-by-case basis and must be documented.    
 
-
-# ACADEMIC INTEGRITY
-
-Each student has the right and duty to pursue his or her academic experience free of dishonesty. The Honor System is designed to establish the higher level of conduct expected and required of all USU students. Infractions (cheating, falsification, and plagiarism) and their associated penalties are described in the USU Academic Policies and Procedures Manual (www.usu.edu/policies). Click on "C" for cheating, "F" for falsification, and "P" for plagiarism. If you have questions about what may be plagiarism, please discuss it with me.
-
-This syllabus is issued for the convenience of the students; it does not constitute a contract and may be changed by the instructor at any time.
-
-
-# ACCOMMODATIONS FOR DISABILITIES
-
-Students with physical, sensory, emotional or medical impairments may be eligible for reasonable accommodations in accordance with the Americans with Disabilities Act and Section 504 of the Rehabilitation Act of 1973. 
-All accommodations are coordinated through the Disabilities Resource Center (DRC) in Room 101 of the University Inn, 797-2444 voice, 797-0740 TTY, or toll free at 1-800-259-2966. Please contact the DRC as early in the semester as possible. Alternate format materials (Braille, large print or digital) are available with advance notice.
-
-
 # GRADING
 
-There will be 3 exams, and the latter 2 will be comprehensive (i.e. they cover the cumulative material from the beginning of the class).  Exams count toward 70% of your total grade.  Lab assignments will account for the remaining 30% of your grade.  Grades will be assigned as follows: 100 – 90% = A, 89.99 – 87 % = B+, 86.99 – 83% = B, 82.99 – 80 % = B-, 79.99 – 77 % = C+, 76.99 – 73% = C, 72.99 –70 % = C-, 69.99 – 60 % = D, Below 60% = F.  The grading scale may be changed at the discretion of the instructor depending on class performance.  All lab assignments must be turned in on time.  Late assignments are docked 25% of the grade for each day late.  Emphasis will be based on critical thinking.  Thus, exams and lab exercises will consist of problem solving, short answers, and essays.  
+
+There will be 3 exams, and the latter 2 will be comprehensive (i.e. they cover the cumulative material from the beginning of the class).  Exams count toward 70% of your total grade.  Lab assignments will account for the remaining 30% of your grade.   Emphasis will be based on critical thinking.  Thus, exams and lab exercises will consist of problem solving, short answers, and essays.  
 
 # GRADING SCALE
 
+Grades will be assigned as follows: 100 – 90% = A, 89.99 – 87 % = B+, 86.99 – 83% = B, 82.99 – 80 % = B-, 79.99 – 77 % = C+, 76.99 – 73% = C, 72.99 –70 % = C-, 69.99 – 60 % = D, Below 60% = F.  The grading scale may be changed at the discretion of the instructor depending on class performance.
+
+
+# LIBRARY SERVICES
+
+All USU students attending classes in Logan, at our Regional Campuses, or online can access all databases, e-journals, and e-books regardless of location. Additionally, the library will mail printed books to students, at no charge to them. Students can also borrow books from any Utah academic library. Take advantage of all library services and learn more at [libguides.usu.edu/rc](libguides.usu.edu/rc).
+
+
+# CLASSROOM CIVILILY
+
+Utah State University supports the principle of freedom of expression for both faculty and students. The University respects the rights of faculty to teach and students to learn. Maintenance of these rights requires classroom conditions that do not impede the learning process. Disruptive classroom behavior will not be tolerated. An individual engaging in such behavior may be subject to disciplinary action. Read [Student Code Article V Section V-3](https://studentconduct.usu.edu/studentcode/article5) for more information.
+
+# UNIVERSITY POLICIES & PROCEDURES
+
+## Academic Freedom and Professional Responsibilities
+
+Academic freedom is the right to teach, study, discuss, investigate, discover, create, and publish freely. Academic freedom protects the rights of faculty members in teaching and of students in learning. Freedom in research is fundamental to the advancement of truth. Faculty members are entitled to full freedom in teaching, research, and creative activities, subject to the limitations imposed by professional responsibility. Faculty Code Policy #403 further defines academic freedom and professional responsibilities.
+
+## Academic Integrity – "The Honor System"
+
+Each student has the right and duty to pursue his or her academic experience free of dishonesty. To enhance the learning environment at Utah State University and to develop student academic integrity, each student agrees to the following Honor Pledge:
+
+> "*I pledge, on my honor, to conduct myself with the foremost level of academic integrity*."
+
+A student who lives by the Honor Pledge is a student who does more than not cheat, falsify, or plagiarize. A student who lives by the Honor Pledge:
+
+* Espouses academic integrity as an underlying and essential principle of the Utah State University community;
+* Understands that each act of academic dishonesty devalues every degree that is awarded by this institution; and
+* Is a welcomed and valued member of Utah State University.
+
+## Academic dishonesty
+
+The instructor of this course will take appropriate actions in response to Academic Dishonesty, as defined the University’s Student Code.  Acts of academic dishonesty include but are not limited to:
+
+* **Cheating**: using, attempting to use, or providing others with any unauthorized assistance in taking quizzes, tests, examinations, or in any other academic exercise or activity.  Unauthorized assistance includes:
+  +   Working in a group when the instructor has designated that the quiz, test, examination, or any other academic exercise or activity be done “individually;”
+  +   Depending on the aid of sources beyond those authorized by the instructor in writing papers, preparing reports, solving problems, or carrying out other assignments;
+  +   Substituting for another student, or permitting another student to substitute for oneself, in taking an examination or preparing academic work;
+  +   Acquiring tests or other academic material belonging to a faculty member, staff member, or another student without express permission;
+  +   Continuing to write after time has been called on a quiz, test, examination, or any other academic exercise or activity;
+  +   Submitting substantially the same work for credit in more than one class, except with prior approval of the instructor; or engaging in any form of research fraud.
+*  **Falsification**: altering or fabricating any information or citation in an academic exercise or activity.
+*  **Plagiarism**: representing, by paraphrase or direct quotation, the published or unpublished work of another person as one‘s own in any academic exercise or activity without full and clear acknowledgment. It also includes using materials prepared by another person or by an agency engaged in the sale of term papers or other academic materials.
+
+For additional information go to: [ARTICLE VI. University Regulations Regarding Academic Integrity](https://studentconduct.usu.edu/studentcode/article6)
+
+## Sexual Harassment/Title IX
+
+Utah State University is committed to creating and maintaining an environment free from acts of sexual misconduct and discrimination and to fostering respect and dignity for all members of the USU community. Title IX and USU Policy 339 address sexual harassment in the workplace and academic setting.
+
+The university responds promptly upon learning of any form of possible discrimination or sexual misconduct.  Any individual may contact USU’s [Affirmative Action/Equal Opportunity (AA/EO) Office](http://aaeo.usu.edu/) for available options and resources or clarification.  The university has established a complaint procedure to handle all types of discrimination complaints, including sexual harassment ([USU Policy 305](http://www.usu.edu/policies/305/)), and has designated the AA/EO Director/Title IX Coordinator as the official responsible for receiving and investigating complaints of sexual harassment. 
+
+## Assumption of Risk
+
+All classes, programs, and extracurricular activities within the University involve some risk, and certain ones involve travel. The University provides opportunities to participate in these programs on a voluntary basis. Therefore, students should not participate in them if they do not care to assume the risks. Students can ask the respective program leaders/sponsors about the possible risks a program may generate, and if students are not willing to assume the risks, they should not select that program. By voluntarily participating in classes, programs, and extracurricular activities, a student does so at his or her own risk. General information about University Risk Management policies, insurance coverage, vehicle use policies, and risk management forms can be found at: [http://www.usu.edu/riskmgt/](http://www.usu.edu/riskmgt/)
+
+## Withdrawal Policy and "I" Grade Policy
+
+Students are required to complete all courses for which they are registered by the end of the semester. In some cases, a student may be unable to complete all of the coursework because of extenuating circumstances, but not due to poor performance or to retain financial aid. The term ‘extenuating’ circumstances includes: (1) incapacitating illness which prevents a student from attending classes for a minimum period of two weeks, (2) a death in the immediate family, (3) financial responsibilities requiring a student to alter a work schedule to secure employment, (4) change in work schedule as required by an employer, or (5) other emergencies deemed appropriate by the instructor.
+
+## Students with Disabilities
+
+USU welcomes students with disabilities. If you have, or suspect you may have, a physical, mental health, or learning disability that may require accommodations in this course, please contact the [Disability Resource Center (DRC)](http://www.usu.edu/drc/) as early in the semester as possible (University Inn # 101, (435) 797‐2444, drc@usu.edu). All disability related accommodations must be approved by the DRC.  Once approved, the DRC will coordinate with faculty to provide accommodations.
+
+## Diversity Statement
+
+Regardless of intent, careless or ill-informed remarks can be offensive and hurtful to others and detract from the learning climate. If you feel uncomfortable in a classroom due to offensive language or actions by an instructor or student(s) regarding ethnicity, gender, or sexual orientation, contact:
+
+* [Division of Student Affairs](https://studentaffairs.usu.edu): (435) 797-1712, studentservices@usu.edu, TSC 220
+* [Student Legal Services](https://ususa.usu.edu/student-association/student-advocacy/legal-services): (435) 797-2912, TSC 326,
+* [Access and Diversity](http://accesscenter.usu.edu): (435) 797-1728, access@usu.edu; TSC 315
+* [Multicultural Programs](http://accesscenter.usu.edu/multiculture): (435) 797-1728, TSC 315
+* [LGBTQA Programs](http://accesscenter.usu.edu/lgbtqa): (435) 797-1728, TSC 3145
+* [Provost‘s Office Diversity Resources](https://www.usu.edu/provost/diversity): (435) 797-8176
+
+You can learn about your student rights by visiting [The Code of Policies and Procedures for Students at Utah State University](https://studentconduct.usu.edu/studentcode)
+
+## Grievance Process
+
+Students who feel they have been unfairly treated may file a grievance through the channels and procedures described in the Student Code: [Article VII](https://studentconduct.usu.edu/studentcode/article7).
+
+## Full details for USU Academic Policies and Procedures can be found at:
+
+* [Student Conduct](https://studentconduct.usu.edu/)
+* [Student Code](https://studentconduct.usu.edu/studentcode/)
+* [Academic Integrity](https://studentconduct.usu.edu/studentcode/article6)
+* [USU Selected Academic Policies and Procedures](http://www.usu.edu/provost/faculty-life/syllabus.cfm)
+* [USU Academic Policies and Procedures](http://catalog.usu.edu/content.php?catoid=4&navoid=546)
+* [Academic Freedom and Professional Responsibility Policy](https://www.usu.edu/policies/403/)
+
+## Emergency Procedures
+
+In the case of a drill or real emergency, classes will be notified to evacuate the building by the sound of the fire/emergency alarm system or by a building representative. In the event of a disaster that may interfere with either notification, evacuate as the situation dictates (i.e., in an earthquake when shaking ceases or immediately when a fire is discovered). Turn off computers and take any personal items with you. Elevators should not be used; instead, use the closest stairs.

@@ -1,8 +1,11 @@
-pandoc: '2.3'
-pkgdown: 1.1.0
+pandoc: 1.19.2.1
+pkgdown: 1.0.0
 pkgdown_sha: ~
 articles:
   lab1: lab1.html
+  lecture2: lecture2.html
+  lecture3: lecture3.html
+  lecture4: lecture4.html
   schedule: schedule.html
   syllabus: syllabus.html
 
