@@ -19,7 +19,7 @@ R is free(!), runs on pretty much every operating system, and has a huge user ba
 
 R is far from the only programming language that can be used to accomplish these tasks. But it is the most widely used language in the fields of ecology, evolution, and wildlife sciences. If you plan to pursue a career in any of these fields, proficiency in R is quickly becoming a prerequisite for many jobs. 
 
-Even if you don't pursue a career in one of these fields, the ability to manipulate, analyze, and visualize data (otherwise known as *data science*) is an extremely marketable skill in many professions right now. If nothing else, you'll always be able to impress your friends and family by making really cool graphs of...
+Even if you don't pursue a career in one of these fields, the ability to manipulate, analyze, and visualize data (otherwise known as *data science*) is an extremely marketable skill in many professions right now. 
 
 ## Where to get help
 
@@ -27,46 +27,75 @@ Even if you don't pursue a career in one of these fields, the ability to manipul
 ## My philosophy on learning R
 
 
-### Exercise 
+## Using R - the very basics 
 
-*Here's a simple exercise with an empty code chunk provided for entering the answer.*
+As a statistical programming tool, one thing R is very good at is doing math. So as a starting point, let's treat R like a fancy calculator. 
 
-Write the R code required to add two plus two:
+We interact with this calculator by typing number and operators (+, -, *, /) into the `Console` window.
+
+Let's try it - in the window below (the Console), write the R code required to add two plus two and then click `Run Code`:
 
 ```{r two-plus-two, exercise=TRUE}
 
 ```
 
-### Exercise with Code
+When you run the code, you should see the answer printed below the window. Play with your code a bit - try changing the number and the operators and then run the code again. 
 
-*Here's an exercise with some prepopulated code as well as `exercise.lines = 5` to provide a bit more initial room to work.*
+## Creating objects
 
-Now write a function that adds any two numbers and then call it:
+We can run R like a calculator by typing equations directly into the console and then printing the answer. But usually we don't want to just do a calculation and see the answer. Instead, we assign *values* to *objects*. That object is then saved in R's memory which allows us to use that object later in our analysis. 
 
-```{r add-function, exercise=TRUE, exercise.lines = 5}
-add <- function() {
+This probably seems a bit confusing so let's try it. The following code creates an *object* called `x` and *assigns* it a value of `3`: 
+
+```{r assignx, exercise=TRUE}
+x <- 3
+```
+
+The operator `<-` is how we do assignments in R. Whatever is to the left of `<-` is the object's name and whatever is to the right is the value. As we will see later, objects can be much more complex than simply a number but for now, we'll keep it simple. 
+
+**You try it - change the code above to create an object called `new.x`. Instead of assigning `new.x` a number, give it a calculation, for example `25/5`. What do you think the value of `new.x` is?**
+
+## Working with objects
+
+In the exercise above, you may have noticed that after running the code, R did not print anything. That is because we simply told R to create the object. However, now that it is stored in R's memory, we can do a lot of things with it. For one, we can print it to see the value. To do that, we simply type the name of the object and run the code:
+
+```{r printx, exercise=TRUE}
+new.x <- 25/5
+new.x
+```
+
+We can also use objects to create new objects. *What do you think the following code does?*
+
+```{r multx, exercise=TRUE}
+x <- 3
+y <- x*4
+```
+
+After running it, print the new object `y` to see its value. Were you right?
+
+## Naming objects
+
+It's a good idea to give objects names that tell you something about what the object represents. Names can be as long as you want them to be but should not have spaces (just remember long names require more typing so brevity is a good rule of thumb). Names also cannot start with a number and R is case-sensitive so, for example, `Apple` is *not* the same as `apple`. 
+
+## Exercise 1: Lincoln-Peterson estimator
+
+Remember from lecture 2 how we use the Lincoln-Peterson method to estimate the abundance of a closed population using mark-recapture data. As a reminder, the Lincoln-Peterson estimator is:
+
+$$N = \frac{n_1n_2}{m_2}$$
+
+where $n_1$ is the number of individuals captured (and marked) on the first sampling occasion, $n_2$ is the number of individuals captured on the second sampling occasion, and $m_2$ is the number of marked individuals in the second sample. 
+
+Let's use R to estimate N for some made up data. Modify the following code to tell R that we captured 45 individuals on the first occasion, 32 on the second, and of those 32 sampled on the second occasion, 15 were marked:
+
+```{r LP, exercise=TRUE}
+n1 <-
+
+n2 <-
   
-}
+m2 <- 
 ```
 
-## Assignments
-
-Each week, you will be expected to complete 
-## Topic 2
-
-### Exercise with Hint
-
-*Here's an exercise where the chunk is pre-evaulated via the `exercise.eval` option (so the user can see the default output we'd like them to customize). We also add a "hint" to the correct solution via the chunk immediate below labeled `print-limit-hint`.*
-
-Modify the following code to limit the number of rows printed to 5:
-
-```{r print-limit, exercise=TRUE, exercise.eval=TRUE}
-mtcars
-```
-
-```{r print-limit-hint}
-head(mtcars)
-```
+Now add, a new line of code below `m2 <- ` to estimate $N$ from our newly created objects. 
 
 ### Quiz
 
