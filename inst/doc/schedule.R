@@ -5,21 +5,29 @@ knitr::opts_chunk$set(
   comment = "#>"
 )
 
-## ----schedule------------------------------------------------------------
+## ----schedule, echo = FALSE----------------------------------------------
 library(kableExtra)
 schedule <- data.frame(Week = c("1 (Jan. 7 & 9)", "2 (Jan. 14 & 16)", "3 (Jan. 21 & 23)", "4 (Jan. 28 & 30)",
                                 "5 (Feb. 4 & 6)", "6 (Feb. 11 & 13)", "7 (Feb. 18 & 20)", "8 (Feb. 25 & 27)",
                                 "9 (Mar. 4 & 6)", "10 (Mar. 11 & 13)", "11 (Mar. 18 & 20)", "12 (Mar. 25 & 27)",
                                 "13 (Apr. 1 & 3)", "14 (Apr. 8 & 10)", "15 (Apr. 15 & 17)", "16 (Apr. 22 & 24)"),
-                       M = c("[Intro to WILD3810](lecture1.html)", NA, "MLK Holiday - no class", NA,
-                             NA, NA, "President's Day - no class", NA,
-                             NA, "Spring break - no class", NA, NA,
-                             NA, NA, NA, NA),
-                       W = c("[Abundance](lecture1.html)", NA, NA, NA,
-                             NA, NA, NA, NA,
-                             NA, "Spring break - no class", NA, NA,
-                             NA, NA, NA, "No class"),
-                       Lab = c("Introduction to R", NA, "MLK Holiday - no lab", NA,
+                       M = c("[Intro to WILD3810](lecture1.html)", "Density-independent population growth", 
+                             "MLK Holiday - no class", "Harvest dynamics",
+                             "Life tables", "Survival analysis", 
+                             "President's Day - no class", "Life history diversity",
+                             "Buffer", "Spring break - no class", 
+                             "Review exam 2/Intro to spatial population dynamics", "Metapopulation dynamics",
+                             "Interspecific competition", "Predation and compensatory dynamics", 
+                             NA, "Buffer"),
+                       W = c("[Abundance](lecture1.html)", "Stochastic population dynamics", 
+                             "Density-dependent population growth", "Exam 1",
+                             "Review exam 1", "Age-structured population dynamics", 
+                             "Matrix population models","Sensitivity and elasticity analyses",
+                             "Exam 2", "Spring break - no class", 
+                             "Habitat occupancy", "Source-sink dynamics",
+                             "Predator-prey dynamics", NA, 
+                             NA, "No class"),
+                       Lab = c("No lab", "Introduction to R/Abundance estimation", "MLK Holiday - no lab", NA,
                              NA, NA, "President's Day - no lab", NA,
                              NA, "Spring break - no lab", NA, NA,
                              NA, NA, NA, NA))

@@ -8,8 +8,8 @@
 <title>Syllabus • WILD3810</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Syllabus">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><meta property="og:title" content="Syllabus">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -59,7 +59,7 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-question-circle-o"></span>
+    <span class="fa fa-file-pdf-o"></span>
      
     Lectures
      
@@ -90,6 +90,13 @@
     Labs
   </a>
 </li>
+<li>
+  <a href="../articles/homework.html">
+    <span class="fas fa fas fa-pencil-square-o"></span>
+     
+    Assignments
+  </a>
+</li>
       </ul>
 </div>
 <!--/.nav-collapse -->
@@ -99,7 +106,7 @@
 <!--/.navbar -->
 
       
-      </header><script src="syllabus_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Syllabus</h1>
@@ -139,11 +146,10 @@ Office hours: Monday and Wednesday 1:00-2:30</p>
 <div id="course-objectives" class="section level1">
 <h1 class="hasAnchor">
 <a href="#course-objectives" class="anchor"></a>COURSE OBJECTIVES</h1>
-<p>These quantitative skills underpin modern conservation biology, natural resource management, population ecology and related fields, and will increase competitiveness for those seeking careers in these fields. Individuals that have great difficulty with basic mathematics and statistics should not be discouraged, but will have to spend a little more time working on the course material.</p>
 <p>Overall, my three main objectives are for you to:</p>
 <ol style="list-style-type: decimal">
 <li>Gain factual knowledge (terminology, methods, and trends) in plant and animal population ecology.</li>
-<li>Learn to apply course material to conservation, management, and ecological problems (to improve thinking, problem solving, and decisions) using mathematics and computer software.</li>
+<li>Learn to apply course material (to improve thinking, problem solving, and decisions) using mathematics and computer software.</li>
 <li><p>Develop specific skills and competencies in problem solving, ecological hypotheses development related to population ecology of plants and animals.</p></li>
 <li>Understand general concepts of plant &amp; animal population dynamics</li>
 <li>Gain experience using mathematics and computer software to examine dynamics of plant and animal populations</li>
@@ -165,19 +171,25 @@ Office hours: Monday and Wednesday 1:00-2:30</p>
 <div id="lectures" class="section level2">
 <h2 class="hasAnchor">
 <a href="#lectures" class="anchor"></a>Lectures</h2>
+<p>Lectures will cover basic concepts regarding the dynamics of plant and animal populations. Mastering these topics is critical to doing well in the course so lecture attendance will count towards a small portion of your grade (~0.2% of your final grade per lecture) as an incentive for attending.</p>
 </div>
 <div id="labs" class="section level2">
 <h2 class="hasAnchor">
 <a href="#labs" class="anchor"></a>Labs</h2>
 <p>Labs will consist primarily of computer-oriented sessions designed to help solidify the topics presented in lecture. All computer-based lab activities will use the free programming language <a href="https://cran.r-project.org/">R</a>. In addition, we will run R using <a href="https://www.rstudio.com/">RStudio</a>, a powerful <em>integrated development environment</em> (IDE) for R. Labs will meet in Quinney Library 306. You are welcome to use your own personal laptop computer (see below for instructions for installing R and RStudio if you plan to use your own computer). Much of the demonstration of how demography and population dynamics are monitored and assessed in the field will be covered in WILD 2400 and WILD 4750.</p>
 <p>No previous experience with R is expected for this course. Lab activities, particularly those early in the semester, will be specifically designed to reinforce lecture topics as well as to introduce students to manipulating, analyzing, and visualizing data using R.</p>
-<p>During lab, students will work through pre-written code with the help of instructors. These activities will involve analyzing and visualizing data to deepen understanding of concepts presented in lecture. Graded lab assignments will involve a combination of:</p>
+<p>During lab, students will work through pre-written code with the help of instructors. These activities will involve analyzing and visualizing data to deepen understanding of concepts presented in lecture.</p>
+<div id="homework-assignments" class="section level3">
+<h3 class="hasAnchor">
+<a href="#homework-assignments" class="anchor"></a>Homework assignments</h3>
+<p>Graded lab assignments will involve a combination of:</p>
 <ul>
 <li>Short-answer questions based on the results of lab activities;</li>
 <li>Changing/writing code to answer new questions not addressed in lab activities; and,</li>
 <li>Short essays that link lab results to applied management/conservation issues</li>
 </ul>
-<p>In many cases, these assignments can be completed during lab. In other cases, students will be expected to take the results from their lab activities and complete assignments outside of class.</p>
+<p>Each assignment will consist of a <a href="%22articles/homework.html%22">R Markdown template</a> with questions and code. Portions of each assignment can be completed during lab. The remainder of the assignment will require students to take the results from their lab activities and complete assignments outside of class. Out-of-class work can either be completed on your own computer or by using the <a href="http://qcnr.usu.edu/quinney/computerlab_hours">computer lab facilities</a> in the Quinney Library.</p>
+</div>
 </div>
 <div id="quizzes" class="section level2">
 <h2 class="hasAnchor">
@@ -187,6 +199,7 @@ Office hours: Monday and Wednesday 1:00-2:30</p>
 <div id="exams" class="section level2">
 <h2 class="hasAnchor">
 <a href="#exams" class="anchor"></a>Exams</h2>
+<p>This course will have two mid-term exams (worth 10% of your grade each) and one final exam (worth 25% of your grade). All exams will be cumulative to some extent because the major topics in the course build off of each other so understanding the topics covered later in the semester requires understanding the topics covered earlier in the semester. However, exams 2 and 3 will tend to focus on material covered since the previous exam.</p>
 </div>
 </div>
 <div id="course-resources" class="section level1">
@@ -235,7 +248,7 @@ Office hours: Monday and Wednesday 1:00-2:30</p>
 <h2 class="hasAnchor">
 <a href="#assignments" class="anchor"></a>Assignments</h2>
 <p>Emphasis will be based on critical thinking. Thus, lab exercises will consist of problem solving, short answers, and essays.</p>
-<p>All lab assignments must be turned in on time. <strong>Late assignments are docked 25% of the grade for each day late.</strong></p>
+<p>All lab assignments must be turned in on time. <strong>Late assignments are docked 20% of the grade for each day late.</strong></p>
 </div>
 <div id="attendance" class="section level2">
 <h2 class="hasAnchor">
@@ -252,7 +265,7 @@ Office hours: Monday and Wednesday 1:00-2:30</p>
 <li>Quizzes (10 total) - 100 points (10%)</li>
 <li>Midterm exam - 200 points (20%)</li>
 <li>Final exam - 250 points (25%)</li>
-<li>Lecture attendence - 50 points (5%)</li>
+<li>Lecture attendance - 50 points (5%)</li>
 </ul>
 </div>
 <div id="grading-scale" class="section level1">
@@ -433,16 +446,13 @@ F
 <p>The instructor of this course will take appropriate actions in response to Academic Dishonesty, as defined the University’s Student Code. Acts of academic dishonesty include but are not limited to:</p>
 <ul>
 <li>
-<strong>Cheating</strong>: using, attempting to use, or providing others with any unauthorized assistance in taking quizzes, tests, examinations, or in any other academic exercise or activity. Unauthorized assistance includes:
-<ul>
+<strong>Cheating</strong>: using, attempting to use, or providing others with any unauthorized assistance in taking quizzes, tests, examinations, or in any other academic exercise or activity. Unauthorized assistance includes:</li>
 <li>Working in a group when the instructor has designated that the quiz, test, examination, or any other academic exercise or activity be done “individually;”</li>
 <li>Depending on the aid of sources beyond those authorized by the instructor in writing papers, preparing reports, solving problems, or carrying out other assignments;</li>
 <li>Substituting for another student, or permitting another student to substitute for oneself, in taking an examination or preparing academic work;</li>
 <li>Acquiring tests or other academic material belonging to a faculty member, staff member, or another student without express permission;</li>
 <li>Continuing to write after time has been called on a quiz, test, examination, or any other academic exercise or activity;</li>
 <li>Submitting substantially the same work for credit in more than one class, except with prior approval of the instructor; or engaging in any form of research fraud.</li>
-</ul>
-</li>
 <li>
 <strong>Falsification</strong>: altering or fabricating any information or citation in an academic exercise or activity.</li>
 <li>
