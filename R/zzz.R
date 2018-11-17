@@ -88,6 +88,12 @@
       strip.switch.pad.wrap = unit(0.1, "cm"),
       strip.placement = "inside",
 
+      plot.tag = element_text(
+        size = rel(1.2), color = "#7A8288",
+        hjust = 0.5, vjust = 0.5
+      ),
+      plot.tag.position = 'topleft',
+
       plot.background = element_rect(colour = NA, fill = "#272B30"),
       plot.title = element_text(color = "#7A8288",
         size = base_size * 2, hjust = 0, face = "bold",

@@ -1,0 +1,11 @@
+---
+title: "Homework 1"
+author: "YOUR NAME HERE"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+
