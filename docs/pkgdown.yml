@@ -1,8 +1,8 @@
 pandoc: '2.3'
-pkgdown: 1.1.0
-pkgdown_sha: ~
+pkgdown: 1.2.0.9000
+pkgdown_sha: c980e84a573614087c6e151d5e6e19a22748b761
 articles:
-  lab1: lab1.html
+  homework: homework.html
   schedule: schedule.html
   syllabus: syllabus.html
 

@@ -59,7 +59,7 @@ c.	Graphical presentation of data and statistical results
 
 # COURSE ACTIVITIES
 
-## Lecture
+## Lectures
 
 Lectures will cover basic concepts regarding the dynamics of plant and animal populations. Mastering these topics is critical to doing well in the course so lecture attendance will count towards a small portion of your grade (~0.2% of your final grade per lecture) as an incentive for attending. 
 
@@ -69,13 +69,17 @@ Labs will consist primarily of computer-oriented sessions designed to help solid
 
 No previous experience with R is expected for this course. Lab activities, particularly those early in the semester, will be specifically designed to reinforce lecture topics as well as to introduce students to manipulating, analyzing, and visualizing data using R. 
 
-During lab, students will work through pre-written code with the help of instructors. These activities will involve analyzing and visualizing data to deepen understanding of concepts presented in lecture. Graded lab assignments will involve a combination of: 
+During lab, students will work through pre-written code with the help of instructors. These activities will involve analyzing and visualizing data to deepen understanding of concepts presented in lecture. 
+
+### Homework assignments
+
+Graded lab assignments will involve a combination of: 
 
 * Short-answer questions based on the results of lab activities;
 * Changing/writing code to answer new questions not addressed in lab activities; and,
 * Short essays that link lab results to applied management/conservation issues
-    
-In many cases, these assignments can be completed during lab. In other cases, students will be expected to take the results from their lab activities and complete assignments outside of class. 
+
+Each assignment will consist of a [R Markdown template]("articles/homework.html") with questions and code. Portions of each assignment can be completed during lab. The remainder of the assignment will require students to take the results from their lab activities and complete assignments outside of class. Out-of-class work can either be completed on your own computer or by using the [computer lab facilities](http://qcnr.usu.edu/quinney/computerlab_hours) in the Quinney Library. 
 
 ## Quizzes
 
@@ -129,7 +133,7 @@ This class is offered as an Honors Class on a contract basis. Those students wis
 
 Emphasis will be based on critical thinking. Thus, lab exercises will consist of problem solving, short answers, and essays.  
 
-All lab assignments must be turned in on time.  **Late assignments are docked 25% of the grade for each day late.**   
+All lab assignments must be turned in on time.  **Late assignments are docked 20% of the grade for each day late.**   
 
 ## Attendance 
 If you have an anticipated absence, please notify me at least 1 day prior to the absence. It is your responsibility to make up for the materials missed in the event of a lecture or lab absence.  Your attendance on specified exam dates is mandatory.  Exams will be announced 1 week prior to the exam date in class.  Make-up exams will be administered in only the most extreme circumstances.  Excuses for absence due to illness, death in the family, or other unanticipated events will be handled on a case-by-case basis and must be documented.    
