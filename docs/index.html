@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WILD3810: Ecology of Plants and Animals • WILD3810</title>
-<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/slate/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="WILD3810: Ecology of Plants and Animals">
@@ -59,7 +59,7 @@
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-question-circle-o"></span>
+    <span class="fa fa-file-pdf-o"></span>
      
     Lectures
      
@@ -90,6 +90,13 @@
     Labs
   </a>
 </li>
+<li>
+  <a href="articles/homework.html">
+    <span class="fas fa fas fa-pencil-square-o"></span>
+     
+    Assignments
+  </a>
+</li>
       </ul>
 </div>
 <!--/.nav-collapse -->
@@ -101,23 +108,23 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-    <div id="wild3810-plant-and-animal-populations" class="section level1">
+    <div id="welcome-to-wild3810-plant-and-animal-populations" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#wild3810-plant-and-animal-populations" class="anchor"></a>WILD3810: Plant and Animal Populations</h1></div>
-<p>Wecome to the course homepage for WILD3810: Plant and Animal Populations.</p>
-<p>The goal of WILD3810 is to …</p>
-<div id="installation-of-the-course-r-package" class="section level2">
+<a href="#welcome-to-wild3810-plant-and-animal-populations" class="anchor"></a>Welcome to WILD3810: Plant and Animal Populations</h1></div>
+<p>This is the unofficial course website for the Spring 2019 offering of **WILD3810: Plant and Animal Populations*`** at Utah State University. This website is built using the R package <em>pkgdown</em> and is a slightly experimental attempt to use pkgdown to create a course website. For that reason, the “official” course website (for students enrolled in the course) will remain on Canvas.</p>
+<p>The goal of using <em>pkgdown</em>`* is to create a central repository for students to access all course materials - lecture slides, lab activities, assignment templates, code, data, etc. A secondary goal is to make those materials freely available to other students and instructors who may find them useful. As I mentioned, this is a bit of an experiment so please bear with me as the site comes together. If you encounter any issues or have any suggestions, feel free to contact me at clark.rushing [at] usu [dot] edu.</p>
+<p>General course information can be found by clicking on the <code>syllabus</code> and <code>schedule</code> links above. Throughout the semester, I will also post lecture notes and lab activities which can be accessed using the drop down menus. I will attempt to post these as far in advance as possible and no later than the day before class.</p>
+<div id="course-r-package" class="section level2">
 <h2 class="hasAnchor">
-<a href="#installation-of-the-course-r-package" class="anchor"></a>Installation of the course R package</h2>
-<p>All To aid distribution of lab materials and to allow students to run interactive material on their own computer, all materials have been compiled as an R package <code>WILD3810</code>. You can install the current version of the <code>WILD3810</code> from github with:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#install.packages("devtools")</span>
-devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">'RushingLab/WILD3810'</span>)</code></pre></div>
+<a href="#course-r-package" class="anchor"></a>Course R package</h2>
+<p>In addition to this website, materials from the course will be distributed through an R package called, you guessed it, <em>WILD3810</em>. The main purpose of the R package is to distribute code and data that will used for the course, though eventually additional materials may be included, including lectures and reference documents. You can install the most current version of <em>WILD3810</em> with:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(devtools)
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"RushingLab/WILD3810"</span>)</code></pre></div>
 </div>
-<div id="example" class="section level2">
+<div id="use-of-material" class="section level2">
 <h2 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## basic example code</code></pre></div>
+<a href="#use-of-material" class="anchor"></a>Use of material</h2>
+<p>Materials included in this course is purposefully made available to anyone who finds it useful. Users are free to use, adapt, distribute, display, and communicate these materials freely. If you find these materials useful, please let me know, especially if you are using or adapting these materials for teaching. Tracking use of these materials outside of the offical course is not only great validation for my effort, it helps me demonstrate “a positive professional reputation in teaching” (which happens to be useful for promotion).</p>
 </div>
 </div>
   </div>
@@ -134,7 +141,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h2>License</h2>
 <ul class="list-unstyled">
 <li><a href="LICENSE.html">Full license</a></li>
-<li><small><a href="https://opensource.org/licenses/mit-license.php">MIT</a> + file <a href="LICENSE-text.html">LICENSE</a></small></li>
+<li><small>CC0</small></li>
 </ul>
 </div>
 <div class="developers">
