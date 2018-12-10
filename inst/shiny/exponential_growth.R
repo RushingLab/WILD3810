@@ -10,7 +10,8 @@
 library(shiny)
 library(ggplot2)
 library(shinythemes)
-ui <- fluidPage(theme = shinytheme("superhero"),
+library(WILD3810)
+ui <- fluidPage(theme = shinytheme("spacelab"),
   titlePanel("Exponential population growth"),
 
   sidebarLayout(
@@ -51,10 +52,10 @@ server <- function(input, output) {
         N$N <- log(N$N)
 
         ggplot(N, aes(x = Year, y = N)) + geom_path() + geom_point(size = 5, color = "white") +
-          geom_point() + theme_minimal() + scale_y_continuous("log(N)")
+          geom_point() + scale_y_continuous("log(N)")
       }else{
         ggplot(N, aes(x = Year, y = N)) + geom_path() + geom_point(size = 5, color = "white") +
-          geom_point() + theme_minimal()
+          geom_point()
       }
     }else{
       N <- data.frame(Year = seq(from = 1, to = input$nYears),
@@ -67,10 +68,10 @@ server <- function(input, output) {
         N$N <- log(N$N)
 
         ggplot(N, aes(x = Year, y = N, color = Population)) + geom_path() + geom_point(size = 5, color = "white") +
-          geom_point() + theme_minimal() + scale_y_continuous("log(N)")
+          geom_point() + scale_y_continuous("log(N)")
       }else{
         ggplot(N, aes(x = Year, y = N, color = Population)) + geom_path() + geom_point(size = 5, color = "white") +
-          geom_point() + theme_minimal()
+          geom_point()
       }
     }
 

@@ -2,7 +2,7 @@ title: WILD3810
 #url: http://rushinglab.github.io/WILD3810
 template:
   params:
-    bootswatch: slate
+    bootswatch: spacelab
 
 reference:
 

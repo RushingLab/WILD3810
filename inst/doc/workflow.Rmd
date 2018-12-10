@@ -19,11 +19,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 4. Build the vignette using `build_vignettes()`
 
-5. Move the .Rmd file from `/vignettes` to `/lectures`
+5. Build the new lecture using `pkgdown::build_articles()`
 
-6. Build the new lecture using `pkgdown::build_articles()`
+6. Move the .Rmd file from `/vignettes` to `/lectures`
 
-7. In the `_pkgdown.yml` file, under the "Lectures" tab of the navbar, add:  
+7. Knit lecture as pdf to create pdf file in `/lectures`
+
+8. In the `_pkgdown.yml` file, under the "Lectures" tab of the navbar, add:  
     + `- text: "Lecture #: Title"` 
     + `  href: articles/lecture#.html`  
   replacing `#` with the actual number and `Title` with the actual title
@@ -35,3 +37,9 @@ knitr::opts_chunk$set(echo = TRUE)
 1. Move `/lectures/lecture#.Rmd` to `/vignettes/lecture#.Rmd`
 
 2-9: Follow steps 1-8 from **Adding lectures**
+
+## Convert lecture to pdf
+
+1. Create link to html file using: `file_name <- paste0("file://", normalizePath("path/to/lecture#.html"))`
+
+2. Covert to pdf using: `webshot::webshot(file_name, "path/to/lecture#.pdf")`
