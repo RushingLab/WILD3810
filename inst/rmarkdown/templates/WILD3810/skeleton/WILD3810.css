@@ -51,9 +51,16 @@ code {
     width: 90%;
 }
 
-.remark-slide-content {
-  background-color: #2B3E50;
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
+
+/* .remark-slide-content {
+   background-color: #2B3E50;
+ } */
 
 blockquote {
   margin-bottom: 1rem;
