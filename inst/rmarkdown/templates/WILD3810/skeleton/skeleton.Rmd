@@ -12,8 +12,9 @@ output:
       countIncrementalSlides: false
 ---
 
-```{r setup, echo = FALSE, fig.align = 'center', fig.asp = 1}
+```{r setup, include = FALSE}
 options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE)
 library(WILD3810)
 library(gganimate)
 ```
