@@ -32,7 +32,7 @@ navbar:
           href: articles/lecture5.html
     - icon: fas fa-desktop
       text: "Labs"
-      href: Labs/Lab1.html
+      href: Labs/test_lab.html
     - icon: fas fa-pencil-square-o
       text: "Assignments"
       href: articles/homework.html
