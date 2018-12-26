@@ -65,7 +65,7 @@ summary {
 
 /* Typographic tweaking ---------------------------------*/
 
-.contents h1.page-header {
+.contents .page-header {
   margin-top: calc(-60px + 1em);
 }
 
@@ -228,4 +228,9 @@ mark {
   background-color: rgba(255, 255, 51, 0.5);
   border-bottom: 2px solid rgba(255, 153, 51, 0.3);
   padding: 1px;
+}
+
+/* vertical spacing after htmlwidgets */
+.html-widget {
+  margin-bottom: 10px;
 }

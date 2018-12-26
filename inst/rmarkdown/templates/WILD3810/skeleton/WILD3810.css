@@ -1,12 +1,12 @@
 a, a > code {
-  color: #DF691A;
+  color: #D47500;
   text-decoration: none;
   background-color: transparent;
 }
 
 code {
   font-size: 87.5%;
-  color: #8d9dad;
+  color: #D47500;
   word-break: break-word;
 }
 
@@ -34,12 +34,12 @@ code {
 }
 
 .table .table {
-  background-color: #2B3E50;
+  background-color: #eeeeee;
 }
-.remark-code-line-highlighted { background-color:#2B3E50; }
+.remark-code-line-highlighted { background-color:#eeeeee; }
 
 .hljs-github .hljs {
-    background: #2B3E50;
+    background: #eeeeee;
 }
 
 .footnote {
@@ -51,12 +51,12 @@ code {
     width: 90%;
 }
 
-.center {
+/*.center {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
-}
+}*/
 
 /* .remark-slide-content {
    background-color: #2B3E50;
@@ -108,6 +108,7 @@ h6, .h6 {
 
 .inverse {
   background-color: #2B3E50;
+  color: ;
   text-shadow: none;
 }
 
