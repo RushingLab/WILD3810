@@ -21,7 +21,7 @@ navbar:
       icon: fa-file-pdf-o
       menu:
         - text: "Lecture 1: Introduction to WILD3810"
-          href: articles/lecture1.html
+          href: articles/Lecture1/lecture1.html
         - text: "Lecture 2: Test"
           href: articles/lecture2.html
         - text: "Lecture 3: Test"
@@ -32,7 +32,11 @@ navbar:
           href: articles/lecture5.html
     - icon: fas fa-desktop
       text: "Labs"
-      href: Labs/test_lab.html
+      menu:
+        - text: "Lab 1a: Introduction to R and mark-recapture"
+          href: articles/lab1.html
+        - text: "Lab 1b: Introduction to R Markdown"
+          href: articles/rmarkdown_intro.html
     - icon: fas fa-pencil-square-o
       text: "Assignments"
       href: articles/homework.html

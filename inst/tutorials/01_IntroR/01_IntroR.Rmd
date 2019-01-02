@@ -24,9 +24,6 @@ Even if you don't pursue a career in one of these fields, the ability to manipul
 ## Where to get help
 
 
-## My philosophy on learning R
-
-
 ## Using R - the very basics 
 
 As a statistical programming tool, one thing R is very good at is doing math. So as a starting point, let's treat R like a fancy calculator. 
@@ -97,8 +94,21 @@ m2 <-
 
 Now add, a new line of code below `m2 <- ` to estimate $N$ from our newly created objects. 
 
-### Quiz
+## Commenting your code
 
+R will ignore any code that follows a `#`. This is *very* useful for making your code more readable for both yourself and others. Use comments to remind yourself what a newly created object is, to explain what a line of code does, to leave yourself a reminder for later, etc. For example, in the previous code, it might be a good idea to use comments to define what each object represents:
+
+```{r LP, exercise=TRUE}
+n1 <- 45     # Number of individuals captured on first occasion
+
+n2 <- 32     # Number of individuals captured on second occasion
+  
+m2 <- 15     # Number of previously marked individuals captured on second occasion
+```
+
+Notice that when you run this code, R ignores our comments. 
+
+## 
 *You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
 
 Some questions to verify that you understand the purposes of various base and recommended R packages:

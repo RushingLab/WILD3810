@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lecture 6</title>
+    <meta charset="utf-8">
+    <meta name="author" content="   WILD3810 (Spring 2019)" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="WILD3810.css" type="text/css" />
+    <link rel="stylesheet" href="WILD3810-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Lecture 6
+## Stochasticity
+### <br/><br/><br/>WILD3810 (Spring 2019)
+
+---
+
+
+
+
+## Readings
+
+---
+# Assumptions of the B-D models
+
+Remember from the previous lecture that our simple models of population growth were based on the following assumptions:  
+&lt;br/&gt;
+
+--
+1) Population closed to immigration and emigration  
+&lt;br/&gt;
+
+--
+2) Model pertains to only the limiting sex, usually females  
+&lt;br/&gt;
+
+--
+3) Birth and death rates are independent of an individual’s age or biological stage  
+&lt;br/&gt;
+
+--
+**4) Birth and death rates are constant** `\(^1\)`
+&lt;br/&gt;
+
+???
+
+`\(^1\)` Do not vary over time or space, across individuals
+
+---
+# Assumptions of the B-D models
+
+In reality, we know that assumption 4 is almost never true  
+&lt;br/&gt;
+
+--
+Birth and death rates are determined by many external forces  
+&lt;br/&gt;
+
+--
+These forces often vary across space, time, and individuals:
+&lt;br/&gt;
+
+- body condition  
+
+- temperature  
+
+- drought  
+
+- fire  
+
+
+--
+The B-D population model ignored all of these sources of variation `\(^1\)`
+
+???
+
+`\(^1\)` As we'll see, this is not only unrealistic, ignoring variation can change our conclusions about population growth. 
+
+---
+class: inverse, center, middle
+
+# Stochasticity
+
+---
+## Stochasticity
+
+In many cases, we do not know exactly why populations go up or down from year-to-year  
+&lt;br/&gt;
+
+--
+Often don't know what these causes are so from our perspective, the variation appears to be **random**  
+&lt;br/&gt;
+
+--
+Processes that are governed by some element of chance (randomness) are referred to as **stochastic** processes  
+&lt;br/&gt;
+
+--
+Just because something is stochastic doesn't mean it's completely unpredictable `\(^1\)`  
+
+&lt;img src="lecture6_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+
+???
+
+`\(^1\)` For example, we can't predict with 100% certainty whether a coin flip will be heads or tails or what side a 6-sided dice will land on (there is some stochasticity in these processes) but that doesn't mean we have no idea what the outcomes will be  
+
+
+---
+## Stochasticity
+
+We can predict how often we expect different random outcomes using *probability*  
+&lt;br/&gt;
+
+--
+Probability distributions characterize the frequency of different possible outcomes `\(^1\)`  
+
+&lt;img src="lecture6_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+&lt;br/&gt;
+
+--
+In population models, we can use probability to characterize and account for stochastic processes that effect population growth  
+
+???
+
+`\(^1\)` For example, many of you are probably familiar with the normal (or bell-shaped) distribution. This is a probability distribution with a single "most probable" outcome and decreasing probability of more "extreme" values.
+
+---
+## Two types of stochastic processes
+
+With regards to population models, we generally distinguish between two types of stochasticity:  
+&lt;br/&gt; 
+
+--
+1) **Environmental stochasticity**  
+
+&gt; variation in the *mean* demographic parameters and population growth that occurs due to random changes in environmental conditions  
+
+
+--
+2) **Demographic  stochasticity**  
+
+&gt; variability in demographic parameters and population growth that arises from random outcomes among *individual* survival and reproductive fates due to random chance alone
+
+---
+class: inverse, center, middle
+
+# Environmental stochasticity
+
+---
+## Environmental stochasticity
+
+The expected value of demographic parameters can fluctuate over time in response to:
+
+.pull-left[
++ rainfall  
+
++ temperature  
+
++ fires and disturbance  
+
++ competitors  
+
++ predators  
+
++ pathogens  
+]
+
+.pull-right[
+&lt;img src="lecture6_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Environmental stochasticity
+
+If environmental attributes change stochastically over time, so will demographic vital rates and population growth rate
+
+&lt;img src="lecture6_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Modeling environmental stochasticity
+
+If we want to take into account changes in demographic parameters as environmental conditions change, we need time-specific demographic parameters: 
+
+`$$N_{t+1} = N_t \times (1 + b_t - d_t)$$`
+
+--
+`$$N_{t+1} = N_t \times \lambda_t$$`
+
+--
+Over `\(T\)` years, abundance will be:
+
+`$$N_{T} = N_0 \times \big(\lambda_0 \times \lambda_1 \times \lambda_2 \times...\lambda_{T-1}\big)$$`
+
+---
+## Modeling environmental stochasticity
+
+For example, if `\(N_0 = 50\)` and:
+
+`$$\lambda_0 = 1.1$$`
+
+`$$\lambda_1 = 0.9$$`
+
+`$$\lambda_2 = 0.7$$`
+
+`$$\lambda_3 = 1.2$$`
+
+`$$\lambda_4 = 1.1$$`
+
+then:
+
+--
+
+`$$N_{5} = 50 \times 1.1 \times 0.9 \times 0.7 \times 1.2 \times 1.1 = 46$$`  
+
+&lt;img src="lecture6_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Modeling environmental stochasticity
+
+It's clear that this population is declining  
+
++ the *average* value of `\(\lambda\)` must be `\(&lt;1\)`  
+
+
+--
+What *is* the average `\(\lambda\)` (which we'll call `\(\bar{\lambda}\)`?  
+
+---
+## Modeling environmental stochasticity
+
+An obvious way to calculate `\(\bar{\lambda}\)` is the *arithmetic mean* of the annual `\(\lambda\)`'s:
+
+`$$\bar{\lambda} = \frac{\lambda_0+ \lambda_1 + \lambda_2 +...\lambda_{T-1}}{T}$$`
+
+--
+In our example, this equals:
+
+`$$\bar{\lambda} = \frac{1.1 + 0.9 + 0.7 + 1.2 + 1.1}{5} = \frac{5}{5} = 1$$`
+---
+## Modeling environmental stochasticity
+
+But that can't be right!  
+&lt;br/&gt;
+
+`\(\bar{\lambda} = 1\)` means the population should have, on average, remained at 50 individuals 
+&lt;br/&gt;
+&lt;br/&gt;
+
+--
+The issue that the population growth is a multiplicative process  
+
+This means that shrinking by 30% `\((\lambda = 0.7)\)` and then growing by 30% `\((\lambda = 1.3)\)` does not get you back to where you started  
+
++ For example, `\(100 \times 0.7 = 70\)` but `\(70 \times 1.3 = 91\)`. 
+
+---
+## Modeling environmental stochasticity
+
+To estimate the average of a multiplicative process, we need to take the *geometric* mean rather than the arithmetic mean:  
+
+`$$\bar{\lambda} = \big(\lambda_0 \times \lambda_1 \times \lambda_2 \times...\lambda_{T-1}\big)^\frac{1}{T}$$`  
+
+
+--
+For our population, that means: 
+
+`$$\bar{\lambda} = \big(1.1 \times 0.9 \times 0.7 \times 1.2 \times 1.1\big)^\frac{1}{5} = 0.98$$`
+
+---
+## Modeling environmental stochasticity
+
+As you can see, the geometric mean &lt; arithmetic mean  
+&lt;br/&gt; 
+
+--
+This is a *critical point* about environmental stochasticity  
+
+--
+&gt; Populations with variable growth rates will tend to grow more slowly (or decrease faster) than populations in constant environments even if their mean vital rates are the same.
+
+---
+## Modeling environmental stochasticity
+
+Let's see what that looks like:  
+
+--
+Initially, assume a large population ($N_0 = 500$) with:
+
++ `\(\bar{b_t} = 0.55\)`  
+
++ `\(\bar{d_t} = 0.50\)`  
+
++ and **neither parameter varies over time**  
+
+Thus:
+
+`$$\bar{\lambda} = (1 + \bar{b_t} - \bar{d_t}) = (1 + 0.55 - 0.5) = 1.05$$`
+
+--
+.pull-left[
+Over 100 years, the population growth will be:
+]
+
+.pull-right[
+&lt;img src="lecture6_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Modeling environmental stochasticity
+
+Now let's look at the dynamics of a second population with the same starting population size, the same mean demographic rates but with annual variation of 20%   
+
+--
+Notice that the mean rates are the same so intuitively,  
+
+`$$\bar{\lambda} = (1 + \bar{b_t} - \bar{d_t}) = (1 + 0.55 - 0.5) = 1.05$$`
+
+--
+but:  
+
+&lt;img src="lecture6_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Modeling environmental stochasticity
+
+Finally, let's add a third population with the same starting population size, the same mean demographic rates but now with annual variation of 40%. 
+
+&lt;img src="lecture6_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Modeling environmental stochasticity
+
+Because environmental stochasticity tends to reduce `\(\bar{\lambda}\)` regardless of population size, it has important consequences for the extinction risk of **both small and large populations**  
+
+We'll explore this idea more in lab  
+
+---
+class: inverse, center, middle
+
+# Demographic stochasticity
+
+---
+## Demographic  stochasticity
+
+In the preceeding examples, we treated the demographic outomes (individual survival and reproductive success) at each time step as non-random variables  
+
+--
++ If the mean survival probability in a given year is 80%, then exactly 80% of the population survived and 20% died  
+
+
+--
+This is not a realistic assumption  
+
+Imagine flipping a coin 10 times:  
+
+--
++ we know that the probability of getting a heads is 50% 
+
+--
++ but we would not be suprised to get 4 heads. Or 7  
+
+--
++ we wouldn't even be that surprised to get 2 or 9  
+
+
+--
+This is because the outcome of the coin flip is a *random variable* - the outcome is governed by chance  
+
+---
+## Demographic  stochasticity
+
+The same is true to demographic outcomes  
+
+Even if the *expected* survival rate is 80%, the *realized* survival rate could be higher or lower  
+
+Likewise, we might expect individuals to produce 3 offspring on average, but some individuals will have more and some fewer based on chance `\(^1\)`  
+
+--
+Demographic stochasticity is essentially the difference between the expected survival/reproductive rate and the realized rates in our population.
+
+???
+`\(^1\)` or at least what appears to use to be chance  
+
+---
+## Demographic  stochasticity
+
+Demographic  stochasticity occurs because our population is a *finite sample*  
+
+Going back to the coin flip, if we flip the coin 1000 times, we would expect to get pretty close to 50% heads  
+
+But as the number of flips gets smaller, the realized success rate could differ more from the expected value  
+
+---
+## Demographic  stochasticity
+
+### Coin flipping exercise
+
+1) Form groups of 2-3 (a coin flipper and a recorder), and within your group, flip a coin a total of 10 times
+
+2) What fraction of flips resulted in heads?
+
+3) Now flip coins a total of 50 times in your group
+
+4) What fraction of flips resulted in heads?
+
+---
+## Effects of demographic stochasticity
+
+Demographic stochasticity is mainly an issue at **small population sizes** because each individual is a larger proportion of the total sample size  
+&lt;br/&gt;
+
+--
+To see this in action, we can use `R` to simulate the abundance of populations that experience demographic stochasticity  
+&lt;br/&gt;
+
+--
+Start with 100 populations with a relatively large population size `\((N = 500)\)` `\(^1\)`  
+
+We will further assume that the mean survival and reproductive rates remain constant so all stochastisticity is demographic  
+
+--
+&lt;img src="lecture6_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+
+???
+
+`\(^1\)` Since each population starts with the same initial populaiton size, any differences at the end of the simulation are due to stochasticity  
+
+---
+## Effects of demographic stochasticity
+
+In this example, 51% of the populations decreased `\((N_T &lt; 500)\)` and none went extinct   
+
+--
+What happens if we start with 10 individuals instead?
+
+&lt;img src="lecture6_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Effects of demographic stochasticity
+
+Now 62% of the populations decreased and 40 went extinct `\(^1\)` 
+
+&lt;img src="lecture6_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+
+???
+
+`\(^1\)` Remember that if at any point during the timeseries `\(N=0\)`, the population is extinct. Because our model assumes no movement, a population that goes extinct stays extinct
+
+---
+## Effects of demographic stochasticity
+
+Demographic stochasticity increase extinction risk of small populations because there's an increased chance that, purely due to randomness, more individuals die than are born  
+
+At large abundances, this is much less likely  
+
+---
+### Stochasticity and extinction risk over time
+
+Another important consequences of stochasticity is that, over long-enough time periods, populations that exeperience stochasticity (both demographic and environmental) will eventually go extinct  
+&lt;br/&gt; 
+
+
+--
+Given long enough, each population will eventually experience a string of years with high mortality and low reproductive success  
+&lt;br/&gt;
+
+--
+The time it takes for this to occur will be longer for large populations but even still, it will eventually happen  
+
+
+---
+### Stochasticity and extinction risk over time
+
+Again, we can use data simulations to show this:
+
+
+
+--
+If we start with populations of 100 individuals and simulate 50 years of population change, 1% of populations go extinct  
+
+&lt;img src="lecture6_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+### Stochasticity and extinction risk over time
+
+If we extend our simulation out to 200 years, 23% of populations go extinct  
+
+&lt;img src="lecture6_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+### Stochasticity and extinction risk over time
+
+500 years? 57% of populations go extinct  
+
+&lt;img src="lecture6_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+### Stochasticity and extinction risk over time
+
+10,000 years? 99% of populations go extinct `\(^1\)` 
+
+&lt;img src="lecture6_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+
+???
+
+`\(^1\)` We could go further if we wanted and that last population would eventually go extinct as well  
+
+So why isn't extinction more common in nature?
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
