@@ -83,7 +83,7 @@ Graded lab assignments will involve a combination of:
 * Changing/writing code to answer new questions not addressed in lab activities; and,
 * Short essays that link lab results to applied management/conservation issues
 
-Each assignment will consist of a [R Markdown template]("articles/homework.html") with questions and code. Portions of each assignment can be completed during lab. The remainder of the assignment will require students to take the results from their lab activities and complete assignments outside of class. Out-of-class work can either be completed on your own computer or by using the [computer lab facilities](http://qcnr.usu.edu/quinney/computerlab_hours) in the Quinney Library. 
+Each assignment will consist of a [R Markdown template](https://rushinglab.github.io/WILD3810/articles/homework.html) with questions and code. Portions of each assignment can be completed during lab. The remainder of the assignment will require students to take the results from their lab activities and complete assignments outside of class. Out-of-class work can either be completed on your own computer or by using the [computer lab facilities](http://qcnr.usu.edu/quinney/computerlab_hours) in the Quinney Library. 
 
 All lab assignments must be turned in by the beginning of lab the following week.  **Late assignments are docked 20% of the grade for each day late.**  
 
@@ -145,7 +145,7 @@ Your course grade will be based on the following:
 
 * Lab assignments (10 total) - 400 points (40%)
 * Quizzes (10 total) - 100 points (10%)
-* Midterm exam - 200 points (20%)
+* Midterm exams (2 total) - 200 points (20%)
 * Final exam - 250 points (25%)
 * Lecture attendance - 50 points (5%)
   
