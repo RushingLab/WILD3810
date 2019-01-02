@@ -1,0 +1,517 @@
+---
+title: "Lecture 4"
+subtitle: "Density-dependent population growth"
+author: "<br/><br/><br/>WILD3810 (Spring 2019)"
+output:
+  xaringan::moon_reader:
+    css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE)
+library(WILD3810)
+# library(gganimate)
+```
+
+## Readings
+
+> Mills 126-132; 135-139
+
+---
+class: center, middle
+
+# Density-dependent population growth
+
+---
+## Density-independence vs density-dependence
+
+In the population models that we've discussed so far, we assumed that the demograpic rates were unrelated to the size of the population
+
+```{r fig.width=5, fig.height=3.5}
+
+df <- data.frame(value = rep(c(0.5, 0.7), each = 100),
+                 N = rep(seq(1:100), 2),
+                 rate = rep(c("Death rate", "Birth Rate"), each = 100))
+
+ggplot(df, aes(N, value, color = rate, group = rate)) + geom_path() +
+  scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
+                                as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
+  scale_y_continuous("Demographic rates", limits = c(0, 1))
+
+```
+
+---
+## Density-independence vs density-dependence
+
+We also learned that the assumption that demographic rates are independent of population density leads to exponential population growth
+
+```{r fig.width=5, fig.height=3.5}
+lambda <- 1.10
+
+r <- log(lambda^(1/20.75))
+
+Nd <- data.frame(Year = 1:25,
+                N = numeric(length = 25))
+
+Nc <- data.frame(Year = seq(from = 1, to = 25, length.out = 500),
+                 N = numeric(length = 500))
+Nd$N[1] <- Nc$N[1] <- 10
+
+for(i in 2:25){
+  Nd$N[i] <- Nd$N[i-1] * lambda
+}
+
+for(i in 2:500){
+  Nc$N[i] <-  Nc$N[i-1] + Nc$N[i-1] * r
+}
+
+(p <- ggplot() + 
+    geom_path(data = Nc, aes(x = Year, y = N), linetype = "longdash", color = WILD3810_colors$value[WILD3810_colors$name=="warning"]) + 
+    geom_point(data = Nd, aes(x = Year, y = N), size = 1, color =  WILD3810_colors$value[WILD3810_colors$name=="warning"]))
+
+```
+
+---
+### Limitless population growth?
+
+It is not realistic to expect populations can grow exponentially forever (or even for relatively short periods of time)  
+
+--
+Thomas Malthus was the first to propose that no population could grow without bound forever (1798) $^1$  
+
+```{r out.width=200}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/3/32/Thomas_Robert_Malthus.jpg")
+```
+
+--
+At some point, resources will be become limited and populations must either stop growing or decline  
+
+???
+
+$^1$ Malthus' work inspired Darwin (1859) to suggest that limitation of resources is what drives evolution by natural selection
+
+---
+### Competition
+
+At small population sizes, individual organisms may be able to aquire all of the resourcees they need to survive and reproduce  
+
+--
+As $N$ increases, the availability of resources per organism will decrease, leading to increased competition 
+
+- *Intra-specific competition* is the interaction between individuals of a single species brought about by the need for a shared resource
+
+---
+### Competition
+
+Intra-specific competition can arise in multiple ways:
+
+.pull-left[
+**Animals**  
+
+- food  
+ 
+- shelter  
+ 
+- breeding sites  
+ 
+- mates  
+ 
+]
+
+.pull-right[
+ **Plants**  
+ 
+- space  
+
+- light  
+
+- water  
+
+- nutrients  
+]
+
+---
+### Competition
+
+ Ecologists generally distinguish between two types of competition:
+ 
+--
+1) *Exploitation competition* 
+
+> consumption of limited resource by individuals depletes the amount available for others (a.k.a., depletion, consumption, or scramble competition); *indirect*
+
+
+--
+2) *Interference competition*
+
+> individuals actively prevent others from attaining a resource in a given area or territory (a.k.a., encounter or contest competition); *direct*
+
+---
+### Competition
+
+As population size increases, the resources available to each individual will eventually shrink to the point where demographic parameters are negatively effected
+
+```{r, fig.width=5, fig.height=3.5}
+
+N <- seq(0, 10, by = 0.05)
+
+b0 <- 0.8
+d0 <- 0.3
+
+b <- b0 -0.01 * N^2 
+
+dd <- data.frame(value = c(rep(d0, length(N)), b),
+                 N = rep(N, 2),
+                 rate = rep(c("Death rate", "Birth Rate"), each = length(N)))
+
+ggplot(dd, aes(N, value, color = rate, group = rate)) + geom_path() +
+  scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
+                                as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
+  scale_y_continuous("Demographic rates", limits = c(0, 1)) +
+  theme(axis.text = element_blank(), axis.ticks = element_blank()) #+
+  # scale_x_continuous(breaks = 7.1, labels = "K") +
+  # geom_segment(aes(x = 7.1, xend = 7.1, y = 0, yend = d0), linetype = "longdash", color = WILD3810_colors$value[WILD3810_colors$name=="primary"])
+```
+
+---
+### Competition
+
+As population size increases, the resources available to each individual will eventually shrink to the point where demographic parameters are negatively effected
+
+```{r fig.width=5, fig.height=3.5}
+d <- d0 + 0.01 * N^2 
+
+dd <- data.frame(value = c(d, rep(b0, length(N))),
+                 N = rep(N, 2),
+                 rate = rep(c("Death rate", "Birth Rate"), each = length(N)))
+
+ggplot(dd, aes(N, value, color = rate, group = rate)) + geom_path() +
+  scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
+                                as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
+  scale_y_continuous("Demographic rates", limits = c(0, 1)) +
+  theme(axis.text = element_blank(), axis.ticks = element_blank()) #+
+    # scale_x_continuous(breaks = 7.1, labels = "K") +
+  # geom_segment(aes(x = 7.1, xend = 7.1, y = 0, yend = b0), linetype = "longdash", color = WILD3810_colors$value[WILD3810_colors$name=="primary"])
+```
+
+---
+## Carrying-capacity
+
+Remember that the population growth rate $r = b -d$  
+
+So if the birth rate is bigger than the death rate, $r$ is positively and the population will grow. If the death rate is bigger than the birth rate, $r$ is negative and the population will increase. 
+
+### Left of the intersection, $r$ is positive so the population will grow
+
+```{r, fig.height=2.5, fig.width=5}
+
+(p <- ggplot(dd, aes(N, value, color = rate, group = rate)) + geom_path() +
+  scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
+                                as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
+  scale_y_continuous("Demographic rates", limits = c(0, 1)) +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), axis.title.x = element_text(hjust = 0.285)) +
+  annotate("text", x = 1, y = 0.55, label = "b > d", size = 7, color = WILD3810_colors$value[WILD3810_colors$name=="secondary"]) +
+  geom_segment(aes(x = 2.5, xend = 2.5, y = -Inf, yend = b0-0.08), color = WILD3810_colors$value[WILD3810_colors$name=="secondary"], linetype = "longdash") +
+  xlab(expression(N %->% "")))
+
+```
+
+---
+## Carrying-capacity
+
+Remember that the population growth rate $r = b -d$  
+
+So if the birth rate is bigger than the death rate, $r$ is positively and the population will grow. If the death rate is bigger than the birth rate, $r$ is negative and the population will increase. 
+
+### Right of the intersection, $r$ is negative so the population will shrink
+```{r, fig.height=2.5, fig.width=5}
+
+(p <- ggplot(dd, aes(N, value, color = rate, group = rate)) + geom_path() +
+  scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
+                                as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
+  scale_y_continuous("Demographic rates", limits = c(0, 1)) +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), axis.title.x = element_text(hjust = 0.66)) +
+  annotate("text", x = 8, y = 0.55, label = "d > b", size = 7, color = WILD3810_colors$value[WILD3810_colors$name=="secondary"]) +
+  geom_segment(aes(x = 7, xend = 7, y = -Inf, yend = b0-0.01), color = WILD3810_colors$value[WILD3810_colors$name=="secondary"], linetype = "longdash") +
+  xlab(expression("" %<-% N)))
+
+# +
+#   scale_x_continuous(breaks = 5, labels = "K") +
+#   geom_segment(aes(x = 5, xend = 5, y = -Inf, yend = b0-0.25), linetype = "longdash", color = WILD3810_colors$value[WILD3810_colors$name=="primary"])
+```
+
+---
+## Carrying-capacity
+
+Remember that the population growth rate $r = b -d$  
+
+So if the birth rate is bigger than the death rate, $r$ is positively and the population will grow. If the death rate is bigger than the birth rate, $r$ is negative and the population will increase. 
+
+### At the intersection, $r$ is 0 so the population not change
+
+The carrying capacity $K$ is defined as the population size that the environment can maintain
+
+```{r, fig.height=2.5, fig.width=5}
+
+(p <- ggplot(dd, aes(N, value, color = rate, group = rate)) + geom_path() +
+  scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
+                                as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
+  scale_y_continuous("Demographic rates", limits = c(0, 1)) +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(), axis.title.x = element_text(hjust = 0.5)) +
+  geom_segment(aes(x = 5, xend = 5, y = -Inf, yend = b0-0.25), linetype = "longdash", color = WILD3810_colors$value[WILD3810_colors$name=="secondary"]) +
+  xlab(expression("" %->% K %<-%"")))
+  
+```
+
+---
+class: inverse, center, middle
+
+# Population regulation vs limitation
+
+---
+## Population regulation vs limitation
+
+The density-dependent processes we just learned about are called *regulating* factors  
+
+--
+Regulating factors keep population size from going too far above *or* below $K$  
+
+- Regulating factors operate via density-dependence
+
+--
+Think of regulating factors like a thermostat - if the temperature goes below the desired temperature ($N < K$), the heater kicks on ($b$ increases). If once the temperature increases above the set temperature ($N > K$), the heater turns off ($d$ increases). 
+
+---
+## Population regulation vs limitation
+
+*Limiting* factors determine the actual value of $K$. Limiting factors can be density-dependent (e.g., ) but they can also be density independent (e.g., disturbance or extreme weather)
+
+---
+class: inverse, center, middle
+
+# Models of D-D population growth
+
+---
+## Models of D-D population growth
+
+### Continuous time
+
+Remember our density-independent model of population growth:
+
+$$\frac{dN}{dt} = N \times r$$
+
+How can we modify this equation to include density-dependence? To start, let's remember what density-dependence means - the rate of population growth decreases as population size increases. A good starting point for this is a linear response that looks something like this:
+
+```{r}
+r0 <- 1
+K <- 1000
+N <- 0:1500
+
+df <- data.frame(N = N,
+                 r = r0 * (1 - N/K))
+ggplot(df, aes(x = N, y = r)) + geom_line(color = "grey50") +
+  scale_y_continuous(breaks = 0) +
+  scale_x_continuous(breaks = 1000, label = "K") +
+  geom_segment(x = K, xend = K, y = -Inf, yend = 0, 
+               linetype = "dashed", color = "grey50", size = 0.5, alpha = 0.25) +
+  geom_hline(yintercept = 0, linetype = "longdash", color = "gray50")
+```
+
+How do we add this relationship to our model? Remember the equation for a line $y = ax + b$. In this equation, $b$ is the y-intercept (the value of $y$ when $x=0$) and $a$ is the slope (the change in $r$ per unit change is $x$). In our model, we can write this as:
+
+$$r = aN + b$$. 
+
+What is $b$? It's the rate of increase when the population is 0. We can see in the figure that this is the largest value of $r$ our population can experience. We'll call that $r_0$. Because $r_0$ the maximum rate of increase (nothing limiting population growth), it is equivalent to $r$ in our density-independent model. 
+
+What about $a$? We know it has to be negative - $r$ has to decrease as $N$ increases. We've already learned that $r=0$ when $N=K$. $0 = aK + r_0$
+
+$$-r_0 = aK$$
+
+$$a = -\frac{r_0}{K}$$
+
+Therefore,
+
+$$r = -\frac{r_0}{K}N + r_0$$
+
+$$r = r_0 -\frac{r_0}{K}N$$
+
+$$r = r_0 \bigg(1-\frac{1}{K}N\bigg) \tag{1}$$
+
+$$r = r_0 \bigg(1-\frac{N}{K}\bigg) \tag{1}$$
+
+How does this work? Let's say $r_0 = 1$ and $K = 1000$. What is the population growth rate when $N=100$? `r 1-(100/1000)` What about when $N=500$? `r 1-(500/1000)` $N=750$? `r 1-(750/1000)` $N=1000$ `r 1-(1000/1000)`
+
+Now let's insert our new equation for $r$ into the population growth model:
+
+$$\frac{dN}{dt} = N \times r_0 \bigg(1-\frac{N}{K}\bigg)$$
+
+How does this work? Again, $r_0 = 1$ and $K = 1000$. What is $\frac{dN}{dt}$ when $N=100$? `r 100*(1-(100/1000))` What about when $N=500$? `r 500*(1-(500/1000))` $N=750$? `r 750*(1-(750/1000))` $N=1000$ `r 1000*(1-(1000/1000))`
+
+```{r}
+N <- 0:1050
+df <- data.frame(N = N,
+                 dNdt = N*(1-N/K))
+
+l <- ggplot(df, aes(N, dNdt)) + geom_path(aes(color = dNdt)) +
+    scale_color_gradient2(midpoint = max(df$dNdt)) +
+    scale_y_continuous("dN/dt", breaks = 0) +
+    scale_x_continuous(breaks = c(500, 1000), label = c("K/2", "K")) +
+    geom_segment(x = K, xend = K, y = -Inf, yend = 0, 
+                 linetype = "dashed", color = "grey50", size = 0.5, alpha = 0.25) +
+    geom_segment(x = K/2, xend = K/2, y = -Inf, yend = max(df$dNdt), 
+                 linetype = "dashed", color = "grey50", size = 0.5, alpha = 0.25) +
+    geom_hline(yintercept = 0, linetype = "longdash", color = "gray50")
+
+df2 <- data.frame(N = NA, t = seq(1:100))
+
+df2$N[1] <- 5
+
+for(t in 2:nrow(df2)){
+  r <- 0.15*(1-df2$N[t-1]/K)
+  df2$N[t] <- df2$N[t-1] * exp(r)
+}
+
+df2$dNdt <- df2$N*(1-df2$N/K)
+
+m <- ggplot(df2, aes(t, N)) + 
+      geom_hline(yintercept = c(K/2, K), linetype = "longdash", color = "grey20") +
+      geom_path(aes(color = dNdt)) +
+      scale_color_gradient2(midpoint = max(df2$dNdt)) +
+      scale_y_continuous(breaks = c(5, K/2, K), labels = c("N0", "K/2", "K")) +
+      scale_x_continuous("Time") +
+      theme(axis.text.x = element_blank(), axis.ticks.x = element_blank())
+
+gridExtra::grid.arrange(l, m, nrow = 1)
+```
+
+This is called the logistic growth model
+
+## Non-linear effects
+
+The above model assumes that $r$ decreases linearly with increasing $N$. In reality, this relationship is not likely to be linear - instead $r$ might not change much (or at all) until population size is high enough that resources start to become limited (nesting site, shade)
+
+We can make the logistic model more flexible by adding a new term, $\theta$:
+
+$$\frac{dN}{dt} = r_0N\bigg(1-\bigg[\frac{N}{K}\bigg]^\theta\bigg)$$
+
+when $\theta = 1$, this model is the original logistic model
+
+However, when $\theta > 1$, $r$ does not respond to $N$ until $N$ is big enough that resources become limiting
+
+```{r}
+N <- 0:1050
+r_0 <- 0.15
+df3 <- data.frame(N = N,
+                  r = r_0 * (1-(N/K)^7.5))
+
+ggplot(df3, aes(N, r)) + geom_path(color = "grey50") +
+    scale_y_continuous("r", breaks = 0) +
+    scale_x_continuous(breaks = c(1000), label = c("K")) +
+    geom_segment(x = K, xend = K, y = -Inf, yend = 0, 
+                 linetype = "dashed", color = "grey50", size = 0.5, alpha = 0.25) +
+    geom_hline(yintercept = 0, linetype = "longdash", color = "gray50")
+```
+
+If $\theta < 1$, resources quickly become scarce, and $r$ is suppressed even at low $N$
+
+
+```{r}
+N <- 0:1050
+r_0 <- 0.15
+df4 <- data.frame(N = N,
+                  r = r_0 * (1-(N/K)^0.4))
+
+ggplot(df4, aes(N, r)) + geom_path(color = "grey50") +
+    scale_y_continuous("r", breaks = 0) +
+    scale_x_continuous(breaks = c(1000), label = c("K")) +
+    geom_segment(x = K, xend = K, y = -Inf, yend = 0, 
+                 linetype = "dashed", color = "grey50", size = 0.5, alpha = 0.25) +
+    geom_hline(yintercept = 0, linetype = "longdash", color = "gray50")
+```
+
+## Allee effects
+
+So far, we have assumed that $b$ and $d$ (and therefore $r$) decrease as population size increases. This is called *negative* density dependence because the slope of the relationship is negative. 
+
+But in some cases, the slope could also be positive. Positive relationships between $N$ and $d$ or $b$ generally occur at small population sizes
+
+```{r}
+N <- seq(from = 0, to = 10, by = 0.25)
+
+df5 <- data.frame(N = N,
+                  value = c(2*(N-5)^2 + 5, -2*(N-5)^2 + 45),
+                  rate = rep(c("Death rate", "Birth rate"), each = length(N)))
+ggplot(df5, aes(N, value, group = rate, color = rate)) + geom_path()
+```
+
+
+Why might the death rate be high at small $N$?
+
+* Group signaling breaks down, predation increases
+* Cooperative foraging becomes less efficient
+* Inbreeding depression
+
+Why might the birth rate be low at small $N$?
+
+* Pollination failure 
+* Unable to find mates because of rarity
+* Unable to find mates because of skewed sex ratio
+* Inbreeding depression
+
+When abundance drops below the minimum viable population (MVP), the population will likely approach extinction without help!
+
+**Insert figure**
+
+## Discrete dynamics
+
+Remember the discrete-time model of density-independent growth
+
+$$N_{t+1} = N_t \lambda$$
+We just need to account for possible changes in λ caused by changes in population density
+
+Remember that: 
+
+$$\lambda = e^r$$
+
+and: 
+$$r = r_0\bigg(1 - \frac{N}{K}\bigg)$$
+Therefore, one discrete-time density-dependent growth model is:
+
+$$N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \frac{N}{K}\bigg)\bigg]}$$
+
+This known as the Ricker model
+
+```{r}
+lambda <- 1.1
+r0 <- log(lambda)
+K <- 500
+
+N_di <- N_dd <- numeric(length = 100)
+N_di[1] <- N_dd[1] <- 10
+
+for(t in 2:100){
+  r <- r0*(1-N_dd[t-1]/K)
+  N_di[t] <- N_di[t-1] * lambda
+  N_dd[t] <- N_dd[t-1] * exp(r)
+}
+df6 <- data.frame(N = c(N_di, N_dd),
+                  Time = 1:100,
+                  model = rep(c("D-I", "D-D"), each = 100))
+
+ggplot(df6, aes(Time, N, group = model, color = model)) +
+    geom_hline(yintercept = K, linetype = "longdash", color = "grey20") + 
+    geom_path() +
+  scale_y_continuous(limits = c(0, 1000)) +
+  theme(axis.text = element_blank(), axis.ticks = element_blank())
+
+```
+
+Any adjustment that can be made to the continuous time Logistic Model can also be made to the Ricker Model
+
+$$N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \bigg[\frac{N}{K}\bigg]^\theta\bigg)\bigg]}$$

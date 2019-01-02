@@ -21,7 +21,7 @@ navbar:
       icon: fa-file-pdf-o
       menu:
         - text: "Lecture 1: Introduction to WILD3810"
-          href: articles/lecture1.html
+          href: articles/Lecture1/lecture1.html
         - text: "Lecture 2: Test"
           href: articles/lecture2.html
         - text: "Lecture 3: Test"

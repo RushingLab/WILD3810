@@ -84,7 +84,7 @@ The document we are going to create will form the basis of your first homework a
 
 1c) Scroll down through the options until you see `WILD3810-Homework1`. Select that template 
 
-1d) In the `Name:` window type `LastnameFirstname-homework1`, substituting your last and first names. In the `Location` window, navigate to your newly create `LastNameFirstName-Homework#` directory
+1d) In the `Name:` window type `LastnameFirstname-homework1`, substituting your last and first names. In the `Location` window, navigate to your newly create `LastNameFirstName-Homework1` directory
 
 1e) Click `Ok`
 
@@ -94,9 +94,9 @@ The document we are going to create will form the basis of your first homework a
 
 2b) You should see a small box above the `Source` window (the RStudio window where your document just appeared) that says `Knit` with a small ball of yarn icon. When you click that button (not yet!), two things will happen:
 
-*The .Rmd file will be rendered as a PDF document, which will pop up on your screen
+* The .Rmd file will be rendered as a PDF document, which will pop up on your screen
 
-* RStudio will create a new file called `Assignment1.pdf` - you should see that file in the `Files` window in the bottom right of your screen
+* RStudio will create a new file called `LastnameFirstname-homework1.pdf` - you should see that file in the `Files` window in the bottom right of your screen
 
 2c) Click that button
 
@@ -109,8 +109,8 @@ Congratulations, you just created your first R Markdown file!
 At the top of your `.Rmd` file, you should see several line in between three blue dashes:
 ```
 ---
-title: "WILD3810"
-subtitle: "Homework 1"
+title: "WILD3810: Homework 1"
+subtitle: "Warming up to R Markdown and the Chapman's modification"
 author: "YOUR NAME HERE"
 output: pdf_document
 ---
@@ -127,7 +127,7 @@ fontsize: 12pt
 ```
 Check to see that the font size changed by clicking `Knit`. 
 
-Changing font type is a little trickier. Behind the scenes, R Markdown turns your document into Latex code (another), which is then converted into a pdf. You don't need to know much about Latex (though a little knowledge is helpful) but this conversion does mean that our formatting options have to passed to the Latex convertor in specific ways. To tell Latex that we want to use `Arial` font, we have to modify the `output:` argument as follows:
+Changing font type is a little trickier. Behind the scenes, R Markdown turns your document into Latex code, which is then converted into a pdf. You don't need to know much about Latex (though a little knowledge is helpful) but this conversion does mean that our formatting options have to passed to the Latex convertor in specific ways. To tell Latex that we want to use `Arial` font, we have to modify the `output:` argument as follows:
 
 ```
 title: "WILD3810"
@@ -265,7 +265,7 @@ See [here](http://web.ift.uib.no/Teori/KURS/WRK/TeX/symALL.html) for a list of o
 
 # Adding code
 
-The ability to format and create pdf and html documents is great but the real strength of R Markdown is the ability to include and run code within your document. Code can be included **inline** on in **chunks**
+The ability to format and create pdf and html documents is great but the real strength of R Markdown is the ability to include and run code within your document. Code can be included **inline** or in **chunks**
 
 ## Inline code
 
@@ -325,7 +325,7 @@ To nicely print matrices and data frames in R Markdown document, use the `kable(
 
 ```{r echo = TRUE}
 library(knitr)
-kable(mtcars)
+kable(head(mtcars))
 ```
 
 The `kableExtra` package provides even more advanced options for creating nice looking tables. See [here](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html) for an overview of options provided by this package. 
