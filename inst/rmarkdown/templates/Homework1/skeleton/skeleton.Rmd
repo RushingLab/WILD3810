@@ -20,7 +20,7 @@ First, make sure you have:
 
 > 1b) Changed the font size to 12 by adding `fontsize: 12pt` to the YAML header
 
-> 1c) Clicked `Knit` to check that you can create a pdf document from the .Rmd file;
+> 1c) Clicked `Knit` to check that you can create a html document from the .Rmd file;
 
 > 1d) Saved the .Rmd file as `LastnameFirstname-homework1.Rmd` in a directory named `LastNameFirstName-Homework1`
 
@@ -40,15 +40,14 @@ In most real-life scenarios, we only get to take a single sample of the target p
 
 To start, we will add a code chunk to set up the code for our simulation (since this is the first assignment, the chunk has already been added below. In the future, you will be asked to add the chunk yourself so now is a good time to remember how to do that)  
 
-The key to using simulations is that we **know** the true values of all of the parameters in our model. In this case, the parameters are: $N$ (the true population size) and $p$ (the probability of capturing an individual in the population). In the code chunk below (named `Np` because it is the chunk we will use to set the values of $N$ and $p$):
+The key to using simulations is that we **know** the true values of all of the parameters in our model. In this case, the parameters are: $N$ (the true population size) and $p$ (the probability of capturing an individual in the population). In the code chunk below (named `Np` because it is the chunk we will use to set the values of $N$ and $p$; if you are reading this as the rendered HTML document, be sure to go back to the raw R Markdown file to complete the questions):
 
 > 2a) Create an object called `N`, give it a value of 10000, and add a comment (using `#`) stating what the object represents
 
 > 2b) Create an object called `p`, give it a value of 0.4, and add a comment (using `#`) stating what the object represents
 
 ```{r Np}
-N <- 10000 # True population size
-p <- 0.4 # Capture probability
+
 ```
 
 Now we need to tell `R` how many simulated samples we want to take. In the chunk below:
@@ -56,7 +55,7 @@ Now we need to tell `R` how many simulated samples we want to take. In the chunk
 > 3) Create an object called `nSims`, give it a value of 1000, and add a comment (using `#`) stating what the object represents
 
 ```{r nSims}
-nSims <- 1000 # Number of simulated samples
+
 ```
 
 The next step is a little more advanced. We need to simulate *random* samples of the population to generate values of $n1$, $n2$ and $m2$. To clarify what this means, imagine we wanted to simulate the number of heads we would get if we flipped a coin 10 times. We know the probability of getting a heads is $0.5$ but the actual number of heads might be any value between 0 and 10. In this case, the number of heads follows a *binomial* probability distribution. The binomial distribution requires two parameters, the number of "trials" (the number of coin flips or, in our case $N$) and the probability of "success" (heads or in our case capture). 

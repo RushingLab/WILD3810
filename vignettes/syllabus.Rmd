@@ -46,20 +46,16 @@ This course is designed to introduce and review the factors that regulate and ca
 
 # COURSE OBJECTIVES
 
-Overall, my three main objectives are for you to: 
+Overall, my main objectives are for you to: 
 
-1) Gain factual knowledge (terminology, methods, and trends) in plant and animal population ecology. 
-2) Learn to apply course material  (to improve thinking, problem solving, and decisions) using mathematics and computer software. 
-3) Develop specific skills and competencies in problem solving, ecological hypotheses development related to population ecology of plants and animals.
-
-1)	Understand general concepts of plant & animal population dynamics
-2)	Gain experience using mathematics and computer software to examine dynamics of plant and animal populations
-3)	Apply the following skills learned in other classes:
-a.	Data entry
-b.	Application of basic statistical tests
-c.	Graphical presentation of data and statistical results
-4)	Analyze data and use models to project future plant & animal population conditions resulting from management or anthropogenic disturbances
-5)	Further refine quantitative and critical thinking skills
+1)	Understand general concepts of plant & animal population dynamics  
+2)	Gain experience using mathematics and computer software to examine dynamics of plant and animal populations  
+3)	Apply the following skills learned in other classes:  
+a.	Data entry  
+b.	Application of basic statistical tests  
+c.	Graphical presentation of data and statistical results  
+4)	Analyze data and use models to project future plant & animal population conditions resulting from management or anthropogenic disturbances  
+5)	Further refine quantitative and critical thinking skills  
 
 # COURSE ACTIVITIES
 

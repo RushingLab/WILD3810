@@ -62,10 +62,22 @@ labs <- data.frame(Week = c("1 (Jan. 7)", "2 (Jan. 14)", "3 (Jan. 21)", "4 (Jan.
                                 "5 (Feb. 4)", "6 (Feb. 11)", "7 (Feb. 18)", "8 (Feb. 25)",
                                 "9 (Mar. 4)", "10 (Mar. 11)", "11 (Mar. 18)", "12 (Mar. 25)",
                                 "13 (Apr. 1)", "14 (Apr. 8)", "15 (Apr. 15)", "16 (Apr. 22)"),
-                   Topic = c("No lab", "Introduction to R/Abundance estimation", "MLK Holiday - no lab", "Population viability analysis",
-                             "Density-dependent dynamics", "Harvest management", "President's Day - no lab", "Life tables",
-                             "Survival estimation", "Spring break - no lab", "Matrix population projections", "Elasticity analysis and comparison of life history strageties",
-                             "Metapopulation models", "Occupancy models", "Compensatory predation", "TBD"))
+                   Topic = c("No lab", 
+                             "Introduction to R/Abundance estimation", 
+                             "MLK Holiday - no lab",  
+                             "Introduction to R/Modeling population growth",
+                             "Population viability analysis", 
+                             "TBD", 
+                             "President's Day - no lab", 
+                             "Life tables",
+                             "Survival estimation", 
+                             "Spring break - no lab", 
+                             "Matrix population projections", 
+                             "Elasticity analysis and comparison of life history strategies",
+                             "Metapopulation models", 
+                             "Occupancy models", 
+                             "Compensatory predation", 
+                             "Harvest dynamics"))
 
 labs %>%
   kable("html", col.names = c("Week (date)", "Topic"), align = 'c') %>%
