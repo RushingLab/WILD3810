@@ -13,7 +13,8 @@ Imports:
     learnr,
     shiny,
     tidyr,
-    shinythemes
+    shinythemes,
+    usethis
 RoxygenNote: 6.1.1
 Suggests: 
     knitr,
