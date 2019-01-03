@@ -123,7 +123,7 @@
       <h1>Introduction to R Markdown</h1>
             <h3 class="subtitle">WILD2900</h3>
             
-            <h4 class="date">updated on 2018-12-27</h4>
+            <h4 class="date">updated on 2019-01-02</h4>
       
       
       <div class="hidden name"><code>rmarkdown_intro.Rmd</code></div>
@@ -189,7 +189,7 @@
 <p>1a) Click on <code>File -&gt; New File -&gt; R Markdown...</code></p>
 <p>1b) In the window on the left, select <code>From Template</code></p>
 <p>1c) Scroll down through the options until you see <code>WILD3810-Homework1</code>. Select that template</p>
-<p>1d) In the <code>Name:</code> window type <code>LastnameFirstname-homework1</code>, substituting your last and first names. In the <code>Location</code> window, navigate to your newly create <code>LastNameFirstName-Homework#</code> directory</p>
+<p>1d) In the <code>Name:</code> window type <code>LastnameFirstname-homework1</code>, substituting your last and first names. In the <code>Location</code> window, navigate to your newly create <code>LastNameFirstName-Homework1</code> directory</p>
 <p>1e) Click <code>Ok</code></p>
 </div>
 <div id="step-2-fill-in-your-information-and-render-the-document" class="section level2">
@@ -197,9 +197,9 @@
 <a href="#step-2-fill-in-your-information-and-render-the-document" class="anchor"></a>Step 2: Fill in your information and render the document</h2>
 <p>2a) Change the <code>author: YOUR NAME HERE</code> field in the header to your name.</p>
 <p>2b) You should see a small box above the <code>Source</code> window (the RStudio window where your document just appeared) that says <code>Knit</code> with a small ball of yarn icon. When you click that button (not yet!), two things will happen:</p>
-<p>*The .Rmd file will be rendered as a PDF document, which will pop up on your screen</p>
 <ul>
-<li>RStudio will create a new file called <code>Assignment1.pdf</code> - you should see that file in the <code>Files</code> window in the bottom right of your screen</li>
+<li><p>The .Rmd file will be rendered as a PDF document, which will pop up on your screen</p></li>
+<li><p>RStudio will create a new file called <code>LastnameFirstname-homework1.pdf</code> - you should see that file in the <code>Files</code> window in the bottom right of your screen</p></li>
 </ul>
 <p>2c) Click that button</p>
 <p>Congratulations, you just created your first R Markdown file!</p>
@@ -213,8 +213,8 @@
 <a href="#the-yaml-header" class="anchor"></a>The YAML header</h2>
 <p>At the top of your <code>.Rmd</code> file, you should see several line in between three blue dashes:</p>
 <pre><code>---
-title: "WILD3810"
-subtitle: "Homework 1"
+title: "WILD3810: Homework 1"
+subtitle: "Warming up to R Markdown and the Chapman's modification"
 author: "YOUR NAME HERE"
 output: pdf_document
 ---</code></pre>
@@ -223,11 +223,11 @@ output: pdf_document
 <p>The YAML header allows to control many “high level” options for our document. For example, to change the font size, type the following directly under the <code>output: pdf_document</code> argument:</p>
 <pre><code>fontsize: 12pt</code></pre>
 <p>Check to see that the font size changed by clicking <code>Knit</code>.</p>
-<p>Changing font type is a little trickier. Behind the scenes, R Markdown turns your document into Latex code (another), which is then converted into a pdf. You don’t need to know much about Latex (though a little knowledge is helpful) but this conversion does mean that our formatting options have to passed to the Latex convertor in specific ways. To tell Latex that we want to use <code>Arial</code> font, we have to modify the <code>output:</code> argument as follows:</p>
+<p>Changing font type is a little trickier. Behind the scenes, R Markdown turns your document into Latex code, which is then converted into a pdf. You don’t need to know much about Latex (though a little knowledge is helpful) but this conversion does mean that our formatting options have to passed to the Latex convertor in specific ways. To tell Latex that we want to use <code>Arial</code> font, we have to modify the <code>output:</code> argument as follows:</p>
 <pre><code>title: "WILD3810"
 subtitle: "Homework 1"
 author: "YOUR NAME HERE"
-date: "2018-12-27"
+date: "2019-01-02"
 output: 
   pdf_document:
     latex_engine: xelatex
@@ -369,7 +369,7 @@ B. or uppercase letters</li>
 <div id="adding-code" class="section level1">
 <h1 class="hasAnchor">
 <a href="#adding-code" class="anchor"></a>Adding code</h1>
-<p>The ability to format and create pdf and html documents is great but the real strength of R Markdown is the ability to include and run code within your document. Code can be included <strong>inline</strong> on in <strong>chunks</strong></p>
+<p>The ability to format and create pdf and html documents is great but the real strength of R Markdown is the ability to include and run code within your document. Code can be included <strong>inline</strong> or in <strong>chunks</strong></p>
 <div id="inline-code" class="section level2">
 <h2 class="hasAnchor">
 <a href="#inline-code" class="anchor"></a>Inline code</h2>
@@ -417,7 +417,7 @@ opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 <a href="#tables" class="anchor"></a>Tables</h3>
 <p>To nicely print matrices and data frames in R Markdown document, use the <code><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable()</a></code> function:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(knitr)
-<span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(mtcars)</code></pre></div>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(mtcars))</code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th></th>
@@ -438,7 +438,7 @@ opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 <td>Mazda RX4</td>
 <td align="right">21.0</td>
 <td align="right">6</td>
-<td align="right">160.0</td>
+<td align="right">160</td>
 <td align="right">110</td>
 <td align="right">3.90</td>
 <td align="right">2.620</td>
@@ -452,7 +452,7 @@ opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 <td>Mazda RX4 Wag</td>
 <td align="right">21.0</td>
 <td align="right">6</td>
-<td align="right">160.0</td>
+<td align="right">160</td>
 <td align="right">110</td>
 <td align="right">3.90</td>
 <td align="right">2.875</td>
@@ -466,7 +466,7 @@ opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 <td>Datsun 710</td>
 <td align="right">22.8</td>
 <td align="right">4</td>
-<td align="right">108.0</td>
+<td align="right">108</td>
 <td align="right">93</td>
 <td align="right">3.85</td>
 <td align="right">2.320</td>
@@ -480,7 +480,7 @@ opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 <td>Hornet 4 Drive</td>
 <td align="right">21.4</td>
 <td align="right">6</td>
-<td align="right">258.0</td>
+<td align="right">258</td>
 <td align="right">110</td>
 <td align="right">3.08</td>
 <td align="right">3.215</td>
@@ -494,7 +494,7 @@ opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 <td>Hornet Sportabout</td>
 <td align="right">18.7</td>
 <td align="right">8</td>
-<td align="right">360.0</td>
+<td align="right">360</td>
 <td align="right">175</td>
 <td align="right">3.15</td>
 <td align="right">3.440</td>
@@ -508,7 +508,7 @@ opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 <td>Valiant</td>
 <td align="right">18.1</td>
 <td align="right">6</td>
-<td align="right">225.0</td>
+<td align="right">225</td>
 <td align="right">105</td>
 <td align="right">2.76</td>
 <td align="right">3.460</td>
@@ -517,370 +517,6 @@ opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
 <td align="right">0</td>
 <td align="right">3</td>
 <td align="right">1</td>
-</tr>
-<tr class="odd">
-<td>Duster 360</td>
-<td align="right">14.3</td>
-<td align="right">8</td>
-<td align="right">360.0</td>
-<td align="right">245</td>
-<td align="right">3.21</td>
-<td align="right">3.570</td>
-<td align="right">15.84</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td>Merc 240D</td>
-<td align="right">24.4</td>
-<td align="right">4</td>
-<td align="right">146.7</td>
-<td align="right">62</td>
-<td align="right">3.69</td>
-<td align="right">3.190</td>
-<td align="right">20.00</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td>Merc 230</td>
-<td align="right">22.8</td>
-<td align="right">4</td>
-<td align="right">140.8</td>
-<td align="right">95</td>
-<td align="right">3.92</td>
-<td align="right">3.150</td>
-<td align="right">22.90</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td>Merc 280</td>
-<td align="right">19.2</td>
-<td align="right">6</td>
-<td align="right">167.6</td>
-<td align="right">123</td>
-<td align="right">3.92</td>
-<td align="right">3.440</td>
-<td align="right">18.30</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td>Merc 280C</td>
-<td align="right">17.8</td>
-<td align="right">6</td>
-<td align="right">167.6</td>
-<td align="right">123</td>
-<td align="right">3.92</td>
-<td align="right">3.440</td>
-<td align="right">18.90</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">4</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td>Merc 450SE</td>
-<td align="right">16.4</td>
-<td align="right">8</td>
-<td align="right">275.8</td>
-<td align="right">180</td>
-<td align="right">3.07</td>
-<td align="right">4.070</td>
-<td align="right">17.40</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-</tr>
-<tr class="odd">
-<td>Merc 450SL</td>
-<td align="right">17.3</td>
-<td align="right">8</td>
-<td align="right">275.8</td>
-<td align="right">180</td>
-<td align="right">3.07</td>
-<td align="right">3.730</td>
-<td align="right">17.60</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-</tr>
-<tr class="even">
-<td>Merc 450SLC</td>
-<td align="right">15.2</td>
-<td align="right">8</td>
-<td align="right">275.8</td>
-<td align="right">180</td>
-<td align="right">3.07</td>
-<td align="right">3.780</td>
-<td align="right">18.00</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">3</td>
-</tr>
-<tr class="odd">
-<td>Cadillac Fleetwood</td>
-<td align="right">10.4</td>
-<td align="right">8</td>
-<td align="right">472.0</td>
-<td align="right">205</td>
-<td align="right">2.93</td>
-<td align="right">5.250</td>
-<td align="right">17.98</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td>Lincoln Continental</td>
-<td align="right">10.4</td>
-<td align="right">8</td>
-<td align="right">460.0</td>
-<td align="right">215</td>
-<td align="right">3.00</td>
-<td align="right">5.424</td>
-<td align="right">17.82</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td>Chrysler Imperial</td>
-<td align="right">14.7</td>
-<td align="right">8</td>
-<td align="right">440.0</td>
-<td align="right">230</td>
-<td align="right">3.23</td>
-<td align="right">5.345</td>
-<td align="right">17.42</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td>Fiat 128</td>
-<td align="right">32.4</td>
-<td align="right">4</td>
-<td align="right">78.7</td>
-<td align="right">66</td>
-<td align="right">4.08</td>
-<td align="right">2.200</td>
-<td align="right">19.47</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td>Honda Civic</td>
-<td align="right">30.4</td>
-<td align="right">4</td>
-<td align="right">75.7</td>
-<td align="right">52</td>
-<td align="right">4.93</td>
-<td align="right">1.615</td>
-<td align="right">18.52</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td>Toyota Corolla</td>
-<td align="right">33.9</td>
-<td align="right">4</td>
-<td align="right">71.1</td>
-<td align="right">65</td>
-<td align="right">4.22</td>
-<td align="right">1.835</td>
-<td align="right">19.90</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td>Toyota Corona</td>
-<td align="right">21.5</td>
-<td align="right">4</td>
-<td align="right">120.1</td>
-<td align="right">97</td>
-<td align="right">3.70</td>
-<td align="right">2.465</td>
-<td align="right">20.01</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td>Dodge Challenger</td>
-<td align="right">15.5</td>
-<td align="right">8</td>
-<td align="right">318.0</td>
-<td align="right">150</td>
-<td align="right">2.76</td>
-<td align="right">3.520</td>
-<td align="right">16.87</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td>AMC Javelin</td>
-<td align="right">15.2</td>
-<td align="right">8</td>
-<td align="right">304.0</td>
-<td align="right">150</td>
-<td align="right">3.15</td>
-<td align="right">3.435</td>
-<td align="right">17.30</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td>Camaro Z28</td>
-<td align="right">13.3</td>
-<td align="right">8</td>
-<td align="right">350.0</td>
-<td align="right">245</td>
-<td align="right">3.73</td>
-<td align="right">3.840</td>
-<td align="right">15.41</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td>Pontiac Firebird</td>
-<td align="right">19.2</td>
-<td align="right">8</td>
-<td align="right">400.0</td>
-<td align="right">175</td>
-<td align="right">3.08</td>
-<td align="right">3.845</td>
-<td align="right">17.05</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td>Fiat X1-9</td>
-<td align="right">27.3</td>
-<td align="right">4</td>
-<td align="right">79.0</td>
-<td align="right">66</td>
-<td align="right">4.08</td>
-<td align="right">1.935</td>
-<td align="right">18.90</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td>Porsche 914-2</td>
-<td align="right">26.0</td>
-<td align="right">4</td>
-<td align="right">120.3</td>
-<td align="right">91</td>
-<td align="right">4.43</td>
-<td align="right">2.140</td>
-<td align="right">16.70</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">5</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td>Lotus Europa</td>
-<td align="right">30.4</td>
-<td align="right">4</td>
-<td align="right">95.1</td>
-<td align="right">113</td>
-<td align="right">3.77</td>
-<td align="right">1.513</td>
-<td align="right">16.90</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">5</td>
-<td align="right">2</td>
-</tr>
-<tr class="odd">
-<td>Ford Pantera L</td>
-<td align="right">15.8</td>
-<td align="right">8</td>
-<td align="right">351.0</td>
-<td align="right">264</td>
-<td align="right">4.22</td>
-<td align="right">3.170</td>
-<td align="right">14.50</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">5</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td>Ferrari Dino</td>
-<td align="right">19.7</td>
-<td align="right">6</td>
-<td align="right">145.0</td>
-<td align="right">175</td>
-<td align="right">3.62</td>
-<td align="right">2.770</td>
-<td align="right">15.50</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">5</td>
-<td align="right">6</td>
-</tr>
-<tr class="odd">
-<td>Maserati Bora</td>
-<td align="right">15.0</td>
-<td align="right">8</td>
-<td align="right">301.0</td>
-<td align="right">335</td>
-<td align="right">3.54</td>
-<td align="right">3.570</td>
-<td align="right">14.60</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">5</td>
-<td align="right">8</td>
-</tr>
-<tr class="even">
-<td>Volvo 142E</td>
-<td align="right">21.4</td>
-<td align="right">4</td>
-<td align="right">121.0</td>
-<td align="right">109</td>
-<td align="right">4.11</td>
-<td align="right">2.780</td>
-<td align="right">18.60</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">2</td>
 </tr>
 </tbody>
 </table>
