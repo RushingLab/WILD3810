@@ -23,7 +23,6 @@ library(WILD3810)
 
 > Mills 3-12  
 
-
 > Powell 6-10  
 
 ---
