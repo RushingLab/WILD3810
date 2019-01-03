@@ -23,7 +23,7 @@ class: center, middle, inverse, title-slide
 
 ## Readings: 
 
-&gt; Mills 80-84
+&gt; Mills 79-84
 
 ---
 ## Abundance
@@ -155,7 +155,7 @@ Growth from `\(t\)` to `\(t+3\)`:
 
 `$$N_{t+3} = N_t \times \lambda^3$$`
 
-So we get the general form `\(^1\)`:
+So we get the general form `\(^2\)`:
 
 `$$N_{T} = N_0 \times \lambda^T$$`
 
@@ -164,7 +164,7 @@ where `\(T\)` is the number of years (or weeks, or months), `\(N_T\)` is the fin
 
 ???
 
-`\(^1\)` This assumes that `\(\lambda\)` is the same in every year. We will learn about what happens when that is not the case (when `\(\lambda\)` varies from year to year) in the next lecture
+`\(^2\)` This assumes that `\(\lambda\)` is the same in every year. We will learn about what happens when that is not the case (when `\(\lambda\)` varies from year to year) in the next lecture
 
 ---
 ## Discrete vs. continuous time 
@@ -205,11 +205,11 @@ We *could* model the growth of birth-flow populations using the discrete model a
 
 &lt;img src="lecture3_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
 
-In this figure, `\(\Delta_t = 5\)` and `\(\Delta_N\)` = 8.94 individuals `\(^1\)`. So the population increased by about 61% over a 5 year period. What if we make `\(\Delta_t\)` smaller?
+In this figure, `\(\Delta_t = 5\)` and `\(\Delta_N\)` = 8.94 individuals `\(^3\)`. So the population increased by about 61% over a 5 year period. What if we make `\(\Delta_t\)` smaller?
 
 ???
 
-`\(^1\)` Remember that `\(\Delta\)` means "difference in" so read `\(\Delta_t\)` as "difference in time". In this case, rather than `\(\Delta_t = 1\)` year, we could make `\(\Delta_t = 1\)` month, or one week, or one day
+`\(^3\)` Remember that `\(\Delta\)` means "difference in" so read `\(\Delta_t\)` as "difference in time". In this case, rather than `\(\Delta_t = 1\)` year, we could make `\(\Delta_t = 1\)` month, or one week, or one day
 
 ---
 ## Continuous-time population models
@@ -218,11 +218,11 @@ In this figure, `\(\Delta_t = 5\)` and `\(\Delta_N\)` = 8.94 individuals `\(^1\)
 
 &lt;img src="lecture3_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
 
-`\(\Delta_t = 1\)` and `\(\Delta_N\)` = 1.46 `\(^1\)`
+`\(\Delta_t = 1\)` and `\(\Delta_N\)` = 1.46 `\(^4\)`
 
 ???
 
-`\(^1\)` Notice that when `\(\Delta_t = 1\)`, 16.1051 / 14.641 = `\(\lambda\)` 
+`\(^4\)` Notice that when `\(\Delta_t = 1\)`, 16.1051 / 14.641 = `\(\lambda\)` 
 
 ---
 ## Continuous-time population models
@@ -240,14 +240,14 @@ Rather than manually making `\(\Delta_t\)` smaller and smaller, we can use calcu
 
 `$$\frac{dN}{dt} = N \times (b-d) = N \times r$$`
 
-This the continuous-time equivalent of the discrete model `\(^1\)` and `\(r\)` is called the **instantaneous growth rate**   
+This the continuous-time equivalent of the discrete model `\(^5\)` and `\(r\)` is called the **instantaneous growth rate**   
 
 --
 Populations with `\(r=0\)` remain at the same population size. Populations with `\(r&gt;0\)` grow and populations with `\(r&lt;0\)` will shrink. 
 
 ???
 
-`\(^1\)` For more details about how to derive the continous time model from the discrete model:
+`\(^5\)` For more details about how to derive the continous time model from the discrete model:
 
 `$$N_{t+1} = N_t \times \lambda = N_t \times (1 + b - d)$$`
 
@@ -315,7 +315,7 @@ Start by dividing both sides by `\(N_0\)`:
 ---
 ## Doubling time
 
-To isolate `\(rT\)`, take the natural log `\(^1\)` of both sides:
+To isolate `\(rT\)`, take the natural log `\(^6\)` of both sides:
 
 `$$ln(2) = ln({e^r}^T) = rT$$`
 
@@ -325,14 +325,14 @@ Now divide both sides by `\(r\)`:
 
 ???
 
-`\(^1\)` Note that `\(ln(2) \approx 0.693\)`
+`\(^6\)` Note that `\(ln(2) \approx 0.693\)`
  
 ---
 ## Doubling time
 
 &lt;img src="lecture3_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
 
-Relatively small changes in `\(r\)` can have profound effects on population doubling time `\(^1\)`:
+Relatively small changes in `\(r\)` can have profound effects on population doubling time `\(^7\)`:
 
 - The population with `\(r=0.02\)` doubled twice in 80 timesteps
 
@@ -340,7 +340,7 @@ Relatively small changes in `\(r\)` can have profound effects on population doub
 
 ???
 
-`\(^1\)` All 4 populations increases slowly at first and then becomes explosive (this is hard to see in the first two graphs but if we plotted them alone, you would see the same pattern). With `\(r=0.08\)` (population increases ~8% at each timestep), we go from 10 individuals to 5555.7299 individuals in 80 timesteps, an overall increase of 554.573%! 
+`\(^7\)` All 4 populations increases slowly at first and then becomes explosive (this is hard to see in the first two graphs but if we plotted them alone, you would see the same pattern). With `\(r=0.08\)` (population increases ~8% at each timestep), we go from 10 individuals to 5555.7299 individuals in 80 timesteps, an overall increase of 554.573%! 
 
 ---
 ## Exponential growth
@@ -353,16 +353,16 @@ Because the growth rate `\((r\)` or `\(\lambda)\)` does not depend on abundance,
 &lt;br/&gt;
 
 --
-Density-independent population models result in **exponential** growth `\(^1\)`  
+Density-independent population models result in **exponential** growth `\(^8\)`  
 + exponential growth occurs because the growth rate is *multiplied* by the population size at each timestep   
 
-+ As the population grows, the proportional changes stays the same but the absolute changes get bigger and bigger `\(^1\)`. 
++ As the population grows, the proportional changes stays the same but the absolute changes get bigger and bigger `\(^9\)`. 
 
 ???
 
-`\(^1\)` Technically, exponential growth refers to continuous processes) whereas the same process in discrete models is referred to as **geometric** growth  
+`\(^8\)` Technically, exponential growth refers to continuous processes) whereas the same process in discrete models is referred to as **geometric** growth  
 
-`\(^1\)` If multiplicative growth is confusing, think about it this way: half of 4 is 2 but half of 100 is 50. In both cases, the proportion is the same (half) but the value is different (2 vs. 50). So doubling a population of size 2 leads to 4 individuals, then to 8, then to 16, then to 32...
+`\(^9\)` If multiplicative growth is confusing, think about it this way: half of 4 is 2 but half of 100 is 50. In both cases, the proportion is the same (half) but the value is different (2 vs. 50). So doubling a population of size 2 leads to 4 individuals, then to 8, then to 16, then to 32...
 
 ---
 ## Exponential growth
@@ -437,6 +437,8 @@ Ggiaw, from Wikimedia Commons
 
 USFWS Mountain-Prairie, via Wikimedia Commons
 ---
+class: inverse, center, middle
+
 # Estimating `\(\lambda\)` and `\(r\)`
 
 ---

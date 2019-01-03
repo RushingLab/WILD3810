@@ -34,7 +34,19 @@ class: center, middle
 Population ecology is the study of the distribution of individuals in a population over time and space
 
 ---
-## Population ecology 
+
+```{r out.width=275}
+
+knitr::include_graphics("biological_organization.png")
+```
+
+---
+
+```{r out.width=275}
+
+knitr::include_graphics("biological_organization2.png")
+```
+
 
 ---
 

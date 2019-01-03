@@ -21,6 +21,8 @@ library(gganimate)
 
 ## Readings
 
+> Mills 201-223
+
 ---
 class: center, middle
 

@@ -21,7 +21,7 @@ library(WILD3810)
 
 ## Readings: 
 
-> Mills 80-84
+> Mills 79-84
 
 ---
 ## Abundance
