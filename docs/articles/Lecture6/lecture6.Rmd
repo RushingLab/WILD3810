@@ -26,7 +26,7 @@ library(WILD3810)
 ---
 # Assumptions of the B-D models
 
-Remember from the previous lecture that our simple models of population growth were based on the following assumptions:  
+Remember from the lecture 3 that our simple models of population growth were based on the following assumptions:  
 <br/>
 
 --
@@ -73,11 +73,11 @@ These forces often vary across space, time, and individuals:
 
 
 --
-The B-D population model ignored all of these sources of variation $^1$
+The B-D population model ignored all of these sources of variation $^2$
 
 ???
 
-$^1$ As we'll see, this is not only unrealistic, ignoring variation can change our conclusions about population growth. 
+$^2$ As we'll see, this is not only unrealistic, ignoring variation can change our conclusions about population growth. 
 
 ---
 class: inverse, center, middle
@@ -99,7 +99,7 @@ Processes that are governed by some element of chance (randomness) are referred 
 <br/>
 
 --
-Just because something is stochastic doesn't mean it's completely unpredictable $^1$  
+Just because something is stochastic doesn't mean it's completely unpredictable $^3$  
 
 ```{r, fig.width=4, fig.height=2.5}
 set.seed(1234578)
@@ -127,7 +127,7 @@ Nd <- data.frame(t = seq(1:n.year),
 
 ???
 
-$^1$ For example, we can't predict with 100% certainty whether a coin flip will be heads or tails or what side a 6-sided dice will land on (there is some stochasticity in these processes) but that doesn't mean we have no idea what the outcomes will be  
+$^3$ For example, we can't predict with 100% certainty whether a coin flip will be heads or tails or what side a 6-sided dice will land on (there is some stochasticity in these processes) but that doesn't mean we have no idea what the outcomes will be  
 
 
 ---
@@ -137,7 +137,7 @@ We can predict how often we expect different random outcomes using *probability*
 <br/>
 
 --
-Probability distributions characterize the frequency of different possible outcomes $^1$  
+Probability distributions characterize the frequency of different possible outcomes $^4$  
 
 ```{r fig.width=5, fig.height=3.5}
 norm_df <- data.frame(x = seq(from = -10, to = 10, by = 0.1),
@@ -153,7 +153,7 @@ In population models, we can use probability to characterize and account for sto
 
 ???
 
-$^1$ For example, many of you are probably familiar with the normal (or bell-shaped) distribution. This is a probability distribution with a single "most probable" outcome and decreasing probability of more "extreme" values.
+$^4$ For example, many of you are probably familiar with the normal (or bell-shaped) distribution. This is a probability distribution with a single "most probable" outcome and decreasing probability of more "extreme" values.
 
 ---
 ## Two types of stochastic processes
@@ -292,7 +292,7 @@ It's clear that this population is declining
 
 
 --
-What *is* the average $\lambda$ (which we'll call $\bar{\lambda}$?  
+What *is* the average $\lambda$ (which we'll call $\bar{\lambda}$)?  
 
 ---
 ## Modeling environmental stochasticity
@@ -353,7 +353,7 @@ This is a *critical point* about environmental stochasticity
 Let's see what that looks like:  
 
 --
-Initially, assume a large population ($N_0 = 500$) with:
+Initially, assume a large population $(N_0 = 500)$ with:
 
 + $\bar{b_t} = 0.55$  
 
@@ -499,13 +499,14 @@ The same is true to demographic outcomes
 
 Even if the *expected* survival rate is 80%, the *realized* survival rate could be higher or lower  
 
-Likewise, we might expect individuals to produce 3 offspring on average, but some individuals will have more and some fewer based on chance $^1$  
+Likewise, we might expect individuals to produce 3 offspring on average, but some individuals will have more and some fewer based on chance $^5$  
+<br/>
 
 --
 Demographic stochasticity is essentially the difference between the expected survival/reproductive rate and the realized rates in our population.
 
 ???
-$^1$ or at least what appears to use to be chance  
+$^5$ or at least what appears to use to be chance  
 
 ---
 ## Demographic  stochasticity
@@ -540,7 +541,7 @@ To see this in action, we can use `R` to simulate the abundance of populations t
 <br/>
 
 --
-Start with 100 populations with a relatively large population size $(N = 500)$ $^1$  
+Start with 100 populations with a relatively large population size $(N = 500)$ $^6$  
 
 We will further assume that the mean survival and reproductive rates remain constant so all stochastisticity is demographic  
 
@@ -551,7 +552,7 @@ dem_plot
 
 ???
 
-$^1$ Since each population starts with the same initial populaiton size, any differences at the end of the simulation are due to stochasticity  
+$^6$ Since each population starts with the same initial populaiton size, any differences at the end of the simulation are due to stochasticity  
 
 ---
 ## Effects of demographic stochasticity
@@ -588,7 +589,7 @@ Nd <- data.frame(t = seq(1:n.year),
 ---
 ## Effects of demographic stochasticity
 
-Now `r mean(Nd$N[Nd$t==30] < 10)*100`% of the populations decreased and `r mean(apply(N, 1, min)==0)*100` went extinct $^1$ 
+Now `r mean(Nd$N[Nd$t==30] < 10)*100`% of the populations decreased and `r mean(apply(N, 1, min)==0)*100` went extinct $^7$ 
 
 ```{r fig.width=8,fig.height=5}
 dem_plot
@@ -596,7 +597,7 @@ dem_plot
 
 ???
 
-$^1$ Remember that if at any point during the timeseries $N=0$, the population is extinct. Because our model assumes no movement, a population that goes extinct stays extinct
+$^7$ Remember that if at any point during the timeseries $N=0$, the population is extinct. Because our model assumes no movement, a population that goes extinct stays extinct
 
 ---
 ## Effects of demographic stochasticity
@@ -691,7 +692,7 @@ ggplot(Nd[Nd$t < 501, ], aes(x = t, y = N, group = Population)) +
 ---
 ### Stochasticity and extinction risk over time
 
-10,000 years? `r mean(apply(N, 1, min)==0)*100`% of populations go extinct $^1$ 
+10,000 years? `r mean(apply(N, 1, min)==0)*100`% of populations go extinct $^8$ 
 
 ```{r fig.width=8, fig.height=5}
 ggplot(Nd, aes(x = t, y = N, group = Population)) + 
@@ -704,6 +705,6 @@ ggplot(Nd, aes(x = t, y = N, group = Population)) +
 
 ???
 
-$^1$ We could go further if we wanted and that last population would eventually go extinct as well  
+$^8$ We could go further if we wanted and that last population would eventually go extinct as well  
 
 So why isn't extinction more common in nature? 
