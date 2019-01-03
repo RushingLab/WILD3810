@@ -303,5 +303,7 @@ We denote the total number of individuals in a population as $N$
 --
 $N$ is the **State Variable** of a population
 
-
+```{r out.width=400}
+knitr::include_graphics("Screenshot_2018-12-11 Utah Moose Statewide Management Plan - moose_plan pdf.png")
+```
 
