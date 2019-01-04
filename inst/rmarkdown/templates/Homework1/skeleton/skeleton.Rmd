@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, messag
 library(WILD3810)
 ```
 
+**Due before 2:30pm Monday January 21**
 
 In this homework assignment, you will become more familiar with using `R` and R Markdown to analyze and visualize data and report your results. To accomplish these goals, we will continue our discussion of estimating abundance using mark-recapture data.  
 
@@ -71,13 +72,13 @@ ggplot(binom_df, aes(x, y)) +
   scale_y_continuous("Probability")
 ```
 
-In `R`, we can simulate random values from a binomial distribution using the `rbinom()` function. This function requires 3 arguments: `n` - the number of simulated values (in this case, `nSims`), `size` - the number of trials, and `p` - the probability of success. For example, to generate values of `n1` we use the following code: 
+In `R`, we can simulate random values from a binomial distribution using the `rbinom()` function. This function requires 3 arguments: `n` - the number of simulated values (in this case, `nSims`), `size` - the number of trials, and `p` - the probability of success. For example, to generate values of `n1` we use the following code (uncomment before running): 
 
 ```{r n1}
-n1 <- rbinom(n = nSims, size = N, prob = p)
+# n1 <- rbinom(n = nSims, size = N, prob = p)
 ```
 
-Notice that in this case, we are sampling from the total population so `size = N`. When you run this line, you will get `r nSims` random values of `n1`. 
+Notice that in this case, we are sampling from the total population so `size = N`. When you run this line, you will get 1000 random values of `n1`. 
 
 > 4a) How many individuals do you expect to capture in $n1$? Type your answer below in bold (hint: use double asterisks before and after text to make it **bold**)
 
@@ -117,7 +118,7 @@ Finally, we have everything we need to estimate $\hat{N}$.
 # Nhat <- (n1 * n2) / m2
 ```
 
-Because $N$ is very big (`r N`), our `Nhat` estimates should *on average* be unbiased. We can test this by taking the mean of all `r nSims` estimates (which should be very close to $N$) and by taking the ratio of this mean to the true value (which should be 1 if the estimator is unbiased):
+Because $N$ is very big, our `Nhat` estimates should *on average* be unbiased. We can test this by taking the mean of all 1000 estimates (which should be very close to $N$) and by taking the ratio of this mean to the true value (which should be 1 if the estimator is unbiased):
 
 ```{r mean_Nhat}
 # mean(Nhat)
