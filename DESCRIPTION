@@ -1,7 +1,7 @@
 Package: WILD3810
-Version: 0.0.0.9000
-Title: WILD3810: Ecology of Plants and Animals
-Description: What the package does (one paragraph).
+Version: 2019.1
+Title: WILD3810: Plant and Animal Populations
+Description: Course package for WILD3810: Plant and Animal Populations at Utah State University. This package primarily exists to distribute data, code, and other materials in an efficient manner.
 Authors@R: person("Clark", "Rushing", email = "first.last@example.com", role = c("aut", "cre"))
 License: CC0
 Encoding: UTF-8
