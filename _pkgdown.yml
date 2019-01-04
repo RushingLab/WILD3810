@@ -21,9 +21,9 @@ navbar:
       icon: fa-file-pdf-o
       menu:
         - text: "Lecture 0: Introduction to WILD3810"
-          href: articles/Lecture0/lecture0.html
+          href: articles/Lecture0/Lecture0.html
         - text: "Lecture 1: Introduction to population ecology"
-          href: articles/Lecture1/lecture1.html
+          href: articles/Lecture1/Lecture1.html
     - icon: fas fa-desktop
       text: "Labs"
       menu:
