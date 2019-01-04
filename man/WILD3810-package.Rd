@@ -4,9 +4,9 @@
 \name{WILD3810-package}
 \alias{WILD3810}
 \alias{WILD3810-package}
-\title{WILD3810: WILD3810: Ecology of Plants and Animals}
+\title{WILD3810: WILD3810: Plant and Animal Populations}
 \description{
-What the package does (one paragraph).
+Course package for WILD3810: Plant and Animal Populations at Utah State University. This package primarily exists to distribute data, code, and other materials in an efficient manner.
 }
 \author{
 \strong{Maintainer}: Clark Rushing \email{first.last@example.com}

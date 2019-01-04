@@ -7,4 +7,7 @@ articles:
   rmarkdown_intro: rmarkdown_intro.html
   schedule: schedule.html
   syllabus: syllabus.html
+urls:
+  reference: http://rushinglab.github.io/WILD3810/reference
+  article: http://rushinglab.github.io/WILD3810/articles
 
