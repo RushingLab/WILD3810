@@ -248,7 +248,7 @@ In the 1930's, a mathmetician at the University of Wisconsin named Zoe Emily Sch
 $$\hat{N} = \frac{\sum_t(C_t \times M_t)}{\sum_t R_t}$$
 *Remember that $\sum_t$ means the sum of the values across at $T$ occasions.*
 
-To better understand what each of these data mean, we will use an example from [Powell (2015)](http://docs.wixstatic.com/ugd/95e73b_6d832c61405d4b3cbd9d99bbb4530f7b.pdf) (pages 96-97). Students on a research trip to Puerto Rico did a 3-day mark-recapture study to estimate the number of Cuban rock iguanas (*Cyclura nubila*) on the island Isla Magueyes. On the first day, the students observed and marked (using latex paint) 155 iguanas. On the second day, they observed 175 individuals (109 marked and 66 unmarked; note that the 66 unmarked individuals were captured, marked, and released). On the third day, they observed 131 individuals (116 marked and 15 unmarked).
+To better understand what each of these data mean, we will use an example from [Powell & Gale (2015)](http://docs.wixstatic.com/ugd/95e73b_6d832c61405d4b3cbd9d99bbb4530f7b.pdf) (pages 96-97). Students on a research trip to Puerto Rico did a 3-day mark-recapture study to estimate the number of Cuban rock iguanas (*Cyclura nubila*) on the island Isla Magueyes. On the first day, the students observed and marked (using latex paint) 155 iguanas. On the second day, they observed 175 individuals (109 marked and 66 unmarked; note that the 66 unmarked individuals were captured, marked, and released). On the third day, they observed 131 individuals (116 marked and 15 unmarked).
 
 ```{r iguanas, echo = FALSE}
 library(kableExtra)

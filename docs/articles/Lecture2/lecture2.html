@@ -26,7 +26,7 @@ class: center, middle, inverse, title-slide
 &gt; Mills 54-63  
 
 
-&gt; Powell 169-
+&gt; Powell &amp; Gale 169-173; 177-180
 
 ---
 ## Abundance
@@ -74,11 +74,11 @@ But usually:
 
 &lt;br/&gt;
 --
-So we have to **estimate** abundance `\(^1\)`
+So we have to **estimate** abundance `\(^{1}\)`
 
 ???
 
-In a census, we assume that our counts equal the true population size, the is `\(C = N\)`. However, when this assumption is not met, that is `\(C \neq N\)`, we have to *estimate* `\(N\)` by accounting for the various reasons that our counts do not equal the true abundance  
+`\(^1\)` In a census, we assume that our counts equal the true population size, the is `\(C = N\)`. However, when this assumption is not met, that is `\(C \neq N\)`, we have to *estimate* `\(N\)` by accounting for the various reasons that our counts do not equal the true abundance  
 
 ---
 ## Estimation methods
@@ -123,18 +123,18 @@ Figure from: Powell, L., 2015. Hitler's Effect on Wildlife in Nebraska: World Wa
 **Problems**  
 &lt;br/&gt;
 --
-1) What if the relationship between `\(N\)` and `\(C\)` is not linear? `\(^1\)`  
+1) What if the relationship between `\(N\)` and `\(C\)` is not linear? `\(^2\)`  
 &lt;br/&gt;
 
 &lt;img src="index_nl.png" width="200" style="display: block; margin: auto;" /&gt;
 
 ???
 
-`\(^1\)` In the middle figure, observers detect a larger percentage of pheasants at low abundance than at high abundance. This could happen if, perhaps, observers become much for vigilant about looking for pheasants when there aren't many around. In this case, true declines in abundance might be *under-estimated*  
+`\(^2\)` In the middle figure, observers detect a larger percentage of pheasants at low abundance than at high abundance. This could happen if, perhaps, observers become much for vigilant about looking for pheasants when there aren't many around. In this case, true declines in abundance might be *under-estimated*  
 
 In the bottom figure, counts don't increase much at low abundance and then increase rapidly. This could occur if observers don't bother looking when there are few individuals around. In this case, declines in abundance might be *over-estimated*  
 
-Figure from Powell 2015 "Estimation of Parameters for Animal Populations", pg 171
+Figure from Powell &amp; Gale 2015 "Estimation of Parameters for Animal Populations", pg 171
 
 ---
 ## Indices
@@ -146,7 +146,7 @@ Figure from Powell 2015 "Estimation of Parameters for Animal Populations", pg 17
 &lt;br/&gt;
 
 --
-2) What if the observation process changes? `\(^1\)` 
+2) What if the observation process changes? `\(^3\)` 
 &lt;br/&gt;
 
 &lt;img src="RMCS_obs.png" width="400" style="display: block; margin: auto;" /&gt;
@@ -154,7 +154,7 @@ Figure from Powell 2015 "Estimation of Parameters for Animal Populations", pg 17
 
 ???
 
-`\(^1\)` The number of observers from one rural mail carrier survey has been decreasing over time. Is the decline in the number of bobwhite due to fewer birds or fewer observers?  
+`\(^3\)` The number of observers from one rural mail carrier survey has been decreasing over time. Is the decline in the number of bobwhite due to fewer birds or fewer observers?  
 
 Figure from: Robinson Jr, D.A., Jensen, W.E. and Applegate, R.D., 2000. Observer effect on a rural mail carrier survey population index. Wildlife Society Bulletin, pp.330-332.  
 
@@ -189,11 +189,11 @@ Estimates attempt to *correct* for sample area and imperfect detection to estima
 
 `\(P_{area}\)` is the proportion of the study area sampled by our surveys  
 
-`\(\hat{P}_d\)` is the estimated `\(^1\)` probability that an individual that is present in the population is detected by our surveys
+`\(\hat{P}_d\)` is the estimated `\(^4\)` probability that an individual that is present in the population is detected by our surveys
 
 ???
 
-`\(^1\)` The hat symbol in `\(\hat{N}\)` and `\(\hat{P}_d\)` is used to distinguish between an *estimated* parameter and the true value of the parameter (e.g., `\(N\)` or `\(P_d\)`, which of course we usually can't know)  
+`\(^4\)` The hat symbol in `\(\hat{N}\)` and `\(\hat{P}_d\)` is used to distinguish between an *estimated* parameter and the true value of the parameter (e.g., `\(N\)` or `\(P_d\)`, which of course we usually can't know)  
 
 Why isn't `\(P_{area}\)` an estimate?  
 
@@ -295,13 +295,13 @@ Usually, `\(\hat{P}_d &lt; 1\)` (even for plants!)
 Need to estimate `\(\hat{P}_d\)`, the probability of detecting an individual that is present in the populations  
 &lt;br/&gt;
 &lt;br/&gt;
-**Many** methods for doing so `\(^1\)`
+**Many** methods for doing so `\(^5\)`
 
 &lt;img src="lecture2_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
 
 ???
 
-`\(^1\)` We can't cover them all of the methods but will learn about some of the basic ways to estimate detection probability
+`\(^5\)` We can't cover them all of the methods but will learn about some of the basic ways to estimate detection probability
 
 ---
 class: inverse, center, middle
@@ -336,14 +336,14 @@ CMR includes a wide variety of related techniques and models
 
 Traditionally, CMR referred to methods of capturing, marking, and then recapturing individuals at some point in the future  
 
-This results in a **capture-history** for each individual `\(^1\)`:  
+This results in a **capture-history** for each individual `\(^6\)`:  
 
 Individual 1: `\(101101\)`  
 Individual 2: `\(011001\)`  
 
 ???
 
-`\(^1\)` Individual 1 was captured on occasions 1, 3, 4, and 6  
+`\(^6\)` Individual 1 was captured on occasions 1, 3, 4, and 6  
 
 Individual 2 was captured on occasions 2,3, and 6. 
 
@@ -377,13 +377,13 @@ From capture-histories, we can estimate:
 ## Capture-mark-recapture
 
 
-CMR methods are not restricted to physical captures and recaptures `\(^1\)`
+CMR methods are not restricted to physical captures and recaptures `\(^7\)`
 
 &lt;img src="pelican.jpg" width="600" style="display: block; margin: auto;" /&gt;
 
 ???
 
-`\(^1\)` Capture histories can be created from resighting marks that can be seen from a distance
+`\(^7\)` Capture histories can be created from resighting marks that can be seen from a distance
 
 Photo Credit: Rick Kimble/USFWS
 
@@ -391,13 +391,13 @@ Photo Credit: Rick Kimble/USFWS
 ## Capture-mark-recapture
 
 
-CMR methods are not restricted to physical captures and recaptures `\(^1\)`
+CMR methods are not restricted to physical captures and recaptures `\(^8\)`
 
 &lt;img src="https://upload.wikimedia.org/wikipedia/commons/2/23/PIT_Tagging_%2810426702854%29.jpg" width="600" style="display: block; margin: auto;" /&gt;
 
 ???
 
-`\(^1\)` Capture histories can be created from automated systems that record ID's, like PIT tags
+`\(^8\)` Capture histories can be created from automated systems that record ID's, like PIT tags
 
 Image courtesy of: USFWS Mountain-Prairie via Wikimedia Commons
 
@@ -405,13 +405,13 @@ Image courtesy of: USFWS Mountain-Prairie via Wikimedia Commons
 ## Capture-mark-recapture
 
 
-CMR methods are not restricted to physical captures and recaptures `\(^1\)`
+CMR methods are not restricted to physical captures and recaptures `\(^9\)`
 
 &lt;img src="https://upload.wikimedia.org/wikipedia/commons/3/37/Wild_Sumatran_tiger.jpg" width="600" style="display: block; margin: auto;" /&gt;
 
 ???
 
-`\(^1\)` Capture histories can be created from "natural marks", e.g. camera trapping
+`\(^9\)` Capture histories can be created from "natural marks", e.g. camera trapping
 
 Image courtesy of: Arddu, via Wikimedia Commons
 
@@ -419,13 +419,13 @@ Image courtesy of: Arddu, via Wikimedia Commons
 ## Capture-mark-recapture
 
 
-CMR methods are not restricted to physical captures and recaptures `\(^1\)`
+CMR methods are not restricted to physical captures and recaptures `\(^{10}\)`
 
 &lt;img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Grizzly_hair_snare_%28Northern_Divide_Grizzly_Bear_Project%29_%284428177124%29.jpg" width="600" style="display: block; margin: auto;" /&gt;
 
 ???
 
-`\(^1\)` Capture histories can be created from "natural marks", e.g. genetic markers
+`\(^{10}\)` Capture histories can be created from "natural marks", e.g. genetic markers
 
 Image courtesy of: GlacierNPS, via Wikimedia Commons
 
@@ -464,7 +464,7 @@ LP is one of the first and most basic **closed** CMR models
 &lt;br/&gt;
 
 --
-How can we make this assumption? Usually by conducting our sampling within a short `\(^1\)` period of time  
+How can we make this assumption? Usually by conducting our sampling within a short `\(^{11}\)` period of time  
 
 --
 Key questions for determining whether population is closed:
@@ -479,7 +479,7 @@ Key questions for determining whether population is closed:
 
 ???
 
-`\(^1\)` Short will depend on the study organism - trees vs. insects
+`\(^{11}\)` Short will depend on the study organism - trees vs. insects
 
 ---
 ## Lincoln-Peterson model
@@ -487,6 +487,7 @@ Key questions for determining whether population is closed:
 **Basic logic**  
 
 On the first occasion, we capture `\(n_1\)` individuals  
+&lt;br/&gt;
 
 --
 What proportion of the total number of individuals is `\(n_1\)`? 
@@ -538,11 +539,11 @@ We can rearrange that to solve for `\(N\)`:
 &lt;br/&gt;
 3) Count and record the number of black beans in the sample (this is `\(m_2\)`)  
 &lt;br/&gt;
-4) Estimate `\(\hat{N}\)` using the formula above `\(^1\)`  
+4) Estimate `\(\hat{N}\)` using the formula above `\(^{12}\)`  
 
 ???
 
-`\(^1\)` How close was your estimate to the true `\(N\)`?
+`\(^{12}\)` How close was your estimate to the true `\(N\)`?
 
 How did the number of beans you removed influence your estimate of `\(N\)`
 
@@ -556,7 +557,7 @@ class: inverse, middle, center
 
 It is very unlikely that `\(\hat{N} = N\)`  
 
-But, with large sample sizes, LP is **unbiased** `\(^1\)`:
+But, with large sample sizes, LP is **unbiased** `\(^{13}\)`:
 
 &gt; **on average** `\(\hat{N}\)` will be equal to `\(N\)`  
 
@@ -564,7 +565,7 @@ But, with large sample sizes, LP is **unbiased** `\(^1\)`:
 
 ???
 
-`\(^1\)` It's important to note that the concept of bias applies to an imagined set of repeated experiments to estimate `\(N\)`, not to a single estimate of `\(N\)`  
+`\(^{13}\)` It's important to note that the concept of bias applies to an imagined set of repeated experiments to estimate `\(N\)`, not to a single estimate of `\(N\)`  
 
 For any single estimate (each group's estimate), `\(\hat{N}\)` may be bigger or smaller than `\(N\)`  
 
@@ -614,13 +615,13 @@ Uncertainty measures *on average* how far off our estimate is from the true valu
 
 Uncertainty measures *on average* how far off our estimate is from the true value  
 
-We measure spread as the **variance** of the samples `\(^1\)`  
+We measure spread as the **variance** of the samples `\(^{14}\)`  
 
 We don't know the true value but statisticians have developed ways to approximate how far we are from the true value using only our data
 
 ???
 
-`\(^1\)` High variance means are sample estimates are generally far from the true value, low variance means they are close. **Which do we prefer?**  
+`\(^{14}\)` High variance means are sample estimates are generally far from the true value, low variance means they are close. **Which do we prefer?**  
 
 ---
 ## Uncertainty of Lincoln-Peterson estimator

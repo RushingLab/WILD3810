@@ -24,7 +24,7 @@ library(WILD3810)
 > Mills 54-63  
 
 
-> Powell 169-173; 177-180
+> Powell & Gale 169-173; 177-180
 
 ---
 ## Abundance
@@ -136,7 +136,7 @@ $^2$ In the middle figure, observers detect a larger percentage of pheasants at 
 
 In the bottom figure, counts don't increase much at low abundance and then increase rapidly. This could occur if observers don't bother looking when there are few individuals around. In this case, declines in abundance might be *over-estimated*  
 
-Figure from Powell 2015 "Estimation of Parameters for Animal Populations", pg 171
+Figure from Powell & Gale 2015 "Estimation of Parameters for Animal Populations", pg 171
 
 ---
 ## Indices
