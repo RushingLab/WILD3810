@@ -23,7 +23,7 @@ library(WILD3810)
 # LOGISTICS
 
 **Lecture**: Monday and Wednesday 10:30-11:20 BNR 314  
-**Lab**: Monday 2:30-4:20 QLIB 306  
+**Lab**: Monday 2:30-4:20 ~~QLIB 306~~ **LSB 225**  
 **Credits**: 3  
 
 ---

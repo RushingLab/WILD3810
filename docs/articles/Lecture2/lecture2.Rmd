@@ -532,6 +532,15 @@ If $p$ is $35\%$ and $N=100$, $n_1$ should be approximatley 35 individuals.
 
 **Basic logic**  
 
+```{r out.width = 200}
+knitr::include_graphics("n1.png")
+```
+
+---
+## Lincoln-Peterson model
+
+**Basic logic**  
+
 On the first occasion, we capture $n_1$ individuals  
 <br/>
 
@@ -542,7 +551,20 @@ On the second occasion, we capture $n_2$ individuals
 - $m_2$ of those individuals were captured and marked on the first occasion  
 
 
---
+---
+## Lincoln-Peterson model
+
+**Basic logic**  
+
+```{r out.width = 200}
+knitr::include_graphics("sample.png")
+```
+
+---
+## Lincoln-Peterson model
+
+**Basic logic**  
+
 Lincoln & Peterson realized that:  
 
 $$\frac{m_2}{n_2} = \frac{n_1}{N}$$
@@ -551,6 +573,19 @@ $$\frac{m_2}{n_2} = \frac{n_1}{N}$$
 We can rearrange that to solve for $N$:
 
 $$N = \frac{n_1n_2}{m_2}$$
+
+---
+## Lincoln-Peterson model
+
+**Basic logic**  
+
+```{r out.width = 400}
+knitr::include_graphics("LP.png")
+```
+
+???
+
+Modified from Powell & Gale pg 93
 
 ---
 ## Lincoln-Peterson model

@@ -508,6 +508,13 @@ If `\(p\)` is `\(35\%\)` and `\(N=100\)`, `\(n_1\)` should be approximatley 35 i
 
 **Basic logic**  
 
+&lt;img src="n1.png" width="200" style="display: block; margin: auto;" /&gt;
+
+---
+## Lincoln-Peterson model
+
+**Basic logic**  
+
 On the first occasion, we capture `\(n_1\)` individuals  
 &lt;br/&gt;
 
@@ -518,7 +525,18 @@ On the second occasion, we capture `\(n_2\)` individuals
 - `\(m_2\)` of those individuals were captured and marked on the first occasion  
 
 
---
+---
+## Lincoln-Peterson model
+
+**Basic logic**  
+
+&lt;img src="sample.png" width="200" style="display: block; margin: auto;" /&gt;
+
+---
+## Lincoln-Peterson model
+
+**Basic logic**  
+
 Lincoln &amp; Peterson realized that:  
 
 `$$\frac{m_2}{n_2} = \frac{n_1}{N}$$`
@@ -527,6 +545,17 @@ Lincoln &amp; Peterson realized that:
 We can rearrange that to solve for `\(N\)`:
 
 `$$N = \frac{n_1n_2}{m_2}$$`
+
+---
+## Lincoln-Peterson model
+
+**Basic logic**  
+
+&lt;img src="LP.png" width="400" style="display: block; margin: auto;" /&gt;
+
+???
+
+Modified from Powell &amp; Gale pg 93
 
 ---
 ## Lincoln-Peterson model
@@ -598,7 +627,7 @@ We do a CMR study of two populations and estimate `\(\hat{N}_1 = 142\)` and `\(\
 
 Is `\(N_1 &lt; N_2\)`? 
 
-&lt;img src="lecture2_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture2_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -630,7 +659,7 @@ Variance of the LP estimator can be calculated as:
 
 `$$var(\hat{N}) = \frac{(n_1 + 1)(n_2+1)(n_1-m_2)(n_2-m_2)}{(m_2+1)^2(m_2+2)}$$`
 
-&lt;img src="lecture2_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture2_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
 
 ???
 
