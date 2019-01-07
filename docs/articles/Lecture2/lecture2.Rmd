@@ -60,6 +60,7 @@ class: inverse, middle, center
 Sometimes we can (*census*)  
 
 But usually:  
+<br/> 
 
 --
 1) Not practical  
@@ -81,7 +82,13 @@ $^1$ In a census, we assume that our counts equal the true population size, the 
 ---
 ## Estimation methods
 
-**Figure of estimation methods**
+```{r out.width = 500}
+knitr::include_graphics("abundance_estimation.png")
+```
+
+???
+
+Adapted from Mills pg 55
 
 ---
 class: inverse, center, middle
@@ -487,7 +494,7 @@ LP is one of the first and most basic **closed** CMR models
 <br/>
 
 --
-How can we make this assumption? Usually by conducting our sampling within a short $^{11}$ period of time  
+How can we make this assumption? Usually by conducting sampling within a short $^{11}$ period of time  
 
 --
 Key questions for determining whether population is closed:
