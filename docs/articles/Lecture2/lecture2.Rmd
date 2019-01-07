@@ -147,7 +147,6 @@ Figure from Powell & Gale 2015 "Estimation of Parameters for Animal Populations"
 1) What if the relationship between $N$ and $C$ is not linear?  
 <br/>
 
---
 2) What if the observation process changes? $^3$ 
 <br/>
 
@@ -270,18 +269,20 @@ $$\hat{N} = \frac{C}{P_{area}}$$
 <br/>
 1) Divide back into your groups  
 <br/>
-2) Choose a black line on the side of the cup and remove all beans above that line
-+ Each line is about 20% of the cups volume  
+2) Place your empty cup on the scale and press 'Tare'  
 <br/>
-
-
-3) Count and record the number of beans you removed  
+3) Remove a portion of the beans from the first cup and place them in the empty cup; record the weight  
 <br/>
-4) Estimate $\hat{N}$  
+4) Count and record the number of beans you removed  
 <br/>
-5) Return all of the beans to the cup
+5) Estimate $\hat{N}$ using: $^1$
+$$\hat{N} = \frac{number\; of\; beans\; removed}{weight/100}$$
+<br/>
+6) Leave the beans in their current cups
 
 ???
+
+$^1$ Each cup started with approximately 100g of beans so $weight/100$ is the proportion of the beans you sampled. So the number of beans you removed $=C$ and $weight/100=P_{area}$
 
 How close was your estimate to the true $N$? Why was it not exactly the same?  
 
@@ -468,13 +469,11 @@ CMR methods are not restricted to physical captures and recaptures
 <br/>
 1) Divide into groups your groups  
 <br/>
-2) Remove a handful of beans from cup and count  
+2) Record how many beans you removed in the previoius exercise (call this $n_1$)  
 <br/>
-3) Record how many beans you removed (call this $n_1$)  
+3) Count the same number of black-eyed peas and put them back in the original cup (these are your marked individuals)  
 <br/>
-4) Count the same number of black beans and put them back in the cup (these are your marked individuals)  
-<br/>
-5) Cover and shake the cup
+4) Cover and shake/stir the cup 
 
 ---
 ## Lincoln-Peterson (LP) model
@@ -596,7 +595,7 @@ Modified from Powell & Gale pg 93
 <br/>
 2) Count and record the total number of beans (this is $n_2$)  
 <br/>
-3) Count and record the number of black beans in the sample (this is $m_2$)  
+3) Count and record the number of black-eyed peas in the sample (this is $m_2$)  
 <br/>
 4) Estimate $\hat{N}$ using the formula above $^{12}$  
 
@@ -667,7 +666,8 @@ df <- data.frame(scenario = factor(rep(c("Point estimate", "High uncertainty", "
 
 ggplot(df[c(1,2),], aes(x = x, y = y)) + geom_point() + geom_errorbar(aes(x = x, ymin = y - se, ymax = y + se), width = 0) +
   scale_y_continuous("Population size", limits = c(100, 200)) +
-  scale_x_discrete("Population")
+  scale_x_discrete("Population") +
+  theme(axis.title.y = element_text(size = 17))
 ```
 
 ???
@@ -679,10 +679,11 @@ Note that our question is about the true abundances ($N_1$ and $N_2$) **not** ou
 
 Uncertainty measures *on average* how far off our estimate is from the true value  
 
-```{r out.width = 200}  
+```{r out.width = 300}  
 knitr::include_graphics("bias_precision.png")
 ```  
 
+---
 ## Measuring uncertainty
 
 Uncertainty measures *on average* how far off our estimate is from the true value  
@@ -707,7 +708,8 @@ $$var(\hat{N}) = \frac{(n_1 + 1)(n_2+1)(n_1-m_2)(n_2-m_2)}{(m_2+1)^2(m_2+2)}$$
 ggplot(df, aes(x = x, y = y)) + geom_point() + geom_errorbar(aes(x = x, ymin = y - se, ymax = y + se), width = 0) +
   scale_y_continuous("Population size", limits = c(100, 200)) +
   scale_x_discrete("Population") +
-  facet_wrap(~scenario, nrow = 1)
+  facet_wrap(~scenario, nrow = 1) +
+  theme(strip.text = element_blank())
 ```
 
 ???
