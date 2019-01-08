@@ -650,15 +650,8 @@ Nd <- data.frame(t = seq(1:n.year),
 --
 If we start with populations of 100 individuals and simulate 50 years of population change, `r mean(apply(N[,1:50], 1, min)==0)*100`% of populations go extinct  
 
-```{r  fig.width=8, fig.height=5}
-ggplot(Nd[Nd$t < 51, ], aes(x = t, y = N, group = Population)) + 
-  geom_path(color = WILD3810_colors$value[WILD3810_colors$name == "warning"], alpha = 0.25) #+
-  # transition_reveal(id = Population, along = t) +
-  # enter_appear() +
-  # exit_disappear() +
-  # ease_aes('linear')
-
-  
+```{r  out.height=400}
+knitr::include_graphics("extinction_50.gif")
 ```
 
 ---

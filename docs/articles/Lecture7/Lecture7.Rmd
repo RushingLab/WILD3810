@@ -35,7 +35,7 @@ Remember from the last lecture that, over a long enough time scales, the fate of
 
 ```{r fig.width=6, fig.height=4}
 set.seed(12345)
-n.year <- 10000
+n.year <- 500
 n.pop <- 100
 
 N <- matrix(NA, nrow = n.pop, ncol = n.year)
