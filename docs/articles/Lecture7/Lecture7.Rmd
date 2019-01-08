@@ -1,0 +1,542 @@
+---
+title: "Lecture 7"
+subtitle: "Dynamics of small populations"
+author: "<br/><br/><br/>WILD3810 (Spring 2019)"
+output:
+  xaringan::moon_reader:
+    css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE)
+library(WILD3810)
+library(gganimate)
+```
+<style type="text/css">
+.remark-slide-content {
+    font-size: 25px;
+}
+</style>
+
+## Readings
+
+> Mills 224-243
+
+---
+# Stochasticity and extinction risk
+
+Remember from the last lecture that, over a long enough time scales, the fate of any population that is subject to stochasticity is extinction  
+
+```{r fig.width=6, fig.height=4}
+set.seed(12345)
+n.year <- 10000
+n.pop <- 100
+
+N <- matrix(NA, nrow = n.pop, ncol = n.year)
+N[,1] <- 100
+
+b <- 0.5
+d <- 0.5
+for(i in 1:n.pop){
+  for(t in 2:n.year){
+    N[i, t] <- rbinom(1, size = N[i, t-1], prob = d) + rpois(1, N[i, t-1] * b)
+  }
+}
+
+Nd <- data.frame(t = seq(1:n.year),
+                 N = c(t(N)),
+                 Population = as.character(rep(1:n.pop, each = n.year)))
+
+ggplot(Nd, aes(x = t, y = N, group = Population)) + 
+  geom_path(color = WILD3810_colors$value[WILD3810_colors$name == "warning"], alpha = 0.25) +
+  transition_reveal(id = Population, along = t) +
+  enter_appear() +
+  exit_disappear() +
+  ease_aes('linear')
+```
+
+---
+# Stochasticity and extinction risk
+
+We also learned that stochasticity, particularly demographic stochasticity, is most consequential at small population sizes  
+
+```{r fig.height=5, fig.width=8}
+set.seed(1234)
+n.year <- 500
+n.pop <- 10
+
+N <- matrix(NA, nrow = n.pop, ncol = n.year)
+N[,1] <- round(seq(from = 5, to = 500, length.out = n.pop))
+
+b <- 0.5
+d <- 0.5
+for(i in 1:n.pop){
+  for(t in 2:n.year){
+    N[i, t] <- round(rbinom(1, size = N[i, t-1], prob = d) + rpois(1, N[i, t-1] * b), 0)
+  }
+}
+
+Nd <- data.frame(t = seq(1:n.year),
+                 N = c(t(N)),
+                 Population = as.character(rep(1:n.pop, each = n.year)), 
+                 init = rep(N[,1], each = n.year))
+
+ggplot(Nd, aes(x = t, y = N, group = Population)) + 
+  geom_point(aes(alpha = N), size = 3, color = WILD3810_colors$value[WILD3810_colors$name=="primary"]) +
+  geom_path(aes(alpha = N), size = 1, color = WILD3810_colors$value[WILD3810_colors$name=="primary"]) +
+  geom_segment(aes(xend = 500, yend = N, alpha = N), color = "black", linetype = 2) +
+  geom_text(aes(x = 510, label = N, alpha = N), color = "black", hjust = 0, size = 8) +
+  scale_x_continuous(limits = c(0, 600)) +
+  transition_reveal(id = Population, along = t) +
+  enter_appear() +
+  exit_disappear() +
+  ease_aes('linear') +
+  theme(legend.position = 'none')
+```
+
+---
+## Genetic stochasticity 
+
+In addition to demographic and environmental stochasticity, **genetic stochasticity** can also increase extinction risk for small populations  
+<br/>  
+
+Genetic drift leads to random accumulation and expression of harmful alleles, which can reduce demographic rates $^1$  
+<br/>
+
+Inbreeding depression can also lead to expression of harmful alleles
+
+???
+$^1$ This is very similar to demographic stochasticity - just by chance, it is possible to get a string of bad luck, in this case expression of alleles that are harmful  
+
+Like demographic stochasticity, drift is more likely to be consequential at small population sizes  
+
+---
+class: inverse, middle, center
+# Extinction vortex
+
+
+---
+## Extinction vortex
+
+As populations decrease in size, they reach a point where environmental stochasticity, demographic stochasticity, and genetic stochasticity all interact to drive populations towards extinction, the so called **extinction vortex**  
+
+```{r out.width=500, out.height=300}
+knitr::include_graphics("extinction_vortex.png")
+```
+
+---
+## Extinction vortex
+
+The danger with the extinction vortex is that focusing on a single factor - for example the deterministic cause of decline - is not enough   
+<br/>
+
+--
+Once a population is small, removing the cause of decline will not remove the stochastic threats  
+<br/>
+
+--
+All threats have to be managed and considered together 
+
+---
+## What is a "small" population?
+
+Detecting when species have entered the extinction vortex is difficult  
+<br/>
+
+--
+But risk of exinction is related to population size  
+
++ small populations are at higher risk than large ones   
+<br/>
+
+
+--
+What defines a "small" population? 
+
+---
+## What is a "small" population?
+
+This is a difficult question because "small" is a relative term  
+<br/>
+
+--
+"Small" compared to what? 
+
+--
++ Historical population size (use Wood Thrush)?  
+
+--
++ Other species (Rare and stable vs. common and declining)?  
+
+--
++ Management standards (duck vs. cougar)? 
+
+
+---
+## What is a "small" population?
+
+There is a long history of trying to define abundance thresholds that can be used to trigger management actions (*minimum viable population*):
+
+1) 50-500 rules (Soule 1980; Frankel & Soule 1981):  
+
+> Effective population size $(N_e)$ of 50 needed to avoid negative consequences of inbreeding depression; $N_e=500$ needed for maintenence of genetic diversity to allow adapation $^1$ 
+
+--
+Focused on captive breeding not wild populations  
+
+--
+$N_e=500$ probably too small for wild populations subject to stochasticity
+
+???
+
+$^1$ Effective population size is  
+
+$N_e=50$ translates to about 200-250 individuals
+
+---
+## What is a "small" population?
+
+There is a long history of trying to define abundance thresholds that can be used to trigger management actions (*minimum viable population*):
+
+1) 50-500 rules (Soule 1980; Frankel & Soule 1981)
+
+2) 1400-4000 (Brook et al. 2006; Traill et al. 2007): 
+
+> 1400-4000 individuals found to promote low risk of extinction over moderate timescales (20-100 years)
+
+--
+Improvement over 50-500 rule because focuses is on "risk of extinction" rather than on abundance itself  
+
+Good rule-of-thumb but not a magic number  
+
+---
+## Problems with MVP approach
+
+--
+1) we probably don't want to aim for the *minimum* population size  
+<br/>
+
+--
+2) there is not really a single minimum number of individuals (uncertainty!)  
+<br/>
+
+--
+3) populations provide ecological functions that may not be met at low population sizes  
+<br/>
+
+
+--
+Many factors influence risk of extinction so maintenence of a population should consider multiple risk factors
+
+---
+class: inverse, center, middle
+
+# Predictors of exinction risk
+
+---
+## Predictors of exinction risk
+
+1)  Abundance  
+
+* smaller populations are at higher risk of extinction than larger ones $^1$
+
+???
+
+$^1$due to the larger consequences of stochastic events
+
+---
+## Predictors of exinction risk
+
+1)  Abundance  
+
+2)  Range size  
+
+--
+* Species restricted to small area/highly specialized are often at a higher risk of extinction than widespread species  
+
+--
+* This is because:  
+
+    a) small range and specialization are generally correlated with population size; and  
+    b) the restricted habitats used by these species are at higher risk of catestrophic loss  
+
+```{r out.width=200, out.height=150}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/d/d3/Attwater%27s_Prairie_Chicken.jpg")
+```
+
+???
+
+Image courtesy of Lavendowski, George (USFWS), via Wikimedia Commons
+
+
+---
+## Predictors of exinction risk
+
+1)  Abundance  
+
+2)  Range size  
+
+3) Population growth rate  
+
+* Species with low and/or highly variable growth rates are at higher risk of exinction than species with stable and/or high growth rates  
+
+---
+## Predictors of exinction risk
+
+1)  Abundance  
+
+2)  Range size  
+
+3) Population growth rate  
+
+4) Body size  
+
+* Population growth rate and abundance tend to decrease with increasing body size so large-bodied species are generallly at higher risk than small bodied species
+
+---
+## Predictors of exinction risk
+
+1)  Abundance  
+
+2)  Range size  
+
+3) Population growth rate  
+
+4) Body size  
+
+5) Movement  
+
+* Species that are able to colonize new habitats are generally at lower risk of exintinction because:
+
+    a) They are better able to locate and colonize suitable habitat when it becomes avaiable; and  
+    b) increase gene flow limits drift/inbreeding and allows for adaptation  
+
+---
+class: inverse, center, middle
+
+# Population viability analysis
+
+---
+## Population viability analysis
+
+The above criteria have proven to be useful for predicting which species are vulnerable to extinction  
+<br/>
+
+--
+However, due to the complex and interacting factors that determine exinctition risk, these criteria are often too simple to accurately assess true risk of exinction   
+<br/>
+
+--
+When data are available, a more useful tool for predicting extinction risk is *population viability analysis* (PVA)  
+<br/>
+
+--
+PVA is a tool (or more accurately a set of methods) that:  
+
+> use data and models to estimate the likelihoods of a population crossing thresholds of vaibility within various time spans, and to give insights into factors that constitute the biggest threats $^1$  
+
+<br/>
+
+--
+Unlike minimum viable populations, PVA provides a means of determining "population viability" without the need to set a threshold abundance
+
+???
+
+$^1$ quoted from Mills pg 227  
+
+In lab, we will practice implementing a PVA using R. For now, we will discuss the different parts of the definition, different types of PVA, and how PVA is used to inform management decisions.
+
+---
+## Components of a PVA
+
+1) Viability  
+
+- The first step of a PVA is defining what we mean by viable  
+
+- This is an abundance level that we want to maintain our population at or above  
+
+- In the most simple cases, a viable means not extinct $(N > 0)$   
+
+
+--
+Usually, we not only want to prevent extinction, we also want keep abundance above some level where, e.g.
+
+--
+- Allee effects might kick in  
+
+--
+- ecological functions are detrimented  
+
+--
+- monitoring becomes unreliable  
+
+---
+## Components of a PVA
+
+1) Viability  
+
+Thus, PVA is usually based on *quasi-extinction* thresholds that are $> 0$  
+
+Below these thresholds, some management action $^1$ might be triggered to prevent absolute extinction  
+
+???
+
+$^1$ captive breeding or special management actions
+
+---
+## Components of a PVA
+
+1) Viability  
+<br/>
+
+2) Timeframe  
+
+- As we learned earlier, over long enough time periods, every population will go extinct  
+
+- Critical to determine the specific timeframe *relevant to our management objectives*  
+
+--
+One of the central issues with any type of prediction is that predictions are less certain the farther in the future we try to project  
+
+The longer the time frame, the more ways there are for stochastic sources of variation to accumulate  
+
+---
+## Components of a PVA
+
+1) Viability  
+<br/>
+
+2) Timeframe  
+
+Most PVAs therefore incorporate both short-term and long-term objectives  
+
+--
+- Long-term objectives are generally based soley on biology - maintaining populations above the quasi-extinction threshold for several decades  
+
+--
+- Short-term goals are more focused on political, legal, and social realities - what *can* we do now to maintain or increase population viability?  
+
+
+--
+By monitoring the population and re-running the PVA with new data, managers can assess whether short-term actions are helping (or hurting) meet long-term objectives.
+
+---
+## Components of a PVA
+
+1) Viability  
+<br/>
+
+2) Timeframe  
+<br/>
+
+3) Likelihood of risk  
+
+- The reason we need PVA is that we cannot say with certainty what will happen in the future due to stochasticity $^1$  
+
+--
+- PVAs are based on estimating probabilities of meeting viability objectives over our defined timeframes  
+- These probabilities capture the inherent *uncertainty* in our predictions  
+
+???
+
+$^1$ as well as deterministic processes that may occur in the future
+
+
+---
+## Components of a PVA
+
+1) Viability  
+<br/>
+
+2) Timeframe  
+<br/>
+
+3) Likelihood of risk  
+
+- The likelihood of risk can be expressed in different ways  
+
+-- 
+For example, the cumulative probability of declining below the quasi-extinction threshold over time
+
+```{r fig.width=4, fig.height=2.5}
+cum_extinct <- data.frame(qe = dnorm(x = seq(1:60)))
+
+ggplot(cum_extinct, aes(x = qe)) + stat_ecdf(geom = "step")
+```
+
+---
+## Components of a PVA
+
+1) Viability  
+<br/>
+
+2) Timeframe  
+<br/>
+
+3) Likelihood of risk  
+
+- The likelihood of risk can be expressed in different ways  
+
+
+Or we may express the probability that the population declines a specified amount over a given amount of time $^1$
+
+???
+
+$^1$ For example, the probability that the population declines 50% after 25 years. 
+
+---
+## Components of a PVA
+
+1) Viability  
+<br/>
+
+2) Timeframe  
+<br/>
+
+3) Likelihood of risk  
+
+In all cases, it's important to remember that these are *probabililities* - we don't know exactly how things will turn out  
+
+PVA can be used to estimate these probabilities but they cannot be used to tell us what level of risk we are willing to accept. That is a value judgement. 
+
+---
+class: inverse, center, middle
+
+# Types of PVA
+
+---
+## Types of PVA 
+
+Once we have established our quasi-exinction thresholds, timeframes, and likelihoods of risk, we can build the PVA  
+<br/>
+
+--
+As mentioned above, PVA actually refers to a variety of modeling techniques  
+<br/>
+
+--
+The type of PVA we choose usually depends on the available data
+
+---
+## Types of PVA
+
+#### Time-series
+
+The most straightforward type of PVA is based on a time series of abundance data  
+
+---
+## Types of PVA
+
+#### Demographically-explicit 
+
+---
+## Types of PVA
+
+#### Spatial 
+
