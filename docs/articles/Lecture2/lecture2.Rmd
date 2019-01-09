@@ -31,20 +31,22 @@ library(WILD3810)
 
 > the number of individual organisms in a population at a particular time  
 
-Also referred to as **population size**
+#### Also referred to as **population size**
 
 ---
 ## Why measure abundance?
 
-Abundance is the central *state variable* of a population  
+### Abundance is the central *state variable* of a population  
 
-**How many are there?**
+#### **How many are there?**
 
 --
 - Setting harvest limits  
+<br/>
 
 --
 - Maintaining viable populations of threatened/endangered species   
+<br/>
 
 --
 - Monitoring non-native/invasive species   
@@ -57,9 +59,9 @@ class: inverse, middle, center
 ---
 ## Why not just count every individual?
 
-Sometimes we can (*census*)  
+#### Sometimes we can (*census*)  
 
-But usually:  
+#### But usually:  
 <br/> 
 
 --
@@ -73,7 +75,8 @@ But usually:
 
 <br/>
 --
-So we have to **estimate** abundance $^{1}$
+
+#### So we have to **estimate** abundance $^{1}$
 
 ???
 
@@ -82,7 +85,7 @@ $^1$ In a census, we assume that our counts equal the true population size, the 
 ---
 ## Estimation methods
 
-```{r out.width = 500}
+```{r out.width = 550}
 knitr::include_graphics("abundance_estimation.png")
 ```
 
@@ -98,13 +101,15 @@ class: inverse, center, middle
 ---
 ## Indices
 
-We don't always need to know *exactly* how many individuals there are  
+#### We don't always need to know *exactly* how many individuals there are  
 <br/>
 
-Sometimes we just want to know the **relative** change in population size over time (or space).
+#### Sometimes we just want to know the **relative** change in population size over time (or space).
 <br/>
+
 --
-In this case, we can use an **index**  
+
+#### In this case, we can use an **index**  
 <br/>
 
 > counts $C$ that are correlated with the actual number of individuals $N$ 
@@ -127,8 +132,8 @@ Figure from: Powell, L., 2015. Hitler's Effect on Wildlife in Nebraska: World Wa
 ---
 ## Indices
 
-**Problems**  
-<br/>
+#### **Problems**  
+
 --
 1) What if the relationship between $N$ and $C$ is not linear? $^2$  
 <br/>
@@ -148,8 +153,7 @@ Figure from Powell & Gale 2015 "Estimation of Parameters for Animal Populations"
 ---
 ## Indices
 
-**Problems**  
-<br/>
+#### **Problems**  
  
 1) What if the relationship between $N$ and $C$ is not linear?  
 <br/>
@@ -171,8 +175,7 @@ Figure from: Robinson Jr, D.A., Jensen, W.E. and Applegate, R.D., 2000. Observer
 ---
 ## Indices
 
-**Problems**  
-<br/>
+#### **Problems**  
 
 1) What if the relationship between $N$ and $C$ is not linear?  
 <br/>
@@ -181,7 +184,7 @@ Figure from: Robinson Jr, D.A., Jensen, W.E. and Applegate, R.D., 2000. Observer
 2) What if the observation process changes?  
 <br/>
 
-Without standardized survey protocols, it is impossible to distinguish between changes in abundance and changes in the observation process
+#### Without standardized survey protocols, it is impossible to distinguish between changes in abundance and changes in the observation process
 
 ---
 class: inverse, center, middle
@@ -192,7 +195,7 @@ class: inverse, center, middle
 # Estimates
 
 <br/>
-Estimates attempt to *correct* for sample area and imperfect detection to estimate $N$ from $C$  
+#### Estimates attempt to *correct* for sample area and imperfect detection to estimate $N$ from $C$  
 <br/>
 $$\hat{N} = \frac{C}{P_{area}\hat{P}_d}$$
 <br/>
@@ -216,10 +219,11 @@ class: inverse, center, middle
 ## Census
 
 <br/>
-If $\hat{P}_d = 1$, we detect every individual in our sampling area   
+#### If $\hat{P}_d = 1$, we detect every individual in our sampling area   
 <br/>
 <br/>
-When counts are equal to the true number of individuals, this is referred to as a **census**
+
+#### When counts are equal to the true number of individuals, this is referred to as a **census**
 
 ---
 ## Census
@@ -245,12 +249,12 @@ Do you think your count is exactly equal to $N$ (i.e., no counting mistakes?)
 ---
 ## Complete vs. sample plot census
 
-**Complete census**  
+#### **Complete census**  
 
 > count of every individual in the population (usually not possible)  
 C = N  
 
-**Sample plot census**  
+#### **Sample plot census**  
 
 > count of individuals within sample plot(s)
 
@@ -261,7 +265,8 @@ C = N
 $$\hat{N} = \frac{C}{P_{area}}$$
 <br/>
 --
-**Example**  
+
+#### **Example**  
 
 - $C = 23$  
 - $P_{area} = 0.1$  
@@ -272,7 +277,7 @@ $$\hat{N} = \frac{C}{P_{area}}$$
 ---
 ## Sample plot census
 
-**Exercise**  
+####  **Exercise**  
 <br/>
 1) Divide back into your groups  
 <br/>
@@ -301,13 +306,11 @@ class: inverse, center, middle
 ---
 ## Imperfect detection
 
-Usually, $\hat{P}_d < 1$ (even for plants!)  
+#### Usually, $\hat{P}_d < 1$ (even for plants!)  
 <br/>
+#### Need to estimate $\hat{P}_d$, the probability of detecting an individual that is present in the populations  
 <br/>
-Need to estimate $\hat{P}_d$, the probability of detecting an individual that is present in the populations  
-<br/>
-<br/>
-**Many** methods for doing so $^5$
+#### **Many** methods for doing so $^5$
 
 ```{r fig.height=3, fig.width=4.5}
 
@@ -334,7 +337,7 @@ class: inverse, center, middle
 ---
 ## Capture or count?
 
-The major divide in the methods to estimate $\hat{P}_d$ is whether you are dealing with individually identifiable individuals or not.  
+##### The major divide in the methods to estimate $\hat{P}_d$ is whether you are dealing with individually identifiable individuals or not.  
 
 .pull-left[
 ### Mark-recapture
@@ -355,14 +358,14 @@ The major divide in the methods to estimate $\hat{P}_d$ is whether you are deali
 ---
 ## Capture-mark-recapture (CMR)
 
-CMR includes a wide variety of related techniques and models  
+#### CMR includes a wide variety of related techniques and models  
 
-Traditionally, CMR referred to methods of capturing, marking, and then recapturing individuals at some point in the future  
+#### Traditionally, CMR referred to methods of capturing, marking, and then recapturing individuals at some point in the future  
 
-This results in a **capture-history** for each individual $^6$:  
+#### This results in a **capture-history** for each individual $^6$:  
 
-Individual 1: $101101$  
-Individual 2: $011001$  
+##### Individual 1: $101101$  
+##### Individual 2: $011001$  
 
 ???
 
@@ -373,7 +376,7 @@ Individual 2 was captured on occasions 2,3, and 6.
 ---
 ## Capture-mark-recapture
 
-From capture-histories, we can estimate:  
+#### From capture-histories, we can estimate:  
 
 --
 - abundance  
@@ -400,7 +403,7 @@ From capture-histories, we can estimate:
 ## Capture-mark-recapture
 
 
-CMR methods are not restricted to physical captures and recaptures $^7$
+#### CMR methods are not restricted to physical captures and recaptures $^7$
 
 ```{r out.width=600}
 knitr::include_graphics("pelican.jpg")
@@ -416,7 +419,7 @@ Photo Credit: Rick Kimble/USFWS
 ## Capture-mark-recapture
 
 
-CMR methods are not restricted to physical captures and recaptures $^8$
+#### CMR methods are not restricted to physical captures and recaptures $^8$
 
 ```{r out.width=600}
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/2/23/PIT_Tagging_%2810426702854%29.jpg")
@@ -432,7 +435,7 @@ Image courtesy of: USFWS Mountain-Prairie via Wikimedia Commons
 ## Capture-mark-recapture
 
 
-CMR methods are not restricted to physical captures and recaptures $^9$
+#### CMR methods are not restricted to physical captures and recaptures $^9$
 
 ```{r out.width=600}
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/3/37/Wild_Sumatran_tiger.jpg")
@@ -448,7 +451,7 @@ Image courtesy of: Arddu, via Wikimedia Commons
 ## Capture-mark-recapture
 
 
-CMR methods are not restricted to physical captures and recaptures $^{10}$
+#### CMR methods are not restricted to physical captures and recaptures $^{10}$
 
 ```{r out.width=600}
 
@@ -465,14 +468,14 @@ Image courtesy of: GlacierNPS, via Wikimedia Commons
 ## Capture-mark-recapture
 
 
-CMR methods are not restricted to physical captures and recaptures  
+#### CMR methods are not restricted to physical captures and recaptures  
 
-*What ties all of these methods together is that we have individual-level capture-histories*  
+#### *What ties all of these methods together is that we have individual-level capture-histories*  
 
 ---
 ## Capture-mark-recapture
 
-**Exercise**  
+#### **Exercise**  
 <br/>
 1) Divide into groups your groups  
 <br/>
@@ -485,19 +488,17 @@ CMR methods are not restricted to physical captures and recaptures
 ---
 ## Lincoln-Peterson (LP) model
 
-LP is one of the first and most basic **closed** CMR models  
+#### LP is one of the first and most basic **closed** CMR models  
 
-*Closed* population models:  
+#### *Closed* population models:  
 
 > the number of individuals in the population does not change between sampling occasions. No births, no deaths, no movement in or out  
 
-<br/>
+--
+#### How can we make this assumption? Usually by conducting sampling within a short $^{11}$ period of time  
 
 --
-How can we make this assumption? Usually by conducting sampling within a short $^{11}$ period of time  
-
---
-Key questions for determining whether population is closed:
+#### Key questions for determining whether population is closed:
 
 * When are the birth pulses? Do they happen a specific time of year (colonial birds) or continuously (humans)  
 
@@ -514,18 +515,17 @@ $^{11}$ Short will depend on the study organism - trees vs. insects
 ---
 ## Lincoln-Peterson model
 
-**Basic logic**  
+#### **Basic logic**  
 
-On the first occasion, we capture $n_1$ individuals  
-<br/>
+#### On the first occasion, we capture $n_1$ individuals  
 
 --
-What proportion of the total number of individuals is $n_1$? 
+#### What proportion of the total number of individuals is $n_1$? 
 
 $$p = \frac{n_1}{N}$$ 
 
 --
-If we knew $p$, we could estimate $N$ as $\frac{n_1}{p}$
+#### If we knew $p$, we could estimate $N$ as $\frac{n_1}{p}$
 
 
 --
@@ -620,9 +620,9 @@ class: inverse, middle, center
 ---
 ## Lincoln-Peterson model
 
-It is very unlikely that $\hat{N} = N$  
+#### It is very unlikely that $\hat{N} = N$  
 
-But, with large sample sizes, LP is **unbiased** $^{13}$:
+#### But, with large sample sizes, LP is **unbiased** $^{13}$:
 
 > **on average** $\hat{N}$ will be equal to $N$  
 
@@ -642,11 +642,11 @@ But, if we did this experiment many times (all of the estimates from each group)
 ---
 ## Lincoln-Peterson
 
-For any given estimate, $\hat{N}$ will not exactly equal $N$  
+#### For any given estimate, $\hat{N}$ will not exactly equal $N$  
 
-The difference between $N$ and $\hat{N}$ occurs because we have to **sample** the true population
+#### The difference between $N$ and $\hat{N}$ occurs because we have to **sample** the true population
 
-In any given sample, we might get a few more marked indviduals than expected, or a few less (flipping a coin)
+#### In any given sample, we might get a few more marked indviduals than expected, or a few less (flipping a coin)
 
 ???
 
@@ -655,15 +655,15 @@ We will explore this more in lab, using computer code to do this experiment many
 ---
 ## Measuring uncertainty
 
-All estimated parameters require information about *how certain* we are in our estimate  
+#### All estimated parameters require information about *how certain* we are in our estimate  
 
-We **cannot** make inferences about population parameters without providing information to interpret how confident we are in those estimates!  
+#### We **cannot** make inferences about population parameters without providing information to interpret how confident we are in those estimates!  
 
-**Example**  
+#### **Example**  
 
 We do a CMR study of two populations and estimate $\hat{N}_1 = 142$ and $\hat{N}_2 = 160$  
 
-Is $N_1 < N_2$? 
+#### Is $N_1 < N_2$? 
 
 ```{r fig.width=4, fig.height=2.5}
 df <- data.frame(scenario = factor(rep(c("Point estimate", "High uncertainty", "Low uncertainty"), each = 2), levels = c("Point estimate", "High uncertainty", "Low uncertainty")),
@@ -693,11 +693,11 @@ knitr::include_graphics("bias_precision.png")
 ---
 ## Measuring uncertainty
 
-Uncertainty measures *on average* how far off our estimate is from the true value  
+#### Uncertainty measures *on average* how far off our estimate is from the true value  
 
-We measure spread as the **variance** of the samples $^{14}$  
+#### We measure spread as the **variance** of the samples $^{14}$  
 
-We don't know the true value but statisticians have developed ways to approximate how far we are from the true value using only our data
+#### We don't know the true value but statisticians have developed ways to approximate how far we are from the true value using only our data
 
 ???
 
@@ -706,7 +706,7 @@ $^{14}$ High variance means are sample estimates are generally far from the true
 ---
 ## Uncertainty of Lincoln-Peterson estimator
 
-Variance of the LP estimator can be calculated as:
+#### Variance of the LP estimator can be calculated as:
 
 $$var(\hat{N}) = \frac{(n_1 + 1)(n_2+1)(n_1-m_2)(n_2-m_2)}{(m_2+1)^2(m_2+2)}$$
 
@@ -728,16 +728,16 @@ This is why it's so important to report uncertainty along with every parameter e
 ---
 ## Assumptions of Lincoln-Peterson
 
-All models have assumptions  
+#### All models have assumptions  
 
-Just as it's important to report variance, it's important to know the assumptions of our model and to make those assumptions clear  
+#### Just as it's important to report variance, it's important to know the assumptions of our model and to make those assumptions clear  
 
-If we violate the assumptions, we can get the wrong answer!
+#### If we violate the assumptions, we can get the wrong answer!
 
 ---
 ## Assumptions of Lincoln-Peterson
 
-The assumptions of LP are:   
+#### The assumptions of LP are:   
 
 --
 1) the population is closed between samples  
