@@ -16,7 +16,7 @@ output:
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE)
 library(WILD3810)
-# library(gganimate)
+library(gganimate)
 ```
 
 ## Readings: 
@@ -44,14 +44,15 @@ library(WILD3810)
 ---
 ## The BIDE model
 
-Remember from lecture one: 
+#### Remember from lecture one: 
 
-$$N_{t+1} = N_t + B + I - D - E$$
+$$\Large N_{t+1} = N_t + B + I - D - E$$
 
 <br/>
 --
-Abundance can due to:
-<br/>
+
+#### Abundance can due to:
+
 + births $(B)$  
 <br/>
 + deaths $(D)$  
@@ -67,40 +68,45 @@ In the remainder of this lecture, we will assume that no individuals move into o
 ---
 ## The BIDE model
 
-The **number** of births or deaths is not usually useful  
+#### The **number** of births or deaths is not usually useful  
 
 + is 100 births a lot? Or a little?  
 
-Instead, births $(B)$ or deaths $(D)$ are often expressed as *per capita* (per individual) rates  
 
+--
+Instead, births $(B)$ or deaths $(D)$ are often expressed as *per capita* (per individual) rates  
+<br/> 
+
+--
 Think of these as averages:  
 
-$$b = \frac{B}{N}$$
+$$\Large b = \frac{B}{N}$$
 <br/>
-$$d = \frac{D}{N}$$
+$$\Large d = \frac{D}{N}$$
 
 ---
 ## The BIDE model
 
 Because $b \times N_t=B$ and $d \times N_t=D$ (and assuming no movement), the BIDE model can be written as:  
 
-$$N_{t+1} = N_t + \underbrace{(b \times N_t)}_{births} - \underbrace{(d \times N_t)}_{deaths}$$
+$$\Large N_{t+1} = N_t + \underbrace{(b \times N_t)}_{births} - \underbrace{(d \times N_t)}_{deaths}$$
 --
 Which can be simplied to:  
 
-$$N_{t+1} = N_t \times (1 + b - d)$$
+$$\Large N_{t+1} = N_t \times (1 + b - d)$$
 
 ---
 ## Discrete-time population growth model
 
-The terms $1+b-d$ is usually expressed as a single parameter $\lambda$:
+#### The terms $1+b-d$ is usually expressed as a single parameter $\lambda$:
 
-$$N_{t+1} = N_t \times \underbrace{(1 + b - d)}_{\lambda}$$
+$$\Large N_{t+1} = N_t \times \underbrace{(1 + b - d)}_{\lambda}$$
 
-$\lambda$ is referred to as the **finite rate of population growth**
+--
+#### $\lambda$ is referred to as the **finite rate of population growth**
 
 ---
-## Properties of $\lambda$
+## Properties of $\huge \lambda$
 
 --
 <br/>
@@ -138,7 +144,8 @@ for(i in 2:500){
   Nc$N[i] <-  Nc$N[i-1] + Nc$N[i-1] * r
 }
 
-(p <- ggplot() + geom_path(data = Nc, aes(x = Year, y = N), linetype = "longdash", color = "#3A3F44") + geom_point(data = Nd, aes(x = Year, y = N), size = 1, color = "#7A8288"))
+(p <- ggplot() + geom_path(data = Nc, aes(x = Year, y = N), linetype = "longdash", color = "#3A3F44") +
+    geom_point(data = Nd, aes(x = Year, y = N), size = 1.5, color = WILD3810_colors$value[WILD3810_colors$name=="warning"]))
 
 ```
 
@@ -151,33 +158,33 @@ Even though $\lambda$ is referred to as the *growth* rate, it can produce any tr
 ---
 ## Discrete-time population growth model
 
-$$N_{t+1} = N_t \times \lambda$$
+$$\LARGE N_{t+1} = N_t \times \lambda$$
 
-What if we want to project population growth over longer time periods? 
+What if we want to project population growth over longer time periods?  
 
 --
 First, write the forumula for $N_{t+2}$ from $N_{t+1}$:
 
-$$N_{t+2} = N_{t+1} \times \lambda$$
+$$\Large N_{t+2} = N_{t+1} \times \lambda$$
 
 --
 We know that $N_{t+1} = N_t \times \lambda$ so:
 
-$$N_{t+2} = (N_t \times \lambda) \times \lambda$$
+$$\Large N_{t+2} = (N_t \times \lambda) \times \lambda$$
 --
 which simplifies to: 
 
-$$N_{t+2} = N_t \times \lambda^2$$
+$$\Large N_{t+2} = N_t \times \lambda^2$$
 ---
 ## Discrete-time population growth model
 
 Growth from $t$ to $t+3$:
 
-$$N_{t+3} = N_t \times \lambda^3$$
+$$\Large N_{t+3} = N_t \times \lambda^3$$
 
 So we get the general form $^2$:
 
-$$N_{T} = N_0 \times \lambda^T$$
+$$\Large N_{T} = N_0 \times \lambda^T$$
 
 
 where $T$ is the number of years (or weeks, or months), $N_T$ is the final population size and $N_0$ is the initial population size.
@@ -189,30 +196,31 @@ $^2$ This assumes that $\lambda$ is the same in every year. We will learn about 
 ---
 ## Discrete vs. continuous time 
 
-The discrete population growth model is useful for **birth-pulse** species:
+#### The discrete population growth model is useful for **birth-pulse** species:
 
 > all births happen at a single point in time (i.e, a pulse)
 
 <br/>
 
-Change in abundance of birth-pulse species happens at discrete point in time $(t = 1, 2, 3,...,T)$  
+--
+#### Change in abundance of birth-pulse species happens at discrete point in time $(t = 1, 2, 3,...,T)$  
 
 + usually during distinct *breeding season*
 
 ???
 
-Example of birth-pulse species include most birds, 
+Example of birth-pulse species include most birds, many large ungulates
 
 ---
 ## Discrete vs. continuous time
 
-Species that reproduce throughout the year are called **birth-flow** species:
+#### Species that reproduce throughout the year are called **birth-flow** species:
 
 > births happen continuously throughout the year (i.e, flow)
 
 <br/>
 
-Abundance of birth-flow species is *always* changing
+#### Abundance of birth-flow species is *always* changing
 
 ???
 
@@ -223,7 +231,7 @@ For example, humans and bacteria
 
 We *could* model the growth of birth-flow populations using the discrete model and by making $\Delta_t$ very small. 
 
-```{r, echo = FALSE, fig.align='center', fig.asp=1, fig.width=4 }
+```{r, echo = FALSE, fig.align='center',  fig.width=6, fig.height = 4}
 q <- p + geom_segment(aes(x = 5, xend = 5, y = -Inf, yend = Nd$N[5]), 
                       color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
   geom_segment(aes(x = 10, xend = 10, y = -Inf, yend = Nd$N[10]), 
@@ -232,7 +240,7 @@ q <- p + geom_segment(aes(x = 5, xend = 5, y = -Inf, yend = Nd$N[5]),
                color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
   geom_segment(aes(x = -Inf, xend = 10, y = Nd$N[10], yend = Nd$N[10]), 
                color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
-  geom_segment(aes(x = 5, xend = 10, y = Nd$N[5], yend = Nd$N[10]), 
+  geom_segment(aes(x = 5, xend = 10, y = Nd$N[5], yend = Nd$N[10]), size = 1,
                color = WILD3810_colors$value[WILD3810_colors$name == "danger"])
 q
 ```
@@ -248,7 +256,7 @@ $^3$ Remember that $\Delta$ means "difference in" so read $\Delta_t$ as "differe
 
 $\Delta_t = 1$:
 
-```{r, echo=FALSE, fig.align='center', fig.asp=1, fig.width=4}
+```{r, echo=FALSE, fig.align='center', fig.width=6, fig.height = 4}
 q <- p + geom_segment(aes(x = 5, xend = 5, y = -Inf, yend = Nd$N[5]), 
                       color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
   geom_segment(aes(x = 6, xend = 6, y = -Inf, yend = Nd$N[6]), 
@@ -257,12 +265,12 @@ q <- p + geom_segment(aes(x = 5, xend = 5, y = -Inf, yend = Nd$N[5]),
                color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
   geom_segment(aes(x = -Inf, xend = 6, y = Nd$N[6], yend = Nd$N[6]), 
                color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
-  geom_segment(aes(x = 5, xend = 6, y = Nd$N[5], yend = Nd$N[6]), 
+  geom_segment(aes(x = 5, xend = 6, y = Nd$N[5], yend = Nd$N[6]), size = 1, 
                color = WILD3810_colors$value[WILD3810_colors$name == "danger"])
 q
 ```
 
-$\Delta_t = 1$ and $\Delta_N$ = `r round(Nd$N[6] - Nd$N[5],2)` $^4$
+$\Delta_N$ = `r round(Nd$N[6] - Nd$N[5],2)` $^4$
 
 ???
 
@@ -273,7 +281,7 @@ $^4$ Notice that when $\Delta_t = 1$, `r Nd$N[6]` / `r Nd$N[5]` = $\lambda$
 
 $\Delta_t = 0.25$: 
 
-```{r, echo=FALSE, fig.align='center', fig.asp=1, fig.width=4}
+```{r, echo=FALSE, fig.align='center', fig.width=6, fig.height = 4}
 q <- p + geom_segment(aes(x = 5, xend = 5, y = -Inf, yend = Nd$N[5]), 
                       color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
   geom_segment(aes(x = 5.25, xend = 5.25, y = -Inf, yend = Nc$N[89]), 
@@ -284,7 +292,7 @@ q <- p + geom_segment(aes(x = 5, xend = 5, y = -Inf, yend = Nd$N[5]),
                color = WILD3810_colors$value[WILD3810_colors$name == "secondary"])+
   geom_segment(aes(x = 5, xend = 5.25, y = Nd$N[5], yend = Nc$N[89]), 
                color = WILD3810_colors$value[WILD3810_colors$name == "danger"]) +
-  geom_abline(slope = 1.305, intercept = 8.072, 
+  geom_abline(slope = 1.305, intercept = 8.072, size = 1,
               color = WILD3810_colors$value[WILD3810_colors$name == "danger"])
 q
 ```
@@ -296,9 +304,10 @@ $\Delta_N$ = `r round(Nc$N[89] - Nd$N[5],2)`
 
 Rather than manually making $\Delta_t$ smaller and smaller, we can use calculus to figure out that as $\Delta_t$ becomes really, really small (i.e., *approaches zero*), we end up with:
 
-$$\frac{dN}{dt} = N \times (b-d) = N \times r$$
+$$\Large \frac{dN}{dt} = N \times (b-d) = N \times r$$
 
 This the continuous-time equivalent of the discrete model $^5$ and $r$ is called the **instantaneous growth rate**   
+<br/> 
 
 --
 Populations with $r=0$ remain at the same population size. Populations with $r>0$ grow and populations with $r<0$ will shrink. 
@@ -337,13 +346,15 @@ $$\frac{N_{t+\Delta}-N_t}{(t+\Delta)-t} = N_t \times r$$
 ---
 ## Continuous-time population model 
 
-How does $r$ compare to $\lambda$? 
+#### How does $\large r$ compare to $\large \lambda$? 
 
-$$r = log(\lambda)$$
-$$\lambda = e^r$$
+$$\Large r = log(\lambda)$$
+$$\Large \lambda = e^r$$
+
+--
 So for a continuous-time model, we can project population growth by substituting $e^r$ in the equation we used to project discrte population growth:
 
-$$N_T = N_0 \times {e^r}^T$$
+$$\Large N_T = N_0 \times {e^r}^T$$
 
 ???
 
@@ -356,30 +367,30 @@ class: inverse, middle, center
 ---
 ## Doubling time
 
-How long will it take a population to double? 
+#### How long will it take a population to double? 
 
-<br/> 
 
-In other words, what is $T$ when $N_T = 2 \times N_0$? 
+#### In other words, what is $\large T$ when $\large N_T = 2 \times N_0$? 
 
 --
-$$2N_0 = N_0 \times {e^r}^T$$
+$$\Large 2N_0 = N_0 \times {e^r}^T$$
 
 --
 Start by dividing both sides by $N_0$:
 
-$$2 = {e^r}^T$$
+$$\Large 2 = {e^r}^T$$
 
 ---
 ## Doubling time
 
-To isolate $rT$, take the natural log $^6$ of both sides:
+#### To isolate $\large rT$, take the natural log $^6$ of both sides:
 
-$$ln(2) = ln({e^r}^T) = rT$$
+$$\Large ln(2) = ln({e^r}^T) = rT$$
+--
 
-Now divide both sides by $r$:
+#### Now divide both sides by $\large r$:
 
-$$\frac{0.693}{r} = T_{double}$$
+$$\Large \frac{0.693}{r} = T_{double}$$
 
 ???
 
@@ -388,7 +399,7 @@ $^6$ Note that $ln(2) \approx 0.693$
 ---
 ## Doubling time
 
-```{r, fig.width=5, fig.asp = 1}
+```{r, fig.width=8, fig.height = 5}
 r <- c(0.02, 0.04, 0.06, 0.08)
 
 N <- matrix(0, nrow = 4, ncol = 80)
@@ -422,11 +433,10 @@ dt_df <- data.frame(dt = round(c(log(2)/0.02, log(2)/0.04, log(2)/0.06, log(2)/0
                     r = c("r = 0.02","r = 0.04","r = 0.06","r = 0.08"))
 
 r <- ggplot() + geom_path(data = Ndouble, aes(x = t, y = N, group = r, color = r)) +
-  scale_color_manual(values = WILD3810_colors$value[WILD3810_colors$name %in% c("primary", "danger", "warning", "success")]) +
   geom_segment(data = segment_df, aes(x = x, xend = xend, y = y, yend = yend, color = r)) +
-  geom_text(data = dt_df, aes(label = paste("Doubling time = ", dt, sep = ""), x = 20, y = 5500), color = "#7a8288") + 
+  geom_text(data = dt_df, aes(label = paste("Doubling time = ", dt, sep = ""), x = 20, y = 5500), color = "black") + 
   facet_wrap(~r, nrow = 2) +
-  theme(legend.position = "none", strip.text.x = element_text(hjust = 0.025))
+  theme(legend.position = "none", strip.text.x = element_text(hjust = 0.025, color = "black"))
 
 r
 ```
@@ -471,7 +481,7 @@ Exponential growth has profound implications
 Imagine putting $1000 in a investment that grows by 6.5% per year:
 
 --
-+ After 10 years, the investment will be worth $`r round(1000 * 1.067^10,2)` (~100% return)  
++ After 10 years, the investment will be worth $`r round(1000 * 1.067^10,2)` (~90% return)  
 <br/>
 
 --
@@ -479,7 +489,7 @@ Imagine putting $1000 in a investment that grows by 6.5% per year:
 <br/>
 
 --
-+ After 30 years, the investment will be worth \$`r round(1000 * 1.067^30,2)` (~600% return)!  
++ After 30 years, the investment will be worth $`r round(1000 * 1.067^30,2)` (~600% return)!  
 
 ???
 
@@ -542,10 +552,10 @@ USFWS Mountain-Prairie, via Wikimedia Commons
 ---
 class: inverse, center, middle
 
-# Estimating $\lambda$ and $r$
+# Estimating $\huge \lambda$ and $\huge r$
 
 ---
-## Estimating $\lambda$ and $r$
+## Estimating $\LARGE \lambda$ and $\LARGE r$
 
 We can estimate $\lambda$ two ways depending on our interests and what type of data we have available  
 <br/>
@@ -553,28 +563,28 @@ We can estimate $\lambda$ two ways depending on our interests and what type of d
 --
 As we learned above, we can estimate $\lambda$ directly from the birth and death rates using:
 
-$$\lambda = 1 + b - d$$
+$$\Large \lambda = 1 + b - d$$
 
 --
 More often, we have estimates of abundance at different points in time. To estimate population growth for one time step:
 
-$$\lambda = \frac{N_{t+1}}{N_t}$$
+$$\Large \lambda = \frac{N_{t+1}}{N_t}$$
 
 ---
-## Estimating $\lambda$ and $r$
+## Estimating $\LARGE \lambda$ and $\LARGE r$
 
 If we have a longer series of abundance estimates $t= 1,2,3...T)$, we use:
 
-$$\lambda = \bigg(\frac{N_{T}}{N_0}\bigg)^{\frac{1}{T}}$$
+$$\Large \lambda = \bigg(\frac{N_{T}}{N_0}\bigg)^{\frac{1}{T}}$$
 
 --
 What was the growth rate of the sheep and pheasant populations?  
 
 --
-+ Sheep: $\bigg(\frac{2000000}{200000}\bigg)^{\frac{1}{30}}=$ `r round((2000000/200000)^(1/30),2)`  
++ Sheep: $\large \bigg(\frac{2000000}{200000}\bigg)^{\frac{1}{30}}=$ `r round((2000000/200000)^(1/30),2)`  
 
 --
-+ Pheasants: $\bigg(\frac{1325}{6}\bigg)^{\frac{1}{6}}=$ `r round((1325/6)^(1/5), 2)`
++ Pheasants: $\large \bigg(\frac{1325}{6}\bigg)^{\frac{1}{6}}=$ `r round((1325/6)^(1/5), 2)`
 
 ---
 ## Assumptions of the B-D models

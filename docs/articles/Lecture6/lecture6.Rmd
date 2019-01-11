@@ -24,10 +24,9 @@ library(WILD3810)
 > Mills 84-92  
 
 ---
-# Assumptions of the B-D models
+## Assumptions of the B-D models
 
-Remember from the lecture 3 that our simple models of population growth were based on the following assumptions:  
-<br/>
+#### Remember from the lecture 3 that our simple models of population growth were based on the following assumptions:  
 
 --
 1) Population closed to immigration and emigration  
@@ -50,18 +49,15 @@ Remember from the lecture 3 that our simple models of population growth were bas
 $^1$ Do not vary over time or space, across individuals
 
 ---
-# Assumptions of the B-D models
+## Assumptions of the B-D models
 
-In reality, we know that assumption 4 is almost never true  
-<br/>
-
---
-Birth and death rates are determined by many external forces  
-<br/>
+#### In reality, we know that assumption 4 is almost never true  
 
 --
-These forces often vary across space, time, and individuals:
-<br/>
+#### Birth and death rates are determined by many external forces  
+
+--
+#### These forces often vary across space, time, and individuals:
 
 - body condition  
 
@@ -73,7 +69,7 @@ These forces often vary across space, time, and individuals:
 
 
 --
-The B-D population model ignored all of these sources of variation $^2$
+#### The B-D population model ignored all of these sources of variation $^2$
 
 ???
 
@@ -87,19 +83,16 @@ class: inverse, center, middle
 ---
 ## Stochasticity
 
-In many cases, we do not know exactly why populations go up or down from year-to-year  
-<br/>
+#### In many cases, we do not know exactly why populations go up or down from year-to-year  
 
 --
-Often don't know what these causes are so from our perspective, the variation appears to be **random**  
-<br/>
+#### Often don't know what these causes are so from our perspective, the variation appears to be **random**  
 
 --
-Processes that are governed by some element of chance (randomness) are referred to as **stochastic** processes  
-<br/>
+#### Processes that are governed by some element of chance (randomness) are referred to as **stochastic** processes  
 
 --
-Just because something is stochastic doesn't mean it's completely unpredictable $^3$  
+#### Just because something is stochastic doesn't mean it's completely unpredictable $^3$  
 
 ```{r, fig.width=4, fig.height=2.5}
 set.seed(1234578)
@@ -133,11 +126,10 @@ $^3$ For example, we can't predict with 100% certainty whether a coin flip will 
 ---
 ## Stochasticity
 
-We can predict how often we expect different random outcomes using *probability*  
-<br/>
+#### We can predict how often we expect different random outcomes using *probability*  
 
 --
-Probability distributions characterize the frequency of different possible outcomes $^4$  
+#### Probability distributions characterize the frequency of different outcomes $^4$  
 
 ```{r fig.width=5, fig.height=3.5}
 norm_df <- data.frame(x = seq(from = -10, to = 10, by = 0.1),
@@ -146,10 +138,9 @@ norm_df <- data.frame(x = seq(from = -10, to = 10, by = 0.1),
 ggplot(norm_df, aes(x = x, y = pr_z)) + geom_path(color = "grey50") +
   scale_y_continuous("Density")
 ```
-<br/>
 
 --
-In population models, we can use probability to characterize and account for stochastic processes that effect population growth  
+#### In population models, we can use probability to characterize and account for stochastic processes that effect population growth  
 
 ???
 
@@ -158,8 +149,7 @@ $^4$ For example, many of you are probably familiar with the normal (or bell-sha
 ---
 ## Two types of stochastic processes
 
-With regards to population models, we generally distinguish between two types of stochasticity:  
-<br/> 
+#### With regards to population models, we generally distinguish between two types of stochasticity:  
 
 --
 1) **Environmental stochasticity**  
@@ -180,7 +170,7 @@ class: inverse, center, middle
 ---
 ## Environmental stochasticity
 
-The expected value of demographic parameters can fluctuate over time in response to:
+#### The expected value of demographic parameters can fluctuate over time in response to:
 
 .pull-left[
 + rainfall  
@@ -197,7 +187,7 @@ The expected value of demographic parameters can fluctuate over time in response
 ]
 
 .pull-right[
-```{r fig.width=5, fig.height=3}
+```{r fig.align = 'left', fig.width=6, fig.height=5}
 r0 <- 0.18
 K <- 500
 
@@ -218,9 +208,9 @@ for(t in 2:61){
 ---
 ## Environmental stochasticity
 
-If environmental attributes change stochastically over time, so will demographic vital rates and population growth rate
+#### If environmental attributes change stochastically over time, so will demographic vital rates and population growth rate
 
-```{r fig.height=5, fig.width=8}
+```{r  fig.height=5, fig.width=8}
 years <- sample(seq(1:length(Nl$N)), size = 20, replace = FALSE)
 
 years_df <- data.frame(Time = years,
@@ -233,38 +223,38 @@ r + geom_rug(data = years_df, sides = "b", color = WILD3810_colors$value[WILD381
 ---
 ## Modeling environmental stochasticity
 
-If we want to take into account changes in demographic parameters as environmental conditions change, we need time-specific demographic parameters: 
+##### If we want to take into account changes in demographic parameters as environmental conditions change, we need time-specific demographic parameters: 
 
-$$N_{t+1} = N_t \times (1 + b_t - d_t)$$
-
---
-$$N_{t+1} = N_t \times \lambda_t$$
+$$\huge N_{t+1} = N_t \times (1 + b_t - d_t)$$
 
 --
-Over $T$ years, abundance will be:
+$$\huge N_{t+1} = N_t \times \lambda_t$$
 
-$$N_{T} = N_0 \times \big(\lambda_0 \times \lambda_1 \times \lambda_2 \times...\lambda_{T-1}\big)$$
+--
+##### Over $T$ years, abundance will be:
+
+$$\huge N_{T} = N_0 \times \big(\lambda_0 \times \lambda_1 \times \lambda_2 \times...\lambda_{T-1}\big)$$
 
 ---
 ## Modeling environmental stochasticity
 
-For example, if $N_0 = 50$ and:
+#### For example, if $N_0 = 50$ and:
 
-$$\lambda_0 = 1.1$$
+$$\large \lambda_0 = 1.1$$
 
-$$\lambda_1 = 0.9$$
+$$\large \lambda_1 = 0.9$$
 
-$$\lambda_2 = 0.7$$
+$$\large \lambda_2 = 0.7$$
 
-$$\lambda_3 = 1.2$$
+$$\large \lambda_3 = 1.2$$
 
-$$\lambda_4 = 1.1$$
+$$\large \lambda_4 = 1.1$$
 
 then:
 
 --
 
-$$N_{5} = 50 \times 1.1 \times 0.9 \times 0.7 \times 1.2 \times 1.1 = 46$$  
+$$\large N_{5} = 50 \times 1.1 \times 0.9 \times 0.7 \times 1.2 \times 1.1 = 46$$  
 
 ```{r fig.height=2.5, fig.width=4}
 
@@ -286,39 +276,37 @@ for(t in 2:5){
 ---
 ## Modeling environmental stochasticity
 
-It's clear that this population is declining  
+#### It's clear that this population is declining  
 
 + the *average* value of $\lambda$ must be $<1$  
 
 
 --
-What *is* the average $\lambda$ (which we'll call $\bar{\lambda}$)?  
+#### What *is* the average $\lambda$ (which we'll call $\bar{\lambda}$)?  
 
 ---
 ## Modeling environmental stochasticity
 
-An obvious way to calculate $\bar{\lambda}$ is the *arithmetic mean* of the annual $\lambda$'s:
+#### An obvious way to calculate $\bar{\lambda}$ is the *arithmetic mean* of the annual $\lambda$'s:
 
-$$\bar{\lambda} = \frac{\lambda_0+ \lambda_1 + \lambda_2 +...\lambda_{T-1}}{T}$$
+$$\Large \bar{\lambda} = \frac{\lambda_0+ \lambda_1 + \lambda_2 +...\lambda_{T-1}}{T}$$
 
 --
-In our example, this equals:
+#### In our example, this equals:
 
-$$\bar{\lambda} = \frac{1.1 + 0.9 + 0.7 + 1.2 + 1.1}{5} = \frac{5}{5} = 1$$
+$$\Large \bar{\lambda} = \frac{1.1 + 0.9 + 0.7 + 1.2 + 1.1}{5} = \frac{5}{5} = 1$$
 ---
 ## Modeling environmental stochasticity
 
-But that can't be right!  
-<br/>
+#### But that can't be right!  
 
-$\bar{\lambda} = 1$ means the population should have, on average, remained at 50 individuals 
-<br/>
+#### $\bar{\lambda} = 1$ means the population should have, on average, remained at 50 individuals 
 <br/>
 
 --
-The issue that the population growth is a multiplicative process  
+#### The issue that the population growth is a multiplicative process  
 
-This means that shrinking by 30% $(\lambda = 0.7)$ and then growing by 30% $(\lambda = 1.3)$ does not get you back to where you started  
+#### This means that shrinking by 30% $(\lambda = 0.7)$ and then growing by 30% $(\lambda = 1.3)$ does not get you back to where you started  
 
 + For example, $100 \times 0.7 = 70$ but $70 \times 1.3 = 91$. 
 

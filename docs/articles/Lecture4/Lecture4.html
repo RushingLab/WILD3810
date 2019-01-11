@@ -148,34 +148,34 @@ As population size increases, the resources available to each individual will ev
 ---
 ## Carrying-capacity
 
-Remember that the population growth rate `\(r = b -d\)`  
+#### Remember that the population growth rate `\(\large r = b -d\)`  
 &lt;br/&gt;
 
 --
-If `\(b = d\)`:  
+#### If `\(\large b = d\)`:  
 
 --
-+ `\(r = 0\)`  
++ `\(\Large r = 0\)`  
 
 --
 + population remains stable  
 
 
 --
-If `\(b \gt d\)`:  
+#### If `\(\large b \gt d\)`:  
 
 --
-+ `\(r \gt 0\)`  
++ `\(\Large r \gt 0\)`  
 
 --
 + population will grow  
 
 
 --
-If `\(d \gt b\)`:  
+#### If `\(\large d \gt b\)`:  
 
 --
-+ `\(r \lt 0\)`  
++ `\(\Large r \lt 0\)`  
 
 --
 + population will decrease  
@@ -245,13 +245,13 @@ class: inverse, middle, center
 
 Remember the (continuous time) density-independent model of population growth:  
 
-`$$\frac{dN}{dt} = N \times r$$`  
+`$$\Large \frac{dN}{dt} = N \times r$$`  
 
 How can we modify this equation to include density-dependence?  
 
 To start, remember what density-dependence means:
 
-&gt; the rate of population growth decreases as population size increases
+&gt; the rate of population growth changes as population size increases
 
 ---
 ## Models of D-D population growth
@@ -263,16 +263,18 @@ A good starting point for this is a linear response that looks something like th
 ---
 ## Models of D-D population growth
 
-How do we add this relationship to our model?  
+#### How do we add this relationship to our model?  
 
 --
-Remember the equation for a line: `\(^3\)`  
 
-`$$y = ax + b$$`  
+#### Remember the equation for a line: `\(^3\)`  
 
-In our model, we can write this as: `\(^4\)`  
+`$$\Large y = ax + b$$`  
+--
 
-`$$r = aN + c$$`.
+#### In our model, we can write this as: `\(^4\)`  
+
+`$$\Large r = aN + c$$`.
 
 ???
 
@@ -283,47 +285,52 @@ In our model, we can write this as: `\(^4\)`
 ---
 ## Models of D-D population growth
 
-In our population model, `\(c\)` represents the rate of increase when the population is 0  
+#### In our population model, `\(\large c\)` represents the rate of increase when the population is 0  
 
-We can see in the figure that this is the largest value of `\(r\)` the population can experience  
+--
 
+#### We can see in the figure that this is the largest value of `\(\large r\)` the population can experience  
+
+--
 + Call that `\(r_0\)`  
 
+--
 + Because `\(r_0\)` the maximum rate of increase (nothing limiting population growth), it is equivalent to `\(r\)` in the D-I model  
 
 &lt;img src="Lecture4_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
 ---
 ## Models of D-D population growth
 
-What is `\(a\)`, the slope of the relationship between `\(r\)` and `\(N\)`?  
+#### What is `\(\large a\)`, the slope of the relationship between `\(\large r\)` and `\(\large N\)`?  
 
 --
-+ It has to be negative ($r$ has to decrease as `\(N\)` increases)  
++ It has to be negative `\((r\)` has to decrease as `\(N\)` increases)  
 
 
 --
-Remember that `\(r=0\)` when `\(N=K\)`, so:
 
-`$$0 = aK + r_0$$`
+#### Remember that `\(\large r=0\)` when `\(\large N=K\)`, so:
+
+`$$\Large 0 = aK + r_0$$`
 
 therefore,
 
 --
 
-`$$a = -\frac{r_0}{K}$$`
+`$$\Large a = -\frac{r_0}{K}$$`
 
 &lt;img src="Lecture4_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Models of D-D population growth
 
-We now have a full equation for the relationship between `\(r\)` and `\(N\)`:
+#### We now have a full equation for the relationship between `\(\large r\)` and `\(\large N\)`:
 
-`$$r = -\frac{r_0}{K}N + r_0$$`
+`$$\Large r = -\frac{r_0}{K}N + r_0$$`
 
 which simplifies to: `\(^5\)`   
 
-`$$r = r_0 \bigg(1-\frac{N}{K}\bigg)$$`
+`$$\Large r = r_0 \bigg(1-\frac{N}{K}\bigg)$$`
 
 ???
 
@@ -346,58 +353,61 @@ simplifies to:
 ---
 ## Models of D-D population growth
 
-How does this work?  
+#### How does this work?  
 
 --
-Assume `\(r_0 = 1\)` and `\(K = 1000\)`  
+
+#### Assume `\(\large r_0 = 1\)` and `\(\large K = 1000\)`  
 
 --
-What is the population growth rate when `\(N=100\)`?  
+What is the population growth rate when `\(\large N=100\)`?  
 
-+ `\(r = 1 - \frac{100}{1000}=\)` 0.9  
-
-
---
-What about when `\(N=500\)`? 0.5  
-
-+ `\(r = 1 - \frac{500}{1000}=\)` 0.5  
-
-
---
-When `\(N=1000\)`?  
-
-+ `\(r = 1 - \frac{1000}{1000}=\)` 0
-
----
-## Models of D-D population growth
-
-Now let's insert our new equation for `\(r\)` into the population growth model:
-
-`$$\frac{dN}{dt} = N \times r_0 \bigg(1-\frac{N}{K}\bigg)$$`
-
---
-This is called the **logistic growth model**  
-&lt;br/&gt;
-
---
-How does this work? Again, `\(r_0 = 1\)` and `\(K = 1000\)`  
-
---
-What is `\(\frac{dN}{dt}\)` when `\(N=100\)`?  
-
-+ `\(\frac{dN}{dt} = 100 \times 1 \bigg(1-\frac{100}{1000}\bigg)=\)` 90  
++ `\(\large r = 1 - \frac{100}{1000}=\)` 0.9  
 
 
 --
 What about when `\(N=500\)`?  
 
-+ `\(\frac{dN}{dt} = 500 \times 1 \bigg(1-\frac{500}{1000}\bigg)=\)` 250  
++ `\(\large r = 1 - \frac{500}{1000}=\)` 0.5  
 
 
 --
 When `\(N=1000\)`?  
 
-+ `\(\frac{dN}{dt} = 1000 \times 1 \bigg(1-\frac{1000}{1000}\bigg)=\)` 0
++ `\(\large r = 1 - \frac{1000}{1000}=\)` 0
+
+---
+## Models of D-D population growth
+
+#### Now let's insert our new equation for `\(\Large r\)` into the population growth model:
+
+`$$\Large \frac{dN}{dt} = N \times r_0 \bigg(1-\frac{N}{K}\bigg)$$`
+
+--
+
+#### This is called the **logistic growth model**  
+
+---
+## Models of D-D population growth
+
+#### How does this work? Again, `\(\large r_0 = 1\)` and `\(\large K = 1000\)`  
+
+--
+What is `\(\frac{dN}{dt}\)` when `\(N=100\)`?  
+
++ `\(\large \frac{dN}{dt} = 100 \times 1 \bigg(1-\frac{100}{1000}\bigg)=\)` 90  
+
+
+--
+What about when `\(N=500\)`?  
+
++ `\(\large \frac{dN}{dt} = 500 \times 1 \bigg(1-\frac{500}{1000}\bigg)=\)` 250  
+
+
+--
+When `\(N=1000\)`?  
+
++ `\(\large \frac{dN}{dt} = 1000 \times 1 \bigg(1-\frac{1000}{1000}\bigg)=\)` 0
 
 ???
 
@@ -407,13 +417,25 @@ What happens to `\(\frac{dN}{dt}\)` when `\(N &gt; K\)`?
 ---
 ## Models of D-D population growth
 
-How does this work? `\(^6\)`
+#### How does this work? `\(^6\)`
 
 &lt;img src="Lecture4_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
 
 ???
 
 `\(^6\)` Thickness and color of line correspond to magnitude of population change (thicker and darker red correspond to larger rate of change)  
+
+---
+## Models of D-D population growth
+
+#### How does this work? `\(^6\)`
+
+&lt;img src="Lecture4_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+
+???
+
+`\(^6\)` Thickness and color of line correspond to magnitude of population change (thicker and darker red correspond to larger rate of change)  
+
 
 Rate of change is largest when abundance is at half of the carrying capacity `\(\bigg(N = \frac{K}{2}\bigg)\)`  
 
@@ -423,7 +445,7 @@ Above `\(K\)`, the rate of change becomes negative
 ## Models of D-D population growth
 
 
-&lt;img src="Lecture4_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture4_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse, center, middle
@@ -433,22 +455,22 @@ class: inverse, center, middle
 ---
 ## Non-linear effects
 
-The logistic model assumes that `\(r\)` decreases linearly with increasing `\(N\)`  
+#### The logistic model assumes that `\(\Large r\)` decreases linearly with increasing `\(\large N\)`  
 
 --
-In reality, this relationship is not likely to be linear, for example:  
+#### In reality, this relationship is not likely to be linear, for example:  
 
 --
-+ `\(r\)` might not change much (or at all) until population size is high enough that resources start to become limited  
++ `\(\large r\)` might not change much (or at all) until population size is high enough that resources start to become limited  
 
 --
-+ `\(r\)` decrease very quickly if resources are used rapidly by additional individuals  
++ `\(\large r\)` decrease very quickly if resources are used rapidly by additional individuals  
 
 
 --
-We can make the logistic model more flexible by adding a new term, `\(\theta\)`: `\(^7\)`
+#### We can make the logistic model more flexible by adding a new term, `\(\large \theta\)`: `\(^7\)`
 
-`$$\frac{dN}{dt} = r_0N\bigg(1-\bigg[\frac{N}{K}\bigg]^\theta\bigg)$$`
+`$$\Large \frac{dN}{dt} = r_0N\bigg(1-\bigg[\frac{N}{K}\bigg]^\theta\bigg)$$`
 
 ???
 
@@ -457,17 +479,17 @@ We can make the logistic model more flexible by adding a new term, `\(\theta\)`:
 ---
 ## Non-linear effects
 
-When `\(\theta &gt; 1\)`, `\(r\)` does not respond to `\(N\)` until `\(N\)` is big enough that resources become limiting
+#### When `\(\large \theta &gt; 1\)`, `\(\Large r\)` does not respond to `\(\large N\)` until `\(\large N\)` is big enough that resources become limiting
 
-&lt;img src="Lecture4_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture4_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Non-linear effects
 
-If `\(\theta &lt; 1\)`, resources quickly become scarce, and `\(r\)` is suppressed even at low `\(N\)`
+#### If `\(\large \theta &lt; 1\)`, resources quickly become scarce, and `\(\Large r\)` is suppressed even at low `\(\large N\)`
 
 
-&lt;img src="Lecture4_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture4_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse, middle, center
@@ -477,22 +499,30 @@ class: inverse, middle, center
 ---
 ## Allee effects
 
-So far, we have assumed that `\(b\)` and `\(d\)` (and therefore `\(r\)`) decrease as population size increases  
+#### So far, we have assumed that `\(\Large b\)` and `\(\Large d\)` (and therefore `\(\Large r\)`) decrease as population size increases  
 
 + This is called *negative* density dependence   
 
-
---
-In some cases, the slope could also be positive  
-
-+ Positive relationships between `\(N\)` and `\(d\)` or `\(b\)` generally occur at small population sizes
-
-&lt;img src="Lecture4_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture4_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Allee effects
 
-Why might the death rate be high at small `\(N\)`?  
+#### So far, we have assumed that `\(\Large b\)` and `\(\Large d\)` (and therefore `\(\Large r\)`) decrease as population size increases  
+
++ This is called *negative* density dependence
+
+
+#### In some cases, the slope could also be positive  
+
++ Positive relationships between `\(\large N\)` and `\(\large d\)` or `\(\large b\)` generally occur at small population sizes
+
+&lt;img src="Lecture4_files/figure-html/unnamed-chunk-22-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Allee effects
+
+#### Why might the death rate be high at small `\(\large N\)`?  
 
 --
 * Group signaling breaks down, predation increases  
@@ -505,7 +535,7 @@ Why might the death rate be high at small `\(N\)`?
 
 
 --
-Why might the birth rate be low at small `\(N\)`?  
+#### Why might the birth rate be low at small `\(\large N\)`?  
 
 --
 * Pollination failure  
@@ -524,7 +554,7 @@ Why might the birth rate be low at small `\(N\)`?
 
 When abundance drops below the minimum viable population (MVP), the population will likely approach extinction without help!
 
-&lt;img src="Lecture4_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture4_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse, center, middle
@@ -534,41 +564,42 @@ class: inverse, center, middle
 ---
 ## Discrete dynamics
 
-Remember the discrete-time model of density-independent growth  
+#### Remember the discrete-time model of density-independent growth  
 
-`$$N_{t+1} = N_t \lambda$$`
-
---
-As before, we need to account for possible changes in `\(\lambda\)` caused by changes in population density  
-
+`$$\Large N_{t+1} = N_t \lambda$$`
 
 --
-Remember that:  
+#### As before, we need to account for possible changes in `\(\lambda\)` caused by changes in population density  
 
-`$$\lambda = e^r$$`  
+
+--
+#### Remember that:  
+
+`$$\Large \lambda = e^r$$`  
 
 and:  
-`$$r = r_0\bigg(1 - \frac{N}{K}\bigg)$$`
+
+`$$\Large r = r_0\bigg(1 - \frac{N}{K}\bigg)$$`
 
 ---
 ## Discrete dynamics
 
-Therefore, one discrete-time density-dependent growth model is:   
+#### Therefore, one discrete-time density-dependent growth model is:   
 
-`$$N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \frac{N}{K}\bigg)\bigg]}$$`
+`$$\Large N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \frac{N}{K}\bigg)\bigg]}$$`
 
-This known as the **Ricker model**  
+#### This known as the **Ricker model**  
 
-&lt;img src="Lecture4_files/figure-html/unnamed-chunk-22-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture4_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Discrete dynamics
 
 Any adjustment that can be made to the continuous time logistic model can also be made to the Ricker model  
 
-`$$N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \bigg[\frac{N}{K}\bigg]^\theta\bigg)\bigg]}$$`
+`$$\Large N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \bigg[\frac{N}{K}\bigg]^\theta\bigg)\bigg]}$$`
 
-&lt;img src="Lecture4_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture4_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

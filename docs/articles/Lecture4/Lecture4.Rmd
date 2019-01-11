@@ -33,9 +33,9 @@ df <- data.frame(value = rep(c(0.5, 0.7), each = 100),
                  N = rep(seq(1:100), 2),
                  rate = rep(c("Death rate", "Birth Rate"), each = 100))
 
-ggplot(df, aes(N, value, color = rate, group = rate)) + geom_path() +
-  scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
-                                as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
+ggplot(df, aes(N, value, color = rate, group = rate)) + geom_path(size = 3) +
+  scale_color_manual(values = c(WILD3810_colors$value[WILD3810_colors$name=="primary"], 
+                               WILD3810_colors$value[WILD3810_colors$name=="warning"])) +
   scale_y_continuous("Demographic rates", limits = c(0, 1))
 
 ```
@@ -67,8 +67,8 @@ for(i in 2:500){
 }
 
 (p <- ggplot() + 
-    geom_path(data = Nc, aes(x = Year, y = N), linetype = "longdash", color = WILD3810_colors$value[WILD3810_colors$name=="warning"]) + 
-    geom_point(data = Nd, aes(x = Year, y = N), size = 1, color =  WILD3810_colors$value[WILD3810_colors$name=="warning"]))
+    geom_path(data = Nc, aes(x = Year, y = N), linetype = "longdash", color = WILD3810_colors$value[WILD3810_colors$name=="secondary"], size = 1) + 
+    geom_point(data = Nd, aes(x = Year, y = N), size = 5, color =  WILD3810_colors$value[WILD3810_colors$name=="warning"]))
 
 ```
 
@@ -186,9 +186,9 @@ dd <- data.frame(value = c(rep(d0, length(N)), b),
                  N = rep(N, 2),
                  rate = rep(c("Death rate", "Birth Rate"), each = length(N)))
 
-ggplot(dd, aes(N, value, color = rate, group = rate)) + geom_path() +
-  scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
-                                as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
+ggplot(dd, aes(N, value, color = rate, group = rate)) + geom_path(size = 3) +
+  scale_color_manual(values = c(WILD3810_colors$value[WILD3810_colors$name=="primary"], 
+                                WILD3810_colors$value[WILD3810_colors$name=="warning"])) +
   scale_y_continuous("Demographic rates", limits = c(0, 1)) +
   theme(axis.text = element_blank(), axis.ticks = element_blank()) #+
   # scale_x_continuous(breaks = 7.1, labels = "K") +
@@ -208,9 +208,9 @@ dd <- data.frame(value = c(d, rep(b0, length(N))),
                  N = rep(N, 2),
                  rate = rep(c("Death rate", "Birth Rate"), each = length(N)))
 
-ggplot(dd, aes(N, value, color = rate, group = rate)) + geom_path() +
-  scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
-                                as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
+ggplot(dd, aes(N, value, color = rate, group = rate)) + geom_path(size = 3) +
+  scale_color_manual(values = c(WILD3810_colors$value[WILD3810_colors$name=="primary"], 
+                                WILD3810_colors$value[WILD3810_colors$name=="warning"])) +
   scale_y_continuous("Demographic rates", limits = c(0, 1)) +
   theme(axis.text = element_blank(), axis.ticks = element_blank()) 
 ```
@@ -218,34 +218,34 @@ ggplot(dd, aes(N, value, color = rate, group = rate)) + geom_path() +
 ---
 ## Carrying-capacity
 
-Remember that the population growth rate $r = b -d$  
+#### Remember that the population growth rate $\large r = b -d$  
 <br/>
 
 --
-If $b = d$:  
+#### If $\large b = d$:  
 
 --
-+ $r = 0$  
++ $\Large r = 0$  
 
 --
 + population remains stable  
 
 
 --
-If $b \gt d$:  
+#### If $\large b \gt d$:  
 
 --
-+ $r \gt 0$  
++ $\Large r \gt 0$  
 
 --
 + population will grow  
 
 
 --
-If $d \gt b$:  
+#### If $\large d \gt b$:  
 
 --
-+ $r \lt 0$  
++ $\Large r \lt 0$  
 
 --
 + population will decrease  
@@ -265,14 +265,14 @@ dd <- data.frame(value = c(d, b),
           aes(ymin=min,ymax=max), fill=WILD3810_colors$value[WILD3810_colors$name=="primary"], color = NA, alpha=0.15) +
     geom_ribbon(data=subset(dd, N >= 5), 
           aes(ymin=min,ymax=max), fill=WILD3810_colors$value[WILD3810_colors$name=="warning"], color = NA, alpha=0.15) +
-  geom_path() +
+  geom_path(size =  2) +
   scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
                                 as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
   scale_y_continuous("Demographic rates", limits = c(0, 1)) +
   scale_x_continuous(limits = c(0, 8)) +
   theme(axis.text = element_blank(), axis.ticks = element_blank()) +
-  annotate("text", x = 2, y = 0.55, label = "b > d", size = 9, color = WILD3810_colors$value[WILD3810_colors$name=="secondary"]) +
-  annotate("text", x = 7, y = 0.55, label = "d > b", size = 9, color = WILD3810_colors$value[WILD3810_colors$name=="secondary"]))
+  annotate("text", x = 2, y = 0.55, label = "b > d", size = 12, color = WILD3810_colors$value[WILD3810_colors$name=="secondary"]) +
+  annotate("text", x = 7, y = 0.55, label = "d > b", size = 12, color = WILD3810_colors$value[WILD3810_colors$name=="secondary"]))
 ```
 
 ---
@@ -282,7 +282,7 @@ dd <- data.frame(value = c(d, b),
 (p <- ggplot(dd, aes(N, value, color = rate, group = rate)) +
       geom_ribbon(data=subset(dd, N <= 5), 
           aes(ymin=min,ymax=max), fill=WILD3810_colors$value[WILD3810_colors$name=="primary"], color = NA, alpha=0.15) +
-  geom_path() +
+  geom_path(size = 2) +
   scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
                                 as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
   scale_y_continuous("Demographic rates", limits = c(0, 1)) +
@@ -305,7 +305,7 @@ Left of the intersection, $r$ is positive so the population will grow
 (p <- ggplot(dd, aes(N, value, color = rate, group = rate)) +
     geom_ribbon(data=subset(dd, N >= 5), 
           aes(ymin=min,ymax=max), fill=WILD3810_colors$value[WILD3810_colors$name=="warning"], color = NA, alpha=0.15) +
-  geom_path() +
+  geom_path(size = 2) +
   scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
                                 as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
   scale_y_continuous("Demographic rates", limits = c(0, 1)) +
@@ -328,7 +328,7 @@ Carrying capacity $K$:
 
 ```{r, fig.width= 7, fig.height=4.5}
 
-(p <- ggplot(dd, aes(N, value, color = rate, group = rate)) + geom_path() +
+(p <- ggplot(dd, aes(N, value, color = rate, group = rate)) + geom_path(size = 2) +
   scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
                                 as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
   scale_y_continuous("Demographic rates", limits = c(0, 1)) +
@@ -374,13 +374,13 @@ class: inverse, middle, center
 
 Remember the (continuous time) density-independent model of population growth:  
 
-$$\frac{dN}{dt} = N \times r$$  
+$$\Large \frac{dN}{dt} = N \times r$$  
 
 How can we modify this equation to include density-dependence?  
 
 To start, remember what density-dependence means:
 
-> the rate of population growth decreases as population size increases
+> the rate of population growth changes as population size increases
 
 ---
 ## Models of D-D population growth
@@ -394,27 +394,30 @@ N <- 0:1500
 
 df <- data.frame(N = N,
                  r = r0 * (1 - N/K))
-ggplot(df, aes(x = N, y = r)) + geom_line(color = "grey50") +
+ggplot(df, aes(x = N, y = r)) + geom_line(color = "grey50", size = 3) +
   scale_y_continuous(breaks = 0) +
   scale_x_continuous(breaks = 1000, label = "K") +
   geom_segment(x = K, xend = K, y = -Inf, yend = 0, 
                linetype = "dashed", color = "grey50", size = 0.5, alpha = 0.25) +
-  geom_hline(yintercept = 0, linetype = "longdash", color = "gray50")
+  geom_hline(yintercept = 0, linetype = "longdash", color = "gray50") +
+  theme(axis.text.x = element_text(size = 18), axis.text.y = element_text(size = 18), axis.title = element_text(size = 30, color = "grey20"))
 ```
 
 ---
 ## Models of D-D population growth
 
-How do we add this relationship to our model?  
+#### How do we add this relationship to our model?  
 
 --
-Remember the equation for a line: $^3$  
 
-$$y = ax + b$$  
+#### Remember the equation for a line: $^3$  
 
-In our model, we can write this as: $^4$  
+$$\Large y = ax + b$$  
+--
 
-$$r = aN + c$$.
+#### In our model, we can write this as: $^4$  
+
+$$\Large r = aN + c$$.
 
 ???
 
@@ -425,16 +428,20 @@ $^4$I changed the y-intercept to $c$ to ensure that it is not confused with the 
 ---
 ## Models of D-D population growth
 
-In our population model, $c$ represents the rate of increase when the population is 0  
+#### In our population model, $\large c$ represents the rate of increase when the population is 0  
 
-We can see in the figure that this is the largest value of $r$ the population can experience  
+--
 
+#### We can see in the figure that this is the largest value of $\large r$ the population can experience  
+
+--
 + Call that $r_0$  
 
+--
 + Because $r_0$ the maximum rate of increase (nothing limiting population growth), it is equivalent to $r$ in the D-I model  
 
 ```{r fig.width= 4, fig.height=3}
-ggplot(df, aes(x = N, y = r)) + geom_line(color = "grey50") +
+ggplot(df, aes(x = N, y = r)) + geom_line(color = "grey50", size = 1.5) +
   scale_y_continuous(breaks = c(0, 1), labels = c("0", expression(r[0]))) +
   scale_x_continuous(breaks = 1000, label = "K") +
   geom_segment(x = K, xend = K, y = -Inf, yend = 0, 
@@ -446,22 +453,23 @@ ggplot(df, aes(x = N, y = r)) + geom_line(color = "grey50") +
 ---
 ## Models of D-D population growth
 
-What is $a$, the slope of the relationship between $r$ and $N$?  
+#### What is $\large a$, the slope of the relationship between $\large r$ and $\large N$?  
 
 --
-+ It has to be negative ($r$ has to decrease as $N$ increases)  
++ It has to be negative $(r$ has to decrease as $N$ increases)  
 
 
 --
-Remember that $r=0$ when $N=K$, so:
 
-$$0 = aK + r_0$$
+#### Remember that $\large r=0$ when $\large N=K$, so:
+
+$$\Large 0 = aK + r_0$$
 
 therefore,
 
 --
 
-$$a = -\frac{r_0}{K}$$
+$$\Large a = -\frac{r_0}{K}$$
 
 ```{r fig.width= 4, fig.height=3}
 ggplot(df, aes(x = N, y = r)) + geom_line(color = "grey50") +
@@ -472,22 +480,19 @@ ggplot(df, aes(x = N, y = r)) + geom_line(color = "grey50") +
   geom_hline(yintercept = 0, linetype = "longdash", color = "gray50") +
   geom_segment(x = -Inf, xend = 0, y = 1, yend = 1, 
                linetype = "dashed", color = "grey50", size = 0.5, alpha = 0.25) +
-    geom_segment(x = 590, xend = 510, y = 0.58, yend = 0.52, 
-                 color = WILD3810_colors$value[WILD3810_colors$name == "danger"], size = 0.5, alpha = 0.25, 
-                 arrow = arrow(length = unit(0.1,"cm"))) +
-  annotate("text", x = 650, y = 0.6, label = expression(-r[0]/K), color = WILD3810_colors$value[WILD3810_colors$name == "danger"])
+  annotate("text", x = 700, y = 0.6, label = expression(-r[0]/K), color = WILD3810_colors$value[WILD3810_colors$name == "danger"], size = 8)
 ```
 
 ---
 ## Models of D-D population growth
 
-We now have a full equation for the relationship between $r$ and $N$:
+#### We now have a full equation for the relationship between $\large r$ and $\large N$:
 
-$$r = -\frac{r_0}{K}N + r_0$$
+$$\Large r = -\frac{r_0}{K}N + r_0$$
 
 which simplifies to: $^5$   
 
-$$r = r_0 \bigg(1-\frac{N}{K}\bigg)$$
+$$\Large r = r_0 \bigg(1-\frac{N}{K}\bigg)$$
 
 ???
 
@@ -510,58 +515,61 @@ $$r = r_0 \bigg(1-\frac{N}{K}\bigg)$$
 ---
 ## Models of D-D population growth
 
-How does this work?  
+#### How does this work?  
 
 --
-Assume $r_0 = 1$ and $K = 1000$  
+
+#### Assume $\large r_0 = 1$ and $\large K = 1000$  
 
 --
-What is the population growth rate when $N=100$?  
+What is the population growth rate when $\large N=100$?  
 
-+ $r = 1 - \frac{100}{1000}=$ `r 1-(100/1000)`  
-
-
---
-What about when $N=500$? `r 1-(500/1000)`  
-
-+ $r = 1 - \frac{500}{1000}=$ `r 1-(500/1000)`  
-
-
---
-When $N=1000$?  
-
-+ $r = 1 - \frac{1000}{1000}=$ `r 1-(1000/1000)`
-
----
-## Models of D-D population growth
-
-Now let's insert our new equation for $r$ into the population growth model:
-
-$$\frac{dN}{dt} = N \times r_0 \bigg(1-\frac{N}{K}\bigg)$$
-
---
-This is called the **logistic growth model**  
-<br/>
-
---
-How does this work? Again, $r_0 = 1$ and $K = 1000$  
-
---
-What is $\frac{dN}{dt}$ when $N=100$?  
-
-+ $\frac{dN}{dt} = 100 \times 1 \bigg(1-\frac{100}{1000}\bigg)=$ `r 100*(1-(100/1000))`  
++ $\large r = 1 - \frac{100}{1000}=$ `r 1-(100/1000)`  
 
 
 --
 What about when $N=500$?  
 
-+ $\frac{dN}{dt} = 500 \times 1 \bigg(1-\frac{500}{1000}\bigg)=$ `r 500*(1-(500/1000))`  
++ $\large r = 1 - \frac{500}{1000}=$ `r 1-(500/1000)`  
 
 
 --
 When $N=1000$?  
 
-+ $\frac{dN}{dt} = 1000 \times 1 \bigg(1-\frac{1000}{1000}\bigg)=$ `r 1000*(1-(1000/1000))`
++ $\large r = 1 - \frac{1000}{1000}=$ `r 1-(1000/1000)`
+
+---
+## Models of D-D population growth
+
+#### Now let's insert our new equation for $\Large r$ into the population growth model:
+
+$$\Large \frac{dN}{dt} = N \times r_0 \bigg(1-\frac{N}{K}\bigg)$$
+
+--
+
+#### This is called the **logistic growth model**  
+
+---
+## Models of D-D population growth
+
+#### How does this work? Again, $\large r_0 = 1$ and $\large K = 1000$  
+
+--
+What is $\frac{dN}{dt}$ when $N=100$?  
+
++ $\large \frac{dN}{dt} = 100 \times 1 \bigg(1-\frac{100}{1000}\bigg)=$ `r 100*(1-(100/1000))`  
+
+
+--
+What about when $N=500$?  
+
++ $\large \frac{dN}{dt} = 500 \times 1 \bigg(1-\frac{500}{1000}\bigg)=$ `r 500*(1-(500/1000))`  
+
+
+--
+When $N=1000$?  
+
++ $\large \frac{dN}{dt} = 1000 \times 1 \bigg(1-\frac{1000}{1000}\bigg)=$ `r 1000*(1-(1000/1000))`
 
 ???
 
@@ -571,7 +579,46 @@ What happens to $\frac{dN}{dt}$ when $N > K$?
 ---
 ## Models of D-D population growth
 
-How does this work? $^6$
+#### How does this work? $^6$
+
+```{r fig.width=8, fig.height=6}
+N <- 0:1050
+df <- data.frame(N = N,
+                 dNdt = N*(1-N/K))
+
+df2 <- data.frame(N = NA, t = seq(1:100))
+
+df2$N[1] <- 5
+
+for(t in 2:nrow(df2)){
+  r <- 0.15*(1-df2$N[t-1]/K)
+  df2$N[t] <- df2$N[t-1] * exp(r)
+}
+
+df2$dNdt <- df2$N*(1-df2$N/K)
+
+
+(l <- ggplot(df, aes(N, dNdt)) + geom_path(aes(color = dNdt, size = dNdt)) +
+          scale_color_gradient2(midpoint = max(df2$dNdt), 
+                            low = WILD3810_colors$value[WILD3810_colors$name == "secondary"],
+                            mid = WILD3810_colors$value[WILD3810_colors$name == "danger"],
+                            high =WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
+    scale_y_continuous("dN/dt", breaks = 0) +
+    scale_x_continuous(breaks = c(500, 1000), label = c("", "K")) +
+    geom_segment(x = K, xend = K, y = -Inf, yend = 0, 
+                 linetype = "dashed", color = "grey50", size = 0.5, alpha = 0.25) +
+    geom_hline(yintercept = 0, linetype = "longdash", color = "gray50") +
+   guides(size = FALSE))
+```
+
+???
+
+$^6$ Thickness and color of line correspond to magnitude of population change (thicker and darker red correspond to larger rate of change)  
+
+---
+## Models of D-D population growth
+
+#### How does this work? $^6$
 
 ```{r fig.width=8, fig.height=6}
 N <- 0:1050
@@ -609,6 +656,7 @@ df2$dNdt <- df2$N*(1-df2$N/K)
 
 $^6$ Thickness and color of line correspond to magnitude of population change (thicker and darker red correspond to larger rate of change)  
 
+
 Rate of change is largest when abundance is at half of the carrying capacity $\bigg(N = \frac{K}{2}\bigg)$  
 
 Above $K$, the rate of change becomes negative  
@@ -618,6 +666,7 @@ Above $K$, the rate of change becomes negative
 
 
 ```{r fig.width=11, fig.height=6}
+l <- l + guides(color = FALSE)
 m <- ggplot(df2, aes(t, N, size = dNdt)) + 
       geom_hline(yintercept = c(K/2, K), linetype = "longdash", color = "grey20") +
       geom_path(aes(color = dNdt)) +
@@ -628,7 +677,7 @@ m <- ggplot(df2, aes(t, N, size = dNdt)) +
       scale_y_continuous(breaks = c(5, K/2, K), labels = c("N0", "K/2", "K")) +
       scale_x_continuous("Time") +
       theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()) +
-  guides(size = FALSE)
+  guides(size = FALSE, color = FALSE)
 
 gridExtra::grid.arrange(l, m, nrow = 1)
 ```
@@ -641,22 +690,22 @@ class: inverse, center, middle
 ---
 ## Non-linear effects
 
-The logistic model assumes that $r$ decreases linearly with increasing $N$  
+#### The logistic model assumes that $\Large r$ decreases linearly with increasing $\large N$  
 
 --
-In reality, this relationship is not likely to be linear, for example:  
+#### In reality, this relationship is not likely to be linear, for example:  
 
 --
-+ $r$ might not change much (or at all) until population size is high enough that resources start to become limited  
++ $\large r$ might not change much (or at all) until population size is high enough that resources start to become limited  
 
 --
-+ $r$ decrease very quickly if resources are used rapidly by additional individuals  
++ $\large r$ decrease very quickly if resources are used rapidly by additional individuals  
 
 
 --
-We can make the logistic model more flexible by adding a new term, $\theta$: $^7$
+#### We can make the logistic model more flexible by adding a new term, $\large \theta$: $^7$
 
-$$\frac{dN}{dt} = r_0N\bigg(1-\bigg[\frac{N}{K}\bigg]^\theta\bigg)$$
+$$\Large \frac{dN}{dt} = r_0N\bigg(1-\bigg[\frac{N}{K}\bigg]^\theta\bigg)$$
 
 ???
 
@@ -665,7 +714,7 @@ $^7$ When $\theta = 1$, this model is the original logistic model
 ---
 ## Non-linear effects
 
-When $\theta > 1$, $r$ does not respond to $N$ until $N$ is big enough that resources become limiting
+#### When $\large \theta > 1$, $\Large r$ does not respond to $\large N$ until $\large N$ is big enough that resources become limiting
 
 ```{r fig.width=8, fig.height=6}
 N <- 0:1050
@@ -673,7 +722,7 @@ r_0 <- 0.15
 df3 <- data.frame(N = N,
                   r = r_0 * (1-(N/K)^7.5))
 
-ggplot(df3, aes(N, r)) + geom_path(color = "grey50") +
+ggplot(df3, aes(N, r)) + geom_path(color = WILD3810_colors$value[WILD3810_colors$name == "warning"], size = 2.5) +
     scale_y_continuous("r", breaks = 0) +
     scale_x_continuous(breaks = c(1000), label = c("K")) +
     geom_segment(x = K, xend = K, y = -Inf, yend = 0, 
@@ -684,7 +733,7 @@ ggplot(df3, aes(N, r)) + geom_path(color = "grey50") +
 ---
 ## Non-linear effects
 
-If $\theta < 1$, resources quickly become scarce, and $r$ is suppressed even at low $N$
+#### If $\large \theta < 1$, resources quickly become scarce, and $\Large r$ is suppressed even at low $\large N$
 
 
 ```{r fig.width=8, fig.height=6}
@@ -693,7 +742,7 @@ r_0 <- 0.15
 df4 <- data.frame(N = N,
                   r = r_0 * (1-(N/K)^0.4))
 
-ggplot(df4, aes(N, r)) + geom_path(color = "grey50") +
+ggplot(df4, aes(N, r)) + geom_path(color = WILD3810_colors$value[WILD3810_colors$name == "warning"], size = 2.5) +
     scale_y_continuous("r", breaks = 0) +
     scale_x_continuous(breaks = c(1000), label = c("K")) +
     geom_segment(x = K, xend = K, y = -Inf, yend = 0, 
@@ -709,15 +758,54 @@ class: inverse, middle, center
 ---
 ## Allee effects
 
-So far, we have assumed that $b$ and $d$ (and therefore $r$) decrease as population size increases  
+#### So far, we have assumed that $\Large b$ and $\Large d$ (and therefore $\Large r$) decrease as population size increases  
 
 + This is called *negative* density dependence   
 
+```{r fig.width= 6, fig.height=4}
+N <- seq(0, 10, by = 0.05)
 
---
-In some cases, the slope could also be positive  
+b0 <- 0.8
+d0 <- 0.3
 
-+ Positive relationships between $N$ and $d$ or $b$ generally occur at small population sizes
+b <- b0 -0.01 * N^2 
+
+d <- d0 + 0.01 * N^2 
+
+dd <- data.frame(value = c(d, rep(b0, length(N))),
+                 N = rep(N, 2),
+                 rate = rep(c("Death rate", "Birth Rate"), each = length(N)))
+
+dd <- data.frame(value = c(d, b),
+                 N = rep(N, 2),
+                 rate = rep(c("Death rate", "Birth Rate"), each = length(N)),
+                 max = apply(cbind(b,d), 1, max),
+                 min = apply(cbind(b,d), 1, min))
+
+(p <- ggplot(dd, aes(N, value, color = rate, group = rate)) +
+      geom_ribbon(data=subset(dd, N <= 5), 
+          aes(ymin=min,ymax=max), fill=WILD3810_colors$value[WILD3810_colors$name=="primary"], color = NA, alpha=0.15) +
+    geom_ribbon(data=subset(dd, N >= 5), 
+          aes(ymin=min,ymax=max), fill=WILD3810_colors$value[WILD3810_colors$name=="warning"], color = NA, alpha=0.15) +
+  geom_path(size =  2) +
+  scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
+                                as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
+  scale_y_continuous("Demographic rates", limits = c(0, 1)) +
+  scale_x_continuous(limits = c(0, 8)) +
+  theme(axis.text = element_blank(), axis.ticks = element_blank()))
+```
+
+---
+## Allee effects
+
+#### So far, we have assumed that $\Large b$ and $\Large d$ (and therefore $\Large r$) decrease as population size increases  
+
++ This is called *negative* density dependence
+
+
+#### In some cases, the slope could also be positive  
+
++ Positive relationships between $\large N$ and $\large d$ or $\large b$ generally occur at small population sizes
 
 ```{r fig.height=3, fig.width=5}
 N <- seq(from = 0, to = 10, by = 0.25)
@@ -728,7 +816,7 @@ df5 <- data.frame(N = N,
                   max = apply(cbind(1.8*(N-5)^2 + 5, -2*(N-5)^2 + 45), 1, max),
                   min = apply(cbind(1.8*(N-5)^2 + 5, -2*(N-5)^2 + 45), 1, min))
 
-ggplot(df5, aes(N, value, group = rate, color = rate)) + geom_path() +
+ggplot(df5, aes(N, value, group = rate, color = rate)) + geom_path(size = 1.5) +
     scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
                                 as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
     geom_ribbon(data=subset(df5, N >= 1.75 & N <= 8.25), 
@@ -745,7 +833,7 @@ ggplot(df5, aes(N, value, group = rate, color = rate)) + geom_path() +
 ---
 ## Allee effects
 
-Why might the death rate be high at small $N$?  
+#### Why might the death rate be high at small $\large N$?  
 
 --
 * Group signaling breaks down, predation increases  
@@ -758,7 +846,7 @@ Why might the death rate be high at small $N$?
 
 
 --
-Why might the birth rate be low at small $N$?  
+#### Why might the birth rate be low at small $\large N$?  
 
 --
 * Pollination failure  
@@ -778,7 +866,7 @@ Why might the birth rate be low at small $N$?
 When abundance drops below the minimum viable population (MVP), the population will likely approach extinction without help!
 
 ```{r fig.height=4, fig.width=6}
-ggplot(df5, aes(N, value, group = rate, color = rate)) + geom_path() +
+ggplot(df5, aes(N, value, group = rate, color = rate)) + geom_path(size = 3) +
     scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
                                 as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
     geom_ribbon(data=subset(df5, N <= 1.75),
@@ -798,30 +886,31 @@ class: inverse, center, middle
 ---
 ## Discrete dynamics
 
-Remember the discrete-time model of density-independent growth  
+#### Remember the discrete-time model of density-independent growth  
 
-$$N_{t+1} = N_t \lambda$$
-
---
-As before, we need to account for possible changes in $\lambda$ caused by changes in population density  
-
+$$\Large N_{t+1} = N_t \lambda$$
 
 --
-Remember that:  
+#### As before, we need to account for possible changes in $\lambda$ caused by changes in population density  
 
-$$\lambda = e^r$$  
+
+--
+#### Remember that:  
+
+$$\Large \lambda = e^r$$  
 
 and:  
-$$r = r_0\bigg(1 - \frac{N}{K}\bigg)$$
+
+$$\Large r = r_0\bigg(1 - \frac{N}{K}\bigg)$$
 
 ---
 ## Discrete dynamics
 
-Therefore, one discrete-time density-dependent growth model is:   
+#### Therefore, one discrete-time density-dependent growth model is:   
 
-$$N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \frac{N}{K}\bigg)\bigg]}$$
+$$\Large N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \frac{N}{K}\bigg)\bigg]}$$
 
-This known as the **Ricker model**  
+#### This known as the **Ricker model**  
 
 ```{r fig.height=3, fig.width=5}
 lambda <- 1.1
@@ -844,7 +933,7 @@ ggplot(df6, aes(Time, N, group = model, color = model)) +
       scale_color_manual(values = c(as.character(WILD3810_colors$value[WILD3810_colors$name=="primary"]), 
                                 as.character(WILD3810_colors$value[WILD3810_colors$name=="warning"]))) +
     geom_hline(yintercept = K, linetype = "longdash", color = "grey20") + 
-    geom_path() +
+    geom_path(size = 3) +
   scale_y_continuous(limits = c(0, 1000)) +
   theme(axis.text = element_blank(), axis.ticks = element_blank())
 
@@ -855,7 +944,7 @@ ggplot(df6, aes(Time, N, group = model, color = model)) +
 
 Any adjustment that can be made to the continuous time logistic model can also be made to the Ricker model  
 
-$$N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \bigg[\frac{N}{K}\bigg]^\theta\bigg)\bigg]}$$
+$$\Large N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \bigg[\frac{N}{K}\bigg]^\theta\bigg)\bigg]}$$
 
 ```{r fig.height=4, fig.width=6}
 N_th1 <- N_th2 <-  N_th3 <- numeric(length = 100)
@@ -879,7 +968,7 @@ ggplot(df7, aes(Time, N, group = model, color = model)) +
                                     WILD3810_colors$value[WILD3810_colors$name=="warning"], 
                                     WILD3810_colors$value[WILD3810_colors$name=="success"])) +
     geom_hline(yintercept = K, linetype = "longdash", color = "grey20") + 
-    geom_path() +
+    geom_path(size = 3) +
   scale_y_continuous(limits = c(0, 1000)) +
   theme(axis.text = element_blank(), axis.ticks = element_blank())
 

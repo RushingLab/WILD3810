@@ -26,6 +26,10 @@ navbar:
           href: articles/Lecture1/Lecture1.html
         - text: "Lecture 2: How many are there? Estimating abundance"
           href: articles/Lecture2/lecture2.html
+        - text: "Lecture 3: Introduction to population growth"
+          href: articles/Lecture3/lecture3.html
+        - text: "Lecture 4: Density-dependent population growth"
+          href: articles/Lecture4/lecture4.html
     - icon: fas fa-desktop
       text: "Labs"
       menu:

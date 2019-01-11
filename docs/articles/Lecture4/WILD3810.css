@@ -108,7 +108,6 @@ h6, .h6 {
 
 .inverse {
   background-color: #2B3E50;
-  color: ;
   text-shadow: none;
 }
 
@@ -119,9 +118,9 @@ h6, .h6 {
 
 /* Add image and change bg color */
 .title-slide {
-  background-image: url(https://raw.githubusercontent.com/RushingLab/rushinglabslides/master/img/logo/usu-logo.png);
-  background-position: 15% 15%;
-  background-size: 200px;
+  background-image: url(https://raw.githubusercontent.com/RushingLab/rushinglabslides/master/img/logo/utah-state-university-squarelogo.png);
+  background-position: 90% 10%;
+  background-size: 175px;
   background-color: #2B3E50;
   padding-left: 100px;  /* delete this for 4:3 aspect ratio */
 }
