@@ -494,6 +494,7 @@ Image courtesy of: GlacierNPS, via Wikimedia Commons
 
 > the number of individuals in the population does not change between sampling occasions. No births, no deaths, no movement in or out  
 
+
 --
 #### How can we make this assumption? Usually by conducting sampling within a short $^{11}$ period of time  
 
@@ -663,7 +664,7 @@ We will explore this more in lab, using computer code to do this experiment many
 
 We do a CMR study of two populations and estimate $\hat{N}_1 = 142$ and $\hat{N}_2 = 160$  
 
-#### Is $N_1 < N_2$? 
+Is $N_1 < N_2$? 
 
 ```{r fig.width=4, fig.height=2.5}
 df <- data.frame(scenario = factor(rep(c("Point estimate", "High uncertainty", "Low uncertainty"), each = 2), levels = c("Point estimate", "High uncertainty", "Low uncertainty")),
