@@ -1,4 +1,5 @@
-^data-raw$
-^LICENSE\.md$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^vignettes$
+^docs$
+

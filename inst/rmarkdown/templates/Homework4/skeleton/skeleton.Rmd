@@ -1,0 +1,45 @@
+---
+title: "Population viability analysis for the endangered Colorado pikeminnow"
+author: "YOUR NAME HERE"
+output: 
+  pdf_document:
+    latex_engine: xelatex
+
+## Do not change anything in the YAML header
+mainfont: Arial
+fontsize: 12pt
+indent: true
+
+geometry: margin=2cm
+header-includes:
+  - \usepackage{setspace}
+  - \onehalfspacing
+---
+
+```{r setup, include = FALSE}
+## Do not change anything in this chunk
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, message = FALSE)
+library(WILD3810)
+```
+
+
+```{r echo = FALSE}
+# Include any code you used to complete your analysis here
+# Note that because `echo = FALSE` this code will not show up in your final document
+# However, because R will run this code before creating the text and figure
+#    this code will be available for you to include summary statistics in the text
+#    and for creating the figure
+```
+
+Type your recommendations here (**delete all of the the included text after you have read it!**). Be sure to refer to the instructions provided by the writing center for help on how to format your recommendations and what information needs to be included. 
+
+After you have a draft ready, you may schedule an appointment with the science writing center to get feedback on the draft. If you do this and document it, you will receive 4 points on the assignment. 
+
+
+```{r fig.height = 3, fig.width = 3, echo = FALSE}
+# Include your figure here
+ggplot(data = mtcars, aes(x = mpg, y = wt)) + geom_point()
+```
+
+
