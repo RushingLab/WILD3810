@@ -218,12 +218,12 @@ then:
 
 
 --
-#### What *is* the average `\(\lambda\)` (which we'll call `\(\bar{\lambda}\)`)?  
+#### What *is* the average `\(\large \lambda\)` (which we'll call `\(\large \bar{\lambda}\)`)?  
 
 ---
 ## Modeling environmental stochasticity
 
-#### An obvious way to calculate `\(\bar{\lambda}\)` is the *arithmetic mean* of the annual `\(\lambda\)`'s:
+#### An obvious way to calculate `\(\large \bar{\lambda}\)` is the *arithmetic mean* of the annual `\(\lambda \lambda\)`'s:
 
 `$$\Large \bar{\lambda} = \frac{\lambda_0+ \lambda_1 + \lambda_2 +...\lambda_{T-1}}{T}$$`
 
@@ -236,13 +236,13 @@ then:
 
 #### But that can't be right!  
 
-#### `\(\bar{\lambda} = 1\)` means the population should have, on average, remained at 50 individuals 
+#### `\(\large \bar{\lambda} = 1\)` means the population should have, on average, remained at 50 individuals 
 &lt;br/&gt;
 
 --
 #### The issue that the population growth is a multiplicative process  
 
-#### This means that shrinking by 30% `\((\lambda = 0.7)\)` and then growing by 30% `\((\lambda = 1.3)\)` does not get you back to where you started  
+#### This means that shrinking by 30% `\((\large \lambda = 0.7)\)` and then growing by 30% `\((\large \lambda = 1.3)\)` does not get you back to where you started  
 
 + For example, `\(100 \times 0.7 = 70\)` but `\(70 \times 1.3 = 91\)`. 
 
@@ -251,22 +251,21 @@ then:
 
 To estimate the average of a multiplicative process, we need to take the *geometric* mean rather than the arithmetic mean:  
 
-`$$\bar{\lambda} = \big(\lambda_0 \times \lambda_1 \times \lambda_2 \times...\lambda_{T-1}\big)^\frac{1}{T}$$`  
+`$$\Large \bar{\lambda} = \big(\lambda_0 \times \lambda_1 \times \lambda_2 \times...\lambda_{T-1}\big)^\frac{1}{T}$$`  
 
 
 --
 For our population, that means: 
 
-`$$\bar{\lambda} = \big(1.1 \times 0.9 \times 0.7 \times 1.2 \times 1.1\big)^\frac{1}{5} = 0.98$$`
+`$$\Large \bar{\lambda} = \big(1.1 \times 0.9 \times 0.7 \times 1.2 \times 1.1\big)^\frac{1}{5} = 0.98$$`
 
 ---
 ## Modeling environmental stochasticity
 
-As you can see, the geometric mean &lt; arithmetic mean  
-&lt;br/&gt; 
+#### As you can see, the geometric mean &lt; arithmetic mean  
 
 --
-This is a *critical point* about environmental stochasticity  
+#### This is a *critical point* about environmental stochasticity  
 
 --
 &gt; Populations with variable growth rates will tend to grow more slowly (or decrease faster) than populations in constant environments even if their mean vital rates are the same.
@@ -274,10 +273,10 @@ This is a *critical point* about environmental stochasticity
 ---
 ## Modeling environmental stochasticity
 
-Let's see what that looks like:  
+#### Let's see what that looks like:  
 
 --
-Initially, assume a large population `\((N_0 = 500)\)` with:
+#### Initially, assume a large population `\(\large (N_0 = 500)\)` with:
 
 + `\(\bar{b_t} = 0.55\)`  
 
@@ -287,16 +286,15 @@ Initially, assume a large population `\((N_0 = 500)\)` with:
 
 Thus:
 
-`$$\bar{\lambda} = (1 + \bar{b_t} - \bar{d_t}) = (1 + 0.55 - 0.5) = 1.05$$`
+`$$\Large \bar{\lambda} = (1 + \bar{b_t} - \bar{d_t}) = (1 + 0.55 - 0.5) = 1.05$$`
 
---
-.pull-left[
-Over 100 years, the population growth will be:
-]
+---
+## Modeling environmental stochasticity
 
-.pull-right[
-&lt;img src="lecture6_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
-]
+#### Over 100 years, the population growth will be:
+
+&lt;img src="no_var.gif" height="400" style="display: block; margin: auto;" /&gt;
+
 
 ---
 ## Modeling environmental stochasticity
@@ -306,26 +304,27 @@ Now let's look at the dynamics of a second population with the same starting pop
 --
 Notice that the mean rates are the same so intuitively,  
 
-`$$\bar{\lambda} = (1 + \bar{b_t} - \bar{d_t}) = (1 + 0.55 - 0.5) = 1.05$$`
+`$$\Large \bar{\lambda} = (1 + \bar{b_t} - \bar{d_t}) = (1 + 0.55 - 0.5) = 1.05$$`
+
 
 --
 but:  
 
-&lt;img src="lecture6_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="med_var.gif" height="300" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Modeling environmental stochasticity
 
 Finally, let's add a third population with the same starting population size, the same mean demographic rates but now with annual variation of 40%. 
 
-&lt;img src="lecture6_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="high_var.gif" height="400" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Modeling environmental stochasticity
 
-Because environmental stochasticity tends to reduce `\(\bar{\lambda}\)` regardless of population size, it has important consequences for the extinction risk of **both small and large populations**  
+#### Because environmental stochasticity tends to reduce `\(\large \bar{\lambda}\)` regardless of population size, it has important consequences for the extinction risk of **both small and large populations**  
 
-We'll explore this idea more in lab  
+#### We'll explore this idea more in lab  
 
 ---
 class: inverse, center, middle
@@ -335,16 +334,16 @@ class: inverse, center, middle
 ---
 ## Demographic  stochasticity
 
-In the preceeding examples, we treated the demographic outomes (individual survival and reproductive success) at each time step as non-random variables  
+#### In the preceeding examples, we treated the demographic outomes (individual survival and reproductive success) at each time step as non-random variables  
 
 --
 + If the mean survival probability in a given year is 80%, then exactly 80% of the population survived and 20% died  
 
 
 --
-This is not a realistic assumption  
+#### This is not a realistic assumption  
 
-Imagine flipping a coin 10 times:  
+#### Imagine flipping a coin 10 times:  
 
 --
 + we know that the probability of getting a heads is 50% 
@@ -357,20 +356,22 @@ Imagine flipping a coin 10 times:
 
 
 --
-This is because the outcome of the coin flip is a *random variable* - the outcome is governed by chance  
+#### This is because the outcome of the coin flip is a *random variable* - the outcome is governed by chance  
 
 ---
 ## Demographic  stochasticity
 
-The same is true to demographic outcomes  
-
-Even if the *expected* survival rate is 80%, the *realized* survival rate could be higher or lower  
-
-Likewise, we might expect individuals to produce 3 offspring on average, but some individuals will have more and some fewer based on chance `\(^5\)`  
-&lt;br/&gt;
+#### The same is true to demographic outcomes  
 
 --
-Demographic stochasticity is essentially the difference between the expected survival/reproductive rate and the realized rates in our population.
+
+#### Even if the *expected* survival rate is 80%, the *realized* survival rate could be higher or lower  
+
+#### Likewise, we might expect individuals to produce 3 offspring on average, but some individuals will have more and some fewer based on chance `\(^5\)`  
+
+--
+
+#### Demographic stochasticity is essentially the difference between the **expected** survival/reproductive rate and the **realized** rates in our population.
 
 ???
 `\(^5\)` or at least what appears to use to be chance  
@@ -378,11 +379,13 @@ Demographic stochasticity is essentially the difference between the expected sur
 ---
 ## Demographic  stochasticity
 
-Demographic  stochasticity occurs because our population is a *finite sample*  
+#### Demographic  stochasticity occurs because our population is a *finite sample*  
 
-Going back to the coin flip, if we flip the coin 1000 times, we would expect to get pretty close to 50% heads  
+--
 
-But as the number of flips gets smaller, the realized success rate could differ more from the expected value  
+#### Going back to the coin flip, if we flip the coin 1000 times, we would expect to get pretty close to 50% heads  
+
+#### But as the number of flips gets smaller, the realized success rate could differ more from the expected value  
 
 ---
 ## Demographic  stochasticity
@@ -400,20 +403,26 @@ But as the number of flips gets smaller, the realized success rate could differ 
 ---
 ## Effects of demographic stochasticity
 
-Demographic stochasticity is mainly an issue at **small population sizes** because each individual is a larger proportion of the total sample size  
+#### Demographic stochasticity is mainly an issue at **small population sizes** because each individual is a larger proportion of the total sample size  
+
+--
+
+#### To see this in action, we can use `R` to simulate the abundance of populations that experience demographic stochasticity  
 &lt;br/&gt;
 
---
-To see this in action, we can use `R` to simulate the abundance of populations that experience demographic stochasticity  
-&lt;br/&gt;
+---
+## Effects of demographic stochasticity
+
+#### Start with 100 populations with a relatively large population size `\((N = 500)\)` `\(^6\)`  
+
+- Further assume that the mean survival and reproductive rates remain constant so all stochastisticity is demographic  
 
 --
-Start with 100 populations with a relatively large population size `\((N = 500)\)` `\(^6\)`  
-
-We will further assume that the mean survival and reproductive rates remain constant so all stochastisticity is demographic  
+&lt;img src="dem_plot500.gif" height="300" style="display: block; margin: auto;" /&gt;
 
 --
-&lt;img src="lecture6_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+
+#### With `\(\large N_0=500\)` no populations went extinct
 
 ???
 
@@ -422,19 +431,13 @@ We will further assume that the mean survival and reproductive rates remain cons
 ---
 ## Effects of demographic stochasticity
 
-In this example, 51% of the populations decreased `\((N_T &lt; 500)\)` and none went extinct   
+#### What happens if we start with 10 individuals instead?
+
+
+&lt;img src="dem_plot10.gif" height="400" style="display: block; margin: auto;" /&gt;
 
 --
-What happens if we start with 10 individuals instead?
-
-&lt;img src="lecture6_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
-
----
-## Effects of demographic stochasticity
-
-Now 62% of the populations decreased and 40 went extinct `\(^7\)` 
-
-&lt;img src="lecture6_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+#### Now 40% went extinct `\(^7\)` 
 
 ???
 
@@ -465,9 +468,8 @@ The time it takes for this to occur will be longer for large populations but eve
 ---
 ### Stochasticity and extinction risk over time
 
+
 Again, we can use data simulations to show this:
-
-
 
 --
 If we start with populations of 100 individuals and simulate 50 years of population change, 1% of populations go extinct  
@@ -479,21 +481,21 @@ If we start with populations of 100 individuals and simulate 50 years of populat
 
 If we extend our simulation out to 200 years, 23% of populations go extinct  
 
-&lt;img src="lecture6_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="extinction_200.gif" height="400" style="display: block; margin: auto;" /&gt;
 
 ---
 ### Stochasticity and extinction risk over time
 
 500 years? 57% of populations go extinct  
 
-&lt;img src="lecture6_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="extinction_500.gif" height="400" style="display: block; margin: auto;" /&gt;
 
 ---
 ### Stochasticity and extinction risk over time
 
 10,000 years? 99% of populations go extinct `\(^8\)` 
 
-&lt;img src="lecture6_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="extinction_1000.gif" height="400" style="display: block; margin: auto;" /&gt;
 
 ???
 
