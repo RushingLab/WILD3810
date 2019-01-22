@@ -26,14 +26,14 @@ library(gganimate)
 ---
 ## Population regulation vs limitation
 
-In lecture 3, we learned that all species have the *potential* for exponential population growth  
+####  In lecture 3, we learned that all species have the *potential* for exponential population growth  
 
 --
-- $r > 0$  
+- $\Large r > 0$  
 
 
 --
-In lecture 5, we learned that regulating factors keep populations from going too far above or below $K$ 
+#### In lecture 5, we learned that regulating factors keep populations from going too far above or below $\large K$ 
 
 --
 
@@ -117,7 +117,7 @@ class: inverse, middle, center
 ---
 ## Population declines
 
-Most population declines are driven by *deterministic* $^1$ changes to their environment that reduces $K$  
+#### Most population declines are driven by *deterministic* $^1$ changes to their environment that reduces $\large K$  
 
 --
 - Habitat loss  
@@ -152,7 +152,7 @@ knitr::include_graphics("hFP2.jpg")
 ---
 ## Habitat loss
 
-Habitat loss has a number of negative effects on populations:  
+#### Habitat loss has a number of negative effects on populations:  
 
 --
 1) Reduce $K$  
@@ -166,7 +166,7 @@ Habitat loss has a number of negative effects on populations:
 ---
 ## Habitat loss
 
-Habitat loss has a number of negative effects on populations:  
+#### Habitat loss has a number of negative effects on populations:  
 
 1) Reduce $K$  
 
@@ -184,7 +184,7 @@ $^2$ By increasing the distance between patches and potentially created uninhabi
 ---
 ## Habitat loss
 
-Habitat loss has a number of negative effects on populations:  
+#### Habitat loss has a number of negative effects on populations:  
 
 1) Reduce $K$  
 
@@ -207,7 +207,7 @@ Image courtesy of Benjamin P. Y-H. Lee (University of Kent),  via Wikimedia Comm
 ---
 ## Habitat loss
 
-Habitat loss has a number of negative effects on populations:  
+#### Habitat loss has a number of negative effects on populations:  
 
 1) Reduce $K$  
 
@@ -228,7 +228,7 @@ $^4$ As habitats become fragmented, the proportion of interior to edge increases
 ---
 ## Habitat loss
 
-Habitat loss has a number of negative effects on populations:  
+#### Habitat loss has a number of negative effects on populations:  
 
 1) Reduce $K$  
 
