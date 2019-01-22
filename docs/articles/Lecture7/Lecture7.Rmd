@@ -31,7 +31,7 @@ library(gganimate)
 ---
 # Stochasticity and extinction risk
 
-Remember from the last lecture that, over a long enough time scales, the fate of any population that is subject to stochasticity is extinction  
+Over a long enough time scales, the fate of any population that is subject to stochasticity is *extinction*  
 
 ```{r fig.width=6, fig.height=4}
 set.seed(12345)
@@ -64,7 +64,7 @@ ggplot(Nd, aes(x = t, y = N, group = Population)) +
 ---
 # Stochasticity and extinction risk
 
-We also learned that stochasticity, particularly demographic stochasticity, is most consequential at small population sizes  
+Stochasticity, particularly demographic stochasticity, is most consequential at small population sizes  
 
 ```{r fig.height=5, fig.width=8}
 set.seed(1234)
@@ -103,7 +103,7 @@ ggplot(Nd, aes(x = t, y = N, group = Population)) +
 ---
 ## Genetic stochasticity 
 
-In addition to demographic and environmental stochasticity, **genetic stochasticity** can also increase extinction risk for small populations  
+In addition to demographic and environmental stochasticity, **genetic stochasticity** also increases extinction risk for small populations  
 <br/>  
 
 Genetic drift leads to random accumulation and expression of harmful alleles, which can reduce demographic rates $^1$  
@@ -124,7 +124,8 @@ class: inverse, middle, center
 ---
 ## Extinction vortex
 
-As populations decrease in size, they reach a point where environmental stochasticity, demographic stochasticity, and genetic stochasticity all interact to drive populations towards extinction, the so called **extinction vortex**  
+As populations decrease in size, they reach a point where **environmental stochasticity**, **demographic stochasticity**, and **genetic stochasticity** interact to drive populations towards extinction
+  
 
 ```{r out.width=500, out.height=300}
 knitr::include_graphics("extinction_vortex.png")
@@ -146,42 +147,93 @@ All threats have to be managed and considered together
 ---
 ## What is a "small" population?
 
-Detecting when species have entered the extinction vortex is difficult  
-<br/>
+#### Detecting when species have entered the extinction vortex is difficult  
 
 --
-But risk of exinction is related to population size  
+#### But risk of exinction is related to population size  
 
 + small populations are at higher risk than large ones   
 <br/>
 
 
 --
-What defines a "small" population? 
+#### What defines a "small" population? 
 
 ---
 ## What is a "small" population?
 
-This is a difficult question because "small" is a relative term  
-<br/>
+#### This is a difficult question because "small" is a relative term  
 
 --
-"Small" compared to what? 
+#### "Small" compared to what? 
 
 --
-+ Historical population size (use Wood Thrush)?  
++ Historical population size?  
 
---
-+ Other species (Rare and stable vs. common and declining)?  
+```{r fig.height=5, fig.width=8}
+set.seed(12345)
+N <- matrix(NA, nrow = 60, ncol = 2)
+N[1,] <- c(5000, 50)
 
---
-+ Management standards (duck vs. cougar)? 
+for(i in 2:60){
+  N[i, 1] <- rnorm(1, N[i-1, 1]*0.98, 50)
+  N[i, 2] <- rnorm(1, N[i-1,2], 4)
+}
 
+df <- data.frame(Year = rep(1:60, 2),
+                 N = c(N),
+                 Species = rep(c("1", "2"), each = 60))
+
+ggplot(df[df$Species == "1",], aes(x = Year, y = N, color = Species)) + geom_path(size = 2) +
+  guides(color = "none")
+```
 
 ---
 ## What is a "small" population?
 
-There is a long history of trying to define abundance thresholds that can be used to trigger management actions (*minimum viable population*):
+#### This is a difficult question because "small" is a relative term  
+
+#### "Small" compared to what? 
+
++ Historical population size?
+
++ Other species?  
+
+```{r fig.height=5, fig.width=8}
+ggplot(df, aes(x = Year, y = N, color = Species)) + geom_path(size = 2) +
+  guides(color = "none")
+```
+
+???
+
+Species 1 is declining but is still more common than species 2, which has been stable for 60 years despite being rare. Which species would we consider more at risk of extinction? 
+
+---
+## What is a "small" population?
+
+#### This is a difficult question because "small" is a relative term  
+
+#### "Small" compared to what? 
+
++ Historical population size?
+
++ Other species?
+
++ Management standards? 
+
+```{r fig.height=5, fig.width=8}
+ggplot(df, aes(x = Year, y = N, color = Species)) + geom_path(size = 2) +
+  guides(color = "none")
+```
+
+???
+
+If species 1 is mallards, we might consider this a very small population size relative to management objectives. If species 2 is cougar, we might consider this to be a relatively large population relative to management objectives. 
+
+---
+## What is a "small" population?
+
+There is a long history of trying to define the minimum abundance that avoids extinction (*minimum viable population*):
 
 1) 50-500 rules (Soule 1980; Frankel & Soule 1981):  
 
@@ -202,7 +254,7 @@ $N_e=50$ translates to about 200-250 individuals
 ---
 ## What is a "small" population?
 
-There is a long history of trying to define abundance thresholds that can be used to trigger management actions (*minimum viable population*):
+There is a long history of trying to define the minimum abundance that avoids extinction (*minimum viable population*):
 
 1) 50-500 rules (Soule 1980; Frankel & Soule 1981)
 
@@ -211,9 +263,9 @@ There is a long history of trying to define abundance thresholds that can be use
 > 1400-4000 individuals found to promote low risk of extinction over moderate timescales (20-100 years)
 
 --
-Improvement over 50-500 rule because focuses is on "risk of extinction" rather than on abundance itself  
+- Improvement over 50-500 rule because focuses is on "risk of extinction" rather than on abundance itself  
 
-Good rule-of-thumb but not a magic number  
+- Good rule-of-thumb but not a magic number  
 
 ---
 ## Problems with MVP approach
@@ -329,17 +381,19 @@ The above criteria have proven to be useful for predicting which species are vul
 <br/>
 
 --
-However, due to the complex and interacting factors that determine exinctition risk, these criteria are often too simple to accurately assess true risk of exinction   
+Due to the complex and interacting factors that determine exinctition risk, these criteria are often too simple to accurately assess true risk of exinction   
 <br/>
 
 --
 When data are available, a more useful tool for predicting extinction risk is *population viability analysis* (PVA)  
 <br/>
 
---
+---
+## Population viability analysis
+
 PVA is a tool (or more accurately a set of methods) that:  
 
-> use data and models to estimate the likelihoods of a population crossing thresholds of vaibility within various time spans, and to give insights into factors that constitute the biggest threats $^1$  
+> use data and models to estimate the likelihoods of a population crossing thresholds of viability within various time spans, and to give insights into factors that constitute the biggest threats $^1$  
 
 <br/>
 
@@ -353,19 +407,26 @@ $^1$ quoted from Mills pg 227
 In lab, we will practice implementing a PVA using R. For now, we will discuss the different parts of the definition, different types of PVA, and how PVA is used to inform management decisions.
 
 ---
+class: inverse, middle, center
+# Components of a PVA
+
+---
 ## Components of a PVA
 
+--
 1) Viability  
 
 - The first step of a PVA is defining what we mean by viable  
 
+--
 - This is an abundance level that we want to maintain our population at or above  
 
-- In the most simple cases, a viable means not extinct $(N > 0)$   
+--
+- In the most simple case, a viable means not extinct $(N > 0)$   
 
 
 --
-Usually, we not only want to prevent extinction, we also want keep abundance above some level where, e.g.
+Rather than $(N > 0)$ we may also want keep abundance above some level where, e.g.
 
 --
 - Allee effects might kick in  
@@ -399,12 +460,13 @@ $^1$ captive breeding or special management actions
 
 - As we learned earlier, over long enough time periods, every population will go extinct  
 
+--
 - Critical to determine the specific timeframe *relevant to our management objectives*  
 
 --
-One of the central issues with any type of prediction is that predictions are less certain the farther in the future we try to project  
+One of the central issues with any type of prediction is that predictions are less certain the farther in the future we try to predict  
 
-The longer the time frame, the more ways there are for stochastic sources of variation to accumulate  
+- The longer the time frame, the more ways there are for stochastic sources of variation to accumulate  
 
 ---
 ## Components of a PVA
@@ -414,7 +476,7 @@ The longer the time frame, the more ways there are for stochastic sources of var
 
 2) Timeframe  
 
-Most PVAs therefore incorporate both short-term and long-term objectives  
+Most PVAs incorporate both short-term and long-term objectives  
 
 --
 - Long-term objectives are generally based soley on biology - maintaining populations above the quasi-extinction threshold for several decades  
@@ -503,6 +565,7 @@ $^1$ For example, the probability that the population declines 50% after 25 year
 
 In all cases, it's important to remember that these are *probabililities* - we don't know exactly how things will turn out  
 
+--
 PVA can be used to estimate these probabilities but they cannot be used to tell us what level of risk we are willing to accept. That is a value judgement. 
 
 ---
@@ -521,7 +584,7 @@ As mentioned above, PVA actually refers to a variety of modeling techniques
 <br/>
 
 --
-The type of PVA we choose usually depends on the available data
+The type of PVA we choose usually depends on the available data  
 
 ---
 ## Types of PVA
@@ -530,13 +593,150 @@ The type of PVA we choose usually depends on the available data
 
 The most straightforward type of PVA is based on a time series of abundance data  
 
+- use data to estimate $r$ and $\sigma^2$
+
+```{r fig.height=5, fig.width=8}
+set.seed(23456)
+N1 <- numeric(length = 50)
+N1[1] <- 65
+for(i in 2:50){
+  N1[i] <- rnorm(1, N1[i-1]*0.985, 5)
+}
+df <- data.frame(Year = seq(1:50),
+                 N = N1)
+
+(p <- ggplot(df, aes(x = Year, y = N)) + geom_path(size = 2) +
+  scale_y_continuous(limits = c(0, 100)))
+```
+
+---
+## Types of PVA
+
+#### Time-series
+
+Use $r$ and $\sigma^2$ to **simulate* future dynamics
+
+```{r fig.width=8, fig.height=5}
+N <- matrix(NA, nrow = 50, ncol = 100)
+N[1,] <- df$N[df$Year==50]
+
+for(i in 1:100){
+  for(j in 2:50){
+    if(N[j-1,i] < 0){
+      N[j,i] <- 0
+    }else{
+      N[j,i] <- max(0, rnorm(1, N[j-1,i]*0.985, 5))
+    }
+  }
+}
+
+df2 <- data.frame(Year = rep(seq(from = 50, to = 99), 100),
+                  N = c(N),
+                  pva = rep(as.factor(seq(1:100)), each = 50))
+
+p + geom_path(data = df2, aes(x = Year, y = N, group = pva), alpha = 0.2, size = 0.75)
+```
+
+---
+## Types of PVA
+
+#### Time-series
+
+Summarize simulated populations to predict future dynamics:  
+
+- `r mean(apply(N, 2, min)==0)*100`% chance of extinction  
+
+- `r mean(apply(N, 2, min)<10)*100`% chance of $N<10$  
+
+- `r mean(apply(N, 2, min)<20)*100`% chance of $N<20$  
+
+---
+## Types of PVA  
+
+#### Time-series  
+
+More comples time-series PVAs can account for:  
+
+- Density-dependence  
+
+- Changes in $r$ over time  
+
+- Effects of management actions  
+
 ---
 ## Types of PVA
 
 #### Demographically-explicit 
+
+Rather than model $r$, model $b$ and $d$ directly  
+
+--
+- Incorporate variance, density-dependence, and covariation in vital rates  
+
+--
+- Mechanistic management predictions  
+  
+--
+- Possible to include effects of genetic processes (e.g., inbreeding depression) on vital rates  
+
+--
+### But
+
+- require lots of data  
+
+- challenging to construct  
 
 ---
 ## Types of PVA
 
 #### Spatial 
 
+In addition to $b$ and $d$, viability influenced by movement:  
+
+- immigration and emigration
+
+--
+Spatially-explicit PVAs model *how many* individuals and *where* they are  
+
+- allow locally-extinct patches to become re-colonized  
+
+- allow gene flow to add genetic variation  
+
+---
+## Considerations for using PVA
+
+1) Data quality  
+
+--
+- Time frame  
+
+--
+- Sampling error  
+
+---
+## Considerations for using PVA
+
+1) Data quality
+
+2) Uncertainty
+
+--
+- Do we need accurate predictions of extinction risk? Or is relative risk be enough? 
+
+--
+- Account for uncertainty using simulations
+
+---
+## Considerations for using PVA
+
+1) Data quality
+
+2) Uncertainty
+
+3) Other sources of information
+
+--
+- Expert opinion
+
+--
+- Rules-of-thumb
