@@ -14,17 +14,41 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+library(WILD3810)
 ```
 
 ***
 
-In this lab, we will continue learning how to use `R` to model and visualize changes in abundance over time. 
+In this lab, you will learn to model and predict the growth of plant and animal populations using `R`. Continuing from the first lab, you will continue learning how to use `R` to model and visualize changes in abundance over time. 
 
 ***
 
+# Modeling exponential population growth
+
+Collared-doves
+
+## Subsetting vectors
+
+## `for` loops
+
+## Visualizing the results
+
+### Data frames
+
+### Intro to `ggplot2()`
+
+# Modeling density-dependent growth
+
+Nutria
+
+## Visualizing the results
+
+dN/dt vs N
+
+
 In the last lab, we learned about one class of `R` object - vectors. Vectors hold a string of values as a single object.
 
-Perhaps the most common type data object you will use in `R` is the data frame. Data frame are tabular objects (rows and columns) similar in structure to spreadsheets (think Excel or GoogleSheets). In effect, data frames store multiple vectors - each column of the data frame is a vector. As such, each column can be a different class (numeric, character, etc.) but all values within a column must be the same class. Just as the first row of an Excel spreadsheet can be a list of column names, each column in a data frame has a name that (hopefully) provides information about what the values in that column represent. 
+Perhaps the most common type data object you will use in `R` is the data frame. Data frames are tabular objects (rows and columns) similar in structure to spreadsheets (think Excel or GoogleSheets). In effect, data frames store multiple vectors - each column of the data frame is a vector. As such, each column can be a different class (numeric, character, etc.) but all values within a column must be the same class. Just as the first row of an Excel spreadsheet can be a list of column names, each column in a data frame has a name that (hopefully) provides information about what the values in that column represent. 
 
 To see how data frames work, we can create a simple one using the `data.frame()` function. In this function, we provide the name of each column followed by a vector containing the values of that column. Just like naming vector objects, the column names cannot start with a number and should not contain spaces. 
 
