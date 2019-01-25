@@ -30,6 +30,10 @@ navbar:
           href: articles/Lecture3/lecture3.html
         - text: "Lecture 4: Density-dependent population growth"
           href: articles/Lecture4/Lecture4.html
+        - text: "Lecture 6: Stochasticity"
+          href: articles/Lecture6/lecture6.html
+        - text: "Lecture 7: Dynamics of small populations"
+          href: articles/Lecture7/Lecture7.html
     - icon: fas fa-desktop
       text: "Labs"
       menu:
@@ -37,6 +41,8 @@ navbar:
           href: articles/lab1.html
         - text: "Lab 1b: Introduction to R Markdown"
           href: articles/rmarkdown_intro.html
+        - text: "Lab 2: Modeling population dynamics"
+          href: articles/lab2.html
     - icon: fas fa-pencil-square-o
       text: "Assignments"
       href: articles/homework.html
