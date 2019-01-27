@@ -1,9 +1,10 @@
 ---
-title: "Lab 1"
-author: "Principles of inference in population ecology"
+title: "Lab 1: Introduction to R and mark-recapture"
+subtitle: "WILD3810: Plant and animal populations"
+author: "Spring 2019"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Lab 1}
+  %\VignetteIndexEntry{Lab1}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
@@ -15,32 +16,288 @@ knitr::opts_chunk$set(
 )
 ```
 
-> Learning objectives:  
->   1) blah  
->   2) blah blah  
+## What is R?
 
-# Background
+R is a free, open-source programming language and software environment for statistical computing, bioinformatics, visualization and general computing.  
 
-The primary objective of this lab is to provide a gentle introduction to the statistical programming language R. 
+It is based on an ever-expanding set of analytical packages that perform specific analytical, plotting, and other programming tasks. 
 
-### Why learn to program?
+## Why R?
 
-### Why R? 
+R is free(!), runs on pretty much every operating system, and has a huge user base.  
 
-### The WILD3810 philosophy
+R is far from the only programming language for working with data. But it is the most widely used language in the fields of ecology, evolution, and wildlife sciences. If you plan to pursue a career in any of these fields, proficiency in `R`is quickly becoming a prerequisite for many jobs.  
+
+Even if you don't pursue a career in one of these fields, the ability to manipulate, analyze, and visualize data (otherwise known as *data science*) is an extremely marketable skill in many professions right now.  
+
+## Additional resources and where to get help
+
+We will go over the basics of using `R` during lab sessions but there are many good online resources for learning `R` and getting help. A few of my favorites include: 
+
+- Tom Edward's online [Learning R](http://learnr.usu.edu/) course (from which much of this material is borrowed)  
 
 
-# Excercises
+- [Data Analysis and Visualization in R for Ecologists](https://datacarpentry.org/R-ecology-lesson/) (also from which much of this material is borrowed)  
 
-The primary material for this lab can be found by running the following code:
+Of course, if you encounter error messages you don't understand or need help figuring out how to accomplish something in `R`, `google` is your best friend (even the most experienced `R` users use google on a daily basis). The key to finding answers on google is asking the right questions. Because we will not spend much time on this topic in lab, please refer to these links for advice on formulating `R`-related questions:
 
-```{r eval=FALSE}
-learnr::run_tutorial("", package = "WILD3810")
+- [How to ask for R help](https://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
+
+- [Seeking help](https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html#seeking_help) from Data Analysis and Visualization in R for Ecologists 
+
+## Using `R`- the very basics 
+
+As a statistical programming tool, one thing R is very good at is doing math. So as a starting point, let's treat `R`like a fancy calculator.  
+
+We interact with this calculator by typing numbers and operators (+, -, *, /) into the `Console` window.  
+
+Let's try it - in the bottom left window (the Console), write the `R`code required to add two plus two and then press enter:
+
+``` {r calc, echo=TRUE, eval = FALSE}
+2+2
 ```
 
-# Assignment
+When you run the code, you should see the answer printed below the window. Play with your code a bit - try changing the number and the operators and then run the code again.  
 
+## Creating objects
 
-```{r eval=FALSE}
-WILD3810::get_assignment("Assignment1")
+We can run `R`like a calculator by typing equations directly into the console and then printing the answer. But usually we don't want to just do a calculation and see the answer. Instead, we assign *values* to *objects*. That object is then saved in R's memory which allows us to use that object later in our analysis. 
+
+This probably seems a bit confusing so let's try it. The following code creates an *object* called `x` and *assigns* it a value of `3`: 
+
+```{r echo = TRUE}
+x <- 3
 ```
+
+The operator `<-` is how we do assignments in R. Whatever is to the left of `<-` is the object's name and whatever is to the right is the value. As we will see later, objects can be much more complex than simply a number but for now, we'll keep it simple. 
+
+**You try it - change the code to create an object called `new.x`. Instead of assigning `new.x` a number, give it a calculation, for example `25/5`. What do you think the value of `new.x` is?**  
+
+## Working with objects
+
+In the exercise above, you may have noticed that after running the code, `R`did not print anything. That is because we simply told `R`to create the object (in the top right window, if you click on the `Environment` tab, you should see `x` and `new.x`). Now that it is stored in R's memory, we can do a lot of things with it. For one, we can print it to see the value. To do that, we simply type the name of the object and run the code:
+
+```{r printx, echo=TRUE}
+new.x <- 25/5
+new.x
+```
+
+We can also use objects to create new objects. *What do you think the following code does?*
+
+```{r multx, echo=TRUE}
+x <- 3
+y <- x*4
+```
+
+After running it, print the new object `y` to see its value. Were you right?
+
+## Naming objects
+
+It's a good idea to give objects names that tell you something about what the object represents. Names can be as long as you want them to be but should not have spaces (also remember long names require more typing so brevity is a good rule of thumb). Names also cannot start with a number and `R`is case-sensitive so, for example, `Apple` is **not** the same as `apple`.  
+
+## Using scripts instead of the console
+
+The console is useful for doing simple tasks but as our analyses become more complicated, the console is not very efficient. What if you need to go back and change a line of code? What if you want to show your code to someone else to get help?
+
+Instead of using the console, most of our work will be done using scripts. Scripts are special files that us to write, save, and run many lines of code. Scripts can be saved so you can work on them later or send them to collaborators.  
+
+To create a script, click `File -> New File -> R Script`. This new file should show up in a new window. 
+
+# Exercise 1: Lincoln-Peterson estimator
+
+Let's use this new script to better understand the Lincoln-Peterson that we learned about in lecture 2.  
+
+Remember that the Lincoln-Peterson method is used to estimate the abundance of a closed population using mark-recapture data. As a reminder, the Lincoln-Peterson estimator is:
+
+$$N = \frac{n_1n_2}{m_2}$$
+
+where $n_1$ is the number of individuals captured (and marked) on the first sampling occasion, $n_2$ is the number of individuals captured on the second sampling occasion, and $m_2$ is the number of marked individuals in the second sample. 
+
+Let's use `R`to estimate N for some made up data. In the script you just opened, create three new objects that represent the parameters in the Lincoln-Peterson estimator. Modify the following code to tell `R`that we captured 44 individuals on the first occasion, 32 on the second, and of those 32 sampled on the second occasion, 15 were marked:
+
+```{r echo=TRUE, eval = FALSE}
+n1 <-
+
+n2 <-
+  
+m2 <- 
+```
+
+After entering the code, highlight all three lines and then click `Ctrl + Enter` (or `command + return` on Mac) to run the code. Note that you should see the code in the console.  
+
+Now add a new line of code below `m2 <- ` and estimate $N$ from our newly created objects using the Lincoln-Peterson: 
+
+```{r include = FALSE, echo = TRUE, eval = TRUE}
+N <- n1 * n2 / m2
+```
+## Commenting your code
+
+R will ignore any code that follows a `#`. This is *very* useful for making your code more readable for both yourself and others. Use comments to remind yourself what a newly created object is, to explain what a line of code does, to leave yourself a reminder for later, etc. For example, in the previous code, it might be a good idea to use comments to define what each object represents:
+
+```{r LP_comment, echo = TRUE}
+n1 <- 44     # Number of individuals captured on first occasion
+
+n2 <- 32     # Number of individuals captured on second occasion
+  
+m2 <- 15     # Number of previously marked individuals captured on second occasion
+```
+
+Notice that when you run this code, `R`ignores the comments. 
+
+## Built-in functions
+
+The power of `R` is most apparent in the large number of built-in functions that are available for users.  
+Functions are small bits of code that perform a specific task. Most functions accept one or more inputs called arguments and return a value or a new object.  
+
+In the Lincoln-Peterson example, rather than typing `n1 * n2` we could use the function `prod()`. Prod takes as arguments 2 or more numbers (separated by commas) and returns the product:
+
+```{r product, echo=TRUE}
+n1 <- 45     # Number of individuals captured on first occasion
+
+n2 <- 32     # Number of individuals captured on second occasion
+
+numerator <- prod(n1, n2)
+numerator
+```
+
+Here, we provided `n1` and `n2` are arguments and `prod` created a new object called `numerator` which is the product of our two value. It may seem silly to use a function in this case (it didn't save us much work afterall) but this type of function can be useful if you had a longer set of values and didn't want to type them manually to get the product
+
+### Built-in functions
+
+Every function takes a different set of arguments and in most cases you will need to look what those arguments are. The best way to get help for a specific function is to type a question mark followed by the function name. For example, the `round` function rounds a number to a specified number of decimal places. This is a useful function when we don't want to print a really large number of digits (like our L-P estimate of $N$):
+
+```{r help, eval = FALSE, echo = TRUE}
+?round
+```
+
+So we see `round` takes an argument called `x`, which is the number we want to round, and the number of `digits` we want to round to. If you provide the arguments in the exact same order as they are defined you don’t have to name them. For example, :
+
+```{r round, eval = TRUE, echo = TRUE}
+N <- prod(n1, n2)/m2
+N
+
+round(N, 2)
+```
+
+If you do name the arguments, you can switch their order:
+
+```{r round2, eval = TRUE, echo = TRUE}
+round(digits = 2, x = N)
+```
+
+Although you don't have to name arguments, it’s a good idea to get in the habit of naming them. This will make you code easier to read, will help avoid mistakes that can occur when you don't put the arguments in the correct order, and makes it easier to trouble shoot code that doesn't do what you expect it to do. 
+
+# Vectors
+
+So far, we have only been working with objects that store a single number. However, often it is more convienient to store a string of numbers as a single object. In `R`, these strings are called *vectors* and they are created by enclosing the string between `c(` and `)`:
+
+```{r echo = TRUE}
+x <- c(3,5,2,5)
+x
+```
+
+A vector can also contain characters (though you cannot mix numbers and charactors in the same vector!):
+
+```{r echo = TRUE}
+occasions <- c("Occasion1", "Occasion2", "Occasion3")
+occasions
+```
+
+The quotes around “Occasion1”, “Occasion2”, and "Occasion3" are critical. Without the quotes `R` will assume there are objects called `Occasion1`, `Occasion2` and `Occasion3`. As these objects don’t exist in `R`’s memory, there will be an error message.  
+
+Vectors can be any length (including 1. In fact, the numeric objects we've been working with are just vectors with length 1). The function `length()` tells you how long a vector is:
+
+```{r echo = TRUE}
+length(x)
+```
+
+The function `class()` indicates the class (the type of element) of an object:
+
+```{r echo = TRUE}
+class(x)
+class(occasions)
+```
+
+What is the class of a vector with both numeric and characters entries? Hint:
+
+```{r echo = TRUE}
+mixed <- c(1, 2, "3", "4")
+```
+
+You can also use the `c()` function to add other elements to your vector:
+
+```{r echo = TRUE}
+y <- c(x, 4,8,3)
+```
+
+Vectors are one of the many data structures that R uses. Other important ones are lists (list), matrices (matrix), data frames (data.frame), factors (factor) and arrays (array). We will learn about each of those data structures as we encounter them in our exercises. 
+
+# Exercise 2: The Schnabel method
+
+To better understand how we use vectors in `R` and to expand on our discussion of abundance estimation, we will learn how to use the **Schnabel method** to estimate $N$.  
+
+In many studies, researchers attempt to resight marked individuals on more than 2 occasions. Unfortunatley, the Lincoln-Peterson method is restricted to data from only 2 capture occasions, meaning that to use it, we have to throw up data from occasions $3,4,...,T$.   
+
+In the 1930's, a mathmetician at the University of Wisconsin named Zoe Emily Schnabel, expanded on the Lincoln-Peterson method to include $>2$ occasions. The Schnabel method uses three pieces of information collected at each occassion: **$C_t$**, the number of captured individuals during occasion $t$; **$R_t$**, the number of recaptures captured during occasion $t$; and **$M_t$**, the number of individuals marked in the population at occasion $t$ (or, the total number of marked individuals at risk of being captured on occasion $t$). Using these data, the Schnabel estimator is:
+
+$$\hat{N} = \frac{\sum_t(C_t \times M_t)}{\sum_t R_t}$$
+*Remember that $\sum_t$ means the sum of the values across at $T$ occasions.*
+
+To better understand what each of these data mean, we will use an example from [Powell (2015)](http://docs.wixstatic.com/ugd/95e73b_6d832c61405d4b3cbd9d99bbb4530f7b.pdf) (pages 96-97). Students on a research trip to Puerto Rico did a 3-day mark-recapture study to estimate the number of Cuban rock iguanas (*Cyclura nubila*) on the island Isla Magueyes. On the first day, the students observed and marked (using latex paint) 155 iguanas. On the second day, they observed 175 individuals (109 marked and 66 unmarked; note that the 66 unmarked individuals were captured, marked, and released). On the third day, they observed 131 individuals (116 marked and 15 unmarked).
+
+```{r iguanas, echo = FALSE}
+library(kableExtra)
+iguanas <- data.frame(Day = c(1,2,3),
+                      C = c(155, 175, 131),
+                      R = c(0, 109, 116))
+
+iguanas %>%
+  kable("html", col.names = c("Day", "Animals Observed", "Animal with marks"), align = 'c') %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE)
+
+```
+
+In this example, $C_t =$
+
+```{r echo = TRUE}
+Ct <- c(155, 175, 131) # Number of captures during each occassion
+```
+
+and $R_t =$
+
+```{r echo = TRUE}
+Rt <- c(0, 109, 116) # Number of recaptures during each occassion
+```
+
+What is $M_t$? On the first day, there are no previously marked individuals so $M_1=0$. On the second day, there are 155 marked individuals in the population (all of the individuals marked on day 1) so $M_2=155$. On day 3, the students could have observed individuals marked on the first day or individuals marked on the second day so $M_3 = 155 + 66 = 221$. So:
+
+```{r echo = TRUE}
+Mt <- c(0, 155, 221) # Number of recaptures during each occassion
+```
+
+Now to estimate $\hat{N}$. We *could* do it by hand:
+
+```{r eval = FALSE}
+
+N <- ((155*0) + (175 * 155) + (131 * 221)) / (0 + 109 + 116)
+
+```
+
+However, that is *a lot* of typing and it's pretty likely we would make a mistake somewhere along the way (typos or misplaced parentheses). `R` is clever enough to allow us to use the previously created vectors. First, let's see what happens when we multiply two vectors together:
+
+```{r echo = TRUE}
+Ct * Mt
+```
+
+As you can see, we created a new vector that is the same length as the original vectors (3). When you mutiply (or add, subtract, or divide) two vectors, `R` multiplies the first element of first vector times the first element of the second vector, the second element of first vector times the second element of the second vector, the third element of first vector times the third element of the second vector, etc, and then combines them into a new vector. 
+
+We can also use the `sum()` function to add up all of the elements of a vector (similar to the `prod()` function we saw earlier). So:
+
+```{r echo = TRUE}
+N <- sum(Ct * Mt) / sum(Rt)
+round(x = N, digits = 0)
+```
+
+Much easier! 
+
+# Introduction to R Markdown
