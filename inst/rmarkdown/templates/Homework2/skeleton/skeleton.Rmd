@@ -83,7 +83,7 @@ In the chunk below, do the following:
 
 > 4a) Complete the `mutate()` arguments to create a new column in the data frame called `logN` and fill the columns with `NA` (uncomment the line after you are done so R will run the code)
 
-> 4b) Complete the `for` loop code to estimate `logN` in each year. Remember that `logN[t]= Count[t+1] - Count[t]`. Use that relationship to change the `?`'s on line 94 to the correct indexes. Also remember that we cannot estimate `logN` in the last year because we don't know $N_{t+1}$. Use that to change the `?` on line 93 to correct upper limit for the loop (uncomment all lines in the loop after you are done so R will run the code). 
+> 4b) Complete the `for` loop code to estimate `logN` in each year. Remember that `logN[t]= Count[t+1] / Count[t]`. Use that relationship to change the `?`'s in `all_dove_counts$Count[?]` and `all_dove_counts$Count[?]` to the correct indexes. Also remember that we cannot estimate `logN` in the last year because we don't know $N_{t+1}$. Use that to change the `?` in `for(t in 1:?)` to correct upper limit for the loop (uncomment all lines in the loop after you are done so R will run the code).
 
 
 ```{r}
@@ -138,7 +138,7 @@ data("ut_dove_counts")
 
 # for(t in ?:?){
 #  r <- ?
-#  predicted_doves$Count[i] <- predicted_doves$Count[t-1] * ?
+#  predicted_doves$Count[t] <- predicted_doves$Count[t-1] * ?
 #}
 ```
 
