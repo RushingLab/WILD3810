@@ -182,17 +182,19 @@
 Image courtesy of Charles J Sharp via Wikicommons (CC BY-SA 4.0)
 </p>
 </div>
-<p>For this exercise, we will use data from the North American <a href="https://www.mbr-pwrc.usgs.gov/bbs/">Breeding Bird Survey</a> to examine the rapid population growth of Eurasian collared-doves (<em>Streptopelia decaocto</em>) in the state of Utah. Eurasian collared-doves are an introduced species that, as you will soon see, have been rapidly expanding westward across the United States. In this lab, we will focus on modeling and visualizing this growth.</p>
+<p>For this exercise, we will use data from the North American <a href="https://www.mbr-pwrc.usgs.gov/bbs/">Breeding Bird Survey</a> to model and visualize the rapid population growth of Eurasian collared-doves (<em>Streptopelia decaocto</em>) in the state of Utah. Eurasian collared-doves are an introduced species that, as you will soon see, have been rapidly expanding westward across the United States since they were introduced in Florida in the early 1990’s.</p>
+<p>The Breeding Bird Survey is a roadside monitoring program conducted by volunteers across North America every year since the late 1960’s. Each survey route is 25 mils long and surveyors stop every 0.5 mile (50 stops total) to count every bird they see or hear. For this lab, we will use the average number of counts in each year across all BBS routes that are located in Utah.</p>
 <div id="getting-the-data" class="section level3">
 <h3 class="hasAnchor">
 <a href="#getting-the-data" class="anchor"></a>Getting the data</h3>
-<p>A summary of the Utah collared-dove counts is included in the course package <code>WILD3810</code>. Because the data was added to the package after our last lab, we need to install the most update-to-date version of the package to access it.</p>
+<p>A summary of the Utah collared-dove counts is included in the course package <code>WILD3810</code>. One thing we did not discuss in lab 1 was what packages are and how to access their content in your current <code>R</code> environment (remember that every time you open RStudio, it creates a new “environment”. This environment stores all of the objects you create during that R session). Packages are ways to share custom <code>R</code> functions and data that do not come with <code>R</code> itself. Packages allow anyone to contribute useful code and data for other <code>R</code> users to use as part of their analyses. The <code><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages()</a></code> function downloads the package onto your computer (note that we use a slightly different function to install the <code>WILD3810</code> package but 99% of the time you will use <code><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages()</a></code>).</p>
+<p>Because the BBS data was added to the package after our last lab, we need to install the most update-to-date version of the package to access it.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Re-install course website to get the most up-to-date version
 devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"RushingLab/WILD3810"</span>)</code></pre></div>
-<p>One thing we did not discuss in lab 1 was what packages are and how to access their content in your current <code>R</code> environment (remember that every time you open RStudio, it creates a new “environment”. This environment stores all of the objects you create during that R session). Packages are ways to share custom <code>R</code> functions and data that do not come with <code>R</code> itself. Packages allow anyone to contribute useful code and data for other <code>R</code> users to use as part of their analyses. The <code><a href="https://www.rdocumentation.org/packages/utils/topics/install.packages">install.packages()</a></code> function downloads the package onto your computer. However, when we open <code>R</code>, we have <em>load</em> the package in order to make its functions and data available in our current session. Packages are loaded using the <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library()</a></code> function with the package name as the argument:</p>
+<p>It’s important to realize that installing a package does not automatically make it’s code and data available with your current <code>R</code> session. When you open <code>R</code>, you have to <em>load</em> the package in order to make its functions and data available in the current session. Packages are loaded using the <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library()</a></code> function with the package name as the argument:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Load the package to make data and code available in current R environment
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(WILD3810)</code></pre></div>
-<p>Now that we have loaded the <code>WILD3810</code> package, we can load the dove data using the <code><a href="https://www.rdocumentation.org/packages/utils/topics/data">data()</a></code> function:</p>
+<p>Now that we have loaded the <code>WILD3810</code> package, we can load the dove data using the <code><a href="https://www.rdocumentation.org/packages/utils/topics/data">data()</a></code> function. This function is used to load data objects that come with packages:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"ut_dove_counts"</span>)</code></pre></div>
 <p>Notice that in the <code>Environment</code> tab in the top right panel, you now see an object called <code>ut_dove_counts</code>. This object holds the data values we will use in this exercise.</p>
 </div>
@@ -200,8 +202,8 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <h2 class="hasAnchor">
 <a href="#introduction-to-data-frames" class="anchor"></a>Introduction to data frames</h2>
 <p>In the <a href="https://rushinglab.github.io/WILD3810/articles/lab1.html">last lab</a>, we learned about one particular class of <code>R</code> object - vectors. Vectors hold a string of values as a single object. Although useful for many applications, vectors are limited in their ability to store multiple types of data (numeric and character).</p>
-<p>This is where data frames become useful Perhaps the most common type data object you will use in <code>R</code> is the data frame. Data frames are tabular objects (rows and columns) similar in structure to spreadsheets (think Excel or GoogleSheets). In effect, data frames store multiple vectors - each column of the data frame is a vector. As such, each column can be a different class (numeric, character, etc.) but all values within a column must be the same class. Just as the first row of an Excel spreadsheet can be a list of column names, each column in a data frame has a name that (hopefully) provides information about what the values in that column represent.</p>
-<p>To see how data frames work, let’s view the <code>ut_dove_counts</code> object. We can do this in several ways. The <code><a href="https://www.rdocumentation.org/packages/utils/topics/head">head()</a></code> function, for example, will print the first 6 rows of the data frame:</p>
+<p>This is where data frames become useful. Perhaps the most common type data object you will use in <code>R</code> is the data frame. Data frames are tabular objects (rows and columns) similar in structure to spreadsheets (think Excel or GoogleSheets). In effect, data frames store multiple vectors - each column of the data frame is a vector. As such, each column can be a different class (numeric, character, etc.) but all values within a column must be the same class. Just as the first row of an Excel spreadsheet can be a list of column names, each column in a data frame has a name that (hopefully) provides information about what the values in that column represent.</p>
+<p>To see how data frames work, let’s view the <code>ut_dove_counts</code> object. We can do this in several ways. The <code><a href="https://www.rdocumentation.org/packages/utils/topics/head">head()</a></code> and <code><a href="https://www.rdocumentation.org/packages/utils/topics/head">tail()</a></code> functions, for example, will print the first and last 6 rows of the data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(ut_dove_counts)
 <span class="co">#&gt; # A tibble: 6 x 2</span>
 <span class="co">#&gt;    Year Count</span>
@@ -211,8 +213,19 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <span class="co">#&gt; 3  1970     0</span>
 <span class="co">#&gt; 4  1971     0</span>
 <span class="co">#&gt; 5  1972     0</span>
-<span class="co">#&gt; 6  1973     0</span></code></pre></div>
-<p>We can see that <code>ut_dove_counts</code> contains two columns: <code>Year</code> and <code>Count</code> (the counts are actually mean number of Eurasian-collared doves counted across all BBS routes within the state of Utah in each year). Obviously there weren’t many collared-doves in Utah in the late 1960’s. Several other useful functions for investigating the structure of data frames are <code><a href="https://www.rdocumentation.org/packages/utils/topics/str">str()</a></code> and <code><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary()</a></code></p>
+<span class="co">#&gt; 6  1973     0</span>
+
+<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">tail</a></span>(ut_dove_counts)
+<span class="co">#&gt; # A tibble: 6 x 2</span>
+<span class="co">#&gt;    Year Count</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  2010  1.74</span>
+<span class="co">#&gt; 2  2011  1.69</span>
+<span class="co">#&gt; 3  2012  1.49</span>
+<span class="co">#&gt; 4  2013  2.35</span>
+<span class="co">#&gt; 5  2014  2.94</span>
+<span class="co">#&gt; 6  2015  3.22</span></code></pre></div>
+<p>We can see that <code>ut_dove_counts</code> contains two columns: <code>Year</code> and <code>Count</code> (the counts are actually mean number of Eurasian-collared doves counted across all BBS routes within the state of Utah in each year). Obviously there weren’t many collared-doves in Utah in the late 1960’s/early 1970’s. Several other useful functions for investigating the structure of data frames are <code><a href="https://www.rdocumentation.org/packages/utils/topics/str">str()</a></code> and <code><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary()</a></code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(ut_dove_counts)
 <span class="co">#&gt; Classes 'tbl_df', 'tbl' and 'data.frame':    48 obs. of  2 variables:</span>
@@ -231,6 +244,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <p>Another useful function is <code><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow()</a></code>, which tells us now many rows are in the data frame (similar to <code><a href="https://www.rdocumentation.org/packages/base/topics/length">length()</a></code> for vectors):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(ut_dove_counts)
 <span class="co">#&gt; [1] 48</span></code></pre></div>
+<p>Because the <code>ut_dove_counts</code> data frame has one row per year, the <code><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow()</a></code> function is very useful to determining how many years of BBS data we have (remember that!).</p>
 <div id="subsetting-data-frames" class="section level3">
 <h3 class="hasAnchor">
 <a href="#subsetting-data-frames" class="anchor"></a>Subsetting data frames</h3>
@@ -238,7 +252,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <div id="selecting-columns" class="section level4">
 <h4 class="hasAnchor">
 <a href="#selecting-columns" class="anchor"></a>Selecting columns</h4>
-<p>First, we may want to select a subset of all of the columns in a big data frame. Data frames are essentially tables, which means we can reference both rows and columns by their number: <code>data.frame[row#, column#]</code>. The row and column numbers have to put inside of square brackets following the name of the data frame object. The row number always comes first and the column number second. If you want to select all rows of a specific column, you just leave the <code>row#</code> blank:</p>
+<p>First, we may want to select a subset of all of the columns in a big data frame. Data frames are essentially tables, which means we can reference both rows and columns by their number: <code>data.frame[row#, column#]</code>. The row and column numbers have to put inside of square brackets following the name of the data frame object. The row number always comes first and the column number second. If you want to select all rows of a specific column, you just leave the <code>row#</code> blank. For example, if we wanted a vector containing all of the years the BBS data was collected:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ut_dove_counts[,<span class="dv">1</span>]
 <span class="co">#&gt; # A tibble: 48 x 1</span>
 <span class="co">#&gt;     Year</span>
@@ -308,7 +322,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <div id="filtering-rows" class="section level3">
 <h3 class="hasAnchor">
 <a href="#filtering-rows" class="anchor"></a>Filtering rows</h3>
-<p>To select specific rows, we can use the <code>row#</code> method we learned above:</p>
+<p>To select specific rows, we can use the <code>row#</code> method we learned above, this time leaving the columns blank:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ut_dove_counts[<span class="dv">1</span>,]
 <span class="co">#&gt; # A tibble: 1 x 2</span>
 <span class="co">#&gt;    Year Count</span>
@@ -328,7 +342,7 @@ ut_dove_counts[<span class="kw"><a href="https://www.rdocumentation.org/packages
 <span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt;</span>
 <span class="co">#&gt; 1  1968     0</span>
 <span class="co">#&gt; 2  1997     0</span></code></pre></div>
-<p>Note that we can use the square brackets to also subset vectors, in which case we don’t need the comma:</p>
+<p>Note that we can use the square brackets to also subset vectors, in which case we don’t need the comma as long as you tell <code>R</code> which column you want first:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ut_dove_counts<span class="op">$</span>Count[<span class="dv">1</span>]
 <span class="co">#&gt; [1] 0</span></code></pre></div>
 <p>Sometimes, we may not know the specific row number(s) we want but we do know the value of one of the columns we want to keep. Using the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function in the <code>dplyr</code> package allows us to filter rows based on the value of one of the variables. For example, if we want just the 2004 count, we use:</p>
@@ -476,7 +490,7 @@ predicted_doves<span class="op">$</span>Count[<span class="dv">2</span>] &lt;-<s
 predicted_doves<span class="op">$</span>Count[<span class="dv">3</span>] &lt;-<span class="st"> </span>predicted_doves<span class="op">$</span>Count[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>lambda
 
 ## 2018 count
-predicted_doves<span class="op">$</span>Count[<span class="dv">4</span>] &lt;-<span class="st"> </span>predicted_doves<span class="op">$</span>Count[<span class="dv">2</span>] <span class="op">*</span><span class="st"> </span>lambda</code></pre></div>
+predicted_doves<span class="op">$</span>Count[<span class="dv">4</span>] &lt;-<span class="st"> </span>predicted_doves<span class="op">$</span>Count[<span class="dv">3</span>] <span class="op">*</span><span class="st"> </span>lambda</code></pre></div>
 <p>But that is a lot of typing. Notice that in each line of code, we’re doing <em>exactly</em> the same thing just with different values. <code>R</code> has many ways to apply a specific operation (in this case <code>count[t] &lt;- count[t-1] * lambda</code>) multiple times without having to manually write out each separate line of code. One of the most basic ways of doing this is with <code>for</code> loops.</p>
 <p><code>for</code> loops allow us to give <code>R</code> a chunk of code, run that code a set number of times, and each time the code is run change the values that need to be changed. In our case, we need to run <code>count[t] &lt;- count[t-1] * lambda</code> 20 times (once for each year), each time changing the value of <span class="math inline">\(t\)</span> (<span class="math inline">\(2, 3, 4, 5,...,20\)</span>). The following code does exactly that using a <code>for</code> loop:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Fill in predicted counts
