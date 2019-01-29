@@ -247,15 +247,24 @@ Average count of Eurasian collared-doves at BBS routes in the eastern United Sta
 <p>The first step in this process is to estimate <span class="math inline">\(log\Bigg(\frac{N_{t+1}}{N_t}\Bigg)\)</span> for each year of data.</p>
 <p>In the chunk below, do the following:</p>
 <blockquote>
-<p>4a) Complete the <code>mutate()</code> arguments to create a new column in the data frame called <code>logN</code> and fill the columns with <code>NA</code> (uncomment the line after you are done so R will run the code)</p>
+<p>4a) Complete the <code>mutate()</code> arguments to create a new column in the data frame called <code>logN</code> and fill the column with <code>NA</code> (uncomment the line after you are done so R will run the code)</p>
 </blockquote>
 <blockquote>
-<p>4b) Complete the <code>for</code> loop code to estimate <code>logN</code> in each year. Remember that <code>logN[t]= Count[t+1] - Count[t]</code>. Use that relationship to change the <code>?</code>’s on line 94 to the correct indexes. Also remember that we cannot estimate <code>logN</code> in the last year because we don’t know <span class="math inline">\(N_{t+1}\)</span>. Use that to change the <code>?</code> on line 93 to correct upper limit for the loop (uncomment all lines in the loop after you are done so R will run the code).</p>
+<p>4b) Complete the <code>for</code> loop code to estimate <code>logN</code> in each year. Remember that <code>logN[t]= Count[t+1] / Count[t]</code>. Use that relationship to change the <code>?</code>’s in <code>all_dove_counts$Count[?]</code> and <code>all_dove_counts$Count[?]</code> to the correct indexes (uncomment all lines in the loop after you are done so R will run the code).</p>
+</blockquote>
+<blockquote>
+<p>4c) Why was it necessary to filter only the counts in years &gt; 1985? Hint: What is the value of <code>logN</code> from years 1968-1969. Write you answer in <strong>bold</strong> below.</p>
+</blockquote>
+<blockquote>
+<p>4d) In the <code>for</code> loop, the upper limit is set to <code>nrow(all_dove_counts) - 1</code>. What is the specific numeric value of this line of code and what does it correspond to in the data? Write your answer in <strong>bold</strong> below.</p>
 </blockquote>
 <pre class="r"><code>library(dplyr)
+
+all_dove_counts &lt;- filter(all_dove_counts, Year &gt; 1985)
+
 # all_dove_counts &lt;- mutate(all_dove_counts, ?)
 
-# for(t in 1:?){
+# for(t in 1:(nrow(all_dove_counts)-1)){
 #   all_dove_counts$logN[t] &lt;- log(all_dove_counts$Count[?] / all_dove_counts$Count[?])
 # }</code></pre>
 <p>Now we can plot <code>logN</code> vs. <code>N</code> and choose values of <span class="math inline">\(r_0\)</span> and <span class="math inline">\(K\)</span>. In the chunk below:</p>
@@ -272,48 +281,45 @@ K &lt;- 5
   # geom_hline(yintercept = 0, linetype = &quot;longdash&quot;, color = &quot;grey50&quot;) +
   # geom_abline(slope = -r0/K, intercept = r0, color = &quot;red&quot;)</code></pre>
 <blockquote>
-<p>5c) What do you predict the population size of collared-doves will be in Utah in 2035?</p>
+<p>5c) What do you predict the population size of collared-doves will be in Utah in 2035? Hint - you do not need to predict any new values to answer this question. If we assume density-dependent growth, what paramter in the model determines the maximum long-term population size?</p>
 </blockquote>
 <p>Now modify the code from lab 2 to predict the future dynamics of collared-doves in Utah (uncomment all lines so that <code>R</code> will run them once you have filled in the missing parts):</p>
 <blockquote>
-<p>6a) Create a new data frame called <code>predicted_doves</code> and give it two columns: <code>Year</code> and <code>Count</code>. <code>Year</code> should be a sequence from 2015-2035 and <code>Count</code> should be NA</p>
+<p>6a) Create a new data frame called <code>predicted_doves</code> with columns <code>Year</code> and <code>Count</code>. Complete the code so that <code>Year</code> is a sequence from 2015-2035 and <code>Count</code> is <code>NA</code></p>
 </blockquote>
 <blockquote>
-<p>6b) Assign the first count in <code>predicted_doves</code> the value of the last count in <code>ut_dove_counts</code></p>
+<p>6b) The next line of code sets the first count in <code>predicted_doves</code> (<code>predicted_doves$Count[1]</code>) to the last count in <code>ut_dove_counts</code> (because we have 48 years of data, we subset the 48th element in the vector of counts <code>ut_dove_counts$Count[48]</code>). Rather than add up the number of years and type <code>48</code>, we could let <code>R</code> figure out how many years are in the data frame and then fill in this value inside the sqaure brackets. What function could we use inside the square brackets to fill in the value of 48? Change the <code>48</code> to this function and provide the correct argument - Hint: how many rows are in <code>ut_dove_counts</code>?</p>
 </blockquote>
 <blockquote>
-<p>6c) Fill in the upper and lower index values inside of <code>for(t in ?:?)</code>. Hint: Remember that we already filled in <code>Count[1]</code> so what row of the data frame should the loop start on?</p>
+<p>6c) Fill in the upper and lower index values inside of <code>for(t in ?:?)</code>. Hint: Remember that we already filled in <code>Count[1]</code> so what row of the data frame should the loop start on? We want the loop to end on the final year of our predicted counts so the upper limit should correspond to the number of years in that data frame.</p>
 </blockquote>
 <blockquote>
-<p>6d) Next fill in the formula for <code>r</code> as a function <code>Count</code> using equation 1 above (be sure you use square brackets and the correct indexing value to use the correct <code>Count</code> in this formula)</p>
-</blockquote>
-<blockquote>
-<p>6e) Finally, multiply the current count (<code>Count[t-1]</code>) by the proper growth rate to predict <code>Count[t]</code>. Hint - remember that you estimated <code>r</code> in each loop but we are using a discrete population model based on <span class="math inline">\(\lambda\)</span>.</p>
+<p>6d) Finally, replace the <code>?</code> so that the current count (<code>predicted_doves$Count[t-1]</code>) is multiplied by the proper growth rate to predict <code>predicted_doves$Count[t]</code>. Hint - notice that the code estimates <code>r</code> in each loop based on the current population size but we are using a discrete population model based on <span class="math inline">\(\lambda\)</span>.</p>
 </blockquote>
 <pre class="r"><code>data(&quot;ut_dove_counts&quot;)
 
-# predicted_doves &lt;- data.frame(?,
-#                               ?)
+# predicted_doves &lt;- data.frame(Year = ?,
+#                               Count = ?)
 
-# predicted_doves$Count[?] &lt;- ut_dove_counts$Count[?]
+# predicted_doves$Count[1] &lt;- ut_dove_counts$Count[48]
 
 # for(t in ?:?){
-#  r &lt;- ?
-#  predicted_doves$Count[i] &lt;- predicted_doves$Count[t-1] * ?
+#  r &lt;- r0 - (r0/K) * predicted_doves[t-1]
+#  predicted_doves$Count[t] &lt;- predicted_doves$Count[t-1] * ?
 #}</code></pre>
 <p>Modify the following code to:</p>
 <blockquote>
 <p>7a) Filter only years greater than 2015 in the <code>predicted_doves</code> data frame</p>
 </blockquote>
 <blockquote>
-<p>7b) Add a column called <code>Type</code> to both data frames and give that variable a value of <code>Predicted</code> in <code>predicted_doves</code> and <code>Count</code> in <code>ut_doves_counts</code></p>
+<p>7b) Add a column called <code>Type</code> to both data frames and give that variable a value of <code>Predicted</code> in <code>predicted_doves</code> and <code>Count</code> in <code>ut_doves_counts</code> (make sure you put “Predicted” and “Count” inside of quotation marks)</p>
 </blockquote>
 <blockquote>
 <p>7c) Complete the <code>bind_rows()</code> function to create a new data frame with both the actual and predicted counts</p>
 </blockquote>
 <pre class="r"><code># predicted_doves &lt;- filter(predicted_doves, ?)
-# predicted_doves &lt;- mutate(predicted_doves, ?)
-# ut_dove_counts &lt;- mutate(ut_dove_counts, ?)
+# predicted_doves &lt;- mutate(predicted_doves, Type = ?)
+# ut_dove_counts &lt;- mutate(ut_dove_counts, Type = ?)
 
 # all_doves &lt;- bind_rows()</code></pre>
 <p>Finally, modify the following code to:</p>
