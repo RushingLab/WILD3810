@@ -1,6 +1,6 @@
 ---
 title: "Homework 2"
-subtitle: "Warming up to R Markdown and the Chapman's modification"
+subtitle: "Predicting density-dependent growth of Eurasian collared-doves"
 author: "YOUR NAME HERE"
 output: html_document
 ---
@@ -28,155 +28,146 @@ If you have any problems with these steps, be sure to get help from either the i
 
 # Predicting future population size
 
-Collared-dove - predict using D-I model, 
+In [lab 2](https://rushinglab.github.io/WILD3810/articles/lab2.html), we used the exponential growth model to predict the future number of Eurasian collared-doves along Breeding Bird Survey routes in the state of Utah. Based on the rapid growth of this species over the past decade, this model predicted that there will be, on average, over 14,000 collared-doves at each BBS route by the year 2035.  
 
-## Estimating $\lambda$ or other paramters from counts 
+Obviously, the exponential model does not provide a realistic projection of population growth for this species. In this homework, you will use a different model to predict the future size of the collared-dove population. 
 
-estimate growth paramters for logistic model based on other state data, 
+## Density-dependent population growth  
+
+In [lecture 4](https://rushinglab.github.io/WILD3810/articles/Lecture4/Lecture4.html#1), we learned about an extension of the density-independent growth model called the **logistic growth model**:
+
+$$\Large \frac{dN}{dt} = N \times r_0 \bigg(1-\frac{N}{K}\bigg)$$
+
+where $r_0$ is the intrinsic rate of population growth (the rate when there is nothing limiting population growth) and $K$ is the carrying capacity. The logistic growth model indicates the number of individuals added to the population over a very small time period and is therefore most suited for **birth-flow** species (species that reproduce throughout the year). As population size approaches the carrying capacity, the population growth rate approaches 0, setting an upper-limit to population size. 
+
+The **Ricker model** is the discrete time version of the logistic growth model and is more appropriate for **birth-pulse** species that have distinct breeding seasons:
+
+$$\Large N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \frac{N_t}{K}\bigg)\bigg]}$$
+
+> 2) Which model do you think is more appropriate for modeling the dynamics of Eurasian collared-doves? Explain your answer below in **bold**.  
+
+If you need to know more about this species to answer this question, refer to this overview of [their ecology](https://www.allaboutbirds.org/guide/Eurasian_Collared-Dove/lifehistory)
 
 
-then Ricker model 
+## Eurasian collared-dove growth in the Eastern US
 
-When the number of individuals in the capture-recapture samples is large, the Lincoln-Peterson estimator returns an *unbiased* estimated of $N$. By unbiased, we mean that the Lincoln-Peterson estimator will *on average* match the true abundance of the population. It is important to note that bias applies to the average estimate - for any given sample, our estimate of $\hat{N}$ may be a little bigger or a little smaller than $N$. But if we took a large number of samples, we would get about the same number of low estimates as we get high estimates, so the average of all the samples would be $N$. 
+Both the logistic and Ricker models have the same underlying parameters - $r_0$ and $K$. Therefore, to use either model to predict population growth of collared-doves in Utah, we need estimates of these two quantities.  
 
-In most real-life scenarios, we only get to take a single sample of the target population so we never know if our estimate is a little bigger than $N$ or a little smaller than $N$ (that is why we estimate uncertainty - so we at least know the range of plausible values of $N$ given our data). However, we can use `R` to prove that the L-P estimator is unbiased by *simulating* a large number of samples from an imaginary population. 
+Because collared-doves do not appear to have reached their carrying capacity in Utah, we cannot use the Utah data to estimate $K$. However, in the eastern United States, collared-dove population growth does appear to have leveled off (they were originally introduced to the US in Florida so eastern populations have had more time to reach $K$). Data on the eastern counts is stored in a separate data frame:
 
-## Simulating mark-recapture samples in `R`
+```{r}
+data("all_dove_counts")
+```
 
-To start, we will add a code chunk to set up the code for our simulation (since this is the first assignment, the chunk has already been added below. In the future, you will be asked to add the chunk yourself so now is a good time to remember how to do that)  
+```{r echo = FALSE, fig.height=6, fig.width=8, fig.cap="Average count of Eurasian collared-doves at BBS routes in the eastern United States"}
+ggplot(all_dove_counts, aes(x = Year, y = Count)) + geom_path()
+```
 
-The key to using simulations is that we **know** the true values of all of the parameters in our model. In this case, the parameters are: $N$ (the true population size) and $p$ (the probability of capturing an individual in the population). In the code chunk below (named `Np` because it is the chunk we will use to set the values of $N$ and $p$; if you are reading this as the rendered HTML document, be sure to go back to the raw R Markdown file to complete the questions):
+As we saw in the Utah counts, the population increased rapidly after introduction but eventually stopped increasing and has remained relatively stable since the mid-1990's. We will use these data to estimate $r_0$ and $K$ (assuming that these parameters are the same or at least similar for doves in Utah and the eastern US).
 
-> 2a) Create an object called `N`, give it a value of 10000, and add a comment (using `#`) stating what the object represents
+> 3) What might be some reasons that the dove populations in the eastern US stopped growing once they reached their carrying capacity? In other words, what factors might limit population growth at large population sizes? Provide your answer below in **bold**  
 
-> 2b) Create an object called `p`, give it a value of 0.4, and add a comment (using `#`) stating what the object represents
 
-```{r Np}
+
+### Plotting the relationship between $r_0$, $K$, and $N$
+
+Notice that we can re-arrange the Ricker growth model as follows:
+
+$$\Large log\Bigg(\frac{N_{t+1}}{N_t}\Bigg) = r_0 -\frac{r_0}{K}N \tag{1}$$
+
+Also notice that this the equation for a line with y-intercept $=r_0$ and slope $=-\frac{r_0}{K}$. If we can plot $log\Bigg(\frac{N_{t+1}}{N_t}\Bigg)$ as a function of $N$, then a simple way to estimate the growth rate and carrying capacity is to choose values of $r_0$ and $K$ that correspond to a line that passes through these points. 
+
+The first step in this process is to estimate $log\Bigg(\frac{N_{t+1}}{N_t}\Bigg)$ for each year of data.  
+
+In the chunk below, do the following:
+
+> 4a) Complete the `mutate()` arguments to create a new column in the data frame called `logN` and fill the columns with `NA` (uncomment the line after you are done so R will run the code)
+
+> 4b) Complete the `for` loop code to estimate `logN` in each year. Remember that `logN[t]= Count[t+1] / Count[t]`. Use that relationship to change the `?`'s in `all_dove_counts$Count[?]` and `all_dove_counts$Count[?]` to the correct indexes. Also remember that we cannot estimate `logN` in the last year because we don't know $N_{t+1}$. Use that to change the `?` in `for(t in 1:?)` to correct upper limit for the loop (uncomment all lines in the loop after you are done so R will run the code).
+
+
+```{r}
+library(dplyr)
+# all_dove_counts <- mutate(all_dove_counts, ?)
+
+# for(t in 1:?){
+#   all_dove_counts$logN[t] <- log(all_dove_counts$Count[?] / all_dove_counts$Count[?])
+# }
 
 ```
 
-Now we need to tell `R` how many simulated samples we want to take. In the chunk below:
+Now we can plot `logN` vs. `N` and choose values of $r_0$ and $K$. In the chunk below:
 
-> 3) Create an object called `nSims`, give it a value of 1000, and add a comment (using `#`) stating what the object represents
+> 5a) Complete the `ggplot()` function so that `Count` is plotted on the x-axis and `logN` is plotted on the y-axis (uncomment the code so R will run it)
 
-```{r nSims}
+Notice that the red line does not pass through the middle of the points. You can change the slope and intercept of the line by changing the values of `r0` and `K` and recreating the plot.
 
-```
+> 5b) Choose values of `r0` and `K` that correspond to a line that passes approximately through the middle of the points 
 
-The next step is a little more advanced. We need to simulate *random* samples of the population to generate values of $n1$, $n2$ and $m2$. To clarify what this means, imagine we wanted to simulate the number of heads we would get if we flipped a coin 10 times. We know the probability of getting a heads is $0.5$ but the actual number of heads might be any value between 0 and 10. In this case, the number of heads follows a *binomial* probability distribution. The binomial distribution requires two parameters, the number of "trials" (the number of coin flips or, in our case $N$) and the probability of "success" (heads or in our case capture). 
-
-```{r echo = FALSE}
-
-binom_df <- data.frame(x = seq(0, 20, 1),
-                       y = dbinom(seq(0, 20, 1), 20, 0.5))
-
-ggplot(binom_df, aes(x, y)) + 
-  geom_path(color = WILD3810_colors$value[WILD3810_colors$name=="primary"], size = 1) +
-  scale_x_continuous("Number of heads out of 20 coin flips") +
-  scale_y_continuous("Probability")
-```
-
-In `R`, we can simulate random values from a binomial distribution using the `rbinom()` function. This function requires 3 arguments: `n` - the number of simulated values (in this case, `nSims`), `size` - the number of trials, and `p` - the probability of success. For example, to generate values of `n1` we use the following code (uncomment before running): 
-
-```{r n1}
-# n1 <- rbinom(n = nSims, size = N, prob = p)
-```
-
-Notice that in this case, we are sampling from the total population so `size = N`. When you run this line, you will get 1000 random values of `n1`. 
-
-> 4a) How many individuals do you expect to capture in $n1$? Type your answer below in bold (hint: use double asterisks before and after text to make it **bold**)
-
-> 4b) In the chunk below, use the `mean()` function to see if the average of the randomly generated values is close to the expected value (If you need help with this function, use `?mean()` to see the help documentation) 
-
-```{r mean_n1}
+```{r}
+r0 <- 0.1
+K <- 5
+# ggplot(all_dove_counts, aes(x = ?, y = ?)) + geom_point() +
+  # geom_hline(yintercept = 0, linetype = "longdash", color = "grey50") +
+  # geom_abline(slope = -r0/K, intercept = r0, color = "red")
 
 ```
 
-Simulating $n2$ is a little harder because, in theory, we need to know which of the $n2$ individuals was marked in our previous sample. Since we are not keeping track of individuals, we'll generate $n2$ in a slightly round about way. First, we'll simulate $m2$, that is, the number of marked individuals that we recapture on the second occasion. 
+> 5c) What do you predict the population size of collared-doves will be in Utah in 2035?
 
-> 5) In the chunk below, remove the comment symbol and then fill in the correct size needed to generate the values of $m2$ (hint: we are not sampling $m2$ from the total population but from the marked population) then run the code 
 
-```{r m2}
-# m2 <- rbinom(n = nSims, size = , prob = p)
+Now modify the code from lab 2 to predict the future dynamics of collared-doves in Utah (uncomment all lines so that `R` will run them once you have filled in the missing parts): 
+
+> 6a) Create a new data frame called `predicted_doves` and give it two columns: `Year` and `Count`. `Year` should be a sequence from 2015-2035 and `Count` should be NA  
+
+> 6b) Assign the first count in `predicted_doves` the value of the last count in `ut_dove_counts`  
+
+> 6c) Fill in the upper and lower index values inside of `for(t in ?:?)`. Hint: Remember that we already filled in `Count[1]` so what row of the data frame should the loop start on?  
+
+> 6d) Next fill in the formula for `r` as a function `Count` using equation 1 above (be sure you use square brackets and the correct indexing value to use the correct `Count` in this formula)  
+
+> 6e) Finally, multiply the current count (`Count[t-1]`) by the proper growth rate to predict `Count[t]`. Hint - remember that you estimated `r` in each loop but we are using a discrete population model based on $\lambda$.  
+
+```{r}
+data("ut_dove_counts")
+
+# predicted_doves <- data.frame(?,
+#                               ?)
+
+# predicted_doves$Count[?] <- ut_dove_counts$Count[?]
+
+# for(t in ?:?){
+#  r <- ?
+#  predicted_doves$Count[t] <- predicted_doves$Count[t-1] * ?
+#}
 ```
 
-On the second occasion, we also capture some unmarked individuals so we need to simulate those values as well (we'll call that sample `nm2` for "not marked")
+Modify the following code to:
 
-> 6) In the chunk below, remove the comment symbol and then fill in the correct size needed to generate the values of $nm2$ (hint: we are not sampling $nm2$ from the total population but from the *unmarked* population) then run the code 
+> 7a) Filter only years greater than 2015 in the `predicted_doves` data frame
 
-```{r nm2}
-# nm2 <- rbinom(n = nSims, size = , prob = p)
+> 7b) Add a column called `Type` to both data frames and give that variable a value of `Predicted` in `predicted_doves` and `Count` in `ut_doves_counts`
+
+> 7c) Complete the `bind_rows()` function to create a new data frame with both the actual and predicted counts
+
+```{r}
+# predicted_doves <- filter(predicted_doves, ?)
+# predicted_doves <- mutate(predicted_doves, ?)
+# ut_dove_counts <- mutate(ut_dove_counts, ?)
+
+# all_doves <- bind_rows()
 ```
 
-Now we can get $n2$ by adding `m2` and `nm2` (remember how adding vectors works in `R`!)
+Finally, modify the following code to:
 
-> 7) Create a new object called `n2` that is the sum of `m2` and `nm2`
+> 8a) Fill in the missing `x=`, `y=`, `geom_?`'s, and `color=` to recreate the figure you made in lab 2. Uncomment the lines so the code will run. 
 
-```{r n2}
+> 8b) Explain why `color =` goes outside the `aes()` function in the first and second geoms but inside `aes()` in the third. Answer in **bold** below
 
-```
-
-Finally, we have everything we need to estimate $\hat{N}$. 
-
-```{r Nhat}
-# Nhat <- (n1 * n2) / m2
-```
-
-Because $N$ is very big, our `Nhat` estimates should *on average* be unbiased. We can test this by taking the mean of all 1000 estimates (which should be very close to $N$) and by taking the ratio of this mean to the true value (which should be 1 if the estimator is unbiased):
-
-```{r mean_Nhat}
-# mean(Nhat)
-# mean(Nhat)/N
-```
-
-We can also visualize this by plotting a histogram showing all of our `Nhat` estimates along with the mean and true value. A quick way to do this in `R` is using the `hist()` and `abline()` functions (we'll learn more advanced ways to plot data in the next lab):
-
-```{r Nhat_hist}
-# hist(x = Nhat, breaks = 100)
-# abline(v = N, col = "blue")
-# abline(v = mean(Nhat), col = "red")
-```
-As expected, our estimates appear to be unbiased (though note how much variation there is around the true value of $N$! Even when all of the assumptions of L-P are met, we would still over- or under-estimate $N$ by 4-5%!)
-
-
-# Lincoln-Peterson is biased when sample sizes are small
-
-Now that we have the code needed to simulate data to analyze with the L-P estimator, it's easy to explore the well-known bias in the model when sample sizes are small. By biased, we mean that an estimator will systematically *overestimate* or *underestimate* the true value. We'll explore bias in the L-P estimator by continuing the simulation exercise:
-
-> 8a) Take the code you used above and copy it into a single code chunk below
-
-> 8b) Now change $N$ to 50 and run the code
-
-```{r LP2}
-
+```{r}
+# ggplot(data = all_doves, aes(x = ?, y = ?)) + geom_?(color = "grey50") +
+#   geom_?(color = "white", size = 4.5) + geom_?(aes(color = ?), size = 3)
 
 ```
 
-> 8c) Based on the metrics and visualizations created by this code, do you think L-P overestimates or underestimates abundance as sample size gets smaller and smaller? Type your answer below in bold
-
-The reason for bias in L-P can more easily be understood through a simple example (borrow from Powell 2015 pg 95). Imagine you have 10 white balls in a hat ($N=10$) and draw 4 randomly ($p = 0.4$). You mark these 4 and return them to the bag. If you draw 4 new balls, you *expect* to get $0.4 \times 4 = 1.6$ marked balls. But that's impossible! Because the sample size is so small, $m2/n2$ can only be 0%, 25%, 50%, 75%, or 100%. So if $m2 = 2$, $\hat{N} = \frac{4 \times 4}{2} = 8$. If $m1 = 1$, then $\hat{N} = \frac{4 \times 4}{2} = 16$. If $m2 = 0$, we can't even estimate $N$! 
-
-# The Chapman modification
-
-Chapman (1951) proposed a modified version of the L-P estimator that is unbiased even when sample sizes are small:
-
-$$\hat{N} = \frac{(n_1+1) \times (n_2+1)}{m_2 + 1} - 1$$
-
-Let's see if it works. The below code should use your previously created `n1`, `n2`, and `m2` samples  to calculate new estimate of $\hat{N}$ using the Chapman modification:
-
-```{r chapman}
-# Nhat <- (n1 + 1) * (n2 + 1) / (m2 + 1) - 1
-```
-
-> 9) In the chunk below, estimate the new mean of the $\hat{N}$ estimates and the ratio of this new mean ot the true $N$. Also create a new histogram showing the $\hat{N}$ estimates based on the Chapman modification along with the true value and mean of the estimates. According to these metrics, did bias get larger or smaller using the Chapman modifcation? Type your answer in bold below the chunk.
-
-```{r mean_chapman}
-```
-
-Now let's make the population size really small. In the chunk below, copy the code needed to simulate the L-P data but this time set `N <- 10` and use the Chapman modification to estimate the $\hat{N}$s. 
-
-```{r chapman2}
-
-```
-
-> 10) If this was a real study, would you trust these estimates of $N$? Why or why not? For a population this small, what alternative methods might you use to estimate population size? Write your answers below in bold. 
+> 9) In approximately what year to you predict the population will reach it's carrying capacity? Write your answer below in **bold**

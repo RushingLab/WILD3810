@@ -56,58 +56,68 @@ In this lab, you will learn to model and predict the growth of plant and animal 
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/0/0b/Eurasian_collared-dove_%28Streptopelia_decaocto%29.jpg")
 ```
 
-For this exercise, we will use data from the North American [Breeding Bird Survey](https://www.mbr-pwrc.usgs.gov/bbs/) to examine the rapid population growth of Eurasian collared-doves (*Streptopelia decaocto*) in the state of Utah. Eurasian collared-doves are an introduced species that, as you will soon see, have been rapidly expanding westward across the United States. In this lab, we will focus on modeling and visualizing this growth.  
+For this exercise, we will use data from the North American [Breeding Bird Survey](https://www.mbr-pwrc.usgs.gov/bbs/) to model and visualize the rapid population growth of Eurasian collared-doves (*Streptopelia decaocto*) in the state of Utah. Eurasian collared-doves are an introduced species that, as you will soon see, have been rapidly expanding westward across the United States since they were introduced in Florida in the early 1990's.  
+
+The Breeding Bird Survey is a roadside monitoring program conducted by volunteers across North America every year since the late 1960's. Each survey route is 25 mils long and surveyors stop every 0.5 mile (50 stops total) to count every bird they see or hear. For this lab, we will use the average number of counts in each year across all BBS routes that are located in Utah.
 
 ### Getting the data
 
-A summary of the Utah collared-dove counts is included in the course package `WILD3810`. Because the data was added to the package after our last lab, we need to install the most update-to-date version of the package to access it.
+A summary of the Utah collared-dove counts is included in the course package `WILD3810`. One thing we did not discuss in lab 1 was what packages are and how to access their content in your current `R` environment (remember that every time you open RStudio, it creates a new "environment". This environment stores all of the objects you create during that R session). Packages are ways to share custom `R` functions and data that do not come with `R` itself. Packages allow anyone to contribute useful code and data for other `R` users to use as part of their analyses. The `install.packages()` function downloads the package onto your computer (note that we use a slightly different function to install the `WILD3810` package but 99% of the time you will use `install.packages()`). 
+
+Because the BBS data was added to the package after our last lab, we need to install the most update-to-date version of the package to access it.
 
 ```{r eval=FALSE}
 ## Re-install course website to get the most up-to-date version
 devtools::install_github("RushingLab/WILD3810")
 ```
 
-One thing we did not discuss in lab 1 was what packages are and how to access their content in your current `R` environment (remember that every time you open RStudio, it creates a new "environment". This environment stores all of the objects you create during that R session). Packages are ways to share custom `R` functions and data that do not come with `R` itself. Packages allow anyone to contribute useful code and data for other `R` users to use as part of their analyses. The `install.packages()` function downloads the package onto your computer. However, when we open `R`, we have *load* the package in order to make its functions and data available in our current session. Packages are loaded using the `library()` function with the package name as the argument: 
+It's important to realize that installing a package does not automatically make it's code and data available with your current `R` session. When you open `R`, you have to *load* the package in order to make its functions and data available in the current session. Packages are loaded using the `library()` function with the package name as the argument: 
 
 ```{r}
 ## Load the package to make data and code available in current R environment
 library(WILD3810)
 ```
 
-Now that we have loaded the `WILD3810` package, we can load the dove data using the `data()` function:
+Now that we have loaded the `WILD3810` package, we can load the dove data using the `data()` function. This function is used to load data objects that come with packages:
 
 ```{r}
-data("doves")
+data("ut_dove_counts")
 ```
 
-Notice that in the `Environment` tab in the top right panel, you now see an object called `doves`. This object holds the data values we will use in this exercise. 
+Notice that in the `Environment` tab in the top right panel, you now see an object called `ut_dove_counts`. This object holds the data values we will use in this exercise. 
 
 ## Introduction to data frames
 
 In the [last lab](https://rushinglab.github.io/WILD3810/articles/lab1.html), we learned about one particular class of `R` object - vectors. Vectors hold a string of values as a single object. Although useful for many applications, vectors are limited in their ability to store multiple types of data (numeric and character).  
 
-This is where data frames become useful Perhaps the most common type data object you will use in `R` is the data frame. Data frames are tabular objects (rows and columns) similar in structure to spreadsheets (think Excel or GoogleSheets). In effect, data frames store multiple vectors - each column of the data frame is a vector. As such, each column can be a different class (numeric, character, etc.) but all values within a column must be the same class. Just as the first row of an Excel spreadsheet can be a list of column names, each column in a data frame has a name that (hopefully) provides information about what the values in that column represent.  
+This is where data frames become useful. Perhaps the most common type data object you will use in `R` is the data frame. Data frames are tabular objects (rows and columns) similar in structure to spreadsheets (think Excel or GoogleSheets). In effect, data frames store multiple vectors - each column of the data frame is a vector. As such, each column can be a different class (numeric, character, etc.) but all values within a column must be the same class. Just as the first row of an Excel spreadsheet can be a list of column names, each column in a data frame has a name that (hopefully) provides information about what the values in that column represent.  
 
-To see how data frames work, let's view the `doves` object. We can do this in several ways. The `head()` function, for example, will print the first 6 rows of the data frame:
-
-```{r}
-head(doves)
-```
-We can see that `doves` contains two columns: `Year` and `Count` (the counts are actually mean number of Eurasian-collared doves counted across all BBS routes within the state of Utah in each year). Obviously there weren't many collared-doves in Utah in the late 1960's. Several other useful functions for investigating the structure of data frames are `str()` and `summary()`
+To see how data frames work, let's view the `ut_dove_counts` object. We can do this in several ways. The `head()` and `tail()` functions, for example, will print the first and last 6 rows of the data frame:
 
 ```{r}
+head(ut_dove_counts)
 
-str(doves)
-
-summary(doves)
+tail(ut_dove_counts)
 ```
+
+We can see that `ut_dove_counts` contains two columns: `Year` and `Count` (the counts are actually mean number of Eurasian-collared doves counted across all BBS routes within the state of Utah in each year). Obviously there weren't many collared-doves in Utah in the late 1960's/early 1970's. Several other useful functions for investigating the structure of data frames are `str()` and `summary()`
+
+```{r}
+
+str(ut_dove_counts)
+
+summary(ut_dove_counts)
+```
+
 `str()` tells us about the structure of the data frame, in this case that `Year` is an integer object (only whole numbers) and `Count` is numeric. For both types of data, `summary()` provides some simple summary statistics for each variable. 
 
 Another useful function is `nrow()`, which tells us now many rows are in the data frame (similar to `length()` for vectors):
 
 ```{r}
-nrow(doves)
+nrow(ut_dove_counts)
 ```
+
+Because the `ut_dove_counts` data frame has one row per year, the `nrow()` function is very useful to determining how many years of BBS data we have (remember that!). 
 
 ### Subsetting data frames
 
@@ -115,16 +125,16 @@ As you will see shortly, one of the most common tasks when working with data fra
 
 #### Selecting columns
 
-First, we may want to select a subset of all of the columns in a big data frame. Data frames are essentially tables, which means we can reference both rows and columns by their number: `data.frame[row#, column#]`. The row and column numbers have to put inside of square brackets following the name of the data frame object. The row number always comes first and the column number second. If you want to select all rows of a specific column, you just leave the `row#` blank:
+First, we may want to select a subset of all of the columns in a big data frame. Data frames are essentially tables, which means we can reference both rows and columns by their number: `data.frame[row#, column#]`. The row and column numbers have to put inside of square brackets following the name of the data frame object. The row number always comes first and the column number second. If you want to select all rows of a specific column, you just leave the `row#` blank. For example, if we wanted a vector containing all of the years the BBS data was collected:
 
 ```{r}
-doves[,1]
+ut_dove_counts[,1]
 ```
 
 However, an easier way of doing this is using `data.frame$column` (where `data.frame` is the name of the data frame object and `column` is the name of the column). For example,
 
 ```{r}
-doves$Year
+ut_dove_counts$Year
 ```
 
 Notice that if you hit `tab` after you type the `$`, RStudio will bring up all of the columns and you can use the up or down buttons to find the one you want. 
@@ -134,54 +144,54 @@ Sometimes you may want to select more than one column. The easiest way to do tha
 ```{r}
 library(dplyr)
 
-select(.data = doves, Count, Year)
+select(.data = ut_dove_counts, Count, Year)
 
 ```
 
-Notice that select requires us to first provide the data frame object (`.data = doves`) and then we provide the column names (unquoted!) we want to select. In this case we selected both columns but changed in the order. You can also use select to remove columns:
+Notice that select requires us to first provide the data frame object (`.data = ut_dove_counts`) and then we provide the column names (unquoted!) we want to select. In this case we selected both columns but changed in the order. You can also use select to remove columns:
 
 ```{r}
-select(.data = doves, -Year)
+select(.data = ut_dove_counts, -Year)
 ```
 
 ### Filtering rows
 
-To select specific rows, we can use the `row#` method we learned above:
+To select specific rows, we can use the `row#` method we learned above, this time leaving the columns blank:
 
 ```{r}
-doves[1,]
+ut_dove_counts[1,]
 ```
 
 If we want more than one row, we just put in a vector with all of the rows we want:
 
 ```{r}
-doves[1:2,]
+ut_dove_counts[1:2,]
 
-doves[c(1,30),]
+ut_dove_counts[c(1,30),]
 ```
 
-Note that we can use the square brackets to also subset vectors, in which case we don't need the comma:
+Note that we can use the square brackets to also subset vectors, in which case we don't need the comma as long as you tell `R` which column you want first:
 
 ```{r}
-doves$Count[1]
+ut_dove_counts$Count[1]
 ```
 
 Sometimes, we may not know the specific row number(s) we want but we do know the value of one of the columns we want to keep. Using the `filter()` function in the `dplyr` package allows us to filter rows based on the value of one of the variables. For example, if we want just the 2004 count, we use:
 
 ```{r}
-filter(doves, Year == 2004)
+filter(ut_dove_counts, Year == 2004)
 ```
 
 Notice the need for two equals signs (`==`) when telling `R` we want the row where `Year` equals 2. Filter makes it very easy to select multiple rows using operators like greater than, less than, etc. 
 
 ```{r}
-filter(doves, Year > 2004)
+filter(ut_dove_counts, Year > 2004)
 ```
 
 or a more complicated example:
 
 ```{r}
-filter(doves, Year < 1972 | Year > 2010)
+filter(ut_dove_counts, Year < 1972 | Year > 2010)
 ```
 
 ## Visualizing data frames using `ggplot2`
@@ -199,49 +209,49 @@ The `ggplot()` function initiates a new plot. In this function, you tell `ggplot
 The `ggplot()` function simply initiates a graph - if you run just that portion of the code you will get a blank graph. We can see that by creating a new plot showing the relationship between `Year` (the x-axis of the plot) and `Count` (the y-axis): 
 
 ```{r fig.width=8, fig.height=6}
-ggplot(data = doves, aes(x = Year, y = Count))
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count))
 ```
 
 You can see that `ggplot` created a figure with the correct axes and labels. But no data. That's because we didn't tell `ggplot` what type of *geometry* to use to represent the data. Geometry refers to the  type geometric object(s) we want to use to display the data. Common geometries include points (e.g., scatter plot), lines (e.g., time series), and bars (e.g., histograms). There are many others. Once we add a geometry, we can see the data:
 
 ```{r fig.width=8, fig.height=6}
-ggplot(data = doves, aes(x = Year, y = Count)) + geom_point()
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count)) + geom_point()
 ```
 
 In this case, a line graph might make more sense:
 
 ```{r fig.width=8, fig.height=6}
-ggplot(data = doves, aes(x = Year, y = Count)) + geom_line()
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count)) + geom_line()
 ```
 
 It's also possible to use more than one geometry:
 
 ```{r fig.width=8, fig.height=6}
-ggplot(data = doves, aes(x = Year, y = Count)) + geom_line() + geom_point()
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count)) + geom_line() + geom_point()
 ```
 
 This is reasonable figure showing changes in collared-dove counts across time. But `ggplot2` makes it very easy to tweak the way the data is visualized (maybe too easy, you can spend *a lot* of time tweaking minor details). For example, maybe we want to scale the size of the points based on the size of the counts (so larger points are displayed using larger points). Because we want to map an *attribute* (size) to a variable (count), we make this change inside of `aes`:
 
 ```{r fig.width=8, fig.height=6}
-ggplot(data = doves, aes(x = Year, y = Count, size = Count)) + geom_line() + geom_point()
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count, size = Count)) + geom_line() + geom_point()
 ```
 
 That's not exactly what we wanted. Both the line width and the point size are now a function of `Count`. To make just the points a function of count, we specify `size = Count` inside of the `geom_point()` function (anything in the `ggplot()` function will apply to all geoms):
 
 ```{r fig.width=8, fig.height=6}
-ggplot(data = doves, aes(x = Year, y = Count)) + geom_line() + geom_point(aes(size = Count))
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count)) + geom_line() + geom_point(aes(size = Count))
 ```
 
 We can also do things like the change the color of the geometries. In this case, we are **not** mapping a variable to an attribute (color is not a function of the data values). So these changes happen **outside** of the `aes()` argument:
 
 ```{r fig.width=8, fig.height=6}
-ggplot(data = doves, aes(x = Year, y = Count)) + geom_line(color = "grey50") + geom_point(color = "red")
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count)) + geom_line(color = "grey50") + geom_point(color = "red")
 ```
 
 One last example. My personal opinion is that points plotted over a line look a little better when there is a little white space between the line and the point. In `ggplot2` a hack to do that is to put white points *underneath* the red points that are slightly bigger than the red points. To this we add another `geom_point()` but manually change the size to be slightly bigger than the red points. Also note that `ggplot2` adds the geometries in the order that they are included in the code so we need to add the white points before the red points:
 
 ```{r fig.width=8, fig.height=6}
-ggplot(data = doves, aes(x = Year, y = Count)) + geom_line(color = "grey50") + geom_point(color = "white", size = 4.5) + geom_point(color = "red", size = 3)
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count)) + geom_line(color = "grey50") + geom_point(color = "white", size = 4.5) + geom_point(color = "red", size = 3)
 ```
 
 Notice that in this case, we aren't mapping size to any data so we include it outside of `aes()`.
@@ -252,13 +262,13 @@ As the lead avian ecologist for DWR, we may want to know the population growth r
 
 $$\Large \lambda = \bigg(\frac{N_{T}}{N_0}\bigg)^{\frac{1}{T}}$$
 
-Let's use the dove counts to estimate $\lambda$ for this population. Remember that $T$ is the number of years over which we want to estimate growth. Since the `doves` data frame has one row for each year, we can easily estimate the total number of years using `nrow()`
+Let's use the dove counts to estimate $\lambda$ for this population. Remember that $T$ is the number of years over which we want to estimate growth. Since the `ut_dove_counts` data frame has one row for each year, we can easily estimate the total number of years using `nrow()`
 
 ```{r}
 ## Create object to store the number of years
 ## Note that `T` is reserved in `R` as shorthand for `TRUE` so we can't use that as the object name
 ## Also note that putting the entire line of code inside parentheses will both create and print the object
-(t <- nrow(doves))
+(t <- nrow(ut_dove_counts))
 ```
 
 Now we can create objects with the first ($N_0$) and last ($N_T$) counts. Use code below and the subsetting rules we learned about earlier to create these objects:
@@ -270,9 +280,9 @@ NT <-
 ```
 
 ```{r echo = FALSE}
-N0 <- doves$Count[1]
+N0 <- ut_dove_counts$Count[1]
   
-NT <- doves$Count[t]
+NT <- ut_dove_counts$Count[t]
   
 ```
 
@@ -293,21 +303,21 @@ So over the 48 years of the Breeding Bird Survey, Eurasian collared-doves increa
 But that's not really a very accurate reflection of the actual growth rate because for the first several decades, there were no doves at all. Once the doves arrived in Utah, their population growth was much more explosive. It is probably more instructive to estimate the rate of population growth for only the years when doves were counted in the state (`Count > 0`). To estimate this rate, let's first create a new data frame containing only the non-zero counts. **What arguments do you need to provide to `filter()` to create the data frame we want?**
 
 ```{r eval = FALSE}
-doves2 <- filter()
+ut_dove_counts2 <- filter()
 ```
 
 ```{r echo = FALSE}
-doves2 <- filter(doves, Count > 0)
+ut_dove_counts2 <- filter(ut_dove_counts, Count > 0)
 ```
 
 Now we'll recycle the code we created earlier to re-estimate $\lambda$:
 
 ```{r}
-t <- nrow(doves2)
+t <- nrow(ut_dove_counts2)
 
-N0 <- doves2$Count[1]
+N0 <- ut_dove_counts2$Count[1]
   
-NT <- doves2$Count[t]
+NT <- ut_dove_counts2$Count[t]
 
 (lambda <- (NT/N0)^(1/t))
 ```
@@ -332,7 +342,7 @@ predicted_doves <- data.frame(Year = seq(from = 2015, to = 2035),
                               Count = NA)
 ```
 
-We give this data frame the same column names as the original `doves` data frame. Unlike when creating objects (where we use the `<-` operator), you **must** use an equals sign to create each column in a data frame. To fill in the `Year` column, we use the `seq()` function which creates a sequence of values between the `from` and `to` values that are supplied as arguments:
+We give this data frame the same column names as the original `ut_dove_counts` data frame. Unlike when creating objects (where we use the `<-` operator), you **must** use an equals sign to create each column in a data frame. To fill in the `Year` column, we use the `seq()` function which creates a sequence of values between the `from` and `to` values that are supplied as arguments:
 
 ```{r}
 seq(from = 2015, to = 2035)
@@ -344,7 +354,7 @@ The `Count` column is not totally unknown - we do know the count in 2015. We can
 
 ```{r}
 ## Fill in the 2015 count based on the value in the original data frame
-predicted_doves$Count[1] <- doves$Count[nrow(doves)]
+predicted_doves$Count[1] <- ut_dove_counts$Count[nrow(ut_dove_counts)]
 ```
 
 ### Filling in the predicted counts
@@ -359,7 +369,7 @@ predicted_doves$Count[2] <- predicted_doves$Count[1] * lambda
 predicted_doves$Count[3] <- predicted_doves$Count[2] * lambda
 
 ## 2018 count
-predicted_doves$Count[4] <- predicted_doves$Count[2] * lambda
+predicted_doves$Count[4] <- predicted_doves$Count[3] * lambda
 
 ```
 
@@ -405,13 +415,13 @@ Before we combine the data frames, let's add a new column to each one that tells
 
 ```{r}
 predicted_doves <- mutate(predicted_doves, Type = "Predicted")
-doves <- mutate(doves, Type = "Count")
+ut_dove_counts <- mutate(ut_dove_counts, Type = "Count")
 ```
 
 Here, we added a new column called `Type` to both data frames and gave a value of `Predicted` for the predicted counts and `Count` for the actual counts (remember that `R` will recycle the single value for each row of the data frame). Now we can combine the data frames using the `bind_rows` function from the `dplyr` package:
 
 ```{r}
-all_doves <- bind_rows(doves, predicted_doves)
+all_doves <- bind_rows(ut_dove_counts, predicted_doves)
 ```
 
 `bind_rows()` take two or more data frames as arguments and put them together as a single data frame by stacking them on atop the other (if the data frames do not have the same columns, `bind_rows` includes all columns in all data frames and fills in `NA` values for the missing values).
@@ -423,11 +433,11 @@ ggplot(data = all_doves, aes(x = Year, y = Count)) + geom_line(color = "grey50")
   geom_point(color = "white", size = 4.5) + geom_point(aes(color = Type), size = 3)
 ```
 
-That's a lot of doves. This is why exponential population growth is so powerful from 0 to 466,225 in three decades. Also, notice that `gglot2` automatically added a legend showing us what color corresponds to which type of count. 
+That's a lot of doves. This is why exponential population growth is so powerful: from 0 to 14,000 in three decades. Also, notice that `gglot2` automatically added a legend showing us what color corresponds to which type of count. 
 
 # Modeling density-dependent growth
 
-An *average* of 466,225 collared-doves at *each* BBS route is obviously way more doves that we expect to actually occur in Utah in 2035. At some point, resources will become limiting and population growth will slow.  
+An *average* of 14,000 collared-doves at *each* BBS route is obviously way more doves that we expect to actually occur in Utah in 2035. At some point, resources will become limiting and population growth will slow.  
 
 In the next homework, we will use BBS data from other states where collared-doves were introduced earlier than in Utah to explore what happens to this species as populations grow beyond their initially small sizes. To create this homework:
 
