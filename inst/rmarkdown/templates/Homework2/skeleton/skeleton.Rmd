@@ -143,7 +143,7 @@ data("ut_dove_counts")
 # predicted_doves$Count[1] <- ut_dove_counts$Count[48]
 
 # for(t in ?:?){
-#  r <- r0 - (r0/K) * predicted_doves[t-1]
+#  r <- r0 - (r0/K) * predicted_doves$Count[t-1]
 #  predicted_doves$Count[t] <- predicted_doves$Count[t-1] * ?
 #}
 ```
