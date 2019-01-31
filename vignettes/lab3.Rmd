@@ -39,3 +39,22 @@ knitr::include_graphics("figs/new_file.png")
 ```
 
 
+```{r}
+
+sim2 <- pva(N0 = 100, number.of.years = 100, number.of.populations = 100,
+            b0 = 1.9, variance.b = 0.05, d0 = 0.1, variance.d = 0.5, K = 100, theta = 1.1)
+sim2
+
+
+K.d <- plogis(qlogis(d0) + (0.005 * K) ^ (1- theta + 1))
+slope <- -(K.d - b0) / (K^theta)
+
+D <- plogis(qlogis(d0) + (0.005*seq(0,2*K))^(1-theta + 1))
+B <- b0 - (slope * seq(0,2*K)) ^ theta
+
+plot(B ~ seq(0, 2*K))
+plot(D ~ seq(0, 2*K))
+
+plot(B~D)
+
+```

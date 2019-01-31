@@ -11,7 +11,8 @@ Imports:
     dplyr,
     ggplot2,
     tidyr,
-    usethis
+    usethis,
+    cowplot
 RoxygenNote: 6.1.1
 Suggests: 
     knitr,
