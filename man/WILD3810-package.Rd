@@ -9,7 +9,7 @@
 Course package for WILD3810: Plant and Animal Populations at Utah State University. This package primarily exists to distribute data, code, and other materials in an efficient manner.
 }
 \author{
-\strong{Maintainer}: Clark Rushing \email{first.last@example.com}
+\strong{Maintainer}: Clark Rushing \email{clark.rushing@usu.edu}
 
 }
 \keyword{internal}
