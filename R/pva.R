@@ -5,14 +5,17 @@
 #' @param N0 Initial population size
 #' @param number.of.years Number of years to simulate population change
 #' @param number.of.populations Number of simulated populations
-#' @param mean.r Mean intrinsic population growth rate
-#' @param variance.r Magnitude of environmental stochasticity (annual variation in `r`)
-#' @param K Optional carrying capacity (if K given, population growth modeled using density-dependent model)
-#' @param theta Optional parameter for theta-logistic model to allow non-linear density-dependence (must be >=0)
-#' @param Allee Optional strenth of Allee effects
+#' @param b0 Either the mean birth rate (density-independent model) or the birth rate at N = 0 (density-dependent model)
+#' @param variance.b Magnitude of environmental stochasticity in the birth rate (annual variation in `b`)
+#' @param d0 Either the mean death rate (density-independent model) or the death rate at N = 0 (density-dependent model)
+#' @param variance.d Magnitude of environmental stochasticity in the death rate (annual variation in `d`)
+#' @param d.slope Strength of density-dependence on d
+#' @param K Optional carrying capacity. If K is given, the model will assume density dependence in both b and d; if no K is given, the model will assume density-independent growth
+#' @param theta Theta parameter in the theta-logistic growth model; control shape of density-dependence (default = 1)
+#' @param extinction.threshold Threshold abundance used to determine a population "extinct" (default = 0)
 #' @export
 
-pva <- function(N0, number.of.years, number.of.populations,
+pva <- function(N0, number.of.years, number.of.populations = 100,
                 b0, variance.b = 0, d0, variance.d = 0, K = NULL, Allee = NULL, theta = 1,
                 extinction.threshold = 0, d.slope = 0.0075){
 
@@ -32,7 +35,7 @@ pva <- function(N0, number.of.years, number.of.populations,
      for(i in 1:number.of.populations){
        b[t, i] <- rlnorm(1, meanlog = log(b0), sdlog = sqrt(variance.b))
        d[t, i] <- min(rlnorm(1, meanlog = log(d0), sdlog = sqrt(variance.d)), 1)
-       N[t + 1, i] <- N[t, i] + rpois(n = 1, b[t,i] * N[t, i]) - rbinom(n = 1, size = N[t, i], prob = d[t,i])
+       suppressWarnings(N[t + 1, i] <- N[t, i] + rpois(n = 1, b[t,i] * N[t, i]) - rbinom(n = 1, size = N[t, i], prob = d[t,i]))
      }
    }
    v_df <- data.frame(N = rep(c(N[-number.of.years,]),3),
@@ -65,7 +68,7 @@ pva <- function(N0, number.of.years, number.of.populations,
        b.pred[t, i] <- max(b0 - (slope * N[t,i] ^ theta), 0)
        b[t, i] <- rlnorm(1, meanlog = log(b.pred[t, i]), sdlog = sqrt(variance.b))
        d[t, i] <- min(rlnorm(1, meanlog = log(d.pred[t, i]), sdlog = sqrt(variance.d)), 1)
-       N[t + 1, i] <- N[t, i] + rpois(n = 1, b[t, i] * N[t, i]) - rbinom(n = 1, size = N[t, i], prob = d[t, i])
+       suppressWarnings(N[t + 1, i] <- N[t, i] + rpois(n = 1, b[t, i] * N[t, i]) - rbinom(n = 1, size = N[t, i], prob = d[t, i]))
      }
    }
    v_df <- data.frame(N = rep(c(N[-number.of.years,]),3),
@@ -108,13 +111,20 @@ pva <- function(N0, number.of.years, number.of.populations,
      ggplot2::geom_hline(yintercept = K, color = "grey60")
  }
 
+ ext_df <- data.frame(Prob = apply(N, 1, function(x) mean(x <= extinction.threshold)),
+                      Year = seq(1:number.of.years))
+ s <- ggplot2::ggplot(ext_df, ggplot2::aes(x = Year, y = Prob)) + geom_path(size = 2) +
+   scale_y_continuous("Cumulative probability \nof extinction")
 
- print(cowplot::plot_grid(p, r, q))
+ print(cowplot::plot_grid(p, r, q, s))
  dd <- ifelse(is.null(K), "No", "Yes")
  K <- ifelse(is.null(K), NA, K)
+ suppressWarnings(x <- apply(N, 2, function(x) min(which(x <= extinction.threshold))))
+ med_tte <- median(x[!is.infinite(x)])
  summary_df <- data.frame(nYears = number.of.years, N0, b0 = b0, variance.b = variance.b,
                           d0 = d0, variance.d = variance.d, density.dependent = dd, K = K,
-                          prob.extinct = mean(N[number.of.years,]<=extinction.threshold))
+                          prob.extinct = mean(N[number.of.years,]<=extinction.threshold, na.rm = TRUE),
+                          median.time.to.ext = med_tte)
  return(summary_df)
 }
 

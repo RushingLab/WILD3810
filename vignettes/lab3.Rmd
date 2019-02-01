@@ -23,6 +23,8 @@ In this lab, you will learn about using population viability analysis (PVA) to p
 **Objectives**
 
 * Predict extiction risk using population viability analysis
+
+* Build intuition about the ecological factors that influence extinction risk
   
 * `R` functions used in this exercise:  
     + `library()`
@@ -39,22 +41,133 @@ knitr::include_graphics("figs/new_file.png")
 ```
 
 
-```{r}
+## Simulating stochastic population dynamcs
 
-sim2 <- pva(N0 = 100, number.of.years = 100, number.of.populations = 100,
-            b0 = 1.9, variance.b = 0.05, d0 = 0.1, variance.d = 0.5, K = 100, theta = 1.1)
-sim2
+The `WILD3810` package includes an `R` function that simulates the dynamics of a user-defined number of populations that are subject to both environmental and demographic stochasticity. This function has a number of parameters that you can change to alter the deterministic and stochastic processes that govern population growth. In this lab, you will selectively change several of these parameters to see how each influences extinction risk. 
 
+Before getting into the ecological principles, let's see how the function works and what it returns. The function requires several arguments:
 
-K.d <- plogis(qlogis(d0) + (0.005 * K) ^ (1- theta + 1))
-slope <- -(K.d - b0) / (K^theta)
+- `N0`: the initial population size
 
-D <- plogis(qlogis(d0) + (0.005*seq(0,2*K))^(1-theta + 1))
-B <- b0 - (slope * seq(0,2*K)) ^ theta
+- `number.of.years`: the number of years to simulate population growth
 
-plot(B ~ seq(0, 2*K))
-plot(D ~ seq(0, 2*K))
+- `b0`: the mean birth rate
 
-plot(B~D)
+- `d0`: the mean death rate
 
+```{r fig.width=8, fig.height=8}
+library(WILD3810)
+sim_test <- pva(N0 = 10, number.of.years = 100, 
+                b0 = 0.12, variance.b = 0.75, 
+                d0 = 0.1, variance.d = 0.75)
 ```
+
+The function returns two types of output. Most obviously, the function returns four plots:
+
+1) The top left plot shows the predicted (line) and actual (point) birth and death rates for each population as a function of population size 
+
+2) The top right plot shows the predicted (line) and actual (points) growth rate $r$ ($b-d$) for each population as a function of population size
+
+3) The bottom left plot shows the change in abundance over time for all simulated populations
+
+4) The bottom right plot shows the cumulative probability of extinction over time 
+
+In addition to the figures, the newly created `sim_test` object is a data frame that contains some useful summaries of the simulation:
+
+```{r eval = FALSE}
+sim_test
+```
+
+```{r echo = FALSE}
+knitr::kable(sim_test, format = 'html')
+```
+
+This table returns some of the input parameters (`nYears`, `N0`, `b0`, `variance.b`, `d0`, `variance.d`) as well as summaries about the type of model (density dependent or independent), carrying capcity (if density-dependent). In addition, the output include two important summary statistics:
+
+1) `prob.extinct`: the estimated probability of extinction over the simulated time frame
+
+2) `median.time.to.ext`: of the populations that went extinct, the median number of years to extinction
+
+In the remainder of this lab, we will vary the input parameters and use the output of the function to visually understand the ecological factors that influence exinction risk. 
+
+## Factor 1: Initial population size
+
+Fist we will examine how the initial population size influence extinction risk. To do this, we will simulate several data sets that vary in the initial population size but are the same in every other way. 
+
+We already simulated one data set with `N0 = 10` and saw the the estimated probability of extinction was `r sim_test$prob.extinct*100`%. 
+
+***
+**Prediction**: How do you predict the probability of extinction will change as initial population size increases?
+***
+
+```{r eval = FALSE}
+sim_N0.1 <- pva(N0 = 50, number.of.years = 100, 
+                b0 = 0.12, variance.b = 0.75, 
+                d0 = 0.1, variance.d = 0.75)
+```
+
+Were you right? 
+
+Let's increase `N0` again to make sure it wasn't a fluke:
+
+```{r eval = FALSE}
+sim_N0.2 <- pva(N0 = 100, number.of.years = 100, 
+                b0 = 0.12, variance.b = 0.75, 
+                d0 = 0.1, variance.d = 0.75)
+```
+
+On your own, increase `N0` even more. Create new objects called `sim_N0.3` and `sim_N0.4`. Choose whatever values of `N0` you want as long as they are $>100$. 
+
+***
+**Interpretation**: Why does increasing population size influence extinction risk?
+***
+
+Before moving on, use the `dplyr` function `bind_rows` to create a new data frame that contains all of the simulations you have created so far. Call the new data frame `sim_N0`. 
+
+## Factor 2: Growth rate
+
+Now let's leave `N0` constant but change the expected growth rate. Remember that $r = b - d$ so we can change `b0` and/or `d0` to change the expected growth rate. In the previous simulations, $r = 0.12 - 0.1 = 0.02$, so we expect that, on average, the populations will grow by about 2% each year. 
+
+Let's first keep $r = 0.02$ but do so with higher birth and death rates (`b0 = 0.22` and `d0 = 0.2`).
+
+***
+**Prediction**: Do you expect extinction risk to be higher, lower, or the same than the previous simulation? Why?
+***
+
+```{r eval = FALSE}
+sim_r.1 <- pva(N0 = 100, number.of.years = 100, 
+                b0 = 0.22, variance.b = 0.75, 
+                d0 = 0.2, variance.d = 0.75)
+```
+
+Were you correct? If you were not, why do you think relative extinction risk differed from your prediction? Look carefully at the plots of the realized birth, death, and population growth rates. 
+
+Now make `b0` and `d0` bigger, keeping `r = 0.02`. Run simulations with `b0 = 0.32, 0.42, 0.52, 0.62, 0.72` and `d0 = 0.3, 0.2, 0.2, 0.2, 0.2`, call them `sim_r.2`, `sim_r.3`, `sim_r.4`, `sim_r.5`, `sim_r.6. `
+***
+**Interpretation**: How does extinction risk change in increasing vital rates (keep $r$ constant)? Can you explain this pattern based on the range of birth and death rates you see in the figures?
+***
+
+Now make `r` bigger. Choose a value of `b0` and `d0` that correspond to `r > 0.02`. Call the new object `sim_r.7`. 
+
+***
+**Prediction**: How will a larger growth rate influence extinction risk?
+***
+
+Finally, we'll make $r$ smaller. First, make an object `sim_r.8` with $r = 0$. Next, make an object called `sim_r.9` with $r < 0$. 
+
+***
+**Interpretation**: What happens to populations that have (on average) stable or decreasing abundance? 
+
+How does the time to extinction change as a function of $r$? 
+***
+
+
+## Factor 3: Variability in vital rates
+
+## Factor 4: Timeframe
+
+## Factor 5: Population regulation
+
+## Factor 6: Strenth of density dependence
+
+## Putting it all together
