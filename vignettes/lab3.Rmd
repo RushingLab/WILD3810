@@ -97,7 +97,8 @@ Fist we will examine how the initial population size influence extinction risk. 
 We already simulated one data set with `N0 = 10` and saw the the estimated probability of extinction was `r sim_test$prob.extinct*100`%. 
 
 ***
-**Prediction**: How do you predict the probability of extinction will change as initial population size increases?
+**Prediction**: How do you predict the probability of extinction will change as initial population size increases?  \
+
 ***
 
 ```{r eval = FALSE}
@@ -119,7 +120,8 @@ sim_N0.2 <- pva(N0 = 100, number.of.years = 100,
 On your own, increase `N0` even more. Create new objects called `sim_N0.3` and `sim_N0.4`. Choose whatever values of `N0` you want as long as they are $>100$. 
 
 ***
-**Interpretation**: Why does increasing population size influence extinction risk?
+**Interpretation**: Why does increasing population size influence extinction risk?  
+
 ***
 
 Before moving on, use the `dplyr` function `bind_rows` to create a new data frame that contains all of the simulations you have created so far. Call the new data frame `sim_N0`. 
@@ -131,7 +133,8 @@ Now let's leave `N0` constant but change the expected growth rate. Remember that
 Let's first keep $r = 0.02$ but do so with higher birth and death rates (`b0 = 0.22` and `d0 = 0.2`).
 
 ***
-**Prediction**: Do you expect extinction risk to be higher, lower, or the same than the previous simulation? Why?
+**Prediction**: Do you expect extinction risk to be higher, lower, or the same than the previous simulation? Why?  
+
 ***
 
 ```{r eval = FALSE}
@@ -142,23 +145,27 @@ sim_r.1 <- pva(N0 = 100, number.of.years = 100,
 
 Were you correct? If you were not, why do you think relative extinction risk differed from your prediction? Look carefully at the plots of the realized birth, death, and population growth rates. 
 
-Now make `b0` and `d0` bigger, keeping `r = 0.02`. Run simulations with `b0 = 0.32, 0.42, 0.52, 0.62, 0.72` and `d0 = 0.3, 0.2, 0.2, 0.2, 0.2`, call them `sim_r.2`, `sim_r.3`, `sim_r.4`, `sim_r.5`, `sim_r.6. `
-***
-**Interpretation**: How does extinction risk change in increasing vital rates (keep $r$ constant)? Can you explain this pattern based on the range of birth and death rates you see in the figures?
-***
-
-Now make `r` bigger. Choose a value of `b0` and `d0` that correspond to `r > 0.02`. Call the new object `sim_r.7`. 
+Now make `b0` and `d0` bigger, keeping $r = 0.02$. Run simulations with `b0 = 0.32, 0.42, 0.52, 0.62, 0.72` and `d0 = 0.3, 0.2, 0.2, 0.2, 0.2`, call them `sim_r.2`, `sim_r.3`, `sim_r.4`, `sim_r.5`, `sim_r.6. `
 
 ***
-**Prediction**: How will a larger growth rate influence extinction risk?
+**Interpretation**: How does extinction risk change in increasing vital rates (keep $r$ constant)? Can you explain this pattern based on the range of birth and death rates you see in the figures?  
+
+***
+
+Now make $r$ bigger. Choose a value of `b0` and `d0` that correspond to $r > 0.02$. Call the new object `sim_r.7`. 
+
+***
+**Prediction**: How will a larger growth rate influence extinction risk?  
+
 ***
 
 Finally, we'll make $r$ smaller. First, make an object `sim_r.8` with $r = 0$. Next, make an object called `sim_r.9` with $r < 0$. 
 
 ***
-**Interpretation**: What happens to populations that have (on average) stable or decreasing abundance? 
+**Interpretation**: What happens to populations that have (on average) stable or decreasing abundance?  
 
-How does the time to extinction change as a function of $r$? 
+How does the time to extinction change as a function of $r$?  
+
 ***
 
 
