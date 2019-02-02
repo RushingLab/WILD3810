@@ -30,17 +30,6 @@ In this lab, you will learn about using population viability analysis (PVA) to p
     + `library()`
 ***
 
-## Setting up the exercise
-
-1) Open RStudio
-
-2) Click `File -> New Project`
-
-```{r out.width="100%", echo=FALSE}
-knitr::include_graphics("figs/new_file.png")
-```
-
-
 ## Simulating stochastic population dynamcs
 
 The `WILD3810` package includes an `R` function that simulates the dynamics of a user-defined number of populations that are subject to both environmental and demographic stochasticity. This function has a number of parameters that you can change to alter the deterministic and stochastic processes that govern population growth. In this lab, you will selectively change several of these parameters to see how each influences extinction risk. 
@@ -171,3 +160,20 @@ How does the time to extinction change as a function of $r$?
 ## Factor 6: Strenth of density dependence
 
 ## Putting it all together
+
+
+# Homework 3: 
+
+## Background
+
+## Management objectives
+
+## Setting up the assignment
+
+1) Open RStudio
+
+2) Click `File -> New Project`
+
+```{r out.width="100%", echo=FALSE}
+knitr::include_graphics("figs/new_file.png")
+```
