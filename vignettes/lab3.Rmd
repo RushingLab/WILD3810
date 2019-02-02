@@ -147,7 +147,8 @@ Finally, we'll make $r$ smaller. First, make an object `sim_r.8` with $r = 0$. N
 ***
 **Interpretation**: What happens to populations that have (on average) stable or decreasing abundance? 
 
-How does the time to extinction change as a function of $r$? 
+How does the time to extinction change as a function of $r$?  
+
 ***
 
 
