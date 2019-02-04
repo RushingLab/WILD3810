@@ -205,41 +205,101 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <p>This is where data frames become useful. Perhaps the most common type data object you will use in <code>R</code> is the data frame. Data frames are tabular objects (rows and columns) similar in structure to spreadsheets (think Excel or GoogleSheets). In effect, data frames store multiple vectors - each column of the data frame is a vector. As such, each column can be a different class (numeric, character, etc.) but all values within a column must be the same class. Just as the first row of an Excel spreadsheet can be a list of column names, each column in a data frame has a name that (hopefully) provides information about what the values in that column represent.</p>
 <p>To see how data frames work, let’s view the <code>ut_dove_counts</code> object. We can do this in several ways. The <code><a href="https://www.rdocumentation.org/packages/utils/topics/head">head()</a></code> and <code><a href="https://www.rdocumentation.org/packages/utils/topics/head">tail()</a></code> functions, for example, will print the first and last 6 rows of the data frame:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(ut_dove_counts)
-<span class="co">#&gt; # A tibble: 6 x 2</span>
-<span class="co">#&gt;    Year Count</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1  1968     0</span>
-<span class="co">#&gt; 2  1969     0</span>
-<span class="co">#&gt; 3  1970     0</span>
-<span class="co">#&gt; 4  1971     0</span>
-<span class="co">#&gt; 5  1972     0</span>
-<span class="co">#&gt; 6  1973     0</span>
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt; # Groups:   Year [6]</span>
+<span class="co">#&gt;    Year Count   aou</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  1968     0 22860</span>
+<span class="co">#&gt; 2  1969     0 22860</span>
+<span class="co">#&gt; 3  1970     0 22860</span>
+<span class="co">#&gt; 4  1971     0 22860</span>
+<span class="co">#&gt; 5  1972     0 22860</span>
+<span class="co">#&gt; 6  1973     0 22860</span>
 
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">tail</a></span>(ut_dove_counts)
-<span class="co">#&gt; # A tibble: 6 x 2</span>
-<span class="co">#&gt;    Year Count</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1  2010  1.74</span>
-<span class="co">#&gt; 2  2011  1.69</span>
-<span class="co">#&gt; 3  2012  1.49</span>
-<span class="co">#&gt; 4  2013  2.35</span>
-<span class="co">#&gt; 5  2014  2.94</span>
-<span class="co">#&gt; 6  2015  3.22</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 6 x 3</span>
+<span class="co">#&gt; # Groups:   Year [6]</span>
+<span class="co">#&gt;    Year Count   aou</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  2010  1.74 22860</span>
+<span class="co">#&gt; 2  2011  1.69 22860</span>
+<span class="co">#&gt; 3  2012  1.49 22860</span>
+<span class="co">#&gt; 4  2013  2.35 22860</span>
+<span class="co">#&gt; 5  2014  2.94 22860</span>
+<span class="co">#&gt; 6  2015  3.22 22860</span></code></pre></div>
 <p>We can see that <code>ut_dove_counts</code> contains two columns: <code>Year</code> and <code>Count</code> (the counts are actually mean number of Eurasian-collared doves counted across all BBS routes within the state of Utah in each year). Obviously there weren’t many collared-doves in Utah in the late 1960’s/early 1970’s. Several other useful functions for investigating the structure of data frames are <code><a href="https://www.rdocumentation.org/packages/utils/topics/str">str()</a></code> and <code><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary()</a></code></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 <span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/str">str</a></span>(ut_dove_counts)
-<span class="co">#&gt; Classes 'tbl_df', 'tbl' and 'data.frame':    48 obs. of  2 variables:</span>
+<span class="co">#&gt; Classes 'grouped_df', 'tbl_df', 'tbl' and 'data.frame':  48 obs. of  3 variables:</span>
 <span class="co">#&gt;  $ Year : int  1968 1969 1970 1971 1972 1973 1974 1975 1976 1977 ...</span>
 <span class="co">#&gt;  $ Count: num  0 0 0 0 0 0 0 0 0 0 ...</span>
+<span class="co">#&gt;  $ aou  : num  22860 22860 22860 22860 22860 ...</span>
+<span class="co">#&gt;  - attr(*, "vars")= chr "Year"</span>
+<span class="co">#&gt;  - attr(*, "drop")= logi TRUE</span>
+<span class="co">#&gt;  - attr(*, "indices")=List of 48</span>
+<span class="co">#&gt;   ..$ : int 0</span>
+<span class="co">#&gt;   ..$ : int 1</span>
+<span class="co">#&gt;   ..$ : int 2</span>
+<span class="co">#&gt;   ..$ : int 3</span>
+<span class="co">#&gt;   ..$ : int 4</span>
+<span class="co">#&gt;   ..$ : int 5</span>
+<span class="co">#&gt;   ..$ : int 6</span>
+<span class="co">#&gt;   ..$ : int 7</span>
+<span class="co">#&gt;   ..$ : int 8</span>
+<span class="co">#&gt;   ..$ : int 9</span>
+<span class="co">#&gt;   ..$ : int 10</span>
+<span class="co">#&gt;   ..$ : int 11</span>
+<span class="co">#&gt;   ..$ : int 12</span>
+<span class="co">#&gt;   ..$ : int 13</span>
+<span class="co">#&gt;   ..$ : int 14</span>
+<span class="co">#&gt;   ..$ : int 15</span>
+<span class="co">#&gt;   ..$ : int 16</span>
+<span class="co">#&gt;   ..$ : int 17</span>
+<span class="co">#&gt;   ..$ : int 18</span>
+<span class="co">#&gt;   ..$ : int 19</span>
+<span class="co">#&gt;   ..$ : int 20</span>
+<span class="co">#&gt;   ..$ : int 21</span>
+<span class="co">#&gt;   ..$ : int 22</span>
+<span class="co">#&gt;   ..$ : int 23</span>
+<span class="co">#&gt;   ..$ : int 24</span>
+<span class="co">#&gt;   ..$ : int 25</span>
+<span class="co">#&gt;   ..$ : int 26</span>
+<span class="co">#&gt;   ..$ : int 27</span>
+<span class="co">#&gt;   ..$ : int 28</span>
+<span class="co">#&gt;   ..$ : int 29</span>
+<span class="co">#&gt;   ..$ : int 30</span>
+<span class="co">#&gt;   ..$ : int 31</span>
+<span class="co">#&gt;   ..$ : int 32</span>
+<span class="co">#&gt;   ..$ : int 33</span>
+<span class="co">#&gt;   ..$ : int 34</span>
+<span class="co">#&gt;   ..$ : int 35</span>
+<span class="co">#&gt;   ..$ : int 36</span>
+<span class="co">#&gt;   ..$ : int 37</span>
+<span class="co">#&gt;   ..$ : int 38</span>
+<span class="co">#&gt;   ..$ : int 39</span>
+<span class="co">#&gt;   ..$ : int 40</span>
+<span class="co">#&gt;   ..$ : int 41</span>
+<span class="co">#&gt;   ..$ : int 42</span>
+<span class="co">#&gt;   ..$ : int 43</span>
+<span class="co">#&gt;   ..$ : int 44</span>
+<span class="co">#&gt;   ..$ : int 45</span>
+<span class="co">#&gt;   ..$ : int 46</span>
+<span class="co">#&gt;   ..$ : int 47</span>
+<span class="co">#&gt;  - attr(*, "group_sizes")= int  1 1 1 1 1 1 1 1 1 1 ...</span>
+<span class="co">#&gt;  - attr(*, "biggest_group_size")= int 1</span>
+<span class="co">#&gt;  - attr(*, "labels")='data.frame':   48 obs. of  1 variable:</span>
+<span class="co">#&gt;   ..$ Year: int  1968 1969 1970 1971 1972 1973 1974 1975 1976 1977 ...</span>
+<span class="co">#&gt;   ..- attr(*, "vars")= chr "Year"</span>
+<span class="co">#&gt;   ..- attr(*, "drop")= logi TRUE</span>
 
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary</a></span>(ut_dove_counts)
-<span class="co">#&gt;       Year          Count      </span>
-<span class="co">#&gt;  Min.   :1968   Min.   :0.000  </span>
-<span class="co">#&gt;  1st Qu.:1980   1st Qu.:0.000  </span>
-<span class="co">#&gt;  Median :1992   Median :0.000  </span>
-<span class="co">#&gt;  Mean   :1992   Mean   :0.340  </span>
-<span class="co">#&gt;  3rd Qu.:2003   3rd Qu.:0.005  </span>
-<span class="co">#&gt;  Max.   :2015   Max.   :3.219</span></code></pre></div>
+<span class="co">#&gt;       Year          Count            aou       </span>
+<span class="co">#&gt;  Min.   :1968   Min.   :0.000   Min.   :22860  </span>
+<span class="co">#&gt;  1st Qu.:1980   1st Qu.:0.000   1st Qu.:22860  </span>
+<span class="co">#&gt;  Median :1992   Median :0.000   Median :22860  </span>
+<span class="co">#&gt;  Mean   :1992   Mean   :0.340   Mean   :22860  </span>
+<span class="co">#&gt;  3rd Qu.:2003   3rd Qu.:0.005   3rd Qu.:22860  </span>
+<span class="co">#&gt;  Max.   :2015   Max.   :3.219   Max.   :22860</span></code></pre></div>
 <p><code><a href="https://www.rdocumentation.org/packages/utils/topics/str">str()</a></code> tells us about the structure of the data frame, in this case that <code>Year</code> is an integer object (only whole numbers) and <code>Count</code> is numeric. For both types of data, <code><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary()</a></code> provides some simple summary statistics for each variable.</p>
 <p>Another useful function is <code><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow()</a></code>, which tells us now many rows are in the data frame (similar to <code><a href="https://www.rdocumentation.org/packages/base/topics/length">length()</a></code> for vectors):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(ut_dove_counts)
@@ -255,6 +315,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <p>First, we may want to select a subset of all of the columns in a big data frame. Data frames are essentially tables, which means we can reference both rows and columns by their number: <code>data.frame[row#, column#]</code>. The row and column numbers have to put inside of square brackets following the name of the data frame object. The row number always comes first and the column number second. If you want to select all rows of a specific column, you just leave the <code>row#</code> blank. For example, if we wanted a vector containing all of the years the BBS data was collected:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ut_dove_counts[,<span class="dv">1</span>]
 <span class="co">#&gt; # A tibble: 48 x 1</span>
+<span class="co">#&gt; # Groups:   Year [48]</span>
 <span class="co">#&gt;     Year</span>
 <span class="co">#&gt;    &lt;int&gt;</span>
 <span class="co">#&gt;  1  1968</span>
@@ -288,6 +349,7 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 
 <span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="dt">.data =</span> ut_dove_counts, Count, Year)
 <span class="co">#&gt; # A tibble: 48 x 2</span>
+<span class="co">#&gt; # Groups:   Year [48]</span>
 <span class="co">#&gt;    Count  Year</span>
 <span class="co">#&gt;    &lt;dbl&gt; &lt;int&gt;</span>
 <span class="co">#&gt;  1     0  1968</span>
@@ -303,19 +365,21 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <span class="co">#&gt; # ... with 38 more rows</span></code></pre></div>
 <p>Notice that select requires us to first provide the data frame object (<code>.data = ut_dove_counts</code>) and then we provide the column names (unquoted!) we want to select. In this case we selected both columns but changed in the order. You can also use select to remove columns:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(<span class="dt">.data =</span> ut_dove_counts, <span class="op">-</span>Year)
-<span class="co">#&gt; # A tibble: 48 x 1</span>
-<span class="co">#&gt;    Count</span>
-<span class="co">#&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt;  1     0</span>
-<span class="co">#&gt;  2     0</span>
-<span class="co">#&gt;  3     0</span>
-<span class="co">#&gt;  4     0</span>
-<span class="co">#&gt;  5     0</span>
-<span class="co">#&gt;  6     0</span>
-<span class="co">#&gt;  7     0</span>
-<span class="co">#&gt;  8     0</span>
-<span class="co">#&gt;  9     0</span>
-<span class="co">#&gt; 10     0</span>
+<span class="co">#&gt; Adding missing grouping variables: `Year`</span>
+<span class="co">#&gt; # A tibble: 48 x 3</span>
+<span class="co">#&gt; # Groups:   Year [48]</span>
+<span class="co">#&gt;     Year Count   aou</span>
+<span class="co">#&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1  1968     0 22860</span>
+<span class="co">#&gt;  2  1969     0 22860</span>
+<span class="co">#&gt;  3  1970     0 22860</span>
+<span class="co">#&gt;  4  1971     0 22860</span>
+<span class="co">#&gt;  5  1972     0 22860</span>
+<span class="co">#&gt;  6  1973     0 22860</span>
+<span class="co">#&gt;  7  1974     0 22860</span>
+<span class="co">#&gt;  8  1975     0 22860</span>
+<span class="co">#&gt;  9  1976     0 22860</span>
+<span class="co">#&gt; 10  1977     0 22860</span>
 <span class="co">#&gt; # ... with 38 more rows</span></code></pre></div>
 </div>
 </div>
@@ -324,63 +388,69 @@ devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumen
 <a href="#filtering-rows" class="anchor"></a>Filtering rows</h3>
 <p>To select specific rows, we can use the <code>row#</code> method we learned above, this time leaving the columns blank:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ut_dove_counts[<span class="dv">1</span>,]
-<span class="co">#&gt; # A tibble: 1 x 2</span>
-<span class="co">#&gt;    Year Count</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1  1968     0</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 1 x 3</span>
+<span class="co">#&gt; # Groups:   Year [1]</span>
+<span class="co">#&gt;    Year Count   aou</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  1968     0 22860</span></code></pre></div>
 <p>If we want more than one row, we just put in a vector with all of the rows we want:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ut_dove_counts[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>,]
-<span class="co">#&gt; # A tibble: 2 x 2</span>
-<span class="co">#&gt;    Year Count</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1  1968     0</span>
-<span class="co">#&gt; 2  1969     0</span>
+<span class="co">#&gt; # A tibble: 2 x 3</span>
+<span class="co">#&gt; # Groups:   Year [2]</span>
+<span class="co">#&gt;    Year Count   aou</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  1968     0 22860</span>
+<span class="co">#&gt; 2  1969     0 22860</span>
 
 ut_dove_counts[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>,<span class="dv">30</span>),]
-<span class="co">#&gt; # A tibble: 2 x 2</span>
-<span class="co">#&gt;    Year Count</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1  1968     0</span>
-<span class="co">#&gt; 2  1997     0</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 2 x 3</span>
+<span class="co">#&gt; # Groups:   Year [2]</span>
+<span class="co">#&gt;    Year Count   aou</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  1968     0 22860</span>
+<span class="co">#&gt; 2  1997     0 22860</span></code></pre></div>
 <p>Note that we can use the square brackets to also subset vectors, in which case we don’t need the comma as long as you tell <code>R</code> which column you want first:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">ut_dove_counts<span class="op">$</span>Count[<span class="dv">1</span>]
 <span class="co">#&gt; [1] 0</span></code></pre></div>
 <p>Sometimes, we may not know the specific row number(s) we want but we do know the value of one of the columns we want to keep. Using the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function in the <code>dplyr</code> package allows us to filter rows based on the value of one of the variables. For example, if we want just the 2004 count, we use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(ut_dove_counts, Year <span class="op">==</span><span class="st"> </span><span class="dv">2004</span>)
-<span class="co">#&gt; # A tibble: 1 x 2</span>
-<span class="co">#&gt;    Year  Count</span>
-<span class="co">#&gt;   &lt;int&gt;  &lt;dbl&gt;</span>
-<span class="co">#&gt; 1  2004 0.0211</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 1 x 3</span>
+<span class="co">#&gt; # Groups:   Year [1]</span>
+<span class="co">#&gt;    Year  Count   aou</span>
+<span class="co">#&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  2004 0.0211 22860</span></code></pre></div>
 <p>Notice the need for two equals signs (<code>==</code>) when telling <code>R</code> we want the row where <code>Year</code> equals 2. Filter makes it very easy to select multiple rows using operators like greater than, less than, etc.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(ut_dove_counts, Year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2004</span>)
-<span class="co">#&gt; # A tibble: 11 x 2</span>
-<span class="co">#&gt;     Year Count</span>
-<span class="co">#&gt;    &lt;int&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1  2005 0.112</span>
-<span class="co">#&gt;  2  2006 0.337</span>
-<span class="co">#&gt;  3  2007 0.562</span>
-<span class="co">#&gt;  4  2008 0.817</span>
-<span class="co">#&gt;  5  2009 1.03 </span>
-<span class="co">#&gt;  6  2010 1.74 </span>
-<span class="co">#&gt;  7  2011 1.69 </span>
-<span class="co">#&gt;  8  2012 1.49 </span>
-<span class="co">#&gt;  9  2013 2.35 </span>
-<span class="co">#&gt; 10  2014 2.94 </span>
-<span class="co">#&gt; 11  2015 3.22</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 11 x 3</span>
+<span class="co">#&gt; # Groups:   Year [11]</span>
+<span class="co">#&gt;     Year Count   aou</span>
+<span class="co">#&gt;    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt;  1  2005 0.112 22860</span>
+<span class="co">#&gt;  2  2006 0.337 22860</span>
+<span class="co">#&gt;  3  2007 0.562 22860</span>
+<span class="co">#&gt;  4  2008 0.817 22860</span>
+<span class="co">#&gt;  5  2009 1.03  22860</span>
+<span class="co">#&gt;  6  2010 1.74  22860</span>
+<span class="co">#&gt;  7  2011 1.69  22860</span>
+<span class="co">#&gt;  8  2012 1.49  22860</span>
+<span class="co">#&gt;  9  2013 2.35  22860</span>
+<span class="co">#&gt; 10  2014 2.94  22860</span>
+<span class="co">#&gt; 11  2015 3.22  22860</span></code></pre></div>
 <p>or a more complicated example:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(ut_dove_counts, Year <span class="op">&lt;</span><span class="st"> </span><span class="dv">1972</span> <span class="op">|</span><span class="st"> </span>Year <span class="op">&gt;</span><span class="st"> </span><span class="dv">2010</span>)
-<span class="co">#&gt; # A tibble: 9 x 2</span>
-<span class="co">#&gt;    Year Count</span>
-<span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt; 1  1968  0   </span>
-<span class="co">#&gt; 2  1969  0   </span>
-<span class="co">#&gt; 3  1970  0   </span>
-<span class="co">#&gt; 4  1971  0   </span>
-<span class="co">#&gt; 5  2011  1.69</span>
-<span class="co">#&gt; 6  2012  1.49</span>
-<span class="co">#&gt; 7  2013  2.35</span>
-<span class="co">#&gt; 8  2014  2.94</span>
-<span class="co">#&gt; 9  2015  3.22</span></code></pre></div>
+<span class="co">#&gt; # A tibble: 9 x 3</span>
+<span class="co">#&gt; # Groups:   Year [9]</span>
+<span class="co">#&gt;    Year Count   aou</span>
+<span class="co">#&gt;   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;</span>
+<span class="co">#&gt; 1  1968  0    22860</span>
+<span class="co">#&gt; 2  1969  0    22860</span>
+<span class="co">#&gt; 3  1970  0    22860</span>
+<span class="co">#&gt; 4  1971  0    22860</span>
+<span class="co">#&gt; 5  2011  1.69 22860</span>
+<span class="co">#&gt; 6  2012  1.49 22860</span>
+<span class="co">#&gt; 7  2013  2.35 22860</span>
+<span class="co">#&gt; 8  2014  2.94 22860</span>
+<span class="co">#&gt; 9  2015  3.22 22860</span></code></pre></div>
 </div>
 </div>
 <div id="visualizing-data-frames-using-ggplot2" class="section level2">

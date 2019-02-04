@@ -1,10 +1,9 @@
 ---
-title: "Population viability analysis for the endangered Colorado pikeminnow"
+title: "Population viability analysis for the violet-winged checkerspot"
 author: "YOUR NAME HERE"
 output: html_document
 
 ## Do not change anything in the YAML header
-mainfont: Arial
 fontsize: 12pt
 indent: true
 ---
@@ -17,12 +16,13 @@ library(WILD3810)
 ```
 
 
-```{r echo = FALSE}
+
+```{r include = FALSE}
 # Include any code you used to complete your analysis here
-# Note that because `echo = FALSE` this code will not show up in your final document
-# However, because R will run this code before creating the text and figure
+# Note that because `include = FALSE` this code will not show up in your final document
+# However, because R will run this code before creating the text and figures
 #    this code will be available for you to include summary statistics in the text
-#    and for creating the figure
+#    and for inserting figures
 ```
 
 Type your recommendations here (**delete all of the the included text after you have read it!**). Be sure to refer to the instructions provided by the writing center for help on how to format your recommendations and what information needs to be included. 
@@ -31,8 +31,8 @@ After you have a draft ready, you may schedule an appointment with the science w
 
 
 ```{r fig.height = 3, fig.width = 3, echo = FALSE}
-# Include your figure here
-ggplot(data = mtcars, aes(x = mpg, y = wt)) + geom_point()
+# Uncomment the following line when you create the final document so your figure is included
+# knitr::include_graphics("alternative_pva.png")
 ```
 
 
