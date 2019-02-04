@@ -116,7 +116,7 @@ sim_test
 knitr::kable(sim_test, format = 'html')
 ```
 
-This table returns some of the input parameters (`nYears`, `N0`, `r0`, `variance.r`) as well as summaries about the type of model (density dependent or independent), carrying capacity (if density-dependent). In addition, the output include two important summary statistics:
+This table returns some of the input parameters (`nYears`, `N0`, `r0`, `variance.r`) as well as summaries about the type of model (density dependent or independent) and carrying capacity (if density-dependent). In addition, the output include two important summary statistics:
 
 1) `prob.extinct`: the estimated probability of extinction over the simulated time frame
 
@@ -167,7 +167,7 @@ sim_K.1 <- pva(N0 = 5, number.of.years = 100,
                 r0 = 0.1, variance.r = 0.075, K = 150)
 ```
 
-What happened to extinction probability relative to `K = 50`? To make sure the previous result wasn't a fluke, let's increase `K` again and see if the pattern holds:
+What happened to extinction probability relative to `K = 50`? To make sure the previous result wasn't a fluke, increase `K` again and see if the pattern holds:
 
 ```{r eval = FALSE}
 sim_K.2 <- pva(N0 = 5, number.of.years = 100, 
@@ -220,7 +220,7 @@ Run a few more simulations with increasing values of `variance.r`. Does the gene
 
 ### Factor 3b: Demographic stochasticity
 
-Before moving on from the question of population size, let's look more closely at the role of demographic stochasticity by removing environmental stochasticity from the model (`variance.r = 0`) and observing how demographic stochasticity influences extinction risk at different carrying capacities. Start with a large K (`K=500`):
+Before moving on from the question of stochasticity, let's look more closely at the role of demographic stochasticity by removing environmental stochasticity from the model (`variance.r = 0`) and observing how demographic stochasticity influences extinction risk at different carrying capacities. Start with a large K (`K=500`):
 
 ***
 **Prediction**: At large sizes, do you expect demographic stochasticity to have important consequences for extinction risk?  
@@ -277,7 +277,7 @@ sim_var_r.2 <- pva(N0 = 20, number.of.years = 100,
 
 Were you right? 
 
-Let's increase `N0` again to make sure it wasn't a fluke:
+Increase `N0` again to make sure it wasn't a fluke:
 
 ```{r eval = FALSE}
 sim_N0.2 <- pva(N0 = 50, number.of.years = 100, 
@@ -362,7 +362,7 @@ sim_theta.2 <- pva(N0 = 250, number.of.years = 100,
 
 Was your prediction correct? 
 
-Now let's try $\theta > 1$:
+Now try $\theta > 1$:
 
 ```{r eval = FALSE}
 sim_theta.3 <- pva(N0 = 250, number.of.years = 100, 
@@ -378,9 +378,13 @@ sim_theta.4 <- pva(N0 = 250, number.of.years = 100,
 
 Before moving on, use the `dplyr` function `bind_rows` to create a new data frame that contains all of the simulations created in this section. Call the new data frame `sim_dd`. 
 
+## On your own
+
+So far, we have only varied one parameter at a time. On your own, play with different combinations of the parameters and see what happens to extinction risk and time to extinction. Before making a change, be sure to think about what you predict will happen and then see if you prediction was correct.
+
 ## Putting it all together
 
-On your own, create a new data frame that contains all of the simulated results:
+On your own, create a new data frame that contains all of the simulated results (add any that you created in the previou section):
 
 ```{r eval = FALSE}
 
@@ -390,11 +394,10 @@ sim_pva <- bind_rows(sim_test, sim_r, sim_K, sim_var_r, sim_N0, sim_dd)
 Now create your own plots showing the relationship between extinction probability/time to extinction and the parameters you varied in the simulations. Using the following code as a guide:
 
 ```{r eval = FALSE}
-library(ggplot2)
 ggplot(sim_pva, aes(x = prob.extinct, y = variance.r, size = N0)) + geom_point()
 ```
 
-# Homework 3: Population viability of 
+# Homework 3: Population viability of the violet-winged checkerspot
 
 ## Background
 
@@ -413,15 +416,15 @@ ggplot(obs_N, aes(x = Year, y = N)) + geom_line(color = "grey50") +
 
 After the initial drop in the population size, a working group made up of elected officials and appointed agency officials was formed to set management objectives and decide on management actions to ensure the long-term persistence of this species. The working group, afraid that setting specific management objectives might set themselves up for failure, decided on two vague objectives:
 
-1) Ensure high probability that the population will not go extinct in the near future 
+1) Ensure high probability that the species will not go extinct in the near future 
 
-2) Ensure reasonable probability that the population does not drop below the monitoring threshold of 10
+2) Ensure reasonable probability that the species does not drop below the monitoring threshold of 10
 
 The second objective was created because once the population drops below 10 individuals, it becomes very difficult to find and count individuals. Therefore, maintaining the population above this quasi-extinction threshold was viewed as an important objective for accurately monitoring future population size. 
 
 ### Turning the objectives into actions
 
-Because the working group contained no ecologists, the members had to out-source the hard work of actually predicting the future dynamics of the checkerspot under different management scenarios. As the agency's most promising young entomologist and an expert in population viability analysis, you have been asked to conduct a study and provide the working group with a specific recommendation for how to meet the two management objectives.  
+Because the working group contained no ecologists, the members had to out-source the hard work of actually predicting the future dynamics of the checkerspot. As the agency's most promising young entomologist and an expert in population viability analysis, you have been asked to conduct a study and provide the working group with a specific recommendation for how to meet the two management objectives.  
 
 In order to provide the working group with a scientifically-sound recommendation, you pull together all of the data you can find on the violet-winged checkerspot. These data include:
 
@@ -477,13 +480,15 @@ Inside the main code chunk of the homework template, use the above data to estim
 
 5) The function requires an estimate of the fire frequency. Think of this as the *probability* of a fire any given year. Did this frequency change before and after the development? 
 
-6) The working group was vague about the time frame and acceptable extinction probability. You will have to decide what time frame and risk correspond to "near future" and "high probability" (or "reasonable probability" for the monitoring threshold)
+6) The working group was vague about the time frame and acceptable extinction probability. You will have to decide what time frame and risk correspond to "near future" and "high probability" (or "reasonable probability" for the monitoring threshold). In your recommendation, you will need state the time frane you chose and justify this choice. 
 
 Once you have code that creates all of the objects you need to run the function, you can run it using:
 
 ```{r eval = FALSE}
 base_pva <- baseline_pva(...)
 ```
+
+Subsituting `...` for the required arguments.  
 
 In addition to the figure showing the predicted dynamics of the simulated populations, the `base_pva` object is a data frame containing the final abundance of each simulated population, whether the population ended below the extinction threshold, and the number of years it took for the "extinct" populations to go extinct. You can use this object to estimate the probability of quasi-extinction and median time to extinction:
 
@@ -502,7 +507,7 @@ At this stage, you should also create object called `base_monitoring_pva` with t
 
 ## Management actions
 
-With the baseline predictions, you are know ready to explore several management actions that could be taken to reduce the extinction risk of the checkerspot. These actions include:
+With the baseline predictions, you are now ready to explore several management actions that could be taken to reduce the extinction risk of the checkerspot. These actions include:
 
 1) Increase `K` by creating new habitat
 
@@ -515,7 +520,7 @@ Due to the stochasticity inherent to the dynamics of this species, it's hard to 
 
 This function will also return a data frame with the same information as `baseline_pva`, which will allow you estimate the extinction probability and time to extinction for the management scenario you created. In addition, it will save the figure to the folder where your .Rmd file is located (the figure will be called `alternative_pva.png`). 
 
-You should also run the function with `extinction.threshold=10` to check the monitoring objective as well (this will create a figure called `alternative_monitoring_pva.png`).  
+You should also run the function with `extinction.threshold=10` to check the monitoring objective..  
 
 Of course, management costs money and money is limited. Every 1% increase in `K` costs \$500 and every 1% decrease in fire frequency costs \$1500. The total available funds for this project is \$100,000. If the proposed combination of increased `K` and decreased fire probability exceeds the total cost, you will get an error message stating that you need to either reduce `K` or allow a higher fire probability. 
 

@@ -153,11 +153,11 @@
 <li>
 <code>R</code> functions used in this exercise:
 <ul>
-<li>
-<code><a href="../reference/pva.html">WILD3810::pva()</a></code> ***</li>
+<li><code><a href="../reference/pva.html">WILD3810::pva()</a></code></li>
 </ul>
 </li>
 </ul>
+<hr>
 <div id="setting-up-the-lab" class="section level2">
 <h2 class="hasAnchor">
 <a href="#setting-up-the-lab" class="anchor"></a>Setting up the lab</h2>
@@ -268,14 +268,14 @@ Yes
 1
 </td>
 <td style="text-align:right;">
-0.022
+0.024
 </td>
 <td style="text-align:right;">
-7
+5.5
 </td>
 </tr></tbody>
 </table>
-<p>This table returns some of the input parameters (<code>nYears</code>, <code>N0</code>, <code>r0</code>, <code>variance.r</code>) as well as summaries about the type of model (density dependent or independent), carrying capacity (if density-dependent). In addition, the output include two important summary statistics:</p>
+<p>This table returns some of the input parameters (<code>nYears</code>, <code>N0</code>, <code>r0</code>, <code>variance.r</code>) as well as summaries about the type of model (density dependent or independent) and carrying capacity (if density-dependent). In addition, the output include two important summary statistics:</p>
 <ol style="list-style-type: decimal">
 <li><p><code>prob.extinct</code>: the estimated probability of extinction over the simulated time frame</p></li>
 <li><p><code>median.time.to.ext</code>: of the populations that went extinct, the median number of years to extinction</p></li>
@@ -309,7 +309,7 @@ Yes
 <p>Next, let’s vary <code>K</code>. To start, leave the other options the same as in <code>sim_r.1</code> but with <code>K=150</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_K.<span class="dv">1</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">5</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, 
                 <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.075</span>, <span class="dt">K =</span> <span class="dv">150</span>)</code></pre></div>
-<p>What happened to extinction probability relative to <code>K = 50</code>? To make sure the previous result wasn’t a fluke, let’s increase <code>K</code> again and see if the pattern holds:</p>
+<p>What happened to extinction probability relative to <code>K = 50</code>? To make sure the previous result wasn’t a fluke, increase <code>K</code> again and see if the pattern holds:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_K.<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">5</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, 
                 <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.075</span>, <span class="dt">K =</span> <span class="dv">500</span>)</code></pre></div>
 <hr>
@@ -340,7 +340,7 @@ Yes
 <div id="factor-3b-demographic-stochasticity" class="section level3">
 <h3 class="hasAnchor">
 <a href="#factor-3b-demographic-stochasticity" class="anchor"></a>Factor 3b: Demographic stochasticity</h3>
-<p>Before moving on from the question of population size, let’s look more closely at the role of demographic stochasticity by removing environmental stochasticity from the model (<code>variance.r = 0</code>) and observing how demographic stochasticity influences extinction risk at different carrying capacities. Start with a large K (<code>K=500</code>):</p>
+<p>Before moving on from the question of stochasticity, let’s look more closely at the role of demographic stochasticity by removing environmental stochasticity from the model (<code>variance.r = 0</code>) and observing how demographic stochasticity influences extinction risk at different carrying capacities. Start with a large K (<code>K=500</code>):</p>
 <hr>
 <p><strong>Prediction</strong>: At large sizes, do you expect demographic stochasticity to have important consequences for extinction risk?</p>
 <hr>
@@ -372,7 +372,7 @@ Yes
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_var_r.<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">20</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, 
                    <span class="dt">r0 =</span> <span class="fl">0.4</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>, <span class="dt">K =</span> <span class="dv">150</span>)</code></pre></div>
 <p>Were you right?</p>
-<p>Let’s increase <code>N0</code> again to make sure it wasn’t a fluke:</p>
+<p>Increase <code>N0</code> again to make sure it wasn’t a fluke:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_N0.<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">50</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, 
                 <span class="dt">r0 =</span> <span class="fl">0.4</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>, <span class="dt">K =</span> <span class="dv">150</span>)</code></pre></div>
 <p>What if <code>N0 &gt; K</code>?</p>
@@ -402,7 +402,7 @@ Yes
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_theta.<span class="dv">2</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">250</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, 
                 <span class="dt">r0 =</span> <span class="fl">0.4</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>, <span class="dt">K =</span> <span class="dv">150</span>, <span class="dt">theta =</span> <span class="fl">0.25</span>)</code></pre></div>
 <p>Was your prediction correct?</p>
-<p>Now let’s try <span class="math inline">\(\theta &gt; 1\)</span>:</p>
+<p>Now try <span class="math inline">\(\theta &gt; 1\)</span>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">sim_theta.<span class="dv">3</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">250</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, 
                 <span class="dt">r0 =</span> <span class="fl">0.4</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>, <span class="dt">K =</span> <span class="dv">150</span>, <span class="dt">theta =</span> <span class="fl">1.25</span>)</code></pre></div>
 <p>And even larger:</p>
@@ -410,19 +410,23 @@ Yes
                 <span class="dt">r0 =</span> <span class="fl">0.4</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>, <span class="dt">K =</span> <span class="dv">150</span>, <span class="dt">theta =</span> <span class="fl">1.75</span>)</code></pre></div>
 <p>Before moving on, use the <code>dplyr</code> function <code>bind_rows</code> to create a new data frame that contains all of the simulations created in this section. Call the new data frame <code>sim_dd</code>.</p>
 </div>
+<div id="on-your-own" class="section level2">
+<h2 class="hasAnchor">
+<a href="#on-your-own" class="anchor"></a>On your own</h2>
+<p>So far, we have only varied one parameter at a time. On your own, play with different combinations of the parameters and see what happens to extinction risk and time to extinction. Before making a change, be sure to think about what you predict will happen and then see if you prediction was correct.</p>
+</div>
 <div id="putting-it-all-together" class="section level2">
 <h2 class="hasAnchor">
 <a href="#putting-it-all-together" class="anchor"></a>Putting it all together</h2>
-<p>On your own, create a new data frame that contains all of the simulated results:</p>
+<p>On your own, create a new data frame that contains all of the simulated results (add any that you created in the previou section):</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
 sim_pva &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(sim_test, sim_r, sim_K, sim_var_r, sim_N0, sim_dd)</code></pre></div>
 <p>Now create your own plots showing the relationship between extinction probability/time to extinction and the parameters you varied in the simulations. Using the following code as a guide:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)
-<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(sim_pva, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> prob.extinct, <span class="dt">y =</span> variance.r, <span class="dt">size =</span> N0)) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(sim_pva, <span class="kw">aes</span>(<span class="dt">x =</span> prob.extinct, <span class="dt">y =</span> variance.r, <span class="dt">size =</span> N0)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
 </div>
-<div id="homework-3-population-viability-of" class="section level1">
+<div id="homework-3-population-viability-of-the-violet-winged-checkerspot" class="section level1">
 <h1 class="hasAnchor">
-<a href="#homework-3-population-viability-of" class="anchor"></a>Homework 3: Population viability of</h1>
+<a href="#homework-3-population-viability-of-the-violet-winged-checkerspot" class="anchor"></a>Homework 3: Population viability of the violet-winged checkerspot</h1>
 <div id="background" class="section level2">
 <h2 class="hasAnchor">
 <a href="#background" class="anchor"></a>Background</h2>
@@ -432,14 +436,14 @@ sim_pva &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(sim_test
 <p><img src="lab3_files/figure-html/unnamed-chunk-29-1.png" width="700"></p>
 <p>After the initial drop in the population size, a working group made up of elected officials and appointed agency officials was formed to set management objectives and decide on management actions to ensure the long-term persistence of this species. The working group, afraid that setting specific management objectives might set themselves up for failure, decided on two vague objectives:</p>
 <ol style="list-style-type: decimal">
-<li><p>Ensure high probability that the population will not go extinct in the near future</p></li>
-<li><p>Ensure reasonable probability that the population does not drop below the monitoring threshold of 10</p></li>
+<li><p>Ensure high probability that the species will not go extinct in the near future</p></li>
+<li><p>Ensure reasonable probability that the species does not drop below the monitoring threshold of 10</p></li>
 </ol>
 <p>The second objective was created because once the population drops below 10 individuals, it becomes very difficult to find and count individuals. Therefore, maintaining the population above this quasi-extinction threshold was viewed as an important objective for accurately monitoring future population size.</p>
 <div id="turning-the-objectives-into-actions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#turning-the-objectives-into-actions" class="anchor"></a>Turning the objectives into actions</h3>
-<p>Because the working group contained no ecologists, the members had to out-source the hard work of actually predicting the future dynamics of the checkerspot under different management scenarios. As the agency’s most promising young entomologist and an expert in population viability analysis, you have been asked to conduct a study and provide the working group with a specific recommendation for how to meet the two management objectives.</p>
+<p>Because the working group contained no ecologists, the members had to out-source the hard work of actually predicting the future dynamics of the checkerspot. As the agency’s most promising young entomologist and an expert in population viability analysis, you have been asked to conduct a study and provide the working group with a specific recommendation for how to meet the two management objectives.</p>
 <p>In order to provide the working group with a scientifically-sound recommendation, you pull together all of the data you can find on the violet-winged checkerspot. These data include:</p>
 <ul>
 <li>The observed counts of individuals in each year since 1980. These are stored in a data frame which can be accessed directly in <code>R</code>. The data frame contains the <code>Year</code>, abundance (<code>N</code>), and whether the count was conducted before or after the housing developments were built.</li>
@@ -491,10 +495,11 @@ sim_pva &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(sim_test
 <li><p>The carrying capacity in this case refers to <code>K</code> <em>after</em> the housing development was built. You have enough information to estimate this by estimating <code>K</code> <em>before</em> the housing development and then reducing that by the amount of habitat that was lost. Use the <code><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter()</a></code> function from the <code>dplyr</code> package to filter just the observed counts before the housing development. Then estimate <code>K</code> as the mean of those counts</p></li>
 <li><p>The baseline birth and death rates as well as the rates in fire years can be estimated from the observed number of births and deaths. Did those rates change before and after the development? Use your best scientific judgement to answer this. Were those rates different in fire years? To estimate these rates, create vectors that hold the observed births or deaths and the observed abundance in each of those years. Then estimate the mean birth rate or death rate from these objects.</p></li>
 <li><p>The function requires an estimate of the fire frequency. Think of this as the <em>probability</em> of a fire any given year. Did this frequency change before and after the development?</p></li>
-<li><p>The working group was vague about the time frame and acceptable extinction probability. You will have to decide what time frame and risk correspond to “near future” and “high probability” (or “reasonable probability” for the monitoring threshold)</p></li>
+<li><p>The working group was vague about the time frame and acceptable extinction probability. You will have to decide what time frame and risk correspond to “near future” and “high probability” (or “reasonable probability” for the monitoring threshold). In your recommendation, you will need state the time frane you chose and justify this choice.</p></li>
 </ol>
 <p>Once you have code that creates all of the objects you need to run the function, you can run it using:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">base_pva &lt;-<span class="st"> </span><span class="kw"><a href="../reference/baseline_pva.html">baseline_pva</a></span>(...)</code></pre></div>
+<p>Subsituting <code>...</code> for the required arguments.</p>
 <p>In addition to the figure showing the predicted dynamics of the simulated populations, the <code>base_pva</code> object is a data frame containing the final abundance of each simulated population, whether the population ended below the extinction threshold, and the number of years it took for the “extinct” populations to go extinct. You can use this object to estimate the probability of quasi-extinction and median time to extinction:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(base_pva<span class="op">$</span>Extinct)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/median">median</a></span>(base_pva<span class="op">$</span>year0, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="co"># Note that you need the `na.rm = TRUE` for this function to work</span></code></pre></div>
@@ -506,7 +511,7 @@ sim_pva &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(sim_test
 <div id="management-actions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#management-actions" class="anchor"></a>Management actions</h2>
-<p>With the baseline predictions, you are know ready to explore several management actions that could be taken to reduce the extinction risk of the checkerspot. These actions include:</p>
+<p>With the baseline predictions, you are now ready to explore several management actions that could be taken to reduce the extinction risk of the checkerspot. These actions include:</p>
 <ol style="list-style-type: decimal">
 <li><p>Increase <code>K</code> by creating new habitat</p></li>
 <li><p>Decrease the frequency of fires by more aggressively managing them before they become severe</p></li>
@@ -519,7 +524,7 @@ sim_pva &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(sim_test
 <code>fire.prob</code> - the future fire frequency due to fire management</li>
 </ul>
 <p>This function will also return a data frame with the same information as <code>baseline_pva</code>, which will allow you estimate the extinction probability and time to extinction for the management scenario you created. In addition, it will save the figure to the folder where your .Rmd file is located (the figure will be called <code>alternative_pva.png</code>).</p>
-<p>You should also run the function with <code>extinction.threshold=10</code> to check the monitoring objective as well (this will create a figure called <code>alternative_monitoring_pva.png</code>).</p>
+<p>You should also run the function with <code>extinction.threshold=10</code> to check the monitoring objective..</p>
 <p>Of course, management costs money and money is limited. Every 1% increase in <code>K</code> costs $500 and every 1% decrease in fire frequency costs $1500. The total available funds for this project is $100,000. If the proposed combination of increased <code>K</code> and decreased fire probability exceeds the total cost, you will get an error message stating that you need to either reduce <code>K</code> or allow a higher fire probability.</p>
 <p>Run this function as many times as needed from within the chunk until you are satisfied that you have found the combination of habitat creation and fire reduction that best meets the stated management objectives.</p>
 </div>
@@ -545,9 +550,10 @@ sim_pva &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(sim_test
       <li><a href="#factor-3-variability-in-r">Factor 3: Variability in <code>r</code></a></li>
       <li><a href="#factor-4-initial-population-size">Factor 4: Initial population size</a></li>
       <li><a href="#factor-5-strenth-of-density-dependence">Factor 5: Strenth of density dependence</a></li>
+      <li><a href="#on-your-own">On your own</a></li>
       <li><a href="#putting-it-all-together">Putting it all together</a></li>
       <li>
-<a href="#homework-3-population-viability-of">Homework 3: Population viability of</a><ul class="nav nav-pills nav-stacked">
+<a href="#homework-3-population-viability-of-the-violet-winged-checkerspot">Homework 3: Population viability of the violet-winged checkerspot</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#background">Background</a></li>
       <li><a href="#setting-up-the-assignment">Setting up the assignment</a></li>
       <li><a href="#baseline-extinction-risk">Baseline extinction risk</a></li>
