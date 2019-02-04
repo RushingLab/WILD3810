@@ -27,7 +27,8 @@ In this lab, you will learn about using population viability analysis (PVA) to p
 * Build intuition about the ecological factors that influence extinction risk
   
 * `R` functions used in this exercise:  
-    + `WILD3810::pva()`
+    + `WILD3810::pva()`  
+    
 ***
 
 ## Setting up the lab
