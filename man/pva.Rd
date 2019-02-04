@@ -4,9 +4,9 @@
 \alias{pva}
 \title{pva}
 \usage{
-pva(N0, number.of.years, number.of.populations, b0, variance.b = 0, d0,
-  variance.d = 0, K = NULL, Allee = NULL, theta = 1,
-  extinction.threshold = 0, d.slope = 0.0075)
+pva(N0, number.of.years, number.of.populations = 500, r0,
+  variance.r = 0, K = NULL, Allee = NULL, theta = 1,
+  extinction.threshold = 0)
 }
 \arguments{
 \item{N0}{Initial population size}
@@ -15,15 +15,17 @@ pva(N0, number.of.years, number.of.populations, b0, variance.b = 0, d0,
 
 \item{number.of.populations}{Number of simulated populations}
 
-\item{K}{Optional carrying capacity (if K given, population growth modeled using density-dependent model)}
+\item{r0}{Either the mean growth rate (density-independent model) or the growth rate at N = 0 (density-dependent model)}
 
-\item{Allee}{Optional strenth of Allee effects}
+\item{variance.r}{Magnitude of environmental stochasticity in the growth rate (annual variation in `r`)}
 
-\item{theta}{Optional parameter for theta-logistic model to allow non-linear density-dependence (must be >=0)}
+\item{K}{Optional carrying capacity. If K is given, the model will assume density dependence in both b and d; if no K is given, the model will assume density-independent growth}
 
-\item{mean.r}{Mean intrinsic population growth rate}
+\item{theta}{Theta parameter in the theta-logistic growth model; control shape of density-dependence (default = 1)}
 
-\item{variance.r}{Magnitude of environmental stochasticity (annual variation in `r`)}
+\item{extinction.threshold}{Threshold abundance used to determine a population "extinct" (default = 0)}
+
+\item{dd.slope}{Strength of density-dependence on r}
 }
 \description{
 Basic population viability analysis simulator

@@ -43,6 +43,8 @@ navbar:
           href: articles/rmarkdown_intro.html
         - text: "Lab 2: Modeling population dynamics"
           href: articles/lab2.html
+        - text: "Lab 3: Population viability analysis"
+          href: articles/lab3.html
     - icon: fas fa-pencil-square-o
       text: "Assignments"
       href: articles/homework.html

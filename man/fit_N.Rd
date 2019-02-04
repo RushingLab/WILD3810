@@ -4,8 +4,8 @@
 \alias{fit_N}
 \title{fit_N}
 \usage{
-fit_N()
+fit_N(b0, variance.b, d0, variance.d, K = NULL, theta = 1, d.slope)
 }
 \description{
-Convert html slide show into pdf
+fit_N
 }

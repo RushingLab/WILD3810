@@ -1,5 +1,5 @@
 ### BBS dove data
-#bbs <- BBS.tenstop::get_BBS10()
+# bbs <- BBS.tenstop::get_BBS10()
 
 ut_routes <- dplyr::filter(bbs$routes, statenum == 85)
 
@@ -44,7 +44,7 @@ all_counts <- dplyr::select(all_counts, Year, aou, speciestotal, routeID)
 
 all_dove_counts <- dplyr::filter(all_counts, aou == 22860)
 
-all_dove_counts <- bind_rows(data.frame(Year = seq(from = 1968, to = 1985), Count = 0),
+all_dove_counts <- dplyr::bind_rows(data.frame(Year = seq(from = 1968, to = 1985), Count = 0),
                          all_dove_counts)
 
 all_dove_counts <- dplyr::select(all_dove_counts, Year, speciestotal, routeID)
@@ -58,6 +58,15 @@ all_dove_counts <- dplyr::group_by(all_dove_counts, Year)
 
 all_dove_counts <- dplyr::summarise(all_dove_counts, Count = mean(speciestotal))
 
-usethis::use_data(ut_dove_counts, all_dove_counts)
+
+### PVA homework 1
+
+
+obs_N <- WILD3810::get_N(N0 = round(runif(1, 225, 275)), number.of.years = c(30, 8), b0 = 1,
+               variance.b = 0.2, fire.prob = c(0.1, 0.25), fire.b = 0.6, fire.d = 0.8,
+               d0 = 0.2, variance.d = 0.7, K = c(450, 36),
+               seed = 8, d.slope = 0.0075)
+
+usethis::use_data(ut_dove_counts, all_dove_counts, obs_N, overwrite = TRUE)
 
 
