@@ -30,7 +30,7 @@ Type your recommendations here (**delete all of the the included text after you 
 After you have a draft ready, you may schedule an appointment with the science writing center to get feedback on the draft. If you do this and document it, you will receive 4 bonus points on the assignment. 
 
 
-```{r fig.height = 3, fig.width = 3, echo = FALSE}
+```{r out.width="75%", echo = FALSE}
 # Uncomment the following line when you create the final document so your figure is included
 # knitr::include_graphics("alternative_pva.png")
 ```
