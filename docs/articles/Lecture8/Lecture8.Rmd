@@ -1,0 +1,595 @@
+---
+title: "Lecture 8"
+subtitle: "Life tables"
+author: "<br/><br/><br/>WILD3810 (Spring 2019)"
+output:
+  xaringan::moon_reader:
+    css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE)
+library(WILD3810)
+library(gganimate)
+```
+
+## Readings
+
+> Mills 84-92  
+
+---
+## Assumptions of the B-D models
+
+#### Remember from the lecture 3 that our simple models of population growth were based on the following assumptions:  
+
+--
+1) Population closed to immigration and emigration  
+<br/>
+
+--
+2) Model pertains to only the limiting sex, usually females  
+<br/>
+
+--
+3) Birth and death rates are independent of an individual’s age or biological stage  
+<br/>
+
+--
+4) Birth and death rates are constant
+
+
+---
+## Assumptions of the B-D models
+
+#### In lectures 4 and 6, we learned about ways to model dynamics that do not conform to assumption 4:  
+
+
+1) Population closed to immigration and emigration  
+<br/>
+
+
+2) Model pertains to only the limiting sex, usually females  
+<br/>
+
+
+3) Birth and death rates are independent of an individual’s age or biological stage  
+<br/>
+
+
+**4) Birth and death rates are constant**
+
+???
+
+In lecture 4, we learned about why birth and death rates might change as a function of abundance  
+
+In lecture 6, we learned about ways that birth and death rates might vary stochastically  
+
+---
+## Assumptions of the B-D models
+
+#### Over the coming weeks, we will learn about why and how to relax assumption 3:  
+
+
+1) Population closed to immigration and emigration  
+<br/>
+
+
+2) Model pertains to only the limiting sex, usually females  
+<br/>
+
+
+**3) Birth and death rates are independent of an individual’s age or biological stage**  
+<br/>
+
+
+4) Birth and death rates are constant
+
+
+---
+class: inverse, center, middle
+
+# Structured populations
+
+---
+## Age-structured populations
+
+#### Survival and birth rates often vary with age
+
+---
+## Stage-structured populations
+
+---
+class: inverse, center, middle
+
+# Age-structured populations
+
+---
+## Age-structured populations
+
+#### **Life tables**  
+
+- earliest accounting tool for calculating age-specific survival and mortality  
+
+
+--
+#### Applications to:  
+
+-  Human demography  
+
+- Insurance industry (actuarial sciences)  
+
+- Health professions  
+
+
+--
+[Pearl and Parker (1921)](https://www.journals.uchicago.edu/doi/pdfplus/10.1086/279836) were the first to calculate a non-human life table  
+- *Drosophila melanogaster* (a fruit fly)  
+
+- Since used in ecology, evolution, and natural resource management  
+
+---
+## Life tables
+
+#### Cohort life table
+
+- follow group of individuals born within short period (a *cohort*) until each individual's death  
+
+--
+- develop life table for groups of individuals with similar traits (e.g., one for males, one for females)  
+
+--
+- **longitudinal** study design  
+
+```{r fig.width=5, fig.height=3}
+long <- data.frame(Time = seq(0, 100),
+                   Age = seq(0, 100))
+
+start <- data.frame(Time = c(0, 10, 20, 30, 40), 
+                    Age = 0, 
+                    Cohort = c("1", "2", "3", "4", "5"))
+
+ggplot(long, aes(x = Time, y = Age)) +
+  scale_x_continuous(limits = c(0, 100)) +
+  scale_y_continuous(limits = c(0, 100)) +
+  geom_segment(aes(x = 0, xend = 95, y = 0, yend = 95), size = 2, arrow = arrow(length = unit(0.03, "npc")),
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 10, xend = 95, y = 0, yend = 85), size = 2, arrow = arrow(length = unit(0.03, "npc")),
+               color = WILD3810_colors$value[WILD3810_colors$name == "warning"]) +
+  geom_segment(aes(x = 20, xend = 95, y = 0, yend = 75), size = 2, arrow = arrow(length = unit(0.03, "npc")),
+               color = WILD3810_colors$value[WILD3810_colors$name == "success"]) +
+  geom_segment(aes(x = 30, xend = 95, y = 0, yend = 65), size = 2, arrow = arrow(length = unit(0.03, "npc")),
+               color = WILD3810_colors$value[WILD3810_colors$name == "danger"]) +
+  geom_segment(aes(x = 40, xend = 95, y = 0, yend = 55), size = 2, arrow = arrow(length = unit(0.03, "npc")),
+               color = WILD3810_colors$value[WILD3810_colors$name == "info"]) +
+  geom_point(data = start, aes(color = Cohort), size = 4) +
+  theme(axis.text = element_blank(), axis.ticks = element_blank())
+```
+
+---
+## Life tables
+
+- $\Large x$: age of individuals
+
+- $\Large N_x$: number of individuals observed alive at age $\Large x$ (sometimes called $\Large S_x$)
+<br/>
+
+```{r}
+
+library(kableExtra)
+lt <- data.frame(x = seq(from = 0, to  = 4),
+                       Nx = c(100, 75, 50, 40, 0),
+                       lx = "",
+                       Lx = "",
+                       Tx = "",
+                       ex = "")
+
+names(lt) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(L_x\\)", "\\(T_x\\)", "\\(e_x\\)")
+```
+
+```{r}
+lt2 <- lt
+names(lt2) <- c("\\(x\\)", "\\(N_x\\)", "", "", "", "")
+lt2 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+
+???
+
+$S_x$ stands for number of *survivors* at age $x$
+
+---
+## Life tables
+
+- $\Large l_x$: Probability of surviving to age $\Large x$
+
+- $\Large l_x = N_x/N_0$
+<br/>
+
+```{r}
+lt3 <- lt
+
+names(lt3) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "", "", "")
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large l_x$: Probability of surviving to age $\Large x$
+
+- $\Large l_x = N_x/N_0$
+<br/>
+
+```{r}
+lt3[,3] <- c(1, "", "", "", "")
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large l_x$: Probability of surviving to age $\Large x$
+
+- $\Large l_x = N_x/N_0$
+<br/>
+
+```{r}
+lt3[,3] <- c(1, 0.7, "", "", "")
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large l_x$: Probability of surviving to age $\Large x$
+
+- $\Large l_x = N_x/N_0$
+<br/>
+
+```{r}
+lt3[,3] <- c(1, 0.7, 0.6, "", "")
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large l_x$: Probability of surviving to age $\Large x$
+
+- $\Large l_x = N_x/N_0$
+<br/>
+
+```{r}
+lt3[,3] <- c(1, 0.7, 0.6, 0.4, "")
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large l_x$: Probability of surviving to age $\Large x$
+
+- $\Large l_x = N_x/N_0$
+<br/>
+
+```{r}
+lt3[,3] <- c(1, 0.7, 0.6, 0.4, 0)
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large P_x$: Probability of surviving **from** age $x$ **to** the next age (of those alive at age $x$)
+
+
+- $\Large P_x = l_{x+1}/l_x$
+<br/>
+
+```{r}
+lt4 <- lt3
+
+names(lt4) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(P_x\\)", "", "")
+
+lt4[,4] <- c(0.7, "", "", "", "")
+lt4 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large P_x$: Probability of surviving **from** age $x$ **to** the next age (of those alive at age $x$)
+
+
+- $\Large P_x = l_{x+1}/l_x$
+<br/>
+
+```{r}
+lt4[,4] <- c(0.7, 0.857, "", "", "")
+lt4 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large P_x$: Probability of surviving **from** age $x$ **to** the next age (of those alive at age $x$)
+
+
+- $\Large P_x = l_{x+1}/l_x$
+<br/>
+
+```{r}
+
+lt4[,4] <- c(0.7, 0.857, 0.667, "", "")
+lt4 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large P_x$: Probability of surviving **from** age $x$ **to** the next age (of those alive at age $x$)
+
+
+- $\Large P_x = l_{x+1}/l_x$
+<br/>
+
+```{r}
+
+lt4[,4] <- c(0.7, 0.857, 0.667, 0, "-")
+lt4 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large q_x$: Probability of dying **between** age $x$ the next age (of those alive at age $x$)
+
+
+- $\Large q_x = 1 - P_x$
+<br/>
+
+```{r}
+lt5 <- lt4
+
+names(lt5) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(P_x\\)", "\\(q_x\\)", "")
+
+lt5[,5] <- c(0.3, "", "", "", "")
+lt5 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large q_x$: Probability of dying **between** age $x$ the next age (of those alive at age $x$)
+
+
+- $\Large q_x = 1 - P_x$
+<br/>
+
+```{r}
+lt5[,5] <- c(0.3, 0.143, "", "", "")
+lt5 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large q_x$: Probability of dying **between** age $x$ the next age (of those alive at age $x$)
+
+
+- $\Large q_x = 1 - P_x$
+<br/>
+
+```{r}
+
+lt5[,5] <- c(0.3, 0.143, 0.333, "", "")
+lt5 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large q_x$: Probability of dying **between** age $x$ the next age (of those alive at age $x$)
+
+
+- $\Large q_x = 1 - P_x$
+<br/>
+
+```{r}
+
+lt5[,5] <- c(0.3, 0.143, 0.333, 1, "")
+lt5 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+
+---
+## Life tables
+
+- $\Large H_x$: Hazard (i.e., risk)  of dying **between** age $x$ the next age (of those alive at age $x$)
+
+
+- $\Large H_x = -log(P_x)$
+<br/>
+
+```{r}
+lt6 <- lt5
+
+names(lt6) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(P_x\\)", "\\(q_x\\)", "\\(H_x\\)")
+
+lt6[,6] <- c(0.357, 0.154, 0.405, "Inf", "")
+lt6 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+#### Cohort tables
+
+- Assume that all live individuals are available for observation at every age until death  
+
+
+- Most readily applied to:  
+
+    + Human populations (e.g., CDC NCHS)  
+    + Plants  
+    + Sessile animals  
+    + Mobile animals on small islands with high observer detection  
+    + Animals in captivity (zoos)  
+
+---
+## Life tables
+
+#### Static tables
+
+- assess number of individuals of known age at one point in time or the age of individuals dying at any point in time
+
+```{r fig.width=7, fig.height=5}
+long <- data.frame(Time = seq(0, 100),
+                   Age = seq(0, 100))
+
+start <- data.frame(Time = c(0, 10, 20, 30, 40), 
+                    Age = 0, 
+                    Cohort = c("1", "2", "3", "4", "5"))
+
+ggplot(long, aes(x = Time, y = Age)) +
+  scale_x_continuous(limits = c(0, 100)) +
+  scale_y_continuous(limits = c(0, 100)) +
+  geom_rect(aes(xmin = 55, xmax = 65, ymin = -Inf, ymax = Inf), fill = "grey40", alpha = 0.9) + 
+  geom_segment(aes(x = 0, xend = 95, y = 0, yend = 95), size = 2, arrow = arrow(length = unit(0.03, "npc")),
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 10, xend = 95, y = 0, yend = 85), size = 2, arrow = arrow(length = unit(0.03, "npc")),
+               color = WILD3810_colors$value[WILD3810_colors$name == "warning"]) +
+  geom_segment(aes(x = 20, xend = 95, y = 0, yend = 75), size = 2, arrow = arrow(length = unit(0.03, "npc")),
+               color = WILD3810_colors$value[WILD3810_colors$name == "success"]) +
+  geom_segment(aes(x = 30, xend = 95, y = 0, yend = 65), size = 2, arrow = arrow(length = unit(0.03, "npc")),
+               color = WILD3810_colors$value[WILD3810_colors$name == "danger"]) +
+  geom_segment(aes(x = 40, xend = 95, y = 0, yend = 55), size = 2, arrow = arrow(length = unit(0.03, "npc")),
+               color = WILD3810_colors$value[WILD3810_colors$name == "info"]) +
+  geom_point(data = start, aes(color = Cohort), size = 4) +
+    geom_rect(aes(xmin = 55, xmax = 65, ymin = -Inf, ymax = Inf), fill = "grey80", alpha = 0.01) + 
+  theme(axis.text = element_blank(), axis.ticks = element_blank()) 
+```
+
+---
+## Static life tables
+
+- $\Large a_x$: Deaths between age $\large x-1$ and age $\Large x$
+<br/>
+
+```{r}
+lt3 <- lt
+
+names(lt3) <- c("\\(x\\)", "\\(a_x\\)", "\\(N_x\\)", "", "", "")
+lt3[,2] <- c("", 25, 15, 10, 7)
+lt3[,3] <- c(57, "57-25=32", "32-15=17", "17-10=7", "7-7=0")
+
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Static life tables
+
+- $\Large a_x$: Deaths between age $\large x-1$ and age $\Large x$
+<br/>
+
+```{r}
+lt4 <- lt3
+
+names(lt4) <- c("\\(x\\)", "\\(a_x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(P_x\\)", "etc.")
+lt4[,4] <- c(1, 0.56, 0.30, 0.12, 0)
+lt4[,5] <- c(0.56, 0.54, 0.4, 0, "-")
+lt4 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+
+---
+## Static life tables
+
+#### Static life tables most readily applied to:
+
+- Plants and animals where age can be accurately determined for all individuals at a given moment in time  
+
+- e.g., using the rings/layering in trees, teeth, otoliths, horns, and maybe even telomere length on genes
+
+
+---
+## Static life tables
+
+#### Static life table assumptions:
+
+- All individuals have equivalent availability for observation, regardless of age  
+
+- Stable age distribution  
+
+- Survival does not change over time  
+
+    + If it does, time effects may appear as ‘age effects’ and lead to biased results
+
+---
+class: inverse, middle, center
+
+# Survivorship curves
+
+---
+## Survivorship curves
+
+```{r fig.height=5 ,fig.width=7}
+age <- seq(from = 0, to = 10, length.out = 100)
+surv <- -1.2*age
+lx <- exp(surv)
+
+survII <- data.frame(Age = age, lx = lx, surv = surv)
+
+p1 <- ggplot(survII, aes(Age, lx)) + geom_line() +
+  scale_y_continuous(expression(l[x]))
+p2 <- ggplot(survII, aes(Age, surv)) + geom_line() +
+  scale_y_continuous(paste0("log(", expression(l[x]), ") 'Survivorship'"))
+
+cowplot::plot_grid(p1, p2)
+
+```
+
+--
+#### **Type II Survivorship curve** (Pearl 1928)
