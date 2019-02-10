@@ -585,7 +585,7 @@ survII <- data.frame(Age = age, lx = lx, surv = surv)
 p1 <- ggplot(survII, aes(Age, lx)) + geom_line() +
   scale_y_continuous(expression(l[x]))
 p2 <- ggplot(survII, aes(Age, surv)) + geom_line() +
-  scale_y_continuous(paste0("log(", expression(l[x]), ") 'Survivorship'"))
+  scale_y_continuous(expression(paste("log(", l[x], ") 'Survivorship'")))
 
 cowplot::plot_grid(p1, p2)
 
@@ -593,3 +593,44 @@ cowplot::plot_grid(p1, p2)
 
 --
 #### **Type II Survivorship curve** (Pearl 1928)
+
+
+---
+## Survivorship curves
+
+```{r fig.height=5 ,fig.width=7}
+age <- seq(from = 0, to = 1, length.out = 100)
+survI <- -0.1*age^7
+survII <- -0.1*age
+survIII <- -0.1*age^0.1
+
+surv_df <- data.frame(Age = age, surv = c(survI, survII, survIII),
+                     Type = rep(c("I", "II", "III"), each = length(age)))
+
+ggplot(surv_df, aes(Age, surv, color = Type, label = Type)) + geom_line(size = 1.5) +
+  scale_y_continuous(expression(paste("log(", l[x], ") 'Survivorship'"))) 
+```
+
+---
+## Survivorship curves
+
+### What types of species do have type 1 survivorship curves?
+
+
+---
+## Survivorship curves
+
+### What types of species do you expect have type 1 survivorship curves?
+
+
+---
+## Survivorship curves
+
+### What types of species do you expect have type 2 survivorship curves?
+
+---
+## Survivorship curves
+
+### What types of species do you expect have type 3 survivorship curves?
+
+Lauenroth & Adler (2008)
