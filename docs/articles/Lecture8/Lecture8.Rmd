@@ -19,11 +19,7 @@ library(WILD3810)
 library(gganimate)
 ```
 
-## Readings
 
-> Mills 84-92  
-
----
 ## Assumptions of the B-D models
 
 #### Remember from the lecture 3 that our simple models of population growth were based on the following assumptions:  
@@ -47,7 +43,7 @@ library(gganimate)
 ---
 ## Assumptions of the B-D models
 
-#### In lectures 4 and 6, we learned about ways to model dynamics that do not conform to assumption 4:  
+#### In lectures 4 and 6, we learned about ways to model dynamics that do not meet assumption 4:  
 
 
 1) Population closed to immigration and emigration  
@@ -101,8 +97,74 @@ class: inverse, center, middle
 
 #### Survival and birth rates often vary with age
 
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/d/d2/Anser_caerulescens_CT4.jpg")
+```
+]
+
+.right-column[
+```{r, out.width="80%"}
+knitr::include_graphics("figs/goose_survivorship.png")
+```
+]
+
+???
+
+Image courtesy of Cephas, from Wikimedia Commons
+
+Figure from Rockwell et al. (1985) *Evolution*
+
 ---
 ## Stage-structured populations
+
+#### In some cases, age is not a relevant predictor of survival and birth rates   
+
+--
+#### Instead, survival and birth rates vary with **stage**
+
+--
+- life cycle stage
+
+.pull-left[
+```{r, out.width="75%"}
+knitr::include_graphics("figs/lifecycle_diagram.jpg")
+```
+]
+
+.pull-right[
+```{r, out.width="75%"}
+knitr::include_graphics("figs/lifecycle.gif")
+```
+]
+
+---
+## Stage-structured populations
+
+#### In some cases, age is not a relevant predictor of survival and birth rates   
+
+#### Instead, survival and birth rates vary with **stage**
+
+- life cycle stage
+
+- size 
+
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/a/af/Gasterosteus_aculeatus_t%C3%BCsk%C3%A9s_pik%C3%B3.jpg")
+```
+]
+
+.right-column[
+```{r, out.width="60%"}
+knitr::include_graphics("figs/stickleback_fecundity.png")
+```
+]
+
+???
+
+Image courtesy of Kókay Szabolcs, via Wikimedia Commons
+Figure from Moser et al. (2012)
 
 ---
 class: inverse, center, middle
@@ -138,7 +200,7 @@ class: inverse, center, middle
 
 #### Cohort life table
 
-- follow group of individuals born within short period (a *cohort*) until each individual's death  
+- follow group of individuals born within short period (a **cohort**) until each individual's death  
 
 --
 - develop life table for groups of individuals with similar traits (e.g., one for males, one for females)  
@@ -231,7 +293,7 @@ lt3 %>%
 <br/>
 
 ```{r}
-lt3[,3] <- c(1, "", "", "", "")
+lt3[,3] <- c("1.0", "", "", "", "")
 lt3 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
@@ -246,7 +308,7 @@ lt3 %>%
 <br/>
 
 ```{r}
-lt3[,3] <- c(1, 0.7, "", "", "")
+lt3[,3] <- c("1.0", "0.75", "", "", "")
 lt3 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
@@ -261,7 +323,7 @@ lt3 %>%
 <br/>
 
 ```{r}
-lt3[,3] <- c(1, 0.7, 0.6, "", "")
+lt3[,3] <- c("1.0", "0.75", "0.5", "", "")
 lt3 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
@@ -276,7 +338,7 @@ lt3 %>%
 <br/>
 
 ```{r}
-lt3[,3] <- c(1, 0.7, 0.6, 0.4, "")
+lt3[,3] <- c("1.0", "0.75", "0.5", "0.4", "")
 lt3 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
@@ -300,6 +362,51 @@ lt3 %>%
 ---
 ## Life tables
 
+
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/f/f6/Phlox_drummondii_-_Archer_FL_02.jpg")
+```
+]
+
+.right-column[
+```{r, out.width="80%"}
+knitr::include_graphics("figs/phlox_lt.png")
+```
+]
+
+
+???
+
+Image courtesy of Ebyabe, from Wikimedia Commons
+
+from Leverich & Leven (1979) *American Naturalist*
+
+---
+## Life tables
+
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/f/f6/Phlox_drummondii_-_Archer_FL_02.jpg")
+```
+]
+
+.right-column[
+```{r, out.width="60%"}
+knitr::include_graphics("figs/phlox_survivorship.png")
+```
+]
+
+
+???
+
+Image courtesy of Ebyabe, from Wikimedia Commons
+
+from Leverich & Leven (1979) *American Naturalist*
+
+---
+## Life tables
+
 - $\Large P_x$: Probability of surviving **from** age $x$ **to** the next age (of those alive at age $x$)
 
 
@@ -311,11 +418,14 @@ lt4 <- lt3
 
 names(lt4) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(P_x\\)", "", "")
 
-lt4[,4] <- c(0.7, "", "", "", "")
+lt4[,4] <- c(0.75, "", "", "", "")
 lt4 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
 ```
+
+
+
 
 ---
 ## Life tables
@@ -327,24 +437,7 @@ lt4 %>%
 <br/>
 
 ```{r}
-lt4[,4] <- c(0.7, 0.857, "", "", "")
-lt4 %>%
-  kable("html", align = 'c', escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
-```
-
----
-## Life tables
-
-- $\Large P_x$: Probability of surviving **from** age $x$ **to** the next age (of those alive at age $x$)
-
-
-- $\Large P_x = l_{x+1}/l_x$
-<br/>
-
-```{r}
-
-lt4[,4] <- c(0.7, 0.857, 0.667, "", "")
+lt4[,4] <- c(0.75, 0.667, "", "", "")
 lt4 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
@@ -361,11 +454,50 @@ lt4 %>%
 
 ```{r}
 
-lt4[,4] <- c(0.7, 0.857, 0.667, 0, "-")
+lt4[,4] <- c(0.75, 0.667, 0.8, "", "")
 lt4 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
 ```
+
+---
+## Life tables
+
+- $\Large P_x$: Probability of surviving **from** age $x$ **to** the next age (of those alive at age $x$)
+
+
+- $\Large P_x = l_{x+1}/l_x$
+<br/>
+
+```{r}
+
+lt4[,4] <- c(0.75, 0.667, 0.8, 0, "-")
+lt4 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+### Age-specific survival of fallow deer (*Dama dama*)
+
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/f/f3/Fallow_deer_in_field.jpg")
+```
+]
+
+.right-column[
+```{r, out.width="70%"}
+knitr::include_graphics("figs/dama_survival.png")
+```
+]
+
+???
+
+Image courtesy of Johann-Nikolaus Andreae, via Wikimedia Commons
+Figure from McElligott et al. (2002) *Proc Royal Society B*
 
 ---
 ## Life tables
@@ -381,7 +513,7 @@ lt5 <- lt4
 
 names(lt5) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(P_x\\)", "\\(q_x\\)", "")
 
-lt5[,5] <- c(0.3, "", "", "", "")
+lt5[,5] <- c(0.25, "", "", "", "")
 lt5 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
@@ -397,24 +529,7 @@ lt5 %>%
 <br/>
 
 ```{r}
-lt5[,5] <- c(0.3, 0.143, "", "", "")
-lt5 %>%
-  kable("html", align = 'c', escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
-```
-
----
-## Life tables
-
-- $\Large q_x$: Probability of dying **between** age $x$ the next age (of those alive at age $x$)
-
-
-- $\Large q_x = 1 - P_x$
-<br/>
-
-```{r}
-
-lt5[,5] <- c(0.3, 0.143, 0.333, "", "")
+lt5[,5] <- c(0.25, 0.333, "", "", "")
 lt5 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
@@ -431,7 +546,24 @@ lt5 %>%
 
 ```{r}
 
-lt5[,5] <- c(0.3, 0.143, 0.333, 1, "")
+lt5[,5] <- c(0.25, 0.333, 0.2, "", "")
+lt5 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large q_x$: Probability of dying **between** age $x$ the next age (of those alive at age $x$)
+
+
+- $\Large q_x = 1 - P_x$
+<br/>
+
+```{r}
+
+lt5[,5] <- c(0.25, 0.333, 0.2, 1, "-")
 lt5 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
@@ -452,7 +584,7 @@ lt6 <- lt5
 
 names(lt6) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(P_x\\)", "\\(q_x\\)", "\\(H_x\\)")
 
-lt6[,6] <- c(0.357, 0.154, 0.405, "Inf", "")
+lt6[,6] <- c(0.29, 0.4, 0.22, "Inf", "-")
 lt6 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
@@ -517,14 +649,34 @@ ggplot(long, aes(x = Time, y = Age)) +
 ```{r}
 lt3 <- lt
 
-names(lt3) <- c("\\(x\\)", "\\(a_x\\)", "\\(N_x\\)", "", "", "")
+names(lt3) <- c("\\(x\\)", "\\(a_x\\)", "", "", "", "")
 lt3[,2] <- c("", 25, 15, 10, 7)
+
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+--
+
+$\large \sum_{x=0}^{max(x)} a_x = 57$
+
+---
+## Static life tables
+
+- $\Large a_x$: Deaths between age $\large x-1$ and age $\Large x$
+<br/>
+
+```{r}
+names(lt3) <- c("\\(x\\)", "\\(a_x\\)", "\\(N_x\\)", "", "", "")
 lt3[,3] <- c(57, "57-25=32", "32-15=17", "17-10=7", "7-7=0")
 
 lt3 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
 ```
+
+$\large \sum_{x=0}^{max(x)} a_x = 57$
 
 ---
 ## Static life tables
@@ -575,7 +727,7 @@ class: inverse, middle, center
 ---
 ## Survivorship curves
 
-```{r fig.height=5 ,fig.width=7}
+```{r fig.height=5 ,fig.width=9}
 age <- seq(from = 0, to = 10, length.out = 100)
 surv <- -1.2*age
 lx <- exp(surv)
@@ -614,12 +766,6 @@ ggplot(surv_df, aes(Age, surv, color = Type, label = Type)) + geom_line(size = 1
 ---
 ## Survivorship curves
 
-### What types of species do have type 1 survivorship curves?
-
-
----
-## Survivorship curves
-
 ### What types of species do you expect have type 1 survivorship curves?
 
 
@@ -634,3 +780,164 @@ ggplot(surv_df, aes(Age, surv, color = Type, label = Type)) + geom_line(size = 1
 ### What types of species do you expect have type 3 survivorship curves?
 
 Lauenroth & Adler (2008)
+
+---
+class: middle, center, inverse
+
+# Life expectancy
+
+---
+## Life expectancy
+
+#### Life Expectancy  
+
+> The average length of time an individual is expected to live, given they are currently $x$ years old  
+
+
+- Directly related to the probability of surviving to a given age
+
+--
+#### Utah has the lowest per capita crude death rate in the U.S. (averaged across all ages)  
+
+--
+### Can Utahns expect to live longer than in all other states? 
+
+---
+## Life expectancy
+
+```{r}
+lt3 <- lt
+lt3[,3] <- c(1, 0.7, 0.6, 0.4, 0)
+
+names(lt3) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "", "", "")
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life expectancy
+
+- $\Large L_x$: Average survival probability across successive age intervals 
+
+```{r}
+lt4 <- lt3
+lt4[,4] <- c(0.875, 0.65, 0.5, 0.2, "-")
+
+names(lt4) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(L_x\\)", "", "")
+lt4 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life expectancy
+
+- $\Large T_x$: Area under the survival curve from age $x$ onward
+
+
+```{r fig.height=6, fig.width=8}
+ggplot(data.frame(x = c(0, 5)), aes(x)) +
+  stat_function(fun = dnorm) + 
+  stat_function(fun = dnorm, 
+                xlim = c(0, 5),
+                geom = "area",
+                fill = WILD3810_colors$value[WILD3810_colors$name=="primary"]) +
+  scale_x_continuous("Age") +
+  scale_y_continuous("Survival probability") +
+  theme(axis.text = element_blank(), axis.ticks = element_blank())
+
+```
+
+---
+## Life expectancy
+
+- $\Large T_x$: Area under the survival curve from age $x$ onward
+
+
+```{r fig.height=6, fig.width=8}
+ggplot(data.frame(x = c(0, 5)), aes(x)) +
+  stat_function(fun = dnorm) + 
+  stat_function(fun = dnorm, 
+                xlim = c(2, 5),
+                geom = "area",
+                fill = WILD3810_colors$value[WILD3810_colors$name=="primary"]) +
+  scale_x_continuous("Age") +
+  scale_y_continuous("Survival probability") +
+  theme(axis.text = element_blank(), axis.ticks = element_blank())
+
+```
+
+
+---
+## Life expectancy
+
+- $\Large T_x$: Area under the survival curve from age $x$ onward = $\sum_x^{max(x)}L_x$
+
+
+```{r}
+lt5 <- lt4
+lt5[,5] <- c(2.23, 1.35, 0.7, 0.2, "-")
+
+names(lt5) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(L_x\\)", "\\(T_x\\)", "")
+lt5 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+
+---
+## Life expectancy
+
+- $\Large E_x$: Number of years an individual of age $x$ is expected to survive
+
+- $\Large E_x = T_x/l_x$
+
+
+```{r}
+lt6 <- lt5
+lt6[,6] <- c(2.23, 1.93, 1.17, 0.5, "-")
+
+names(lt6) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(L_x\\)", "\\(T_x\\)", "\\(E_x\\)")
+lt6 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Utah life expectancy
+
+#### Utah has the lowest per capita crude death rate d in the U.S. (averaged across all ages)
+
+### Can Utahns expect to live longer than all other states?
+
+--
+### Not exactly
+
+- Life expectancy of a newborn Utahn is 80.2  
+<br/> 
+--
+- Ranked 10th in the U.S., not first  
+
+---
+## Utah life expectancy
+
+#### Why is Utah’s crude per capita death rate $\Large d$ so low?  
+
+--
+#### Because Utah has the highest birth rate and consequently the youngest age structure
+
+- % of Utahns < 18 yrs old is 32%  
+
+- % of U.S. < 18 yrs old is 25%  
+
+--
+- % of Utahns ≥ 65 is 11%  
+
+- % of U.S. ≥ 65 = 15%  
+
+--
+#### Young individuals have highest chances of survival 
+
+#### Having many young individuals in a population will skew the crude average $\Large d$
+
