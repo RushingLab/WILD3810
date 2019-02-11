@@ -768,18 +768,58 @@ ggplot(surv_df, aes(Age, surv, color = Type, label = Type)) + geom_line(size = 1
 
 ### What types of species do you expect have type 1 survivorship curves?
 
+--
+```{r out.width = "50%"}
+knitr::include_graphics("figs/sweden_survivorship.png")
+```
 
 ---
 ## Survivorship curves
 
 ### What types of species do you expect have type 2 survivorship curves?
 
+--
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/7/7c/Eastern_Grey_Squirrel_in_St_James%27s_Park%2C_London_-_Nov_2006_edit.jpg")
+```
+]
+
+.right-column[
+```{r, out.width="50%"}
+knitr::include_graphics("figs/squirell_survivorship.png")
+```
+]
+
+???
+
+Image courtesy of Diliff, from Wikimedia Commons  
+
+Figure from Barkalow et al. (1970)
+
 ---
 ## Survivorship curves
 
 ### What types of species do you expect have type 3 survivorship curves?
 
-Lauenroth & Adler (2008)
+--
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/8/89/Little_Bluestem_P7280448.JPG")
+```
+]
+
+.right-column[
+```{r, out.width="50%"}
+knitr::include_graphics("figs/plant_survivorship.png")
+```
+]
+
+???
+
+Image courtesy of Chris Light, from Wikimedia Commons  
+
+Figure from Lauenroth & Adler (2008)
 
 ---
 class: middle, center, inverse
@@ -794,7 +834,8 @@ class: middle, center, inverse
 > The average length of time an individual is expected to live, given they are currently $x$ years old  
 
 
-- Directly related to the probability of surviving to a given age
+- Directly related to the probability of surviving to a given age  
+
 
 --
 #### Utah has the lowest per capita crude death rate in the U.S. (averaged across all ages)  
@@ -804,6 +845,8 @@ class: middle, center, inverse
 
 ---
 ## Life expectancy
+
+#### To estimate life expectancy, start with $\Large l_x$
 
 ```{r}
 lt3 <- lt
@@ -818,7 +861,9 @@ lt3 %>%
 ---
 ## Life expectancy
 
-- $\Large L_x$: Average survival probability across successive age intervals 
+- $\Large L_x$: Average survival probability across successive age intervals  
+
+- $\Large L_x = \frac{l_x+l_{x+1}}{2}$
 
 ```{r}
 lt4 <- lt3
@@ -843,9 +888,9 @@ ggplot(data.frame(x = c(0, 5)), aes(x)) +
                 xlim = c(0, 5),
                 geom = "area",
                 fill = WILD3810_colors$value[WILD3810_colors$name=="primary"]) +
-  scale_x_continuous("Age") +
+  scale_x_continuous("Age", breaks = 0) +
   scale_y_continuous("Survival probability") +
-  theme(axis.text = element_blank(), axis.ticks = element_blank())
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 
 ```
 
@@ -862,9 +907,9 @@ ggplot(data.frame(x = c(0, 5)), aes(x)) +
                 xlim = c(2, 5),
                 geom = "area",
                 fill = WILD3810_colors$value[WILD3810_colors$name=="primary"]) +
-  scale_x_continuous("Age") +
+  scale_x_continuous("Age", breaks = 2) +
   scale_y_continuous("Survival probability") +
-  theme(axis.text = element_blank(), axis.ticks = element_blank())
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 
 ```
 
@@ -872,8 +917,9 @@ ggplot(data.frame(x = c(0, 5)), aes(x)) +
 ---
 ## Life expectancy
 
-- $\Large T_x$: Area under the survival curve from age $x$ onward = $\sum_x^{max(x)}L_x$
+- $\Large T_x$: Area under the survival curve from age $x$ onward  
 
+- $\Large T_x = \sum_x^{max(x)}L_x$
 
 ```{r}
 lt5 <- lt4
@@ -907,7 +953,7 @@ lt6 %>%
 ---
 ## Utah life expectancy
 
-#### Utah has the lowest per capita crude death rate d in the U.S. (averaged across all ages)
+#### Utah has the lowest per capita crude death rate d in the U.S  
 
 ### Can Utahns expect to live longer than all other states?
 
@@ -915,7 +961,8 @@ lt6 %>%
 ### Not exactly
 
 - Life expectancy of a newborn Utahn is 80.2  
-<br/> 
+<br/>
+
 --
 - Ranked 10th in the U.S., not first  
 
@@ -936,6 +983,7 @@ lt6 %>%
 
 - % of U.S. ≥ 65 = 15%  
 
+ 
 --
 #### Young individuals have highest chances of survival 
 

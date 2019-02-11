@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="author" content="   WILD3810 (Spring 2019)" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
-    <script src="libs/kePrint/kePrint.js"></script>
     <link rel="stylesheet" href="WILD3810.css" type="text/css" />
     <link rel="stylesheet" href="WILD3810-fonts.css" type="text/css" />
   </head>
@@ -1546,18 +1545,48 @@ class: inverse, middle, center
 
 ### What types of species do you expect have type 1 survivorship curves?
 
+--
+&lt;img src="figs/sweden_survivorship.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Survivorship curves
 
 ### What types of species do you expect have type 2 survivorship curves?
 
+--
+.left-column[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Eastern_Grey_Squirrel_in_St_James%27s_Park%2C_London_-_Nov_2006_edit.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+&lt;img src="figs/squirell_survivorship.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Image courtesy of Diliff, from Wikimedia Commons  
+
+Figure from Barkalow et al. (1970)
+
 ---
 ## Survivorship curves
 
 ### What types of species do you expect have type 3 survivorship curves?
 
-Lauenroth &amp; Adler (2008)
+--
+.left-column[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Little_Bluestem_P7280448.JPG" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+&lt;img src="figs/plant_survivorship.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Image courtesy of Chris Light, from Wikimedia Commons  
+
+Figure from Lauenroth &amp; Adler (2008)
 
 ---
 class: middle, center, inverse
@@ -1572,7 +1601,8 @@ class: middle, center, inverse
 &gt; The average length of time an individual is expected to live, given they are currently `\(x\)` years old  
 
 
-- Directly related to the probability of surviving to a given age
+- Directly related to the probability of surviving to a given age  
+
 
 --
 #### Utah has the lowest per capita crude death rate in the U.S. (averaged across all ages)  
@@ -1582,6 +1612,8 @@ class: middle, center, inverse
 
 ---
 ## Life expectancy
+
+#### To estimate life expectancy, start with `\(\Large l_x\)`
 
 &lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -1641,7 +1673,9 @@ class: middle, center, inverse
 ---
 ## Life expectancy
 
-- `\(\Large L_x\)`: Average survival probability across successive age intervals 
+- `\(\Large L_x\)`: Average survival probability across successive age intervals  
+
+- `\(\Large L_x = \frac{l_x+l_{x+1}}{2}\)`
 
 &lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -1704,7 +1738,7 @@ class: middle, center, inverse
 - `\(\Large T_x\)`: Area under the survival curve from age `\(x\)` onward
 
 
-&lt;img src="Lecture8_files/figure-html/unnamed-chunk-39-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture8_files/figure-html/unnamed-chunk-44-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Life expectancy
@@ -1712,14 +1746,15 @@ class: middle, center, inverse
 - `\(\Large T_x\)`: Area under the survival curve from age `\(x\)` onward
 
 
-&lt;img src="Lecture8_files/figure-html/unnamed-chunk-40-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture8_files/figure-html/unnamed-chunk-45-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ---
 ## Life expectancy
 
-- `\(\Large T_x\)`: Area under the survival curve from age `\(x\)` onward = `\(\sum_x^{max(x)}L_x\)`
+- `\(\Large T_x\)`: Area under the survival curve from age `\(x\)` onward  
 
+- `\(\Large T_x = \sum_x^{max(x)}L_x\)`
 
 &lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -1843,22 +1878,23 @@ class: middle, center, inverse
 ---
 ## Utah life expectancy
 
-#### Utah has the lowest per capita crude death rate d in the U.S. (averaged across all ages)
+#### Utah has the lowest per capita crude death rate d in the U.S  
 
-### Can people Utahns expect to live longer than all other states?
+### Can Utahns expect to live longer than all other states?
 
 --
 ### Not exactly
 
-- Life expectancy of a newborn Utahn is 80.2
+- Life expectancy of a newborn Utahn is 80.2  
+&lt;br/&gt;
 
 --
-- Ranked 10th in the U.S., not first
+- Ranked 10th in the U.S., not first  
 
 ---
 ## Utah life expectancy
 
-#### Why is Utah’s crude per capita death rate `\(d\)` so low?  
+#### Why is Utah’s crude per capita death rate `\(\Large d\)` so low?  
 
 --
 #### Because Utah has the highest birth rate and consequently the youngest age structure
@@ -1872,10 +1908,11 @@ class: middle, center, inverse
 
 - % of U.S. ≥ 65 = 15%  
 
-
+ 
+--
 #### Young individuals have highest chances of survival 
 
-#### Having many young individuals in a population will skew the crude average `\(d\)`
+#### Having many young individuals in a population will skew the crude average `\(\Large d\)`
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
