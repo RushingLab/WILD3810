@@ -208,29 +208,34 @@ class: inverse, center, middle
 --
 - **longitudinal** study design  
 
-```{r fig.width=5, fig.height=3}
+```{r fig.width=6, fig.height=4, fig.retina=TRUE}
 long <- data.frame(Time = seq(0, 100),
                    Age = seq(0, 100))
 
-start <- data.frame(Time = c(0, 10, 20, 30, 40), 
-                    Age = 0, 
-                    Cohort = c("1", "2", "3", "4", "5"))
-
+poly <- data.frame(x = c(0, 20, 100, 100),
+                   y = c(-Inf, -Inf, 75, 95))
 ggplot(long, aes(x = Time, y = Age)) +
   scale_x_continuous(limits = c(0, 100)) +
   scale_y_continuous(limits = c(0, 100)) +
-  geom_segment(aes(x = 0, xend = 95, y = 0, yend = 95), size = 2, arrow = arrow(length = unit(0.03, "npc")),
+  geom_polygon(data = poly, aes(x = x, y = y), fill = "white", color = "black") +
+  geom_segment(aes(x = -Inf, xend = 15, y = 5, yend = 25), size = 2,
                color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
-  geom_segment(aes(x = 10, xend = 95, y = 0, yend = 85), size = 2, arrow = arrow(length = unit(0.03, "npc")),
-               color = WILD3810_colors$value[WILD3810_colors$name == "warning"]) +
-  geom_segment(aes(x = 20, xend = 95, y = 0, yend = 75), size = 2, arrow = arrow(length = unit(0.03, "npc")),
-               color = WILD3810_colors$value[WILD3810_colors$name == "success"]) +
-  geom_segment(aes(x = 30, xend = 95, y = 0, yend = 65), size = 2, arrow = arrow(length = unit(0.03, "npc")),
-               color = WILD3810_colors$value[WILD3810_colors$name == "danger"]) +
-  geom_segment(aes(x = 40, xend = 95, y = 0, yend = 55), size = 2, arrow = arrow(length = unit(0.03, "npc")),
-               color = WILD3810_colors$value[WILD3810_colors$name == "info"]) +
-  geom_point(data = start, aes(color = Cohort), size = 4) +
-  theme(axis.text = element_blank(), axis.ticks = element_blank())
+  geom_segment(aes(x = -Inf, xend = 35, y = 15, yend = 55), size = 2,
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+        geom_segment(aes(x = -Inf, xend = 53, y = -Inf, yend = 58), size = 2,
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+    geom_segment(aes(x = 5, xend = 95, y = -Inf, yend = 85), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 10, xend = 45, y = -Inf, yend = 30), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 16, xend = 31, y = -Inf, yend = 10), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 30, xend = 50, y = -Inf, yend = 15), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 40, xend = 90, y =-Inf, yend = 45), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(),
+        panel.background = element_rect(fill = "grey85"))
 ```
 
 ---
@@ -353,13 +358,15 @@ lt3 %>%
 <br/>
 
 ```{r}
-lt3[,3] <- c(1, 0.7, 0.6, 0.4, 0)
+lt3[,3] <- c("1.0", "0.75", "0.5", "0.4", "")
 lt3 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
 ```
 
 ---
+exclude: true
+
 ## Life tables
 
 
@@ -571,6 +578,8 @@ lt5 %>%
 
 
 ---
+exclude: true
+
 ## Life tables
 
 - $\Large H_x$: Hazard (i.e., risk)  of dying **between** age $x$ the next age (of those alive at age $x$)
@@ -621,23 +630,31 @@ start <- data.frame(Time = c(0, 10, 20, 30, 40),
                     Age = 0, 
                     Cohort = c("1", "2", "3", "4", "5"))
 
+
 ggplot(long, aes(x = Time, y = Age)) +
   scale_x_continuous(limits = c(0, 100)) +
   scale_y_continuous(limits = c(0, 100)) +
-  geom_rect(aes(xmin = 55, xmax = 65, ymin = -Inf, ymax = Inf), fill = "grey40", alpha = 0.9) + 
-  geom_segment(aes(x = 0, xend = 95, y = 0, yend = 95), size = 2, arrow = arrow(length = unit(0.03, "npc")),
+    geom_polygon(data = poly, aes(x = x, y = y), fill = "grey95", color = "grey80") +
+    geom_rect(aes(xmin = 40, xmax = 55, ymin = -Inf, ymax = Inf), fill = "white", color = "black") +
+  geom_segment(aes(x = -Inf, xend = 15, y = 5, yend = 25), size = 2,
                color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
-  geom_segment(aes(x = 10, xend = 95, y = 0, yend = 85), size = 2, arrow = arrow(length = unit(0.03, "npc")),
-               color = WILD3810_colors$value[WILD3810_colors$name == "warning"]) +
-  geom_segment(aes(x = 20, xend = 95, y = 0, yend = 75), size = 2, arrow = arrow(length = unit(0.03, "npc")),
-               color = WILD3810_colors$value[WILD3810_colors$name == "success"]) +
-  geom_segment(aes(x = 30, xend = 95, y = 0, yend = 65), size = 2, arrow = arrow(length = unit(0.03, "npc")),
-               color = WILD3810_colors$value[WILD3810_colors$name == "danger"]) +
-  geom_segment(aes(x = 40, xend = 95, y = 0, yend = 55), size = 2, arrow = arrow(length = unit(0.03, "npc")),
-               color = WILD3810_colors$value[WILD3810_colors$name == "info"]) +
-  geom_point(data = start, aes(color = Cohort), size = 4) +
-    geom_rect(aes(xmin = 55, xmax = 65, ymin = -Inf, ymax = Inf), fill = "grey80", alpha = 0.01) + 
-  theme(axis.text = element_blank(), axis.ticks = element_blank()) 
+  geom_segment(aes(x = -Inf, xend = 35, y = 15, yend = 55), size = 2,
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+    geom_segment(aes(x = -Inf, xend = 53, y = -Inf, yend = 58), size = 2,
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+    geom_segment(aes(x = 5, xend = 95, y = -Inf, yend = 85), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 10, xend = 45, y = -Inf, yend = 30), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 16, xend = 31, y = -Inf, yend = 10), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 30, xend = 50, y = -Inf, yend = 15), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 40, xend = 90, y =-Inf, yend = 45), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(),
+        panel.background = element_rect(fill = "grey85"))
+
 ```
 
 ---
@@ -768,18 +785,58 @@ ggplot(surv_df, aes(Age, surv, color = Type, label = Type)) + geom_line(size = 1
 
 ### What types of species do you expect have type 1 survivorship curves?
 
+--
+```{r out.width = "50%"}
+knitr::include_graphics("figs/sweden_survivorship.png")
+```
 
 ---
 ## Survivorship curves
 
 ### What types of species do you expect have type 2 survivorship curves?
 
+--
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/7/7c/Eastern_Grey_Squirrel_in_St_James%27s_Park%2C_London_-_Nov_2006_edit.jpg")
+```
+]
+
+.right-column[
+```{r, out.width="50%"}
+knitr::include_graphics("figs/squirell_survivorship.png")
+```
+]
+
+???
+
+Image courtesy of Diliff, from Wikimedia Commons  
+
+Figure from Barkalow et al. (1970)
+
 ---
 ## Survivorship curves
 
 ### What types of species do you expect have type 3 survivorship curves?
 
-Lauenroth & Adler (2008)
+--
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/8/89/Little_Bluestem_P7280448.JPG")
+```
+]
+
+.right-column[
+```{r, out.width="50%"}
+knitr::include_graphics("figs/plant_survivorship.png")
+```
+]
+
+???
+
+Image courtesy of Chris Light, from Wikimedia Commons  
+
+Figure from Lauenroth & Adler (2008)
 
 ---
 class: middle, center, inverse
@@ -794,7 +851,8 @@ class: middle, center, inverse
 > The average length of time an individual is expected to live, given they are currently $x$ years old  
 
 
-- Directly related to the probability of surviving to a given age
+- Directly related to the probability of surviving to a given age  
+
 
 --
 #### Utah has the lowest per capita crude death rate in the U.S. (averaged across all ages)  
@@ -805,9 +863,11 @@ class: middle, center, inverse
 ---
 ## Life expectancy
 
+#### To estimate life expectancy, start with $\Large l_x$
+
 ```{r}
 lt3 <- lt
-lt3[,3] <- c(1, 0.7, 0.6, 0.4, 0)
+lt3[,3] <- c("1.0", "0.75", "0.5", "0.4", "")
 
 names(lt3) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "", "", "")
 lt3 %>%
@@ -818,7 +878,9 @@ lt3 %>%
 ---
 ## Life expectancy
 
-- $\Large L_x$: Average survival probability across successive age intervals 
+- $\Large L_x$: Average survival probability across successive age intervals  
+
+- $\Large L_x = \frac{l_x+l_{x+1}}{2}$
 
 ```{r}
 lt4 <- lt3
@@ -843,9 +905,9 @@ ggplot(data.frame(x = c(0, 5)), aes(x)) +
                 xlim = c(0, 5),
                 geom = "area",
                 fill = WILD3810_colors$value[WILD3810_colors$name=="primary"]) +
-  scale_x_continuous("Age") +
+  scale_x_continuous("Age", breaks = 0) +
   scale_y_continuous("Survival probability") +
-  theme(axis.text = element_blank(), axis.ticks = element_blank())
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 
 ```
 
@@ -862,9 +924,9 @@ ggplot(data.frame(x = c(0, 5)), aes(x)) +
                 xlim = c(2, 5),
                 geom = "area",
                 fill = WILD3810_colors$value[WILD3810_colors$name=="primary"]) +
-  scale_x_continuous("Age") +
+  scale_x_continuous("Age", breaks = 2) +
   scale_y_continuous("Survival probability") +
-  theme(axis.text = element_blank(), axis.ticks = element_blank())
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 
 ```
 
@@ -872,8 +934,9 @@ ggplot(data.frame(x = c(0, 5)), aes(x)) +
 ---
 ## Life expectancy
 
-- $\Large T_x$: Area under the survival curve from age $x$ onward = $\sum_x^{max(x)}L_x$
+- $\Large T_x$: Area under the survival curve from age $x$ onward  
 
+- $\Large T_x = \sum_x^{max(x)}L_x$
 
 ```{r}
 lt5 <- lt4
@@ -907,7 +970,7 @@ lt6 %>%
 ---
 ## Utah life expectancy
 
-#### Utah has the lowest per capita crude death rate d in the U.S. (averaged across all ages)
+#### Utah has the lowest per capita crude death rate d in the U.S  
 
 ### Can Utahns expect to live longer than all other states?
 
@@ -915,7 +978,8 @@ lt6 %>%
 ### Not exactly
 
 - Life expectancy of a newborn Utahn is 80.2  
-<br/> 
+<br/>
+
 --
 - Ranked 10th in the U.S., not first  
 
@@ -935,6 +999,7 @@ lt6 %>%
 - % of Utahns ≥ 65 is 11%  
 
 - % of U.S. ≥ 65 = 15%  
+
 
 --
 #### Young individuals have highest chances of survival 

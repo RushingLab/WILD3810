@@ -34,6 +34,8 @@ navbar:
           href: articles/Lecture6/lecture6.html
         - text: "Lecture 7: Dynamics of small populations"
           href: articles/Lecture7/Lecture7.html
+        - text: "Lecture 8: Life Tables"
+          href: articles/Lecture8/Lecture8.html
     - icon: fas fa-desktop
       text: "Labs"
       menu:
