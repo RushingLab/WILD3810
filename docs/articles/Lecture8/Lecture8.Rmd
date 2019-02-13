@@ -358,7 +358,7 @@ lt3 %>%
 <br/>
 
 ```{r}
-lt3[,3] <- c("1.0", "0.75", "0.5", "0.4", "")
+lt3[,3] <- c(1.0, 0.75, 0.5, 0.4, 0)
 lt3 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
@@ -867,7 +867,7 @@ class: middle, center, inverse
 
 ```{r}
 lt3 <- lt
-lt3[,3] <- c("1.0", "0.75", "0.5", "0.4", "")
+lt3[,3] <- c(1.0, 0.75, 0.5, 0.4, 0)
 
 names(lt3) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "", "", "")
 lt3 %>%
