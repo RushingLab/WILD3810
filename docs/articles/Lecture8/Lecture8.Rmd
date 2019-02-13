@@ -277,6 +277,8 @@ $S_x$ stands for number of *survivors* at age $x$
 
 - $\Large l_x$: Probability of surviving to age $\Large x$
 
+    + Can also be interpreted as the proportion of individuals still alive at age $x$
+
 - $\Large l_x = N_x/N_0$
 <br/>
 
@@ -298,7 +300,7 @@ lt3 %>%
 <br/>
 
 ```{r}
-lt3[,3] <- c("1.0", "", "", "", "")
+lt3[,3] <- c("1.00", "", "", "", "")
 lt3 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
@@ -313,7 +315,7 @@ lt3 %>%
 <br/>
 
 ```{r}
-lt3[,3] <- c("1.0", "0.75", "", "", "")
+lt3[,3] <- c("1.00", "0.75", "", "", "")
 lt3 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
@@ -328,7 +330,7 @@ lt3 %>%
 <br/>
 
 ```{r}
-lt3[,3] <- c("1.0", "0.75", "0.5", "", "")
+lt3[,3] <- c("1.00", "0.75", "0.50", "", "")
 lt3 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
@@ -343,7 +345,7 @@ lt3 %>%
 <br/>
 
 ```{r}
-lt3[,3] <- c("1.0", "0.75", "0.5", "0.4", "")
+lt3[,3] <- c("1.00", "0.75", "0.50", "0.40", "")
 lt3 %>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
@@ -732,7 +734,7 @@ lt4 %>%
 
 - Stable age distribution  
 
-- Survival does not change over time  
+- Age-specific survival $\Large (P_x)$ does not change over time  
 
     + If it does, time effects may appear as ‘age effects’ and lead to biased results
 
@@ -860,10 +862,16 @@ class: middle, center, inverse
 --
 ### Can Utahns expect to live longer than in all other states? 
 
+???
+
+crude death rate means the average death rate across all individuals in the population, regardless of age  
+
 ---
 ## Life expectancy
 
 #### To estimate life expectancy, start with $\Large l_x$
+
+- $\Large l_x$ = Proportion of individuals still alive at age $\Large x$
 
 ```{r}
 lt3 <- lt
@@ -878,7 +886,7 @@ lt3 %>%
 ---
 ## Life expectancy
 
-- $\Large L_x$: Average survival probability across successive age intervals  
+- $\Large L_x$: Average proportion of living individuals across successive age classes  
 
 - $\Large L_x = \frac{l_x+l_{x+1}}{2}$
 
@@ -895,7 +903,7 @@ lt4 %>%
 ---
 ## Life expectancy
 
-- $\Large T_x$: Area under the survival curve from age $x$ onward
+- $\Large T_x$: total proportion of living individuals from age $x$ to $max(x)$
 
 
 ```{r fig.height=6, fig.width=8}
@@ -906,7 +914,7 @@ ggplot(data.frame(x = c(0, 5)), aes(x)) +
                 geom = "area",
                 fill = WILD3810_colors$value[WILD3810_colors$name=="primary"]) +
   scale_x_continuous("Age", breaks = 0) +
-  scale_y_continuous("Survival probability") +
+  scale_y_continuous(expression(paste("Average proportion alive (", L[x], ")"))) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 
 ```
@@ -914,7 +922,7 @@ ggplot(data.frame(x = c(0, 5)), aes(x)) +
 ---
 ## Life expectancy
 
-- $\Large T_x$: Area under the survival curve from age $x$ onward
+- $\Large T_x$: total proportion of living individuals from age $x$ to $max(x)$
 
 
 ```{r fig.height=6, fig.width=8}
@@ -925,7 +933,7 @@ ggplot(data.frame(x = c(0, 5)), aes(x)) +
                 geom = "area",
                 fill = WILD3810_colors$value[WILD3810_colors$name=="primary"]) +
   scale_x_continuous("Age", breaks = 2) +
-  scale_y_continuous("Survival probability") +
+  scale_y_continuous(expression(paste("Average proportion alive (", L[x], ")"))) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 
 ```
@@ -934,7 +942,7 @@ ggplot(data.frame(x = c(0, 5)), aes(x)) +
 ---
 ## Life expectancy
 
-- $\Large T_x$: Area under the survival curve from age $x$ onward  
+- $\Large T_x$: total proportion of living individuals from age $x$ to $max(x)$
 
 - $\Large T_x = \sum_x^{max(x)}L_x$
 
@@ -952,7 +960,7 @@ lt5 %>%
 ---
 ## Life expectancy
 
-- $\Large E_x$: Number of years an individual of age $x$ is expected to survive
+- $\Large E_x$: Number of additional years an individual of age $x$ is expected to survive
 
 - $\Large E_x = T_x/l_x$
 
