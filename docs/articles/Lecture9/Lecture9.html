@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lecture 9</title>
+    <meta charset="utf-8">
+    <meta name="author" content="   WILD3810 (Spring 2019)" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link rel="stylesheet" href="WILD3810.css" type="text/css" />
+    <link rel="stylesheet" href="WILD3810-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Lecture 9
+## Survival estimation
+### <br/><br/><br/>WILD3810 (Spring 2019)
+
+---
+
+
+
+
+## Readings
+
+&gt; Powell &amp; Gale 103-122; 123-138  
+
+
+---
+## Life tables
+
+#### If detection probability is `\(&lt;1\)`  
+
+- `\(N_x\)` will be biased low  
+
+- All other life table statistics will be biased as well
+
+    + Survival biased low, mortality biased high
+
+.left-column[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Phlox_drummondii_-_Archer_FL_02.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+&lt;img src="figs/phlox_lt.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+
+
+---
+class: inverse, middle, center
+
+# Survival estimation
+
+---
+## Survival estimation
+
+#### Methods used to estimate plant and animal survival generally fall into three categories:  
+
+1) Known fate  
+
+2) Capture-mark-recapture  
+
+3) Recovery models  
+
+
+---
+class: inverse, middle, center
+
+# Known fate
+
+---
+## Known fate
+
+#### Location and fate (alive or dead) of every marked individual is known at each sampling occasion
+
+- `\(\LARGE P_{det} = 1\)`
+
+
+--
+#### What types of data can be used for known fate analyses?
+
+--
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Handheld_telemetry.jpg" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+???
+Image courtesy of Red Wolf Recovery Program, via Wikimedia Commons
+
+
+---
+## Known fate
+
+#### Location and fate (alive or dead) of every marked individual is known at each sampling occasion
+
+- `\(\LARGE P_{det} = 1\)`
+
+#### What types of data can be used for known fate analyses?
+
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Handheld_telemetry.jpg" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+???
+Image courtesy of Red Wolf Recovery Program, via Wikimedia Commons
+
+---
+## Known fate
+
+#### Location and fate (alive or dead) of every marked individual is known at each sampling occasion
+
+- `\(\LARGE P_{det} = 1\)`
+
+#### What types of data can be used for known fate analyses?
+
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Phlox_drummondii_-_Archer_FL_02.jpg" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+???
+Image courtesy of Ebyabe, from Wikimedia Commons
+
+
+---
+## Known fate
+
+#### Location and fate (alive or dead) of every marked individual is known at each sampling occasion
+
+- `\(\LARGE P_{det} = 1\)`
+
+#### What types of data can be used for known fate analyses?
+
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/%3F%3F_Vireo_nest_Huachuca_Canyon_Sierra_Vista_AZ_%2835488233510%29.jpg" width="50%" style="display: block; margin: auto;" /&gt;
+
+
+???
+Image courtesy of Bettina Arrigoni, via Wikimedia Commons
+
+---
+## Known fate
+
+#### Data
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Individual &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Capture history &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Probability &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Indv 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 111 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Indv 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Indv 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+#### Individual 1
+
+- Captured on occasion 1  
+
+- Resighted alive on occasion 2  
+
+- Resighted alive on occasion 3  
+
+---
+## Known fate
+
+#### Data
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Individual &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Capture history &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Probability &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Indv 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 111 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(S_1 \times S_2\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Indv 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Indv 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+#### Individual 1
+
+- Captured on occasion 1  
+
+- Resighted **alive** on occasion 2  
+
+- Resighted **alive** on occasion 3  
+
+---
+## Known fate
+
+#### Data
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Individual &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Capture history &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Probability &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Indv 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 111 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(S_1 \times S_2\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Indv 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Indv 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+#### Individual 2
+
+- Captured on occasion 1  
+
+- Resighted **alive** on occasion 2  
+
+- Resighted **dead** on occasion 3  
+
+---
+## Known fate
+
+#### Data
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Individual &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Capture history &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Probability &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Indv 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 111 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(S_1 \times S_2\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Indv 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(S_1 \times (1-S_2)\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Indv 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+#### Individual 2
+
+- Captured on occasion 1  
+
+- Resighted **alive** on occasion 2  
+
+- Resighted **dead** on occasion 3  
+
+---
+## Known fate
+
+#### Data
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Individual &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Capture history &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Probability &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Indv 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 111 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(S_1 \times S_2\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Indv 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 110 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(S_1 \times (1-S_2)\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Indv 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(1-S_1\) &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+#### Individual 3
+
+- Captured on occasion 1  
+
+- Resighted **dead** on occasion 2  
+
+- Known **dead** on occasion 3  
+
+---
+## Known fate
+
+#### Intuitively, 
+
+`$$\LARGE S_t = \frac{y_t}{n_t}$$`
+
+- `\(\Large y_t\)`: Number of individuals alive at the end of interval `\(\Large t\)`
+
+- `\(\Large n_t\)`: Number of individuals at risk of dying during interval `\(\Large t\)`
+
+
+--
+### Who is at risk of dying? 
+
+---
+## Known fate
+
+#### Who is at risk of dying?  
+
+--
+- Individuals who are **known** alive at the beginning of the interval  
+
+--
+    + Does not include individuals not yet marked (*staggered entry*)  
+
+--
+    + Does not include indivdiuals who's fates are unknown (*censoring*)
+
+&lt;img src="Lecture9_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+---
+## Known fate
+
+#### Estimating survival
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
