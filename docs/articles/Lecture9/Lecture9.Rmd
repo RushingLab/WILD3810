@@ -404,7 +404,6 @@ ggplot(df, aes(x = end-0.1, y = indv)) +
 
 ---
 ## Known fate
-<br/>
 
 ```{r}
 kf_df <- data.frame(Week = seq(1,13),
@@ -420,6 +419,6 @@ kf_df$S <- cumprod(kf_df$s)
 names(kf_df) <- c("Week (t)", "# at risk", "# deaths", "# censored", "# added", "s(t)", "S(t)")
 
 kf_df %>%
-  kable("html", align = 'c', escape = FALSE) %>%
+  kable("html", align = 'c', escape = FALSE, ) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
 ```
