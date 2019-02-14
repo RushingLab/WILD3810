@@ -263,12 +263,16 @@ df %>%
 
 #### Intuitively, 
 
-$$\LARGE S_t = \frac{y_t}{n_t}$$
+$$\LARGE s_t = \frac{y_t}{n_t}$$
 
 - $\Large y_t$: Number of individuals alive at the end of interval $\Large t$
 
 - $\Large n_t$: Number of individuals at risk of dying during interval $\Large t$
 
+--
+#### And
+
+$$\LARGE S_t = \prod_{t=1}^Ts_t$$
 
 --
 ### Who is at risk of dying? 
@@ -287,22 +291,135 @@ $$\LARGE S_t = \frac{y_t}{n_t}$$
 --
     + Does not include indivdiuals who's fates are unknown (*censoring*)
 
-```{r fig.width=6, fig.height=4}
+```{r fig.width=8, fig.height=4}
 df <- data.frame(start = rep(0, 18),
                  indv = sample(1:18, size = 18),
                  end = c(3,3, 6,8,8,9,9,9,10,10,12, rep(Inf, 7)),
                  fate = c("Dead", "Dead", "Dead", "Dead", "Censored", "Dead", "Censored", "Censored", "Dead", "Censored", "Censored", rep("Alive", 7)))
 df$start[c(3,8,13, 16)] <- c(2,1,4,2)
-ggplot(df, aes(x = end + 0.15, y = indv)) +
-  geom_segment(aes(x = start, xend = end, y = indv, yend = indv)) +
+ggplot(df, aes(x = end-0.1, y = indv)) +
+  geom_segment(aes(x = start, xend = end-0.2, y = indv, yend = indv)) +
   geom_point(aes(shape = fate)) +
   scale_shape_manual(values = c(45, 63, 21)) +
   scale_x_continuous("Week", limits = c(0, 13)) +
   scale_y_continuous("Individual") +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 ```
+
 ---
 ## Known fate
 
 #### Estimating survival
 
+#### Who is at risk of dying?
+
+```{r fig.width=8, fig.height=4}
+ggplot(df, aes(x = end-0.1, y = indv)) +
+  geom_rect(aes(xmin = 0, xmax = 1, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="primary"], alpha = 0.1) +
+  geom_segment(aes(x = start, xend = end-0.2, y = indv, yend = indv)) +
+  geom_point(aes(shape = fate)) +
+  scale_shape_manual(values = c(45, 63, 21)) +
+  scale_x_continuous("Week", limits = c(0, 13)) +
+  scale_y_continuous("Individual") +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+```
+
+--
+- $\Large n_1 = 14$, $\Large y_1 = 14$  
+
+- $\Large s_1 = 1.00$
+
+---
+## Known fate
+
+#### Estimating survival
+
+#### Who is at risk of dying?
+
+```{r fig.width=8, fig.height=4}
+ggplot(df, aes(x = end-0.1, y = indv)) +
+  geom_rect(aes(xmin = 0, xmax = 1, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="primary"], alpha = 0.1) +
+  geom_rect(aes(xmin = 1, xmax = 2, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="light"], alpha = 0.1) +
+  geom_rect(aes(xmin = 2, xmax = 3, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="primary"], alpha = 0.1) +
+  geom_rect(aes(xmin = 3, xmax = 4, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="light"], alpha = 0.1) +
+  geom_rect(aes(xmin = 4, xmax = 5, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="primary"], alpha = 0.1) +
+  geom_rect(aes(xmin = 5, xmax = 6, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="light"], alpha = 0.1) +
+  geom_rect(aes(xmin = 6, xmax = 7, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="primary"], alpha = 0.1) +
+  geom_rect(aes(xmin = 7, xmax = 8, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="light"], alpha = 0.1) +
+  geom_rect(aes(xmin = 8, xmax = 9, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="primary"], alpha = 0.1) +
+  geom_rect(aes(xmin = 9, xmax = 10, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="light"], alpha = 0.1) +
+  geom_rect(aes(xmin = 10, xmax = 11, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="primary"], alpha = 0.1) +
+  geom_rect(aes(xmin = 11, xmax = 12, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="light"], alpha = 0.1) +
+  geom_rect(aes(xmin = 12, xmax = 13, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="primary"], alpha = 0.1) +
+  geom_segment(aes(x = start, xend = end-0.2, y = indv, yend = indv)) +
+  geom_point(aes(shape = fate)) +
+  scale_shape_manual(values = c(45, 63, 21)) +
+  scale_x_continuous("Week", limits = c(0, 13)) +
+  scale_y_continuous("Individual") +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+```
+
+
+--
+- $\Large n_3 = 17$, $\Large y_3 = 15$  
+
+- $\Large s_3 = 0.88$
+
+---
+## Known fate
+
+#### Estimating survival
+
+#### Who is at risk of dying?
+
+```{r fig.width=8, fig.height=4}
+ggplot(df, aes(x = end-0.1, y = indv)) +
+  geom_rect(aes(xmin = 0, xmax = 1, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="primary"], alpha = 0.1) +
+  geom_rect(aes(xmin = 1, xmax = 2, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="light"], alpha = 0.1) +
+  geom_rect(aes(xmin = 2, xmax = 3, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="primary"], alpha = 0.1) +
+  geom_rect(aes(xmin = 3, xmax = 4, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="light"], alpha = 0.1) +
+  geom_rect(aes(xmin = 4, xmax = 5, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="primary"], alpha = 0.1) +
+  geom_rect(aes(xmin = 5, xmax = 6, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="light"], alpha = 0.1) +
+  geom_rect(aes(xmin = 6, xmax = 7, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="primary"], alpha = 0.1) +
+  geom_rect(aes(xmin = 7, xmax = 8, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="light"], alpha = 0.1) +
+  geom_rect(aes(xmin = 8, xmax = 9, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="primary"], alpha = 0.1) +
+  geom_rect(aes(xmin = 9, xmax = 10, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="light"], alpha = 0.1) +
+  geom_rect(aes(xmin = 10, xmax = 11, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="primary"], alpha = 0.1) +
+  geom_rect(aes(xmin = 11, xmax = 12, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="light"], alpha = 0.1) +
+  geom_rect(aes(xmin = 12, xmax = 13, ymin = -Inf, ymax = Inf), fill = WILD3810_colors$value[WILD3810_colors$name=="primary"], alpha = 0.1) +
+  geom_segment(aes(x = start, xend = end-0.2, y = indv, yend = indv)) +
+  geom_point(aes(shape = fate)) +
+  scale_shape_manual(values = c(45, 63, 21)) +
+  scale_x_continuous("Week", limits = c(0, 13)) +
+  scale_y_continuous("Individual") +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
+```
+
+
+--
+- $\Large n_9 = 13-2= 11$, $\Large y_9 = 10$  
+
+- $\Large s_9 = 0.91$
+
+
+---
+## Known fate
+<br/>
+
+```{r}
+kf_df <- data.frame(Week = seq(1,13),
+                    risk = c(14,15,17,15,16,16,15,15,13,10,8,8,7),
+                    deaths = c(0,0,2,0,0,1,0,1,1,1,0,0,0),
+                    censored = c(0,0,0,0,0,0,0,1,2,1,0,1,0),
+                    added = c(1,2,0,1,0,0,0,0,0,0,0,0,0))
+
+kf_df <- dplyr::mutate(kf_df, s = (risk-censored-deaths)/(risk-censored))
+
+kf_df$S <- cumprod(kf_df$s)
+
+names(kf_df) <- c("Week (t)", "# at risk", "# deaths", "# censored", "# added", "s(t)", "S(t)")
+
+kf_df %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
