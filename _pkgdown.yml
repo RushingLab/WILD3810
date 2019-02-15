@@ -36,6 +36,8 @@ navbar:
           href: articles/Lecture7/Lecture7.html
         - text: "Lecture 8: Life Tables"
           href: articles/Lecture8/Lecture8.html
+        - text: "Lecture 9: Survival estimation"
+          href: articles/Lecture9/Lecture9.html
     - icon: fas fa-desktop
       text: "Labs"
       menu:

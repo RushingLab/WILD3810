@@ -103,12 +103,12 @@ Image courtesy of Red Wolf Recovery Program, via Wikimedia Commons
 
 
 ```{r out.width="50%"}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/2/2a/Handheld_telemetry.jpg")
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/2/28/Tigress_with_radio_collar.JPG")
 ```
 
 
 ???
-Image courtesy of Red Wolf Recovery Program, via Wikimedia Commons
+Image courtesy of PR Ganapathy, from Wikimedia Commons
 
 ---
 ## Known fate
@@ -156,7 +156,7 @@ Image courtesy of Bettina Arrigoni, via Wikimedia Commons
 library(kableExtra)
 df <- data.frame(animal = c("Indv 1", "Indv 2", "Indv 3"),
                  ch = c("111", "110", "100"),
-                 prb = c("\\(S_1 \\times S_2\\)", "\\(S_1 \\times (1-S_2)\\)", "\\(1-S_1\\)"))
+                 prb = c("\\(s_1 \\times s_2\\)", "\\(s_1 \\times (1-s_2)\\)", "\\(1-s_1\\)"))
 
 names(df) <- c("Individual", "Capture history", "Probability")
 df2 <- df
@@ -261,18 +261,21 @@ df %>%
 ---
 ## Known fate
 
-#### Intuitively, 
+#### Kaplan-Meier model
 
-$$\LARGE s_t = \frac{y_t}{n_t}$$
+$$\LARGE s_t = \frac{n_t - d_t}{n_t}$$
 
-- $\Large y_t$: Number of individuals alive at the end of interval $\Large t$
+$$\LARGE var(s_t) = \frac{s_t^2\big(1-s_t\big)}{n_t}$$
+
 
 - $\Large n_t$: Number of individuals at risk of dying during interval $\Large t$
 
---
-#### And
+- $\Large d_t$: Number of individuals that died during interval $\Large t$
 
-$$\LARGE S_t = \prod_{t=1}^Ts_t$$
+
+--
+
+$$\LARGE S_T = \prod_{t=1}^Ts_t$$
 
 --
 ### Who is at risk of dying? 
@@ -289,7 +292,7 @@ $$\LARGE S_t = \prod_{t=1}^Ts_t$$
     + Does not include individuals not yet marked (*staggered entry*)  
 
 --
-    + Does not include indivdiuals who's fates are unknown (*censoring*)
+    + Does not include individuals who's fates are unknown (*censoring*)
 
 ```{r fig.width=8, fig.height=4}
 df <- data.frame(start = rep(0, 18),
@@ -325,7 +328,7 @@ ggplot(df, aes(x = end-0.1, y = indv)) +
 ```
 
 --
-- $\Large n_1 = 14$, $\Large y_1 = 14$  
+- $\Large n_1 = 14$, $\Large d_1 = 0$  
 
 - $\Large s_1 = 1.00$
 
@@ -361,7 +364,7 @@ ggplot(df, aes(x = end-0.1, y = indv)) +
 
 
 --
-- $\Large n_3 = 17$, $\Large y_3 = 15$  
+- $\Large n_3 = 17$, $\Large d_3 = 2$  
 
 - $\Large s_3 = 0.88$
 
@@ -397,7 +400,7 @@ ggplot(df, aes(x = end-0.1, y = indv)) +
 
 
 --
-- $\Large n_9 = 13-2= 11$, $\Large y_9 = 10$  
+- $\Large n_9 = 13-2= 11$, $\Large d_9 = 1$  
 
 - $\Large s_9 = 0.91$
 
@@ -419,6 +422,363 @@ kf_df$S <- cumprod(kf_df$s)
 names(kf_df) <- c("Week (t)", "# at risk", "# deaths", "# censored", "# added", "s(t)", "S(t)")
 
 kf_df %>%
-  kable("html", align = 'c', escape = FALSE, ) %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE,font_size = 8) 
+```
+
+---
+## Assumptions of Kaplan-Meier
+
+1) Animal at risk if **known** alive at the start of the interval  
+<br/>
+
+--
+2) Survival is constant within each interval  
+<br/>
+
+--
+3) Newly tagged individuals have the same survival probability as previously tagged individuals  
+<br/>
+
+--
+4) Tagged animals are a random sample of the population  
+<br/>
+
+--
+5) Animals are independent  
+<br/>
+
+--
+6) Working tags are always located  
+<br/>
+
+--
+7) Censoring is a random event/independent of mortality  
+<br/>
+
+--
+8) Tagging method does not impact survival  
+
+
+---
+class: inverse, middle, center
+
+# Capture-recapture
+
+---
+## Capture-recapture
+
+#### When using known-fate methods, $\Large P_{det} = 1$  
+
+--
+#### When using mark-recapture, $\Large P_{det} < 1$  
+
+- if an individual is not detected, it's fate (alive or dead) cannot be known with certainty
+
+- in closed population models (Lincoln-Peterson), we assumed no deaths occurred between sampling occasions 
+
+
+--
+#### **Open population** models relax this assumption
+
+--
+.pull-left[
+During each sampling occasion
+
+- individuals are captured  
+
+- marked or identified  
+
+- released alive  
+]
+
+.pull-right[
+```{r out.width="50%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/6/6f/Band_on_pelican_leg_%285282438747%29.jpg")
+```
+]
+
+???
+Image courtesy of USFWS Mountain-Prairie, via Wikimedia Commons
+
+
+---
+## Capture-recapture
+
+#### On the occassion after release, 4 possible scenarios:
+
+- 1) Individual survives and is re-captured (capture history = `11`)  
+
+
+- 2) Individual survives but is not recaptured (capture history = `10`)  
+
+
+- 3) Individual dies and is **not available** for recapture (capture history = `10`)  
+
+
+- 4) Individual survives but leaves the study area and is **not available** for recapture (capture history = `10`)  
+
+
+--
+#### Not possible to distuingish between scenarios 3 & 4 without additional data
+
+- $\LARGE \phi_t = s_t \times (1 - \epsilon_t)$ 
+
+- $\LARGE \phi_t$: **Apparent survival** (prob. individual survives *and* remains within study area)  
+
+???
+
+$\LARGE \epsilon_t$: probability an individual leaves the study area
+
+---
+## Capture-recapture
+
+#### How do we distinguish between scenarios 2 & 3/4?  
+
+--
+### **Cormack-Jolly-Seber model**
+
+#### Parameters
+
+- $\LARGE \phi$: Apparent survival probability
+
+- $\Large p$: Recapture probability
+
+???
+
+Note that for simplicity, we have removed the $t$ subscript. This implies that apparent survival probability and recapture probability are constant across all occasions.   
+
+However, the CJS model can estimate different apparent survival and recapture probabilities for each occasion, that is $\phi_t$ and $p_t$
+
+---
+## Capture-recapture
+
+#### How do we distinguish between scenarios 2 & 3/4?  
+
+### Cormack-Jolly-Seber model
+
+```{r out.width="75%"}
+knitr::include_graphics("figs/cjs_flowchart.png")
+```
+
+
+---
+## Capture-recapture
+
+### Cormack-Jolly-Seber model
+
+```{r}
+cjs_df <- data.frame(animal = c("Indv 1", "Indv 2", "Indv 3", "Indv 4"),
+                 ch = c("111", "101", "110", "100"),
+                 prb = c("\\(\\phi_1 p_2 \\phi_2 p_3\\)", 
+                         "\\(\\phi_1 (1-p_2) \\phi_2 p_3\\)", 
+                         "\\(\\phi_1 p_2 \\phi_2 (1-p_3)+(1-\\phi_2)\\)",
+                         "\\((1-\\phi_1) + \\phi_1 (1-p_2) (1-\\phi_2 p_3)\\)"))
+
+names(cjs_df) <- c("Individual", "Capture history", "Probability")
+cjs_df2 <- cjs_df
+cjs_df2[,3] <- c("\\(\\phi_1 p_2 \\phi_2 p_3\\)", "", "", "")
+cjs_df2 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE, font_size = 10) 
+```
+
+#### Individual 1
+
+- survived interval 1 $\large (\phi_1)$, recaptured on occasion 2 $\large (p_2)$, survived occasion 2 $\large (\phi_2)$, recapture on occasion 3 $\large (p_3)$
+
+
+---
+## Capture-recapture
+
+### Cormack-Jolly-Seber model
+
+```{r}
+cjs_df3 <- cjs_df
+cjs_df3[,3] <- c("\\(\\phi_1 p_2 \\phi_2 p_3\\)", 
+                         "\\(\\phi_1 (1-p_2) \\phi_2 p_3\\)", 
+                         "",
+                         "")
+cjs_df3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE, font_size = 10) 
+```
+
+#### Individual 2
+
+- survived interval 1 $\large (\phi_1)$, not recaptured on occasion 2 $\large (1-p_2)$, survived occasion 2 $\large (\phi_2)$, recapture on occasion 3 $\large (p_3)$
+
+---
+## Capture-recapture
+
+
+### Cormack-Jolly-Seber model
+
+```{r}
+cjs_df4 <- cjs_df
+cjs_df4[,3] <- c("\\(\\phi_1 p_2 \\phi_2 p_3\\)", 
+                         "\\(\\phi_1 (1-p_2) \\phi_2 p_3\\)", 
+                         "\\(\\phi_1 p_2 \\phi_2 (1-p_3)+(1-\\phi_2)\\)",
+                         "")
+cjs_df4 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE, font_size = 10) 
+```
+
+#### Individual 3
+
+- survived interval 1 $\large (\phi_1)$, recaptured on occasion 2 $\large (p_2)$
+
+--
+    + survived occasion 2 $\large (\phi_2)$, not recaptured on occasion 3 $\large (1 - p_3)$; **or**  
+
+--
+    + died during occasion 2 $\large (1-\phi_2)$
+
+
+---
+## Capture-recapture
+
+
+### Cormack-Jolly-Seber model
+
+```{r}
+cjs_df %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE, font_size = 10) 
+```
+
+#### Individual 4
+
+- died during interval 1 $\large (1-\phi_1)$; **or**  
+
+--
+- survived occasion 1 $\large (\phi_1)$, not recaptured on occasion 2 $\large (1 - p_2)$, died during occasion 2 $(1-\phi_2)$; **or**  
+
+--
+- survived occasion 1 $\large (\phi_1)$, not recaptured on occasion 2 $\large (1 - p_2)$, survived occasion 2 $\large (\phi_2)$, not recaptured on occasion 3 $\large (1 - p_3)$  
+
+
+---
+## Capture-recapture
+
+#### Advantages
+
+- inexpensive (relative to telemetry)
+
+--
+- possible to mark many individuals
+
+    + often more precise than known-fate  
+
+--
+- can use natural marks
+
+--
+- possible to measure effects of age, stage, environment, habitat, management actions, etc.
+
+
+--
+#### Assumptions  
+
+- every individual has the same recapture probability $p$ $^*$
+
+--
+- every individual has the same apparent survival probability $\large \phi$ $^*$  
+
+--
+- tags are not lost  
+
+--
+- all emigration is permanent  
+
+--
+- fates of individuals are independent
+
+???
+
+$^*$ assumptions 1 or 2 can be relaxed by estimating parameters for different groups of individuals (males and females) or estimating parameters as a function of some factor that might influence survival/detection (e.g., size, age)
+
+
+---
+class: inverse, center, middle
+
+# Recovery models
+
+---
+## Recovery models
+
+#### In some cases, marked individuals may be recovered dead 
+
+.pull-left[
+```{r out.height="80%"}
+knitr::include_graphics("figs/jaw-tag.jpg")
+```
+]
+
+.pull-right[
+
+```{r out.height="80%"}
+knitr::include_graphics("figs/duck_band.jpg")
+```
+]
+
+---
+## Recovery models
+
+```{r out.height="80%"}
+knitr::include_graphics("figs/recovery_flowchart.png")
+```
+
+???
+
+Adapted from Powel & Gale 2015
+
+---
+class: inverse, middle, center
+
+# Life tables
+
+---
+## Life tables
+
+- Ages-specific estimates of $\Large S$ or $\Large \phi$ are equivalent to $\Large  P_x$
+
+<br/>
+
+```{r}
+lt <- data.frame(x = seq(from = 0, to  = 4),
+                       Nx = "",
+                       lx = "",
+                       Px = c(0.70, 0.86, 0.67, 0.00, ""),
+                       Tx = "",
+                       ex = "")
+
+names(lt) <- c("\\(x\\)", "", "", "\\(P_x\\)", "", "")
+
+lt%>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+
+---
+## Life tables
+
+- With unbiased estimates of $\Large P_x$, can obtain unbiased estimates of $\Large l_x$ and $\Large q_x$
+
+- $\Large l_0 = 1$, $\Large l_{x+1} = 1_xP_x$
+
+- $\Large q_{x} = 1- P_x$
+<br/>
+
+```{r}
+
+names(lt) <- c("\\(x\\)", "", "\\(l_x\\)", "\\(P_x\\)", "\\(q_x\\)", "")
+
+lt[,3] <- c(1, 0.7, 0.6, 0.4, 0)
+lt[,5] <- c(0.30, 0.14, 0.33, 1.00, "")
+lt%>%
+  kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
 ```
