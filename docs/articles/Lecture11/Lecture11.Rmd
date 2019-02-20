@@ -1,0 +1,80 @@
+---
+title: "Lecture 11"
+subtitle: "Matrix population models"
+author: "<br/><br/><br/>WILD3810 (Spring 2019)"
+output:
+  xaringan::moon_reader:
+    css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE)
+library(WILD3810)
+library(gganimate)
+```
+
+## Readings
+
+---
+## Assumptions of the B-D models
+
+#### Over the coming weeks, we will learn about why and how to relax assumption 3:  
+
+
+1) Population closed to immigration and emigration  
+<br/>
+
+
+2) Model pertains to only the limiting sex, usually females  
+<br/>
+
+
+**3) Birth and death rates are independent of an individual’s age or biological stage**  
+<br/>
+
+
+4) Birth and death rates are constant
+
+--
+### **How can we model population dynamics of populations with complex age structure?**
+
+---
+## Age-structured demography
+
+### Consider the following life table:
+<br/>
+
+```{r}
+library(kableExtra)
+lt <- data.frame(x = c(0,1,2,3),
+                       mx = c(0, "\\(m_1\\)", "\\(m_2\\)", "\\(m_3\\)"),
+                       px = c("\\(P_0\\)", "\\(P_1\\)", "\\(P_2\\)", 0))
+
+names(lt) <- c("\\(x\\)", "\\(m_x\\)", "\\(P_x\\)")
+
+lt %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE, font_size = 22) 
+```
+
+???
+
+What do $m_x$ and $P_x$ represent?  
+
+What can you say about the reproductive and survival schedules of this population?
+
+---
+## Age-structred demography
+
+#### List population abundance in discrete 1-year age classes $\LARGE (n_i)$  
+
+- e.g., $\LARGE n_1$, $\LARGE n_2$, $\LARGE n_3$  
+
+- $\LARGE n_i$ is the number of individuals about to experience their $\LARGE i^{th}$ birthday  
+

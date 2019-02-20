@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lecture 11</title>
+    <meta charset="utf-8">
+    <meta name="author" content="   WILD3810 (Spring 2019)" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="WILD3810.css" type="text/css" />
+    <link rel="stylesheet" href="WILD3810-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Lecture 11
+## Matrix population models
+### <br/><br/><br/>WILD3810 (Spring 2019)
+
+---
+
+
+
+
+## Readings
+
+---
+## Assumptions of the B-D models
+
+#### Over the coming weeks, we will learn about why and how to relax assumption 3:  
+
+
+1) Population closed to immigration and emigration  
+&lt;br/&gt;
+
+
+2) Model pertains to only the limiting sex, usually females  
+&lt;br/&gt;
+
+
+**3) Birth and death rates are independent of an individual’s age or biological stage**  
+&lt;br/&gt;
+
+
+4) Birth and death rates are constant
+
+--
+### **How can we model population dynamics of populations with complex age structure?**
+
+---
+## Age-structured demography
+
+### Consider the following life table:
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 22px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(m_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(P_0\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(m_1\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(P_1\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(m_2\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(P_2\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(m_3\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+???
+
+What do `\(m_x\)` and `\(P_x\)` represent?  
+
+What can you say about the reproductive and survival schedules of this population?
+
+---
+## Age-structred demography
+
+#### List population abundance in discrete 1-year age classes `\(\LARGE (n_i)\)`  
+
+- e.g., `\(\LARGE n_1\)`, `\(\LARGE n_2\)`, `\(\LARGE n_3\)`  
+
+- `\(\LARGE n_i\)` is the number of individuals about to experience their `\(\LARGE i^{th}\)` birthday
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
