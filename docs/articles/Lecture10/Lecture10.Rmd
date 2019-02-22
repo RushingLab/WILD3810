@@ -21,7 +21,7 @@ library(gganimate)
 
 ## Readings
 
-> Mills 70-71, 98-102
+> Mills 70-71
 
 ---
 ## Life tables
@@ -150,7 +150,7 @@ lt1 %>%
 ---
 ## Reproduction
 
-- $\Large m_x$: Number of offspring produced per original individual (fecundity)
+- $\Large m_x$: Number of offspring produced per living individual in age class $\Large x$ (fecundity)
 
 ```{r}
 lt2 <- lt
@@ -177,7 +177,7 @@ lt %>%
 
 --
 $\large R_0$: Basic reproductive rate 
-$$\large = \sum l_xm_x = \frac{\sum F_x}{N_0} = 2.41$$
+$\large = \sum l_xm_x = \frac{\sum F_x}{N_0} = 2.41$
 
 ---
 ## Reproduction

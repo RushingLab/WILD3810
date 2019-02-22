@@ -38,6 +38,10 @@ navbar:
           href: articles/Lecture8/Lecture8.html
         - text: "Lecture 9: Survival estimation"
           href: articles/Lecture9/Lecture9.html
+        - text: "Lecture 10: Reproduction"
+          href: articles/Lecture10/Lecture10.html
+        - text: "Lecture 11: Introduction to matrix projection models"
+          href: articles/Lecture11/Lecture11.html
     - icon: fas fa-desktop
       text: "Labs"
       menu:
