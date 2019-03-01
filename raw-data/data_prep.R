@@ -67,6 +67,14 @@ obs_N <- WILD3810::get_N(N0 = round(runif(1, 225, 275)), number.of.years = c(30,
                d0 = 0.2, variance.d = 0.7, K = c(450, 36),
                seed = 8, d.slope = 0.0075)
 
-usethis::use_data(ut_dove_counts, all_dove_counts, obs_N, overwrite = TRUE)
+### Life table data
+lt <- read.csv("raw-data/life_table.csv")
+
+lt_data <- data.frame(byear = c(lt$birth_year_m, lt$birth_year_f),
+                      dyear = c(lt$death_year_m, lt$death_year_f),
+                      sex = rep(c("Male", "Female"), each = length(lt$birth_year_m)))
+lt_data <- lt_data[!is.na(lt_data$byear),]
+
+usethis::use_data(ut_dove_counts, all_dove_counts, obs_N, lt_data, overwrite = TRUE)
 
 
