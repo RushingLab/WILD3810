@@ -1,5 +1,5 @@
 ### BBS dove data
-# bbs <- BBS.tenstop::get_BBS10()
+bbs <- BBS.tenstop::get_BBS10()
 
 ut_routes <- dplyr::filter(bbs$routes, statenum == 85)
 
@@ -70,9 +70,9 @@ obs_N <- WILD3810::get_N(N0 = round(runif(1, 225, 275)), number.of.years = c(30,
 ### Life table data
 lt <- read.csv("raw-data/life_table.csv")
 
-lt_data <- data.frame(byear = c(lt$birth_year_m, lt$birth_year_f),
-                      dyear = c(lt$death_year_m, lt$death_year_f),
-                      sex = rep(c("Male", "Female"), each = length(lt$birth_year_m)))
+lt_data <- data.frame(byear = c(lt$byear_m, lt$byear_f),
+                      dyear = c(lt$dyear_m, lt$dyear_f),
+                      sex = rep(c("Male", "Female"), each = length(lt$byear_m)))
 lt_data <- lt_data[!is.na(lt_data$byear),]
 
 usethis::use_data(ut_dove_counts, all_dove_counts, obs_N, lt_data, overwrite = TRUE)

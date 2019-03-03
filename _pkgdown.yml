@@ -53,6 +53,8 @@ navbar:
           href: articles/lab2.html
         - text: "Lab 3: Population viability analysis"
           href: articles/lab3.html
+        - text: "Lab 4: Building and interpreting static life tables"
+          href: articles/life_table.html
     - icon: fas fa-pencil-square-o
       text: "Assignments"
       href: articles/homework.html
