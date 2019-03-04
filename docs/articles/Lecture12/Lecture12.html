@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lecture 12</title>
+    <meta charset="utf-8">
+    <meta name="author" content="   WILD3810 (Spring 2019)" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
+    <link rel="stylesheet" href="WILD3810.css" type="text/css" />
+    <link rel="stylesheet" href="WILD3810-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Lecture 12
+## Stage-structed populations
+### <br/><br/><br/>WILD3810 (Spring 2019)
+
+---
+
+
+
+
+
+## Leslie matrix 
+
+#### Leslie matrices are defined as :   
+
+- square matrix that summarizes the demography of **age**-specific life cycles  
+
+- one column for each **age** class
+
+- matrix elements contain **age**-specific birth and survival rates   
+
+- individuals cannot stay in the same **age**-class for more than a single time step `\(^1\)`
+&lt;br/&gt; 
+&lt;br/&gt; 
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    F_1 &amp; F_2 &amp; F_3\\
+    P_1 &amp; 0 &amp; 0\\
+    0 &amp;P_2 &amp; 0
+\end{bmatrix}$$`
+
+???
+
+`\(^1\)` In some cases, for example when we define identify individuals juveniles (age 1), pre-adults (age 2), and adults (age 3+), the last element in the Leslie matrix might not be zero. Individuals can remain in the "adult" class for more than 1 year  
+
+---
+## Stage-structured populations
+
+#### In some cases, age is not a relevant predictor of survival and birth rates   
+
+--
+#### Instead, survival and birth rates vary with **stage**
+
+--
+- life cycle stage
+
+.pull-left[
+&lt;img src="figs/lifecycle_diagram.jpg" width="75%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="figs/lifecycle.gif" width="75%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Stage-structured populations
+
+#### In some cases, age is not a relevant predictor of survival and birth rates   
+
+#### Instead, survival and birth rates vary with **stage**
+
+- life cycle stage
+
+- size 
+
+.left-column[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Gasterosteus_aculeatus_t%C3%BCsk%C3%A9s_pik%C3%B3.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+&lt;img src="figs/stickleback_fecundity.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Image courtesy of Kókay Szabolcs, via Wikimedia Commons
+Figure from Moser et al. (2012)
+
+---
+## Stage-structured populations
+
+#### L. Lefkovitch relaxed an assumption of the age-structured matrix model developed by Leslie  
+
+--
+#### **Lefkovitch matrices ** allow individuals to remain in life-stages (or size classes) longer than one time step 
+
+--
+#### Useful for plants and animals with stage-dependent demography
+
+&lt;img src="figs/stage_diagram.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+## Stage-structured matrix
+
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    F_1 &amp; F_2 &amp; F_3\\
+    P_1 &amp; 0 &amp; 0\\
+    0 &amp;P_2 &amp; 0
+\end{bmatrix} \rightarrow
+\mathbf A = \begin{bmatrix}
+    P_1 &amp; F_2 &amp; F_3\\
+    G_1 &amp; P_2 &amp; 0\\
+    0 &amp; G_2 &amp; P_3
+\end{bmatrix}$$`
+&lt;br/&gt;
+- `\(\large F_x\)` is still **recruitment**, the number of offspring recruited into stage class 1 per adult in stage `\(\large x\)`  
+
+- `\(\large P_x\)` is the probability of **surviving** from year `\(\large t\)` until year `\(\large t+1\)` and **remaining** in stage `\(\large x\)`  
+
+- `\(\large G_x\)` is the probability of **growing and surviving** to stage `\(\large x + 1\)` during `\(\large t\)` to  `\(\large t+1\)` 
+
+
+---
+## Stage-structured matrix model
+
+`$$\Large \mathbf N_{t+1} = \mathbf A \times \mathbf N_t$$`
+`$$\LARGE = \begin{bmatrix}
+    P_1 &amp; F_2 &amp; F_3\\
+    G_1 &amp; P_2 &amp; 0\\
+    0 &amp; G_2 &amp; P_3
+\end{bmatrix} \times 
+\begin{bmatrix} 
+    n_{1,t}\\
+    n_{2,t}\\
+    n_{3,t}
+\end{bmatrix}$$`
+
+&lt;br/&gt;
+#### Matrix multiplication is the  same as in the Leslie matrix model!! 
+
+---
+## Teasel example
+
+`$$\LARGE \begin{bmatrix}
+    0 &amp; 0 &amp; 0 &amp;0 &amp; 0 &amp; 322.38\\
+    0.966 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+    0.013 &amp; 0.01 &amp; 0.125 &amp; 0 &amp; 0 &amp; 3.448\\
+    0.007 &amp; 0 &amp; 0.125 &amp; 0.238 &amp; 0 &amp; 30.17\\
+    0.001 &amp; 0 &amp; 0 &amp; 0.245 &amp; 0.167 &amp; 0.862\\
+    0 &amp; 0 &amp; 0 &amp; 0.023 &amp; 0.75 &amp; 0\\
+\end{bmatrix}$$`
+
+---
+## Teasel example
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 15px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; seed1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; seed2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; sr &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; mr &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; lr &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; fl &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 322.280 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.966 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.448 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.007 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.238 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30.170 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.001 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.245 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.167 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.862 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.023 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.750 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Teasel example
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 15px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Seed 1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Seed 2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Small rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Medium rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Large rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Flowering &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 322.280 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: red;"&gt;0.966&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: orange;"&gt;0.013&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.448 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow;"&gt;0.007&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.238 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30.170 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: green;"&gt;0.001&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.245 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.167 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.862 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.023 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.750 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
