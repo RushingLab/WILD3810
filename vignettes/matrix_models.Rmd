@@ -1,0 +1,159 @@
+---
+title: "Modeling population dynamics using matrix projection models"
+author: "WILD3810: Plant and animal populations"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lab5}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>", 
+  warning = FALSE, 
+  message = FALSE
+)
+library(WILD3810)
+```
+
+In this lab, you will build a matrix population model from . Rather than build a single life table using all of the data, you will divide the data into smaller groups based on each individual's sex and the time period that they lived. This will allow you to learn about how patterns of survivorship differ between males and females and how those patterns have changed over time.  
+
+This lab will help get you started on how to build the life table from the cemetery data. You will then complete the exercise as part of this week's homework assignment. If you complete the entire assignment during lab, that is fine. Otherwise, you will need to complete the assignment on your own. 
+
+***
+**Objectives**
+
+* Build a static life table from birth and death information
+
+* Explore how patterns of survivorship differ among males and females
+
+* Explore how patterns of survivorship have changed across time
+
+* Practice subsetting data frames in `R` using `dplyr::filter()` and bracket notation
+
+* Practice adding data to a data frame using `dplyr::mutate()` and `for` loops
+
+* Practice vizualing data using `ggplot2`
+    
+***
+
+## Setting up the lab
+
+In order to organize your code and files for this homework assignment, start by creating a new project:
+
+1) Open `RStudio`
+
+2) Click `File -> New Project`
+
+```{r out.width="100%", echo=FALSE}
+knitr::include_graphics("figs/new_file.png")
+```
+
+3) Click `New Directory`
+
+```{r out.width="100%", echo=FALSE}
+knitr::include_graphics("figs/project_options.png")
+```
+
+4) Click `New Project`
+
+```{r out.width="100%", echo=FALSE}
+knitr::include_graphics("figs/new_project2.png")
+```
+
+5) Name the project `matrix_model` and create it within your `WILD3810` folder (click `Browse` and navigate to this folder if necessary)
+
+```{r out.width="100%", echo=FALSE}
+knitr::include_graphics("figs/pva_project.png")
+```
+
+6) Click `Create project`
+
+7) Click `File -> New File -> R Markdown`
+
+```{r out.width="100%", echo=FALSE}
+knitr::include_graphics("figs/new_file.png")
+```
+
+8) Select `From Template`; scroll down and select `WILD3810-Homework5`
+
+```{r out.width="100%", echo=FALSE}
+knitr::include_graphics("figs/from_template.png")
+```
+
+9) In the `Name` box, type `LastnameFirstName-Homework5`
+
+```{r out.width="100%", echo=FALSE}
+knitr::include_graphics("figs/homework_name.png")
+```
+
+10) Click `Ok`
+
+11) Make sure you have the most update-to-date version of `WILD3810` by running:
+
+```{r eval = FALSE}
+install.packages("devtools", dependencies = TRUE)
+devtools::install_github("RushingLab/WILD3810")
+```
+
+***
+
+**Note**: You will use the homework 5 template to complete the rest of this lab activity. You can copy the code below to your assignment template to start the assignment. However, you **do not** need to copy code the prints objects, only the code the creates or manipulates the objects.
+
+***
+
+The Brown-headed cowbird (*Molothrus ater*) is a songbird native to the short-grass prairies of North America. Although historically restricted to small patches of prairie, expansion of agriculture and conversion of forested habitats into fragmented, open landscapes has allowed cowbird populations to expand and increase dramaticaly over the past two centuries. 
+
+```{r echo = FALSE, out.width="75%", fig.align='center', fig.cap="Male Brown-headed cowbird. Photo courtesy of http://www.naturespicsonline.com/  via Wikicommons"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/9/9f/Brown-Headed_Cowbird.jpg")
+```
+
+Growth and expansion of cowbird populations has been detremental many other native songbirds because cowbirds are nest parasites. Female cowbirds lay their eggs in the nest of at least 220 other species, letting the host parents incubate the eggs and raise the offspring. Without the need to build a nest or tend to their young, this strategy allows cowbirds to lay up to 40 eggs in a single season. Additionally, cowbird eggs often have a shorter incubation period than most of their hosts, allowing the newly hatched cowbirds to outcompete the host offspring for young (newly hatched cowbirds can even push the unhatched host eggs out of the nest!). Although species that evolved alongside cowbirds often have defenses to protect their nest and eggs against cowbird parasitism, species that have encounted cowbirds only after their expansion often suffer near total reproductive failure. In fact, parasitism by cowbirds has been one of the primary threats to several endangered species, including Kirtland's warblers (*Setophaga kirtlandii*), Golden-cheeked warblers (*Setophaga chrysoparia*), and Black-capped vireos (*Vireo atricapilla*). As a result, cowbirds have been the target of intense management efforts to reduce their populations since at least the 1970's.  
+
+```{r echo = FALSE, out.width="45%", fig.align='center', fig.cap="Brown-headed cowbird egg in the nest of an Eastern Phoebe. Photo courtesy of Frankie Rose  via Wikicommons"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/2/29/Cowbird_egg.JPG")
+```
+
+### Brown-headed cowbird vital rates
+
+Due to the management focus that cowbirds have received over the past several decades, a number of studies have measured their survival and fecundity. Luckily for us, these data were compiled by several researchers that were interested in creating a matrix population model for the species[^1]. The table below contains the average, high, and low estimates for relevant cowbird vital rates:
+
+[^1]: Data used in this project are from Citta, J. J., & Scott Mills, L. (1997). What do demographic sensitivity analyses tell us about controlling brown-headed cowbirds?. *Studies in Avian Biology*, 18, 121-134.
+
+```{r echo = FALSE}
+library(kableExtra)
+
+bhco_vr <- data.frame(vr = c("Adult Fecundity", "Yearling Fecundity", "Egg survival", "Nestling survival", "Yearling survival", "Adult survival"),
+                      Average = c(0.69, 0.56, 0.38, 0.64, 0.23, 0.47),
+                      High = c(0.8, NA, 0.68, 0.76, 0.32, 0.63),
+                      Low = c(0.51, NA, 0.08, 0.46, 0.15, 0.31))
+
+names(bhco_vr)[1] <- "Vital rate"
+knitr::kable(bhco_vr)
+```
+
+You will use these estimates to build a matrix population model for cowbirds. 
+
+### Creating matrices in `R`
+
+So far in this class, we have learned to create vector objects and data frames. For this lab, we will need to create a different type of object - matrices. Creating a matrix can be done using the `matrix()` function. This function takes a vector that includes all of the values that make up the matrix (remember - to create a vector, use the `c()` function) as well as the number of rows and columns that define the matrix. For example:
+
+```{r echo = TRUE}
+(A <- matrix(c(0, 2, 4,
+              0.25, 0, 0,
+              0, 0.5, 0), nrow = 3, ncol = 3, byrow = TRUE))
+```
+
+Notice that the values within the `c()` function form a single vector even though I entered the values on three lines. Putting them on different lines is not necessary but does make it easier to keep track of how the final matrix is organized (in this case, a $3x3$ matrix with values `0, 2, 4` on the first row, `0.25, 0, 0` on the second row, and `0, 0.5, 0` on the third row). One important behavior of this function is that by default, `matrix()` will create the matrix *by column*. We entered our data as rows so we need to specify `byrow = TRUE`. If we did not use this option, we would get:
+
+```{r echo = TRUE}
+(A <- matrix(c(0, 2, 4,
+              0.25, 0, 0,
+              0, 0.5, 0), nrow = 3, ncol = 3))
+```
+
+Not the matrix we wanted! Be very careful about this option when you are creating matrices of your own. 
+
+In your homework template, enter the code necessary to create a matrix describing the demographic rates of Brown-headed cowbirds. **Note that your code should not be placed inside of parentheses like the code above. This is done so that the resulting matrix was printed to the console when created. You do not need to print the matrix in the homework template**
