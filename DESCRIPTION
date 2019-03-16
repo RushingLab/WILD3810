@@ -12,7 +12,8 @@ Imports:
     ggplot2,
     tidyr,
     usethis,
-    cowplot
+    cowplot,
+    popbio
 RoxygenNote: 6.1.1
 Suggests: 
     knitr,
