@@ -44,6 +44,8 @@ navbar:
           href: articles/Lecture11/Lecture11.html
         - text: "Lecture 12: Stage-structured population models"
           href: articles/Lecture12/Lecture12.html
+        - text: "Lecture 13: Reproductive value, sensitivity, and elasticity"
+          href: articles/Lecture13/Lecture13.html
     - icon: fas fa-desktop
       text: "Labs"
       menu:
@@ -57,6 +59,8 @@ navbar:
           href: articles/lab3.html
         - text: "Lab 4: Building and interpreting static life tables"
           href: articles/life_table.html
+        - text: "Lab 5: Modeling population dynamics using matrix projection models"
+          href: articles/matrix_models.html
     - icon: fas fa-pencil-square-o
       text: "Assignments"
       href: articles/homework.html

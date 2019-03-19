@@ -103,6 +103,9 @@
     <li>
       <a href="../articles/Lecture12/Lecture12.html">Lecture 12: Stage-structured population models</a>
     </li>
+    <li>
+      <a href="../articles/Lecture13/Lecture13.html">Lecture 13: Reproductive value, sensitivity, and elasticity</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -128,6 +131,9 @@
     </li>
     <li>
       <a href="../articles/life_table.html">Lab 4: Building and interpreting static life tables</a>
+    </li>
+    <li>
+      <a href="../articles/matrix_models.html">Lab 5: Modeling population dynamics using matrix projection models</a>
     </li>
   </ul>
 </li>
@@ -603,18 +609,6 @@ lt_f1</code></pre></div>
 <td align="left">Female</td>
 <td align="right">7</td>
 </tr>
-<tr class="even">
-<td align="right">1872</td>
-<td align="right">1873</td>
-<td align="left">Female</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td align="right">1864</td>
-<td align="right">1871</td>
-<td align="left">Female</td>
-<td align="right">7</td>
-</tr>
 </tbody>
 </table>
 <p>Now many individuals is this? Since there is one row each individual, <code><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow()</a></code> will give us the correct number. We can nest the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function inside of <code><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow()</a></code> to get the number of individuals with a single line of code:</p>
@@ -657,8 +651,8 @@ lt_f1</code></pre></div>
 <td align="right">1</td>
 <td align="right">0</td>
 <td align="right">9</td>
-<td align="right">7</td>
-<td align="right">32</td>
+<td align="right">5</td>
+<td align="right">28</td>
 <td align="right">1.0000</td>
 </tr>
 <tr class="even">
@@ -668,8 +662,8 @@ lt_f1</code></pre></div>
 <td align="right">10</td>
 <td align="right">19</td>
 <td align="right">1</td>
-<td align="right">25</td>
-<td align="right">0.7812</td>
+<td align="right">23</td>
+<td align="right">0.8214</td>
 </tr>
 <tr class="odd">
 <td align="left">Female</td>
@@ -678,8 +672,8 @@ lt_f1</code></pre></div>
 <td align="right">20</td>
 <td align="right">29</td>
 <td align="right">2</td>
-<td align="right">24</td>
-<td align="right">0.7500</td>
+<td align="right">22</td>
+<td align="right">0.7857</td>
 </tr>
 <tr class="even">
 <td align="left">Female</td>
@@ -688,8 +682,8 @@ lt_f1</code></pre></div>
 <td align="right">30</td>
 <td align="right">39</td>
 <td align="right">1</td>
-<td align="right">22</td>
-<td align="right">0.6875</td>
+<td align="right">20</td>
+<td align="right">0.7143</td>
 </tr>
 <tr class="odd">
 <td align="left">Female</td>
@@ -698,8 +692,8 @@ lt_f1</code></pre></div>
 <td align="right">40</td>
 <td align="right">49</td>
 <td align="right">0</td>
-<td align="right">21</td>
-<td align="right">0.6562</td>
+<td align="right">19</td>
+<td align="right">0.6786</td>
 </tr>
 <tr class="even">
 <td align="left">Female</td>
@@ -708,8 +702,8 @@ lt_f1</code></pre></div>
 <td align="right">50</td>
 <td align="right">59</td>
 <td align="right">3</td>
-<td align="right">21</td>
-<td align="right">0.6562</td>
+<td align="right">19</td>
+<td align="right">0.6786</td>
 </tr>
 <tr class="odd">
 <td align="left">Female</td>
@@ -717,9 +711,9 @@ lt_f1</code></pre></div>
 <td align="right">7</td>
 <td align="right">60</td>
 <td align="right">69</td>
-<td align="right">6</td>
-<td align="right">18</td>
-<td align="right">0.5625</td>
+<td align="right">5</td>
+<td align="right">16</td>
+<td align="right">0.5714</td>
 </tr>
 <tr class="even">
 <td align="left">Female</td>
@@ -728,8 +722,8 @@ lt_f1</code></pre></div>
 <td align="right">70</td>
 <td align="right">79</td>
 <td align="right">6</td>
-<td align="right">12</td>
-<td align="right">0.3750</td>
+<td align="right">11</td>
+<td align="right">0.3929</td>
 </tr>
 <tr class="odd">
 <td align="left">Female</td>
@@ -738,8 +732,8 @@ lt_f1</code></pre></div>
 <td align="right">80</td>
 <td align="right">89</td>
 <td align="right">5</td>
-<td align="right">6</td>
-<td align="right">0.1875</td>
+<td align="right">5</td>
+<td align="right">0.1786</td>
 </tr>
 <tr class="even">
 <td align="left">Female</td>
@@ -747,9 +741,9 @@ lt_f1</code></pre></div>
 <td align="right">10</td>
 <td align="right">90</td>
 <td align="right">99</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">0.0312</td>
+<td align="right">0</td>
+<td align="right">0</td>
+<td align="right">0.0000</td>
 </tr>
 <tr class="odd">
 <td align="left">Female</td>
