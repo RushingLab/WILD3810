@@ -132,7 +132,7 @@ knitr::include_graphics("figs/Reproductive_effort_semelparous.jpg")
 .pull-right[
 #### Iteroparity
 ```{r out.width="100%", fig.align='left'}
-knitr::include_graphics("figs/Reproductive_effort_iteroparous.png")
+knitr::include_graphics("figs/Reproductive_effort_iteroparous.svg.png")
 ```
 ]
 
