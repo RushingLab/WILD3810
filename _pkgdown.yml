@@ -46,6 +46,8 @@ navbar:
           href: articles/Lecture12/Lecture12.html
         - text: "Lecture 13: Reproductive value, sensitivity, and elasticity"
           href: articles/Lecture13/Lecture13.html
+        - text: "Lecture 14: Life history variation"
+          href: articles/Lecture14/Lecture14.html
     - icon: fas fa-desktop
       text: "Labs"
       menu:

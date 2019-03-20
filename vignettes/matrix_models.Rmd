@@ -131,7 +131,7 @@ bhco_vr <- data.frame(vr = c("Adult Fecundity", "Yearling Fecundity", "Egg survi
 names(bhco_vr)[1] <- "Vital rate"
 kable(bhco_vr, align = "c", format = 'html') %>%
   kable_styling(full_width = F) %>%
-  footnote(number = c("Fecundity is the number of female offspring produced each year ", 
+  footnote(number = c("Fecundity is the number of female eggs laid each year, assuming 50:50 sex ratio ", 
                       "Egg survival is the probability that eggs survive from laying to hatching",
                       "Nestling survival is the probability that nestlings survive from hatching to fledging",
                       "Yearling survival is the probability that juveniles survive from fledging to the following breeding season")
