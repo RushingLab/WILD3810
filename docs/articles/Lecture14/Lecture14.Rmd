@@ -19,16 +19,6 @@ library(WILD3810)
 library(gganimate)
 ```
 
-## Readings
-
-> Mills 103-10
-
----
-class: inverse, middle, center
-
-# Life history variation
-
----
 ## Life history variation
 
 #### Organisms have limited resources to investment between growth, reproduction, and survivorship
@@ -130,6 +120,21 @@ class: inverse, middle, center
 ## Life history trade offs
 
 #### Current reproduction vs. future reproduction
+
+.pull-left[
+#### Semelparity
+```{r out.width="100%"}
+knitr::include_graphics("figs/Reproductive_effort_semelparous.jpg")
+```
+]
+
+
+.pull-right[
+#### Iteroparity
+```{r out.width="100%", fig.align='left'}
+knitr::include_graphics("figs/Reproductive_effort_iteroparous.png")
+```
+]
 
 
 ---
