@@ -125,8 +125,8 @@ library(kableExtra)
 
 bhco_vr <- data.frame(vr = c("Adult Fecundity", "Yearling Fecundity", "Egg survival", "Nestling survival", "Yearling survival", "Adult survival"),
                       Average = c(13.8, 11.2, 0.38, 0.64, 0.24, 0.47),
-                      High = c(0.8, NA, 0.68, 0.76, 0.32, 0.63),
-                      Low = c(0.51, NA, 0.08, 0.46, 0.15, 0.31))
+                      Low = c(10.2, NA, 0.08, 0.46, 0.15, 0.31),
+                      High = c(16, NA, 0.68, 0.76, 0.32, 0.63))
 
 names(bhco_vr)[1] <- "Vital rate"
 kable(bhco_vr, align = "c", format = 'html') %>%
@@ -222,7 +222,7 @@ Complete the code below to run your loop:
 
 ```{r eval = FALSE}
 for(t in ?:?){
-  N[,t] <- ?
+  N[t,] <- ?
 }
 ```
 

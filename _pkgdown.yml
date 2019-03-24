@@ -63,6 +63,8 @@ navbar:
           href: articles/life_table.html
         - text: "Lab 5: Modeling population dynamics using matrix projection models"
           href: articles/matrix_models.html
+        - text: "Lab 6: Modeling population dynamics using matrix projection models, part 2"
+          href: articles/matrix_models2.html
     - icon: fas fa-pencil-square-o
       text: "Assignments"
       href: articles/homework.html
