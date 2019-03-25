@@ -1,0 +1,37 @@
+---
+title: "Management recommendations to reduce abundance of a native nest parasite, the Brown-headed cowbird"
+author: "YOUR NAME HERE"
+output: html_document
+
+## Do not change anything in the YAML header
+fontsize: 12pt
+indent: true
+---
+
+```{r setup, include = FALSE}
+## Do not change anything in this chunk
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, message = FALSE)
+library(WILD3810)
+```
+
+
+
+```{r include = FALSE}
+# Include any code you used to complete your analysis here
+# Note that because `include = FALSE` this code will not show up in your final document
+# However, because R will run this code before creating the text and figures
+#    this code will be available for you to include summary statistics in the text
+#    and for inserting figures
+```
+
+Type your recommendations here (**delete all of the the included text after you have read it!**). Be sure to refer to the instructions provided by the writing center for help on how to format your recommendations and what information needs to be included. 
+
+After you have a draft ready, you may schedule an appointment with the science writing center to get feedback on the draft. If you do this and document it, you will receive 4 bonus points on the assignment. 
+
+
+```{r out.width="75%", echo = FALSE}
+# Add code to create figure here
+```
+
+
