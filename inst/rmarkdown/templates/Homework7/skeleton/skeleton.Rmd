@@ -61,9 +61,9 @@ persistence8 <- ?
 persistence16 <- ?
   
 ## Create data frame with persistence probabilities
-persistence_df <- data.frame(eps = eps,
+persistence_df <- data.frame(epsilon = epsilon,
                              persistence = c(?, ?, ?, ?),
-                             Patches = rep(c("2","4","8","16"), each = length(eps)))
+                             Patches = rep(c("2","4","8","16"), each = length(epsilon)))
 ```
 
 Next, complete the `ggplot2` code below to visualize how persistence probability changes as a function of patch-level extinction probability for different number of patches:
@@ -80,6 +80,8 @@ ggplot(persistence_df, aes(x = ?, y = ?, color = ?)) +
 
 > 2b) Is this change linear or non-linear (i.e., does adding one additional patch always increase persistence by the same amount, regardless of how many patches there are?)? If not, what implications does this fact have for management of species in a patchy environment? 
 
+**Type answer here**
+
 ### Metapopulation equilibrium dynamics
 
 In lecture, we learned that a metapopulation with constant extinction and colonization probabilities will exhibit an equilibrium number of occupied patches. Complete the code below to simulate the patch occupancy dynamics over 25 years of a metapopulation with 100 patches, $\gamma = 0.7$, and $\epsilon = 0.4$:
@@ -91,24 +93,24 @@ gamma <- ?
 eps <- ?
 ```
 
-In the next chunk, you will create a matrix to store the occupancy state (0 = unoccupied, 1 = occupied) for each site over the 25 year period. This code will also randomly generated the first year occupancy status for each patch:
+In the next chunk, you will create a matrix to store the occupancy state (0 = unoccupied, 1 = occupied) for each patch over the 25 year period. This code will also randomly generated the first year occupancy status for each patch:
 
 ```{r}
-### Replace the question marks so the matrix has one row per site and one column per year
+### Replace the question marks so the matrix has one row per patch and one column per year
 ### DO NOT REPLACE THE QUESTION MARKS WITH NUMBERS!!!!
 z <- matrix(NA, nrow = ?, ncol = ?)
 
-### You also need a vector to store the proportion of sites occupied in each year
+### You also need a vector to store the proportion of patches occupied in each year
 psi <- numeric(length = ?)
 
 ### This line will randomly fill in the occupancy state in year 1
 z[,1] <- rbinom(n = nPatches, size = 1, prob = 0.1)
 
-### This code will estimate the proportion of sites that are occupied in year 1
+### This code will estimate the proportion of patches that are occupied in year 1
 psi[1] <- mean(z[,1])
 ```
 
-In years 2-25, the probability that unoccupied sites are colonized is:
+In years 2-25, the probability that unoccupied patches are colonized is:
 
 $$\Large \gamma \psi_{t-1}$$
 
@@ -124,14 +126,14 @@ Although this looks complicated, it's actually quite simple. If the patch is cur
 
 If the patch is currently unoccupied, the $z_{it}$ in the second term is 0 and the entire second term is 0. Thus, the probability that the patch is colonized equals $(1-0)\gamma\psi_t = \gamma\psi_t$. 
 
-So as long as we know the $z_{i,t}$ values, we can estimate the probability that each site is occupied using a single line of code. In the chunk below, translate the above equation into functioning `R` code:
+So as long as we know the $z_{i,t}$ values, we can estimate the probability that each patch is occupied using a single line of code. In the chunk below, translate the above equation into functioning `R` code:
 
 ```{r}
 for(t in 2:nYears){
   ## Randomly generate occupancy status in year t based on z[,t-1] and psi[t-1]
   z[,t] <- rbinom(n = nPatches, size = 1, prob = ?)
   
-  ## Calculate the proportion of sites occupied in year t
+  ## Calculate the proportion of patches occupied in year t
   psi[t] <- ?
 }
 ```
@@ -173,7 +175,7 @@ p <- p + geom_hline(yintercept = psi.hat)
 p
 ```
 
-> 3b) How do the simulated patch dynamics compare to $\hat{psi}$? 
+> 3b) How do the simulated patch dynamics compare to $\hat{\psi}$? 
 
 **Type answer here**
 
@@ -181,4 +183,4 @@ Although it may not be obvious, the Levins metapopulation model shares a lot in 
 
 > 3c) How do the parameters is the Levins model correspond to the instrinsic growth rate $r$ in the logistic model? What parameter corresponds to the carrying capacity $K$? Explain your answer in words or equations. 
 
-
+**Type answer here**
