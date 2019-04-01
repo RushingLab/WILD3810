@@ -150,7 +150,7 @@ kable(bhco_vr, align = "c", format = 'html') %>%
            )
 ```
 
-For now, we will assume that yearling fecundity has the same *possible* range as adult survival even if the mean is lower. We can use these ranges to randomly generate values for each rate. To do this, we will also assume that within the ranges provided in the table, all values of each rate are equally likely. 
+For now, we will assume that yearling fecundity has the same *possible* range as adult fecundity even if the mean is lower. We can use these ranges to randomly generate values for each rate. To do this, we will also assume that within the ranges provided in the table, all values of each rate are equally likely. 
 
 This assumption allows us to generate random values from a *uniform* probability distribution using the `runif()` function (note that if you are like me, you will read this as *run if* but technically it is *r unif*. *r* for random and *unif* for uniform distribution). `runif()` requires 3 arguments: 
 
@@ -192,7 +192,7 @@ P_22 <- as
 ```
 
 ***
-**The last four lines of code multiple the vital rates to create the elements of the matrix. In this case, we are mulitplying vectors of length `nSim`. What type of elements are we creating in these lines of code?**  
+**The last four lines of code multiply the vital rates to create the elements of the matrix. In this case, we are mulitplying vectors of length `nSim`. What class of object are we creating in these lines of code?**  
 
 ***
 
@@ -212,22 +212,22 @@ Using this simulation based approach, we expect that the vital rates with the hi
 ```{r include = FALSE}
 nSim <- 1000
 
-AF <- runif(nSim, 10.2, 16)
+af <- runif(nSim, 10.2, 16)
 
-YF <- runif(nSim, 10.2, AF)
+yf <- runif(nSim, 10.2, AF)
 
-ES <- runif(nSim, 0.08, 0.68)
+es <- runif(nSim, 0.08, 0.68)
 
-NS <- runif(nSim, 0.46, 0.76)
+ns <- runif(nSim, 0.46, 0.76)
 
-YS <- runif(nSim, 0.15, 0.32)
+ys <- runif(nSim, 0.15, 0.32)
 
-AS <- runif(nSim, 0.31, 0.63)
+as <- runif(nSim, 0.31, 0.63)
 
-F_11 <- ES*NS*YS*YF
-F_21 <- AS*AF
-P_12 <- ES*NS*YS
-P_22 <- AS
+F_11 <- es*ns*ys*yf
+F_21 <- as*af
+P_12 <- es*ns*ys
+P_22 <- as
 
 lambda <- numeric(length = nSim)
 
@@ -244,7 +244,7 @@ for(i in 1:nSim){
 rates <- c("Adult Fecundity", "Yearling Fecundity", "Egg survival", "Nestling survival", "Yearling survival", "Adult survival")
 
 lambda_df <- data.frame(lambda = lambda,
-                        value = c(AF, YF, ES, NS, YS, AS),
+                        value = c(af, yf, es, ns, ys, as),
                         Rate = rep(rates, each = nSim))
 
 ## Plot correlations
