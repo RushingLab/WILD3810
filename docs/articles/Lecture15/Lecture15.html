@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lecture 15</title>
+    <meta charset="utf-8">
+    <meta name="author" content="   WILD3810 (Spring 2019)" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="WILD3810.css" type="text/css" />
+    <link rel="stylesheet" href="WILD3810-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Lecture 15
+## Metapopulation dynamics
+### <br/><br/><br/>WILD3810 (Spring 2019)
+
+---
+
+
+
+
+## Readings
+
+---
+class: center, middle
+
+### Population ecology is the study of the distribution of individuals in a population over time and space
+&lt;br/&gt;
+&lt;br/&gt;
+
+`$$\Huge N = B + I + D +E$$`
+
+
+---
+## Assumptions of the exponential growth model 
+
+1) Population closed to immigration and emigration  
+&lt;br/&gt;
+
+2) Model pertains to only the limiting sex, usually females  
+&lt;br/&gt;
+
+3) Birth and death rates are independent of an individual’s age or biological stage  
+&lt;br/&gt;
+
+4) Birth and death rates are constant  
+
+---
+## Assumptions of the exponential growth model
+
+1) Population closed to immigration and emigration  
+&lt;br/&gt;
+
+2) Model pertains to only the limiting sex, usually females  
+&lt;br/&gt;
+
+3) Birth and death rates are independent of an individual’s age or biological stage  
+&lt;br/&gt;
+
+4) ~~Birth and death rates are constant~~  
+- **Stochasticity, density-dependence**
+
+---
+## Assumptions of the exponential growth model
+
+1) Population closed to immigration and emigration  
+&lt;br/&gt;
+
+2) Model pertains to only the limiting sex, usually females  
+&lt;br/&gt;
+
+3) ~~Birth and death rates are independent of an individual’s age or biological stage~~  
+- **Stage-structured dynamics** 
+
+4) ~~Birth and death rates are constant~~  
+- **Stochasticity, density-dependence**
+
+---
+## Assumptions of the exponential growth model
+
+1) **Population closed to immigration and emigration**  
+&lt;br/&gt;
+
+2) Model pertains to only the limiting sex, usually females  
+&lt;br/&gt;
+
+3) ~~Birth and death rates are independent of an individual’s age or biological stage~~  
+- **Stage-structured dynamics** 
+
+4) ~~Birth and death rates are constant~~  
+- **Stochasticity, density-dependence**
+
+---
+class: center, middle, inverse
+
+# Dispersal
+
+---
+## Dispersal
+
+&gt; Movement of an individual from one location to another for the purposes of breeding
+
+
+- also defined as movements that *can* result in gene flow  
+
+
+--
+#### Types of dispersal
+
+1) Natal dispersal
+
+&gt; Movement of an individual from its birth location to its first breeding location  
+
+
+--
+2) Breeding dispersal
+
+&gt; Movement of an individual between breeding attempts
+
+---
+## Dispersal
+
+#### Three stages
+
+1) Emigration
+
+&lt;img src="figs/emigration.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+## Dispersal
+
+#### Three stages
+
+1) Emigration
+
+2) Search
+
+&lt;img src="figs/search.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+## Dispersal
+
+#### Three stages
+
+1) Emigration
+
+2) Search
+
+3) Immigration
+
+&lt;img src="figs/immigration.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+## Why disperse?
+
+#### Find mates
+
+&lt;iframe width="560" height="315" src="https://stackoverflow.com/questions/38517236/youtube-video-in-r-markdown" frameborder="0" allowfullscreen&gt;&lt;/iframe&gt;
+
+---
+## Why disperse?
+
+#### Find mates
+
+#### Avoid inbreeding
+
+&lt;img src="figs/inbreeding.jpg" width="60%" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Why disperse?
+
+#### Find mates
+
+#### Avoid inbreeding
+
+#### Avoid kin competition
+
+&lt;img src="figs/mannings.jpg" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+## Why not disperse?
+
+#### In some cases, remaining in your current patch (**philopatry**) is beneficial because:
+
+- Search phase can be risky and energetically costly
+
+- "Home field" advantage 
+
+- Loss of kin cooperation
+
+- Competition in new patch
+
+
+--
+Trade-offs between the costs and benefits of dispersal may differ between sexes, populations, and species
+
+- In birds, females often disperse more than males (males benefit from defending territory)
+
+- In mammals, males often disperse more than females (males benefit from defending mates)
+
+---
+## How does dispersal influence population dynamics?
+
+#### Movement of individuals can:
+
+- reduce local population size `\((E)\)`
+
+- increase local population size `\((I)\)`
+
+- increase genetic diversity
+
+
+--
+#### Dispersal can link the dynamics of populations that would otherwise be independent
+
+- metapopulation: a population of populations
+
+---
+## When are populations a metapopulation?
+
+#### Fragmentation creates patches of suitable habitat surrounded by unsuitable habitat
+
+- if *connectivity* between patches is low, dynamics of local populations will be independent
+    + patches that go extinct have little chance of being colonized
+    
+&lt;img src="figs/isolated.png" width="30%" style="display: block; margin: auto;" /&gt;
+
+
+---
+## When are populations a metapopulation?
+
+#### Fragmentation creates patches of suitable habitat surrounded by unsuitable habitat
+
+- if connectivity between patches is very high, populations will act as a single, large population
+    + very low probability that patches will go extinct
+    + "patchy population"
+    
+&lt;img src="figs/patchy.png" width="30%" style="display: block; margin: auto;" /&gt;
+
+---
+## When are populations a metapopulation?
+
+#### Fragmentation creates patches of suitable habitat surrounded by unsuitable habitat
+
+- if connectivity between patches is moderate, populations can go extinct and be re-colonized
+    + at any given time, some sites will be occupied and some will not
+    + patches will "blink" on and off
+    + metapopulation
+    
+&lt;img src="figs/metapopulation.png" width="30%" style="display: block; margin: auto;" /&gt;
+
+---
+## When are populations a metapopulation?
+
+    
+&lt;img src="figs/butterflyl.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+## Levins' metapopulation model
+
+#### Developed originally by Richard Levins
+
+- simple model describing the occupancy of local patches
+
+--
+- each patch can be occupied (1) or unoccupied (0)
+    + ignores local population dynamics
+
+--
+- at each time step, occupied patches go extinct with probability `\(\Large \epsilon\)` 
+
+--
+- unoccupied patches can be colonized with probability `\(\Large \gamma\)`
+&lt;br/&gt;
+&lt;br/&gt;
+
+--
+- objective is to estimate the fraction of patches occupied, `\(\Large \psi\)`
+
+---
+## Levins' metapopulation model
+
+#### Spatial configuration of patches is ignored
+- all patches have the same probability of being colonized regardless of their location
+    
+&lt;img src="figs/levins1.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+## Levins' metapopulation model
+
+#### At any point in time, what proportion of sites will go extinct?
+
+--
+`$$\Large E = \psi \epsilon$$`
+
+&lt;img src="Lecture15_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Levins' metapopulation model
+
+#### At any point in time, what proportion of sites will be colonized?
+
+`$$\Large I = \gamma \psi (1 - \psi)$$`
+
+&lt;img src="Lecture15_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Levins' metapopulation model
+
+#### At any point in time, what proportion of sites will be occupied?
+
+`$$\Large \psi = 1 - \frac{\epsilon}{\gamma}$$`
+
+- Although `\(\large \psi\)`% of patches are expected to be occupied at any point in time, *which* sites are occupied will change
+    + leads to patches "blinking" on and off
+    
+&lt;img src="Lecture15_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
+---
+## Metapopulation persistance
+
+#### If `\(\Large \epsilon\)` is the probability that 1 patch goes extinct:
+
+- probability that it doesn't go extinct (persistence) is `\(\large 1 - \epsilon\)`
+
+
+--
+#### What is the probability that a metapopulation composed of two patches does **not** go extinct? 
+
+--
+`$$\LARGE 1 - \epsilon \times \epsilon$$`
+
+
+--
+#### What is the probability that a metapopulation composed of `\(\large n\)` patches does not go extinct? 
+
+--
+`$$\LARGE 1 - \epsilon^n$$`
+
+---
+## Metapopulation persistance
+
+#### More patches = lower metapopulation extinction risk 
+- unoccupied sites are "rescued" by colonization from occupied sites
+- critical to maintain patches, even if they are currently unoccupied
+- connectivity of patches important for increasing colonization probability
+
+&lt;img src="Lecture15_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Assumptions of the Levins model
+
+- `\(\large \gamma\)` and `\(\large \epsilon\)` are the same for every patch  
+&lt;br/&gt;
+- `\(\large \gamma\)` and `\(\large \epsilon\)` are constant over time  
+&lt;br/&gt;
+- `\(\large \gamma\)` and `\(\large \epsilon\)` are independent of patch size  
+&lt;br/&gt;
+- `\(\large \gamma\)` and `\(\large \epsilon\)` are independent of distance of patch to other patches  
+&lt;br/&gt;
+- `\(\large \gamma\)` and `\(\large \epsilon\)` are independent of population density  
+&lt;br/&gt;
+- Local birth-death dynamics are ignored
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

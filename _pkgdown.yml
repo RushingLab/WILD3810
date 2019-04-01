@@ -48,6 +48,8 @@ navbar:
           href: articles/Lecture13/Lecture13.html
         - text: "Lecture 14: Life history variation"
           href: articles/Lecture14/Lecture14.html
+        - text: "Lecture 15: Metapopulation models"
+          href: articles/Lecture15/Lecture15.html
     - icon: fas fa-desktop
       text: "Labs"
       menu:

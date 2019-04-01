@@ -109,6 +109,9 @@
     <li>
       <a href="../articles/Lecture14/Lecture14.html">Lecture 14: Life history variation</a>
     </li>
+    <li>
+      <a href="../articles/Lecture15/Lecture15.html">Lecture 15: Metapopulation models</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -159,7 +162,7 @@
 <!--/.navbar -->
 
       
-      </header><script src="lab1_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Lab 1: Introduction to R and mark-recapture</h1>
@@ -207,7 +210,7 @@
 <p>As a statistical programming tool, one thing R is very good at is doing math. So as a starting point, let’s treat <code>R</code>like a fancy calculator.</p>
 <p>We interact with this calculator by typing numbers and operators (+, -, *, /) into the <code>Console</code> window.</p>
 <p>Let’s try it - in the bottom left window (the Console), write the <code>R</code>code required to add two plus two and then press enter:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></code></pre></div>
 <p>When you run the code, you should see the answer printed below the window. Play with your code a bit - try changing the number and the operators and then run the code again.</p>
 </div>
 <div id="creating-objects" class="section level2">
@@ -215,7 +218,7 @@
 <a href="#creating-objects" class="anchor"></a>Creating objects</h2>
 <p>We can run <code>R</code>like a calculator by typing equations directly into the console and then printing the answer. But usually we don’t want to just do a calculation and see the answer. Instead, we assign <em>values</em> to <em>objects</em>. That object is then saved in R’s memory which allows us to use that object later in our analysis.</p>
 <p>This probably seems a bit confusing so let’s try it. The following code creates an <em>object</em> called <code>x</code> and <em>assigns</em> it a value of <code>3</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">3</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">3</span></code></pre></div>
 <p>The operator <code>&lt;-</code> is how we do assignments in R. Whatever is to the left of <code>&lt;-</code> is the object’s name and whatever is to the right is the value. As we will see later, objects can be much more complex than simply a number but for now, we’ll keep it simple.</p>
 <p><strong>You try it - change the code to create an object called <code>new.x</code>. Instead of assigning <code>new.x</code> a number, give it a calculation, for example <code>25/5</code>. What do you think the value of <code>new.x</code> is?</strong></p>
 </div>
@@ -223,12 +226,12 @@
 <h2 class="hasAnchor">
 <a href="#working-with-objects" class="anchor"></a>Working with objects</h2>
 <p>In the exercise above, you may have noticed that after running the code, <code>R</code>did not print anything. That is because we simply told <code>R</code>to create the object (in the top right window, if you click on the <code>Environment</code> tab, you should see <code>x</code> and <code>new.x</code>). Now that it is stored in R’s memory, we can do a lot of things with it. For one, we can print it to see the value. To do that, we simply type the name of the object and run the code:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">new.x &lt;-<span class="st"> </span><span class="dv">25</span><span class="op">/</span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">new.x</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; [1] 5</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">new.x &lt;-<span class="st"> </span><span class="dv">25</span><span class="op">/</span><span class="dv">5</span>
+new.x
+<span class="co">#&gt; [1] 5</span></code></pre></div>
 <p>We can also use objects to create new objects. <em>What do you think the following code does?</em></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">y &lt;-<span class="st"> </span>x<span class="op">*</span><span class="dv">4</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="dv">3</span>
+y &lt;-<span class="st"> </span>x<span class="op">*</span><span class="dv">4</span></code></pre></div>
 <p>After running it, print the new object <code>y</code> to see its value. Were you right?</p>
 </div>
 <div id="naming-objects" class="section level2">
@@ -251,43 +254,43 @@
 <p><span class="math display">\[N = \frac{n_1n_2}{m_2}\]</span></p>
 <p>where <span class="math inline">\(n_1\)</span> is the number of individuals captured (and marked) on the first sampling occasion, <span class="math inline">\(n_2\)</span> is the number of individuals captured on the second sampling occasion, and <span class="math inline">\(m_2\)</span> is the number of marked individuals in the second sample.</p>
 <p>Let’s use <code>R</code>to estimate N for some made up data. In the script you just opened, create three new objects that represent the parameters in the Lincoln-Peterson estimator. Modify the following code to tell <code>R</code>that we captured 44 individuals on the first occasion, 32 on the second, and of those 32 sampled on the second occasion, 15 were marked:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">n1 &lt;-</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">n2 &lt;-</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="st">  </span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">m2 &lt;-<span class="st"> </span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n1 &lt;-
+
+n2 &lt;-
+<span class="st">  </span>
+m2 &lt;-<span class="st"> </span></code></pre></div>
 <p>After entering the code, highlight all three lines and then click <code>Ctrl + Enter</code> (or <code>command + return</code> on Mac) to run the code. Note that you should see the code in the console.</p>
 <p>Now add a new line of code (put your cursor at the end of the <code>m2 &lt;-</code> line and hit enter) and estimate <span class="math inline">\(N\)</span> from our newly created objects using the Lincoln-Peterson:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">N &lt;-<span class="st"> </span>n1 <span class="op">*</span><span class="st"> </span>n2 <span class="op">/</span><span class="st"> </span>m2</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span>n1 <span class="op">*</span><span class="st"> </span>n2 <span class="op">/</span><span class="st"> </span>m2</code></pre></div>
 <div id="built-in-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#built-in-functions" class="anchor"></a>Built-in functions</h2>
 <p>The power of <code>R</code> is most apparent in the large number of built-in functions that are available for users.<br>
 Functions are small bits of code that perform a specific task. Most functions accept one or more inputs called arguments and return a value or a new object.</p>
 <p>In the Lincoln-Peterson example, rather than typing <code>n1 * n2</code> we could use the function <code><a href="https://www.rdocumentation.org/packages/base/topics/prod">prod()</a></code>. Prod takes as arguments 2 or more numbers (separated by commas) and returns the product:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">n1 &lt;-<span class="st"> </span><span class="dv">44</span>     <span class="co"># Number of individuals captured on first occasion</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">n2 &lt;-<span class="st"> </span><span class="dv">32</span>     <span class="co"># Number of individuals captured on second occasion</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">numerator &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/prod">prod</a></span>(n1, n2)</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">numerator</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt; [1] 1408</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n1 &lt;-<span class="st"> </span><span class="dv">44</span>     <span class="co"># Number of individuals captured on first occasion</span>
+
+n2 &lt;-<span class="st"> </span><span class="dv">32</span>     <span class="co"># Number of individuals captured on second occasion</span>
+
+numerator &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/prod">prod</a></span>(n1, n2)
+numerator
+<span class="co">#&gt; [1] 1408</span></code></pre></div>
 <p>Here, we provided <code>n1</code> and <code>n2</code> are arguments and <code>prod</code> created a new object called <code>numerator</code> which is the product of our two value. It may seem silly to use a function in this case (it didn’t save us much work afterall) but this type of function can be useful if you had a longer set of values and didn’t want to type them manually to get the product</p>
 <div id="built-in-functions-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#built-in-functions-1" class="anchor"></a>Built-in functions</h3>
 <p>Every function takes a different set of arguments and in most cases you will need to look what those arguments are. The best way to get help for a specific function is to type a question mark followed by the function name, which will bring up a help page in the bottom right panel. For example, the <code>round</code> function rounds a number to a specified number of decimal places. This is a useful function when we don’t want to print a really large number of digits (like our L-P estimate of <span class="math inline">\(N\)</span>):</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">?round</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><a href="https://www.rdocumentation.org/packages/base/topics/Round">?round</a></code></pre></div>
 <p>So we see <code>round</code> takes an argument called <code>x</code>, which is the number we want to round, and the number of <code>digits</code> we want to round to. If you provide the arguments in the exact same order as they are defined you don’t have to name them. For example, :</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">N &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/prod">prod</a></span>(n1, n2)<span class="op">/</span>m2</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">N</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; [1] 93.86667</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(N, <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt; [1] 94</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/prod">prod</a></span>(n1, n2)<span class="op">/</span>m2
+N
+<span class="co">#&gt; [1] 93.86667</span>
+
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(N, <span class="dv">0</span>)
+<span class="co">#&gt; [1] 94</span></code></pre></div>
 <p>If you do name the arguments, you can switch their order:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="dt">digits =</span> <span class="dv">0</span>, <span class="dt">x =</span> N)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="co">#&gt; [1] 94</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="dt">digits =</span> <span class="dv">0</span>, <span class="dt">x =</span> N)
+<span class="co">#&gt; [1] 94</span></code></pre></div>
 <p>Although you don’t have to name arguments, it’s a good idea to get in the habit of naming them. This will make you code easier to read, will help avoid mistakes that can occur when you don’t put the arguments in the correct order, and makes it easier to trouble shoot code that doesn’t do what you expect it to do.</p>
 </div>
 </div>
@@ -295,11 +298,11 @@ Functions are small bits of code that perform a specific task. Most functions ac
 <h2 class="hasAnchor">
 <a href="#commenting-your-code" class="anchor"></a>Commenting your code</h2>
 <p>R will ignore any code that follows a <code>#</code>. This is <em>very</em> useful for making your code more readable for both yourself and others. Use comments to remind yourself what a newly created object is, to explain what a line of code does, to leave yourself a reminder for later, etc. For example, in the previous code, it might be a good idea to use comments to define what each object represents:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">n1 &lt;-<span class="st"> </span><span class="dv">44</span>     <span class="co"># Number of individuals captured on first occasion</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb11-3" data-line-number="3">n2 &lt;-<span class="st"> </span><span class="dv">32</span>     <span class="co"># Number of individuals captured on second occasion</span></a>
-<a class="sourceLine" id="cb11-4" data-line-number="4">  </a>
-<a class="sourceLine" id="cb11-5" data-line-number="5">m2 &lt;-<span class="st"> </span><span class="dv">15</span>     <span class="co"># Number of previously marked individuals captured on second occasion</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">n1 &lt;-<span class="st"> </span><span class="dv">44</span>     <span class="co"># Number of individuals captured on first occasion</span>
+
+n2 &lt;-<span class="st"> </span><span class="dv">32</span>     <span class="co"># Number of individuals captured on second occasion</span>
+  
+m2 &lt;-<span class="st"> </span><span class="dv">15</span>     <span class="co"># Number of previously marked individuals captured on second occasion</span></code></pre></div>
 <p>Notice that when you run this code, <code>R</code>ignores the comments.</p>
 </div>
 </div>
@@ -307,26 +310,26 @@ Functions are small bits of code that perform a specific task. Most functions ac
 <h1 class="hasAnchor">
 <a href="#vectors" class="anchor"></a>Vectors</h1>
 <p>So far, we have only been working with objects that store a single number. However, often it is more convienient to store a string of numbers as a single object. In <code>R</code>, these strings are called <em>vectors</em> and they are created by enclosing the string between <code>c(</code> and <code>)</code>:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">x</a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#&gt; [1] 3 5 2 5</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>)
+x
+<span class="co">#&gt; [1] 3 5 2 5</span></code></pre></div>
 <p>A vector can also contain characters (though you cannot mix numbers and charactors in the same vector!):</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">occasions &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Occasion1"</span>, <span class="st">"Occasion2"</span>, <span class="st">"Occasion3"</span>)</a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">occasions</a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co">#&gt; [1] "Occasion1" "Occasion2" "Occasion3"</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">occasions &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Occasion1"</span>, <span class="st">"Occasion2"</span>, <span class="st">"Occasion3"</span>)
+occasions
+<span class="co">#&gt; [1] "Occasion1" "Occasion2" "Occasion3"</span></code></pre></div>
 <p>The quotes around “Occasion1”, “Occasion2”, and “Occasion3” are critical. Without the quotes <code>R</code> will assume there are objects called <code>Occasion1</code>, <code>Occasion2</code> and <code>Occasion3</code>. As these objects don’t exist in <code>R</code>’s memory, there will be an error message.</p>
 <p>Vectors can be any length (including 1. In fact, the numeric objects we’ve been working with are just vectors with length 1). The function <code><a href="https://www.rdocumentation.org/packages/base/topics/length">length()</a></code> tells you how long a vector is:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(x)</a>
-<a class="sourceLine" id="cb14-2" data-line-number="2"><span class="co">#&gt; [1] 4</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(x)
+<span class="co">#&gt; [1] 4</span></code></pre></div>
 <p>The function <code><a href="https://www.rdocumentation.org/packages/base/topics/class">class()</a></code> indicates the class (the type of element) of an object:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">class</a></span>(x)</a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="co">#&gt; [1] "numeric"</span></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">class</a></span>(occasions)</a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co">#&gt; [1] "character"</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">class</a></span>(x)
+<span class="co">#&gt; [1] "numeric"</span>
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">class</a></span>(occasions)
+<span class="co">#&gt; [1] "character"</span></code></pre></div>
 <p>What is the class of a vector with both numeric and characters entries? Hint:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">mixed &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">"3"</span>, <span class="st">"4"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mixed &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">"3"</span>, <span class="st">"4"</span>)</code></pre></div>
 <p>You can also use the <code><a href="https://www.rdocumentation.org/packages/base/topics/c">c()</a></code> function to add other elements to your vector:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(x, <span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">y &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(x, <span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">3</span>)</code></pre></div>
 <p>Vectors are one of the many data structures that R uses. Other important ones are lists (list), matrices (matrix), data frames (data.frame), factors (factor) and arrays (array). We will learn about each of those data structures as we encounter them in our exercises.</p>
 </div>
 <div id="exercise-2-the-schnabel-method" class="section level1">
@@ -386,22 +389,22 @@ Animal with marks
 </tbody>
 </table>
 <p>In this example, <span class="math inline">\(C_t =\)</span></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">Ct &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">155</span>, <span class="dv">175</span>, <span class="dv">131</span>) <span class="co"># Number of captures during each occassion</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Ct &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">155</span>, <span class="dv">175</span>, <span class="dv">131</span>) <span class="co"># Number of captures during each occassion</span></code></pre></div>
 <p>and <span class="math inline">\(R_t =\)</span></p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">Rt &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">109</span>, <span class="dv">116</span>) <span class="co"># Number of recaptures during each occassion</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Rt &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">109</span>, <span class="dv">116</span>) <span class="co"># Number of recaptures during each occassion</span></code></pre></div>
 <p>What is <span class="math inline">\(M_t\)</span>? On the first day, there are no previously marked individuals so <span class="math inline">\(M_1=0\)</span>. On the second day, there are 155 marked individuals in the population (all of the individuals marked on day 1) so <span class="math inline">\(M_2=155\)</span>. On day 3, the students could have observed individuals marked on the first day or individuals marked on the second day (<span class="math inline">\(175-109=66\)</span> individuals marked on day 2) so <span class="math inline">\(M_3 = 155 + 66 = 221\)</span>. So:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">Mt &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">155</span>, <span class="dv">221</span>) <span class="co"># Number of recaptures during each occassion</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Mt &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">155</span>, <span class="dv">221</span>) <span class="co"># Number of recaptures during each occassion</span></code></pre></div>
 <p>Now to estimate <span class="math inline">\(\hat{N}\)</span>. We <em>could</em> do it by hand:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">N &lt;-<span class="st"> </span>((<span class="dv">155</span><span class="op">*</span><span class="dv">0</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">175</span> <span class="op">*</span><span class="st"> </span><span class="dv">155</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">131</span> <span class="op">*</span><span class="st"> </span><span class="dv">221</span>)) <span class="op">/</span><span class="st"> </span>(<span class="dv">0</span> <span class="op">+</span><span class="st"> </span><span class="dv">109</span> <span class="op">+</span><span class="st"> </span><span class="dv">116</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">
+N &lt;-<span class="st"> </span>((<span class="dv">155</span><span class="op">*</span><span class="dv">0</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">175</span> <span class="op">*</span><span class="st"> </span><span class="dv">155</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">131</span> <span class="op">*</span><span class="st"> </span><span class="dv">221</span>)) <span class="op">/</span><span class="st"> </span>(<span class="dv">0</span> <span class="op">+</span><span class="st"> </span><span class="dv">109</span> <span class="op">+</span><span class="st"> </span><span class="dv">116</span>)</code></pre></div>
 <p>However, that is <em>a lot</em> of typing and it’s pretty likely we would make a mistake somewhere along the way (typos or misplaced parentheses). <code>R</code> is clever enough to allow us to use the previously created vectors. First, let’s see what happens when we multiply two vectors together:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">Ct <span class="op">*</span><span class="st"> </span>Mt</a>
-<a class="sourceLine" id="cb22-2" data-line-number="2"><span class="co">#&gt; [1]     0 27125 28951</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Ct <span class="op">*</span><span class="st"> </span>Mt
+<span class="co">#&gt; [1]     0 27125 28951</span></code></pre></div>
 <p>As you can see, we created a new vector that is the same length as the original vectors (3). When you mutiply (or add, subtract, or divide) two vectors, <code>R</code> multiplies the first element of first vector times the first element of the second vector, the second element of first vector times the second element of the second vector, the third element of first vector times the third element of the second vector, etc, and then combines them into a new vector.</p>
 <p>We can also use the <code><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum()</a></code> function to add up all of the elements of a vector (similar to the <code><a href="https://www.rdocumentation.org/packages/base/topics/prod">prod()</a></code> function we saw earlier). So:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">N &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(Ct <span class="op">*</span><span class="st"> </span>Mt) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(Rt)</a>
-<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="dt">x =</span> N, <span class="dt">digits =</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="co">#&gt; [1] 249</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">N &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(Ct <span class="op">*</span><span class="st"> </span>Mt) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(Rt)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="dt">x =</span> N, <span class="dt">digits =</span> <span class="dv">0</span>)
+<span class="co">#&gt; [1] 249</span></code></pre></div>
 <p>Much easier!</p>
 </div>
 <div id="introduction-to-r-markdown" class="section level1">
@@ -445,7 +448,7 @@ Animal with marks
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
 </div>

@@ -4,10 +4,9 @@
 \alias{baseline_pva}
 \title{baseline_pva}
 \usage{
-baseline_pva(number.of.years, number.of.populations, b0, d0,
-  variance.b = 0.4, variance.d = 0.9, fire.prob = 0.25, fire.b,
-  fire.d, K = NULL, theta = 1, d.slope = 0.0075,
-  extinction.threshold = 0)
+baseline_pva(number.of.years, number.of.populations, b0, d0, variance.b = 0.4,
+  variance.d = 0.9, fire.prob = 0.25, fire.b, fire.d, K = NULL,
+  theta = 1, d.slope = 0.0075, extinction.threshold = 0)
 }
 \arguments{
 \item{number.of.years}{Number of years to simulate dynamics beyond the last observed count}
