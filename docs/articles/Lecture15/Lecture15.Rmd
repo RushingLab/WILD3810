@@ -164,7 +164,7 @@ knitr::include_graphics("figs/immigration.png")
 
 #### Find mates
 
-<iframe width="560" height="315" src="https://stackoverflow.com/questions/38517236/youtube-video-in-r-markdown" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/T7HGSvczDA4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ---
 ## Why disperse?
