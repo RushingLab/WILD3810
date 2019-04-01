@@ -10,6 +10,7 @@ articles:
   matrix_models: matrix_models.html
   matrix_models2: matrix_models2.html
   rmarkdown_intro: rmarkdown_intro.html
+  rstudio_cloud: rstudio_cloud.html
   schedule: schedule.html
   syllabus: syllabus.html
 urls:
