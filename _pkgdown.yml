@@ -50,6 +50,8 @@ navbar:
           href: articles/Lecture14/Lecture14.html
         - text: "Lecture 15: Metapopulation models"
           href: articles/Lecture15/Lecture15.html
+        - text: "Lecture 16: Metapopulation models II"
+          href: articles/Lecture16/Lecture16.html
     - icon: fas fa-desktop
       text: "Labs"
       menu:

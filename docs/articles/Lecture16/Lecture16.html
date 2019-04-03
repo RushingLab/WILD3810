@@ -13,7 +13,7 @@
 class: center, middle, inverse, title-slide
 
 # Lecture 16
-## Source-sink dynamics
+## Metapopulation dynamics II
 ### <br/><br/><br/>WILD3810 (Spring 2019)
 
 ---
@@ -51,15 +51,178 @@ class: center, middle, inverse, title-slide
 &lt;br/&gt;
 - `\(\large \mathbf \gamma\)` **and** `\(\large \mathbf \epsilon\)` **are independent of patch size**  
 &lt;br/&gt;
-- `\(\large \gamma\)` and `\(\large \epsilon\)` are independent of distance of patch to other patches  
+- `\(\large \gamma\)` **and** `\(\large \epsilon\)` **are independent of distance of patch to other patches**  
 &lt;br/&gt;
 - `\(\large \gamma\)` and `\(\large \epsilon\)` are independent of population density  
 &lt;br/&gt;
 - Local birth-death dynamics are ignored  
 
 ---
+## Island biogeography
 
-&lt;img src="figs/Metapop.jpg" width="90%" style="display: block; margin: auto;" /&gt;
+#### About the same time Levins was developing the concept of Metapopulation dynamics, Robert MacArthur and E.O. Wilson were developing their theory of Island Biogeography (1963, 1967)
+
+
+&lt;img src="Lecture16_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Island biogeography
+
+&lt;img src="Lecture16_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+- **Immigration curve**: successful colonization decreases as number of species increases because niches and habitats become filled
+
+- **Extinction curve**: competition increases with increasing number of species, leads to higher extinction rate
+
+---
+## Island biogeography
+
+&lt;img src="Lecture16_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+`$$\LARGE \Delta S = Imm - Ext$$`
+
+---
+## Island biogeography
+
+&lt;img src="Lecture16_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+`$$\LARGE \Delta S = Imm - Ext$$`
+
+---
+## Island biogeography
+
+&lt;img src="figs/mainland.png" width="35%" style="display: block; margin: auto;" /&gt;
+
+---
+## Island biogeography
+
+#### Immigration curves should be lower for **far** islands than for **near** ones:
+
+- distant islands are less likely to be colonized
+
+&lt;img src="Lecture16_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Island biogeography
+
+#### Immigration curves should be lower for **small** islands than **large** ones:
+
+- smaller islands offer a smaller target to find 
+
+&lt;img src="Lecture16_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+## Island biogeography
+
+#### Extinction curves should be higher for **small** islands than for **large** ones:
+
+- Small islands support smaller population sizes; increased risk of extinction via demographic stochasticity 
+
+&lt;img src="Lecture16_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Island biogeography
+
+.pull-left[
+&lt;img src="figs/S_eq.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-left[
+&lt;img src="figs/mainland.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Island biogeography
+
+#### How can the predictions of island biogeography be tested experimentally?
+
+--
+- Wilson andhis grad student Daniel Simberloff de-faunated small clumps of mangroves in Florida bay that differed in their distance from the mainland
+
+.pull-left[
+&lt;img src="figs/mangrove.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-left[
+&lt;img src="figs/wilson_simberloff.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Island biogeography
+
+- **Prediction 1**: insect diversity would attain pre-removal levels
+
+- **Prediction 2**: close islands would be colonized more quickly compared tomore distant islands 
+
+.pull-left[
+&lt;img src="figs/mangrove.png" width="90%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-left[
+&lt;img src="figs/wilson_simberloff.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Island biogeography
+
+&lt;img src="figs/wilson_simberloff2.png" width="80%" style="display: block; margin: auto;" /&gt;
+
+---
+## Island biogeography
+
+#### Island Biogeography led to concept of **Mainland-Island metapopulation structure** 
+
+&lt;img src="figs/mainland_source.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+## Mainland-island
+
+#### Large, stable Mainland population:
+
+- Provides a constant supply of dispersing individuals
+
+
+- Colonization does not depend on fraction of islands occupied because colonization largely comes from the mainland
+
+`$$\LARGE \hat{\psi} = \frac{\gamma}{\gamma + \epsilon}$$`
+
+- Guarantees that at least some islands are occupied because of continual flood of immigration from mainland
+
+---
+## Implications of IB and M-I for habitat conservation
+
+#### Preserving single large refuge and tract of habitat
+- Supports greater local abundance
+
+- Has low chance of local extinction 
+
+- Supports more species
+
+---
+## Implications of IB and M-I for habitat conservation
+
+#### Preserving single large refuge and tract of habitat
+- Supports greater local abundance
+
+- Has low chance of local extinction 
+
+- Supports more species
+
+- Vulnerable to isolated catastrophe
+
+
+--
+#### Preserving several small tracts of habitat 
+
+- Higher chance of local extinctions
+
+- More robust to isolated catastrophes
+
+- Connectivity amongst habitat patches is crucial
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
