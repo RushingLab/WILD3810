@@ -1,9 +1,5 @@
 ---
-<<<<<<< HEAD
-title: "Sensitivity analysis and management recommendations for reducing abundance of Brown-headed cowbirds"
-=======
 title: "Management recommendations to reduce abundance of a native nest parasite, the Brown-headed cowbird"
->>>>>>> 80950f17c58a9cb261e0127540b66735b5c8b7b4
 author: "YOUR NAME HERE"
 output: html_document
 
@@ -35,12 +31,6 @@ After you have a draft ready, you may schedule an appointment with the science w
 
 
 ```{r out.width="75%", echo = FALSE}
-<<<<<<< HEAD
 # Include code to create your figure here
 ```
-=======
-# Add code to create figure here
-```
 
-
->>>>>>> 80950f17c58a9cb261e0127540b66735b5c8b7b4
