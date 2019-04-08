@@ -4,8 +4,9 @@
 \alias{pva}
 \title{pva}
 \usage{
-pva(N0, number.of.years, number.of.populations = 500, r0, variance.r = 0,
-  K = NULL, Allee = NULL, theta = 1, extinction.threshold = 0)
+pva(N0, number.of.years, number.of.populations = 500, r0,
+  variance.r = 0, K = NULL, Allee = NULL, theta = 1,
+  extinction.threshold = 0)
 }
 \arguments{
 \item{N0}{Initial population size}
