@@ -1,0 +1,116 @@
+---
+title: "Homework 8: Source-sink dynamics"
+author: "YOUR NAME HERE"
+output: html_document
+
+## Do not change anything in the YAML header
+fontsize: 12pt
+indent: true
+---
+
+```{r setup, include = FALSE}
+## Do not change anything in this chunk
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, message = FALSE, eval = FALSE)
+library(WILD3810)
+```
+
+***
+**Due before 2:30pm Monday April 15**
+
+In this homework assignment, you will use `R` to explore the dynamics and management implications of a source-sink metapopulation. 
+
+**Important** - after completing the code, change `eval = FALSE` to `eval = TRUE` in the setup chunk options above (line 14)
+
+Refer to the [instructions for submitting homework assignments](https://rushinglab.github.io/WILD3810/articles/homework.html) prior to submission
+
+***
+
+
+First, make sure you have:
+
+> 1a) Changed the `author` field in the YAML header to your name;
+
+> 1b) Clicked `Knit` to check that you can create a html document from the .Rmd file;
+
+> 1c) Save the .Rmd file as `LastnameFirstname-homework8.Rmd`
+
+If you have any problems with these steps, be sure to get help from either the instructor or the TA.
+
+### Modeling source-sink dynamics
+
+> 2) Under what conditions does the self-recruitment rate $R$ equal $\lambda$?
+
+**Type answer here**
+
+```{r matrix}
+
+```
+
+> 3a) In lecture, we learned that the contribution of each population is $C_i = R_i + E_i$. Calculate $C_i$ for each of the three populations (remember that $E_{i} = \sum_{j \neq i} D_{ij}$)
+
+
+- $C_1$ = `r #type R code here`
+
+- $C_2$ = `r #type R code here`
+
+- $C_3$ = `r #type R code here`
+
+
+> 3b) Which population(s) acts as a source for the other populations?
+
+**Type answer here**
+
+> 3c) What spatial scale (i.e., set of local populations) does the $\lambda$ you just estimated correspond to? Explain your answer
+
+**Type answer here**
+
+> 3c) What does the stable stage distribution represent in this metapopulation model? Which population will have the highest relative abundance (assuming the metapopulation has reached it's long-term growth phase)? Why (or why doesn't) the source population have the highest abundance?
+
+**Type answer here**
+
+
+## The role of sources
+
+```{r source}
+
+```
+
+> 4a) How does `lambda1` compare to `lambda2`? Briefly explain why $\lambda$ did or did not change.  
+
+**Type answer here**
+
+> 4b) Which population now has the highest relative abundance? Briefly explain why the "stable stage distribution" did or did not change.  
+
+**Type answer here**
+
+> 4c) Even though the long-term growth rate is still greater than 1, do you think a real metapopulation with these rates would face the same extinction risk as the metapopulation with greater connectivity? Why or why not?
+
+**Type answer here**
+
+
+```{r source2}
+
+```
+
+> 5a) How does `lambda3` compare to `lambda1`? Why does changing the birth rate of population 2 alter lambda differently than lowering connectivity?  
+
+**Type answer here**
+
+> 5b) What is the long-term fate of the metapopulation after the birth rate of population 2 went down?  
+
+**Type answer here**
+
+## The role of sinks
+
+```{r sink}
+
+```
+
+> 6a) How does `lambda4` compare to `lambda1`? Why does changing the birth rate of population 3 alter (or not) lambda differently than lowering the birth rate of population 2?  
+
+**Type answer here**
+
+> 6b) Although reducing the birth rate of sink populations does not appear to influence the long-term dynamics of the source-sink metapopulation in this model, why might managers still want to protect sink habitats in real-life situations?  
+
+**Type answer here**
