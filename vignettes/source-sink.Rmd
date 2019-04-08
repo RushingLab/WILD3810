@@ -1,0 +1,179 @@
+---
+title: "Source-sink metapopulation dynamics"
+author: "WILD3810: Plant and animal populations"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lab8}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>", 
+  warning = FALSE, 
+  message = FALSE
+)
+library(WILD3810)
+```
+
+In this lab, you will continue to learn about the dynamics of multiple interacting populations. Specifically, you will explore the dynamics of a **source-sink** metapopulation and how these dynamics influence management decisions. 
+
+***
+**Objectives**
+
+* Model the dynamics of a source-sink metapopulation using matrix models
+
+* Manipulate the demographic and movement rates of sources and sinks to measure the impact on metapopulation growth
+
+***
+
+### Creating the homework assignment
+
+To complete this week's homework assignment, you will follow along with the instructions below, entering code and answering questions in the `.Rmd` file for homework 8. From within Rstudio cloud:
+
+1) Click on the `WILD3810` link under spaces
+
+2) Click the blue `New project` button at the top of the screen
+
+3) Rename the project `LastnameFirstname-HW8`
+
+4) Navigate to `New file -> R Markdown -> From Template`
+
+5) Scroll down to find `WILD3810-Homework8`
+
+6) In the `Name` box type `LastnameFirstname-HW8`
+
+7) Click `Ok`
+
+## Source-sink dynamics as a matrix model
+
+As we learned in lecture, we can approach modeling source-sink dynamics using the principles we used to model stage-structured population dynamics. In the source-sink model, the diagonal elements of the matrix represent the *self-recruitment rate* ($R_i$) of each population $-$ that is, the degree to which each population can sustain itself through internal births and recruitment. In the simplest terms, we can estimate $R_i$ as:
+
+$$\large R_i = 1 + b - d$$
+In words, the self-recruitment rate is the birth rate minus the death rate plus one. Note that this is the same definition we used for $\lambda$ in the sections on unstructured population dynamics. 
+
+***
+Using the information above, answer question 2 on the homework assignment
+
+***
+
+In the matrix version of the source-sink model, the off-diagonals represent the movement of individuals from one population (represented by the column number) to another population (represented by the row number). This is equivalent to the growth/survival rates in the stage-structured population models. The total emigration rate from population $i$ ($E_{i}$) can be calculated as:
+
+$$\large E_{i} = \sum_{j \neq i} D_{ij}$$
+
+where $D_{ij}$ is the dispersal rate *from* $i$ *to* $j$. 
+
+***
+The tables below provides demographic and movement rates for 3 populations. 
+
+```{r, echo = FALSE}
+library(kableExtra)
+rate_tab <- data.frame(rate = c("Birth rate", "Death rate"),
+                      pop1 = c(0.2, 0.22),
+                      pop2 = c(0.28, 0.25),
+                      pop3 = c(0.08, 0.2))
+
+names(rate_tab) <- c("", "Population 1", "Population 2", "Population 3")
+
+rate_tab %>%
+  kable(format = 'html', align = 'c', caption = "Birth and death rates of the 3 populations") 
+```
+
+```{r, echo = FALSE}
+e_tab <- data.frame(to = c(1, 2, 3),
+                    pop1 = c("-", 0.00, 0.05),
+                    pop2 = c(0.03, "-", 0.09),
+                    pop3 = c(0.00, 0.00, "-"))
+
+names(e_tab) <- c("", "1", "2", "3")
+
+e_tab %>%
+  kable(format = 'html', align = 'c', caption = "Matrix of dispersal rates (D) between each of the 3 populations")
+```
+
+In your assignment file, there is a chunk named `matrix`. Inside of that chunk:
+
+1) Use the table to calculate all of the relevant $R_i$ values. Be sure you create an object corresponding to each value and give it an easily-understood name. 
+
+2) Using the rates estimated in step 1, create a matrix describing the dynamics of this metapopulation. Name this matrix `B` and make sure that there is one row and one column for each population. 
+
+3) Use the `popbio::lambda()` function to calculate the long-term growth rate of this source-sink metapopulation. Store this value in an object named `lambda1`
+
+4) Use the `popbio::stable.stage()` function to calculate the long-term "stable stage distribution" of this source-sink metapopulation. Store this value in an object named `ssd1`
+
+5) Answer questions 3a-3d on the homework assignment
+
+***
+
+## The role of the source
+
+The impact that habitat loss or loss of connectivity has on the metapopulation depends on whether those changes effect sources or sinks. For example, what happens connectivity of the source population is lost due to degradation of the matrix habitat?
+
+***
+
+Assume that the metapopulation experiences some type of habitat degradation that reduces connectivity among the patches. Specifically, no individuals can disperse from patch 2 to patch 1 and the dispersal rate from patch 2 to patch 3 is reduced to 1%. In the `R` chunk of your homework assignment named `source`:
+
+1) Create a new matrix describing the dynamics of the metapopulation. Call the matrix `B2`
+
+2) Use the `popbio::lambda()` function to calculate the new long-term growth rate of the source-sink metapopulation. Store this value in an object named `lambda2`
+
+3) Use the `popbio::stable.stage()` function to calculate the new long-term "stable stage distribution" of this source-sink metapopulation. Store this value in an object named `ssd2`
+
+4) Answer questions 4a-4c on the homework assignment
+
+***
+
+What if instead of changes to connectivity, the source population experiences declines in its self-recruitment rate?
+
+***
+
+Using the matrix `B` as a starting point, what happens if the birth rate of population 2 declines to 0.24. In the `R` chunk of your homework assignment named `source2`:
+
+1) Create a new matrix describing the dynamics of the metapopulation. Call the matrix `B3`
+
+2) Use the `popbio::lambda()` function to calculate the new long-term growth rate of the source-sink metapopulation. Store this value in an object named `lambda3`
+
+3) Answer questions 5a-5b on the homework assignment
+
+***
+
+## The role of the sinks
+
+What happens if vital rates within the sink populations decreases? 
+
+***
+
+Assume that population 3 experiences some type of habitat degradation that reduces the birth rate by 25%. In the `R` chunk of your homework assignment named `sink:
+
+1) Create a new matrix describing the dynamics of the metapopulation. Call the matrix `B4`
+
+2) Use the `popbio::lambda()` function to calculate the new long-term growth rate of the source-sink metapopulation. Store this value in an object named `lambda4`
+
+3) Use the `popbio::stable.stage()` function to calculate the new long-term "stable stage distribution" of this source-sink metapopulation. Store this value in an object named `ssd4`
+
+4) Answer questions 6a-6c on the homework assignment
+
+***
+
+
+### Turning in your assignment
+
+1) In the `Files` pane (bottom right), navigate to the `LastnameFirstname_HW8.Rmd` and `LastnameFirstname_HW8.html` files
+
+2) Click on the square button next to each file to select them
+
+3) Click on the `More` button
+
+4) Click `Export`
+
+5) Select the location on your computer where you want to save the .zip file
+
+6) Decompress the .zip file
+
+7) Log in to Canvas
+
+8) Go to `Homework 8` assignment page
+
+9) Upload your files

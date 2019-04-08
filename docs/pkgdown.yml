@@ -12,6 +12,7 @@ articles:
   rmarkdown_intro: rmarkdown_intro.html
   rstudio_cloud: rstudio_cloud.html
   schedule: schedule.html
+  source-sink: source-sink.html
   syllabus: syllabus.html
 urls:
   reference: http://rushinglab.github.io/WILD3810/reference
