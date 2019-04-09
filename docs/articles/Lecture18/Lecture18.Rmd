@@ -114,3 +114,11 @@ class: middle, center, inverse
 knitr::include_graphics("figs/manzanita.jpg")
 ```
 
+---
+## Interspecific competition
+
+#### Indirect
+
+**Exploitation competition**: 
+
+> consumption of limited resource by individuals makes it more difficult for others to attain the resource (scramble competition)
