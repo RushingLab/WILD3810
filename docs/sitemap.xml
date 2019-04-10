@@ -25,9 +25,6 @@
     <loc>http://rushinglab.github.io/WILD3810/reference/pva.html</loc>
   </url>
   <url>
-    <loc>http://rushinglab.github.io/WILD3810/articles/exams/exam1_2019.html</loc>
-  </url>
-  <url>
     <loc>http://rushinglab.github.io/WILD3810/articles/homework.html</loc>
   </url>
   <url>
@@ -50,6 +47,9 @@
   </url>
   <url>
     <loc>http://rushinglab.github.io/WILD3810/articles/rmarkdown_intro.html</loc>
+  </url>
+  <url>
+    <loc>http://rushinglab.github.io/WILD3810/articles/rstudio_cloud.html</loc>
   </url>
   <url>
     <loc>http://rushinglab.github.io/WILD3810/articles/schedule.html</loc>

@@ -118,6 +118,9 @@
     <li>
       <a href="../articles/Lecture17/Lecture17.html">Lecture 17: Source-sink dynamics</a>
     </li>
+    <li>
+      <a href="../articles/Lecture18/Lecture18.html">Lecture 18: Intraspecific competition</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -171,7 +174,7 @@
 <!--/.navbar -->
 
       
-      </header><script src="matrix_models2_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
+      </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Modeling population dynamics using matrix projection models, part 2</h1>
@@ -210,16 +213,16 @@
 <p>During the last lab, you built a population matrix for Brown-headed cowbirds and explored the long-term growth rate and stable stage distribution of this matrix. Today, you will explore how changes to vital rates influence the dynamics of cowbird populations. This is important information because knowing which vital rates have the largest influence on dynamics can provide critical insights into which management actions are likely to reduce cowbird populations and (hopefully) increase populations of vulnerable host species.</p>
 <p>Although you were able to estimate the properties of the cowbird matrix by simulating dynamics through time and then manually calculating <span class="math inline">\(\lambda\)</span> and the stable stage distribution, there is a <code>R</code> package called <code>popbio</code> that can estimate these values (and many more) without having to calculate them by hand.</p>
 <p>Open a new <code>R</code> script and copy the code needed to create the population matrix <code>A</code> that you built last week. Once this matrix is created, use the following lines of code to estimate <span class="math inline">\(\lambda\)</span> and the stable stage distribution:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">(lambda &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/lambda">lambda</a></span>(A))</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="co">#&gt; [1] 1.184</span></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">(ssd &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/stable.stage">stable.stage</a></span>(A))</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt; [1] 0.92443 0.07557</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(lambda &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/lambda">lambda</a></span>(A))
+<span class="co">#&gt; [1] 1.184</span>
+(ssd &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/stable.stage">stable.stage</a></span>(A))
+<span class="co">#&gt; [1] 0.92443 0.07557</span></code></pre></div>
 <hr>
 <p><strong>How close are these analytical estimates to the estimates you calcuated by simulating future growth?</strong></p>
 <hr>
 <p>The <code>popbio</code> package has a number of other useful functions, for example estimating the reproductive value of each stage:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">(rv &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/reproductive.value">reproductive.value</a></span>(A))</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="co">#&gt; [1] 1.000 9.084</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(rv &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/reproductive.value">reproductive.value</a></span>(A))
+<span class="co">#&gt; [1] 1.000 9.084</span></code></pre></div>
 <hr>
 <p><strong>In the previous homework, was your intuition about reproductive value correct?</strong></p>
 <hr>
@@ -229,18 +232,18 @@
 <p>In lecture, we learned about the concepts of <em>sensivity</em> and <em>elasticity</em>. Remember that sensitivity is the change in <span class="math inline">\(\lambda\)</span> caused by a small change in a vital rate and can be estimated analytically using:</p>
 <p><span class="math display">\[\Large s_{i,j} = \frac{\delta \lambda}{\delta a_{i,j}} = \frac{v_iw_j}{\sum_{k=1}v_kw_k}\]</span></p>
 <p>We also learned how to do this by hand but luckily that’s not necessary. We can instead use:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">(sens &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/sensitivity">sensitivity</a></span>(A))</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="co">#&gt;        [,1]    [,2]</span></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; [1,] 0.5738 0.04691</span></a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; [2,] 5.2130 0.42617</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(sens &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/sensitivity">sensitivity</a></span>(A))
+<span class="co">#&gt;        [,1]    [,2]</span>
+<span class="co">#&gt; [1,] 0.5738 0.04691</span>
+<span class="co">#&gt; [2,] 5.2130 0.42617</span></code></pre></div>
 <hr>
 <p><strong>Which combination of vital rates has the highest sensitivity?</strong></p>
 <hr>
 <p>As we saw in lecture, sensitivity is not always the most useful metric for understanding which vital rates are most important for influencing <span class="math inline">\(\lambda\)</span>. Instead, most natural resource management studies focus on elasticity, which is the change in <span class="math inline">\(\lambda\)</span> caused by a small <em>proportional</em> change in a vital rate. As you probably guessed, <code>popbio</code> also does this calculation:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">(elas &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/elasticity">elasticity</a></span>(A))</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt;        [,1]   [,2]</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt; [1,] 0.3168 0.2570</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; [2,] 0.2570 0.1692</span></a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">(elas &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/elasticity">elasticity</a></span>(A))
+<span class="co">#&gt;        [,1]   [,2]</span>
+<span class="co">#&gt; [1,] 0.3168 0.2570</span>
+<span class="co">#&gt; [2,] 0.2570 0.1692</span></code></pre></div>
 <hr>
 <p><strong>Based on the estimated elasticities, which vital rates do you expect to have the biggest influence on population growth?</strong></p>
 <hr>
@@ -382,57 +385,57 @@ Adult survival
 <li><p><code>max</code>: The maximum value the numbers can take</p></li>
 </ul>
 <p>Using the table above, fill in the code below to generate the values for each rate:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="co">## Number of random values to generate</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">nSim &lt;-<span class="st"> </span><span class="dv">1000</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">## Adult fecundity</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">af &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> nSim, <span class="dt">min =</span> ?, <span class="dt">max =</span> ?)</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">## Yearling fecundity</span></a>
-<a class="sourceLine" id="cb5-8" data-line-number="8">yf &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> nSim, <span class="dt">min =</span> ?, <span class="dt">max =</span> ?)</a>
-<a class="sourceLine" id="cb5-9" data-line-number="9"></a>
-<a class="sourceLine" id="cb5-10" data-line-number="10"><span class="co">## Egg survival</span></a>
-<a class="sourceLine" id="cb5-11" data-line-number="11">es &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> nSim, <span class="dt">min =</span> ?, <span class="dt">max =</span> ?)</a>
-<a class="sourceLine" id="cb5-12" data-line-number="12"></a>
-<a class="sourceLine" id="cb5-13" data-line-number="13"><span class="co">## Nest survival</span></a>
-<a class="sourceLine" id="cb5-14" data-line-number="14">ns &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> nSim, <span class="dt">min =</span> ?, <span class="dt">max =</span> ?)</a>
-<a class="sourceLine" id="cb5-15" data-line-number="15"></a>
-<a class="sourceLine" id="cb5-16" data-line-number="16"><span class="co">## Yearling survival</span></a>
-<a class="sourceLine" id="cb5-17" data-line-number="17">ys &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> nSim, <span class="dt">min =</span> ?, <span class="dt">max =</span> ?)</a>
-<a class="sourceLine" id="cb5-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb5-19" data-line-number="19"><span class="co">## Adult survival</span></a>
-<a class="sourceLine" id="cb5-20" data-line-number="20">as &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> nSim, <span class="dt">min =</span> ?, <span class="dt">max =</span> ?)</a>
-<a class="sourceLine" id="cb5-21" data-line-number="21"></a>
-<a class="sourceLine" id="cb5-22" data-line-number="22"><span class="co">## Create matrix elements from vital rates</span></a>
-<a class="sourceLine" id="cb5-23" data-line-number="23">F_<span class="dv">11</span> &lt;-<span class="st"> </span>es<span class="op">*</span>ns<span class="op">*</span>ys<span class="op">*</span>yf</a>
-<a class="sourceLine" id="cb5-24" data-line-number="24">F_<span class="dv">21</span> &lt;-<span class="st"> </span>as<span class="op">*</span>af</a>
-<a class="sourceLine" id="cb5-25" data-line-number="25">P_<span class="dv">12</span> &lt;-<span class="st"> </span>es<span class="op">*</span>ns<span class="op">*</span>ys</a>
-<a class="sourceLine" id="cb5-26" data-line-number="26">P_<span class="dv">22</span> &lt;-<span class="st"> </span>as</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Number of random values to generate
+nSim &lt;-<span class="st"> </span><span class="dv">1000</span>
+
+## Adult fecundity
+af &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> nSim, <span class="dt">min =</span> ?, <span class="dt">max =</span> ?)
+
+## Yearling fecundity
+yf &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> nSim, <span class="dt">min =</span> ?, <span class="dt">max =</span> ?)
+
+## Egg survival
+es &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> nSim, <span class="dt">min =</span> ?, <span class="dt">max =</span> ?)
+
+## Nest survival
+ns &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> nSim, <span class="dt">min =</span> ?, <span class="dt">max =</span> ?)
+
+## Yearling survival
+ys &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> nSim, <span class="dt">min =</span> ?, <span class="dt">max =</span> ?)
+
+## Adult survival
+as &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/Uniform">runif</a></span>(<span class="dt">n =</span> nSim, <span class="dt">min =</span> ?, <span class="dt">max =</span> ?)
+
+## Create matrix elements from vital rates
+F_<span class="dv">11</span> &lt;-<span class="st"> </span>es<span class="op">*</span>ns<span class="op">*</span>ys<span class="op">*</span>yf
+F_<span class="dv">21</span> &lt;-<span class="st"> </span>as<span class="op">*</span>af
+P_<span class="dv">12</span> &lt;-<span class="st"> </span>es<span class="op">*</span>ns<span class="op">*</span>ys
+P_<span class="dv">22</span> &lt;-<span class="st"> </span>as</code></pre></div>
 <hr>
 <p><strong>The last four lines of code multiply the vital rates to create the elements of the matrix. In this case, we are mulitplying vectors of length <code>nSim</code>. What class of object are we creating in these lines of code?</strong></p>
 <hr>
 <p>Next we will estimate <span class="math inline">\(\lambda\)</span> for each of the 1000 matrices. To do this, create an empty vector to store the 1000 values of <span class="math inline">\(\lambda\)</span> and then use a loop that creates each matrix and estimates <span class="math inline">\(\lambda\)</span>. Fill in the code below to create a matrix <code>A</code> during each loop (refer to your code from last week as a starting point, remembering that in this case you will need to index each matrix element created above):</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">lambda &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/numeric">numeric</a></span>(<span class="dt">length =</span> nSim)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>?){</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4">  A &lt;-<span class="st"> </span>?</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5">  lambda[i] &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/lambda">lambda</a></span>(A)</a>
-<a class="sourceLine" id="cb6-6" data-line-number="6">}</a></code></pre></div>
-<p>Using this simulation based approach, we expect that the vital rates with the highest elasticities will be the most strongly correlated with <span class="math inline">\(\lambda\)</span>. The code below will store the vital rates and <span class="math inline">\(\lambda\)</span>s as a data frame and plot the data<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="co">## Store results as data frame</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">rates &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Adult Fecundity"</span>, <span class="st">"Yearling Fecundity"</span>, <span class="st">"Egg survival"</span>, <span class="st">"Nestling survival"</span>, <span class="st">"Yearling survival"</span>, <span class="st">"Adult survival"</span>)</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">lambda_df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">lambda =</span> lambda,</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5">                        <span class="dt">value =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(af, yf, es, ns, ys, as),</a>
-<a class="sourceLine" id="cb7-6" data-line-number="6">                        <span class="dt">Rate =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(rates, <span class="dt">each =</span> nSim))</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">## Plot correlations</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="kw">ggplot</span>(lambda_df, <span class="kw">aes</span>(<span class="dt">x =</span> value, <span class="dt">y =</span> lambda)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">"lm"</span>, <span class="dt">color =</span> <span class="st">"red"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Rate, <span class="dt">scales =</span> <span class="st">"free_x"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/expression">expression</a></span>(lambda)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">strip.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lambda &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/numeric">numeric</a></span>(<span class="dt">length =</span> nSim)
+
+<span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>?){
+  A &lt;-<span class="st"> </span>?
+  lambda[i] &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/lambda">lambda</a></span>(A)
+}</code></pre></div>
+<p>Using this simulation based approach, we expect that the vital rates with the highest elasticities will be the most strongly correlated with <span class="math inline">\(\lambda\)</span>. The code below will store the vital rates and <span class="math inline">\(\lambda\)</span>s as a data frame and plot the data<a href="#fn1" class="footnoteRef" id="fnref1"><sup>1</sup></a>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">## Store results as data frame
+rates &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Adult Fecundity"</span>, <span class="st">"Yearling Fecundity"</span>, <span class="st">"Egg survival"</span>, <span class="st">"Nestling survival"</span>, <span class="st">"Yearling survival"</span>, <span class="st">"Adult survival"</span>)
+
+lambda_df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">lambda =</span> lambda,
+                        <span class="dt">value =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(af, yf, es, ns, ys, as),
+                        <span class="dt">Rate =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/rep">rep</a></span>(rates, <span class="dt">each =</span> nSim))
+
+## Plot correlations
+<span class="kw">ggplot</span>(lambda_df, <span class="kw">aes</span>(<span class="dt">x =</span> value, <span class="dt">y =</span> lambda)) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">alpha =</span> <span class="fl">0.25</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">stat_smooth</span>(<span class="dt">method =</span> <span class="st">"lm"</span>, <span class="dt">color =</span> <span class="st">"red"</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>Rate, <span class="dt">scales =</span> <span class="st">"free_x"</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/expression">expression</a></span>(lambda)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">strip.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">10</span>))</code></pre></div>
 <p><img src="matrix_models2_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;"></p>
 <p>Based on these plots, which vital rate(s) do you expect have the largest effect on <span class="math inline">\(\lambda\)</span>? Based on just this information, what do you predict would be the two or three most important vital rates to target using management actions?</p>
 </div>
@@ -525,7 +528,7 @@ Cowbird range map
 <div class="footnotes">
 <hr>
 <ol>
-<li id="fn1"><p>The <code>ggplot2</code> code used here is a bit more advanced that what we’ve done so far this semester. Note that we create a different plot for each vital rate (<code>facet_wrap()</code>), plot a line through the data points (<code>stat_smooth(method = 'lm')</code>), add a Greek letter to the axis label (<code>scale_y_continuous(expression(lambda))</code>), make the points slightly transparent (<code>alpha=0.25</code>), and modify the appearance of the facet labels (<code>theme(strip.text.x)</code>). These changes were possible using just a few lines of code, demonstrating the power of <code>ggplot2</code> to create customized graphics. If you want to learn more about how these options work, play with the code above and use <code>?function</code> command to learn more about each function<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>The <code>ggplot2</code> code used here is a bit more advanced that what we’ve done so far this semester. Note that we create a different plot for each vital rate (<code>facet_wrap()</code>), plot a line through the data points (<code>stat_smooth(method = 'lm')</code>), add a Greek letter to the axis label (<code>scale_y_continuous(expression(lambda))</code>), make the points slightly transparent (<code>alpha=0.25</code>), and modify the appearance of the facet labels (<code>theme(strip.text.x)</code>). These changes were possible using just a few lines of code, demonstrating the power of <code>ggplot2</code> to create customized graphics. If you want to learn more about how these options work, play with the code above and use <code>?function</code> command to learn more about each function<a href="#fnref1">↩</a></p></li>
 </ol>
 </div>
   </div>
@@ -553,7 +556,7 @@ Cowbird range map
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
 </div>
       </footer>
 </div>

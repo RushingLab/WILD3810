@@ -54,6 +54,8 @@ navbar:
           href: articles/Lecture16/Lecture16.html
         - text: "Lecture 17: Source-sink dynamics"
           href: articles/Lecture17/Lecture17.html
+        - text: "Lecture 18: Intraspecific competition"
+          href: articles/Lecture18/Lecture18.html
     - icon: fas fa-desktop
       text: "Labs"
       menu:
