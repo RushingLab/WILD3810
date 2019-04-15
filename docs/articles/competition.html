@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Schedule (subject to change) • WILD3810</title>
+<title>Interspecific interactions: Competition • WILD3810</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Schedule (subject to change)">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Interspecific interactions: Competition">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -183,407 +183,312 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Schedule (subject to change)</h1>
-            <h3 class="subtitle">WILD3810: Plant and animal populations</h3>
-                        <h4 class="author">Spring 2019</h4>
+      <h1>Interspecific interactions: Competition</h1>
+                        <h4 class="author">WILD3810: Plant and animal populations</h4>
             
       
       
-      <div class="hidden name"><code>schedule.Rmd</code></div>
+      <div class="hidden name"><code>competition.Rmd</code></div>
 
     </div>
 
     
     
-<div id="lecture-schedule" class="section level1">
-<h1 class="hasAnchor">
-<a href="#lecture-schedule" class="anchor"></a>LECTURE SCHEDULE</h1>
-<table class="table table table-striped table-hover table-condensed table-responsive">
-<thead>
-<tr>
-<th style="border-bottom:hidden" colspan="1">
-</th>
-<th style="border-bottom:hidden; padding-bottom:0; padding-left:3px;padding-right:3px;text-align: center; " colspan="2">
-<div style="border-bottom: 1px solid #ddd; padding-bottom: 5px;">
-Lecture
+<p>In this lab, you will explore how the relative strength of intra- vs. inter-specific competition influences the joint dynamics of two competing species.</p>
+<hr>
+<p><strong>Objectives</strong></p>
+<ul>
+<li>Model the dynamics of a competing species using Lotka-Voltera models</li>
+</ul>
+<hr>
+<div id="creating-the-homework-assignment" class="section level3">
+<h3 class="hasAnchor">
+<a href="#creating-the-homework-assignment" class="anchor"></a>Creating the homework assignment</h3>
+<p>To complete this week’s homework assignment, you will follow along with the instructions below, entering code and answering questions in the <code>.Rmd</code> file for homework 9. From within Rstudio cloud:</p>
+<ol style="list-style-type: decimal">
+<li><p>Click on the <code>WILD3810</code> link under spaces</p></li>
+<li><p>Click the blue <code>New project</code> button at the top of the screen</p></li>
+<li><p>Rename the project <code>LastnameFirstname-HW9</code></p></li>
+<li><p>Navigate to <code>New file -&gt; R Markdown -&gt; From Template</code></p></li>
+<li><p>Scroll down to find <code>WILD3810-Homework9</code></p></li>
+<li><p>In the <code>Name</code> box type <code>LastnameFirstname-HW9</code></p></li>
+<li><p>Click <code>Ok</code></p></li>
+</ol>
 </div>
-</th>
-</tr>
-<tr>
-<th style="text-align:center;">
-Week (dates)
-</th>
-<th style="text-align:center;">
-M
-</th>
-<th style="text-align:center;">
-W
-</th>
-</tr>
-</thead>
-<tbody>
-<tr grouplength="5">
-<td colspan="3" style="background-color: #333333; color: #eeeeee;">
-<strong>Unit 1: Dynamics of unstructured populations</strong>
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-1 (Jan. 7 &amp; 9)
-</td>
-<td style="text-align:center;">
-Intro to WILD3810
-</td>
-<td style="text-align:center;">
-Abundance
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-2 (Jan. 14 &amp; 16)
-</td>
-<td style="text-align:center;">
-Density-independent population growth
-</td>
-<td style="text-align:center;">
-Density-dependent population growth
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-3 (Jan. 21 &amp; 23)
-</td>
-<td style="text-align:center;">
-MLK Holiday - no class
-</td>
-<td style="text-align:center;">
-Declining populations
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-4 (Jan. 28 &amp; 30)
-</td>
-<td style="text-align:center;">
-Stochastic population dynamics
-</td>
-<td style="text-align:center;">
-Dynamics of small populations
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-5 (Feb. 4 &amp; 6)
-</td>
-<td style="text-align:center;">
-Guest lecture - scientific writing
-</td>
-<td style="text-align:center;">
-Exam 1
-</td>
-</tr>
-<tr grouplength="7">
-<td colspan="3" style="background-color: #333333; color: #eeeeee;">
-<strong>Unit 2: Dynamics of structured populations</strong>
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-6 (Feb. 11 &amp; 13)
-</td>
-<td style="text-align:center;">
-Review Exam 1
-</td>
-<td style="text-align:center;">
-Life tables
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-7 (Feb. 18 &amp; 20)
-</td>
-<td style="text-align:center;">
-President’s Day - no class
-</td>
-<td style="text-align:center;">
-Life-history diversity
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-8 (Feb. 25 &amp; 27)
-</td>
-<td style="text-align:center;">
-Survival estimation
-</td>
-<td style="text-align:center;">
-Age-structured dynamics
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-9 (Mar. 4 &amp; 6)
-</td>
-<td style="text-align:center;">
-Matrix models
-</td>
-<td style="text-align:center;">
-Buffer
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-10 (Mar. 11 &amp; 13)
-</td>
-<td style="text-align:center;">
-Spring break - no class
-</td>
-<td style="text-align:center;">
-Spring break - no class
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-11 (Mar. 18 &amp; 20)
-</td>
-<td style="text-align:center;">
-Sensitivity and elasticity
-</td>
-<td style="text-align:center;">
-Life history strategies
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-12 (Mar. 25 &amp; 27)
-</td>
-<td style="text-align:center;">
-Exam 2
-</td>
-<td style="text-align:center;">
-Review exam 2
-</td>
-</tr>
-<tr grouplength="2">
-<td colspan="3" style="background-color: #333333; color: #eeeeee;">
-<strong>Unit 3: Spatial dynamics</strong>
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-13 (Apr. 1 &amp; 3)
-</td>
-<td style="text-align:center;">
-Metapopulation dynamics
-</td>
-<td style="text-align:center;">
-Source-sink dynamics
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-14 (Apr. 8 &amp; 10)
-</td>
-<td style="text-align:center;">
-Occupancy
-</td>
-<td style="text-align:center;">
-Buffer
-</td>
-</tr>
-<tr grouplength="2">
-<td colspan="3" style="background-color: #333333; color: #eeeeee;">
-<strong>Unit 4: Species interactions</strong>
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-15 (Apr. 15 &amp; 17)
-</td>
-<td style="text-align:center;">
-Competition
-</td>
-<td style="text-align:center;">
-Predator-prey dynamics
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-16 (Apr. 22 &amp; 24)
-</td>
-<td style="text-align:center;">
-Harvest dynamics
-</td>
-<td style="text-align:center;">
-No class
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="lab-schedule" class="section level1">
-<h1 class="hasAnchor">
-<a href="#lab-schedule" class="anchor"></a>LAB SCHEDULE</h1>
-<table class="table table table-striped table-hover table-condensed table-responsive">
+<div id="the-species" class="section level2">
+<h2 class="hasAnchor">
+<a href="#the-species" class="anchor"></a>The species</h2>
+<p>In this lab, we’ll imagine we have data on two competing frog species. The species inhabit the same breeding ponds and compete with each other for similar, though not totally overlapping, food resources. To start, we’ll assume the following parameters correspond to the two species in the pond where we are conducting our experiment:</p>
+<table class="table">
+<caption>
+Demographic parameters of two competing frog species
+</caption>
 <thead><tr>
 <th style="text-align:center;">
-Week (date)
+Parameter
 </th>
 <th style="text-align:center;">
-Topic
+Species 1
+</th>
+<th style="text-align:center;">
+Species 2
 </th>
 </tr></thead>
 <tbody>
-<tr grouplength="6">
-<td colspan="2" style="background-color: #333333; color: #eeeeee;">
-<strong>Unit 1: Dynamics of unstructured populations</strong>
+<tr>
+<td style="text-align:center;">
+K
+</td>
+<td style="text-align:center;">
+200.0
+</td>
+<td style="text-align:center;">
+200.0
 </td>
 </tr>
 <tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-1 (Jan. 7)
+<td style="text-align:center;">
+r
 </td>
 <td style="text-align:center;">
-No lab
+0.1
+</td>
+<td style="text-align:center;">
+0.1
 </td>
 </tr>
 <tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-2 (Jan. 14)
+<td style="text-align:center;">
+a
 </td>
 <td style="text-align:center;">
-Introduction to R/Abundance estimation
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-3 (Jan. 21)
+1.2
 </td>
 <td style="text-align:center;">
-MLK Holiday - no lab
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-4 (Jan. 28)
-</td>
-<td style="text-align:center;">
-Introduction to R/Modeling population growth
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-5 (Feb. 4)
-</td>
-<td style="text-align:center;">
-Population viability analysis
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-6 (Feb. 11)
-</td>
-<td style="text-align:center;">
-TBD
-</td>
-</tr>
-<tr grouplength="6">
-<td colspan="2" style="background-color: #333333; color: #eeeeee;">
-<strong>Unit 2: Dynamics of structured populations</strong>
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-7 (Feb. 18)
-</td>
-<td style="text-align:center;">
-President’s Day - no lab
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-8 (Feb. 25)
-</td>
-<td style="text-align:center;">
-Life tables
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-9 (Mar. 4)
-</td>
-<td style="text-align:center;">
-Survival estimation
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-10 (Mar. 11)
-</td>
-<td style="text-align:center;">
-Spring break - no lab
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-11 (Mar. 18)
-</td>
-<td style="text-align:center;">
-Matrix population projections
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-12 (Mar. 25)
-</td>
-<td style="text-align:center;">
-Elasticity analysis and comparison of life history strategies
-</td>
-</tr>
-<tr grouplength="2">
-<td colspan="2" style="background-color: #333333; color: #eeeeee;">
-<strong>Unit 3: Spatial dynamics</strong>
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-13 (Apr. 1)
-</td>
-<td style="text-align:center;">
-Metapopulation models
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-14 (Apr. 8)
-</td>
-<td style="text-align:center;">
-Occupancy models
-</td>
-</tr>
-<tr grouplength="2">
-<td colspan="2" style="background-color: #333333; color: #eeeeee;">
-<strong>Unit 4: Species interactions</strong>
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-15 (Apr. 15)
-</td>
-<td style="text-align:center;">
-Compensatory predation
-</td>
-</tr>
-<tr>
-<td style="text-align:center; padding-left: 2em;" indentlevel="1">
-16 (Apr. 22)
-</td>
-<td style="text-align:center;">
-Harvest dynamics
+0.9
 </td>
 </tr>
 </tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>1</sup> K = carrying capacity
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>2</sup> r = population growth rate
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>3</sup> a = relatives strength of inter-specific competition
+</td>
+</tr>
+</tfoot>
 </table>
+<p>Remember from the lecture the Lotka-Voltera competition model (written in a slightly different format here):</p>
+<p><span class="math display">\[\large \frac{dN_1}{dt} = r_AN_1\bigg(\frac{K_1 - [N_1 + a_{21} N_2]}{K_1}\bigg)\]</span></p>
+<p><span class="math display">\[\large \frac{dN_2}{dt} = r_2N_2\bigg( \frac{K_2 - [N_2 + a_{12} N_1]}{K_2}\bigg)\]</span></p>
+<p>So <span class="math inline">\(a_{12}\)</span> is the effect that adding one individual of species 1 has on the growth rate of species 2 (inter-specific competition) and <span class="math inline">\(a_{21}\)</span> is the effect that adding one individual of species 2 has on the growth rate of species 1.</p>
+<hr>
+<p>Using the information above, answer question 2 on the homework assignment</p>
+<hr>
+<p>In the chunk named ‘isocline’, create objects to store the carrying capacity, growth rate, and competitive ability of each species.</p>
+<hr>
+<p>Be sure to change <code>eval = FALSE</code> to <code>eval = TRUE</code> on line 46 and then knit the document. Use the figure that is created by that chunk to answer questions 3a-3c</p>
+<hr>
+<p>In the chunk named ‘experiment1’, set the initial abundances of each population to any value of your choosing. Change <code>eval = FALSE</code> to <code>eval = TRUE</code> in the chunk options and then knit the document to run the code.</p>
+<hr>
+<p>Use the figure that is created by the <code>experiment1</code> chunk to answer questions 4a-4b</p>
+<hr>
+</div>
+<div id="when-competitive-exclusion-is-not-a-given" class="section level2">
+<h2 class="hasAnchor">
+<a href="#when-competitive-exclusion-is-not-a-given" class="anchor"></a>When competitive exclusion is not a given</h2>
+<p>Now imagine two species with slightly different competitive abilities:</p>
+<table class="table">
+<caption>
+Demographic parameters of two competing frog species
+</caption>
+<thead><tr>
+<th style="text-align:center;">
+Parameter
+</th>
+<th style="text-align:center;">
+Species 1
+</th>
+<th style="text-align:center;">
+Species 2
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+K
+</td>
+<td style="text-align:center;">
+200.00
+</td>
+<td style="text-align:center;">
+200.00
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+r
+</td>
+<td style="text-align:center;">
+0.10
+</td>
+<td style="text-align:center;">
+0.10
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;">
+0.85
+</td>
+<td style="text-align:center;">
+0.75
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>1</sup> K = carrying capacity
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>2</sup> r = population growth rate
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>3</sup> a = relatives strength of inter-specific competition
+</td>
+</tr>
+</tfoot>
+</table>
+<hr>
+<p>Using the information above, answer question 5 on the homework assignment</p>
+<hr>
+<p>In the chunk named ‘isocline2’, create objects to store the carrying capacity, growth rate, and competitive ability of the new species.</p>
+<hr>
+<p>Be sure to change <code>eval = FALSE</code> to <code>eval = TRUE</code> in the chunk options and then knit the document. Use the figure that is created by that chunk to answer question 6</p>
+<hr>
+<p>In the chunk named ‘experiment2’, set the initial abundances of each population to any value of your choosing. Change <code>eval = FALSE</code> to <code>eval = TRUE</code> in the chunk options and then knit the document to run the code.</p>
+<hr>
+<p>Use the figure that is created by the <code>experiment2</code> chunk to answer question 7a</p>
+<hr>
+<p>Now start with different initial conditions. In the chunk named ‘experiment3’, set the initial abundances of each population start in a different quadrant of the graph. Change <code>eval = FALSE</code> to <code>eval = TRUE</code> in the chunk options and then knit the document to run the code.</p>
+<hr>
+<p>Use the figure that is created by the <code>experiment3</code> chunk to answer question 7b</p>
+<hr>
+<p>Finally, we’ll imagine a new pair of species with the following parameters:</p>
+<table class="table">
+<caption>
+Demographic parameters of two competing frog species
+</caption>
+<thead><tr>
+<th style="text-align:center;">
+Parameter
+</th>
+<th style="text-align:center;">
+Species 1
+</th>
+<th style="text-align:center;">
+Species 2
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+K
+</td>
+<td style="text-align:center;">
+200.0
+</td>
+<td style="text-align:center;">
+200.0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+r
+</td>
+<td style="text-align:center;">
+0.1
+</td>
+<td style="text-align:center;">
+0.1
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+a
+</td>
+<td style="text-align:center;">
+1.2
+</td>
+<td style="text-align:center;">
+1.4
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>1</sup> K = carrying capacity
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>2</sup> r = population growth rate
+</td>
+</tr>
+<tr>
+<td style="padding: 0; border: 0;" colspan="100%">
+<sup>3</sup> a = relatives strength of inter-specific competition
+</td>
+</tr>
+</tfoot>
+</table>
+<hr>
+<p>Using the information above, answer question 8 on the homework assignment</p>
+<hr>
+<p>In the chunk named ‘isocline3’, create objects to store the carrying capacity, growth rate, and competitive ability of the new species.</p>
+<hr>
+<p>Be sure to change <code>eval = FALSE</code> to <code>eval = TRUE</code> in the chunk options and then knit the document. Use the figure that is created by that chunk to answer question 9</p>
+<hr>
+<p>In the chunk named ‘experiment4’, set the initial abundances of each population so that species 1 starts at a low abundance and species 2 starts at a high abundance (aim to start on the left hand side of regions A or B or within region C). Change <code>eval = FALSE</code> to <code>eval = TRUE</code> in the chunk options and then knit the document to run the code.</p>
+<hr>
+<p>Use the figure that is created by the <code>experiment4</code> chunk to answer question 10a</p>
+<hr>
+<p>Now start with different initial conditions. In the chunk named ‘experiment5’, set the initial abundances of each population start in a different quadrant of the graph (aim to start on the right side with high abundance of species 1 and low abundance of species 2). Change <code>eval = FALSE</code> to <code>eval = TRUE</code> in the chunk options and then knit the document to run the code.</p>
+<hr>
+<p>Use the figure that is created by the <code>experiment5</code> chunk to answer question 10b</p>
+<hr>
+<div id="turning-in-your-assignment" class="section level3">
+<h3 class="hasAnchor">
+<a href="#turning-in-your-assignment" class="anchor"></a>Turning in your assignment</h3>
+<ol style="list-style-type: decimal">
+<li><p>In the <code>Files</code> pane (bottom right), navigate to the <code>LastnameFirstname_HW9.Rmd</code> and <code>LastnameFirstname_HW9.html</code> files</p></li>
+<li><p>Click on the square button next to each file to select them</p></li>
+<li><p>Click on the <code>More</code> button</p></li>
+<li><p>Click <code>Export</code></p></li>
+<li><p>Select the location on your computer where you want to save the .zip file</p></li>
+<li><p>Decompress the .zip file</p></li>
+<li><p>Log in to Canvas</p></li>
+<li><p>Go to <code>Homework 9</code> assignment page</p></li>
+<li><p>Upload your files</p></li>
+</ol>
+</div>
 </div>
   </div>
 
@@ -592,8 +497,8 @@ Harvest dynamics
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li><a href="#lecture-schedule">LECTURE SCHEDULE</a></li>
-      <li><a href="#lab-schedule">LAB SCHEDULE</a></li>
+<li><a href="#the-species">The species</a></li>
+      <li><a href="#when-competitive-exclusion-is-not-a-given">When competitive exclusion is not a given</a></li>
       </ul>
 </div>
       </div>

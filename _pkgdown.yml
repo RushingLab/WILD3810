@@ -56,6 +56,8 @@ navbar:
           href: articles/Lecture17/Lecture17.html
         - text: "Lecture 18: Intraspecific competition"
           href: articles/Lecture18/Lecture18.html
+        - text: "Lecture 19: Predation"
+          href: articles/Lecture19/Lecture19.html
     - icon: fas fa-desktop
       text: "Labs"
       menu:
@@ -75,6 +77,8 @@ navbar:
           href: articles/matrix_models2.html
         - text: "Lab 8: Source-sink metapopulation dynamics"
           href: articles/source-sink.html
+        - text: "Lab 9: Inter-specific competition"
+          href: articles/competition.html
     - icon: fas fa-pencil-square-o
       text: "Assignments"
       href: articles/homework.html
