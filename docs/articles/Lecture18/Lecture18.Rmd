@@ -370,9 +370,9 @@ $$\large \frac{dN_2}{dt} = r_2N_2\bigg( \frac{K_2 - [N_2 + \beta N_1]}{K_2}\bigg
 
 - $\large 0 < \alpha < 1$ = interspecific comp < intraspecific comp
  
-- $\large \alpha > 1$ = is not biologically feasible 
+- $\large \alpha > 1$ = interspecific comp > intraspecific comp (rare) 
 
-- same relatioships can be written for $\large \beta$
+- same relationships can be written for $\large \beta$
 
 ---
 ## Lotka-Volterra competition model
