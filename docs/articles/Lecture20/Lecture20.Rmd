@@ -298,6 +298,7 @@ knitr::include_graphics("figs/elk_surv.png")
 
 - Additive vs. compensatory
 
+- Who gets killed?
 
 --
 #### Central questions to many modern issues in natural resource management
