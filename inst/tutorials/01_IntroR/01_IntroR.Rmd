@@ -28,7 +28,7 @@ Even if you don't pursue a career in one of these fields, the ability to manipul
 
 As a statistical programming tool, one thing R is very good at is doing math. So as a starting point, let's treat R like a fancy calculator. 
 
-We interact with this calculator by typing number and operators (+, -, *, /) into the `Console` window.
+We interact with this calculator by typing numbers and operators (+, -, *, /) into the `Console` window.
 
 Let's try it - in the window below (the Console), write the R code required to add two plus two and then click `Run Code`:
 
@@ -72,7 +72,7 @@ After running it, print the new object `y` to see its value. Were you right?
 
 ## Naming objects
 
-It's a good idea to give objects names that tell you something about what the object represents. Names can be as long as you want them to be but should not have spaces (just remember long names require more typing so brevity is a good rule of thumb). Names also cannot start with a number and R is case-sensitive so, for example, `Apple` is *not* the same as `apple`. 
+It's a good idea to give objects names that tell you something about what the object represents. Names can be as long as you want them to be but should not have spaces (also remember long names require more typing so brevity is a good rule of thumb). Names also cannot start with a number and R is case-sensitive so, for example, `Apple` is *not* the same as `apple`. 
 
 ## Exercise 1: Lincoln-Peterson estimator
 
@@ -92,13 +92,13 @@ n2 <-
 m2 <- 
 ```
 
-Now add, a new line of code below `m2 <- ` to estimate $N$ from our newly created objects. 
+Now add a new line of code below `m2 <- ` to estimate $N$ from our newly created objects. 
 
 ## Commenting your code
 
 R will ignore any code that follows a `#`. This is *very* useful for making your code more readable for both yourself and others. Use comments to remind yourself what a newly created object is, to explain what a line of code does, to leave yourself a reminder for later, etc. For example, in the previous code, it might be a good idea to use comments to define what each object represents:
 
-```{r LP, exercise=TRUE}
+```{r LP_comment, exercise=TRUE}
 n1 <- 45     # Number of individuals captured on first occasion
 
 n2 <- 32     # Number of individuals captured on second occasion
@@ -108,7 +108,57 @@ m2 <- 15     # Number of previously marked individuals captured on second occasi
 
 Notice that when you run this code, R ignores our comments. 
 
-## 
+## Built-in functions
+
+The power of `R` is most apparent in the large number of built-in functions that are available for users.  
+Functions are small bits of code that perform a specific task. Most functions accept one or more inputs called arguments and return a value or a new object.  
+
+In the Lincoln-Peterson example, rather than typing `n1 * n2` we could use the function `prod()`. Prod takes as arguments 2 or more numbers (separated by commas) and returns the product:
+
+```{r product, exercise=FALSE}
+n1 <- 45     # Number of individuals captured on first occasion
+
+n2 <- 32     # Number of individuals captured on second occasion
+
+numerator <- prod(n1, n2)
+numerator
+
+```
+
+Here, we provided `n1` and `n2` are arguments and `prod` created a new object called `numerator` which is the product of our two value. It may seem silly to use a function in this case (it didn't save us much work afterall) but this type of function can be useful if you had a longer set of values and didn't want to type them manually to get the product
+
+### Built-in functions
+
+Every function takes a different set of arguments and in most cases you will need to look what those arguments are. The best way to get help for a specific function is to type a question mark followed by the function name:
+
+```{r help}
+?prod
+```
+
+If you provide the arguments in the exact same order as they are defined you don’t have to name them:
+
+round(3.14159, 2)
+
+#> [1] 3.14
+
+And if you do name the arguments, you can switch their order:
+
+round(digits = 2, x = 3.14159)
+
+#> [1] 3.14
+
+It’s good practice to put the non-optional arguments (like the number you’re rounding) first in your function call, and to specify the names of all optional arguments. If you don’t, someone reading your code might have to look up the definition of a function with unfamiliar arguments to understand what you’re doing.
+
+```{r prod, exercise=TRUE}
+n1 <- 45     # Number of individuals captured on first occasion
+
+n2 <- 32     # Number of individuals captured on second occasion
+
+numerator <- prod(n1, n2)
+
+numerator
+```
+
 *You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
 
 Some questions to verify that you understand the purposes of various base and recommended R packages:
