@@ -122,7 +122,7 @@ All computer-based lab activities will use the free programming language [R](htt
 
 ### Option 1: RStudio Cloud (recommended)
 
-The easiest way to access R, RStudio, and all of the lab materials for WILD3810 is to use [RStudio Cloud](). RStudio Cloud provides a fully operational instance of RStudio If you wish to use RStudio Cloud that can be accessed from any computer with an internet connection. Once logged in, you will have access to the WILD3810 workspace, which will have all necessary packages and materials pre-installed. You can start your homework assignments on the lab computers, save your work, and pick up right where you left off from your personal computer. No need to install anything, no configuration issues, no problems. If you wish to use RStudio Cloud, follow these steps:
+The easiest way to access R, RStudio, and all of the lab materials for WILD3810 is to use [RStudio Cloud](https://rstudio.cloud/). RStudio Cloud provides a fully operational instance of RStudio If you wish to use RStudio Cloud that can be accessed from any computer with an internet connection. Once logged in, you will have access to the WILD3810 workspace, which will have all necessary packages and materials pre-installed. You can start your homework assignments on the lab computers, save your work, and pick up right where you left off from your personal computer. No need to install anything, no configuration issues, no problems. If you wish to use RStudio Cloud, follow these steps:
 
 1) Create an RStudio Cloud account
 
