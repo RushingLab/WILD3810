@@ -1,7 +1,7 @@
 ---
 title: "Syllabus"
 subtitle: "WILD3810: Plant and animal populations"
-author: "Spring 2019"
+author: "Spring 2020"
 output: 
   rmarkdown::html_vignette:
     keep_md: yes
@@ -31,9 +31,9 @@ Dr. Clark Rushing
 **Office hours**: Monday and Wednesday 1:00-2:30
 
 # TEACHING ASSISTANT
-Lauren Ricci  
+Kim Savides 
 [lauren.e.ricci@gmail.com](lauren.e.ricci@gmail.com)   
-**Office**: NR 233   
+**Office**: JQL 145   
 **Office hours**: By appointment
 
 # PREREQUISITES
@@ -42,7 +42,7 @@ WATS 2220 or BIOL 2220; MATH 110 or higher (C- grade or better); STAT 2000 or ST
 
 # COURSE DESCRIPTION
 
-This course is designed to introduce and review the factors that regulate and cause change in plant and animal populations.  The relevance of population dynamics to conservation, management, ecology, and evolution will be covered.  We will examine single-species, multi-species, age-structured, size-structured, and spatial models of population dynamics, as well as life history strategies.  In addition to ecological concepts, students will be introduced to mathematical techniques and computer software that will allow them to examine population dynamics on their own as they embark on their careers.  
+This course is designed to introduce and review the factors that regulate and cause change in plant and animal populations. The relevance of population dynamics to conservation, management, ecology, and evolution will be covered. We will examine single-species, multi-species, age-structured, size-structured, and spatial models of population dynamics, as well as life history strategies.  In addition to ecological concepts, students will be introduced to mathematical techniques and computer software that will allow them to examine population dynamics on their own as they embark on their careers.  
 
 # COURSE OBJECTIVES
 
@@ -65,7 +65,7 @@ Lectures will cover basic concepts regarding the dynamics of plant and animal po
 
 ## Labs
 
-Labs will consist primarily of computer-oriented sessions designed to help solidify the topics presented in lecture. All computer-based lab activities will use the free programming language [R](https://cran.r-project.org/). In addition, we will run R using [RStudio](https://www.rstudio.com/), a powerful *integrated development environment* (IDE) for R. Labs will meet in Quinney Library 306.  You are welcome to use your own personal laptop computer (see below for instructions for installing R and RStudio if you plan to use your own computer). Much of the demonstration of how demography and population dynamics are monitored and assessed in the field will be covered in WILD 2400 and WILD 4750.   
+Labs will consist primarily of computer-oriented sessions designed to help solidify the topics presented in lecture. All computer-based lab activities will use the free programming language [R](https://cran.r-project.org/). In addition, we will run R using [RStudio](https://www.rstudio.com/), a powerful *integrated development environment* (IDE) for R. Labs will meet in Life Sciences Building 225.  You are welcome to use your own personal laptop computer (see below for instructions for installing R and RStudio if you plan to use your own computer). Much of the demonstration of how demography and population dynamics are monitored and assessed in the field will be covered in WILD 2400 and WILD 4750.   
 
 No previous experience with R is expected for this course. Lab activities, particularly those early in the semester, will be specifically designed to reinforce lecture topics as well as to introduce students to manipulating, analyzing, and visualizing data using R. 
 
@@ -118,13 +118,33 @@ PDF versions of all chapters are available for free [here](http://larkinpowell.w
 
 ## Software
 
-All lab computers will have R and RStudio installed on them so students are not required to install software on their own computers. However, students are free to use their own laptops during lab and having R and RStudio installed will make it easier to complete lab assignments outside of class. Any students wishing to use their own computers **should have both R and RStudio installed and running prior to the first lab**. Detailed instructions for installing both programs can be found [here](http://stat545.com/block000_r-rstudio-install.html). If you plan to use your own computer, be sure to test that you have everything installed correctly by doing the following: 
+All computer-based lab activities will use the free programming language [R](https://cran.r-project.org/). In addition, we will run R using [RStudio](https://www.rstudio.com/), a powerful *integrated development environment* (IDE) for R. Students have 3 options for accessing R and RStudio:
+
+### Option 1: RStudio Cloud (recommended)
+
+The easiest way to access R, RStudio, and all of the lab materials for WILD3810 is to use [RStudio Cloud](). RStudio Cloud provides a fully operational instance of RStudio If you wish to use RStudio Cloud that can be accessed from any computer with an internet connection. Once logged in, you will have access to the WILD3810 workspace, which will have all necessary packages and materials pre-installed. You can start your homework assignments on the lab computers, save your work, and pick up right where you left off from your personal computer. No need to install anything, no configuration issues, no problems. If you wish to use RStudio Cloud, follow these steps:
+
+1) Create an RStudio Cloud account
+
+2) Send me your username
+
+3) I will send you an invitation to join the course workspace
+
+That's it. We'll go over how to set up projects on the cloud during the first lab. See the following link for [instructions on turning in assignments that are completed on the cloud](https://rushinglab.github.io/WILD3810/articles/homework.html).
+
+### Option 2: Install R and RStudio on your personal computer
+
+RStudio Cloud is without a doubt the most frictionless way for students to complete lab activities. However, students are free to use their own laptops, which may come in handy if you plan to use R after the course is over. Any students wishing to use their own computers **should have both R and RStudio installed and running prior to the first lab**. Detailed instructions for installing both programs can be found [here](http://stat545.com/block000_r-rstudio-install.html). If you plan to use your own computer, be sure to test that you have everything installed correctly by doing the following: 
 
 1) Launch RStudio
 
-2) Put the cursor in the window labelled `Console`. Type the following code followed by enter or return: `x <- 2 * 4`. Next type `x` followed by enter or return. You should see the value 8 print to screen. If yes, you’ve succeeded in installing R and RStudio.
+2) Put the cursor in the window labelled `Console`. Type the following code and then press `enter` or `return`: `x <- 2 * 4`. Next type `x` and press `enter` or `return`. You should see the value `8` print to screen. If yes, you’ve succeeded in installing R and RStudio.
 
 If you encounter any problems with the previous steps, please contact me prior to the first lab. 
+
+### Option 3: Use the lab computers (not recommended)
+
+Students are not required to install software on their own computers or use RStudio Cloud. All lab computers in LSB and the Quinney Library have R and RStudio installed on them and students can use these computers to complete all lab activities. However, the LSB computers are not accessible outside of class time so students wishing to use this option will need to save their work on a thumb drive (or email it to themselves) and then complete assignments on computers in the Quinney Library (or any other computer with R and RStudio installed on them). Be warned, however, that **there is no guarantee that lab computers have updated software or packages** which can cause problems accessing course material. For this reason, option 3 is not recommended. 
 
 # HONORS STUDENTS
 
@@ -133,17 +153,17 @@ This class is offered as an Honors Class on a contract basis. Those students wis
 
 # ATTENDANCE 
 
-If you have an anticipated absence, please notify me at least 1 day prior to the absence. It is your responsibility to make up for the materials missed in the event of a lecture or lab absence.  Your attendance on specified exam dates is mandatory.  Exams will be announced 1 week prior to the exam date in class.  Make-up exams will be administered in only the most extreme circumstances.  Excuses for absence due to illness, death in the family, or other unanticipated events will be handled on a case-by-case basis and must be documented.    
+If you have an anticipated absence, please notify me at least 1 day prior to the absence. It is your responsibility to make up for the materials missed in the event of a lecture or lab absence.  Your attendance on specified exam dates is mandatory.  Exams will be announced at least 1 week prior to the exam date in class.  Make-up exams will be administered in only the most extreme circumstances.  Excuses for absence due to illness, death in the family, or other unanticipated events will be handled on a case-by-case basis and must be documented.    
 
 # GRADING
 
 Your course grade will be based on the following:  
 
-* Lab assignments (10 total) - 400 points (40%)
-* Quizzes (10 total) - 100 points (10%)
-* Midterm exams (2 total) - 200 points (20%)
-* Final exam - 250 points (25%)
-* Lecture attendance - 50 points (5%)
+* Lab assignments (10 total, 20 points each) - 200 points (40%)
+* Quizzes (10 total, 5 points each) - 50 points (10%)
+* Midterm exams (2 total, 50 points each) - 100 points (20%)
+* Final exam - 125 points (25%)
+* Lecture attendance - 25 points (5%)
   
 
 # GRADING SCALE
@@ -155,10 +175,10 @@ grades <- data.frame(Grade = c("A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+"
                                    "87-89.9%", "83-86.9%", "80-82.9%", 
                                    "77-79.9%", "73-76.9%", "70-72.9%",
                                    "67-69.9%", "60-66.9%", "59.9% and below"),
-                       Points = c("930-1000", "900-929", 
-                                   "870-899", "830-869", "800-829", 
-                                   "770-799", "730-769", "700-729",
-                                   "670-699", "600-669", "0-599"))
+                       Points = c("465-500", "450-464", 
+                                  "435-449", "415-434", "400-414", 
+                                  "385-399", "365-384", "350-364",
+                                  "335-349", "300-334", "0-299"))
 
 grades %>%
   kable("html", col.names = c("GRADE", "% RANGE", "POINT RANGE"), align = 'c') %>%

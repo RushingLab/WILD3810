@@ -16,9 +16,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-All homework assignments for this course will be completed R Markdown files. To make the distribution, completion, and grading easier, each homework will follow the same workflow. 
+All homework assignments for this course will be completed R Markdown files. To make the distribution, completion, and grading easier, each homework will follow the same workflow. Detailed instructions for creating and submitting homeworks assignments depend on whether you are using RStudio Cloud or a local installation of RStudio:
 
-# Homework steps
+# Homework steps for RStudio Cloud
 
 ## Step 1: Create a new directory to store your homework files
 
