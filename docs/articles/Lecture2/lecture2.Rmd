@@ -411,7 +411,7 @@ knitr::include_graphics("pelican.jpg")
 
 ???
 
-$^7$ Capture histories can be created from resighting marks that can be seen from a distance
+Capture histories can be created from resighting marks that can be seen from a distance
 
 Photo Credit: Rick Kimble/USFWS
 
