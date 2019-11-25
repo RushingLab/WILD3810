@@ -23,10 +23,10 @@ knitr::opts_chunk$set(
 
 ```{r lecture_schedule, echo = FALSE}
 library(kableExtra)
-schedule <- data.frame(Week = c("1 (Jan. 7 & 9)", "2 (Jan. 14 & 16)", "3 (Jan. 21 & 23)", "4 (Jan. 28 & 30)",
-                                "5 (Feb. 4 & 6)", "6 (Feb. 11 & 13)", "7 (Feb. 18 & 20)", "8 (Feb. 25 & 27)",
-                                "9 (Mar. 4 & 6)", "10 (Mar. 11 & 13)", "11 (Mar. 18 & 20)", "12 (Mar. 25 & 27)",
-                                "13 (Apr. 1 & 3)", "14 (Apr. 8 & 10)", "15 (Apr. 15 & 17)", "16 (Apr. 22 & 24)"),
+schedule <- data.frame(Week = c("1 (Jan. 6 & 8)", "2 (Jan. 13 & 15)", "3 (Jan. 20 & 22)", "4 (Jan. 27 & 29)",
+                                "5 (Feb. 3 & 5)", "6 (Feb. 10 & 12)", "7 (Feb. 17 & 19)", "8 (Feb. 24 & 26)",
+                                "9 (Mar. 2 & 4)", "10 (Mar. 9 & 11)", "11 (Mar. 16 & 18)", "12 (Mar. 23 & 25)",
+                                "13 (Mar. 30 & Arp. 1)", "14 (Apr. 6 & 8)", "15 (Apr. 13 & 15)", "16 (Apr. 20 & 22)"),
                        M = c("Intro to WILD3810", 
                              "Density-independent population growth", 
                              "MLK Holiday - no class", 
@@ -34,7 +34,7 @@ schedule <- data.frame(Week = c("1 (Jan. 7 & 9)", "2 (Jan. 14 & 16)", "3 (Jan. 2
                               "Guest lecture - scientific writing", 
                               "Review Exam 1", 
                              "President's Day - no class", "Survival estimation",
-                             "Matrix models", "Spring break - no class", 
+                             "Spring break - no class", "Age-structured dynamics", 
                              "Sensitivity and elasticity", "Exam 2",
                              "Metapopulation dynamics", "Occupancy", 
                              "Competition", "Harvest dynamics"),
@@ -43,8 +43,8 @@ schedule <- data.frame(Week = c("1 (Jan. 7 & 9)", "2 (Jan. 14 & 16)", "3 (Jan. 2
                              "Declining populations",
                               "Dynamics of small populations",
                              "Exam 1", "Life tables", 
-                             "Life-history diversity", "Age-structured dynamics",
-                             "Buffer", "Spring break - no class", 
+                             "Life-history diversity", 
+                             "Buffer", "Spring break - no class", "Matrix models",
                              "Life history strategies", "Review exam 2",
                              "Source-sink dynamics", "Buffer", 
                              "Predator-prey dynamics", "No class"))
@@ -63,10 +63,10 @@ schedule %>%
 # LAB SCHEDULE
 ```{r lab_schedule, echo = FALSE}
 library(kableExtra)
-labs <- data.frame(Week = c("1 (Jan. 7)", "2 (Jan. 14)", "3 (Jan. 21)", "4 (Jan. 28)",
-                                "5 (Feb. 4)", "6 (Feb. 11)", "7 (Feb. 18)", "8 (Feb. 25)",
-                                "9 (Mar. 4)", "10 (Mar. 11)", "11 (Mar. 18)", "12 (Mar. 25)",
-                                "13 (Apr. 1)", "14 (Apr. 8)", "15 (Apr. 15)", "16 (Apr. 22)"),
+labs <- data.frame(Week = c("1 (Jan. 6)", "2 (Jan. 13)", "3 (Jan. 20)", "4 (Jan. 27)",
+                                "5 (Feb. 3)", "6 (Feb. 10)", "7 (Feb. 17)", "8 (Feb. 24)",
+                                "9 (Mar. 2)", "10 (Mar. 9)", "11 (Mar. 16)", "12 (Mar. 23)",
+                                "13 (Mar. 30)", "14 (Apr. 6)", "15 (Apr. 13)", "16 (Apr. 20)"),
                    Topic = c("No lab", 
                              "Introduction to R/Abundance estimation", 
                              "MLK Holiday - no lab",  
@@ -75,8 +75,8 @@ labs <- data.frame(Week = c("1 (Jan. 7)", "2 (Jan. 14)", "3 (Jan. 21)", "4 (Jan.
                              "TBD", 
                              "President's Day - no lab", 
                              "Life tables",
-                             "Survival estimation", 
                              "Spring break - no lab", 
+                             "Survival estimation", 
                              "Matrix population projections", 
                              "Elasticity analysis and comparison of life history strategies",
                              "Metapopulation models", 

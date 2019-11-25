@@ -1,5 +1,5 @@
 Package: WILD3810
-Version: 2019.1
+Version: 2020.1
 Title: WILD3810: Plant and Animal Populations
 Description: Course package for WILD3810: Plant and Animal Populations at Utah State University. This package primarily exists to distribute data, code, and other materials in an efficient manner.
 Authors@R: person("Clark", "Rushing", email = "clark.rushing@usu.edu", role = c("aut", "cre"))

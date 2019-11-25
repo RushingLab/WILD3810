@@ -124,7 +124,11 @@ All computer-based lab activities will use the free programming language [R](htt
 
 The easiest way to access R, RStudio, and all of the lab materials for WILD3810 is to use [RStudio Cloud](https://rstudio.cloud/). RStudio Cloud provides a fully operational instance of RStudio If you wish to use RStudio Cloud that can be accessed from any computer with an internet connection. Once logged in, you will have access to the WILD3810 workspace, which will have all necessary packages and materials pre-installed. You can start your homework assignments on the lab computers, save your work, and pick up right where you left off from your personal computer. No need to install anything, no configuration issues, no problems. If you wish to use RStudio Cloud, follow these steps:
 
-1) Create an RStudio Cloud account
+1) Create an RStudio Cloud account. Go to the [RStudio Cloud](https://rstudio.cloud/) website. At the top right, click `Sign up` and follow the instructions to create an account
+
+```{r echo = FALSE, out.width="600px"}
+knitr::include_graphics("figs/RStudio-Cloud-signup.png")
+```
 
 2) Send me your username
 
