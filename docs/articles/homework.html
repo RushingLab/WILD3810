@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">WILD3810</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2019.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.1</span>
       </span>
     </div>
 
@@ -58,77 +58,7 @@
     Schedule
   </a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-file-pdf-o"></span>
-     
-    Lectures
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-<li>
-      <a href="../articles/Lecture0/Lecture0.html">Lecture 0: Introduction to WILD3810</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture1/Lecture1.html">Lecture 1: Introduction to population ecology</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture2/lecture2.html">Lecture 2: How many are there? Estimating abundance</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture3/lecture3.html">Lecture 3: Introduction to population growth</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture4/Lecture4.html">Lecture 4: Density-dependent population growth</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture6/lecture6.html">Lecture 6: Stochasticity</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture7/Lecture7.html">Lecture 7: Dynamics of small populations</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture8/Lecture8.html">Lecture 8: Life Tables</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture9/Lecture9.html">Lecture 9: Survival estimation</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture10/Lecture10.html">Lecture 10: Reproduction</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture11/Lecture11.html">Lecture 11: Introduction to matrix projection models</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture12/Lecture12.html">Lecture 12: Stage-structured population models</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture13/Lecture13.html">Lecture 13: Reproductive value, sensitivity, and elasticity</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture14/Lecture14.html">Lecture 14: Life history variation</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture15/Lecture15.html">Lecture 15: Metapopulation models</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture16/Lecture16.html">Lecture 16: Metapopulation models II</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture17/Lecture17.html">Lecture 17: Source-sink dynamics</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture18/Lecture18.html">Lecture 18: Intraspecific competition</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture19/Lecture19.html">Lecture 19: Predation</a>
-    </li>
-    <li>
-      <a href="../articles/Lecture20/Lecture20.html">Lecture 20: Predation, part II</a>
-    </li>
-  </ul>
-</li>
+<li class="dropdown-header">Lectures</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     <span class="fas fa fas fa-desktop"></span>
@@ -143,27 +73,6 @@
     </li>
     <li>
       <a href="../articles/rmarkdown_intro.html">Lab 1b: Introduction to R Markdown</a>
-    </li>
-    <li>
-      <a href="../articles/lab2.html">Lab 2: Modeling population dynamics</a>
-    </li>
-    <li>
-      <a href="../articles/lab3.html">Lab 3: Population viability analysis</a>
-    </li>
-    <li>
-      <a href="../articles/life_table.html">Lab 4: Building and interpreting static life tables</a>
-    </li>
-    <li>
-      <a href="../articles/matrix_models.html">Lab 5: Modeling population dynamics using matrix projection models</a>
-    </li>
-    <li>
-      <a href="../articles/matrix_models2.html">Lab 6: Modeling population dynamics using matrix projection models, part 2</a>
-    </li>
-    <li>
-      <a href="../articles/source-sink.html">Lab 8: Source-sink metapopulation dynamics</a>
-    </li>
-    <li>
-      <a href="../articles/competition.html">Lab 9: Inter-specific competition</a>
     </li>
   </ul>
 </li>
@@ -189,7 +98,7 @@
       <h1>Homework instructions</h1>
             <h3 class="subtitle">WILD3810</h3>
             
-            <h4 class="date">updated on 2019-04-16</h4>
+            <h4 class="date">updated on 2019-11-25</h4>
       
       
       <div class="hidden name"><code>homework.Rmd</code></div>
@@ -198,36 +107,87 @@
 
     
     
-<p>All homework assignments for this course will be completed R Markdown files. To make the distribution, completion, and grading easier, each homework will follow the same workflow.</p>
-<div id="homework-steps" class="section level1">
+<p>All homework assignments for this course will be completed R Markdown files. To make the distribution, completion, and grading easier, each homework will follow the same workflow. Detailed instructions for creating and submitting homeworks assignments depend on whether you are using RStudio Cloud or a local installation of RStudio. <strong>Assignments that fail to follow this instructions will not be graded</strong></p>
+<div id="homework-steps-for-rstudio-cloud" class="section level1">
 <h1 class="hasAnchor">
-<a href="#homework-steps" class="anchor"></a>Homework steps</h1>
-<div id="step-1-create-a-new-directory-to-store-your-homework-files" class="section level2">
-<h2 class="hasAnchor">
-<a href="#step-1-create-a-new-directory-to-store-your-homework-files" class="anchor"></a>Step 1: Create a new directory to store your homework files</h2>
-<p>1a) Create a new directory (or ideally a subdirectoy of your <code>WILD3810\</code> directory) and call it <code>LastNameFirstName-Homework#</code>, replacing <code>LastNameFirstName</code> with your last and first names and <code>#</code> with the appropriate homework number</p>
+<a href="#homework-steps-for-rstudio-cloud" class="anchor"></a>Homework steps for RStudio Cloud</h1>
+<div id="step-1-create-a-new-project-to-complete-the-homework-assignment" class="section level3">
+<h3 class="hasAnchor">
+<a href="#step-1-create-a-new-project-to-complete-the-homework-assignment" class="anchor"></a>Step 1: Create a new project to complete the homework assignment</h3>
+<p>1a) Create a new project</p>
+<p><img src="figs/New_project.png" width="600px"></p>
+<p>1b) Name the new project <code>LastNameFirstName-Homework#</code>, replacing <code>LastNameFirstName</code> with your last and first names and <code>#</code> with the appropriate homework number</p>
+<p><img src="figs/Name_project.png" width="600px"></p>
 </div>
-<div id="step-2-create-a-new-r-markdown-file-using-the-homework-template" class="section level2">
-<h2 class="hasAnchor">
-<a href="#step-2-create-a-new-r-markdown-file-using-the-homework-template" class="anchor"></a>Step 2: Create a new R Markdown file using the homework template</h2>
+<div id="step-2-create-a-new-r-markdown-file-using-the-homework-template" class="section level3">
+<h3 class="hasAnchor">
+<a href="#step-2-create-a-new-r-markdown-file-using-the-homework-template" class="anchor"></a>Step 2: Create a new R Markdown file using the homework template</h3>
 <p>2a) Click on <code>File -&gt; New File -&gt; R Markdown...</code></p>
-<p>2b) In the window on the left, select <code>From Template</code></p>
-<p>2c) Scroll down through the options until you see <code>WILD3810-Homework#</code> (where <code>#</code> will be the appropriate homework number). Select that template</p>
-<p>2d) In the <code>Name:</code> window type <code>LastnameFirstname-homework#</code>, substituting your last and first names and the correct homework number. In the <code>Location</code> window, navigate to your newly create <code>LastNameFirstName-Homework#</code> directory</p>
+<p><img src="figs/New_markdown.png" width="600px"></p>
+<p>2b) In the window on the left, select <code>From Template</code>. Scroll down through the options until you see <code>WILD3810-Homework#</code> (where <code>#</code> will be the appropriate homework number). Select that template. In the <code>Name:</code> window type <code>LastnameFirstname-homework#</code>, substituting your last and first names and the correct homework number. In the <code>Location</code> window, navigate to your newly create <code>LastNameFirstName-Homework#</code> directory</p>
+<p><img src="figs/homework_template.png" width="600px"></p>
 <p>2e) Click <code>Ok</code></p>
 </div>
-<div id="step-3-complete-the-assignment" class="section level2">
-<h2 class="hasAnchor">
-<a href="#step-3-complete-the-assignment" class="anchor"></a>Step 3: Complete the assignment</h2>
+<div id="step-3-complete-the-assignment" class="section level3">
+<h3 class="hasAnchor">
+<a href="#step-3-complete-the-assignment" class="anchor"></a>Step 3: Complete the assignment</h3>
 <p>3a) Change the <code>author: YOUR NAME HERE</code> field in the header to your name.</p>
 <p>3b) Work your way through the entire document, following the instructions as you go</p>
 </div>
-<div id="step-4-submit-your-assignment" class="section level2">
-<h2 class="hasAnchor">
-<a href="#step-4-submit-your-assignment" class="anchor"></a>Step 4: Submit your assignment</h2>
+<div id="step-4-submit-your-assignment" class="section level3">
+<h3 class="hasAnchor">
+<a href="#step-4-submit-your-assignment" class="anchor"></a>Step 4: Submit your assignment</h3>
 <p>4a) Before submitting your assignment, always click the “Knit” button to be sure your .Rmd file can be rendered as a html file. <strong>If you have any problems rendering the file, please contact me or the TA prior to the submission deadline.</strong></p>
+<p><img src="figs/Knit_homework.png" width="600px"></p>
+<p>4b) Once you know your file can be rendered, check the box next to the <code>LastnameFirstname-homework#</code> folder in the <code>Files</code> window</p>
+<p><img src="figs/Select_folder.png" width="600px"></p>
+<p>4c) On the toolbar at the top of the <code>Files</code> window, select <code>More -&gt; Export</code></p>
+<p><img src="figs/Export_homework.png" width="600px"></p>
+<p>4d) Click <code>Download</code> and then select a location to save the files</p>
+<p><img src="figs/Download_homework.png" width="600px"></p>
+<p>4e) Unzip the downloaded file</p>
+<ul>
+<li><p><strong>Windows</strong>: press and hold (or right-click) the <code>LastnameFirstname-homework#.zip</code> folder, select Extract All, follow the instructions</p></li>
+<li><p><strong>Mac</strong>: double click the <code>LastnameFirstname-homework#.zip</code> file)</p></li>
+</ul>
+<p>4f) Upload <strong>both</strong> the <code>LastnameFirstname-homework#.Rmd</code> <em>and</em> the <code>LastnameFirstname-homework#.html</code> files to Canvas under the correct assignment folder</p>
+</div>
+</div>
+<div id="homework-steps-for-local-installation-of-rstudio" class="section level1">
+<h1 class="hasAnchor">
+<a href="#homework-steps-for-local-installation-of-rstudio" class="anchor"></a>Homework steps for local installation of RStudio</h1>
+<div id="step-1-create-a-new-project-to-complete-and-store-your-homework-files" class="section level3">
+<h3 class="hasAnchor">
+<a href="#step-1-create-a-new-project-to-complete-and-store-your-homework-files" class="anchor"></a>Step 1: Create a new project to complete and store your homework files</h3>
+<p>1a) Open RStudio</p>
+<p>1b) Create a new RStudio project by clicking on the icon at the top left of the RStudio toolbar. Select <code>New Directory</code></p>
+<p><img src="figs/new_project-local.png" width="600px"></p>
+<p>1c) On the next dialog box, select <code>New Project</code></p>
+<p><img src="figs/New_project-local2.png" width="600px"></p>
+<p>1d) Name the project <code>LastNameFirstName-Homework#</code>, replacing <code>LastNameFirstName</code> with your last and first names and <code>#</code> with the appropriate homework number and select a location for the project to be saved. Click <code>Create Project</code></p>
+<p><img src="figs/Name_project-local.png" width="600px"></p>
+</div>
+<div id="step-2-create-a-new-r-markdown-file-using-the-homework-template-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#step-2-create-a-new-r-markdown-file-using-the-homework-template-1" class="anchor"></a>Step 2: Create a new R Markdown file using the homework template</h3>
+<p>2a) Click on <code>File -&gt; New File -&gt; R Markdown...</code></p>
+<p><img src="figs/New_markdown.png" width="600px"></p>
+<p>2b) In the window on the left, select <code>From Template</code>. Scroll down through the options until you see <code>WILD3810-Homework#</code> (where <code>#</code> will be the appropriate homework number). Select that template. In the <code>Name:</code> window type <code>LastnameFirstname-homework#</code>, substituting your last and first names and the correct homework number. In the <code>Location</code> window, navigate to your newly create <code>LastNameFirstName-Homework#</code> directory</p>
+<p><img src="figs/homework_template.png" width="600px"></p>
+<p>2e) Click <code>Ok</code></p>
+</div>
+<div id="step-3-complete-the-assignment-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#step-3-complete-the-assignment-1" class="anchor"></a>Step 3: Complete the assignment</h3>
+<p>3a) Change the <code>author: YOUR NAME HERE</code> field in the header to your name.</p>
+<p>3b) Work your way through the entire document, following the instructions as you go</p>
+</div>
+<div id="step-4-submit-your-assignment-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#step-4-submit-your-assignment-1" class="anchor"></a>Step 4: Submit your assignment</h3>
+<p>4a) Before submitting your assignment, always click the “Knit” button to be sure your .Rmd file can be rendered as a html file. <strong>If you have any problems rendering the file, please contact me or the TA prior to the submission deadline.</strong></p>
+<p><img src="figs/Knit_homework.png" width="600px"></p>
 <p>4b) Once you know your file can be rendered, upload <strong>both</strong> the <code>LastnameFirstname-homework#.Rmd</code> <em>and</em> the <code>LastnameFirstname-homework#.html</code> files to Canvas under the correct assignment folder</p>
-<p><strong>Assignments that fail to follow this instructions will not be graded</strong></p>
 </div>
 </div>
   </div>
@@ -237,14 +197,8 @@
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li>
-<a href="#homework-steps">Homework steps</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#step-1-create-a-new-directory-to-store-your-homework-files">Step 1: Create a new directory to store your homework files</a></li>
-      <li><a href="#step-2-create-a-new-r-markdown-file-using-the-homework-template">Step 2: Create a new R Markdown file using the homework template</a></li>
-      <li><a href="#step-3-complete-the-assignment">Step 3: Complete the assignment</a></li>
-      <li><a href="#step-4-submit-your-assignment">Step 4: Submit your assignment</a></li>
-      </ul>
-</li>
+<li><a href="#homework-steps-for-rstudio-cloud">Homework steps for RStudio Cloud</a></li>
+      <li><a href="#homework-steps-for-local-installation-of-rstudio">Homework steps for local installation of RStudio</a></li>
       </ul>
 </div>
       </div>
@@ -257,7 +211,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
 </div>
       </footer>
 </div>
