@@ -20,6 +20,8 @@ navbar:
     - text: "Lectures"
       icon: fa-file-pdf-o
       menu:
+        - text: "Lecture 0: Introduction to WILD3810"
+          href: articles/Lecture0/Lecture0.html
     - icon: fas fa-desktop
       text: "Labs"
       menu:
