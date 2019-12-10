@@ -2,8 +2,15 @@ pandoc: '2.3'
 pkgdown: 1.2.0.9000
 pkgdown_sha: c980e84a573614087c6e151d5e6e19a22748b761
 articles:
+  competition: competition.html
   exam1_2019: exams/exam1_2019.html
   homework: homework.html
+  lab1: lab1.html
+  lab2: lab2.html
+  lab3: lab3.html
+  life_table: life_table.html
+  matrix_models: matrix_models.html
+  matrix_models2: matrix_models2.html
   rmarkdown_intro: rmarkdown_intro.html
   schedule: schedule.html
   syllabus: syllabus.html
