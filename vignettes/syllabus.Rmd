@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 # LOGISTICS
 
-**Lecture**: Monday and Wednesday 10:30-11:20 BNR 314  
+**Lecture**: Monday and Wednesday 10:30-11:20 NR 217  
 **Lab**: Monday 2:30-4:20 LSB 225  
 **Credits**: 3  
 

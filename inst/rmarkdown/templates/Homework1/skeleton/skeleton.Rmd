@@ -19,21 +19,15 @@ First, make sure you have:
 
 > 1a) Changed the `author` field in the YAML header to your name;
 
-> 1b) Changed the font size to 12 by adding `fontsize: 12pt` to the YAML header
+> 1b) Clicked `Knit` to check that you can create a html document from the .Rmd file;
 
-> 1c) Clicked `Knit` to check that you can create a html document from the .Rmd file;
-
-> 1d) Saved the .Rmd file as `LastnameFirstname-homework1.Rmd` in a directory named `LastNameFirstName-Homework1`
+> 1c) Saved the .Rmd file as `LastnameFirstname-homework1.Rmd` in a project named `LastNameFirstName-Homework1`
 
 If you have any problems with these steps, be sure to get help from either the instructor or the TA
 
 # Lincoln-Peterson is unbiased when sample sizes are large
 
 When the number of individuals in the capture-recapture samples is large, the Lincoln-Peterson estimator returns an *unbiased* estimated of $N$. By unbiased, we mean that the Lincoln-Peterson estimator will *on average* match the true abundance of the population. It is important to note that bias applies to the average estimate - for any given sample, our estimate of $\hat{N}$ may be a little bigger or a little smaller than $N$. But if we took a large number of samples, we would get about the same number of low estimates as we get high estimates, so the average of all the samples would be $N$. 
-
-```{r out.width="4in", echo=FALSE}
-knitr::include_graphics("bias_precision.png")
-```
 
 In most real-life scenarios, we only get to take a single sample of the target population so we never know if our estimate is a little bigger than $N$ or a little smaller than $N$ (that is why we estimate uncertainty - so we at least know the range of plausible values of $N$ given our data). However, we can use `R` to prove that the L-P estimator is unbiased by *simulating* a large number of samples from an imaginary population. 
 
@@ -59,7 +53,7 @@ Now we need to tell `R` how many simulated samples we want to take. In the chunk
 
 ```
 
-The next step is a little more advanced. We need to simulate *random* samples of the population to generate values of $n1$, $n2$ and $m2$. To clarify what this means, imagine we wanted to simulate the number of heads we would get if we flipped a coin 10 times. We know the probability of getting a heads is $0.5$ but the actual number of heads might be any value between 0 and 10. In this case, the number of heads follows a *binomial* probability distribution. The binomial distribution requires two parameters, the number of "trials" (the number of coin flips or, in our case $N$) and the probability of "success" (heads or in our case capture). 
+The next step is a little more advanced. We need to simulate *random* samples of the population to generate values of $n1$, $n2$ and $m2$. To clarify what this means, imagine we wanted to simulate the number of heads we would get if we flipped a coin 20 times. We know the probability of getting a heads is $0.5$ but the actual number of heads might be any value between 0 and 20. In this case, the number of heads follows a *binomial* probability distribution. The binomial distribution requires two parameters, the number of "trials" (the number of coin flips or, in our case $N$) and the probability of "success" (heads or in our case capture). 
 
 ```{r echo = FALSE}
 
@@ -132,14 +126,14 @@ We can also visualize this by plotting a histogram showing all of our `Nhat` est
 # abline(v = N, col = "blue")
 # abline(v = mean(Nhat), col = "red")
 ```
-As expected, our estimates appear to be unbiased (though note how much variation there is around the true value of $N$! Even when all of the assumptions of L-P are met, we would still over- or under-estimate $N$ by 4-5%!)
+As expected, our estimates appear to be unbiased (though note how much variation there is around the true value of $N$! Even when all of the assumptions of L-P are met, we could still over- or under-estimate $N$ by 4-5%!)
 
 
 # Lincoln-Peterson is biased when sample sizes are small
 
 Now that we have the code needed to simulate data to analyze with the L-P estimator, it's easy to explore the well-known bias in the model when sample sizes are small. By biased, we mean that an estimator will systematically *overestimate* or *underestimate* the true value. We'll explore bias in the L-P estimator by continuing the simulation exercise:
 
-> 8a) Take the code you used above and copy it into a single code chunk below
+> 8a) In the chunk below (LP2), copy the code from the chunks named Np, nSims, n1, m2, nm2, n2, Nhat, mean_Nhat, and Nhat_hist
 
 > 8b) Now change $N$ to 50 and run the code
 
@@ -169,7 +163,7 @@ Let's see if it works. The below code should use your previously created `n1`, `
 ```{r mean_chapman}
 ```
 
-Now let's make the population size really small. In the chunk below, copy the code needed to simulate the L-P data but this time set `N <- 10` and use the Chapman modification to estimate the $\hat{N}$s. 
+Now let's make the population size really small. In the chunk below, copy the code needed to simulate the L-P data (the code from the `LP2` chunck above) but this time set `N <- 10` and use the Chapman modification to estimate the $\hat{N}$s. 
 
 ```{r chapman2}
 
