@@ -22,13 +22,31 @@ navbar:
       menu:
         - text: "Lecture 0: Introduction to WILD3810"
           href: articles/Lecture0/Lecture0.html
+        - text: "Lecture 1: Introduction to population ecology"
+          href: articles/Lecture1/Lecture1.html
+        - text: "Lecture 2: Abundance"
+          href: articles/Lecture2/Lecture2.html
+        - text: "Lecture 3: Density-independent population growth"
+          href: articles/Lecture3/Lecture3.html
+        - text: "Lecture 4: Stochasticity"
+          href: articles/Lecture4/Lecture4.html
+        - text: "Lecture 5: Density-dependent population growth"
+          href: articles/Lecture5/Lecture5.html
+        - text: "Lecture 6: Dynamics of small populations"
+          href: articles/Lecture6/Lecture6.html
     - icon: fas fa-desktop
       text: "Labs"
       menu:
-        - text: "Lab 1a: Introduction to R and mark-recapture"
-          href: articles/lab1.html
-        - text: "Lab 1b: Introduction to R Markdown"
+        - text: "Lab 0a: Introduction to R and R Markdown"
+          href: articles/lab0.html
+        - text: "Lab 0b: Introduction to R Markdown"
           href: articles/rmarkdown_intro.html
+        - text: "Lab 1: Introduction to R (cont.)/Abundance estimation"
+          href: articles/lab1.html
+        - text: "Lab 2: Introduction to R/Modeling population growth"
+          href: articles/lab2.html
+        - text: "Lab 3: Modeling population growth (continued)"
+          href: articles/lab3.html
     - icon: fas fa-pencil-square-o
       text: "Assignments"
       href: articles/homework.html

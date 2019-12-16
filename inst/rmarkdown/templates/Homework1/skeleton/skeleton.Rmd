@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, messag
 library(WILD3810)
 ```
 
-**Due before 2:30pm Monday January 21**
+**Due before 2:30pm Monday January 20**
 
 In this homework assignment, you will become more familiar with using `R` and R Markdown to analyze and visualize data and report your results. To accomplish these goals, we will continue our discussion of estimating abundance using mark-recapture data.  
 

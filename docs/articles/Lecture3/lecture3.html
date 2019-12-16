@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lecture 3</title>
+    <meta charset="utf-8">
+    <meta name="author" content="   WILD3810 (Spring 2020)" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="WILD3810.css" type="text/css" />
+    <link rel="stylesheet" href="WILD3810-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Lecture 3
+## Introduction to population growth
+### <br/><br/><br/>WILD3810 (Spring 2020)
+
+---
+
+
+
+
+## Readings: 
+
+&gt; Mills 79-84
+
+---
+## Abundance
+
+&gt; the number of individual organisms in a population at **a particular time**  
+
+&lt;br/&gt;
+
+--
+- Is the number of individuals of a threatened/endangered species growing or shrinking?  
+&lt;br/&gt;
+
+--
+- Is the abundance of a game species stable in the face of hunting pressure?  
+&lt;br/&gt;
+
+--
+- Is a non-native species increasing in abundance to the point where it could cause ecosystem harm?
+
+---
+## Population growth
+
+**Example**
+
+#### Tasmanian sheep
+
+* 1820: 200,000 sheep introduced on the Island of Tasmania, Australia 
+* 1850: 2 million sheep
+* 9-fold increase in 30 years
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/2/20/20101020_Sheep_shepherd_at_Vistonida_lake_Glikoneri_Rhodope_Prefecture_Thrace_Greece.jpg" width="300" style="display: block; margin: auto;" /&gt;
+
+
+???
+
+Ggiaw, from Wikimedia Commons
+---
+## Population growth
+
+**Example**
+
+#### Ring-necked pheasants
+
+* In 1937, 2 male and 6 female ring-necked pheasants were released on Protection Island, Washington  
+* 1942: 1,325 adults (Einarson 1942, 1945)  
+* 220-fold increase in 5 years!
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Ring-necked_Pheasant_%288600072931%29.jpg" width="300" style="display: block; margin: auto;" /&gt;
+
+???
+
+USFWS Mountain-Prairie, via Wikimedia Commons
+
+---
+## The BIDE model
+
+#### Remember from lecture one: 
+
+`$$\Large N_{t+1} = N_t + B + I - D - E$$`
+
+&lt;br/&gt;
+--
+
+#### Abundance can due to:
+
++ births `\((B)\)`  
+&lt;br/&gt;
++ deaths `\((D)\)`  
+&lt;br/&gt;
++ immigration `\((I)\)`  
+&lt;br/&gt;
++ emigration `\((E)\)`  
+
+???
+
+In the remainder of this lecture, we will assume that no individuals move into or out of the population. In other words, `\(I=0\)` and `\(E=0\)`. As a result, population size can only change due to births `\(B\)` and deathds `\(D\)`
+
+---
+## The BIDE model
+
+#### The **number** of births or deaths is not usually useful  
+
++ is 100 births a lot? Or a little?  
+
+
+--
+Instead, births `\((B)\)` or deaths `\((D)\)` are often expressed as *per capita* (per individual) rates  
+&lt;br/&gt; 
+
+--
+Think of these as averages:  
+
+`$$\Large b = \frac{B}{N}$$`
+&lt;br/&gt;
+`$$\Large d = \frac{D}{N}$$`
+
+---
+## The BIDE model
+
+Because `\(b \times N_t=B\)` and `\(d \times N_t=D\)` (and assuming no movement), the BIDE model can be written as:  
+
+`$$\Large N_{t+1} = N_t + \underbrace{(b \times N_t)}_{births} - \underbrace{(d \times N_t)}_{deaths}$$`
+--
+Which can be simplied to:  
+
+`$$\Large N_{t+1} = N_t \times (1 + b - d)$$`
+
+---
+## Discrete-time population growth model
+
+#### The terms `\(1+b-d\)` is usually expressed as a single parameter `\(\lambda\)`:
+
+`$$\Large N_{t+1} = N_t \times \underbrace{(1 + b - d)}_{\lambda}$$`
+
+--
+#### `\(\lambda\)` is referred to as the **finite rate of population growth**
+
+---
+## Properties of `\(\huge \lambda\)`
+
+--
+&lt;br/&gt;
+- What is the value of `\(\lambda\)` when the birth rate equals the death rate `\((b-d=0)\)`?  
+&lt;br/&gt;
+
+--
+- What is the value of `\(\lambda\)` when the birth rate exceeds the death rate `\((b-d \gt 0)\)`?  
+&lt;br/&gt;
+
+--
+- What is the value of `\(\lambda\)` when the birth rate is less than the death rate `\((b-d \lt 0)\)`?
+&lt;br/&gt;
+
+--
+- What happens to the abundance of the population under each scenario? `\(^1\)`
+
+&lt;img src="lecture3_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+
+???
+
+`\(^1\)` `\(\lambda=1\)` means that births exactly counter deaths and the population size doesn't change. Values of `\(\lambda&gt;1\)` lead to populations growing in size while values less than 1 produce shrinking populations.  
+
+Even though `\(\lambda\)` is referred to as the *growth* rate, it can produce any trajectory in abundance over time (increasing, stable, decreasing).  
+
+---
+## Discrete-time population growth model
+
+`$$\LARGE N_{t+1} = N_t \times \lambda$$`
+
+What if we want to project population growth over longer time periods?  
+
+--
+First, write the forumula for `\(N_{t+2}\)` from `\(N_{t+1}\)`:
+
+`$$\Large N_{t+2} = N_{t+1} \times \lambda$$`
+
+--
+We know that `\(N_{t+1} = N_t \times \lambda\)` so:
+
+`$$\Large N_{t+2} = (N_t \times \lambda) \times \lambda$$`
+--
+which simplifies to: 
+
+`$$\Large N_{t+2} = N_t \times \lambda^2$$`
+---
+## Discrete-time population growth model
+
+Growth from `\(t\)` to `\(t+3\)`:
+
+`$$\Large N_{t+3} = N_t \times \lambda^3$$`
+
+So we get the general form `\(^2\)`:
+
+`$$\Large N_{T} = N_0 \times \lambda^T$$`
+
+
+where `\(T\)` is the number of years (or weeks, or months), `\(N_T\)` is the final population size and `\(N_0\)` is the initial population size.
+
+???
+
+`\(^2\)` This assumes that `\(\lambda\)` is the same in every year. We will learn about what happens when that is not the case (when `\(\lambda\)` varies from year to year) in the next lecture
+
+---
+## Discrete vs. continuous time 
+
+#### The discrete population growth model is useful for **birth-pulse** species:
+
+&gt; all births happen at a single point in time (i.e, a pulse)
+
+&lt;br/&gt;
+
+--
+#### Change in abundance of birth-pulse species happens at discrete point in time `\((t = 1, 2, 3,...,T)\)`  
+
++ usually during distinct *breeding season*
+
+???
+
+Example of birth-pulse species include most birds, many large ungulates
+
+---
+## Discrete vs. continuous time
+
+#### Species that reproduce throughout the year are called **birth-flow** species:
+
+&gt; births happen continuously throughout the year (i.e, flow)
+
+&lt;br/&gt;
+
+#### Abundance of birth-flow species is *always* changing
+
+???
+
+For example, humans and bacteria 
+
+---
+## Continuous-time population models
+
+We *could* model the growth of birth-flow populations using the discrete model and by making `\(\Delta_t\)` very small. 
+
+&lt;img src="lecture3_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+In this figure, `\(\Delta_t = 5\)` and `\(\Delta_N\)` = 8.94 individuals `\(^3\)`. So the population increased by about 61% over a 5 year period. What if we make `\(\Delta_t\)` smaller?
+
+???
+
+`\(^3\)` Remember that `\(\Delta\)` means "difference in" so read `\(\Delta_t\)` as "difference in time". In this case, rather than `\(\Delta_t = 1\)` year, we could make `\(\Delta_t = 1\)` month, or one week, or one day
+
+---
+## Continuous-time population models
+
+`\(\Delta_t = 1\)`:
+
+&lt;img src="lecture3_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+
+`\(\Delta_N\)` = 1.46 `\(^4\)`
+
+???
+
+`\(^4\)` Notice that when `\(\Delta_t = 1\)`, 16.1051 / 14.641 = `\(\lambda\)` 
+
+---
+## Continuous-time population models
+
+`\(\Delta_t = 0.25\)`: 
+
+&lt;img src="lecture3_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+
+`\(\Delta_N\)` = 0.33
+
+---
+## Continuous-time population models
+
+Rather than manually making `\(\Delta_t\)` smaller and smaller, we can use calculus to figure out that as `\(\Delta_t\)` becomes really, really small (i.e., *approaches zero*), we end up with:
+
+`$$\Large \frac{dN}{dt} = N \times (b-d) = N \times r$$`
+
+This the continuous-time equivalent of the discrete model `\(^5\)` and `\(r\)` is called the **instantaneous growth rate**   
+&lt;br/&gt; 
+
+--
+Populations with `\(r=0\)` remain at the same population size. Populations with `\(r&gt;0\)` grow and populations with `\(r&lt;0\)` will shrink. 
+
+???
+
+`\(^5\)` For more details about how to derive the continous time model from the discrete model:
+
+`$$N_{t+1} = N_t \times \lambda = N_t \times (1 + b - d)$$`
+
+Call `\(b-d=r\)`, so:
+
+`$$N_{t+1} = N_t \times (1 + r_1)$$`
+where `\(r_1\)` refers to the special case when `\(\Delta_t = 1\)`. 
+
+Subtract `\(N_t\)` from both sides:
+
+`$$N_{t+1} - N_t = N_t \times (1 + r_1) - N_t$$`
+
+Remember that `\(N_{t+1} - N_t = \Delta_N\)`:
+
+`$$\Delta_{N,1} = N_t \times (1 + r_1) - N_t$$`
+
+which simplifies to: 
+
+`$$\Delta_{N,1} = N_t \times \bigg((1 + r_1) - 1\bigg)$$`
+
+which further simplifies to: 
+
+`$$\Delta_{N,1} = N_t \times r_1$$`
+
+What about when `\(\Delta_t \neq 1\)`? 
+
+`$$\frac{N_{t+\Delta}-N_t}{(t+\Delta)-t} = N_t \times r$$`
+
+---
+## Continuous-time population model 
+
+#### How does `\(\large r\)` compare to `\(\large \lambda\)`? 
+
+`$$\Large r = log(\lambda)$$`
+`$$\Large \lambda = e^r$$`
+
+--
+So for a continuous-time model, we can project population growth by substituting `\(e^r\)` in the equation we used to project discrete population growth:
+
+`$$\Large N_T = N_0 \times {e^r}^T$$`
+
+???
+
+Remember that `\(e \approx 2.718\)`
+
+---
+class: inverse, middle, center
+# Doubling time
+
+---
+## Doubling time
+
+#### How long will it take a population to double? 
+
+
+#### In other words, what is `\(\large T\)` when `\(\large N_T = 2 \times N_0\)`? 
+
+--
+`$$\Large 2N_0 = N_0 \times {e^r}^T$$`
+
+--
+Start by dividing both sides by `\(N_0\)`:
+
+`$$\Large 2 = {e^r}^T$$`
+
+---
+## Doubling time
+
+#### To isolate `\(\large rT\)`, take the natural log `\(^6\)` of both sides:
+
+`$$\Large ln(2) = ln({e^r}^T) = rT$$`
+--
+
+#### Now divide both sides by `\(\large r\)`:
+
+`$$\Large \frac{0.693}{r} = T_{double}$$`
+
+???
+
+`\(^6\)` Note that `\(ln(2) \approx 0.693\)`
+ 
+---
+## Doubling time
+
+&lt;img src="lecture3_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+Relatively small changes in `\(r\)` can have profound effects on population doubling time `\(^7\)`:
+
+- The population with `\(r=0.02\)` doubled twice in 80 timesteps
+
+- The population with `\(r=0.08\)` doubled 9 times!
+
+???
+
+`\(^7\)` All 4 populations increases slowly at first and then becomes explosive (this is hard to see in the first two graphs but if we plotted them alone, you would see the same pattern). With `\(r=0.08\)` (population increases ~8% at each timestep), we go from 10 individuals to 5555.7299 individuals in 80 timesteps, an overall increase of 554.573%! 
+
+---
+## Exponential growth
+
+Note that the doubling time does not depend on population size - the population will double every `\(t_{double}\)` time steps, no matter what the population size is  
+&lt;br/&gt;
+
+--
+Because the growth rate `\((r\)` or `\(\lambda)\)` does not depend on abundance, these models are **density-independent**  
+&lt;br/&gt;
+
+--
+Density-independent population models result in **exponential** growth `\(^8\)`  
++ exponential growth occurs because the growth rate is *multiplied* by the population size at each timestep   
+
++ As the population grows, the proportional changes stays the same but the absolute changes get bigger and bigger `\(^9\)`. 
+
+???
+
+`\(^8\)` Technically, exponential growth refers to continuous processes) whereas the same process in discrete models is referred to as **geometric** growth  
+
+`\(^9\)` If multiplicative growth is confusing, think about it this way: half of 4 is 2 but half of 100 is 50. In both cases, the proportion is the same (half) but the value is different (2 vs. 50). So doubling a population of size 2 leads to 4 individuals, then to 8, then to 16, then to 32...
+
+---
+## Exponential growth
+
+Exponential growth has profound implications  
+
+Imagine putting $1000 in a investment that grows by 6.5% per year:
+
+--
++ After 10 years, the investment will be worth $1912.69 (~90% return)  
+&lt;br/&gt;
+
+--
++ After 20 years, the investment will be worth $3658.38 (~265% return)  
+&lt;br/&gt;
+
+--
++ After 30 years, the investment will be worth $6997.33 (~600% return)!  
+
+???
+
+6.5% happens to be very close to the growth of the Dow Jones Industrial Average over the past 40 years  
+
+In this example, what are `\(r\)`, `\(\lambda\)`, and `\(N_0\)`?  
+
+Notice that the return after 10 years was 92% but 265% after twenty years rather than `\(92 \times 2=184\)`%. 
+Two lessons you should from this: 1) exponential growth is a very powerful process, 2) start saving for retirement now!  
+
+
+---
+class: inverse, center, middle
+
+&gt;"Compound interest is the most powerful force in the universe" - Albert Einstein (maybe)
+
+???
+
+In reality, no population can grow exponentially forever (though hopefully your money can!). At some point, resources will be come limited and individuals will no be able to reproduce or survive at the same rate, which lead to slower growth or even population declines. We will discuss this more next week. 
+
+However, all populations have the potential for exponential growth under ideal conditions (first law of population ecology). 
+
+---
+class: inverse, center, middle
+
+# Estimating `\(\huge \lambda\)` and `\(\huge r\)`
+
+---
+## Estimating `\(\LARGE \lambda\)` and `\(\LARGE r\)`
+
+We can estimate `\(\lambda\)` two ways depending on our interests and what type of data we have available  
+&lt;br/&gt;
+
+--
+As we learned above, we can estimate `\(\lambda\)` directly from the birth and death rates using:
+
+`$$\Large \lambda = 1 + b - d$$`
+
+--
+More often, we have estimates of abundance at different points in time. To estimate population growth for one time step:
+
+`$$\Large \lambda = \frac{N_{t+1}}{N_t}$$`
+
+---
+## Estimating `\(\LARGE \lambda\)` and `\(\LARGE r\)`
+
+If we have a longer series of abundance estimates `\(t= 1,2,3...T)\)`, we use:
+
+`$$\Large \lambda = \bigg(\frac{N_{T}}{N_0}\bigg)^{\frac{1}{T}}$$`
+
+--
+What was the growth rate of the sheep and pheasant populations?  
+
+--
++ Sheep: `\(\large \bigg(\frac{2000000}{200000}\bigg)^{\frac{1}{30}}=\)` 1.08  
+
+--
++ Pheasants: `\(\large \bigg(\frac{1325}{6}\bigg)^{\frac{1}{6}}=\)` 2.94
+
+---
+## Assumptions of the B-D models
+
+--
+1) Population closed to immigration and emigration  
+&lt;br/&gt;
+
+--
+2) Model pertains to only the limiting sex, usually females  
+&lt;br/&gt;
+
+--
+3) Birth and death rates are independent of an individual’s age or biological stage  
+&lt;br/&gt;
+
+--
+4) Birth and death rates are constant  
+
+???
+
+Constant means they do not vary over time or space, across individuals, and are density-independent
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

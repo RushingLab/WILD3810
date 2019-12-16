@@ -1,0 +1,157 @@
+---
+title: "Lab 0: Introduction to R and R Markdown"
+subtitle: "WILD3810: Plant and animal populations"
+author: "Spring 2020"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lab1}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+In this lab, we will learn some basic `R` and learn how to create documents using RMarkdown 
+
+***
+**Objectives**
+
+* Learn basic :  
+    + Basic arithmetic
+    + Create objects
+    + Numeric objects
+    + Character objects
+    
+* Learn to create documents using RMarkdown:  
+    + Vector algebra
+
+***
+
+# Set up
+
+1) Log in to R Studio Cloud
+
+2) Create a new project called `LastnameFirstname-Lab0`
+
+    
+## What is R?
+
+R is a free, open-source programming language and software environment for statistical computing, bioinformatics, visualization and general computing.  
+
+It is based on an ever-expanding set of analytical packages that perform specific analytical, plotting, and other programming tasks. 
+
+## Why R?
+
+R is free(!), runs on pretty much every operating system, and has a huge user base.  
+
+R is far from the only programming language for working with data. But it is the most widely used language in the fields of ecology, evolution, and wildlife sciences. If you plan to pursue a career in any of these fields, proficiency in `R`is quickly becoming a prerequisite for many jobs.  
+
+Even if you don't pursue a career in one of these fields, the ability to manipulate, analyze, and visualize data (otherwise known as *data science*) is an extremely marketable skill in many professions right now.  
+
+## Additional resources and where to get help
+
+We will go over the basics of using `R` during lab sessions but there are many good online resources for learning `R` and getting help. A few of my favorites include: 
+
+- Tom Edward's online [Learning R](http://learnr.usu.edu/) course (from which much of this material is borrowed)  
+
+
+- [Data Analysis and Visualization in R for Ecologists](https://datacarpentry.org/R-ecology-lesson/) (also from which much of this material is borrowed)  
+
+Of course, if you encounter error messages you don't understand or need help figuring out how to accomplish something in `R`, `google` is your best friend (even the most experienced `R` users use google on a daily basis). The key to finding answers on google is asking the right questions. Because we will not spend much time on this topic in lab, please refer to these links for advice on formulating `R`-related questions:
+
+- [How to ask for R help](https://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
+
+- [Seeking help](https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html#seeking_help) from Data Analysis and Visualization in R for Ecologists 
+
+## Using `R`- the very basics 
+
+As a statistical programming tool, one thing R is very good at is doing math. So as a starting point, let's treat `R`like a fancy calculator.  
+
+We interact with this calculator by typing numbers and operators (+, -, *, /) into the `Console` window.  
+
+Let's try it - in the bottom left window (the Console), write the `R`code required to add two plus two and then press enter:
+
+``` {r calc, echo=TRUE, eval = FALSE}
+2+2
+```
+
+When you run the code, you should see the answer printed below the window. Play with your code a bit - try changing the number and the operators and then run the code again.  
+
+## Creating objects
+
+We can run `R`like a calculator by typing equations directly into the console and then printing the answer. But usually we don't want to just do a calculation and see the answer. Instead, we assign *values* to *objects*. That object is then saved in R's memory which allows us to use that object later in our analysis. 
+
+This probably seems a bit confusing so let's try it. The following code creates an *object* called `x` and *assigns* it a value of `3`: 
+
+```{r echo = TRUE}
+x <- 3
+```
+
+The operator `<-` is how we do assignments in R. Whatever is to the left of `<-` is the object's name and whatever is to the right is the value. As we will see later, objects can be much more complex than simply a number but for now, we'll keep it simple. 
+
+**You try it - change the code to create an object called `new.x`. Instead of assigning `new.x` a number, give it a calculation, for example `25/5`. What do you think the value of `new.x` is?**  
+
+## Working with objects
+
+In the exercise above, you may have noticed that after running the code, `R`did not print anything. That is because we simply told `R`to create the object (in the top right window, if you click on the `Environment` tab, you should see `x` and `new.x`). Now that it is stored in R's memory, we can do a lot of things with it. For one, we can print it to see the value. To do that, we simply type the name of the object and run the code:
+
+```{r printx, echo=TRUE}
+new.x <- 25/5
+new.x
+```
+
+We can also use objects to create new objects. *What do you think the following code does?*
+
+```{r multx, echo=TRUE}
+x <- 3
+y <- x*4
+```
+
+After running it, print the new object `y` to see its value. Were you right?
+
+## Naming objects
+
+It's a good idea to give objects names that tell you something about what the object represents. Names can be as long as you want them to be but should not have spaces (also remember long names require more typing so brevity is a good rule of thumb). Names also cannot start with a number and `R`is case-sensitive so, for example, `Apple` is **not** the same as `apple`.  
+
+## Using scripts instead of the console
+
+The console is useful for doing simple tasks but as our analyses become more complicated, the console is not very efficient. What if you need to go back and change a line of code? What if you want to show your code to someone else to get help?
+
+Instead of using the console, most of our work will be done using scripts. Scripts are special files that us to write, save, and run many lines of code. Scripts can be saved so you can work on them later or send them to collaborators.  
+
+To create a script, click `File -> New File -> R Script`. This new file should show up in a new window. 
+
+
+# Introduction to R Markdown
+
+Click [here](https://rushinglab.github.io/WILD3810/articles/rmarkdown_intro.html)
+
+
+## WILD3810 lab assignments
+
+All lab assignments for this course will be create, completed, and turned in using the same steps. To make sure we're all on the same page about these steps, we'll go through them with a small practice homework assignment. To create this homework:
+
+1) Create a new R Markdown file from the Homework-0 template:
+
+    1a) Click `File -> New File -> R Markdown`  
+    
+    1b) Click `From Template` and scroll down to `WILD3810-Homework0`  
+    
+    1c) In the `Name` box, type `LastnameFirstname-Homework0`  
+    
+    1d) Click `Ok`
+
+2) Ensure that you can `Knit` the file
+
+    2a) Change "YOUR NAME HERE" in the header section to your name  
+    
+    2b) Click `Knit` to make sure you can knit the .Rmd file  
+    
+3) Complete the assignment as directed in the .Rmd file
+
+4) Follow the [instructions for submission](https://rushinglab.github.io/WILD3810/articles/homework.html) to upload your completed assignment to Canvas

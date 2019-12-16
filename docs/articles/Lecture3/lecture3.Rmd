@@ -1,0 +1,610 @@
+---
+title: "Lecture 3"
+subtitle: "Density-independent population growth"
+author: "<br/><br/><br/>WILD3810 (Spring 2020)"
+output:
+  xaringan::moon_reader:
+    css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include = FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE)
+library(WILD3810)
+library(gganimate)
+```
+
+## Readings: 
+
+> Mills 79-84
+
+---
+## Abundance
+
+> the number of individual organisms in a population at **a particular time**  
+
+<br/>
+
+--
+- Is the number of individuals of a threatened/endangered species growing or shrinking?  
+<br/>
+
+--
+- Is the abundance of a game species stable in the face of hunting pressure?  
+<br/>
+
+--
+- Is a non-native species increasing in abundance to the point where it could cause ecosystem harm?
+
+---
+## Population growth
+
+**Example**
+
+#### Tasmanian sheep
+
+* 1820: 200,000 sheep introduced on the Island of Tasmania, Australia 
+* 1850: 2 million sheep
+* 9-fold increase in 30 years
+
+```{r out.width = 300}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/2/20/20101020_Sheep_shepherd_at_Vistonida_lake_Glikoneri_Rhodope_Prefecture_Thrace_Greece.jpg")
+```
+
+
+???
+
+Ggiaw, from Wikimedia Commons
+---
+## Population growth
+
+**Example**
+
+#### Ring-necked pheasants
+
+* In 1937, 2 male and 6 female ring-necked pheasants were released on Protection Island, Washington  
+* 1942: 1,325 adults (Einarson 1942, 1945)  
+* 220-fold increase in 5 years!
+
+```{r out.width = 300}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/f/f6/Ring-necked_Pheasant_%288600072931%29.jpg")
+```
+
+???
+
+USFWS Mountain-Prairie, via Wikimedia Commons
+
+---
+## The BIDE model
+
+#### Remember from lecture one: 
+
+$$\Large N_{t+1} = N_t + B + I - D - E$$
+
+<br/>
+--
+
+#### Abundance can due to:
+
++ births $(B)$  
+<br/>
++ deaths $(D)$  
+<br/>
++ immigration $(I)$  
+<br/>
++ emigration $(E)$  
+
+???
+
+In the remainder of this lecture, we will assume that no individuals move into or out of the population. In other words, $I=0$ and $E=0$. As a result, population size can only change due to births $B$ and deathds $D$
+
+---
+## The BIDE model
+
+#### The **number** of births or deaths is not usually useful  
+
++ is 100 births a lot? Or a little?  
+
+
+--
+Instead, births $(B)$ or deaths $(D)$ are often expressed as *per capita* (per individual) rates  
+<br/> 
+
+--
+Think of these as averages:  
+
+$$\Large b = \frac{B}{N}$$
+<br/>
+$$\Large d = \frac{D}{N}$$
+
+---
+## The BIDE model
+
+Because $b \times N_t=B$ and $d \times N_t=D$ (and assuming no movement), the BIDE model can be written as:  
+
+$$\Large N_{t+1} = N_t + \underbrace{(b \times N_t)}_{births} - \underbrace{(d \times N_t)}_{deaths}$$
+--
+Which can be simplied to:  
+
+$$\Large N_{t+1} = N_t \times (1 + b - d)$$
+
+---
+## Discrete-time population growth model
+
+#### The terms $1+b-d$ is usually expressed as a single parameter $\lambda$:
+
+$$\Large N_{t+1} = N_t \times \underbrace{(1 + b - d)}_{\lambda}$$
+
+--
+#### $\lambda$ is referred to as the **finite rate of population growth**
+
+---
+## Properties of $\huge \lambda$
+
+--
+<br/>
+- What is the value of $\lambda$ when the birth rate equals the death rate $(b-d=0)$?  
+<br/>
+
+--
+- What is the value of $\lambda$ when the birth rate exceeds the death rate $(b-d \gt 0)$?  
+<br/>
+
+--
+- What is the value of $\lambda$ when the birth rate is less than the death rate $(b-d \lt 0)$?
+<br/>
+
+--
+- What happens to the abundance of the population under each scenario? $^1$
+
+```{r fig.height=3, fig.width=3.5}
+lambda <- 1.10
+
+r <- log(lambda^(1/20.75))
+
+Nd <- data.frame(Year = 1:25,
+                N = numeric(length = 25))
+
+Nc <- data.frame(Year = seq(from = 1, to = 25, length.out = 500),
+                 N = numeric(length = 500))
+Nd$N[1] <- Nc$N[1] <- 10
+
+for(i in 2:25){
+  Nd$N[i] <- Nd$N[i-1] * lambda
+}
+
+for(i in 2:500){
+  Nc$N[i] <-  Nc$N[i-1] + Nc$N[i-1] * r
+}
+
+(p <- ggplot() + geom_path(data = Nc, aes(x = Year, y = N), linetype = "longdash", color = "#3A3F44") +
+    geom_point(data = Nd, aes(x = Year, y = N), size = 1.5, color = WILD3810_colors$value[WILD3810_colors$name=="warning"]))
+
+```
+
+???
+
+$^1$ $\lambda=1$ means that births exactly counter deaths and the population size doesn't change. Values of $\lambda>1$ lead to populations growing in size while values less than 1 produce shrinking populations.  
+
+Even though $\lambda$ is referred to as the *growth* rate, it can produce any trajectory in abundance over time (increasing, stable, decreasing).  
+
+---
+## Discrete-time population growth model
+
+$$\LARGE N_{t+1} = N_t \times \lambda$$
+
+What if we want to project population growth over longer time periods?  
+
+--
+First, write the forumula for $N_{t+2}$ from $N_{t+1}$:
+
+$$\Large N_{t+2} = N_{t+1} \times \lambda$$
+
+--
+We know that $N_{t+1} = N_t \times \lambda$ so:
+
+$$\Large N_{t+2} = (N_t \times \lambda) \times \lambda$$
+--
+which simplifies to: 
+
+$$\Large N_{t+2} = N_t \times \lambda^2$$
+---
+## Discrete-time population growth model
+
+Growth from $t$ to $t+3$:
+
+$$\Large N_{t+3} = N_t \times \lambda^3$$
+
+So we get the general form $^2$:
+
+$$\Large N_{T} = N_0 \times \lambda^T$$
+
+
+where $T$ is the number of years (or weeks, or months), $N_T$ is the final population size and $N_0$ is the initial population size.
+
+???
+
+$^2$ This assumes that $\lambda$ is the same in every year. We will learn about what happens when that is not the case (when $\lambda$ varies from year to year) in the next lecture
+
+---
+## Discrete vs. continuous time 
+
+#### The discrete population growth model is useful for **birth-pulse** species:
+
+> all births happen at a single point in time (i.e, a pulse)
+
+<br/>
+
+--
+#### Change in abundance of birth-pulse species happens at discrete point in time $(t = 1, 2, 3,...,T)$  
+
++ usually during distinct *breeding season*
+
+???
+
+Example of birth-pulse species include most birds, many large ungulates
+
+---
+## Discrete vs. continuous time
+
+#### Species that reproduce throughout the year are called **birth-flow** species:
+
+> births happen continuously throughout the year (i.e, flow)
+
+<br/>
+
+#### Abundance of birth-flow species is *always* changing
+
+???
+
+For example, humans and bacteria 
+
+---
+## Continuous-time population models
+
+We *could* model the growth of birth-flow populations using the discrete model and by making $\Delta_t$ very small. 
+
+```{r, echo = FALSE, fig.align='center',  fig.width=6, fig.height = 4}
+q <- p + geom_segment(aes(x = 5, xend = 5, y = -Inf, yend = Nd$N[5]), 
+                      color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
+  geom_segment(aes(x = 10, xend = 10, y = -Inf, yend = Nd$N[10]), 
+               color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
+  geom_segment(aes(x = -Inf, xend = 5, y = Nd$N[5], yend = Nd$N[5]), 
+               color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
+  geom_segment(aes(x = -Inf, xend = 10, y = Nd$N[10], yend = Nd$N[10]), 
+               color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
+  geom_segment(aes(x = 5, xend = 10, y = Nd$N[5], yend = Nd$N[10]), size = 1,
+               color = WILD3810_colors$value[WILD3810_colors$name == "danger"])
+q
+```
+
+In this figure, $\Delta_t = 5$ and $\Delta_N$ = `r round(Nd$N[10] - Nd$N[5], 2)` individuals $^3$. So the population increased by about 61% over a 5 year period. What if we make $\Delta_t$ smaller?
+
+???
+
+$^3$ Remember that $\Delta$ means "difference in" so read $\Delta_t$ as "difference in time". In this case, rather than $\Delta_t = 1$ year, we could make $\Delta_t = 1$ month, or one week, or one day
+
+---
+## Continuous-time population models
+
+$\Delta_t = 1$:
+
+```{r, echo=FALSE, fig.align='center', fig.width=6, fig.height = 4}
+q <- p + geom_segment(aes(x = 5, xend = 5, y = -Inf, yend = Nd$N[5]), 
+                      color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
+  geom_segment(aes(x = 6, xend = 6, y = -Inf, yend = Nd$N[6]), 
+               color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
+  geom_segment(aes(x = -Inf, xend = 5, y = Nd$N[5], yend = Nd$N[5]), 
+               color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
+  geom_segment(aes(x = -Inf, xend = 6, y = Nd$N[6], yend = Nd$N[6]), 
+               color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
+  geom_segment(aes(x = 5, xend = 6, y = Nd$N[5], yend = Nd$N[6]), size = 1, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "danger"])
+q
+```
+
+$\Delta_N$ = `r round(Nd$N[6] - Nd$N[5],2)` $^4$
+
+???
+
+$^4$ Notice that when $\Delta_t = 1$, `r Nd$N[6]` / `r Nd$N[5]` = $\lambda$ 
+
+---
+## Continuous-time population models
+
+$\Delta_t = 0.25$: 
+
+```{r, echo=FALSE, fig.align='center', fig.width=6, fig.height = 4}
+q <- p + geom_segment(aes(x = 5, xend = 5, y = -Inf, yend = Nd$N[5]), 
+                      color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
+  geom_segment(aes(x = 5.25, xend = 5.25, y = -Inf, yend = Nc$N[89]), 
+               color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
+  geom_segment(aes(x = -Inf, xend = 5, y = Nd$N[5], yend = Nd$N[5]), 
+               color = WILD3810_colors$value[WILD3810_colors$name == "secondary"]) +
+  geom_segment(aes(x = -Inf, xend = 5.25, y = Nc$N[89], yend = Nc$N[89]), 
+               color = WILD3810_colors$value[WILD3810_colors$name == "secondary"])+
+  geom_segment(aes(x = 5, xend = 5.25, y = Nd$N[5], yend = Nc$N[89]), 
+               color = WILD3810_colors$value[WILD3810_colors$name == "danger"]) +
+  geom_abline(slope = 1.305, intercept = 8.072, size = 1,
+              color = WILD3810_colors$value[WILD3810_colors$name == "danger"])
+q
+```
+
+$\Delta_N$ = `r round(Nc$N[89] - Nd$N[5],2)`
+
+---
+## Continuous-time population models
+
+Rather than manually making $\Delta_t$ smaller and smaller, we can use calculus to figure out that as $\Delta_t$ becomes really, really small (i.e., *approaches zero*), we end up with:
+
+$$\Large \frac{dN}{dt} = N \times (b-d) = N \times r$$
+
+This the continuous-time equivalent of the discrete model $^5$ and $r$ is called the **instantaneous growth rate**   
+<br/> 
+
+--
+Populations with $r=0$ remain at the same population size. Populations with $r>0$ grow and populations with $r<0$ will shrink. 
+
+???
+
+$^5$ For more details about how to derive the continous time model from the discrete model:
+
+$$N_{t+1} = N_t \times \lambda = N_t \times (1 + b - d)$$
+
+Call $b-d=r$, so:
+
+$$N_{t+1} = N_t \times (1 + r_1)$$
+where $r_1$ refers to the special case when $\Delta_t = 1$. 
+
+Subtract $N_t$ from both sides:
+
+$$N_{t+1} - N_t = N_t \times (1 + r_1) - N_t$$
+
+Remember that $N_{t+1} - N_t = \Delta_N$:
+
+$$\Delta_{N,1} = N_t \times (1 + r_1) - N_t$$
+
+which simplifies to: 
+
+$$\Delta_{N,1} = N_t \times \bigg((1 + r_1) - 1\bigg)$$
+
+which further simplifies to: 
+
+$$\Delta_{N,1} = N_t \times r_1$$
+
+What about when $\Delta_t \neq 1$? 
+
+$$\frac{N_{t+\Delta}-N_t}{(t+\Delta)-t} = N_t \times r$$
+
+---
+## Continuous-time population model 
+
+#### How does $\large r$ compare to $\large \lambda$? 
+
+$$\Large r = log(\lambda)$$
+$$\Large \lambda = e^r$$
+
+--
+So for a continuous-time model, we can project population growth by substituting $e^r$ in the equation we used to project discrete population growth:
+
+$$\Large N_T = N_0 \times {e^r}^T$$
+
+???
+
+Remember that $e \approx 2.718$
+
+---
+class: inverse, middle, center
+# Doubling time
+
+---
+## Doubling time
+
+#### How long will it take a population to double? 
+
+
+#### In other words, what is $\large T$ when $\large N_T = 2 \times N_0$? 
+
+--
+$$\Large 2N_0 = N_0 \times {e^r}^T$$
+
+--
+Start by dividing both sides by $N_0$:
+
+$$\Large 2 = {e^r}^T$$
+
+---
+## Doubling time
+
+#### To isolate $\large rT$, take the natural log $^6$ of both sides:
+
+$$\Large ln(2) = ln({e^r}^T) = rT$$
+--
+
+#### Now divide both sides by $\large r$:
+
+$$\Large \frac{0.693}{r} = T_{double}$$
+
+???
+
+$^6$ Note that $ln(2) \approx 0.693$
+ 
+---
+## Doubling time
+
+```{r, fig.width=8, fig.height = 5}
+r <- c(0.02, 0.04, 0.06, 0.08)
+
+N <- matrix(0, nrow = 4, ncol = 80)
+N[,1] <- 10
+
+for(i in 1:4){
+  for(j in 2:80){
+    N[i,j] <- N[i,j-1]*exp(r[i])
+  }
+}
+
+Ndouble <- data.frame(t = seq(1:80),
+                      N = c(t(N)),
+                      r = rep(c("r = 0.02","r = 0.04","r = 0.06","r = 0.08"), each = 80))
+
+segment_df <- data.frame(x = c(seq(from = 1, to = 80, by = log(2)/0.08)[-1],
+                               seq(from = 1, to = 80, by = log(2)/0.06)[-1],
+                               seq(from = 1, to = 80, by = log(2)/0.04)[-1],
+                               seq(from = 1, to = 80, by = log(2)/0.02)[-1]),
+                         xend = c(seq(from = 1, to = 80, by = log(2)/0.08)[-1],
+                               seq(from = 1, to = 80, by = log(2)/0.06)[-1],
+                               seq(from = 1, to = 80, by = log(2)/0.04)[-1],
+                               seq(from = 1, to = 80, by = log(2)/0.02)[-1]),
+                         y = -Inf, yend = c(c(20, 40, 80, 160, 320, 640, 1280, 2560, 5120),
+                                            c(20, 40, 80, 160, 320, 640),
+                                            c(20, 40, 80, 160),
+                                            c(20, 40)),
+                         r = rep(c("r = 0.08","r = 0.06","r = 0.04","r = 0.02"), c(9, 6, 4, 2)))
+
+dt_df <- data.frame(dt = round(c(log(2)/0.02, log(2)/0.04, log(2)/0.06, log(2)/0.08),2), 
+                    r = c("r = 0.02","r = 0.04","r = 0.06","r = 0.08"))
+
+r <- ggplot() + geom_path(data = Ndouble, aes(x = t, y = N, group = r, color = r)) +
+  geom_segment(data = segment_df, aes(x = x, xend = xend, y = y, yend = yend, color = r)) +
+  geom_text(data = dt_df, aes(label = paste("Doubling time = ", dt, sep = ""), x = 20, y = 5500), color = "black") + 
+  facet_wrap(~r, nrow = 2) +
+  theme(legend.position = "none", strip.text.x = element_text(hjust = 0.025, color = "black"))
+
+r
+```
+
+Relatively small changes in $r$ can have profound effects on population doubling time $^7$:
+
+- The population with $r=0.02$ doubled twice in 80 timesteps
+
+- The population with $r=0.08$ doubled 9 times!
+
+???
+
+$^7$ All 4 populations increases slowly at first and then becomes explosive (this is hard to see in the first two graphs but if we plotted them alone, you would see the same pattern). With $r=0.08$ (population increases ~8% at each timestep), we go from 10 individuals to `r max(Ndouble$N)` individuals in 80 timesteps, an overall increase of `r (max(Ndouble$N)-10)/10`%! 
+
+---
+## Exponential growth
+
+Note that the doubling time does not depend on population size - the population will double every $t_{double}$ time steps, no matter what the population size is  
+<br/>
+
+--
+Because the growth rate $(r$ or $\lambda)$ does not depend on abundance, these models are **density-independent**  
+<br/>
+
+--
+Density-independent population models result in **exponential** growth $^8$  
++ exponential growth occurs because the growth rate is *multiplied* by the population size at each timestep   
+
++ As the population grows, the proportional changes stays the same but the absolute changes get bigger and bigger $^9$. 
+
+???
+
+$^8$ Technically, exponential growth refers to continuous processes) whereas the same process in discrete models is referred to as **geometric** growth  
+
+$^9$ If multiplicative growth is confusing, think about it this way: half of 4 is 2 but half of 100 is 50. In both cases, the proportion is the same (half) but the value is different (2 vs. 50). So doubling a population of size 2 leads to 4 individuals, then to 8, then to 16, then to 32...
+
+---
+## Exponential growth
+
+Exponential growth has profound implications  
+
+Imagine putting $1000 in a investment that grows by 6.5% per year:
+
+--
++ After 10 years, the investment will be worth $`r round(1000 * 1.067^10,2)` (~90% return)  
+<br/>
+
+--
++ After 20 years, the investment will be worth $`r round(1000 * 1.067^20,2)` (~265% return)  
+<br/>
+
+--
++ After 30 years, the investment will be worth $`r round(1000 * 1.067^30,2)` (~600% return)!  
+
+???
+
+6.5% happens to be very close to the growth of the Dow Jones Industrial Average over the past 40 years  
+
+In this example, what are $r$, $\lambda$, and $N_0$?  
+
+Notice that the return after 10 years was 92% but 265% after twenty years rather than $92 \times 2=184$%. 
+Two lessons you should from this: 1) exponential growth is a very powerful process, 2) start saving for retirement now!  
+
+
+---
+class: inverse, center, middle
+
+>"Compound interest is the most powerful force in the universe" - Albert Einstein (maybe)
+
+???
+
+In reality, no population can grow exponentially forever (though hopefully your money can!). At some point, resources will be come limited and individuals will no be able to reproduce or survive at the same rate, which lead to slower growth or even population declines. We will discuss this more next week. 
+
+However, all populations have the potential for exponential growth under ideal conditions (first law of population ecology). 
+
+---
+class: inverse, center, middle
+
+# Estimating $\huge \lambda$ and $\huge r$
+
+---
+## Estimating $\LARGE \lambda$ and $\LARGE r$
+
+We can estimate $\lambda$ two ways depending on our interests and what type of data we have available  
+<br/>
+
+--
+As we learned above, we can estimate $\lambda$ directly from the birth and death rates using:
+
+$$\Large \lambda = 1 + b - d$$
+
+--
+More often, we have estimates of abundance at different points in time. To estimate population growth for one time step:
+
+$$\Large \lambda = \frac{N_{t+1}}{N_t}$$
+
+---
+## Estimating $\LARGE \lambda$ and $\LARGE r$
+
+If we have a longer series of abundance estimates $t= 1,2,3...T)$, we use:
+
+$$\Large \lambda = \bigg(\frac{N_{T}}{N_0}\bigg)^{\frac{1}{T}}$$
+
+--
+What was the growth rate of the sheep and pheasant populations?  
+
+--
++ Sheep: $\large \bigg(\frac{2000000}{200000}\bigg)^{\frac{1}{30}}=$ `r round((2000000/200000)^(1/30),2)`  
+
+--
++ Pheasants: $\large \bigg(\frac{1325}{6}\bigg)^{\frac{1}{6}}=$ `r round((1325/6)^(1/5), 2)`
+
+---
+## Assumptions of the B-D models
+
+--
+1) Population closed to immigration and emigration  
+<br/>
+
+--
+2) Model pertains to only the limiting sex, usually females  
+<br/>
+
+--
+3) Birth and death rates are independent of an individual’s age or biological stage  
+<br/>
+
+--
+4) Birth and death rates are constant  
+
+???
+
+Constant means they do not vary over time or space, across individuals, and are density-independent

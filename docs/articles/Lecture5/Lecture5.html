@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lecture 5</title>
+    <meta charset="utf-8">
+    <meta name="author" content="   WILD3810 (Spring 2020)" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="WILD3810.css" type="text/css" />
+    <link rel="stylesheet" href="WILD3810-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Lecture 5
+## Density-dependent population growth
+### <br/><br/><br/>WILD3810 (Spring 2020)
+
+---
+
+
+
+
+## Readings
+
+&gt; Mills 126-141
+
+---
+## Density-independence vs density-dependence
+
+In lecture 3, we learned about population growth models that assume demographic rates are unrelated to population size
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Density-independence vs density-dependence
+
+We also learned that this assumption leads to exponential population growth
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Limitless population growth?
+
+No population can grow exponentially forever (or even for relatively short periods of time)  
+
+--
+Thomas Malthus was the first to propose that no population could grow without bound forever (1798)  
+
++ At some point, resources will be become limited and populations must either stop growing or decline
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/3/32/Thomas_Robert_Malthus.jpg" width="150" height="200" style="display: block; margin: auto;" /&gt;
+
+--
+Malthus' work inspired Darwin (1859) to suggest that limitation of resources is what drives evolution by natural selection
+
+---
+###  Stochasticity and extinction risk over time
+
+We also learned that, given enough time, populations that experience stochasticity will eventually go extinct
+
+&lt;img src="extinction_1000.gif" height="300" style="display: block; margin: auto;" /&gt;
+
+--
+
+#### Why isn't extinction more common?
+
+---
+class: inverse
+
+## Density-dependence
+
+&gt; The tendency of population vital rates, and therefore population growth rate, to change (increase or decrease) as a function of population size  
+
+
+--
+### At small population sizes, individual organisms may be able to acquire all of the resources they need to survive and reproduce  
+
+
+--
+### As the population grows, competition, disease, and predation increase
+
+---
+## Competition
+
+At small population sizes, individual organisms may be able to acquire all of the resources they need to survive and reproduce  
+
+As `\(N\)` increases, the availability of resources per organism will decrease, leading to increased competition  
+
+--
+**Intra-specific competition:**  
+
+&gt; interaction between individuals of a single species brought about by the need for a shared resource
+
+
+--
+Intra-specific competition can arise in multiple ways:
+
+.pull-left[
+**Animals**
+ * food
+ * shelter
+ * breeding sites
+ * mates
+ ]
+ 
+ .pull-right[
+ **Plants**
+ * space
+ * light
+ * water
+ * nutrients
+]
+
+---
+## Competition
+
+Ecologists generally distinguish between two types of competition:  
+
+--
+1) **Exploitation competition**  
+
++ consumption of limited resource by individuals depletes the amount available for others  
+
++ also known as: depletion, consumption, or scramble competition  
+
++ *indirect*  
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/2/27/National_Bison_Range_scenic2_%285447888883%29.jpg" width="300" height="200" style="display: block; margin: auto;" /&gt;
+
+???
+
+Image courtesy of U.S. Fish and Wildlife Service Headquarters, via Wikimedia Commons
+
+---
+## Competition
+
+Ecologists generally distinguish between two types of competition:  
+
+1) **Exploitation competition**  
+
+2) **Interference competition**  
+
++ individuals actively prevent others from attaining a resource in a given area or territory  
+
++ also known as: encounter or contest competition  
+
++ *direct*  
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Fighting_impalas_edit2.jpg" width="300" height="200" style="display: block; margin: auto;" /&gt;
+
+???
+
+Image courtesy of Muhammad Mahdi Karim, via Wikimedia Commons
+---
+## Competition
+
+As population size increases, the resources available to each individual will eventually shrink to the point where demographic parameters are negatively effected  
+
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Competition
+
+As population size increases, the resources available to each individual will eventually shrink to the point where demographic parameters are negatively effected  
+
++ Increased density can also increase rates of disease transmission or predation
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Carrying-capacity
+
+#### Remember that the population growth rate `\(\large r = b -d\)`  
+&lt;br/&gt;
+
+--
+#### If `\(\large b = d\)`:  
+
+--
++ `\(\Large r = 0\)`  
+
+--
++ population remains stable  
+
+
+--
+#### If `\(\large b \gt d\)`:  
+
+--
++ `\(\Large r \gt 0\)`  
+
+--
++ population will grow  
+
+
+--
+#### If `\(\large d \gt b\)`:  
+
+--
++ `\(\Large r \lt 0\)`  
+
+--
++ population will decrease  
+
+---
+## Carrying-capacity
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Carrying-capacity
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+
+???
+
+Left of the intersection, `\(r\)` is positive so the population will grow
+
+---
+## Carrying-capacity
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+
+???
+
+Right of the intersection, `\(r\)` is negative so the population will shrink
+
+---
+## Carrying capacity
+
+Carrying capacity `\(K\)`:
+
+&gt; the population size that the environment can maintain `\(^1\)`
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+
+???
+
+`\(^1\)` At the intersection, `\(r\)` is 0 so the population will be stable
+
+---
+## Population regulation vs limitation
+
+The density-dependent processes we just learned about are called **regulating** factors  
+
++ Regulating factors keep population size from going too far above or below `\(K\)` `\(^2\)` 
+
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/4/49/OfficeThermostat.jpg" width="400" height="200" style="display: block; margin: auto;" /&gt;
+
+**Limiting** factors determine the actual value of `\(K\)`  
+
++ Limiting factors can be density-dependent (competition) or density independent (disturbance or extreme weather)
+
+
+???
+
+`\(^2\)` Think of regulating factors like a thermostat - if the temperature goes below the desired temperature ($N &lt; K$), the heater kicks on ($b$ increases). If once the temperature increases above the set temperature ($N &gt; K$), the heater turns off ($d$ increases)  
+
+---
+class: inverse, middle, center
+
+# Models of density-dependent population growth
+
+---
+## Models of D-D population growth
+
+Remember the (continuous time) density-independent model of population growth:  
+
+`$$\Large \frac{dN}{dt} = N \times r$$`  
+
+How can we modify this equation to include density-dependence?  
+
+To start, remember what density-dependence means:
+
+&gt; the rate of population growth changes as population size increases
+
+---
+## Models of D-D population growth
+
+A good starting point for this is a linear response that looks something like this:
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Models of D-D population growth
+
+#### How do we add this relationship to our model?  
+
+--
+
+#### Remember the equation for a line: `\(^3\)`  
+
+`$$\Large y = ax + b$$`  
+--
+
+#### In our model, we can write this as: `\(^4\)`  
+
+`$$\Large r = aN + c$$`.
+
+???
+
+`\(^3\)` is the y-intercept (the value of `\(y\)` when `\(x=0\)`) and `\(a\)` is the slope (the change in `\(r\)` per unit change is `\(x\)`).  
+
+`\(^4\)`I changed the y-intercept to `\(c\)` to ensure that it is not confused with the birth rate `\(b\)`
+
+---
+## Models of D-D population growth
+
+#### In our population model, `\(\large c\)` represents the rate of increase when the population is 0  
+
+--
+
+#### We can see in the figure that this is the largest value of `\(\large r\)` the population can experience  
+
+--
++ Call that `\(r_0\)`  
+
+--
++ Because `\(r_0\)` the maximum rate of increase (nothing limiting population growth), it is equivalent to `\(r\)` in the D-I model  
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+---
+## Models of D-D population growth
+
+#### What is `\(\large a\)`, the slope of the relationship between `\(\large r\)` and `\(\large N\)`?  
+
+--
++ It has to be negative `\((r\)` has to decrease as `\(N\)` increases)  
+
+
+--
+
+#### Remember that `\(\large r=0\)` when `\(\large N=K\)`, so:
+
+`$$\Large 0 = aK + r_0$$`
+
+therefore,
+
+--
+
+`$$\Large a = -\frac{r_0}{K}$$`
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Models of D-D population growth
+
+#### We now have a full equation for the relationship between `\(\large r\)` and `\(\large N\)`:
+
+`$$\Large r = -\frac{r_0}{K}N + r_0$$`
+
+which simplifies to: `\(^5\)`   
+
+`$$\Large r = r_0 \bigg(1-\frac{N}{K}\bigg)$$`
+
+???
+
+`\(^5\)` Details about model derivation: 
+
+`$$r = -\frac{r_0}{K}N + r_0$$`
+
+simplifies to:
+
+`$$r = r_0 -\frac{r_0}{K}N$$`
+
+simplifies to:
+
+`$$r = r_0 \bigg(1-\frac{1}{K}N\bigg)$$`
+
+simplifies to:
+
+`$$r = r_0 \bigg(1-\frac{N}{K}\bigg)$$`
+
+---
+## Models of D-D population growth
+
+#### How does this work?  
+
+--
+
+#### Assume `\(\large r_0 = 1\)` and `\(\large K = 1000\)`  
+
+--
+What is the population growth rate when `\(\large N=100\)`?  
+
++ `\(\large r = 1 - \frac{100}{1000}=\)` 0.9  
+
+
+--
+What about when `\(N=500\)`?  
+
++ `\(\large r = 1 - \frac{500}{1000}=\)` 0.5  
+
+
+--
+When `\(N=1000\)`?  
+
++ `\(\large r = 1 - \frac{1000}{1000}=\)` 0
+
+---
+## Models of D-D population growth
+
+#### Now let's insert our new equation for `\(\Large r\)` into the population growth model:
+
+`$$\Large \frac{dN}{dt} = N \times r_0 \bigg(1-\frac{N}{K}\bigg)$$`
+
+--
+
+#### This is called the **logistic growth model**  
+
+---
+## Models of D-D population growth
+
+#### How does this work? Again, `\(\large r_0 = 1\)` and `\(\large K = 1000\)`  
+
+--
+What is `\(\frac{dN}{dt}\)` when `\(N=100\)`?  
+
++ `\(\large \frac{dN}{dt} = 100 \times 1 \bigg(1-\frac{100}{1000}\bigg)=\)` 90  
+
+
+--
+What about when `\(N=500\)`?  
+
++ `\(\large \frac{dN}{dt} = 500 \times 1 \bigg(1-\frac{500}{1000}\bigg)=\)` 250  
+
+
+--
+When `\(N=1000\)`?  
+
++ `\(\large \frac{dN}{dt} = 1000 \times 1 \bigg(1-\frac{1000}{1000}\bigg)=\)` 0
+
+???
+
+What happens to `\(\frac{dN}{dt}\)` when `\(N &gt; K\)`? 
+
+
+---
+## Models of D-D population growth
+
+#### How does this work? `\(^6\)`
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+
+???
+
+`\(^6\)` Thickness and color of line correspond to magnitude of population change (thicker and darker red correspond to larger rate of change)  
+
+---
+## Models of D-D population growth
+
+#### How does this work? `\(^6\)`
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
+
+???
+
+`\(^6\)` Thickness and color of line correspond to magnitude of population change (thicker and darker red correspond to larger rate of change)  
+
+
+Rate of change is largest when abundance is at half of the carrying capacity `\(\bigg(N = \frac{K}{2}\bigg)\)`  
+
+Above `\(K\)`, the rate of change becomes negative  
+
+---
+## Models of D-D population growth
+
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, center, middle
+
+# Non-linear effects
+
+---
+## Non-linear effects
+
+#### The logistic model assumes that `\(\Large r\)` decreases linearly with increasing `\(\large N\)`  
+
+--
+#### In reality, this relationship is not likely to be linear, for example:  
+
+--
++ `\(\large r\)` might not change much (or at all) until population size is high enough that resources start to become limited  
+
+--
++ `\(\large r\)` decrease very quickly if resources are used rapidly by additional individuals  
+
+
+--
+#### We can make the logistic model more flexible by adding a new term, `\(\large \theta\)`: `\(^7\)`
+
+`$$\Large \frac{dN}{dt} = r_0N\bigg(1-\bigg[\frac{N}{K}\bigg]^\theta\bigg)$$`
+
+???
+
+`\(^7\)` When `\(\theta = 1\)`, this model is the original logistic model
+
+---
+## Non-linear effects
+
+#### When `\(\large \theta &gt; 1\)`, `\(\Large r\)` does not respond to `\(\large N\)` until `\(\large N\)` is big enough that resources become limiting
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Non-linear effects
+
+#### If `\(\large \theta &lt; 1\)`, resources quickly become scarce, and `\(\Large r\)` is suppressed even at low `\(\large N\)`
+
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, middle, center
+
+# Allee effects
+
+---
+## Allee effects
+
+#### So far, we have assumed that `\(\Large b\)` and `\(\Large d\)` (and therefore `\(\Large r\)`) decrease as population size increases  
+
++ This is called *negative* density dependence   
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-22-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Allee effects
+
+#### So far, we have assumed that `\(\Large b\)` and `\(\Large d\)` (and therefore `\(\Large r\)`) decrease as population size increases  
+
++ This is called *negative* density dependence
+
+
+#### In some cases, the slope could also be positive  
+
++ Positive relationships between `\(\large N\)` and `\(\large d\)` or `\(\large b\)` generally occur at small population sizes
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Allee effects
+
+#### Why might the death rate be high at small `\(\large N\)`?  
+
+--
+* Group signaling breaks down, predation increases  
+
+--
+* Cooperative foraging becomes less efficient  
+
+--
+* Inbreeding depression  
+
+
+--
+#### Why might the birth rate be low at small `\(\large N\)`?  
+
+--
+* Pollination failure  
+
+--
+* Unable to find mates because of rarity  
+
+--
+* Unable to find mates because of skewed sex ratio  
+
+--
+* Inbreeding depression
+
+---
+## Allee effects
+
+When abundance drops below the minimum viable population (MVP), the population will likely approach extinction without help!
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+class: inverse, center, middle
+
+# Discrete dynamics
+
+---
+## Discrete dynamics
+
+#### Remember the discrete-time model of density-independent growth  
+
+`$$\Large N_{t+1} = N_t \lambda$$`
+
+--
+#### As before, we need to account for possible changes in `\(\lambda\)` caused by changes in population density  
+
+
+--
+#### Remember that:  
+
+`$$\Large \lambda = e^r$$`  
+
+and:  
+
+`$$\Large r = r_0\bigg(1 - \frac{N}{K}\bigg)$$`
+
+---
+## Discrete dynamics
+
+#### Therefore, one discrete-time density-dependent growth model is:   
+
+`$$\Large N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \frac{N}{K}\bigg)\bigg]}$$`
+
+#### This known as the **Ricker model**  
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Discrete dynamics
+
+Any adjustment that can be made to the continuous time logistic model can also be made to the Ricker model  
+
+`$$\Large N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \bigg[\frac{N}{K}\bigg]^\theta\bigg)\bigg]}$$`
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
