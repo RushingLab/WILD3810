@@ -1,7 +1,7 @@
 ---
 title: "Lab 4: Population viability analysis"
 subtitle: "WILD3810: Plant and animal populations"
-author: "Spring 2019"
+author: "Spring 2020"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Lab3}
@@ -31,48 +31,17 @@ In this lab, you will learn about using population viability analysis (PVA) to p
     
 ***
 
-## Setting up the lab
+# Set up
 
-In order to organize your code and files for this homework assignment, start by creating a new project:
+1) Log in to R Studio Cloud
 
-1) Open `RStudio`
+2) Create a new project called `LastnameFirstname-Lab4`
 
-2) Click `File -> New Project`
+3) Create a new R script file to store code from this lab:
 
-```{r out.width="100%", echo=FALSE}
-knitr::include_graphics("figs/new_file.png")
-```
-
-3) Click `New Directory`
-
-```{r out.width="100%", echo=FALSE}
-knitr::include_graphics("figs/project_options.png")
-```
-
-4) Click `New Project`
-
-```{r out.width="100%", echo=FALSE}
-knitr::include_graphics("figs/new_project2.png")
-```
-
-5) Name the project `PVA` and create it within your `WILD3810` folder (click `Browse` and navigate to this folder if necessary)
-
-```{r out.width="100%", echo=FALSE}
-knitr::include_graphics("figs/pva_project.png")
-```
-
-6) Click `Create project`
-
-7) Click `File -> New File -> R Script`
-
-8) Save this script as `PVA_lab.R` (you will not need to turn in this script but saving it here will ensure that you can reference today's lab activities to help study for the exam)
-
-9) Make sure you have the most update-to-date version of `WILD3810` by running:
-
-```{r eval = FALSE}
-install.packages("devtools", dependencies = TRUE)
-devtools::install_github("RushingLab/WILD3810")
-```
+    3a) Click `File -> New File -> R Script`
+    
+    3b) Save the script as `Lab4`
 
 ## Simulating stochastic population dynamcs
 
@@ -88,7 +57,7 @@ Before getting into the ecological principles, let's see how the function works 
 
 - `variance.r`: the magnitude of environmental stochasticity on the population growth
 
-- `K`: the carrying capacity (this is optional; if you do not provide `K`, the function assumes density-independent growth. For this lab, we will only focus on density-dependent growth)
+- `K`: the carrying capacity
 
 In the R script you just created, run the following code: 
 
@@ -116,7 +85,7 @@ sim_test
 knitr::kable(sim_test, format = 'html')
 ```
 
-This table returns some of the input parameters (`nYears`, `N0`, `r0`, `variance.r`) as well as summaries about the type of model (density dependent or independent) and carrying capacity (if density-dependent). In addition, the output include two important summary statistics:
+This table returns some of the input parameters (`nYears`, `N0`, `r0`, `variance.r`) as well as summaries about the type of model (density dependent or independent) and carrying capacity. In addition, the output include two important summary statistics:
 
 1) `prob.extinct`: the estimated probability of extinction over the simulated time frame
 
@@ -442,31 +411,30 @@ data("obs_N")
     
 ## Setting up the assignment
 
-From within the RStudio project you just created: 
+1) Create a new R Markdown file from the Homework-4 template:
 
-1) Click `File -> New File -> R Markdown`
+    1a) Click `File -> New File -> R Markdown`  
+    
+    1b) Click `From Template` and scroll down to `WILD3810-Homework4`  
+    
+    1c) In the `Name` box, type `LastnameFirstname-Homework4`  
+    
+    1d) Click `Ok`
 
-```{r out.width="100%", echo=FALSE}
-knitr::include_graphics("figs/new_file.png")
-```
+2) Ensure that you can `Knit` the file
 
-2) Select `From Template`; scroll down and select `WILD3810-Homework3`
+    2a) Change "YOUR NAME HERE" in the header section to your name  
+    
+    2b) Click `Knit` to make sure you can knit the .Rmd file  
+    
+3) Complete the assignment as directed in the .Rmd file
 
-```{r out.width="100%", echo=FALSE}
-knitr::include_graphics("figs/from_template.png")
-```
+4) Follow the [instructions for submission](https://rushinglab.github.io/WILD3810/articles/homework.html) to upload your completed assignment to Canvas
 
-3) In the `Name` box, type `LastnameFirstName-Homework3`
-
-```{r out.width="100%", echo=FALSE}
-knitr::include_graphics("figs/homework_name.png")
-```
-
-4) Click `Ok`
 
 ## Baseline extinction risk
 
-Based on the information you learned about the butterfly population dynamics, your first task is to determine the baseline risk of extinction if no management actions are taken. To this, you can use the `baseline_pva()` function. Use `?baseline_pva()` to see what arguments this function requires. 
+Based on the information you learned about the butterfly population dynamics, your first task is to determine the baseline risk of extinction if no management actions are taken. To do this, you can use the `baseline_pva()` function. Use `?baseline_pva()` to see what arguments this function requires. 
 
 Inside the main code chunk of the homework template, use the above data to estimate the parameters required by the `baseline_pva()` function. Keep in mind:
 

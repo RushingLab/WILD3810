@@ -54,9 +54,7 @@ In this lab, we will continue learning how to use `R` to create and manipulate o
     
 ## The Lincoln-Peterson estimator
 
-Let's use this new script to better understand the Lincoln-Peterson that we learned about in lecture 2.  
-
-Remember that the Lincoln-Peterson method is used to estimate the abundance of a closed population using mark-recapture data. As a reminder, the Lincoln-Peterson estimator is:
+Remember from lecture 2 that the Lincoln-Peterson method is used to estimate the abundance of a closed population using mark-recapture data. As a reminder, the Lincoln-Peterson estimator is:
 
 $$N = \frac{n_1n_2}{m_2}$$
 
@@ -72,7 +70,9 @@ n2 <-
 m2 <- 
 ```
 
-After entering the code, highlight all three lines and then click `Ctrl + Enter` (or `command + return` on Mac) to run the code. Note that you should see the code in the console.  
+Remember that R will ignore any code that follows a `#`. Before moving on, use comments to define what each object represents (e.g., `Number of individuals captured on first occasion`, `Number of individuals captured on second occasion`, `Number of previously marked individuals captured on second occasion`)
+
+After entering the code and comments, highlight all three lines and then click `Ctrl + Enter` (or `command + return` on Mac) to run the code. Note that you should see the code in the console.  
 
 Now add a new line of code (put your cursor at the end of the `m2 <-` line and hit enter) and estimate $N$ from our newly created objects using the Lincoln-Peterson: 
 
@@ -80,119 +80,21 @@ Now add a new line of code (put your cursor at the end of the `m2 <-` line and h
 N <- n1 * n2 / m2
 ```
 
-## Built-in functions
+What is the estimated abundance of this population?
 
-The power of `R` is most apparent in the large number of built-in functions that are available for users.  
-Functions are small bits of code that perform a specific task. Most functions accept one or more inputs called arguments and return a value or a new object.  
+Remember that, in addition to our estimate of N, we always need to know something about how certain we are in the estimate. On your own, create a new object called `varN` to calculate the variance of our estimated N, remembering that:
 
-In the Lincoln-Peterson example, rather than typing `n1 * n2` we could use the function `prod()`. Prod takes as arguments 2 or more numbers (separated by commas) and returns the product:
+$$\large var(\hat{N}) = \frac{(n_1 + 1)(n_2+1)(n_1-m_2)(n_2-m_2)}{(m_2+1)^2(m_2+2)}$$
 
-```{r product, echo=TRUE}
-n1 <- 44     # Number of individuals captured on first occasion
-
-n2 <- 32     # Number of individuals captured on second occasion
-
-numerator <- prod(n1, n2)
-numerator
-```
-
-Here, we provided `n1` and `n2` are arguments and `prod` created a new object called `numerator` which is the product of our two value. It may seem silly to use a function in this case (it didn't save us much work afterall) but this type of function can be useful if you had a longer set of values and didn't want to type them manually to get the product
-
-### Built-in functions
-
-Every function takes a different set of arguments and in most cases you will need to look what those arguments are. The best way to get help for a specific function is to type a question mark followed by the function name, which will bring up a help page in the bottom right panel. For example, the `round` function rounds a number to a specified number of decimal places. This is a useful function when we don't want to print a really large number of digits (like our L-P estimate of $N$):
-
-```{r help, eval = FALSE, echo = TRUE}
-?round
-```
-
-So we see `round` takes an argument called `x`, which is the number we want to round, and the number of `digits` we want to round to. If you provide the arguments in the exact same order as they are defined you don’t have to name them. For example, :
-
-```{r include = FALSE}
-m2 <- 15
-```
-
-```{r round, eval = TRUE, echo = TRUE}
-N <- prod(n1, n2)/m2
-N
-
-round(N, 0)
-```
-
-If you do name the arguments, you can switch their order:
-
-```{r round2, eval = TRUE, echo = TRUE}
-round(digits = 0, x = N)
-```
-
-Although you don't have to name arguments, it’s a good idea to get in the habit of naming them. This will make you code easier to read, will help avoid mistakes that can occur when you don't put the arguments in the correct order, and makes it easier to trouble shoot code that doesn't do what you expect it to do. 
-
-## Commenting your code
-
-R will ignore any code that follows a `#`. This is *very* useful for making your code more readable for both yourself and others. Use comments to remind yourself what a newly created object is, to explain what a line of code does, to leave yourself a reminder for later, etc. For example, in the previous code, it might be a good idea to use comments to define what each object represents:
-
-```{r LP_comment, echo = TRUE}
-n1 <- 44     # Number of individuals captured on first occasion
-
-n2 <- 32     # Number of individuals captured on second occasion
-  
-m2 <- 15     # Number of previously marked individuals captured on second occasion
-```
-
-Notice that when you run this code, `R`ignores the comments. 
-
-# Vectors
-
-So far, we have only been working with objects that store a single number. However, often it is more convienient to store a string of numbers as a single object. In `R`, these strings are called *vectors* and they are created by enclosing the string between `c(` and `)`:
-
-```{r echo = TRUE}
-x <- c(3,5,2,5)
-x
-```
-
-A vector can also contain characters (though you cannot mix numbers and charactors in the same vector!):
-
-```{r echo = TRUE}
-occasions <- c("Occasion1", "Occasion2", "Occasion3")
-occasions
-```
-
-The quotes around “Occasion1”, “Occasion2”, and "Occasion3" are critical. Without the quotes `R` will assume there are objects called `Occasion1`, `Occasion2` and `Occasion3`. As these objects don’t exist in `R`’s memory, there will be an error message.  
-
-Vectors can be any length (including 1. In fact, the numeric objects we've been working with are just vectors with length 1). The function `length()` tells you how long a vector is:
-
-```{r echo = TRUE}
-length(x)
-```
-
-The function `class()` indicates the class (the type of element) of an object:
-
-```{r echo = TRUE}
-class(x)
-class(occasions)
-```
-
-What is the class of a vector with both numeric and characters entries? Hint:
-
-```{r echo = TRUE}
-mixed <- c(1, 2, "3", "4")
-```
-
-You can also use the `c()` function to add other elements to your vector:
-
-```{r echo = TRUE}
-y <- c(x, 4,8,3)
-```
-
-Vectors are one of the many data structures that R uses. Other important ones are lists (list), matrices (matrix), data frames (data.frame), factors (factor) and arrays (array). We will learn about each of those data structures as we encounter them in our exercises. 
+Hints: Remember that the entire numerator (and denominator) needs to be contained within parentheses; to square something in `R`, use `^2`
 
 # Exercise 2: The Schnabel method
 
 To better understand how we use vectors in `R` and to expand on our discussion of abundance estimation, we will learn how to use the **Schnabel method** to estimate $N$.  
 
-In many studies, researchers attempt to resight marked individuals on more than 2 occasions. Unfortunatley, the Lincoln-Peterson method is restricted to data from only 2 capture occasions, meaning that to use it, we have to throw out data from occasions $3,4,...,T$.   
+In many studies, researchers attempt to re-sight marked individuals on more than 2 occasions. Unfortunately, the Lincoln-Peterson method is restricted to data from only 2 capture occasions, meaning that to use it, we have to throw out data from occasions $3,4,...,T$.   
 
-In the 1930's, a mathmetician at the University of Wisconsin named Zoe Emily Schnabel, expanded on the Lincoln-Peterson method to include $>2$ occasions. The Schnabel method uses three pieces of information collected at each occassion: **$C_t$**, the number of captured individuals during occasion $t$; **$R_t$**, the number of recaptures captured during occasion $t$; and **$M_t$**, the number of individuals marked in the population at occasion $t$ (or, the total number of marked individuals at risk of being captured on occasion $t$). Using these data, the Schnabel estimator is:
+In the 1930's, a mathematician at the University of Wisconsin named Zoe Emily Schnabel, expanded on the Lincoln-Peterson method to include $>2$ occasions. The Schnabel method uses three pieces of information collected at each occasion: **$C_t$**, the number of captured individuals during occasion $t$; **$R_t$**, the number of recaptures captured during occasion $t$; and **$M_t$**, the number of individuals marked in the population at occasion $t$ (or, the total number of marked individuals at risk of being captured on occasion $t$). Using these data, the Schnabel estimator is:
 
 $$\hat{N} = \frac{\sum_t(C_t \times M_t)}{\sum_t R_t}$$
 *Remember that $\sum_t$ means the sum of the values across at $T$ occasions.*
@@ -243,7 +145,7 @@ However, that is *a lot* of typing and it's pretty likely we would make a mistak
 Ct * Mt
 ```
 
-As you can see, we created a new vector that is the same length as the original vectors (3). When you mutiply (or add, subtract, or divide) two vectors, `R` multiplies the first element of first vector times the first element of the second vector, the second element of first vector times the second element of the second vector, the third element of first vector times the third element of the second vector, etc, and then combines them into a new vector. 
+As you can see, we created a new vector that is the same length as the original vectors (3). When you multiply (or add, subtract, or divide) two vectors, `R` multiplies the first element of first vector times the first element of the second vector, the second element of first vector times the second element of the second vector, the third element of first vector times the third element of the second vector, etc, and then combines them into a new vector. 
 
 We can also use the `sum()` function to add up all of the elements of a vector (similar to the `prod()` function we saw earlier). So:
 
