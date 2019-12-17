@@ -11,7 +11,7 @@ vignette: >
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
+  collapse = TRUE,echo = FALSE, out.width = "600px",
   comment = "#>"
 )
 ```
@@ -64,29 +64,21 @@ There are a few disadvantages to R Markdown.
 
 Understanding what R Markdown files are and why they are so useful will become more clear as you learn to create and edit these documents. So without futher ado, let's create an new R Markdown file and do some basic editing. 
 
-## Step 0: Set up the file structure
-
-The document we are going to create will form the basis of your first homework assignment so to start off the semster in an organized fashion, let's create a project called `WILD3810`:
-
-0a) Click on `File -> New Project` then click `New Directory`
-
-0b) Click `New Project`. Name this project `WILD3810` and choose a sensible location for the project (e.g., `Desktop/`)
-
-0c) Click `Create Project` at the bottom. 
-
-1d) In the newly create directory, create a subdirectory called `LastNameFirstName-Homework#`, replacing `LastNameFirstName` with your last and first names and `#` with the appropriate homework number
-
 ## Step 1: Create a new R Markdown file using the homework template
 
 1a) Click on `File -> New File -> R Markdown...`
 
-1b) In the window on the left, select `From Template`
+```{r}
+knitr::include_graphics("figs/New_markdown.png")
+```
 
-1c) Scroll down through the options until you see `WILD3810-Homework1`. Select that template 
+1b) In the window on the left, select `From Template`. Scroll down through the options until you see `WILD3810-Homework0`. Select that template. In the `Name:` window type `LastnameFirstname-homework0`. In the `Location` window, navigate to your newly create `LastNameFirstName-Lab0` directory
 
-1d) In the `Name:` window type `LastnameFirstname-homework1`, substituting your last and first names. In the `Location` window, navigate to your newly create `LastNameFirstName-Homework1` directory
+```{r}
+knitr::include_graphics("figs/homework_template.png")
+```
 
-1e) Click `Ok`
+1c) Click `Ok`
 
 ## Step 2: Fill in your information and render the document
 
@@ -94,254 +86,18 @@ The document we are going to create will form the basis of your first homework a
 
 2b) You should see a small box above the `Source` window (the RStudio window where your document just appeared) that says `Knit` with a small ball of yarn icon. When you click that button (not yet!), two things will happen:
 
-* The .Rmd file will be rendered as a PDF document, which will pop up on your screen
+* The .Rmd file will be rendered as a HTML document, which will pop up on your screen
 
-* RStudio will create a new file called `LastnameFirstname-homework1.pdf` - you should see that file in the `Files` window in the bottom right of your screen
+* RStudio will create a new file called `LastnameFirstname-homework0.html` - you should see that file in the `Files` window in the bottom right of your screen
 
-2c) Click that button
+2c) Click the `knit` button
+
+```{r}
+knitr::include_graphics("figs/Knit_homework.png")
+```
 
 Congratulations, you just created your first R Markdown file!
 
-# Basic formatting
+## Completing the homework
 
-## The YAML header
-
-At the top of your `.Rmd` file, you should see several line in between three blue dashes:
-```
----
-title: "WILD3810: Homework 1"
-subtitle: "Warming up to R Markdown and the Chapman's modification"
-author: "YOUR NAME HERE"
-output: pdf_document
----
-```
-
-This is called the "YAML header" and it's where we can control a lot of the major formatting options for our documents. For example, to change the output to HTML, just switch `pdf_document` for `HTML_document` and then click the `Knit` button again (be sure to change it back to pdf after you try it for yourself)
-
-Pretty cool, right?
-
-The YAML header allows to control many "high level" options for our document. For example, to change the font size, type the following directly under the `output: pdf_document` argument:
-
-```
-fontsize: 12pt
-```
-Check to see that the font size changed by clicking `Knit`. 
-
-Changing font type is a little trickier. Behind the scenes, R Markdown turns your document into Latex code, which is then converted into a pdf. You don't need to know much about Latex (though a little knowledge is helpful) but this conversion does mean that our formatting options have to passed to the Latex convertor in specific ways. To tell Latex that we want to use `Arial` font, we have to modify the `output:` argument as follows:
-
-```
-title: "WILD3810"
-subtitle: "Homework 1"
-author: "YOUR NAME HERE"
-date: "`r Sys.Date()`"
-output: 
-  pdf_document:
-    latex_engine: xelatex
-
-mainfont: Arial
-```
-
-Make sure you include the spaces to indent `pdf_document:` and `latex_engine: xelatex`. 
-
-To indent the first line of each paragraph, add the following to the header:
-
-```
-indent: true
-```
-
-There many possible options for the header (see [here](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) for additional examples). We'll learn more about some of these options later in the semester. 
-
-## Headers
-
-Using headers is a natural way to break up a document or report into smaller sections. You can include headers by putting one or more `#` signs in front of text. One `#` is a main header, `##` is the secondary header, etc.
-
-# Header 1
-
-## Header 2
-
-###  Header 3
-
-## Paragraph and line breaks
-
-When writing chunks of text in R Markdown (e.g., a report or manuscript), you can create new paragraphs by leaving an empty line between each paragraph:
-
-```
-This is one paragraph.
-
-This is the next paragraph
-```
-
-If you want to force a line break, include two spaces at the end of the line where you want the break:
-
-```
-This is one line  
-This is the next line
-```
-
-## **Bold**, *Italics*, 
-
-As mentioned earlier, create **boldface** by surrounding text with two asterisks (`**bold**`) and use single asterisks for *italics* (`*italics*`)
-
-## Code type
-
-To highlight code (note, this does not actually insert functioning code, just formats text to show that it is code rather than plain text), surround the text with back ticks ": `mean()`
-
-You can include muliple lines of code by including three back ticks on the line before the code and then three back ticks on the line after the code:
-
-```
-Multiple lines of code
-look like 
-this
-```
-
-## Bulleted lists
-
-* Bulleted lists can be included by starting a line with an asterisk
-
-* You can also start the lines with a single dash `-`
-
-  + for sub-bullets, indent the line and start it with `+`
-    - for sub-sub-bullets, indent twice (press `tab` two times) and start with `-`
-
-## Numbered lists
-
-1. Numbered lists look like this
-
-2. You can also include sub-levels in number lists
-    i) these can be lower case roman numerals  
-    a. or lowercase letters  
-      B. or uppercase letters  
-    
-## Quotations
-
-You highlight quotations by starting the line with `>`, which produces:
-
->All models are wrong
-
-## Hyperlinks
-
-Insert hyperlinks by putting the text you want displayed in square brackets followed by the link in parentheses: `[RStudio cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)`
-
-## Equations
-
-Inserting equations in R Markdown is where knowing some Latex really comes in handy becuase eqations are written using Latex code. For the most part, this is not too difficult but if you need to insert complex equations you will probably need to look up the code for some symbols. There are many good resources for if you google "latex equations" or something similear.
-
-### Inline vs. block equations
-
-You can include equations either inline ($e = mc^2$) or as a stand-alone block:
-
-$$e=mc^2$$
-
-Inline equations are added by putting a single dollar sign `$` on either side of the equation (`$e=mc^2$`). Equation blocks are create by starting and ending a new line with double dollar signs
-
-`$$e=mc^2$$`
-
-## Greek letters
-
-Statistical models include a lot of Greek letters ($\alpha, \beta, \gamma$, etc.). You can add Greek letters to an equation by typing a backslash `\` followed by the name of the letter `\alpha`. Uppercase and lower case letters are possible by capitalizing the name ($\Delta$ = `$\Delta$`) or not ($\delta$ = `$\delta$`).
-
-## Subscripts and superscripts
-
-You can add superscripts using the `^` ($\pi r^2$=`$\pi r^2$`) symbol and subscripts using an underscore `_` ($N_t$ = `$N_t$`). 
-
-If the superscript or subscript includes more than one characeter, put the entire script within curly brackets `{}`: $N_t-1 \neq N_{t-1}$ is `$N_t-1 \neq N_{t-1}$`
-
-## Brackets and parentheses
-
-You can add normal sized brackets and parenthesis just by typing them into the equation: $(x + y)$ = `(x + y)`
-
-If you need bigger sizes, using `$\big($`, `$\bigg($`, and `$\Bigg($` produces $\big($, $\bigg($, and $\Bigg($ (switch the opening parenthesis for a closing parenthesis or square bracket as needed)
-
-## Fractions
-
-Fractions can either be inline ($1/n$ = `$1/n$`) or stacked ($\frac{1}{n}$ = `$\frac{1}{n}$`). For stacked equations, the terms in the first curly brackets are the numerator and the terms in the second curly brackets are the demoninator. 
-
-
-## Operators
-
-Pretty much every operator you could need can be written in latex. Some common ones include $\times$ (`$\times$`), $\lt$ (`$\lt$`), $\gt$ (`$\gt$`), $\leq$ (`$\leq$`), $\geq$ (`$\geq$`), $\neq$ (`$\neq$`), $\sum$ (`$\sum$`), $\prod$ (`$\prod$`), $\infty$ (`$\infty$`), and $\propto$ (`$\propto$`).
-
-See [here](http://web.ift.uib.no/Teori/KURS/WRK/TeX/symALL.html) for a list of other operators. 
-
-# Adding code
-
-The ability to format and create pdf and html documents is great but the real strength of R Markdown is the ability to include and run code within your document. Code can be included **inline** or in **chunks**
-
-## Inline code
-
-Inline code is useful to including (simple) `R` output directly into the text. Inline code can be added by inclosing `R` code between `\x60r` and `\x60`. For example, typing ` \x60r mean(c(3,7,4,7,9))\x60` will compute and print the mean of the given vector. This is, it will print `r mean(c(3,7,4,7,9))` instead of the code itself. This can be very useful for including summary statistics in reports. 
-
-For example, if we have a vector indicating the number of individuals captured at each occassion during a mark-recapture study (e.g., `n <- c(155, 132, 147, 163)`) and we want to include the number of occasions in a report, instead of typing `4`, we can type `\x60r length(n)\x60`. Not only does this prevent typos, it is extemely useful if `length(n)` might change in the future. Instead of manually changing the number of occasions, we just re-render the document and the new number of occasions will be printed automatically. 
-
-## Code chunks
-
-For more complicated code, it is generally more useful to use **chunks** than inline code. Chunks start on a separate line with `\x60\x60\x60{r}` and end with a `\x60\x60\x60` on its own line (instead of doing this manually, you can click the `Insert` button at the top right of script window, then click `R`). In between these two lines, you can include as many lines of code as you want. For example,
-
-```
-\x60\x60\x60{r}
-n1 <- 44     # Number of individuals captured on first occasion
-
-n2 <- 32     # Number of individuals captured on second occasion
-  
-m2 <- 15     # Number of previously marked individuals captured on second occasion
-
-N <- n1 * n2 / m2     # Lincoln-Peterson estimate of abundance 
-\x60\x60\x60
-```
-
-### Chunk options
-
-Code chunks can take a lot of options to control how the code is run and what is displayed in the documents. These options go after `{r` and before the closing `}` (to see all the options put your cursor after the `{r`, hit the space bar, then hit `tab`). For example:
-
-- `echo = FALSE` shows the output of the code but not the code itself  
-
-- `include = FALSE` runs the code but doe not display the code *or* the output (useful for chunks that read or format data)
-
-- `eval = FALSE` shows the code but does not run it (useful for showing code)
-
-- `warning = FALSE` and `message = FALSE` can be include to ensure that error messages and warnings are not printed, which can be useful for cleaning up the appearance of documents
-
-- `cache = TRUE` save the results of the `R` code and doesn't rerun the chunk unless the code is changed (useful for chunks that take a long time to run)  
-
-- `out.height` and `out.width` control the size of figures in a pdf document in inches or centimeters (e.g., `out.height = "3in", notice the quotation marks)
-
-See the main [R Markdown page](http://yihui.name/knitr/options/) for a complete list of possible options.
-
-### Setting defaults for all chunks
-
-Often it is useful to set the default behavior for all chunks rather that including, for example, `warning = FALSE` at the beginning of each one. To do this, you can include a chunk at the beginning of the document:
-
-```
-\x60\x60\x60{r include=FALSE}
-opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
-\x60\x60\x60
-```
-
-Any options can be inluded in this chuck to set the default behaviors. You can over-ride these defaults within chunks as needed. You can also load common packages in this chunk to streamline chunks later in the document. 
-
-### Tables
-
-To nicely print matrices and data frames in R Markdown document, use the `kable()` function:
-
-```{r echo = TRUE}
-library(knitr)
-kable(head(mtcars))
-```
-
-The `kableExtra` package provides even more advanced options for creating nice looking tables. See [here](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html) for an overview of options provided by this package. 
-
-# Additional resources
-
-From the RStudio tool bar, click `Help -> Cheatsheets` and then select the `R Markdown cheat sheet` (lots of other good cheat sheets there as well)
-
-RStudio's [R Markdown](https://rmarkdown.rstudio.com/lesson-1.html) tutorial  
-
-Tom Edward's [R Markdown](http://learnr.usu.edu/r_markdown/1_1_markdown.php) tutorial  
-
-Coding Club's [Getting Started with R Markdown](https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html)  
-
-Cosma Shalizi's [Using R Markdown for Class Reports](http://www.stat.cmu.edu/~cshalizi/rmarkdown)
-
-# Homework assignment 1
-
-Before submitting your assignment, be sure to double check the instructions for [completing and submitting homework assignments](https://rushinglab.github.io/WILD3810/articles/homework.html). 
+Assuming that you were to knit the `LastnameFirstname-homework0.html` document, you can keep the knitted version open while you work through the assignment. Follow the instructions on the html page and complete the assignment within the .Rmd file.

@@ -126,27 +126,29 @@ Instead of using the console, most of our work will be done using scripts. Scrip
 
 To create a script, click `File -> New File -> R Script`. This new file should show up in a new window. 
 
+Copy the code you created above to the newly created script. After entering the code, highlight all lines and then click `Ctrl + Enter` (or `command + return` on Mac) to run the code. Note that you should see the code in the console.   
+
+Next, save the script by clicking `File -> Save`. Name the script `lab1.R` and click `Save`. In the `Files` pane at the bottom right, you should see the newly created file in your current working directory. If this were an actual analysis or homework, you could now close the script and open later to continue working where you left off. 
+
 ## Built-in functions
 
 The power of `R` is most apparent in the large number of built-in functions that are available for users.  
 Functions are small bits of code that perform a specific task. Most functions accept one or more inputs called arguments and return a value or a new object.  
 
-In the Lincoln-Peterson example, rather than typing `n1 * n2` we could use the function `prod()`. Prod takes as arguments 2 or more numbers (separated by commas) and returns the product:
+For example, instead of type `x * y` to multiply two objects, we could use the `prod()` function:
 
 ```{r product, echo=TRUE}
-n1 <- 44     # Number of individuals captured on first occasion
+x <- 12
 
-n2 <- 32     # Number of individuals captured on second occasion
+y <- 4
 
-numerator <- prod(n1, n2)
-numerator
+product_xy <- prod(x, y)
+product_xy
 ```
 
-Here, we provided `n1` and `n2` are arguments and `prod` created a new object called `numerator` which is the product of our two value. It may seem silly to use a function in this case (it didn't save us much work after all) but this type of function can be useful if you had a longer set of values and didn't want to type them manually to get the product
+Here, we provided `x` and `y` as *arguments* and `prod` created a new object called `product_xy` which is the product of our two value. It may seem silly to use a function in this case (it didn't save us much work after all) but this type of function can be useful if you had a longer set of values and didn't want to type them manually to get the product
 
-### Built-in functions
-
-Every function takes a different set of arguments and in most cases you will need to look what those arguments are. The best way to get help for a specific function is to type a question mark followed by the function name, which will bring up a help page in the bottom right panel. For example, the `round` function rounds a number to a specified number of decimal places. This is a useful function when we don't want to print a really large number of digits (like our L-P estimate of $N$):
+Every function takes a different set of arguments and in most cases you will need to look what those arguments are. The best way to get help for a specific function is to type a question mark followed by the function name, which will bring up a help page in the bottom right panel. For example, the `round` function rounds a number to a specified number of decimal places. This is a useful function when we don't want to print a really large number of digits:
 
 ```{r help, eval = FALSE, echo = TRUE}
 ?round
@@ -154,21 +156,20 @@ Every function takes a different set of arguments and in most cases you will nee
 
 So we see `round` takes an argument called `x`, which is the number we want to round, and the number of `digits` we want to round to. If you provide the arguments in the exact same order as they are defined you don’t have to name them. For example, :
 
-```{r include = FALSE}
-m2 <- 15
-```
 
 ```{r round, eval = TRUE, echo = TRUE}
-N <- prod(n1, n2)/m2
-N
+x <- 1
+y <- 3
 
-round(N, 0)
+z <- x/y
+
+round(z, 2)
 ```
 
 If you do name the arguments, you can switch their order:
 
 ```{r round2, eval = TRUE, echo = TRUE}
-round(digits = 0, x = N)
+round(digits = 0, x = z)
 ```
 
 Although you don't have to name arguments, it’s a good idea to get in the habit of naming them. This will make you code easier to read, will help avoid mistakes that can occur when you don't put the arguments in the correct order, and makes it easier to trouble shoot code that doesn't do what you expect it to do. 
@@ -216,11 +217,22 @@ You can also use the `c()` function to add other elements to your vector:
 y <- c(x, 4,8,3)
 ```
 
-Vectors are one of the many data structures that R uses. Other important ones are lists (list), matrices (matrix), data frames (data.frame), factors (factor) and arrays (array). We will learn about each of those data structures as we encounter them in our exercises. 
+Vectors are one of the many data structures that R uses. Other important ones are lists, matrices, data frames, factors, and arrays. We will learn about each of those data structures as we encounter them in our exercises. 
 
 ## Commenting your code
 
 R will ignore any code that follows a `#`. This is *very* useful for making your code more readable for both yourself and others. Use comments to remind yourself what a newly created object is, to explain what a line of code does, to leave yourself a reminder for later, etc. For example, in the previous code, it might be a good idea to use comments to define what each object represents:
+
+```{r echo = TRUE}
+n <- 25       # Number of individuals counted during survey
+
+A <- 2.5      # Area surveyed 
+
+dens <- n/A   # Density (individuals per ha)
+dens
+```
+
+If you take nothing else from this lab, get in the habit of commenting code! It will save you lots of headaches throughout the semester.
 
 # Introduction to R Markdown
 

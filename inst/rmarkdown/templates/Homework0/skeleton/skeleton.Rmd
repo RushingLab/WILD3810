@@ -1,0 +1,222 @@
+---
+title: "Homework 0"
+subtitle: "Warming up to R and R Markdown"
+author: "YOUR NAME HERE"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, message = FALSE)
+library(WILD3810)
+```
+
+**Due before 2:30pm Monday January 13**
+
+In this homework assignment, you will become more familiar with using `R` and R Markdown to complete lab assignments. Throughout the document, you will find directions that must be followed or questions that must be answered to receive credit on the assignment; these sections will be denoted using the following structure:
+
+> #) Direction or question that requires student input
+
+To begin, make sure you have:
+
+> 1a) Changed the `author` field in the YAML header to your name;
+
+> 1b) Clicked `Knit` to check that you can create a html document from the .Rmd file;
+
+> 1c) Saved the .Rmd file as `LastnameFirstname-homework0.Rmd` in a project named `LastNameFirstName-Lab0`
+
+If you have any problems with these steps, be sure to get help from either the instructor or the TA
+
+# R Markdown basics
+
+## Basic formatting
+
+### The YAML header
+
+At the top of your `.Rmd` file, you should see several line in between three blue dashes:
+
+```
+---
+title: "WILD3810: Homework 0"
+subtitle: "Warming up to R and R Markdown"
+author: "YOUR NAME HERE"
+output: html_document
+---
+```
+
+This is called the "YAML header" and it's where we can control a lot of the major formatting options for our documents. For example, to change the output to PDF, just switch `html_document` for `pdf_document` and then click the `Knit` button again (be sure to change it back to html after you try it for yourself)
+
+Pretty cool, right?
+
+The YAML header allows to control many "high level" options for our document. For example, there are many [HTML themes](https://bootswatch.com/cerulean/) that you can use change the font, colors, etc. of your document. To do this, change the `output` line of the YAML header to:
+
+```
+output: 
+  html_document:
+    theme: "cosmo"
+```
+
+> 2) Click on the link above to look at the various themes available. Choose a theme you like and change the YAML header accordingly. Knit the document using this new theme 
+
+
+There many possible options for the header (see [here](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) for additional examples). We'll learn more about some of these options later in the semester. 
+
+## Headers
+
+Using headers is a natural way to break up a document or report into smaller sections. You can include headers by putting one or more `#` signs in front of text. One `#` is a main header, `##` is the secondary header, etc.
+
+# Header 1
+
+## Header 2
+
+###  Header 3
+
+> 3) Create a level 1 header and call it "My goals for the semester"
+
+## Paragraph and line breaks
+
+When writing chunks of text in R Markdown (e.g., a report or manuscript), you can create new paragraphs by leaving an empty line between each paragraph:
+
+```
+This is one paragraph.
+
+This is the next paragraph
+```
+
+If you want to force a line break, include two spaces at the end of the line where you want the break:
+
+```
+This is one line  
+This is the next line
+```
+> 4) Type two short paragraphs below. In the first paragraph, tell Kim and I a little bit about yourself. In the second paragraph, tell us why you chose your major. 
+
+
+## **Bold**, *Italics*, 
+
+As mentioned earlier, create **boldface** by surrounding text with two asterisks (`**bold**`) and use single asterisks for *italics* (`*italics*`)
+
+> 5) Go back to the paragraphs you wrote for question 4 and add bold and italic text to highlight words or phrases you think are particularly important for understanding your background and your choice of major
+
+
+## Bulleted lists
+
+* Bulleted lists can be included by starting a line with an asterisk
+
+* You can also start the lines with a single dash `-`
+
+  + for sub-bullets, indent the line and start it with `+`
+    - for sub-sub-bullets, indent twice (press `tab` two times) and start with `-`
+
+> 6) Go back to the header you created for question 3 and add several bullet points with objectives for the semester (these can be related to WILD3810 or not)
+
+
+## Numbered lists
+
+1. Numbered lists look like this
+
+2. You can also include sub-levels in number lists
+    i) these can be lower case roman numerals  
+    a. or lowercase letters  
+      B. or uppercase letters  
+
+> 7) In the space below, create a level 2 header titled "My favorite animals". Then create a numbered list, ranking your top three favorite animals  
+
+
+## Equations
+
+Inserting equations is one of the areas that R Markdown really shines compared to word.  
+
+### Inline vs. block equations
+
+You can include equations either inline ($e = mc^2$) or as a stand-alone block:
+
+$$e=mc^2$$
+
+Inline equations are added by putting a single dollar sign `$` on either side of the equation (`$e=mc^2$`). Equation blocks are create by starting and ending a new line with double dollar signs
+
+`$$e=mc^2$$`
+
+## Greek letters
+
+Statistical models include a lot of Greek letters ($\alpha, \beta, \gamma$, etc.). You can add Greek letters to an equation by typing a backslash `\` followed by the name of the letter `\alpha`. Uppercase and lower case letters are possible by capitalizing the name ($\Delta$ = `$\Delta$`) or not ($\delta$ = `$\delta$`).
+
+## Subscripts and superscripts
+
+You can add superscripts using the `^` ($\pi r^2$=`$\pi r^2$`) symbol and subscripts using an underscore `_` ($N_t$ = `$N_t$`). 
+
+If the superscript or subscript includes more than one character, put the entire script within curly brackets `{}`: $N_t-1 \neq N_{t-1}$ is `$N_t-1 \neq N_{t-1}$`
+
+## Fractions
+
+Fractions can either be inline ($1/n$ = `$1/n$`) or stacked ($\frac{1}{n}$ = `$\frac{1}{n}$`). For stacked equations, the terms in the first curly brackets are the numerator and the terms in the second curly brackets are the denominator. 
+
+
+## Operators
+
+Pretty much every operator you could need can be written in latex. Some common ones include $\times$ (`$\times$`), $\lt$ (`$\lt$`), $\gt$ (`$\gt$`), $\leq$ (`$\leq$`), $\geq$ (`$\geq$`), $\neq$ (`$\neq$`), $\sum$ (`$\sum$`), $\prod$ (`$\prod$`), $\infty$ (`$\infty$`), and $\propto$ (`$\propto$`).
+
+See [here](http://web.ift.uib.no/Teori/KURS/WRK/TeX/symALL.html) for a list of other operators. 
+
+> 8) In [lecture 1](https://rushinglab.github.io/WILD3810/articles/Lecture1/Lecture1.html#40), we learned about the BIDE model. In the space below, write a block equation describing the BIDE model (see slide 25 from lecture 1 if your unsure what the equation should look like)
+
+# Adding code
+
+The ability to format and create html documents is great but the real strength of R Markdown is the ability to include and run code within your document. Code can be included **inline** or in **chunks**
+
+## Inline code
+
+Inline code is useful to including (simple) `R` output directly into the text. Inline code can be added by enclosing `R` code between `` `r "\u0060r"` `` and `` `r "\u0060"` ``. For example, typing `` `r "\u0060r mean(c(3,7,4,7,9))\u0060"` `` will compute and print the mean of the given vector. That is, it will print `r mean(c(3,7,4,7,9))` instead of the code itself. This can be very useful for including summary statistics in reports. 
+
+For example, if we have a vector indicating the number of individuals captured at each occasion during a mark-recapture study (e.g., `n <- c(155, 132, 147, 163)`) and we want to include the number of occasions in a report, instead of typing `4`, we can type `` `r "\u0060r length(n)\u0060"` ``. Not only does this prevent typos, it is extremely useful if `length(n)` might change in the future. Instead of manually changing the number of occasions, we just re-render the document and the new number of occasions will be printed automatically. 
+
+## Code chunks
+
+For more complicated code, it is generally more useful to use **chunks** than inline code. Chunks start on a separate line with `` `r "\u0060\u0060\u0060{r}"` `` and end with a `` `r "\u0060\u0060\u0060"` `` on its own line (instead of doing this manually, you can click the `Insert` button at the top right of script window, then click `R`). In between these two lines, you can include as many lines of code as you want. For example,
+
+`` `r "\u0060\u0060\u0060{r}"` ``  
+`` `r "n1 <- 44     # Number of individuals captured on first occasion"` ``  
+`` `r "n2 <- 32     # Number of individuals captured on second occasion"` ``  
+`` `r "m2 <- 15     # Number of previously marked individuals captured on second occasion"` ``  
+`` `r "N <- n1 * n2 / m2     # Lincoln-Peterson estimate of abundance "` ``  
+`` `r "\u0060\u0060\u0060"` ``
+
+### Chunk options
+
+Code chunks can take a lot of options to control how the code is run and what is displayed in the documents. These options go after `{r` and before the closing `}` (to see all the options put your cursor after the `{r`, hit the space bar, then hit `tab`). For example:
+
+- `echo = FALSE` shows the output of the code but not the code itself  
+
+- `include = FALSE` runs the code but does not display the code *or* the output (useful for chunks that read or format data)
+
+- `eval = FALSE` shows the code but does not run it (useful for showing code)
+
+- `warning = FALSE` and `message = FALSE` can be include to ensure that error messages and warnings are not printed, which can be useful for cleaning up the appearance of documents
+
+- `out.height` and `out.width` control the size of figures in a pdf document in inches or centimeters (e.g., `out.height = "3in", notice the quotation marks)
+
+See the main [R Markdown page](http://yihui.name/knitr/options/) for a complete list of possible options.
+
+> 9) Create a new code chunk in the space below and set the chunk options to ensure that the code runs but is not shown in the html document. Inside of the chunk, copy the following line of code: `date <- Sys.Date()`
+
+> 10a) In the space below, type "I completed this assignment on " and then include a inline code that prints the `date` object you created in the chunk above
+
+> Bonus: What did the code inside the chunk do? What did the inline code do? What will happen if you re-knit the document tomorrow?
+
+
+
+# Additional resources
+
+From the RStudio tool bar, click `Help -> Cheatsheets` and then select the `R Markdown cheat sheet` (lots of other good cheat sheets there as well)
+
+RStudio's [R Markdown](https://rmarkdown.rstudio.com/lesson-1.html) tutorial  
+
+Tom Edward's [R Markdown](http://learnr.usu.edu/r_markdown/1_1_markdown.php) tutorial  
+
+Coding Club's [Getting Started with R Markdown](https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html)  
+
+Cosma Shalizi's [Using R Markdown for Class Reports](http://www.stat.cmu.edu/~cshalizi/rmarkdown)
+
+# Homework assignment 0
+
+Before submitting your assignment, be sure to double check the instructions for [completing and submitting homework assignments](https://rushinglab.github.io/WILD3810/articles/homework.html). 

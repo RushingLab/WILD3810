@@ -1,0 +1,629 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Ligatures=TeX,Scale=MatchLowercase}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{hyperref}
+\hypersetup{unicode=true,
+            pdftitle={Homework 0},
+            pdfauthor={YOUR NAME HERE},
+            pdfborder={0 0 0},
+            breaklinks=true}
+\urlstyle{same}  % don't use monospace font for urls
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+\IfFileExists{parskip.sty}{%
+\usepackage{parskip}
+}{% else
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{0}
+% Redefines (sub)paragraphs to behave more like sections
+\ifx\paragraph\undefined\else
+\let\oldparagraph\paragraph
+\renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+\let\oldsubparagraph\subparagraph
+\renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+
+% Create subtitle command for use in maketitle
+\providecommand{\subtitle}[1]{
+  \posttitle{
+    \begin{center}\large#1\end{center}
+    }
+}
+
+\setlength{\droptitle}{-2em}
+
+  \title{Homework 0}
+    \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \subtitle{Warming up to R and R Markdown}
+  \author{YOUR NAME HERE}
+    \preauthor{\centering\large\emph}
+  \postauthor{\par}
+    \date{}
+    \predate{}\postdate{}
+  
+
+\begin{document}
+\maketitle
+
+\textbf{Due before 2:30pm Monday January 13}
+
+In this homework assignment, you will become more familiar with using
+\texttt{R} and R Markdown to complete lab assignments.
+
+First, make sure you have:
+
+\begin{quote}
+1a) Changed the \texttt{author} field in the YAML header to your name;
+\end{quote}
+
+\begin{quote}
+1b) Clicked \texttt{Knit} to check that you can create a html document
+from the .Rmd file;
+\end{quote}
+
+\begin{quote}
+1c) Saved the .Rmd file as \texttt{LastnameFirstname-homework0.Rmd} in a
+project named \texttt{LastNameFirstName-Lab0}
+\end{quote}
+
+If you have any problems with these steps, be sure to get help from
+either the instructor or the TA
+
+\hypertarget{r-markdown-basics}{%
+\section{R Markdown basics}\label{r-markdown-basics}}
+
+\hypertarget{basic-formatting}{%
+\subsection{Basic formatting}\label{basic-formatting}}
+
+\hypertarget{the-yaml-header}{%
+\subsubsection{The YAML header}\label{the-yaml-header}}
+
+At the top of your \texttt{.Rmd} file, you should see several line in
+between three blue dashes:
+
+\begin{verbatim}
+---
+title: "WILD3810: Homework 0"
+subtitle: "Warming up to R and R Markdown"
+author: "YOUR NAME HERE"
+output: html_document
+---
+\end{verbatim}
+
+This is called the ``YAML header'' and it's where we can control a lot
+of the major formatting options for our documents. For example, to
+change the output to PDF, just switch \texttt{html\_document} for
+\texttt{pdf\_document} and then click the \texttt{Knit} button again (be
+sure to change it back to html after you try it for yourself)
+
+Pretty cool, right?
+
+The YAML header allows to control many ``high level'' options for our
+document. For example, to change the font size, type the following
+directly under the \texttt{output:\ pdf\_document} argument:
+
+\begin{verbatim}
+fontsize: 12pt
+\end{verbatim}
+
+Check to see that the font size changed by clicking \texttt{Knit}.
+
+Changing font type is a little trickier. Behind the scenes, R Markdown
+turns your document into Latex code, which is then converted into a pdf.
+You don't need to know much about Latex (though a little knowledge is
+helpful) but this conversion does mean that our formatting options have
+to passed to the Latex convertor in specific ways. To tell Latex that we
+want to use \texttt{Arial} font, we have to modify the \texttt{output:}
+argument as follows:
+
+\begin{verbatim}
+title: "WILD3810"
+subtitle: "Homework 1"
+author: "YOUR NAME HERE"
+date: "2019-12-17"
+output: 
+  pdf_document:
+    latex_engine: xelatex
+
+mainfont: Arial
+\end{verbatim}
+
+Make sure you include the spaces to indent \texttt{pdf\_document:} and
+\texttt{latex\_engine:\ xelatex}.
+
+To indent the first line of each paragraph, add the following to the
+header:
+
+\begin{verbatim}
+indent: true
+\end{verbatim}
+
+There many possible options for the header (see
+\href{https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf}{here}
+for additional examples). We'll learn more about some of these options
+later in the semester.
+
+\hypertarget{headers}{%
+\subsection{Headers}\label{headers}}
+
+Using headers is a natural way to break up a document or report into
+smaller sections. You can include headers by putting one or more
+\texttt{\#} signs in front of text. One \texttt{\#} is a main header,
+\texttt{\#\#} is the secondary header, etc.
+
+\hypertarget{header-1}{%
+\section{Header 1}\label{header-1}}
+
+\hypertarget{header-2}{%
+\subsection{Header 2}\label{header-2}}
+
+\hypertarget{header-3}{%
+\subsubsection{Header 3}\label{header-3}}
+
+\hypertarget{paragraph-and-line-breaks}{%
+\subsection{Paragraph and line breaks}\label{paragraph-and-line-breaks}}
+
+When writing chunks of text in R Markdown (e.g., a report or
+manuscript), you can create new paragraphs by leaving an empty line
+between each paragraph:
+
+\begin{verbatim}
+This is one paragraph.
+
+This is the next paragraph
+\end{verbatim}
+
+If you want to force a line break, include two spaces at the end of the
+line where you want the break:
+
+\begin{verbatim}
+This is one line  
+This is the next line
+\end{verbatim}
+
+\hypertarget{bold-italics}{%
+\subsection{\texorpdfstring{\textbf{Bold},
+\emph{Italics},}{Bold, Italics,}}\label{bold-italics}}
+
+As mentioned earlier, create \textbf{boldface} by surrounding text with
+two asterisks (\texttt{**bold**}) and use single asterisks for
+\emph{italics} (\texttt{*italics*})
+
+\hypertarget{code-type}{%
+\subsection{Code type}\label{code-type}}
+
+To highlight code (note, this does not actually insert functioning code,
+just formats text to show that it is code rather than plain text),
+surround the text with back ticks ": \texttt{mean()}
+
+You can include muliple lines of code by including three back ticks on
+the line before the code and then three back ticks on the line after the
+code:
+
+\begin{verbatim}
+Multiple lines of code
+look like 
+this
+\end{verbatim}
+
+\hypertarget{bulleted-lists}{%
+\subsection{Bulleted lists}\label{bulleted-lists}}
+
+\begin{itemize}
+\item
+  Bulleted lists can be included by starting a line with an asterisk
+\item
+  You can also start the lines with a single dash \texttt{-}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    for sub-bullets, indent the line and start it with \texttt{+}
+
+    \begin{itemize}
+    \tightlist
+    \item
+      for sub-sub-bullets, indent twice (press \texttt{tab} two times)
+      and start with \texttt{-}
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{numbered-lists}{%
+\subsection{Numbered lists}\label{numbered-lists}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Numbered lists look like this
+\item
+  You can also include sub-levels in number lists
+
+  \begin{enumerate}
+  \def\labelenumii{\roman{enumii})}
+  \tightlist
+  \item
+    these can be lower case roman numerals\\
+  \end{enumerate}
+
+  \begin{enumerate}
+  \def\labelenumii{\alph{enumii}.}
+  \tightlist
+  \item
+    or lowercase letters\\
+    B. or uppercase letters
+  \end{enumerate}
+\end{enumerate}
+
+\hypertarget{quotations}{%
+\subsection{Quotations}\label{quotations}}
+
+You highlight quotations by starting the line with
+\texttt{\textgreater{}}, which produces:
+
+\begin{quote}
+All models are wrong
+\end{quote}
+
+\hypertarget{hyperlinks}{%
+\subsection{Hyperlinks}\label{hyperlinks}}
+
+Insert hyperlinks by putting the text you want displayed in square
+brackets followed by the link in parentheses:
+\texttt{{[}RStudio\ cheatsheet{]}(https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)}
+
+\hypertarget{equations}{%
+\subsection{Equations}\label{equations}}
+
+Inserting equations in R Markdown is where knowing some Latex really
+comes in handy becuase eqations are written using Latex code. For the
+most part, this is not too difficult but if you need to insert complex
+equations you will probably need to look up the code for some symbols.
+There are many good resources for if you google ``latex equations'' or
+something similear.
+
+\hypertarget{inline-vs.block-equations}{%
+\subsubsection{Inline vs.~block
+equations}\label{inline-vs.block-equations}}
+
+You can include equations either inline (\(e = mc^2\)) or as a
+stand-alone block:
+
+\[e=mc^2\]
+
+Inline equations are added by putting a single dollar sign \texttt{\$}
+on either side of the equation (\texttt{\$e=mc\^{}2\$}). Equation blocks
+are create by starting and ending a new line with double dollar signs
+
+\texttt{\$\$e=mc\^{}2\$\$}
+
+\hypertarget{greek-letters}{%
+\subsection{Greek letters}\label{greek-letters}}
+
+Statistical models include a lot of Greek letters
+(\(\alpha, \beta, \gamma\), etc.). You can add Greek letters to an
+equation by typing a backslash \texttt{\textbackslash{}} followed by the
+name of the letter \texttt{\textbackslash{}alpha}. Uppercase and lower
+case letters are possible by capitalizing the name (\(\Delta\) =
+\texttt{\$\textbackslash{}Delta\$}) or not (\(\delta\) =
+\texttt{\$\textbackslash{}delta\$}).
+
+\hypertarget{subscripts-and-superscripts}{%
+\subsection{Subscripts and
+superscripts}\label{subscripts-and-superscripts}}
+
+You can add superscripts using the \texttt{\^{}}
+(\(\pi r^2\)=\texttt{\$\textbackslash{}pi\ r\^{}2\$}) symbol and
+subscripts using an underscore \texttt{\_} (\(N_t\) =
+\texttt{\$N\_t\$}).
+
+If the superscript or subscript includes more than one characeter, put
+the entire script within curly brackets \texttt{\{\}}:
+\(N_t-1 \neq N_{t-1}\) is
+\texttt{\$N\_t-1\ \textbackslash{}neq\ N\_\{t-1\}\$}
+
+\hypertarget{brackets-and-parentheses}{%
+\subsection{Brackets and parentheses}\label{brackets-and-parentheses}}
+
+You can add normal sized brackets and parenthesis just by typing them
+into the equation: \((x + y)\) = \texttt{(x\ +\ y)}
+
+If you need bigger sizes, using \texttt{\$\textbackslash{}big(\$},
+\texttt{\$\textbackslash{}bigg(\$}, and
+\texttt{\$\textbackslash{}Bigg(\$} produces \(\big(\), \(\bigg(\), and
+\(\Bigg(\) (switch the opening parenthesis for a closing parenthesis or
+square bracket as needed)
+
+\hypertarget{fractions}{%
+\subsection{Fractions}\label{fractions}}
+
+Fractions can either be inline (\(1/n\) = \texttt{\$1/n\$}) or stacked
+(\(\frac{1}{n}\) = \texttt{\$\textbackslash{}frac\{1\}\{n\}\$}). For
+stacked equations, the terms in the first curly brackets are the
+numerator and the terms in the second curly brackets are the
+demoninator.
+
+\hypertarget{operators}{%
+\subsection{Operators}\label{operators}}
+
+Pretty much every operator you could need can be written in latex. Some
+common ones include \(\times\) (\texttt{\$\textbackslash{}times\$}),
+\(\lt\) (\texttt{\$\textbackslash{}lt\$}), \(\gt\)
+(\texttt{\$\textbackslash{}gt\$}), \(\leq\)
+(\texttt{\$\textbackslash{}leq\$}), \(\geq\)
+(\texttt{\$\textbackslash{}geq\$}), \(\neq\)
+(\texttt{\$\textbackslash{}neq\$}), \(\sum\)
+(\texttt{\$\textbackslash{}sum\$}), \(\prod\)
+(\texttt{\$\textbackslash{}prod\$}), \(\infty\)
+(\texttt{\$\textbackslash{}infty\$}), and \(\propto\)
+(\texttt{\$\textbackslash{}propto\$}).
+
+See \href{http://web.ift.uib.no/Teori/KURS/WRK/TeX/symALL.html}{here}
+for a list of other operators.
+
+\hypertarget{adding-code}{%
+\section{Adding code}\label{adding-code}}
+
+The ability to format and create pdf and html documents is great but the
+real strength of R Markdown is the ability to include and run code
+within your document. Code can be included \textbf{inline} or in
+\textbf{chunks}
+
+\hypertarget{inline-code}{%
+\subsection{Inline code}\label{inline-code}}
+
+Inline code is useful to including (simple) \texttt{R} output directly
+into the text. Inline code can be added by inclosing \texttt{R} code
+between \texttt{\textbackslash{}x60r} and \texttt{\textbackslash{}x60}.
+For example, typing
+\texttt{\textbackslash{}x60r\ mean(c(3,7,4,7,9))\textbackslash{}x60}
+will compute and print the mean of the given vector. This is, it will
+print 6 instead of the code itself. This can be very useful for
+including summary statistics in reports.
+
+For example, if we have a vector indicating the number of individuals
+captured at each occassion during a mark-recapture study (e.g.,
+\texttt{n\ \textless{}-\ c(155,\ 132,\ 147,\ 163)}) and we want to
+include the number of occasions in a report, instead of typing
+\texttt{4}, we can type
+\texttt{\textbackslash{}x60r\ length(n)\textbackslash{}x60}. Not only
+does this prevent typos, it is extemely useful if \texttt{length(n)}
+might change in the future. Instead of manually changing the number of
+occasions, we just re-render the document and the new number of
+occasions will be printed automatically.
+
+\hypertarget{code-chunks}{%
+\subsection{Code chunks}\label{code-chunks}}
+
+For more complicated code, it is generally more useful to use
+\textbf{chunks} than inline code. Chunks start on a separate line with
+\texttt{\textbackslash{}x60\textbackslash{}x60\textbackslash{}x60\{r\}}
+and end with a
+\texttt{\textbackslash{}x60\textbackslash{}x60\textbackslash{}x60} on
+its own line (instead of doing this manually, you can click the
+\texttt{Insert} button at the top right of script window, then click
+\texttt{R}). In between these two lines, you can include as many lines
+of code as you want. For example,
+
+\begin{verbatim}
+\x60\x60\x60{r}
+n1 <- 44     # Number of individuals captured on first occasion
+
+n2 <- 32     # Number of individuals captured on second occasion
+  
+m2 <- 15     # Number of previously marked individuals captured on second occasion
+
+N <- n1 * n2 / m2     # Lincoln-Peterson estimate of abundance 
+\x60\x60\x60
+\end{verbatim}
+
+\hypertarget{chunk-options}{%
+\subsubsection{Chunk options}\label{chunk-options}}
+
+Code chunks can take a lot of options to control how the code is run and
+what is displayed in the documents. These options go after \texttt{\{r}
+and before the closing \texttt{\}} (to see all the options put your
+cursor after the \texttt{\{r}, hit the space bar, then hit
+\texttt{tab}). For example:
+
+\begin{itemize}
+\item
+  \texttt{echo\ =\ FALSE} shows the output of the code but not the code
+  itself
+\item
+  \texttt{include\ =\ FALSE} runs the code but doe not display the code
+  \emph{or} the output (useful for chunks that read or format data)
+\item
+  \texttt{eval\ =\ FALSE} shows the code but does not run it (useful for
+  showing code)
+\item
+  \texttt{warning\ =\ FALSE} and \texttt{message\ =\ FALSE} can be
+  include to ensure that error messages and warnings are not printed,
+  which can be useful for cleaning up the appearance of documents
+\item
+  \texttt{cache\ =\ TRUE} save the results of the \texttt{R} code and
+  doesn't rerun the chunk unless the code is changed (useful for chunks
+  that take a long time to run)
+\item
+  \texttt{out.height} and \texttt{out.width} control the size of figures
+  in a pdf document in inches or centimeters (e.g., `out.height =
+  ``3in'', notice the quotation marks)
+\end{itemize}
+
+See the main \href{http://yihui.name/knitr/options/}{R Markdown page}
+for a complete list of possible options.
+
+\hypertarget{setting-defaults-for-all-chunks}{%
+\subsubsection{Setting defaults for all
+chunks}\label{setting-defaults-for-all-chunks}}
+
+Often it is useful to set the default behavior for all chunks rather
+that including, for example, \texttt{warning\ =\ FALSE} at the beginning
+of each one. To do this, you can include a chunk at the beginning of the
+document:
+
+\begin{verbatim}
+\x60\x60\x60{r include=FALSE}
+opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
+\x60\x60\x60
+\end{verbatim}
+
+Any options can be inluded in this chuck to set the default behaviors.
+You can over-ride these defaults within chunks as needed. You can also
+load common packages in this chunk to streamline chunks later in the
+document.
+
+\hypertarget{tables}{%
+\subsubsection{Tables}\label{tables}}
+
+To nicely print matrices and data frames in R Markdown document, use the
+\texttt{kable()} function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(knitr)}
+\KeywordTok{kable}\NormalTok{(}\KeywordTok{head}\NormalTok{(mtcars))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{longtable}[]{@{}lrrrrrrrrrrr@{}}
+\toprule
+& mpg & cyl & disp & hp & drat & wt & qsec & vs & am & gear &
+carb\tabularnewline
+\midrule
+\endhead
+Mazda RX4 & 21.0 & 6 & 160 & 110 & 3.90 & 2.620 & 16.46 & 0 & 1 & 4 &
+4\tabularnewline
+Mazda RX4 Wag & 21.0 & 6 & 160 & 110 & 3.90 & 2.875 & 17.02 & 0 & 1 & 4
+& 4\tabularnewline
+Datsun 710 & 22.8 & 4 & 108 & 93 & 3.85 & 2.320 & 18.61 & 1 & 1 & 4 &
+1\tabularnewline
+Hornet 4 Drive & 21.4 & 6 & 258 & 110 & 3.08 & 3.215 & 19.44 & 1 & 0 & 3
+& 1\tabularnewline
+Hornet Sportabout & 18.7 & 8 & 360 & 175 & 3.15 & 3.440 & 17.02 & 0 & 0
+& 3 & 2\tabularnewline
+Valiant & 18.1 & 6 & 225 & 105 & 2.76 & 3.460 & 20.22 & 1 & 0 & 3 &
+1\tabularnewline
+\bottomrule
+\end{longtable}
+
+The \texttt{kableExtra} package provides even more advanced options for
+creating nice looking tables. See
+\href{https://haozhu233.github.io/kableExtra/awesome_table_in_html.html}{here}
+for an overview of options provided by this package.
+
+\hypertarget{additional-resources}{%
+\section{Additional resources}\label{additional-resources}}
+
+From the RStudio tool bar, click
+\texttt{Help\ -\textgreater{}\ Cheatsheets} and then select the
+\texttt{R\ Markdown\ cheat\ sheet} (lots of other good cheat sheets
+there as well)
+
+RStudio's \href{https://rmarkdown.rstudio.com/lesson-1.html}{R Markdown}
+tutorial
+
+Tom Edward's \href{http://learnr.usu.edu/r_markdown/1_1_markdown.php}{R
+Markdown} tutorial
+
+Coding Club's
+\href{https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html}{Getting
+Started with R Markdown}
+
+Cosma Shalizi's \href{http://www.stat.cmu.edu/~cshalizi/rmarkdown}{Using
+R Markdown for Class Reports}
+
+\hypertarget{homework-assignment-1}{%
+\section{Homework assignment 1}\label{homework-assignment-1}}
+
+Before submitting your assignment, be sure to double check the
+instructions for
+\href{https://rushinglab.github.io/WILD3810/articles/homework.html}{completing
+and submitting homework assignments}.
+
+
+\end{document}

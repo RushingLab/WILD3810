@@ -20,7 +20,7 @@ All homework assignments for this course will be completed R Markdown files. To 
 
 # Homework steps for RStudio Cloud
 
-### Step 1: Create a new project to complete the homework assignment
+### Step 1: Create a new project for each lab
 
 1a) Create a new project 
 
@@ -28,7 +28,7 @@ All homework assignments for this course will be completed R Markdown files. To 
 knitr::include_graphics("figs/New_project.png")
 ```
 
-1b) Name the new project `LastNameFirstName-Homework#`, replacing `LastNameFirstName` with your last and first names and `#` with the appropriate homework number
+1b) Name the new project `LastNameFirstName-Lab#`, replacing `LastNameFirstName` with your last and first names and `#` with the appropriate lab number
 
 ```{r}
 knitr::include_graphics("figs/Name_project.png")
@@ -42,7 +42,7 @@ knitr::include_graphics("figs/Name_project.png")
 knitr::include_graphics("figs/New_markdown.png")
 ```
 
-2b) In the window on the left, select `From Template`. Scroll down through the options until you see `WILD3810-Homework#` (where `#` will be the appropriate homework number). Select that template. In the `Name:` window type `LastnameFirstname-homework#`, substituting your last and first names and the correct homework number. In the `Location` window, navigate to your newly create `LastNameFirstName-Homework#` directory
+2b) In the window on the left, select `From Template`. Scroll down through the options until you see `WILD3810-Homework#` (where `#` will be the appropriate homework number). Select that template. In the `Name:` window type `LastnameFirstname-homework#`, substituting your last and first names and the correct homework number. In the `Location` window, navigate to your newly create `LastNameFirstName-Lab#` directory
 
 ```{r}
 knitr::include_graphics("figs/homework_template.png")
@@ -111,7 +111,7 @@ knitr::include_graphics("figs/new_project-local.png")
 knitr::include_graphics("figs/new_project-local2.png")
 ```
 
-1d) Name the project `LastNameFirstName-Homework#`, replacing `LastNameFirstName` with your last and first names and `#` with the appropriate homework number and select a location for the project to be saved. Click `Create Project`
+1d) Name the project `LastNameFirstName-Lab#`, replacing `LastNameFirstName` with your last and first names and `#` with the appropriate lab number and select a location for the project to be saved. Click `Create Project`
 
 
 ```{r out.width="600px"}

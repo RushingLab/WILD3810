@@ -74,10 +74,10 @@
       <a href="../articles/Lecture1/Lecture1.html">Lecture 1: Introduction to population ecology</a>
     </li>
     <li>
-      <a href="../articles/Lecture2/Lecture2.html">Lecture 2: Abundance</a>
+      <a href="../articles/Lecture2/lecture2.html">Lecture 2: Abundance</a>
     </li>
     <li>
-      <a href="../articles/Lecture3/Lecture3.html">Lecture 3: Density-independent population growth</a>
+      <a href="../articles/Lecture3/lecture3.html">Lecture 3: Density-independent population growth</a>
     </li>
     <li>
       <a href="../articles/Lecture4/Lecture4.html">Lecture 4: Stochasticity</a>
@@ -138,7 +138,7 @@
       <h1>Introduction to R Markdown</h1>
             <h3 class="subtitle">WILD2900</h3>
             
-            <h4 class="date">updated on 2019-12-16</h4>
+            <h4 class="date">updated on 2019-12-17</h4>
       
       
       <div class="hidden name"><code>rmarkdown_intro.Rmd</code></div>
@@ -189,23 +189,14 @@
 <h1 class="hasAnchor">
 <a href="#authoring-r-markdown-files" class="anchor"></a>Authoring R Markdown files</h1>
 <p>Understanding what R Markdown files are and why they are so useful will become more clear as you learn to create and edit these documents. So without futher ado, let’s create an new R Markdown file and do some basic editing.</p>
-<div id="step-0-set-up-the-file-structure" class="section level2">
-<h2 class="hasAnchor">
-<a href="#step-0-set-up-the-file-structure" class="anchor"></a>Step 0: Set up the file structure</h2>
-<p>The document we are going to create will form the basis of your first homework assignment so to start off the semster in an organized fashion, let’s create a project called <code>WILD3810</code>:</p>
-<p>0a) Click on <code>File -&gt; New Project</code> then click <code>New Directory</code></p>
-<p>0b) Click <code>New Project</code>. Name this project <code>WILD3810</code> and choose a sensible location for the project (e.g., <code>Desktop/</code>)</p>
-<p>0c) Click <code>Create Project</code> at the bottom.</p>
-<p>1d) In the newly create directory, create a subdirectory called <code>LastNameFirstName-Homework#</code>, replacing <code>LastNameFirstName</code> with your last and first names and <code>#</code> with the appropriate homework number</p>
-</div>
 <div id="step-1-create-a-new-r-markdown-file-using-the-homework-template" class="section level2">
 <h2 class="hasAnchor">
 <a href="#step-1-create-a-new-r-markdown-file-using-the-homework-template" class="anchor"></a>Step 1: Create a new R Markdown file using the homework template</h2>
 <p>1a) Click on <code>File -&gt; New File -&gt; R Markdown...</code></p>
-<p>1b) In the window on the left, select <code>From Template</code></p>
-<p>1c) Scroll down through the options until you see <code>WILD3810-Homework1</code>. Select that template</p>
-<p>1d) In the <code>Name:</code> window type <code>LastnameFirstname-homework1</code>, substituting your last and first names. In the <code>Location</code> window, navigate to your newly create <code>LastNameFirstName-Homework1</code> directory</p>
-<p>1e) Click <code>Ok</code></p>
+<p><img src="figs/New_markdown.png" width="600px"></p>
+<p>1b) In the window on the left, select <code>From Template</code>. Scroll down through the options until you see <code>WILD3810-Homework0</code>. Select that template. In the <code>Name:</code> window type <code>LastnameFirstname-homework0</code>. In the <code>Location</code> window, navigate to your newly create <code>LastNameFirstName-Lab0</code> directory</p>
+<p><img src="figs/homework_template.png" width="600px"></p>
+<p>1c) Click <code>Ok</code></p>
 </div>
 <div id="step-2-fill-in-your-information-and-render-the-document" class="section level2">
 <h2 class="hasAnchor">
@@ -213,349 +204,18 @@
 <p>2a) Change the <code>author: YOUR NAME HERE</code> field in the header to your name.</p>
 <p>2b) You should see a small box above the <code>Source</code> window (the RStudio window where your document just appeared) that says <code>Knit</code> with a small ball of yarn icon. When you click that button (not yet!), two things will happen:</p>
 <ul>
-<li><p>The .Rmd file will be rendered as a PDF document, which will pop up on your screen</p></li>
-<li><p>RStudio will create a new file called <code>LastnameFirstname-homework1.pdf</code> - you should see that file in the <code>Files</code> window in the bottom right of your screen</p></li>
+<li><p>The .Rmd file will be rendered as a HTML document, which will pop up on your screen</p></li>
+<li><p>RStudio will create a new file called <code>LastnameFirstname-homework0.html</code> - you should see that file in the <code>Files</code> window in the bottom right of your screen</p></li>
 </ul>
-<p>2c) Click that button</p>
+<p>2c) Click the <code>knit</code> button</p>
+<p><img src="figs/Knit_homework.png" width="600px"></p>
 <p>Congratulations, you just created your first R Markdown file!</p>
 </div>
-</div>
-<div id="basic-formatting" class="section level1">
-<h1 class="hasAnchor">
-<a href="#basic-formatting" class="anchor"></a>Basic formatting</h1>
-<div id="the-yaml-header" class="section level2">
+<div id="completing-the-homework" class="section level2">
 <h2 class="hasAnchor">
-<a href="#the-yaml-header" class="anchor"></a>The YAML header</h2>
-<p>At the top of your <code>.Rmd</code> file, you should see several line in between three blue dashes:</p>
-<pre><code>---
-title: "WILD3810: Homework 1"
-subtitle: "Warming up to R Markdown and the Chapman's modification"
-author: "YOUR NAME HERE"
-output: pdf_document
----</code></pre>
-<p>This is called the “YAML header” and it’s where we can control a lot of the major formatting options for our documents. For example, to change the output to HTML, just switch <code>pdf_document</code> for <code>HTML_document</code> and then click the <code>Knit</code> button again (be sure to change it back to pdf after you try it for yourself)</p>
-<p>Pretty cool, right?</p>
-<p>The YAML header allows to control many “high level” options for our document. For example, to change the font size, type the following directly under the <code>output: pdf_document</code> argument:</p>
-<pre><code>fontsize: 12pt</code></pre>
-<p>Check to see that the font size changed by clicking <code>Knit</code>.</p>
-<p>Changing font type is a little trickier. Behind the scenes, R Markdown turns your document into Latex code, which is then converted into a pdf. You don’t need to know much about Latex (though a little knowledge is helpful) but this conversion does mean that our formatting options have to passed to the Latex convertor in specific ways. To tell Latex that we want to use <code>Arial</code> font, we have to modify the <code>output:</code> argument as follows:</p>
-<pre><code>title: "WILD3810"
-subtitle: "Homework 1"
-author: "YOUR NAME HERE"
-date: "2019-12-16"
-output: 
-  pdf_document:
-    latex_engine: xelatex
-
-mainfont: Arial</code></pre>
-<p>Make sure you include the spaces to indent <code>pdf_document:</code> and <code>latex_engine: xelatex</code>.</p>
-<p>To indent the first line of each paragraph, add the following to the header:</p>
-<pre><code>indent: true</code></pre>
-<p>There many possible options for the header (see <a href="https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">here</a> for additional examples). We’ll learn more about some of these options later in the semester.</p>
+<a href="#completing-the-homework" class="anchor"></a>Completing the homework</h2>
+<p>Assuming that you were to knit the <code>LastnameFirstname-homework0.html</code> document, you can keep the knitted version open while you work through the assignment. Follow the instructions on the html page and complete the assignment within the .Rmd file.</p>
 </div>
-<div id="headers" class="section level2">
-<h2 class="hasAnchor">
-<a href="#headers" class="anchor"></a>Headers</h2>
-<p>Using headers is a natural way to break up a document or report into smaller sections. You can include headers by putting one or more <code>#</code> signs in front of text. One <code>#</code> is a main header, <code>##</code> is the secondary header, etc.</p>
-</div>
-</div>
-<div id="header-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#header-1" class="anchor"></a>Header 1</h1>
-<div id="header-2" class="section level2">
-<h2 class="hasAnchor">
-<a href="#header-2" class="anchor"></a>Header 2</h2>
-<div id="header-3" class="section level3">
-<h3 class="hasAnchor">
-<a href="#header-3" class="anchor"></a>Header 3</h3>
-</div>
-</div>
-<div id="paragraph-and-line-breaks" class="section level2">
-<h2 class="hasAnchor">
-<a href="#paragraph-and-line-breaks" class="anchor"></a>Paragraph and line breaks</h2>
-<p>When writing chunks of text in R Markdown (e.g., a report or manuscript), you can create new paragraphs by leaving an empty line between each paragraph:</p>
-<pre><code>This is one paragraph.
-
-This is the next paragraph</code></pre>
-<p>If you want to force a line break, include two spaces at the end of the line where you want the break:</p>
-<pre><code>This is one line  
-This is the next line</code></pre>
-</div>
-<div id="bold-italics" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bold-italics" class="anchor"></a><strong>Bold</strong>, <em>Italics</em>,</h2>
-<p>As mentioned earlier, create <strong>boldface</strong> by surrounding text with two asterisks (<code>**bold**</code>) and use single asterisks for <em>italics</em> (<code>*italics*</code>)</p>
-</div>
-<div id="code-type" class="section level2">
-<h2 class="hasAnchor">
-<a href="#code-type" class="anchor"></a>Code type</h2>
-<p>To highlight code (note, this does not actually insert functioning code, just formats text to show that it is code rather than plain text), surround the text with back ticks ": <code><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean()</a></code></p>
-<p>You can include muliple lines of code by including three back ticks on the line before the code and then three back ticks on the line after the code:</p>
-<pre><code>Multiple lines of code
-look like 
-this</code></pre>
-</div>
-<div id="bulleted-lists" class="section level2">
-<h2 class="hasAnchor">
-<a href="#bulleted-lists" class="anchor"></a>Bulleted lists</h2>
-<ul>
-<li><p>Bulleted lists can be included by starting a line with an asterisk</p></li>
-<li>
-<p>You can also start the lines with a single dash <code>-</code></p>
-<ul>
-<li>for sub-bullets, indent the line and start it with <code>+</code>
-<ul>
-<li>for sub-sub-bullets, indent twice (press <code>tab</code> two times) and start with <code>-</code>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-<div id="numbered-lists" class="section level2">
-<h2 class="hasAnchor">
-<a href="#numbered-lists" class="anchor"></a>Numbered lists</h2>
-<ol style="list-style-type: decimal">
-<li><p>Numbered lists look like this</p></li>
-<li>You can also include sub-levels in number lists
-<ol style="list-style-type: lower-roman">
-<li>these can be lower case roman numerals<br>
-</li>
-</ol>
-<ol style="list-style-type: lower-alpha">
-<li>or lowercase letters<br>
-B. or uppercase letters</li>
-</ol>
-</li>
-</ol>
-</div>
-<div id="quotations" class="section level2">
-<h2 class="hasAnchor">
-<a href="#quotations" class="anchor"></a>Quotations</h2>
-<p>You highlight quotations by starting the line with <code>&gt;</code>, which produces:</p>
-<blockquote>
-<p>All models are wrong</p>
-</blockquote>
-</div>
-<div id="hyperlinks" class="section level2">
-<h2 class="hasAnchor">
-<a href="#hyperlinks" class="anchor"></a>Hyperlinks</h2>
-<p>Insert hyperlinks by putting the text you want displayed in square brackets followed by the link in parentheses: <code>[RStudio cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)</code></p>
-</div>
-<div id="equations" class="section level2">
-<h2 class="hasAnchor">
-<a href="#equations" class="anchor"></a>Equations</h2>
-<p>Inserting equations in R Markdown is where knowing some Latex really comes in handy becuase eqations are written using Latex code. For the most part, this is not too difficult but if you need to insert complex equations you will probably need to look up the code for some symbols. There are many good resources for if you google “latex equations” or something similear.</p>
-<div id="inline-vs-block-equations" class="section level3">
-<h3 class="hasAnchor">
-<a href="#inline-vs-block-equations" class="anchor"></a>Inline vs. block equations</h3>
-<p>You can include equations either inline (<span class="math inline">\(e = mc^2\)</span>) or as a stand-alone block:</p>
-<p><span class="math display">\[e=mc^2\]</span></p>
-<p>Inline equations are added by putting a single dollar sign <code>$</code> on either side of the equation (<code>$e=mc^2$</code>). Equation blocks are create by starting and ending a new line with double dollar signs</p>
-<p><code>$$e=mc^2$$</code></p>
-</div>
-</div>
-<div id="greek-letters" class="section level2">
-<h2 class="hasAnchor">
-<a href="#greek-letters" class="anchor"></a>Greek letters</h2>
-<p>Statistical models include a lot of Greek letters (<span class="math inline">\(\alpha, \beta, \gamma\)</span>, etc.). You can add Greek letters to an equation by typing a backslash <code>\</code> followed by the name of the letter <code>\alpha</code>. Uppercase and lower case letters are possible by capitalizing the name (<span class="math inline">\(\Delta\)</span> = <code>$\Delta$</code>) or not (<span class="math inline">\(\delta\)</span> = <code>$\delta$</code>).</p>
-</div>
-<div id="subscripts-and-superscripts" class="section level2">
-<h2 class="hasAnchor">
-<a href="#subscripts-and-superscripts" class="anchor"></a>Subscripts and superscripts</h2>
-<p>You can add superscripts using the <code>^</code> (<span class="math inline">\(\pi r^2\)</span>=<code>$\pi r^2$</code>) symbol and subscripts using an underscore <code>_</code> (<span class="math inline">\(N_t\)</span> = <code>$N_t$</code>).</p>
-<p>If the superscript or subscript includes more than one characeter, put the entire script within curly brackets <code>{}</code>: <span class="math inline">\(N_t-1 \neq N_{t-1}\)</span> is <code>$N_t-1 \neq N_{t-1}$</code></p>
-</div>
-<div id="brackets-and-parentheses" class="section level2">
-<h2 class="hasAnchor">
-<a href="#brackets-and-parentheses" class="anchor"></a>Brackets and parentheses</h2>
-<p>You can add normal sized brackets and parenthesis just by typing them into the equation: <span class="math inline">\((x + y)\)</span> = <code>(x + y)</code></p>
-<p>If you need bigger sizes, using <code>$\big($</code>, <code>$\bigg($</code>, and <code>$\Bigg($</code> produces <span class="math inline">\(\big(\)</span>, <span class="math inline">\(\bigg(\)</span>, and <span class="math inline">\(\Bigg(\)</span> (switch the opening parenthesis for a closing parenthesis or square bracket as needed)</p>
-</div>
-<div id="fractions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#fractions" class="anchor"></a>Fractions</h2>
-<p>Fractions can either be inline (<span class="math inline">\(1/n\)</span> = <code>$1/n$</code>) or stacked (<span class="math inline">\(\frac{1}{n}\)</span> = <code>$\frac{1}{n}$</code>). For stacked equations, the terms in the first curly brackets are the numerator and the terms in the second curly brackets are the demoninator.</p>
-</div>
-<div id="operators" class="section level2">
-<h2 class="hasAnchor">
-<a href="#operators" class="anchor"></a>Operators</h2>
-<p>Pretty much every operator you could need can be written in latex. Some common ones include <span class="math inline">\(\times\)</span> (<code>$\times$</code>), <span class="math inline">\(\lt\)</span> (<code>$\lt$</code>), <span class="math inline">\(\gt\)</span> (<code>$\gt$</code>), <span class="math inline">\(\leq\)</span> (<code>$\leq$</code>), <span class="math inline">\(\geq\)</span> (<code>$\geq$</code>), <span class="math inline">\(\neq\)</span> (<code>$\neq$</code>), <span class="math inline">\(\sum\)</span> (<code>$\sum$</code>), <span class="math inline">\(\prod\)</span> (<code>$\prod$</code>), <span class="math inline">\(\infty\)</span> (<code>$\infty$</code>), and <span class="math inline">\(\propto\)</span> (<code>$\propto$</code>).</p>
-<p>See <a href="http://web.ift.uib.no/Teori/KURS/WRK/TeX/symALL.html">here</a> for a list of other operators.</p>
-</div>
-</div>
-<div id="adding-code" class="section level1">
-<h1 class="hasAnchor">
-<a href="#adding-code" class="anchor"></a>Adding code</h1>
-<p>The ability to format and create pdf and html documents is great but the real strength of R Markdown is the ability to include and run code within your document. Code can be included <strong>inline</strong> or in <strong>chunks</strong></p>
-<div id="inline-code" class="section level2">
-<h2 class="hasAnchor">
-<a href="#inline-code" class="anchor"></a>Inline code</h2>
-<p>Inline code is useful to including (simple) <code>R</code> output directly into the text. Inline code can be added by inclosing <code>R</code> code between <code>\x60r</code> and <code>\x60</code>. For example, typing <code>\x60r mean(c(3,7,4,7,9))\x60</code> will compute and print the mean of the given vector. This is, it will print 6 instead of the code itself. This can be very useful for including summary statistics in reports.</p>
-<p>For example, if we have a vector indicating the number of individuals captured at each occassion during a mark-recapture study (e.g., <code>n &lt;- c(155, 132, 147, 163)</code>) and we want to include the number of occasions in a report, instead of typing <code>4</code>, we can type <code>\x60r length(n)\x60</code>. Not only does this prevent typos, it is extemely useful if <code><a href="https://www.rdocumentation.org/packages/base/topics/length">length(n)</a></code> might change in the future. Instead of manually changing the number of occasions, we just re-render the document and the new number of occasions will be printed automatically.</p>
-</div>
-<div id="code-chunks" class="section level2">
-<h2 class="hasAnchor">
-<a href="#code-chunks" class="anchor"></a>Code chunks</h2>
-<p>For more complicated code, it is generally more useful to use <strong>chunks</strong> than inline code. Chunks start on a separate line with <code>\x60\x60\x60{r}</code> and end with a <code>\x60\x60\x60</code> on its own line (instead of doing this manually, you can click the <code>Insert</code> button at the top right of script window, then click <code>R</code>). In between these two lines, you can include as many lines of code as you want. For example,</p>
-<pre><code>\x60\x60\x60{r}
-n1 &lt;- 44     # Number of individuals captured on first occasion
-
-n2 &lt;- 32     # Number of individuals captured on second occasion
-  
-m2 &lt;- 15     # Number of previously marked individuals captured on second occasion
-
-N &lt;- n1 * n2 / m2     # Lincoln-Peterson estimate of abundance 
-\x60\x60\x60</code></pre>
-<div id="chunk-options" class="section level3">
-<h3 class="hasAnchor">
-<a href="#chunk-options" class="anchor"></a>Chunk options</h3>
-<p>Code chunks can take a lot of options to control how the code is run and what is displayed in the documents. These options go after <code>{r</code> and before the closing <code>}</code> (to see all the options put your cursor after the <code>{r</code>, hit the space bar, then hit <code>tab</code>). For example:</p>
-<ul>
-<li><p><code>echo = FALSE</code> shows the output of the code but not the code itself</p></li>
-<li><p><code>include = FALSE</code> runs the code but doe not display the code <em>or</em> the output (useful for chunks that read or format data)</p></li>
-<li><p><code>eval = FALSE</code> shows the code but does not run it (useful for showing code)</p></li>
-<li><p><code>warning = FALSE</code> and <code>message = FALSE</code> can be include to ensure that error messages and warnings are not printed, which can be useful for cleaning up the appearance of documents</p></li>
-<li><p><code>cache = TRUE</code> save the results of the <code>R</code> code and doesn’t rerun the chunk unless the code is changed (useful for chunks that take a long time to run)</p></li>
-<li><p><code>out.height</code> and <code>out.width</code> control the size of figures in a pdf document in inches or centimeters (e.g., `out.height = “3in”, notice the quotation marks)</p></li>
-</ul>
-<p>See the main <a href="http://yihui.name/knitr/options/">R Markdown page</a> for a complete list of possible options.</p>
-</div>
-<div id="setting-defaults-for-all-chunks" class="section level3">
-<h3 class="hasAnchor">
-<a href="#setting-defaults-for-all-chunks" class="anchor"></a>Setting defaults for all chunks</h3>
-<p>Often it is useful to set the default behavior for all chunks rather that including, for example, <code>warning = FALSE</code> at the beginning of each one. To do this, you can include a chunk at the beginning of the document:</p>
-<pre><code>\x60\x60\x60{r include=FALSE}
-opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
-\x60\x60\x60</code></pre>
-<p>Any options can be inluded in this chuck to set the default behaviors. You can over-ride these defaults within chunks as needed. You can also load common packages in this chunk to streamline chunks later in the document.</p>
-</div>
-<div id="tables" class="section level3">
-<h3 class="hasAnchor">
-<a href="#tables" class="anchor"></a>Tables</h3>
-<p>To nicely print matrices and data frames in R Markdown document, use the <code><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable()</a></code> function:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(knitr)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(mtcars))</a></code></pre></div>
-<table class="table">
-<thead><tr class="header">
-<th></th>
-<th align="right">mpg</th>
-<th align="right">cyl</th>
-<th align="right">disp</th>
-<th align="right">hp</th>
-<th align="right">drat</th>
-<th align="right">wt</th>
-<th align="right">qsec</th>
-<th align="right">vs</th>
-<th align="right">am</th>
-<th align="right">gear</th>
-<th align="right">carb</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td>Mazda RX4</td>
-<td align="right">21.0</td>
-<td align="right">6</td>
-<td align="right">160</td>
-<td align="right">110</td>
-<td align="right">3.90</td>
-<td align="right">2.620</td>
-<td align="right">16.46</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td>Mazda RX4 Wag</td>
-<td align="right">21.0</td>
-<td align="right">6</td>
-<td align="right">160</td>
-<td align="right">110</td>
-<td align="right">3.90</td>
-<td align="right">2.875</td>
-<td align="right">17.02</td>
-<td align="right">0</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td>Datsun 710</td>
-<td align="right">22.8</td>
-<td align="right">4</td>
-<td align="right">108</td>
-<td align="right">93</td>
-<td align="right">3.85</td>
-<td align="right">2.320</td>
-<td align="right">18.61</td>
-<td align="right">1</td>
-<td align="right">1</td>
-<td align="right">4</td>
-<td align="right">1</td>
-</tr>
-<tr class="even">
-<td>Hornet 4 Drive</td>
-<td align="right">21.4</td>
-<td align="right">6</td>
-<td align="right">258</td>
-<td align="right">110</td>
-<td align="right">3.08</td>
-<td align="right">3.215</td>
-<td align="right">19.44</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">1</td>
-</tr>
-<tr class="odd">
-<td>Hornet Sportabout</td>
-<td align="right">18.7</td>
-<td align="right">8</td>
-<td align="right">360</td>
-<td align="right">175</td>
-<td align="right">3.15</td>
-<td align="right">3.440</td>
-<td align="right">17.02</td>
-<td align="right">0</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">2</td>
-</tr>
-<tr class="even">
-<td>Valiant</td>
-<td align="right">18.1</td>
-<td align="right">6</td>
-<td align="right">225</td>
-<td align="right">105</td>
-<td align="right">2.76</td>
-<td align="right">3.460</td>
-<td align="right">20.22</td>
-<td align="right">1</td>
-<td align="right">0</td>
-<td align="right">3</td>
-<td align="right">1</td>
-</tr>
-</tbody>
-</table>
-<p>The <code>kableExtra</code> package provides even more advanced options for creating nice looking tables. See <a href="https://haozhu233.github.io/kableExtra/awesome_table_in_html.html">here</a> for an overview of options provided by this package.</p>
-</div>
-</div>
-</div>
-<div id="additional-resources" class="section level1">
-<h1 class="hasAnchor">
-<a href="#additional-resources" class="anchor"></a>Additional resources</h1>
-<p>From the RStudio tool bar, click <code>Help -&gt; Cheatsheets</code> and then select the <code>R Markdown cheat sheet</code> (lots of other good cheat sheets there as well)</p>
-<p>RStudio’s <a href="https://rmarkdown.rstudio.com/lesson-1.html">R Markdown</a> tutorial</p>
-<p>Tom Edward’s <a href="http://learnr.usu.edu/r_markdown/1_1_markdown.php">R Markdown</a> tutorial</p>
-<p>Coding Club’s <a href="https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html">Getting Started with R Markdown</a></p>
-<p>Cosma Shalizi’s <a href="http://www.stat.cmu.edu/~cshalizi/rmarkdown">Using R Markdown for Class Reports</a></p>
-</div>
-<div id="homework-assignment-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#homework-assignment-1" class="anchor"></a>Homework assignment 1</h1>
-<p>Before submitting your assignment, be sure to double check the instructions for <a href="https://rushinglab.github.io/WILD3810/articles/homework.html">completing and submitting homework assignments</a>.</p>
 </div>
   </div>
 
@@ -570,43 +230,11 @@ opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)
       <li><a href="#why-not-use-r-markdown">Why not use R Markdown?</a></li>
       <li>
 <a href="#authoring-r-markdown-files">Authoring R Markdown files</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#step-0-set-up-the-file-structure">Step 0: Set up the file structure</a></li>
-      <li><a href="#step-1-create-a-new-r-markdown-file-using-the-homework-template">Step 1: Create a new R Markdown file using the homework template</a></li>
+<li><a href="#step-1-create-a-new-r-markdown-file-using-the-homework-template">Step 1: Create a new R Markdown file using the homework template</a></li>
       <li><a href="#step-2-fill-in-your-information-and-render-the-document">Step 2: Fill in your information and render the document</a></li>
+      <li><a href="#completing-the-homework">Completing the homework</a></li>
       </ul>
 </li>
-      <li>
-<a href="#basic-formatting">Basic formatting</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#the-yaml-header">The YAML header</a></li>
-      <li><a href="#headers">Headers</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#header-1">Header 1</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#header-2">Header 2</a></li>
-      <li><a href="#paragraph-and-line-breaks">Paragraph and line breaks</a></li>
-      <li><a href="#bold-italics"><strong>Bold</strong>, <em>Italics</em>,</a></li>
-      <li><a href="#code-type">Code type</a></li>
-      <li><a href="#bulleted-lists">Bulleted lists</a></li>
-      <li><a href="#numbered-lists">Numbered lists</a></li>
-      <li><a href="#quotations">Quotations</a></li>
-      <li><a href="#hyperlinks">Hyperlinks</a></li>
-      <li><a href="#equations">Equations</a></li>
-      <li><a href="#greek-letters">Greek letters</a></li>
-      <li><a href="#subscripts-and-superscripts">Subscripts and superscripts</a></li>
-      <li><a href="#brackets-and-parentheses">Brackets and parentheses</a></li>
-      <li><a href="#fractions">Fractions</a></li>
-      <li><a href="#operators">Operators</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#adding-code">Adding code</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#inline-code">Inline code</a></li>
-      <li><a href="#code-chunks">Code chunks</a></li>
-      </ul>
-</li>
-      <li><a href="#additional-resources">Additional resources</a></li>
-      <li><a href="#homework-assignment-1">Homework assignment 1</a></li>
       </ul>
 </div>
       </div>

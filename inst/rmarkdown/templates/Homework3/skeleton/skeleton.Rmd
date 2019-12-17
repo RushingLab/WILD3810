@@ -14,6 +14,18 @@ library(WILD3810)
 
 **Due before 2:30pm Monday February 10**
 
+In this homework assignment, you will become more familiar with using `R` and R Markdown to complete lab assignments.  
+
+First, make sure you have:
+
+> 1a) Changed the `author` field in the YAML header to your name;
+
+> 1b) Clicked `Knit` to check that you can create a html document from the .Rmd file (you can keep the knitted version open while you work through the assignment to make reading the instructions easier);
+
+> 1c) Saved the .Rmd file as `LastnameFirstname-homework3.Rmd` in a project named `LastNameFirstName-Lab3`
+
+If you have any problems with these steps, be sure to get help from either the instructor or the TA
+
 ## Density-dependent population growth  
 
 In [lecture 4](https://rushinglab.github.io/WILD3810/articles/Lecture4/Lecture4.html#1), we learned about an extension of the density-independent growth model called the **logistic growth model**:

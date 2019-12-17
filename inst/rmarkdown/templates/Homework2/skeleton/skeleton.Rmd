@@ -21,7 +21,7 @@ First, make sure you have:
 
 > 1b) Clicked `Knit` to check that you can create a html document from the .Rmd file;
 
-> 1c) Save the .Rmd file as `LastnameFirstname-homework2.Rmd` in a project named `LastNameFirstName-Homework2`
+> 1c) Save the .Rmd file as `LastnameFirstname-homework2.Rmd` in a project named `LastNameFirstName-Lab2`
 
 If you have any problems with these steps, be sure to get help from either the instructor or the TA.
 

@@ -25,9 +25,9 @@ navbar:
         - text: "Lecture 1: Introduction to population ecology"
           href: articles/Lecture1/Lecture1.html
         - text: "Lecture 2: Abundance"
-          href: articles/Lecture2/Lecture2.html
+          href: articles/Lecture2/lecture2.html
         - text: "Lecture 3: Density-independent population growth"
-          href: articles/Lecture3/Lecture3.html
+          href: articles/Lecture3/lecture3.html
         - text: "Lecture 4: Stochasticity"
           href: articles/Lecture4/Lecture4.html
         - text: "Lecture 5: Density-dependent population growth"
