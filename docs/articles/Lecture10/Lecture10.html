@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
     <title>Lecture 10</title>
-    <meta charset="utf-8">
-    <meta name="author" content="   WILD3810 (Spring 2019)" />
+    <meta charset="utf-8" />
+    <meta name="author" content="   WILD3810 (Spring 2020)" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <script src="libs/kePrint/kePrint.js"></script>
     <link rel="stylesheet" href="WILD3810.css" type="text/css" />
@@ -14,8 +14,8 @@
 class: center, middle, inverse, title-slide
 
 # Lecture 10
-## Reproduction
-### <br/><br/><br/>WILD3810 (Spring 2019)
+## Matrix population models
+### <br/><br/><br/>WILD3810 (Spring 2020)
 
 ---
 
@@ -24,405 +24,743 @@ class: center, middle, inverse, title-slide
 
 ## Readings
 
-&gt; Mills 70-71
+&gt; Mills 98-103
+
 
 ---
-## Life tables
+## Assumptions of the B-D models
 
-#### Last week, we learned *why* and *how* to estimate age-specific patterns of survival and mortality  
+#### Over the coming weeks, we will learn about why and how to relax assumption 3:  
 
-.left-column[
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Phlox_drummondii_-_Archer_FL_02.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-]
 
-.right-column[
-&lt;img src="figs/phlox_lt.png" width="80%" style="display: block; margin: auto;" /&gt;
-]
+1) Population closed to immigration and emigration  
+&lt;br/&gt;
 
----
-## Life tables
 
-#### Survival is not the only demographic process that varies with age
+2) Model pertains to only the limiting sex, usually females  
+&lt;br/&gt;
+
+
+**3) Birth and death rates are independent of an individual’s age or biological stage**  
+&lt;br/&gt;
+
+
+4) Birth and death rates are constant
 
 --
-#### Reproductive output also varies with age
+### **How can we model population dynamics of populations with complex age structure?**
 
-&lt;img src="figs/repro_schedule.png" width="80%" style="display: block; margin: auto;" /&gt;
+---
+## Age-structured demography
+
+### Consider the following life table:
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 22px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(m_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(P_0\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(m_1\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(P_1\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(m_2\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(P_2\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(m_3\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+???
+
+What do `\(m_x\)` and `\(P_x\)` represent?  
+
+What can you say about the reproductive and survival schedules of this population?
+
+---
+## Age-structred demography
+
+#### List population abundance in discrete 1-year age classes `\(\LARGE (n_i)\)`  
+
+- e.g., `\(\LARGE n_1\)`, `\(\LARGE n_2\)`, `\(\LARGE n_3\)`  
+
+- `\(\LARGE n_i\)` is the number of individuals about to experience their `\(\LARGE i^{th}\)` birthday  
+&lt;br/&gt;
+
+&lt;img src="figs/age_diagram.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+## Age-structred demography
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 16px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(m_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(P_0\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(m_1\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(P_1\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(m_2\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(P_2\) &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(m_3\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;br/&gt;
+
+&lt;img src="figs/states.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+## Age-structred demography
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 16px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(m_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;\(P_0\)&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(m_1\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;"&gt;\(P_1\)&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(m_2\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;"&gt;\(P_2\)&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; \(m_3\) &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;br/&gt;
+
+&lt;img src="figs/survival.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Age-structred demography
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 16px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(m_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;"&gt;\(P_0\)&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;\(m_1\)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;\(P_1\)&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;"&gt;\(m_2\)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;\(P_2\)&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;\(m_3\)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;img src="figs/repro2.png" width="63%" style="display: block; margin: auto;" /&gt;
+
+
+
+---
+## Age-structred demography
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 16px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(m_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;"&gt;\(P_0\)&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;"&gt;\(m_1\)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;\(P_1\)&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;"&gt;\(m_2\)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;\(P_2\)&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;"&gt;\(m_3\)&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;img src="figs/lc_model.png" width="63%" style="display: block; margin: auto;" /&gt;
+
+
+---
+## Age-structred demography
+
+#### How many individuals will be in the population next year?
+
+--
+
+&lt;img src="figs/n1.png" width="63%" style="display: block; margin: auto;" /&gt;
+
+`\(\LARGE n_{1,t+1} = m_1P_0n_{1,t}+m_2P_0n_{2,t} + m_3P_0n_{3,t}\)`  
+
+---
+## Age-structred demography
+
+#### How many individuals will be in the population next year?
+
+&lt;img src="figs/n2.png" width="63%" style="display: block; margin: auto;" /&gt;
+
+`\(\LARGE n_{1,t+1} = m_1P_0n_{1,t}+m_2P_0n_{2,t} + m_3P_0n_{3,t}\)`  
+
+`\(\LARGE n_{2,t+1} =P_1n_{1,t}\)`  
+
+---
+## Age-structred demography
+
+#### How many individuals will be in the population next year?
+
+&lt;img src="figs/n3.png" width="63%" style="display: block; margin: auto;" /&gt;
+
+`\(\LARGE n_{1,t+1} = m_1P_0n_{1,t}+m_2P_0n_{2,t} + m_3P_0n_{3,t}\)`  
+
+`\(\LARGE n_{2,t+1} =P_1n_{1,t}\)`  
+
+`\(\LARGE n_{3,t+1} =P_2n_{2,t}\)`  
+
+
+---
+## Leslie matrix model
+
+#### Rather than modeling the dynamics using the previous equations, we can use **matrix projection models**  
+
+--
+- defined by square matrix that summarizes the demography of age-specific life cycles  
+
+--
+- one column for each age class
+
+--
+- developed by Sir Patrick H. Leslie for application to population biology  
+
+--
+- a matrix with age-specific birth and survival rates is called a **Leslie matrix**  
+&lt;br/&gt; 
+
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    m_1P_0 &amp; m_2P_0 &amp; m_3P_0\\
+    P_1 &amp; 0 &amp; 0\\
+    0 &amp;P_2 &amp; 0
+\end{bmatrix}$$`
+
+---
+class: inverse, middle, center
+
+# Review of matrix algebra
+
+---
+## Review of matrix algebra
+
+#### Matrix addition
+
+- Matrices must be of the same dimension  
+
+- Add corresponding elements of the matrices
+
+
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    2 &amp; 0 \\
+    4 &amp; 6
+\end{bmatrix},\;\;
+\mathbf B = \begin{bmatrix}
+    1 &amp; 5 \\
+    2 &amp; 7
+\end{bmatrix}$$`
+&lt;br/&gt;
+
+--
+
+`$$\LARGE \mathbf A + \mathbf B = \begin{bmatrix}
+    3 &amp; 5 \\
+    6 &amp; 13
+\end{bmatrix}$$`
+
+---
+## Review of matrix algebra
+
+#### Matrix subtraction
+
+- Matrices must be of the same dimension  
+
+- Subtract corresponding elements of the matrices
+
+
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    2 &amp; 0 \\
+    4 &amp; 6
+\end{bmatrix},\;\;
+\mathbf B = \begin{bmatrix}
+    1 &amp; 5 \\
+    2 &amp; 7
+\end{bmatrix}$$`
+
+--
+
+`$$\LARGE \mathbf A - \mathbf B = \begin{bmatrix}
+    1 &amp; -5 \\
+    2 &amp; -1
+\end{bmatrix}$$`
+
+---
+## Review of matrix algebra
+
+#### Matrix multiplication
+
+- Dimensions are specified as **rows** by **columns**  
+
+- Matrix multiplication does not require matrices to have the same dimensions  
+
+- But they must have the same **inner** dimension
+
+    + for example, a 3x3 matrix can be multiplied by a 3x1 matrix
+
+`$$\LARGE \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;3\times3\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;3\times1$$`
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    a &amp; b &amp; c \\
+    d &amp; e &amp; f \\
+    g &amp; h &amp; i 
+\end{bmatrix},\;\;
+\mathbf B = \begin{bmatrix}
+    x \\
+    y \\
+    z
+\end{bmatrix}$$`
+
+---
+## Review of matrix algebra
+
+#### Matrix multiplication
+
+- Dimensions are specified as **rows** by **columns**  
+
+- Matrix multiplication does not require matrices to have the same dimensions  
+
+- But they must have the same **inner** dimension
+
+    + but a 3x3 matrix **cannnot** be multiplied by a 1x3 matrix
+
+`$$\LARGE \;\;\;\;\;\;\;\;\;\;\;\;3\times3\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;1\times3$$`
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    a &amp; b &amp; c \\
+    d &amp; e &amp; f \\
+    g &amp; h &amp; i 
+\end{bmatrix},\;\;
+\mathbf B = \begin{bmatrix}
+    x &amp; y &amp; z\\
+\end{bmatrix}$$`
+
+---
+## Review of matrix algebra
+
+#### How does matrix multiplication work?
+
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    a &amp; b &amp; c \\
+    d &amp; e &amp; f \\
+    g &amp; h &amp; i 
+\end{bmatrix},\;\;
+\mathbf B = \begin{bmatrix}
+    x \\
+    y \\
+    z
+\end{bmatrix}$$`
+&lt;br/&gt;
+
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    a\times x + b\times y + c\times z\\
+    d\times x + e\times y + f\times z\\
+    g\times x + h\times y + i\times z
+\end{bmatrix}$$`
+
+---
+## Review of matrix algebra
+
+#### How does matrix multiplication work?
+
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    1 &amp; 0 &amp; 5 \\
+    0 &amp; 4 &amp; 3 \\
+    2 &amp; 6 &amp; 0 
+\end{bmatrix},\;\;
+\mathbf B = \begin{bmatrix}
+    3 \\
+    2 \\
+    1
+\end{bmatrix}$$`
+&lt;br/&gt;
+&lt;br/&gt;
+
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    1\times 3 + 0\times 2 + 5\times 1\\
+    0\times 3 + 4\times 2 + 3\times 1\\
+    2\times 3 + 6\times 2 + 1\times 1
+\end{bmatrix}=\begin{bmatrix}
+    8 \\
+    11 \\
+    18
+\end{bmatrix}$$`
+
+
+---
+## Review of matrix algebra
+
+#### Transpose of a matrix
+
+`$$\LARGE \mathbf B = \begin{bmatrix}
+    3 \\
+    2 \\
+    1
+\end{bmatrix},\;\; \mathbf B^T = \begin{bmatrix}
+    3 &amp; 2 &amp; 1
+\end{bmatrix}$$`
+&lt;br/&gt;
+&lt;br/&gt;
+
+`$$\LARGE \mathbf C = \begin{bmatrix}
+    3 &amp; 2 &amp; 1
+\end{bmatrix},\;\; \mathbf C^T = \begin{bmatrix}
+    3\\
+    2\\
+    1
+\end{bmatrix}$$`
+
+---
+## Review of matrix algebra
+
+#### Transpose of a matrix
+
+- is the following allowed? 
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    1 &amp; 0 &amp; 5 \\
+    0 &amp; 4 &amp; 3 \\
+    2 &amp; 6 &amp; 0 
+\end{bmatrix},\;\;
+\mathbf B = \begin{bmatrix}
+    3 &amp; 2 &amp; 1
+\end{bmatrix}$$`
+&lt;br/&gt;
+&lt;br/&gt;
+`$$\Huge A \times B$$`
+
+---
+## Review of matrix algebra
+
+#### Transpose of a matrix
+
+- is the following allowed? 
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    1 &amp; 0 &amp; 5 \\
+    0 &amp; 4 &amp; 3 \\
+    2 &amp; 6 &amp; 0 
+\end{bmatrix},\;\;
+\mathbf B = \begin{bmatrix}
+    3 &amp; 2 &amp; 1
+\end{bmatrix}$$`
+&lt;br/&gt;
+&lt;br/&gt;
+`$$\Huge A \times B^T$$`
+
 
 ---
 class: inverse, center, middle
 
-# Reproduction
+# Age-structured matrix models
 
 ---
-## Reproduction
-
-### Terminology
-
-#### Breeding Probability
-
-&gt; chance an adult will breed  
+## Age-structured matrix models
 
 
---
-#### Natality: 
+#### How many individuals will be in the population next year?
 
-&gt; average number of offspring born per individual that reproduces  
+&lt;img src="figs/lc_model.png" width="63%" style="display: block; margin: auto;" /&gt;
 
+`\(\LARGE n_{1,t+1} = m_1P_0n_{1,t}+m_2P_0n_{2,t} + m_3P_0n_{3,t}\)`  
 
---
-- Clutch Size: birds, monotremes, oviparous herps, fish &amp; insects  
+`\(\LARGE n_{2,t+1} =P_1n_{1,t}\)`  
 
-- Litter Size: mammals, viviparous herps &amp; fish  
+`\(\LARGE n_{3,t+1} =P_2n_{2,t}\)`  
 
-- Progeny number: all others  
 
 ---
-## Reproduction
+## Age-structured matrix models
 
-### Terminology
 
-#### Fecundity `\(\Large (m_x)\)`  
+#### How many individuals will be in the population next year?
 
-&gt; average number of offspring born per mature adult of age `\(x\)`	
+&lt;img src="figs/lc_model.png" width="55%" style="display: block; margin: auto;" /&gt;
 
---
+&lt;img src="figs/matrix_11.png" width="45%" style="display: block; margin: auto;" /&gt;
 
-- typically measured as the number of *female* offspring produced per adult female (limiting sex)
+---
+## Age-structured matrix models
+
+
+#### How many individuals will be in the population next year?
+
+&lt;img src="figs/lc_model.png" width="55%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="figs/matrix_12.png" width="45%" style="display: block; margin: auto;" /&gt;
+
+---
+## Age-structured matrix models
+
+
+#### How many individuals will be in the population next year?
+
+&lt;img src="figs/lc_model.png" width="55%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="figs/matrix_13.png" width="45%" style="display: block; margin: auto;" /&gt;
+
+---
+## Age-structured matrix models
+
+
+#### How many individuals will be in the population next year?
+
+&lt;img src="figs/lc_model.png" width="55%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="figs/matrix_21.png" width="45%" style="display: block; margin: auto;" /&gt;
+
+---
+## Age-structured matrix models
+
+
+#### How many individuals will be in the population next year?
+
+&lt;img src="figs/lc_model.png" width="55%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="figs/matrix_32.png" width="45%" style="display: block; margin: auto;" /&gt;
+
+---
+## Age-structured matrix models
+
+#### Rather than separately modeling fecundity and juvenile survival, Leslie matrices often include **recruitment**
+
+- `\(\Large F_x\)`: Recruitment (or sometimes **F**ertility)
+
+- `\(\Large F_x = m_xP_0\)`
+
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    F_1 &amp; F_2 &amp; F_3\\
+    P_1 &amp; 0 &amp; 0\\
+    0 &amp;P_2 &amp; 0
+\end{bmatrix}$$`
+
+
+---
+## Age-structured matrix models
+
+####  Recruitment doesn't have to be estimated from the life table
+
+#### Birds:
+
+- Clutch size  
+
+- Nest survival  
+
+- Chick survival  
+
+- Juvenile survival  
+
+`$$\LARGE F = cs \times ns \times chs \times js$$`
+
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    F_1 &amp; F_2 &amp; F_3\\
+    P_1 &amp; 0 &amp; 0\\
+    0 &amp;P_2 &amp; 0
+\end{bmatrix}$$`
+
+---
+## Age-structured matrix models
+
+####  Recruitment doesn't have to be estimated from the life table
+
+#### Plants:
+
+- Seed production  
+
+- Seed survival  
+
+- Germination rate  
+
+- Seedling survival  
+
+`$$\LARGE F = sp \times sds \times gr \times sls$$`
+
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    F_1 &amp; F_2 &amp; F_3\\
+    P_1 &amp; 0 &amp; 0\\
+    0 &amp;P_2 &amp; 0
+\end{bmatrix}$$`
+
+---
+## Projecting abundance
+
+#### The Leslie matrix can be used to project abundance
+
+`$$\LARGE \mathbf N_t = \begin{bmatrix}
+    n_{1,t}\\
+    n_{2,t}\\
+    n_{3,t}
+\end{bmatrix}$$`
 &lt;br/&gt;
 
+&lt;img src="figs/age_diagram.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+## Projecting abundance
+
+#### The Leslie matrix can be used to project abundance  
 
 --
-`$$\LARGE m_x = \frac{Breeding\;\; Probability_x \times Natality_x}{2}$$`
+- multiply the Leslie matrix
 
----
-## Reproduction
-
-#### Estimation
-
-**Breeding Probability estimation**  
-
-- Advanced multi-state CMR methods  
-
-- Hormone analysis (blood, hair/feather, or fecal samples)  
-
-- Flowering rates in mature plants  
-
+`$$\Large \mathbf A = \begin{bmatrix}
+    F_1 &amp; F_2 &amp; F_3\\
+    P_1 &amp; 0 &amp; 0\\
+    0 &amp;P_2 &amp; 0
+\end{bmatrix}$$`
 
 --
-**Natality estimation**  
+- by the abundance matrix
 
-- Direct observations in a sample of clutches, litters, or seed sets  
+`$$\Large \mathbf N_t = \begin{bmatrix}
+    n_{1,t}\\
+    n_{2,t}\\
+    n_{3,t}
+\end{bmatrix}$$`
 
-- Number of corpora lutea scars in ovaries of hunted mammals  
-
-- Field ultrasounds on live captured individuals  
-
----
-## Reproduction
-
-#### Estimation using life tables  
-
-- `\(\Large F_x\)`: Total offspring produced by each age class
-
-&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(F_x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 996 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 159 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.160 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 53 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 154 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.155 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 485 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 147 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.148 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 802 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 105 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.105 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 972 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 22 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.022 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 95 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+using the rules of matrix multiplication
 
 ---
-## Reproduction
+## Projecting abundance
 
-- `\(\Large m_x\)`: Number of offspring produced per living individual in age class `\(\Large x\)` (fecundity)
+#### Population abundance is projected through time using matrix multiplication
 
-&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(F_x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(m_x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 996 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 159 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.160 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 53 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.33 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 154 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.155 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 485 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 3.13 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 147 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.148 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 802 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 5.42 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 105 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.105 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 972 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 9.26 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 22 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.022 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 95 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 4.31 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
+`$$\Large \mathbf N_{t+1} = \mathbf A \times \mathbf N_t$$` 
+
+`$$\Large \begin{bmatrix}
+    n_{1,t+1}\\
+    n_{2,t+1}\\
+    n_{3,t+1}
+\end{bmatrix}\Large =  \begin{bmatrix}
+    F_1 &amp; F_2 &amp; F_3\\
+    P_1 &amp; 0 &amp; 0\\
+    0 &amp;P_2 &amp; 0
+\end{bmatrix} \times \begin{bmatrix}
+    n_{1,t}\\
+    n_{2,t}\\
+    n_{3,t}
+\end{bmatrix}$$`
+
+&lt;br/&gt;
+
+Notice that the inner dimensions match
 
 ---
-## Reproduction
+## Projecting abundance
 
-- `\(\Large l_xm_x\)`: Number of offspring produced per **original** individual  
+#### Population abundance is projected through time using matrix multiplication
 
-&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(F_x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(m_x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(l_xm_x\) &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 996 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 159 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.160 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 53 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.33 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.0528 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 154 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.155 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 485 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 3.13 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.48515 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 147 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.148 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 802 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 5.42 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.80216 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 105 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.105 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 972 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 9.26 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.9723 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 22 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.022 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 95 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 4.31 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.09482 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
---
-`\(\large R_0\)`: Basic reproductive rate 
-`\(\large = \sum l_xm_x = \frac{\sum F_x}{N_0} = 2.41\)`
+&lt;img src="figs/matrix_n1.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
-## Reproduction
+## Projecting abundance
 
-#### `\(\large R_0\)`: Basic reproductive rate 
+#### Population abundance is projected through time using matrix multiplication
 
-- includes the influence of both survival `\((\large l_x)\)` and reproduction of survivors `\((\large m_x)\)`  
+&lt;img src="figs/matrix_n2.png" width="80%" style="display: block; margin: auto;" /&gt;
 
-    + 15.5% of individuals survive to age 8
-    + those survivors produce, on average, 3.13 offspring
-    + the average number of offspring produced by 8yo individuals **per original individual** = 0.48
-
-
---
-- defines the overall extent to which population changes  
-
-    + `\(\large R_0 = 1\)` means the population exactly replaces itself per *generation*
-
---
-- `\(\Large r \approx \frac{ln(R_0)}{T}\)`
-    + `\(\large T\)` = **average cohort lifespan** (average time from the birth of an individual to the birth of its offspring)
-    + annual species: `\(T = 1\)`, `\(r = ln(R_0)\)`
 
 ---
-class: center, middle, inverse
-# Fecundity schedules
+## Projecting abundance
 
----
-## Fecundity schedules
+#### Population abundance is projected through time using matrix multiplication
 
-.left-column[
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Black-legged_Kittiwake_%2817742276573%29.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
-.right-column[
-&lt;img src="figs/kitiwake.png" width="80%" style="display: block; margin: auto;" /&gt;
-]
-
----
-## Fecundity schedules
-
-.left-column[
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/5/50/MK00658_Badlands_Bighorn_Sheep.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
-.right-column[
-
-#### Breeding probability vs. age
-
-&lt;img src="figs/sheep.png" width="80%" style="display: block; margin: auto;" /&gt;
-]
-
-???
-
-Image courtesy of Martin Kraft, via WikiCommons
-
----
-## Fecundity schedules
-
-#### Change in Canadian fecundity schedules over time 
-
-.left-column[
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
-.right-column[
-
-#### Births/1000 women
-
-&lt;img src="figs/canada_schedule.png" width="80%" style="display: block; margin: auto;" /&gt;
-]
+&lt;img src="figs/matrix_n3.png" width="80%" style="display: block; margin: auto;" /&gt;
     </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
@@ -432,16 +770,74 @@ Image courtesy of Martin Kraft, via WikiCommons
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
-(function() {
-  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
   if (!r) return;
   s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
   d.head.appendChild(s);
-})();</script>
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
   for (i = 0; i < codes.length;) {
     code = codes[i];
     if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
@@ -455,7 +851,8 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     i++;
   }
-})();
+};
+slideshow._releaseMath(document);
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
