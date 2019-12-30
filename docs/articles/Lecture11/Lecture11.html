@@ -1,9 +1,17 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html>
   <head>
     <title>Lecture 11</title>
     <meta charset="utf-8">
     <meta name="author" content="   WILD3810 (Spring 2019)" />
+=======
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+  <head>
+    <title>Lecture 11</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="   WILD3810 (Spring 2020)" />
+>>>>>>> 6a2860326049d9c169963d26b42a83faef7adb1e
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <script src="libs/kePrint/kePrint.js"></script>
     <link rel="stylesheet" href="WILD3810.css" type="text/css" />
@@ -14,14 +22,20 @@
 class: center, middle, inverse, title-slide
 
 # Lecture 11
+<<<<<<< HEAD
 ## Matrix population models
 ### <br/><br/><br/>WILD3810 (Spring 2019)
+=======
+## Stage-structured populations
+### <br/><br/><br/>WILD3810 (Spring 2020)
+>>>>>>> 6a2860326049d9c169963d26b42a83faef7adb1e
 
 ---
 
 
 
 
+<<<<<<< HEAD
 ## Readings
 
 &gt; Mills 98-103
@@ -62,10 +76,217 @@ class: center, middle, inverse, title-slide
    &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; \(m_x\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+=======
+
+## Leslie matrix 
+
+#### Leslie matrices are defined as :   
+
+- square matrix that summarizes the demography of **age**-specific life cycles  
+
+- one column for each **age** class
+
+- matrix elements contain **age**-specific birth and survival rates   
+
+- individuals cannot stay in the same **age**-class for more than a single time step `\(^1\)`
+&lt;br/&gt; 
+&lt;br/&gt; 
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    F_1 &amp; F_2 &amp; F_3\\
+    P_1 &amp; 0 &amp; 0\\
+    0 &amp;P_2 &amp; 0
+\end{bmatrix}$$`
+
+???
+
+`\(^1\)` In some cases, for example when we define identify individuals juveniles (age 1), pre-adults (age 2), and adults (age 3+), the last element in the Leslie matrix might not be zero. Individuals can remain in the "adult" class for more than 1 year  
+
+---
+## Stage-structured populations
+
+#### In some cases, age is not a relevant predictor of survival and birth rates   
+
+--
+#### Instead, survival and birth rates vary with **stage**
+
+--
+- life cycle stage
+
+.pull-left[
+&lt;img src="figs/lifecycle_diagram.jpg" width="75%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="figs/lifecycle.gif" width="75%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Stage-structured populations
+
+#### In some cases, age is not a relevant predictor of survival and birth rates   
+
+#### Instead, survival and birth rates vary with **stage**
+
+- life cycle stage
+
+- size 
+
+.left-column[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Gasterosteus_aculeatus_t%C3%BCsk%C3%A9s_pik%C3%B3.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+&lt;img src="figs/stickleback_fecundity.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Image courtesy of Kókay Szabolcs, via Wikimedia Commons
+Figure from Moser et al. (2012)
+
+---
+## Stage-structured populations
+
+#### L. Lefkovitch relaxed an assumption of the age-structured matrix model developed by Leslie  
+
+--
+#### **Lefkovitch matrices ** allow individuals to remain in life-stages (or size classes) longer than one time step 
+
+--
+#### Useful for plants and animals with stage-dependent demography
+
+&lt;img src="figs/stage_diagram.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+## Stage-structured matrix
+
+`$$\LARGE \mathbf A = \begin{bmatrix}
+    F_1 &amp; F_2 &amp; F_3\\
+    P_1 &amp; 0 &amp; 0\\
+    0 &amp;P_2 &amp; 0
+\end{bmatrix} \rightarrow
+\mathbf A = \begin{bmatrix}
+    P_1 &amp; F_2 &amp; F_3\\
+    G_1 &amp; P_2 &amp; 0\\
+    0 &amp; G_2 &amp; P_3
+\end{bmatrix}$$`
+&lt;br/&gt;
+- `\(\large F_x\)` is still **recruitment**, the number of offspring recruited into stage class 1 per adult in stage `\(\large x\)`  
+
+- `\(\large P_x\)` is the probability of **surviving** from year `\(\large t\)` until year `\(\large t+1\)` and **remaining** in stage `\(\large x\)`  
+
+- `\(\large G_x\)` is the probability of **growing and surviving** to stage `\(\large x + 1\)` during `\(\large t\)` to  `\(\large t+1\)` 
+
+
+---
+## Stage-structured matrix model
+
+`$$\Large \mathbf N_{t+1} = \mathbf A \times \mathbf N_t$$`
+`$$\LARGE = \begin{bmatrix}
+    P_1 &amp; F_2 &amp; F_3\\
+    G_1 &amp; P_2 &amp; 0\\
+    0 &amp; G_2 &amp; P_3
+\end{bmatrix} \times 
+\begin{bmatrix} 
+    n_{1,t}\\
+    n_{2,t}\\
+    n_{3,t}
+\end{bmatrix}$$`
+
+&lt;br/&gt;
+#### Matrix multiplication is the  same as in the Leslie matrix model!! 
+
+---
+## Common teasel example
+
+.pull-left[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Dipsacus_fullonum_002.JPG" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+- *Dypsacus sylvestris*
+
+- native to Europe
+
+- invasive species in United States
+
+- stage-structured dynamics studied intensively by Patricia Werner and Hal Caswell
+]
+
+
+???
+
+Image courtesy of H. Zell, via Wikicommons
+
+---
+## Common teasel example
+
+.pull-left[
+&lt;img src="figs/teasel_rosette.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+#### Complex stage structure
+
+1) Dormant 1st year seeds  
+
+2) Dormant 2nd year seeds  
+
+3) Small rosettes `\((&lt; 2.5cm)\)`  
+
+4) Medium rosettes `\(2.5-18.9cm\)`  
+
+5) Large rosettes `\(\geq 19cm\)`  
+
+6) Flowering plants  
+]
+
+---
+## Common teasel example
+
+.pull-left[
+&lt;img src="figs/teasel_states.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+
+#### Complex stage structure
+
+1) Dormant 1st year seeds  
+
+2) Dormant 2nd year seeds  
+
+3) Small rosettes `\((&lt; 2.5cm)\)`  
+
+4) Medium rosettes `\(2.5-18.9cm\)`  
+
+5) Large rosettes `\(\geq 19cm\)`  
+
+6) Flowering plants  
+]
+
+---
+## Common teasel example
+
+&lt;br/&gt;
+ 
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 15px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Seed 1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Seed 2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Small rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Medium rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Large rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Flowering &lt;/th&gt;
+>>>>>>> 6a2860326049d9c169963d26b42a83faef7adb1e
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
+<<<<<<< HEAD
    &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; \(P_0\) &lt;/td&gt;
@@ -84,10 +305,59 @@ class: center, middle, inverse, title-slide
    &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; \(m_3\) &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+=======
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 322.280 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.966 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.448 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.007 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.238 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30.170 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.001 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.245 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.167 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.862 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.023 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.750 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+>>>>>>> 6a2860326049d9c169963d26b42a83faef7adb1e
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
+<<<<<<< HEAD
 ???
 
 What do `\(m_x\)` and `\(P_x\)` represent?  
@@ -115,10 +385,26 @@ What can you say about the reproductive and survival schedules of this populatio
    &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; \(m_x\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+=======
+---
+## Common teasel example
+
+.pull-left[
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Seed 1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Seed 2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Small rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Medium rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Large rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Flowering &lt;/th&gt;
+>>>>>>> 6a2860326049d9c169963d26b42a83faef7adb1e
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
+<<<<<<< HEAD
    &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; \(P_0\) &lt;/td&gt;
@@ -154,10 +440,82 @@ What can you say about the reproductive and survival schedules of this populatio
    &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; \(m_x\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+=======
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 322.280 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: red !important;"&gt;0.966&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: orange !important;"&gt;0.013&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.448 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;"&gt;0.007&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.238 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30.170 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: green !important;"&gt;0.001&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.245 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.167 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.862 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.023 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.750 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+&lt;img src="figs/teasel_states_from1.png" width="75%" style="display: block; margin: auto 0 auto auto;" /&gt;
+]
+
+
+---
+## Common teasel example
+
+.pull-left[
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Seed 1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Seed 2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Small rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Medium rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Large rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Flowering &lt;/th&gt;
+>>>>>>> 6a2860326049d9c169963d26b42a83faef7adb1e
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
+<<<<<<< HEAD
    &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent;"&gt;\(P_0\)&lt;/span&gt; &lt;/td&gt;
@@ -194,10 +552,81 @@ What can you say about the reproductive and survival schedules of this populatio
    &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; \(m_x\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+=======
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 322.280 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.966 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: red !important;"&gt;0.01&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.448 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.007 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.238 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30.170 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.001 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.245 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.167 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.862 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.023 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.750 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+&lt;img src="figs/teasel_states_from2.png" width="75%" style="display: block; margin: auto 0 auto auto;" /&gt;
+]
+
+---
+## Common teasel example
+
+.pull-left[
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Seed 1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Seed 2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Small rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Medium rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Large rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Flowering &lt;/th&gt;
+>>>>>>> 6a2860326049d9c169963d26b42a83faef7adb1e
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
+<<<<<<< HEAD
    &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent;"&gt;0&lt;/span&gt; &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow;"&gt;\(P_0\)&lt;/span&gt; &lt;/td&gt;
@@ -234,10 +663,81 @@ What can you say about the reproductive and survival schedules of this populatio
    &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; \(m_x\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+=======
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 322.280 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.966 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: red !important;"&gt;0.125&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.448 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.007 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: orange !important;"&gt;0.125&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.238 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30.170 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.001 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.245 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.167 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.862 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.023 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.750 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+&lt;img src="figs/teasel_states_from3.png" width="75%" style="display: block; margin: auto 0 auto auto;" /&gt;
+]
+
+---
+## Common teasel example
+
+.pull-left[
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Seed 1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Seed 2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Small rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Medium rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Large rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Flowering &lt;/th&gt;
+>>>>>>> 6a2860326049d9c169963d26b42a83faef7adb1e
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
+<<<<<<< HEAD
    &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent;"&gt;0&lt;/span&gt; &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow;"&gt;\(P_0\)&lt;/span&gt; &lt;/td&gt;
@@ -760,6 +1260,285 @@ Notice that the inner dimensions match
 
 &lt;img src="figs/matrix_n3.png" width="80%" style="display: block; margin: auto;" /&gt;
     </textarea>
+=======
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 322.280 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.966 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.448 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.007 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: red !important;"&gt;0.238&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30.170 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.001 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: orange !important;"&gt;0.245&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.167 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.862 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;"&gt;0.023&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.750 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+&lt;img src="figs/teasel_states_from4.png" width="75%" style="display: block; margin: auto 0 auto auto;" /&gt;
+]
+
+---
+## Common teasel example
+
+.pull-left[
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Seed 1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Seed 2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Small rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Medium rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Large rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Flowering &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 322.280 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.966 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.448 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.007 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.238 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 30.170 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.001 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.245 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: red !important;"&gt;0.167&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.862 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.023 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: orange !important;"&gt;0.75&lt;/span&gt; &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+&lt;img src="figs/teasel_states_from5.png" width="75%" style="display: block; margin: auto 0 auto auto;" /&gt;
+]
+
+---
+## Common teasel example
+
+.pull-left[
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 14px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Seed 1 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Seed 2 &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Small rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Medium rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Large rosette &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Flowering &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: red !important;"&gt;322.28&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.966 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.013 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.01 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: orange !important;"&gt;3.448&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.007 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.125 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.238 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: yellow !important;"&gt;30.17&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.001 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.245 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.167 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: green !important;"&gt;0.862&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.023 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.750 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; &lt;span style="     border-radius: 4px; padding-right: 4px; padding-left: 4px; background-color: transparent !important;"&gt;0&lt;/span&gt; &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+]
+
+.pull-right[
+&lt;img src="figs/teasel_states_from6.png" width="75%" style="display: block; margin: auto 0 auto auto;" /&gt;
+]
+
+
+---
+## Common teasel example
+
+#### What happens to a newly established population?
+
+- Assume population starts with 100 1st year seeds
+
+&lt;br/&gt;
+
+--
+`$$\Large \begin{bmatrix}
+    0 &amp; 0 &amp; 0 &amp;0 &amp; 0 &amp; 322.38\\
+    0.966 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
+    0.013 &amp; 0.01 &amp; 0.125 &amp; 0 &amp; 0 &amp; 3.448\\
+    0.007 &amp; 0 &amp; 0.125 &amp; 0.238 &amp; 0 &amp; 30.17\\
+    0.001 &amp; 0 &amp; 0 &amp; 0.245 &amp; 0.167 &amp; 0.862\\
+    0 &amp; 0 &amp; 0 &amp; 0.023 &amp; 0.75 &amp; 0\\
+\end{bmatrix} \times \begin{bmatrix}
+    100\\
+    0\\
+    0\\
+    0\\
+    0\\
+    0
+\end{bmatrix}$$`
+
+
+---
+## Common teasel example
+
+&lt;br/&gt;
+
+
+&lt;img src="Lecture11_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Common teasel example
+&lt;br/&gt;
+
+&lt;img src="Lecture11_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Common teasel example
+
+&lt;br/&gt;
+
+&lt;img src="Lecture11_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
+
+--
+**Stable stage distribution**
+
+
+---
+# Common teasel example
+
+&lt;img src="Lecture11_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;
+
+**Asymptotic growth rate**
+
+---
+## Management questions
+
+#### What is the short-term growth of this population given the current age/stage structure?  
+
+--
+#### What is the long-term growth of this population given the current vital rates?
+
+--
+#### Which age/stage contributes most to future population growth? 
+
+--
+#### Which vital rates have the biggest effect on future growth?  
+
+--
+#### How would future  population dynamics change if different vital rates were changed?
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+>>>>>>> 6a2860326049d9c169963d26b42a83faef7adb1e
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
@@ -769,6 +1548,7 @@ Notice that the inner dimensions match
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
+<<<<<<< HEAD
 (function() {
   var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
   if (!r) return;
@@ -779,6 +1559,76 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 <script>
 (function() {
   var i, text, code, codes = document.getElementsByTagName('code');
+=======
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+>>>>>>> 6a2860326049d9c169963d26b42a83faef7adb1e
   for (i = 0; i < codes.length;) {
     code = codes[i];
     if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
@@ -792,7 +1642,12 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     i++;
   }
+<<<<<<< HEAD
 })();
+=======
+};
+slideshow._releaseMath(document);
+>>>>>>> 6a2860326049d9c169963d26b42a83faef7adb1e
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

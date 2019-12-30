@@ -3,7 +3,7 @@
   <head>
     <title>Lecture 9</title>
     <meta charset="utf-8">
-    <meta name="author" content="   WILD3810 (Spring 2019)" />
+    <meta name="author" content="   WILD3810 (Spring 2020)" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <script src="libs/kePrint/kePrint.js"></script>
     <link rel="stylesheet" href="WILD3810.css" type="text/css" />
@@ -14,8 +14,8 @@
 class: center, middle, inverse, title-slide
 
 # Lecture 9
-## Survival estimation
-### <br/><br/><br/>WILD3810 (Spring 2019)
+## Reproduction
+### <br/><br/><br/>WILD3810 (Spring 2020)
 
 ---
 
@@ -24,944 +24,115 @@ class: center, middle, inverse, title-slide
 
 ## Readings
 
-&gt; Powell &amp; Gale 103-122; 123-138  
-
+&gt; Mills 70-71
 
 ---
 ## Life tables
 
-#### If detection probability is `\(&lt;1\)`  
 
-- `\(N_x\)` will be biased low  
-
-- All other life table statistics will be biased as well
-
-    + Survival biased low, mortality biased high
+#### Last lecture, we learned *why* and *how* to estimate age-specific patterns of survival and mortality  
 
 .left-column[
 &lt;img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Phlox_drummondii_-_Archer_FL_02.jpg" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 
 .right-column[
-&lt;img src="figs/phlox_lt.png" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="figs/phlox_lt.png" width="80%" style="display: block; margin: auto;" /&gt;
 ]
 
-
-
 ---
-class: inverse, middle, center
+## Life tables
 
-# Survival estimation
-
----
-## Survival estimation
-
-#### Methods used to estimate plant and animal survival generally fall into three categories:  
-
-1) Known fate  
-
-2) Capture-mark-recapture  
-
-3) Recovery models  
-
-
----
-class: inverse, middle, center
-
-# Known fate
-
----
-## Known fate
-
-#### Location and fate (alive or dead) of every marked individual is known at each sampling occasion
-
-- `\(\LARGE P_{det} = 1\)`
-
+#### Survival is not the only demographic process that varies with age
 
 --
-#### What types of data can be used for known fate analyses?
+#### Reproductive output also varies with age
 
---
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Handheld_telemetry.jpg" width="50%" style="display: block; margin: auto;" /&gt;
-
-
-???
-Image courtesy of Red Wolf Recovery Program, via Wikimedia Commons
-
-
----
-## Known fate
-
-#### Location and fate (alive or dead) of every marked individual is known at each sampling occasion
-
-- `\(\LARGE P_{det} = 1\)`
-
-#### What types of data can be used for known fate analyses?
-
-
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Tigress_with_radio_collar.JPG" width="50%" style="display: block; margin: auto;" /&gt;
-
-
-???
-Image courtesy of PR Ganapathy, from Wikimedia Commons
-
----
-## Known fate
-
-#### Location and fate (alive or dead) of every marked individual is known at each sampling occasion
-
-- `\(\LARGE P_{det} = 1\)`
-
-#### What types of data can be used for known fate analyses?
-
-
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Phlox_drummondii_-_Archer_FL_02.jpg" width="50%" style="display: block; margin: auto;" /&gt;
-
-
-???
-Image courtesy of Ebyabe, from Wikimedia Commons
-
-
----
-## Known fate
-
-#### Location and fate (alive or dead) of every marked individual is known at each sampling occasion
-
-- `\(\LARGE P_{det} = 1\)`
-
-#### What types of data can be used for known fate analyses?
-
-
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/e/e8/%3F%3F_Vireo_nest_Huachuca_Canyon_Sierra_Vista_AZ_%2835488233510%29.jpg" width="50%" style="display: block; margin: auto;" /&gt;
-
-
-???
-Image courtesy of Bettina Arrigoni, via Wikimedia Commons
-
----
-## Known fate
-
-#### Data
-
-&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; Individual &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Capture history &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Probability &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 111 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 3 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
---
-
-#### Individual 1
-
-- Captured on occasion 1  
-
-- Resighted alive on occasion 2  
-
-- Resighted alive on occasion 3  
-
----
-## Known fate
-
-#### Data
-
-&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; Individual &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Capture history &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Probability &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 111 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(s_1 \times s_2\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 3 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-
-#### Individual 1
-
-- Captured on occasion 1  
-
-- Resighted **alive** on occasion 2  
-
-- Resighted **alive** on occasion 3  
-
----
-## Known fate
-
-#### Data
-
-&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; Individual &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Capture history &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Probability &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 111 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(s_1 \times s_2\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 3 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-
-#### Individual 2
-
-- Captured on occasion 1  
-
-- Resighted **alive** on occasion 2  
-
-- Resighted **dead** on occasion 3  
-
----
-## Known fate
-
-#### Data
-
-&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; Individual &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Capture history &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Probability &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 111 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(s_1 \times s_2\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(s_1 \times (1-s_2)\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 3 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-#### Individual 2
-
-- Captured on occasion 1  
-
-- Resighted **alive** on occasion 2  
-
-- Resighted **dead** on occasion 3  
-
----
-## Known fate
-
-#### Data
-
-&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; Individual &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Capture history &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Probability &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 111 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(s_1 \times s_2\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(s_1 \times (1-s_2)\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 3 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(1-s_1\) &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-#### Individual 3
-
-- Captured on occasion 1  
-
-- Resighted **dead** on occasion 2  
-
-- Known **dead** on occasion 3  
-
----
-## Known fate
-
-#### Kaplan-Meier model
-
-`$$\LARGE s_t = \frac{n_t - d_t}{n_t}$$`
-
-`$$\LARGE var(s_t) = \frac{s_t^2\big(1-s_t\big)}{n_t}$$`
-
-
-- `\(\Large n_t\)`: Number of individuals at risk of dying during interval `\(\Large t\)`
-
-- `\(\Large d_t\)`: Number of individuals that died during interval `\(\Large t\)`
-
-
---
-
-`$$\LARGE S_T = \prod_{t=1}^Ts_t$$`
-
---
-### Who is at risk of dying? 
-
----
-## Known fate
-
-#### Who is at risk of dying?  
-
---
-- Individuals who are **known** alive at the beginning of the interval  
-
---
-    + Does not include individuals not yet marked (*staggered entry*)  
-
---
-    + Does not include individuals who's fates are unknown (*censoring*)
-
-&lt;img src="Lecture9_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
-
----
-## Known fate
-
-#### Estimating survival
-
-#### Who is at risk of dying?
-
-&lt;img src="Lecture9_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
-
---
-- `\(\Large n_1 = 14\)`, `\(\Large d_1 = 0\)`  
-
-- `\(\Large s_1 = 1.00\)`
-
----
-## Known fate
-
-#### Estimating survival
-
-#### Who is at risk of dying?
-
-&lt;img src="Lecture9_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
-
-
---
-- `\(\Large n_3 = 17\)`, `\(\Large d_3 = 2\)`  
-
-- `\(\Large s_3 = 0.88\)`
-
----
-## Known fate
-
-#### Estimating survival
-
-#### Who is at risk of dying?
-
-&lt;img src="Lecture9_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
-
-
---
-- `\(\Large n_9 = 13-2= 11\)`, `\(\Large d_9 = 1\)`  
-
-- `\(\Large s_9 = 0.91\)`
-
-
----
-## Known fate
-
-&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 8px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; Week (t) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; # at risk &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; # deaths &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; # censored &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; # added &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; s(t) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; S(t) &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 14 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.0000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.0000 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 15 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.0000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.0000 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 17 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.8824 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.8824 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 15 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.0000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.8824 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 5 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 16 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.0000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.8824 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 6 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 16 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.9375 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.8272 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 15 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.0000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.8272 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 15 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.9286 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.7681 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 13 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.9091 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.6983 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.8889 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.6207 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.0000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.6207 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.0000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.6207 &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 13 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.0000 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.6207 &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
----
-## Assumptions of Kaplan-Meier
-
-1) Animal at risk if **known** alive at the start of the interval  
-&lt;br/&gt;
-
---
-2) Survival is constant within each interval  
-&lt;br/&gt;
-
---
-3) Newly tagged individuals have the same survival probability as previously tagged individuals  
-&lt;br/&gt;
-
---
-4) Tagged animals are a random sample of the population  
-&lt;br/&gt;
-
---
-5) Animals are independent  
-&lt;br/&gt;
-
---
-6) Working tags are always located  
-&lt;br/&gt;
-
---
-7) Censoring is a random event/independent of mortality  
-&lt;br/&gt;
-
---
-8) Tagging method does not impact survival  
-
-
----
-class: inverse, middle, center
-
-# Capture-recapture
-
----
-## Capture-recapture
-
-#### When using known-fate methods, `\(\Large P_{det} = 1\)`  
-
---
-#### When using mark-recapture, `\(\Large P_{det} &lt; 1\)`  
-
-- if an individual is not detected, it's fate (alive or dead) cannot be known with certainty
-
-- in closed population models (Lincoln-Peterson), we assumed no deaths occurred between sampling occasions 
-
-
---
-#### **Open population** models relax this assumption
-
---
-.pull-left[
-During each sampling occasion
-
-- individuals are captured  
-
-- marked or identified  
-
-- released alive  
-]
-
-.pull-right[
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Band_on_pelican_leg_%285282438747%29.jpg" width="50%" style="display: block; margin: auto;" /&gt;
-]
-
-???
-Image courtesy of USFWS Mountain-Prairie, via Wikimedia Commons
-
-
----
-## Capture-recapture
-
-#### On the occassion after release, 4 possible scenarios:
-
-- 1) Individual survives and is re-captured (capture history = `11`)  
-
-
-- 2) Individual survives but is not recaptured (capture history = `10`)  
-
-
-- 3) Individual dies and is **not available** for recapture (capture history = `10`)  
-
-
-- 4) Individual survives but leaves the study area and is **not available** for recapture (capture history = `10`)  
-
-
---
-#### Not possible to distuingish between scenarios 3 &amp; 4 without additional data
-
-- `\(\LARGE \phi_t = s_t \times (1 - \epsilon_t)\)` 
-
-- `\(\LARGE \phi_t\)`: **Apparent survival** (prob. individual survives *and* remains within study area)  
-
-???
-
-`\(\LARGE \epsilon_t\)`: probability an individual leaves the study area
-
----
-## Capture-recapture
-
-#### How do we distinguish between scenarios 2 &amp; 3/4?  
-
---
-### **Cormack-Jolly-Seber model**
-
-#### Parameters
-
-- `\(\LARGE \phi\)`: Apparent survival probability
-
-- `\(\Large p\)`: Recapture probability
-
-???
-
-Note that for simplicity, we have removed the `\(t\)` subscript. This implies that apparent survival probability and recapture probability are constant across all occasions.   
-
-However, the CJS model can estimate different apparent survival and recapture probabilities for each occasion, that is `\(\phi_t\)` and `\(p_t\)`
-
----
-## Capture-recapture
-
-#### How do we distinguish between scenarios 2 &amp; 3/4?  
-
-### Cormack-Jolly-Seber model
-
-&lt;img src="figs/cjs_flowchart.png" width="75%" style="display: block; margin: auto;" /&gt;
-
-
----
-## Capture-recapture
-
-### Cormack-Jolly-Seber model
-
-&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 10px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; Individual &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Capture history &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Probability &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 111 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(\phi_1 p_2 \phi_2 p_3\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 101 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 3 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 4 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-#### Individual 1
-
-- survived interval 1 `\(\large (\phi_1)\)`, recaptured on occasion 2 `\(\large (p_2)\)`, survived occasion 2 `\(\large (\phi_2)\)`, recapture on occasion 3 `\(\large (p_3)\)`
-
-
----
-## Capture-recapture
-
-### Cormack-Jolly-Seber model
-
-&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 10px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; Individual &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Capture history &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Probability &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 111 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(\phi_1 p_2 \phi_2 p_3\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 101 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(\phi_1 (1-p_2) \phi_2 p_3\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 3 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 4 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-#### Individual 2
-
-- survived interval 1 `\(\large (\phi_1)\)`, not recaptured on occasion 2 `\(\large (1-p_2)\)`, survived occasion 2 `\(\large (\phi_2)\)`, recapture on occasion 3 `\(\large (p_3)\)`
-
----
-## Capture-recapture
-
-
-### Cormack-Jolly-Seber model
-
-&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 10px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; Individual &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Capture history &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Probability &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 111 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(\phi_1 p_2 \phi_2 p_3\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 101 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(\phi_1 (1-p_2) \phi_2 p_3\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 3 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(\phi_1 p_2 \phi_2 (1-p_3)+(1-\phi_2)\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 4 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-#### Individual 3
-
-- survived interval 1 `\(\large (\phi_1)\)`, recaptured on occasion 2 `\(\large (p_2)\)`
-
---
-    + survived occasion 2 `\(\large (\phi_2)\)`, not recaptured on occasion 3 `\(\large (1 - p_3)\)`; **or**  
-
---
-    + died during occasion 2 `\(\large (1-\phi_2)\)`
-
-
----
-## Capture-recapture
-
-
-### Cormack-Jolly-Seber model
-
-&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 10px; margin-left: auto; margin-right: auto;"&gt;
- &lt;thead&gt;
-  &lt;tr&gt;
-   &lt;th style="text-align:center;"&gt; Individual &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Capture history &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; Probability &lt;/th&gt;
-  &lt;/tr&gt;
- &lt;/thead&gt;
-&lt;tbody&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 111 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(\phi_1 p_2 \phi_2 p_3\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 101 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(\phi_1 (1-p_2) \phi_2 p_3\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 3 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 110 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \(\phi_1 p_2 \phi_2 (1-p_3)+(1-\phi_2)\) &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; Indv 4 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; \((1-\phi_1) + \phi_1 (1-p_2) (1-\phi_2 p_3)\) &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-#### Individual 4
-
-- died during interval 1 `\(\large (1-\phi_1)\)`; **or**  
-
---
-- survived occasion 1 `\(\large (\phi_1)\)`, not recaptured on occasion 2 `\(\large (1 - p_2)\)`, died during occasion 2 `\((1-\phi_2)\)`; **or**  
-
---
-- survived occasion 1 `\(\large (\phi_1)\)`, not recaptured on occasion 2 `\(\large (1 - p_2)\)`, survived occasion 2 `\(\large (\phi_2)\)`, not recaptured on occasion 3 `\(\large (1 - p_3)\)`  
-
-
----
-## Capture-recapture
-
-#### Advantages
-
-- inexpensive (relative to telemetry)
-
---
-- possible to mark many individuals
-
-    + often more precise than known-fate  
-
---
-- can use natural marks
-
---
-- possible to measure effects of age, stage, environment, habitat, management actions, etc.
-
-
---
-#### Assumptions  
-
-- every individual has the same recapture probability `\(p\)` `\(^*\)`
-
---
-- every individual has the same apparent survival probability `\(\large \phi\)` `\(^*\)`  
-
---
-- tags are not lost  
-
---
-- all emigration is permanent  
-
---
-- fates of individuals are independent
-
-???
-
-`\(^*\)` assumptions 1 or 2 can be relaxed by estimating parameters for different groups of individuals (males and females) or estimating parameters as a function of some factor that might influence survival/detection (e.g., size, age)
-
+&lt;img src="figs/repro_schedule.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse, center, middle
 
-# Recovery models
+# Reproduction
 
 ---
-## Recovery models
+## Reproduction
 
-#### In some cases, marked individuals may be recovered dead 
+### Terminology
 
-.pull-left[
-&lt;img src="figs/jaw-tag.jpg" height="80%" style="display: block; margin: auto;" /&gt;
-]
+#### Breeding Probability
 
-.pull-right[
+&gt; chance an adult will breed  
 
-&lt;img src="figs/duck_band.jpg" height="80%" style="display: block; margin: auto;" /&gt;
-]
 
----
-## Recovery models
+--
+#### Natality: 
 
-&lt;img src="figs/recovery_flowchart.png" width="4993" height="80%" style="display: block; margin: auto;" /&gt;
+&gt; average number of offspring born per individual that reproduces  
 
-???
 
-Adapted from Powel &amp; Gale 2015
+--
+- Clutch Size: birds, monotremes, oviparous herps, fish &amp; insects  
 
----
-class: inverse, middle, center
+- Litter Size: mammals, viviparous herps &amp; fish  
 
-# Life tables
+- Progeny number: all others  
 
 ---
-## Life tables
+## Reproduction
 
-- Ages-specific estimates of `\(\Large S\)` or `\(\Large \phi\)` are equivalent to `\(\Large  P_x\)`
+### Terminology
 
+#### Fecundity `\(\Large (m_x)\)`  
+
+&gt; average number of offspring born per mature adult of age `\(x\)`	
+
+--
+
+- typically measured as the number of *female* offspring produced per adult female (limiting sex)
 &lt;br/&gt;
 
-&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+
+--
+`$$\LARGE m_x = \frac{Breeding\;\; Probability_x \times Natality_x}{2}$$`
+
+---
+## Reproduction
+
+#### Estimation
+
+**Breeding Probability estimation**  
+
+- Advanced multi-state CMR methods  
+
+- Hormone analysis (blood, hair/feather, or fecal samples)  
+
+- Flowering rates in mature plants  
+
+
+--
+**Natality estimation**  
+
+- Direct observations in a sample of clutches, litters, or seed sets  
+
+- Number of corpora lutea scars in ovaries of hunted mammals  
+
+- Field ultrasounds on live captured individuals  
+
+---
+## Reproduction
+
+#### Estimation using life tables  
+
+- `\(\Large F_x\)`: Total offspring produced by each age class
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(F_x\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
    &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
   &lt;/tr&gt;
@@ -969,112 +140,289 @@ class: inverse, middle, center
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.7 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.86 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 996 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.67 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 159 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.160 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 53 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 154 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.155 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 485 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 147 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.148 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 802 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 105 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.105 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 972 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 22 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.022 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 95 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
 
-
 ---
-## Life tables
+## Reproduction
 
-- With unbiased estimates of `\(\Large P_x\)`, can obtain unbiased estimates of `\(\Large l_x\)` and `\(\Large q_x\)`
+- `\(\Large m_x\)`: Number of offspring produced per living individual in age class `\(\Large x\)` (fecundity)
 
-- `\(\Large l_0 = 1\)`, `\(\Large l_{x+1} = 1_xP_x\)`
-
-- `\(\Large q_{x} = 1- P_x\)`
-&lt;br/&gt;
-
-&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
   &lt;tr&gt;
    &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
-   &lt;th style="text-align:center;"&gt; \(q_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(F_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(m_x\) &lt;/th&gt;
    &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
   &lt;/tr&gt;
  &lt;/thead&gt;
 &lt;tbody&gt;
   &lt;tr&gt;
    &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1.0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.7 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.3 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.7 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.86 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.14 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 996 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.6 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.67 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 159 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.160 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 53 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt; 0.33 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.4 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 154 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.155 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 485 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.13 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
   &lt;tr&gt;
-   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 147 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.148 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 802 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.42 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
-   &lt;td style="text-align:center;"&gt; 0.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 105 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.105 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 972 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9.26 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 22 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.022 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 95 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.31 &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
    &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
   &lt;/tr&gt;
 &lt;/tbody&gt;
 &lt;/table&gt;
+
+---
+## Reproduction
+
+- `\(\Large l_xm_x\)`: Number of offspring produced per **original** individual  
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 12px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(F_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(m_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_xm_x\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 996 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 159 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.160 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 53 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.33 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.0528 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 154 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.155 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 485 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 3.13 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.48515 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 9 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 147 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.148 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 802 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 5.42 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.80216 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 105 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.105 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 972 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 9.26 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.9723 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 22 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.022 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 95 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 4.31 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.09482 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.000 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+`\(\large R_0\)`: Basic reproductive rate 
+`\(\large = \sum l_xm_x = \frac{\sum F_x}{N_0} = 2.41\)`
+
+---
+## Reproduction
+
+#### `\(\large R_0\)`: Basic reproductive rate 
+
+- includes the influence of both survival `\((\large l_x)\)` and reproduction of survivors `\((\large m_x)\)`  
+
+    + 15.5% of individuals survive to age 8
+    + those survivors produce, on average, 3.13 offspring
+    + the average number of offspring produced by 8yo individuals **per original individual** = 0.48
+
+
+--
+- defines the overall extent to which population changes  
+
+    + `\(\large R_0 = 1\)` means the population exactly replaces itself per *generation*
+
+--
+- `\(\Large r \approx \frac{ln(R_0)}{T}\)`
+    + `\(\large T\)` = **average cohort lifespan** (average time from the birth of an individual to the birth of its offspring)
+    + annual species: `\(T = 1\)`, `\(r = ln(R_0)\)`
+
+---
+class: center, middle, inverse
+# Fecundity schedules
+
+---
+## Fecundity schedules
+
+.left-column[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Black-legged_Kittiwake_%2817742276573%29.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+&lt;img src="figs/kitiwake.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Fecundity schedules
+
+.left-column[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/5/50/MK00658_Badlands_Bighorn_Sheep.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+
+#### Breeding probability vs. age
+
+&lt;img src="figs/sheep.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Image courtesy of Martin Kraft, via WikiCommons
+
+---
+## Fecundity schedules
+
+#### Change in Canadian fecundity schedules over time 
+
+.left-column[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/Flag_of_Canada.svg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+
+#### Births/1000 women
+
+&lt;img src="figs/canada_schedule.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

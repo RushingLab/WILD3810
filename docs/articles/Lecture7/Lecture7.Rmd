@@ -1,7 +1,7 @@
 ---
 title: "Lecture 7"
-subtitle: "Dynamics of small populations"
-author: "<br/><br/><br/>WILD3810 (Spring 2019)"
+subtitle: "Life tables"
+author: "<br/><br/><br/>WILD3810 (Spring 2020)"
 output:
   xaringan::moon_reader:
     css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
@@ -18,773 +18,1000 @@ knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message
 library(WILD3810)
 library(gganimate)
 ```
-<style type="text/css">
-.remark-slide-content {
-    font-size: 25px;
-}
-</style>
-
-## Readings
-
-> Mills 224-243
-
----
-# Stochasticity and extinction risk
-
-Over a long enough time scales, the fate of any population that is subject to stochasticity is *extinction*  
-
-```{r out.height=300}
-knitr::include_graphics("extinction_1000.gif")
-
-```
 
 
----
-# Stochasticity and extinction risk
+## Assumptions of the B-D models
 
-Stochasticity, particularly demographic stochasticity, is most consequential at small population sizes  
-
-```{r out.height=300}
-knitr::include_graphics("dem_plot10.gif")
-
-```
----
-## Genetic stochasticity 
-
-In addition to demographic and environmental stochasticity, **genetic stochasticity** also increases extinction risk for small populations  
-<br/>  
+#### Remember from the lecture 3 that our simple models of population growth were based on the following assumptions:  
 
 --
-Genetic drift leads to random accumulation and expression of harmful alleles, which can reduce demographic rates $^1$  
+1) Population closed to immigration and emigration  
 <br/>
 
 --
-Inbreeding depression can also lead to expression of harmful alleles
-
-???
-$^1$ This is very similar to demographic stochasticity - just by chance, it is possible to get a string of bad luck, in this case expression of alleles that are harmful  
-
-Like demographic stochasticity, drift is more likely to be consequential at small population sizes  
-
----
-class: inverse, middle, center
-# Extinction vortex
-
-
----
-## Extinction vortex
-
-As populations decrease in size, they reach a point where **environmental stochasticity**, **demographic stochasticity**, and **genetic stochasticity** interact to drive populations towards extinction
-  
-
-```{r out.width=500, out.height=300}
-knitr::include_graphics("extinction_vortex.png")
-```
-
----
-## Extinction vortex
-
-The danger with the extinction vortex is that focusing on a single factor (e.g., deterministic cause of decline) is not enough   
+2) Model pertains to only the limiting sex, usually females  
 <br/>
 
 --
-Once a population is small, removing the cause of decline will not remove the stochastic threats  
+3) Birth and death rates are independent of an individual’s age or biological stage  
 <br/>
 
 --
-All threats have to be managed and considered together 
+4) Birth and death rates are constant
+
 
 ---
-## What is a "small" population?
+## Assumptions of the B-D models
 
-#### Detecting when species have entered the extinction vortex is difficult  
+#### In lectures 4 and 5, we learned about ways to model dynamics that do not meet assumption 4:  
 
---
-#### But risk of exinction is related to population size  
 
-+ small populations are at higher risk than large ones   
+1) Population closed to immigration and emigration  
 <br/>
 
 
---
-#### What defines a "small" population? 
+2) Model pertains to only the limiting sex, usually females  
+<br/>
 
----
-## What is a "small" population?
 
-#### This is a difficult question because "small" is a relative term  
+3) Birth and death rates are independent of an individual’s age or biological stage  
+<br/>
 
---
-#### "Small" compared to what? 
 
---
-+ Historical population size?  
-
-```{r fig.height=4, fig.width=6}
-set.seed(12345)
-N <- matrix(NA, nrow = 60, ncol = 2)
-N[1,] <- c(5000, 50)
-
-for(i in 2:60){
-  N[i, 1] <- rnorm(1, N[i-1, 1]*0.98, 50)
-  N[i, 2] <- rnorm(1, N[i-1,2], 4)
-}
-
-df <- data.frame(Year = rep(1:60, 2),
-                 N = c(N),
-                 Species = rep(c("1", "2"), each = 60))
-
-ggplot(df[df$Species == "1",], aes(x = Year, y = N, color = Species)) + geom_path(size = 2) +
-  guides(color = "none") +
-  scale_y_continuous(limits = c(0, max(df$N)*1.1))
-```
-
----
-## What is a "small" population?
-
-#### This is a difficult question because "small" is a relative term  
-
-#### "Small" compared to what? 
-
-+ Historical population size?
-
-+ Other species?  
-
-```{r fig.height=4, fig.width=6}
-ggplot(df, aes(x = Year, y = N, color = Species)) + geom_path(size = 2) +
-  guides(color = "none")
-```
+**4) Birth and death rates are constant**
 
 ???
 
-Species 1 is declining but is still more common than species 2, which has been stable for 60 years despite being rare. Which species would we consider more at risk of extinction? 
+In lecture 4, we learned about ways that birth and death rates might vary stochastically  
+
+In lecture 5, we learned about why birth and death rates might change as a function of abundance  
+
 
 ---
-## What is a "small" population?
+## Assumptions of the B-D models
 
-#### This is a difficult question because "small" is a relative term  
-
-#### "Small" compared to what? 
-
-+ Historical population size?
-
-+ Other species?
-
-+ Management standards? 
-
-```{r fig.height=3, fig.width=5}
-ggplot(df, aes(x = Year, y = N, color = Species)) + geom_path(size = 2) +
-  guides(color = "none")
-```
-
-???
-
-If species 1 is mallards, we might consider this a very small population size relative to management objectives. If species 2 is cougar, we might consider this to be a relatively large population relative to management objectives. 
-
----
-## What is a "small" population?
-
-There is a long history of trying to define the minimum abundance that avoids extinction (*minimum viable population*):
-
-1) 50-500 rules (Soule 1980; Frankel & Soule 1981):  
-
-> Effective population size $(N_e)$ of 50 needed to avoid negative consequences of inbreeding depression; $N_e=500$ needed for maintenence of genetic diversity to allow adapation $^1$ 
+#### Over the coming weeks, we will learn about why and how to relax assumption 3:  
 
 
-
---
-Focused on captive breeding not wild populations  
-<br/>
-
---
-$N_e=500$ probably too small for wild populations subject to stochasticity
-
-???
-
-$^1$ Effective population size is a concept from population genetics that refers to the size of an idealized population (i.e., one that meets all the Hardy-Weinberg assumptions) that would genetic drift at a rate equal to that of the observed population
-
-$N_e=50$ translates to about 200-250 individuals
-
----
-## What is a "small" population?
-
-There is a long history of trying to define the minimum abundance that avoids extinction (*minimum viable population*):
-
-1) 50-500 rules (Soule 1980; Frankel & Soule 1981)
-
-2) 1400-4000 (Brook et al. 2006; Traill et al. 2007): 
-
-> 1400-4000 individuals found to promote low risk of extinction over moderate timescales (20-100 years)
-
-
---
-Improvement over 50-500 rule because focuses is on "risk of extinction" rather than on abundance itself  
-
-Good rule-of-thumb but not a magic number  
-
----
-## Problems with MVP approach
-
---
-1) We probably don't want to aim for the *minimum* population size  
-<br/>
-
---
-2) There is not really a single minimum number of individuals (uncertainty!)  
-<br/>
-
---
-3) Populations provide ecological functions that may not be met at low population sizes  
+1) Population closed to immigration and emigration  
 <br/>
 
 
---
-Many factors influence risk of extinction so maintenance of a population should consider multiple risk factors
+2) Model pertains to only the limiting sex, usually females  
+<br/>
+
+
+**3) Birth and death rates are independent of an individual’s age or biological stage**  
+<br/>
+
+
+4) Birth and death rates are constant
+
 
 ---
 class: inverse, center, middle
 
-# Predictors of exinction risk
+# Structured populations
 
 ---
-## Predictors of exinction risk
+## Age-structured populations
 
-1)  Abundance  
+#### Survival and birth rates often vary with age
 
-* smaller populations are at higher risk of extinction than larger ones
-
-```{r out.height=300}
-knitr::include_graphics("dem_plot10.gif")
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/d/d2/Anser_caerulescens_CT4.jpg")
 ```
+]
+
+.right-column[
+```{r, out.width="80%"}
+knitr::include_graphics("figs/goose_survivorship.png")
+```
+]
+
+???
+
+Image courtesy of Cephas, from Wikimedia Commons
+
+Figure from Rockwell et al. (1985) *Evolution*
 
 ---
-## Predictors of exinction risk
+## Stage-structured populations
 
-1)  Abundance  
+#### In some cases, age is not a relevant predictor of survival and birth rates   
 
-2)  Range size  
+--
+#### Instead, survival and birth rates vary with **stage**
 
-* Species restricted to small area/highly specialized are often at a higher risk of extinction than widespread species  
+--
+- life cycle stage
 
 .pull-left[
-```{r out.width="80%"}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/f/f7/Kirtland%27s_warbler.jpg")
+```{r, out.width="75%"}
+knitr::include_graphics("figs/lifecycle_diagram.jpg")
 ```
 ]
 
 .pull-right[
-```{r out.width="60%"}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/0/06/Dendroica_kirtlandii_map.svg")
+```{r, out.width="75%"}
+knitr::include_graphics("figs/lifecycle.gif")
 ```
 ]
-???
-Image courtesy of USFWS via Wikicommons
-
 
 ---
-## Predictors of exinction risk
+## Stage-structured populations
 
-1)  Abundance  
+#### In some cases, age is not a relevant predictor of survival and birth rates   
 
-2)  Range size  
+#### Instead, survival and birth rates vary with **stage**
 
-* Species restricted to small area/highly specialized are often at a higher risk of extinction than widespread species  
+- life cycle stage
 
-    a) small range and specialization are generally correlated with population size  
---
-    b) the restricted habitats used by these species are at higher risk of catastrophic loss  
+- size 
 
----
-## Predictors of exinction risk
-
-1)  Abundance  
-
-2)  Range size  
-
-```{r out.width="80%"}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/d/d3/Attwater%27s_Prairie_Chicken.jpg")
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/a/af/Gasterosteus_aculeatus_t%C3%BCsk%C3%A9s_pik%C3%B3.jpg")
 ```
+]
+
+.right-column[
+```{r, out.width="60%"}
+knitr::include_graphics("figs/stickleback_fecundity.png")
+```
+]
 
 ???
 
-[Attwater's prairie chicken](https://en.wikipedia.org/wiki/Attwater%27s_prairie_chicken) (*Tympanuchus cupido attwateri*) is an endangered subspecies of the greater prairie chicken. Historically, the subspecies was found along the Gulf coast from Louisiana to Mexico (6 million acres). Today, it is restricted to a small wildlife refuge near Eagle Lake, Texas and a few small areas of private lands. Around 1900, there were an estimated 1,000,000 Attwater's prairie chickens, a number that declines to 8,700 by 1937 due to habitat loss and invasive species. By 1967, there were only 1,070 birds and by 2003 there were fewer than 50. In 2016, flooding destroyed all nests and in 2017 Hurricane Harey killed at least 32 birds, leaving only 5-12 chickens in the wild. 
-
-Image courtesy of Lavendowski, George (USFWS), via Wikimedia Commons
-
-
----
-## Predictors of exinction risk
-
-1)  Abundance  
-
-2)  Range size  
-
-3) Population growth rate  
-
-* Species with low and/or highly variable growth rates are at higher risk of extinction than species with stable and/or high growth rates  
-
-```{r out.width="25%"}
-knitr::include_graphics("high_var.gif")
-```
-
----
-## Predictors of exinction risk
-
-1)  Abundance  
-
-2)  Range size  
-
-3) Population growth rate  
-
-4) Body size  
-
-* Population growth rate and abundance tend to decrease with increasing body size so large-bodied species are generally at higher risk than small bodied species
-
----
-## Predictors of exinction risk
-
-1)  Abundance  
-
-2)  Range size  
-
-3) Population growth rate  
-
-4) Body size  
-
-5) Movement  
-
-* Species that are able to colonize new habitats are generally at lower risk of extinction because:
-
-    a) Better able to colonize suitable habitat; and  
-    b) Increased gene flow limits drift/inbreeding depression  
+Image courtesy of Kókay Szabolcs, via Wikimedia Commons
+Figure from Moser et al. (2012)
 
 ---
 class: inverse, center, middle
 
-# Population viability analysis
+# Age-structured populations
 
 ---
-## Population viability analysis
+## Age-structured populations
 
-The above criteria have proven useful for predicting which species are vulnerable to extinction  
-<br/>
+#### **Life tables**  
 
---
-Due to the complex and interacting factors that determine extinction risk, these criteria are often too simple to accurately assess true risk of extinction   
-<br/>
+- earliest accounting tool for calculating age-specific survival and mortality  
+
 
 --
-When data are available, a more useful tool for predicting extinction risk is *population viability analysis* (PVA)  
-<br/>
+#### Applications to:  
+
+-  Human demography  
+
+- Insurance industry (actuarial sciences)  
+
+- Health professions  
+
+
+--
+[Pearl and Parker (1921)](https://www.journals.uchicago.edu/doi/pdfplus/10.1086/279836) were the first to calculate a non-human life table  
+- *Drosophila melanogaster* (a fruit fly)  
+
+- Since used in ecology, evolution, and natural resource management  
 
 ---
-## Population viability analysis
+## Life tables
 
-PVA is a tool (or more accurately a set of methods) that:  
+#### Cohort life table
 
-> use data and models to estimate the likelihoods of a population crossing thresholds of viability within various time spans, and to give insights into factors that constitute the biggest threats $^1$  
+- follow group of individuals born within short period (a **cohort**) until each individual's death  
 
-```{r out.width="45%"}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/c/ce/Furbish_lousewort_%2837055906572%29.jpg")
+--
+- develop life table for groups of individuals with similar traits (e.g., one for males, one for females)  
+
+--
+- **longitudinal** study design  
+
+```{r fig.width=6, fig.height=4, fig.retina=TRUE}
+long <- data.frame(Time = seq(0, 100),
+                   Age = seq(0, 100))
+
+poly <- data.frame(x = c(0, 20, 100, 100),
+                   y = c(-Inf, -Inf, 75, 95))
+ggplot(long, aes(x = Time, y = Age)) +
+  scale_x_continuous(limits = c(0, 100)) +
+  scale_y_continuous(limits = c(0, 100)) +
+  geom_polygon(data = poly, aes(x = x, y = y), fill = "white", color = "black") +
+  geom_segment(aes(x = -Inf, xend = 15, y = 5, yend = 25), size = 2,
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = -Inf, xend = 35, y = 15, yend = 55), size = 2,
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+        geom_segment(aes(x = -Inf, xend = 53, y = -Inf, yend = 58), size = 2,
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+    geom_segment(aes(x = 5, xend = 95, y = -Inf, yend = 85), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 10, xend = 45, y = -Inf, yend = 30), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 16, xend = 31, y = -Inf, yend = 10), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 30, xend = 50, y = -Inf, yend = 15), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 40, xend = 90, y =-Inf, yend = 45), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(),
+        panel.background = element_rect(fill = "grey85"))
 ```
 
-???
-
-Furbish lousewort (*Pedicularis furbishiae*) is a perennial plant endemic to Maine that was the subject of an early use of PVA  
-
-Image courtesy of USFWS NE Region, via wikicommons
-
 ---
-## Population viability analysis
+## Life tables
 
-PVA is a tool (or more accurately a set of methods) that:  
+- $\Large x$: age of individuals
 
-> use data and models to estimate the likelihoods of a population crossing thresholds of viability within various time spans, and to give insights into factors that constitute the biggest threats $^1$  
-
-
+- $\Large N_x$: number of individuals observed alive at age $\Large x$ (sometimes called $\Large S_x$)
 <br/>
 
-Unlike minimum viable populations, PVA provides a means of determining "population viability" without the need to set a threshold abundance
+```{r}
+
+library(kableExtra)
+lt <- data.frame(x = seq(from = 0, to  = 4),
+                       Nx = c(100, 75, 50, 40, 0),
+                       lx = "",
+                       Lx = "",
+                       Tx = "",
+                       ex = "")
+
+names(lt) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(L_x\\)", "\\(T_x\\)", "\\(e_x\\)")
+```
+
+```{r}
+lt2 <- lt
+names(lt2) <- c("\\(x\\)", "\\(N_x\\)", "", "", "", "")
+lt2 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
 
 ???
 
-$^1$ quoted from Mills pg 227  
+$S_x$ stands for number of *survivors* at age $x$
 
-In lab, we will practice implementing a PVA using R. For now, we will discuss the different parts of the definition, different types of PVA, and how PVA is used to inform management decisions.
+---
+## Life tables
+
+- $\Large l_x$: Probability of surviving to age $\Large x$
+
+    + Can also be interpreted as the proportion of individuals still alive at age $x$
+
+- $\Large l_x = N_x/N_0$
+<br/>
+
+```{r}
+lt3 <- lt
+
+names(lt3) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "", "", "")
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large l_x$: Probability of surviving to age $\Large x$
+
+- $\Large l_x = N_x/N_0$
+<br/>
+
+```{r}
+lt3[,3] <- c("1.00", "", "", "", "")
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large l_x$: Probability of surviving to age $\Large x$
+
+- $\Large l_x = N_x/N_0$
+<br/>
+
+```{r}
+lt3[,3] <- c("1.00", "0.75", "", "", "")
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large l_x$: Probability of surviving to age $\Large x$
+
+- $\Large l_x = N_x/N_0$
+<br/>
+
+```{r}
+lt3[,3] <- c("1.00", "0.75", "0.50", "", "")
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large l_x$: Probability of surviving to age $\Large x$
+
+- $\Large l_x = N_x/N_0$
+<br/>
+
+```{r}
+lt3[,3] <- c("1.00", "0.75", "0.50", "0.40", "")
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large l_x$: Probability of surviving to age $\Large x$
+
+- $\Large l_x = N_x/N_0$
+<br/>
+
+```{r}
+lt3[,3] <- c(1.0, 0.75, 0.5, 0.4, 0)
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+exclude: true
+
+## Life tables
+
+
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/f/f6/Phlox_drummondii_-_Archer_FL_02.jpg")
+```
+]
+
+.right-column[
+```{r, out.width="80%"}
+knitr::include_graphics("figs/phlox_lt.png")
+```
+]
+
+
+???
+
+Image courtesy of Ebyabe, from Wikimedia Commons
+
+from Leverich & Leven (1979) *American Naturalist*
+
+---
+## Life tables
+
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/f/f6/Phlox_drummondii_-_Archer_FL_02.jpg")
+```
+]
+
+.right-column[
+```{r, out.width="60%"}
+knitr::include_graphics("figs/phlox_survivorship.png")
+```
+]
+
+
+???
+
+Image courtesy of Ebyabe, from Wikimedia Commons
+
+from Leverich & Leven (1979) *American Naturalist*
+
+---
+## Life tables
+
+- $\Large P_x$: Probability of surviving **from** age $x$ **to** the next age (of those alive at age $x$)
+
+
+- $\Large P_x = l_{x+1}/l_x$
+<br/>
+
+```{r}
+lt4 <- lt3
+
+names(lt4) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(P_x\\)", "", "")
+
+lt4[,4] <- c(0.75, "", "", "", "")
+lt4 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+
+
+
+---
+## Life tables
+
+- $\Large P_x$: Probability of surviving **from** age $x$ **to** the next age (of those alive at age $x$)
+
+
+- $\Large P_x = l_{x+1}/l_x$
+<br/>
+
+```{r}
+lt4[,4] <- c(0.75, 0.667, "", "", "")
+lt4 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large P_x$: Probability of surviving **from** age $x$ **to** the next age (of those alive at age $x$)
+
+
+- $\Large P_x = l_{x+1}/l_x$
+<br/>
+
+```{r}
+
+lt4[,4] <- c(0.75, 0.667, 0.8, "", "")
+lt4 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large P_x$: Probability of surviving **from** age $x$ **to** the next age (of those alive at age $x$)
+
+
+- $\Large P_x = l_{x+1}/l_x$
+<br/>
+
+```{r}
+
+lt4[,4] <- c(0.75, 0.667, 0.8, 0, "-")
+lt4 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+### Age-specific survival of fallow deer (*Dama dama*)
+
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/f/f3/Fallow_deer_in_field.jpg")
+```
+]
+
+.right-column[
+```{r, out.width="70%"}
+knitr::include_graphics("figs/dama_survival.png")
+```
+]
+
+???
+
+Image courtesy of Johann-Nikolaus Andreae, via Wikimedia Commons
+Figure from McElligott et al. (2002) *Proc Royal Society B*
+
+---
+## Life tables
+
+- $\Large q_x$: Probability of dying **between** age $x$ the next age (of those alive at age $x$)
+
+
+- $\Large q_x = 1 - P_x$
+<br/>
+
+```{r}
+lt5 <- lt4
+
+names(lt5) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(P_x\\)", "\\(q_x\\)", "")
+
+lt5[,5] <- c(0.25, "", "", "", "")
+lt5 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large q_x$: Probability of dying **between** age $x$ the next age (of those alive at age $x$)
+
+
+- $\Large q_x = 1 - P_x$
+<br/>
+
+```{r}
+lt5[,5] <- c(0.25, 0.333, "", "", "")
+lt5 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large q_x$: Probability of dying **between** age $x$ the next age (of those alive at age $x$)
+
+
+- $\Large q_x = 1 - P_x$
+<br/>
+
+```{r}
+
+lt5[,5] <- c(0.25, 0.333, 0.2, "", "")
+lt5 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+- $\Large q_x$: Probability of dying **between** age $x$ the next age (of those alive at age $x$)
+
+
+- $\Large q_x = 1 - P_x$
+<br/>
+
+```{r}
+
+lt5[,5] <- c(0.25, 0.333, 0.2, 1, "-")
+lt5 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+
+---
+exclude: true
+
+## Life tables
+
+- $\Large H_x$: Hazard (i.e., risk)  of dying **between** age $x$ the next age (of those alive at age $x$)
+
+
+- $\Large H_x = -log(P_x)$
+<br/>
+
+```{r}
+lt6 <- lt5
+
+names(lt6) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(P_x\\)", "\\(q_x\\)", "\\(H_x\\)")
+
+lt6[,6] <- c(0.29, 0.4, 0.22, "Inf", "-")
+lt6 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+---
+## Life tables
+
+#### Cohort tables
+
+- Assume that all live individuals are available for observation at every age until death  
+
+
+- Most readily applied to:  
+
+    + Human populations (e.g., CDC NCHS)  
+    + Plants  
+    + Sessile animals  
+    + Mobile animals on small islands with high observer detection  
+    + Animals in captivity (zoos)  
+
+---
+## Life tables
+
+#### Static tables
+
+- assess number of individuals of known age at one point in time or the age of individuals dying at any point in time
+
+```{r fig.width=7, fig.height=5}
+long <- data.frame(Time = seq(0, 100),
+                   Age = seq(0, 100))
+
+start <- data.frame(Time = c(0, 10, 20, 30, 40), 
+                    Age = 0, 
+                    Cohort = c("1", "2", "3", "4", "5"))
+
+
+ggplot(long, aes(x = Time, y = Age)) +
+  scale_x_continuous(limits = c(0, 100)) +
+  scale_y_continuous(limits = c(0, 100)) +
+    geom_polygon(data = poly, aes(x = x, y = y), fill = "grey95", color = "grey80") +
+    geom_rect(aes(xmin = 40, xmax = 55, ymin = -Inf, ymax = Inf), fill = "white", color = "black") +
+  geom_segment(aes(x = -Inf, xend = 15, y = 5, yend = 25), size = 2,
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = -Inf, xend = 35, y = 15, yend = 55), size = 2,
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+    geom_segment(aes(x = -Inf, xend = 53, y = -Inf, yend = 58), size = 2,
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+    geom_segment(aes(x = 5, xend = 95, y = -Inf, yend = 85), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 10, xend = 45, y = -Inf, yend = 30), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 16, xend = 31, y = -Inf, yend = 10), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 30, xend = 50, y = -Inf, yend = 15), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  geom_segment(aes(x = 40, xend = 90, y =-Inf, yend = 45), size = 2, 
+               color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  theme(axis.text = element_blank(), axis.ticks = element_blank(),
+        panel.background = element_rect(fill = "grey85"))
+
+```
+
+---
+## Static life tables
+
+- $\Large a_x$: Deaths between age $\large x-1$ and age $\Large x$
+<br/>
+
+```{r}
+lt3 <- lt
+
+names(lt3) <- c("\\(x\\)", "\\(a_x\\)", "", "", "", "")
+lt3[,2] <- c("", 25, 15, 10, 7)
+
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+--
+
+$\large \sum_{x=0}^{max(x)} a_x = 57$
+
+---
+## Static life tables
+
+- $\Large a_x$: Deaths between age $\large x-1$ and age $\Large x$
+<br/>
+
+```{r}
+names(lt3) <- c("\\(x\\)", "\\(a_x\\)", "\\(N_x\\)", "", "", "")
+lt3[,3] <- c(57, "57-25=32", "32-15=17", "17-10=7", "7-7=0")
+
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+$\large \sum_{x=0}^{max(x)} a_x = 57$
+
+---
+## Static life tables
+
+- $\Large a_x$: Deaths between age $\large x-1$ and age $\Large x$
+<br/>
+
+```{r}
+lt4 <- lt3
+
+names(lt4) <- c("\\(x\\)", "\\(a_x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(P_x\\)", "etc.")
+lt4[,4] <- c(1, 0.56, 0.30, 0.12, 0)
+lt4[,5] <- c(0.56, 0.54, 0.4, 0, "-")
+lt4 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
+
+
+---
+## Static life tables
+
+#### Static life tables most readily applied to:
+
+- Plants and animals where age can be accurately determined for all individuals at a given moment in time  
+
+- e.g., using the rings/layering in trees, teeth, otoliths, horns, and maybe even telomere length on genes
+
+
+---
+## Static life tables
+
+#### Static life table assumptions:
+
+- All individuals have equivalent availability for observation, regardless of age  
+
+- Stable age distribution  
+
+- Age-specific survival $\Large (P_x)$ does not change over time  
+
+    + If it does, time effects may appear as ‘age effects’ and lead to biased results
 
 ---
 class: inverse, middle, center
-# Components of a PVA
+
+# Survivorship curves
 
 ---
-## Components of a PVA
+## Survivorship curves
+
+```{r fig.height=5 ,fig.width=9}
+age <- seq(from = 0, to = 10, length.out = 100)
+surv <- -1.2*age
+lx <- exp(surv)
+
+survII <- data.frame(Age = age, lx = lx, surv = surv)
+
+p1 <- ggplot(survII, aes(Age, lx)) + geom_line() +
+  scale_y_continuous(expression(l[x]))
+p2 <- ggplot(survII, aes(Age, surv)) + geom_line() +
+  scale_y_continuous(expression(paste("log(", l[x], ") 'Survivorship'")))
+
+cowplot::plot_grid(p1, p2)
+
+```
 
 --
-1) Viability  
+#### **Type II Survivorship curve** (Pearl 1928)
 
-- The first step of a PVA is defining what we mean by viable  
-
---
-- This is an abundance level that we want to maintain our population at or above  
-
---
-- In the most simple case, a viable means not extinct $(N > 0)$   
-
-
---
-Rather than $(N > 0)$ we may also want keep abundance above some level where, e.g.
-
---
-- Allee effects might kick in  
-
---
-- ecological functions are detrimented  
-
---
-- monitoring becomes unreliable  
 
 ---
-## Components of a PVA
+## Survivorship curves
 
-1) Viability  
+```{r fig.height=5 ,fig.width=7}
+age <- seq(from = 0, to = 1, length.out = 100)
+survI <- -0.1*age^7
+survII <- -0.1*age
+survIII <- -0.1*age^0.1
 
-Thus, PVA is usually based on *quasi-extinction* thresholds that are $> 0$  
+surv_df <- data.frame(Age = age, surv = c(survI, survII, survIII),
+                     Type = rep(c("I", "II", "III"), each = length(age)))
 
-Below these thresholds, some management action $^1$ might be triggered to prevent absolute extinction  
+ggplot(surv_df, aes(Age, surv, color = Type, label = Type)) + geom_line(size = 1.5) +
+  scale_y_continuous(expression(paste("log(", l[x], ") 'Survivorship'"))) 
+```
+
+---
+## Survivorship curves
+
+### What types of species do you expect have type 1 survivorship curves?
+
+--
+```{r out.width = "50%"}
+knitr::include_graphics("figs/sweden_survivorship.png")
+```
+
+---
+## Survivorship curves
+
+### What types of species do you expect have type 2 survivorship curves?
+
+--
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/7/7c/Eastern_Grey_Squirrel_in_St_James%27s_Park%2C_London_-_Nov_2006_edit.jpg")
+```
+]
+
+.right-column[
+```{r, out.width="50%"}
+knitr::include_graphics("figs/squirell_survivorship.png")
+```
+]
 
 ???
 
-$^1$ captive breeding or special management actions
+Image courtesy of Diliff, from Wikimedia Commons  
+
+Figure from Barkalow et al. (1970)
 
 ---
-## Components of a PVA
+## Survivorship curves
 
-1) Viability  
-<br/>
-
-2) Time frame  
-
-- As we learned earlier, over long enough time periods, every population will go extinct  
+### What types of species do you expect have type 3 survivorship curves?
 
 --
-- Critical to determine the specific time frame *relevant to our management objectives*  
-
-
----
-## Components of a PVA
-
-1) Viability  
-
-2) Time frame  
-
-
-One of the central issues with any type of prediction is that predictions are less certain the farther in the future we try to predict  
-
-- The longer the time frame, the more ways there are for stochastic sources of variation to accumulate  
-
-```{r fig.height = 2.5, fig.width=4}
-N <- exp(1.6 + 0.025 * seq(1:50))
-se <- exp(0.001 + 0.05 * seq(1:50))
-df <- data.frame(x = seq(1:50), 
-                 N = N, se = se)
-
-ggplot(df, aes(x = x, y = N)) + geom_ribbon(aes(ymin = N - se, ymax = N + se), alpha = 0.5) + geom_path(color = WILD3810_colors$value[WILD3810_colors$name == "warning"])
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/8/89/Little_Bluestem_P7280448.JPG")
 ```
+]
 
----
-## Components of a PVA
-
-1) Viability  
-<br/>
-
-2) Time frame  
-
-Most PVAs incorporate both short-term and long-term objectives  
-
---
-- Long-term objectives are generally based solely on biology - maintaining populations above the quasi-extinction threshold for several decades  
-
---
-- Short-term goals are more focused on political, legal, and social realities - what *can* we do now to maintain or increase population viability?  
-
-
----
-## Components of a PVA
-
-1) Viability  
-<br/>
-
-2) Time frame  
-
-By monitoring the population and re-running the PVA with new data, managers can assess whether short-term actions are helping (or hurting) meet long-term objectives.
-
----
-## Components of a PVA
-
-1) Viability  
-<br/>
-
-2) Time frame  
-<br/>
-
-3) Likelihood of risk  
-
-- The reason we need PVA is that we cannot say with certainty what will happen in the future due to stochasticity $^1$  
-
---
-- PVAs are based on estimating probabilities of meeting viability objectives over our defined time frames  
-- These probabilities capture the inherent *uncertainty* in our predictions  
+.right-column[
+```{r, out.width="50%"}
+knitr::include_graphics("figs/plant_survivorship.png")
+```
+]
 
 ???
 
-$^1$ as well as deterministic processes that may occur in the future
+Image courtesy of Chris Light, from Wikimedia Commons  
 
-
----
-## Components of a PVA
-
-1) Viability  
-<br/>
-
-2) Time frame  
-<br/>
-
-3) Likelihood of risk  
-
-- The likelihood of risk can be expressed in different ways  
+Figure from Lauenroth & Adler (2008)
 
 ---
-## Components of a PVA
+class: middle, center, inverse
 
-1) Viability  
-<br/>
-
-2) Time frame  
-<br/>
-
-3) Likelihood of risk  
-
-- Overall quasi-extinction probability   
-
-```{r out.height=150}
-knitr::include_graphics("dem_plot10.gif")
-
-```
----
-## Components of a PVA
-
-1) Viability  
-<br/>
-
-2) Time frame  
-<br/>
-
-3) Likelihood of risk  
-
-- Cumulative probability of declining below the quasi-extinction threshold   
-
-```{r fig.width=3.5, fig.height=2.5}
-cum_extinct <- data.frame(qe = dnorm(x = seq(1:60), 0, 20))
-
-ggplot(cum_extinct, aes(x = qe)) + stat_ecdf(geom = "step") +
-  scale_y_continuous("Cummulative \nextict. prob.") +
-  scale_x_continuous("Time", labels = c(0, 5, 10, 15, 20))
-```
-
+# Life expectancy
 
 ---
-## Components of a PVA
+## Life expectancy
 
-1) Viability  
-<br/>
+#### Life Expectancy  
 
-2) Time frame  
-<br/>
+> The average length of time an individual is expected to live, given they are currently $x$ years old  
 
-3) Likelihood of risk  
 
-In all cases, it's important to remember that these are *probabililities* - we don't know exactly how things will turn out  
-<br/>
+- Directly related to the probability of surviving to a given age  
+
 
 --
-PVA can be used to estimate these probabilities but they cannot be used to tell us what level of risk we are willing to accept. That is a value judgement. 
-
----
-class: inverse, center, middle
-
-# Types of PVA
-
----
-## Types of PVA 
-
-Once we have established our quasi-extinction thresholds, time frames, and likelihoods of risk, we can build the PVA  
-<br/>
+#### Utah has the lowest per capita crude death rate in the U.S. (averaged across all ages)  
 
 --
-As mentioned above, PVA actually refers to a variety of modeling techniques  
-<br/>
+### Can Utahns expect to live longer than in all other states? 
 
---
-The type of PVA we choose usually depends on the available data  
+???
+
+crude death rate means the average death rate across all individuals in the population, regardless of age  
 
 ---
-## Types of PVA
+## Life expectancy
 
-### Time-series
+#### To estimate life expectancy, start with $\Large l_x$
 
-The most straightforward type of PVA is based on a time series of abundance data  
+- $\Large l_x$ = Proportion of individuals still alive at age $\Large x$
 
-- use data to estimate $r$ and $\sigma^2$
+```{r}
+lt3 <- lt
+lt3[,3] <- c(1.0, 0.75, 0.5, 0.4, 0)
 
-```{r fig.height=4, fig.width=8}
-set.seed(23456)
-N1 <- numeric(length = 50)
-N1[1] <- 65
-for(i in 2:50){
-  N1[i] <- rnorm(1, N1[i-1]*0.985, 5)
-}
-df <- data.frame(Year = seq(1:50),
-                 N = N1)
-
-(p <- ggplot(df, aes(x = Year, y = N)) + geom_path(size = 2) +
-  scale_y_continuous(limits = c(0, 100)))
+names(lt3) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "", "", "")
+lt3 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
 ```
 
 ---
-## Types of PVA
+## Life expectancy
 
-### Time-series
+- $\Large L_x$: Average proportion of living individuals across successive age classes  
 
-Use $r$ and $\sigma^2$ to **simulate** future dynamics
+- $\Large L_x = \frac{l_x+l_{x+1}}{2}$
 
-```{r fig.width=8, fig.height=5}
-N <- matrix(NA, nrow = 50, ncol = 100)
-N[1,] <- df$N[df$Year==50]
+```{r}
+lt4 <- lt3
+lt4[,4] <- c(0.875, 0.65, 0.5, 0.2, "-")
 
-for(i in 1:100){
-  for(j in 2:50){
-    if(N[j-1,i] < 0){
-      N[j,i] <- 0
-    }else{
-      N[j,i] <- max(0, rnorm(1, N[j-1,i]*0.985, 5))
-    }
-  }
-}
-
-df2 <- data.frame(Year = rep(seq(from = 50, to = 99), 100),
-                  N = c(N),
-                  pva = rep(as.factor(seq(1:100)), each = 50))
-
-p + geom_path(data = df2, aes(x = Year, y = N, group = pva), alpha = 0.2, size = 0.75)
+names(lt4) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(L_x\\)", "", "")
+lt4 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
 ```
 
 ---
-## Types of PVA
+## Life expectancy
 
-### Time-series
+- $\Large T_x$: total proportion of living individuals from age $x$ to $max(x)$
 
-Summarize simulated populations to predict future dynamics:  
 
-- `r mean(apply(N, 2, min)==0)*100`% probability of extinction  
+```{r fig.height=6, fig.width=8}
+ggplot(data.frame(x = c(0, 5)), aes(x)) +
+  stat_function(fun = dnorm) + 
+  stat_function(fun = dnorm, 
+                xlim = c(0, 5),
+                geom = "area",
+                fill = WILD3810_colors$value[WILD3810_colors$name=="primary"]) +
+  scale_x_continuous("Age", breaks = 0) +
+  scale_y_continuous(expression(paste("Average proportion alive (", L[x], ")"))) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 
-- `r mean(apply(N, 2, min)<10)*100`% probability of $N<10$  
-
-- `r mean(apply(N, 2, min)<20)*100`% probability of $N<20$  
-
----
-## Types of PVA  
-
-### Time-series  
-
-More complex time-series PVAs can account for:  
-
-- Density-dependence  
-
-- Changes in $r$ over time  
-
-- Effects of management actions  
+```
 
 ---
-## Types of PVA
+## Life expectancy
 
-### Demographically-explicit 
+- $\Large T_x$: total proportion of living individuals from age $x$ to $max(x)$
 
-Rather than model $r$, model $b$ and $d$ directly  
 
---
-- Incorporate variance, density-dependence, and covariation in vital rates  
+```{r fig.height=6, fig.width=8}
+ggplot(data.frame(x = c(0, 5)), aes(x)) +
+  stat_function(fun = dnorm) + 
+  stat_function(fun = dnorm, 
+                xlim = c(2, 5),
+                geom = "area",
+                fill = WILD3810_colors$value[WILD3810_colors$name=="primary"]) +
+  scale_x_continuous("Age", breaks = 2) +
+  scale_y_continuous(expression(paste("Average proportion alive (", L[x], ")"))) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank())
 
---
-- Mechanistic management predictions  
+```
 
---
-- Possible to include effects of genetic processes (e.g., inbreeding depression) on vital rates  
 
 ---
-## Types of PVA
+## Life expectancy
 
-### Demographically-explicit 
+- $\Large T_x$: total proportion of living individuals from age $x$ to $max(x)$
 
-Rather than model $r$, model $b$ and $d$ directly  
+- $\Large T_x = \sum_x^{max(x)}L_x$
 
-### But
+```{r}
+lt5 <- lt4
+lt5[,5] <- c(2.23, 1.35, 0.7, 0.2, "-")
 
-- require lots of data  
+names(lt5) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(L_x\\)", "\\(T_x\\)", "")
+lt5 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
 
-- challenging to construct  
 
 ---
-## Types of PVA
+## Life expectancy
 
-### Spatial 
+- $\Large E_x$: Number of additional years an individual of age $x$ is expected to survive
 
-In addition to $b$ and $d$, viability influenced by movement:  
-
-- immigration and emigration  
+- $\Large E_x = T_x/l_x$
 
 
---
-Spatially-explicit PVAs model *how many* individuals and *where* they are  
+```{r}
+lt6 <- lt5
+lt6[,6] <- c(2.23, 1.93, 1.17, 0.5, "-")
 
-- allow locally-extinct patches to become re-colonized  
-
-- allow gene flow to add genetic variation  
-
----
-## Considerations for using PVA
-
-1) Data quality  
-
---
-- Time frame  
-
---
-- Sampling error  
+names(lt6) <- c("\\(x\\)", "\\(N_x\\)", "\\(l_x\\)", "\\(L_x\\)", "\\(T_x\\)", "\\(E_x\\)")
+lt6 %>%
+  kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
+```
 
 ---
-## Considerations for using PVA
+## Utah life expectancy
 
-1) Data quality
+#### Utah has the lowest per capita crude death rate d in the U.S  
 
-2) Uncertainty
-
---
-- Do we need accurate predictions of extinction risk? Or is relative risk be enough? 
+### Can Utahns expect to live longer than all other states?
 
 --
-- Account for uncertainty using simulations
+### Not exactly
+
+- Life expectancy of a newborn Utahn is 80.2  
+<br/>
+
+--
+- Ranked 10th in the U.S., not first  
 
 ---
-## Considerations for using PVA
+## Utah life expectancy
 
-1) Data quality
-
-2) Uncertainty
-
-3) Other sources of information
+#### Why is Utah’s crude per capita death rate $\Large d$ so low?  
 
 --
-- Expert opinion
+#### Because Utah has the highest birth rate and consequently the youngest age structure
+
+- % of Utahns < 18 yrs old is 32%  
+
+- % of U.S. < 18 yrs old is 25%  
 
 --
-- Rules-of-thumb
+- % of Utahns ≥ 65 is 11%  
+
+- % of U.S. ≥ 65 = 15%  
+
+
+--
+#### Young individuals have highest chances of survival 
+
+#### Having many young individuals in a population will skew the crude average $\Large d$
+

@@ -1,7 +1,7 @@
 ---
 title: "Lecture 11"
-subtitle: "Matrix population models"
-author: "<br/><br/><br/>WILD3810 (Spring 2019)"
+subtitle: "Stage-structured populations"
+author: "<br/><br/><br/>WILD3810 (Spring 2020)"
 output:
   xaringan::moon_reader:
     css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
@@ -22,695 +22,505 @@ library(WILD3810)
 library(gganimate)
 ```
 
-## Readings
+## Leslie matrix 
 
-> Mills 98-103
+#### Leslie matrices are defined as :   
 
+- square matrix that summarizes the demography of **age**-specific life cycles  
 
----
-## Assumptions of the B-D models
+- one column for each **age** class
 
-#### Over the coming weeks, we will learn about why and how to relax assumption 3:  
+- matrix elements contain **age**-specific birth and survival rates   
 
-
-1) Population closed to immigration and emigration  
-<br/>
-
-
-2) Model pertains to only the limiting sex, usually females  
-<br/>
-
-
-**3) Birth and death rates are independent of an individual’s age or biological stage**  
-<br/>
-
-
-4) Birth and death rates are constant
-
---
-### **How can we model population dynamics of populations with complex age structure?**
-
----
-## Age-structured demography
-
-### Consider the following life table:
-<br/>
-
-```{r}
-library(kableExtra)
-lt <- data.frame(x = c(0,1,2,3),
-                       mx = c(0, "\\(m_1\\)", "\\(m_2\\)", "\\(m_3\\)"),
-                       px = c("\\(P_0\\)", "\\(P_1\\)", "\\(P_2\\)", 0))
-
-names(lt) <- c("\\(x\\)", "\\(m_x\\)", "\\(P_x\\)")
-
-lt %>%
-  kable("html", align = 'c', escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE, font_size = 22) 
-```
+- individuals cannot stay in the same **age**-class for more than a single time step $^1$
+<br/> 
+<br/> 
+$$\LARGE \mathbf A = \begin{bmatrix}
+    F_1 & F_2 & F_3\\
+    P_1 & 0 & 0\\
+    0 &P_2 & 0
+\end{bmatrix}$$
 
 ???
 
-What do $m_x$ and $P_x$ represent?  
-
-What can you say about the reproductive and survival schedules of this population?
+$^1$ In some cases, for example when we define identify individuals juveniles (age 1), pre-adults (age 2), and adults (age 3+), the last element in the Leslie matrix might not be zero. Individuals can remain in the "adult" class for more than 1 year  
 
 ---
-## Age-structred demography
+## Stage-structured populations
 
-#### List population abundance in discrete 1-year age classes $\LARGE (n_i)$  
-
-- e.g., $\LARGE n_1$, $\LARGE n_2$, $\LARGE n_3$  
-
-- $\LARGE n_i$ is the number of individuals about to experience their $\LARGE i^{th}$ birthday  
-<br/>
-
-```{r out.width="70%"}
-knitr::include_graphics("figs/age_diagram.png")
-```
-
----
-## Age-structred demography
-
-```{r}
-lt %>%
-  kable("html", align = 'c', escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 16) 
-```
-
-<br/>
-
-```{r out.width="70%"}
-knitr::include_graphics("figs/states.png")
-```
-
----
-## Age-structred demography
-
-```{r}
-lt <- data.frame(x = c(0,1,2,3),
-                       mx = c(0, "\\(m_1\\)", "\\(m_2\\)", "\\(m_3\\)"),
-                       px = c("\\(P_0\\)", "\\(P_1\\)", "\\(P_2\\)", 0))
-
-lt2 <- dplyr::mutate(lt, px = cell_spec(lt$px, "html", background = c("transparent", "yellow", "yellow", "transparent")))
-
-names(lt2) <- c("\\(x\\)", "\\(m_x\\)", "\\(P_x\\)")
-
-
-lt2 %>%
-  knitr::kable("html", align = 'c', escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 16) 
-```
-
-<br/>
-
-```{r out.width="70%"}
-knitr::include_graphics("figs/survival.png")
-```
-
-
----
-## Age-structred demography
-
-```{r}
-lt <- data.frame(x = c(0,1,2,3),
-                       mx = c(0, "\\(m_1\\)", "\\(m_2\\)", "\\(m_3\\)"),
-                       px = c("\\(P_0\\)", "\\(P_1\\)", "\\(P_2\\)", 0))
-
-lt3 <- dplyr::mutate(lt, px = cell_spec(lt$px, "html", background = c("yellow", "transparent", "transparent", "transparent")))
-
-lt3 <- dplyr::mutate(lt3, mx = cell_spec(lt$mx, "html", background = c("transparent", "transparent", "yellow", "transparent")))
-
-names(lt3) <- c("\\(x\\)", "\\(m_x\\)", "\\(P_x\\)")
-
-
-lt3 %>%
-  knitr::kable("html", align = 'c', escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 16) 
-```
-
-
-```{r out.width="63%"}
-knitr::include_graphics("figs/repro2.png")
-```
-
-
-
----
-## Age-structred demography
-
-```{r}
-lt <- data.frame(x = c(0,1,2,3),
-                       mx = c(0, "\\(m_1\\)", "\\(m_2\\)", "\\(m_3\\)"),
-                       px = c("\\(P_0\\)", "\\(P_1\\)", "\\(P_2\\)", 0))
-
-lt4 <- dplyr::mutate(lt, px = cell_spec(lt$px, "html", background = c("yellow", "transparent", "transparent", "transparent")))
-
-lt4 <- dplyr::mutate(lt4, mx = cell_spec(lt$mx, "html", background = c("transparent", "yellow",  "yellow", "yellow")))
-
-names(lt4) <- c("\\(x\\)", "\\(m_x\\)", "\\(P_x\\)")
-
-
-lt4 %>%
-  knitr::kable("html", align = 'c', escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 16) 
-```
-
-
-```{r out.width="63%"}
-knitr::include_graphics("figs/lc_model.png")
-```
-
-
----
-## Age-structred demography
-
-#### How many individuals will be in the population next year?
+#### In some cases, age is not a relevant predictor of survival and birth rates   
 
 --
-
-```{r out.width="63%"}
-knitr::include_graphics("figs/n1.png")
-```
-
-$\LARGE n_{1,t+1} = m_1P_0n_{1,t}+m_2P_0n_{2,t} + m_3P_0n_{3,t}$  
-
----
-## Age-structred demography
-
-#### How many individuals will be in the population next year?
-
-```{r out.width="63%"}
-knitr::include_graphics("figs/n2.png")
-```
-
-$\LARGE n_{1,t+1} = m_1P_0n_{1,t}+m_2P_0n_{2,t} + m_3P_0n_{3,t}$  
-
-$\LARGE n_{2,t+1} =P_1n_{1,t}$  
-
----
-## Age-structred demography
-
-#### How many individuals will be in the population next year?
-
-```{r out.width="63%"}
-knitr::include_graphics("figs/n3.png")
-```
-
-$\LARGE n_{1,t+1} = m_1P_0n_{1,t}+m_2P_0n_{2,t} + m_3P_0n_{3,t}$  
-
-$\LARGE n_{2,t+1} =P_1n_{1,t}$  
-
-$\LARGE n_{3,t+1} =P_2n_{2,t}$  
-
-
----
-## Leslie matrix model
-
-#### Rather than modeling the dynamics using the previous equations, we can use **matrix projection models**  
+#### Instead, survival and birth rates vary with **stage**
 
 --
-- defined by square matrix that summarizes the demography of age-specific life cycles  
+- life cycle stage
+
+.pull-left[
+```{r, out.width="75%"}
+knitr::include_graphics("figs/lifecycle_diagram.jpg")
+```
+]
+
+.pull-right[
+```{r, out.width="75%"}
+knitr::include_graphics("figs/lifecycle.gif")
+```
+]
+
+---
+## Stage-structured populations
+
+#### In some cases, age is not a relevant predictor of survival and birth rates   
+
+#### Instead, survival and birth rates vary with **stage**
+
+- life cycle stage
+
+- size 
+
+.left-column[
+```{r, out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/a/af/Gasterosteus_aculeatus_t%C3%BCsk%C3%A9s_pik%C3%B3.jpg")
+```
+]
+
+.right-column[
+```{r, out.width="60%"}
+knitr::include_graphics("figs/stickleback_fecundity.png")
+```
+]
+
+???
+
+Image courtesy of Kókay Szabolcs, via Wikimedia Commons
+Figure from Moser et al. (2012)
+
+---
+## Stage-structured populations
+
+#### L. Lefkovitch relaxed an assumption of the age-structured matrix model developed by Leslie  
 
 --
-- one column for each age class
+#### **Lefkovitch matrices ** allow individuals to remain in life-stages (or size classes) longer than one time step 
 
 --
-- developed by Sir Patrick H. Leslie for application to population biology  
+#### Useful for plants and animals with stage-dependent demography
 
---
-- a matrix with age-specific birth and survival rates is called a **Leslie matrix**  
-<br/> 
-
-$$\LARGE \mathbf A = \begin{bmatrix}
-    m_1P_0 & m_2P_0 & m_3P_0\\
-    P_1 & 0 & 0\\
-    0 &P_2 & 0
-\end{bmatrix}$$
-
----
-class: inverse, middle, center
-
-# Review of matrix algebra
-
----
-## Review of matrix algebra
-
-#### Matrix addition
-
-- Matrices must be of the same dimension  
-
-- Add corresponding elements of the matrices
-
-
-$$\LARGE \mathbf A = \begin{bmatrix}
-    2 & 0 \\
-    4 & 6
-\end{bmatrix},\;\;
-\mathbf B = \begin{bmatrix}
-    1 & 5 \\
-    2 & 7
-\end{bmatrix}$$
-<br/>
-
---
-
-$$\LARGE \mathbf A + \mathbf B = \begin{bmatrix}
-    3 & 5 \\
-    6 & 13
-\end{bmatrix}$$
-
----
-## Review of matrix algebra
-
-#### Matrix subtraction
-
-- Matrices must be of the same dimension  
-
-- Subtract corresponding elements of the matrices
-
-
-$$\LARGE \mathbf A = \begin{bmatrix}
-    2 & 0 \\
-    4 & 6
-\end{bmatrix},\;\;
-\mathbf B = \begin{bmatrix}
-    1 & 5 \\
-    2 & 7
-\end{bmatrix}$$
-
---
-
-$$\LARGE \mathbf A - \mathbf B = \begin{bmatrix}
-    1 & -5 \\
-    2 & -1
-\end{bmatrix}$$
-
----
-## Review of matrix algebra
-
-#### Matrix multiplication
-
-- Dimensions are specified as **rows** by **columns**  
-
-- Matrix multiplication does not require matrices to have the same dimensions  
-
-- But they must have the same **inner** dimension
-
-    + for example, a 3x3 matrix can be multiplied by a 3x1 matrix
-
-$$\LARGE \;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;3\times3\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;3\times1$$
-$$\LARGE \mathbf A = \begin{bmatrix}
-    a & b & c \\
-    d & e & f \\
-    g & h & i 
-\end{bmatrix},\;\;
-\mathbf B = \begin{bmatrix}
-    x \\
-    y \\
-    z
-\end{bmatrix}$$
-
----
-## Review of matrix algebra
-
-#### Matrix multiplication
-
-- Dimensions are specified as **rows** by **columns**  
-
-- Matrix multiplication does not require matrices to have the same dimensions  
-
-- But they must have the same **inner** dimension
-
-    + but a 3x3 matrix **cannnot** be multiplied by a 1x3 matrix
-
-$$\LARGE \;\;\;\;\;\;\;\;\;\;\;\;3\times3\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;\;1\times3$$
-$$\LARGE \mathbf A = \begin{bmatrix}
-    a & b & c \\
-    d & e & f \\
-    g & h & i 
-\end{bmatrix},\;\;
-\mathbf B = \begin{bmatrix}
-    x & y & z\\
-\end{bmatrix}$$
-
----
-## Review of matrix algebra
-
-#### How does matrix multiplication work?
-
-$$\LARGE \mathbf A = \begin{bmatrix}
-    a & b & c \\
-    d & e & f \\
-    g & h & i 
-\end{bmatrix},\;\;
-\mathbf B = \begin{bmatrix}
-    x \\
-    y \\
-    z
-\end{bmatrix}$$
-<br/>
-
-$$\LARGE \mathbf A = \begin{bmatrix}
-    a\times x + b\times y + c\times z\\
-    d\times x + e\times y + f\times z\\
-    g\times x + h\times y + i\times z
-\end{bmatrix}$$
-
----
-## Review of matrix algebra
-
-#### How does matrix multiplication work?
-
-$$\LARGE \mathbf A = \begin{bmatrix}
-    1 & 0 & 5 \\
-    0 & 4 & 3 \\
-    2 & 6 & 0 
-\end{bmatrix},\;\;
-\mathbf B = \begin{bmatrix}
-    3 \\
-    2 \\
-    1
-\end{bmatrix}$$
-<br/>
-<br/>
-
-$$\LARGE \mathbf A = \begin{bmatrix}
-    1\times 3 + 0\times 2 + 5\times 1\\
-    0\times 3 + 4\times 2 + 3\times 1\\
-    2\times 3 + 6\times 2 + 1\times 1
-\end{bmatrix}=\begin{bmatrix}
-    8 \\
-    11 \\
-    18
-\end{bmatrix}$$
-
-
----
-## Review of matrix algebra
-
-#### Transpose of a matrix
-
-$$\LARGE \mathbf B = \begin{bmatrix}
-    3 \\
-    2 \\
-    1
-\end{bmatrix},\;\; \mathbf B^T = \begin{bmatrix}
-    3 & 2 & 1
-\end{bmatrix}$$
-<br/>
-<br/>
-
-$$\LARGE \mathbf C = \begin{bmatrix}
-    3 & 2 & 1
-\end{bmatrix},\;\; \mathbf C^T = \begin{bmatrix}
-    3\\
-    2\\
-    1
-\end{bmatrix}$$
-
----
-## Review of matrix algebra
-
-#### Transpose of a matrix
-
-- is the following allowed? 
-$$\LARGE \mathbf A = \begin{bmatrix}
-    1 & 0 & 5 \\
-    0 & 4 & 3 \\
-    2 & 6 & 0 
-\end{bmatrix},\;\;
-\mathbf B = \begin{bmatrix}
-    3 & 2 & 1
-\end{bmatrix}$$
-<br/>
-<br/>
-$$\Huge A \times B$$
-
----
-## Review of matrix algebra
-
-#### Transpose of a matrix
-
-- is the following allowed? 
-$$\LARGE \mathbf A = \begin{bmatrix}
-    1 & 0 & 5 \\
-    0 & 4 & 3 \\
-    2 & 6 & 0 
-\end{bmatrix},\;\;
-\mathbf B = \begin{bmatrix}
-    3 & 2 & 1
-\end{bmatrix}$$
-<br/>
-<br/>
-$$\Huge A \times B^T$$
-
-
----
-class: inverse, center, middle
-
-# Age-structured matrix models
-
----
-## Age-structured matrix models
-
-
-#### How many individuals will be in the population next year?
-
-```{r out.width="63%"}
-knitr::include_graphics("figs/lc_model.png")
-```
-
-$\LARGE n_{1,t+1} = m_1P_0n_{1,t}+m_2P_0n_{2,t} + m_3P_0n_{3,t}$  
-
-$\LARGE n_{2,t+1} =P_1n_{1,t}$  
-
-$\LARGE n_{3,t+1} =P_2n_{2,t}$  
-
-
----
-## Age-structured matrix models
-
-
-#### How many individuals will be in the population next year?
-
-```{r out.width="55%"}
-knitr::include_graphics("figs/lc_model.png")
-```
-
-```{r out.width="45%"}
-knitr::include_graphics("figs/matrix_11.png")
+```{r, out.width="60%"}
+knitr::include_graphics("figs/stage_diagram.png")
 ```
 
 ---
-## Age-structured matrix models
-
-
-#### How many individuals will be in the population next year?
-
-```{r out.width="55%"}
-knitr::include_graphics("figs/lc_model.png")
-```
-
-```{r out.width="45%"}
-knitr::include_graphics("figs/matrix_12.png")
-```
-
----
-## Age-structured matrix models
-
-
-#### How many individuals will be in the population next year?
-
-```{r out.width="55%"}
-knitr::include_graphics("figs/lc_model.png")
-```
-
-```{r out.width="45%"}
-knitr::include_graphics("figs/matrix_13.png")
-```
-
----
-## Age-structured matrix models
-
-
-#### How many individuals will be in the population next year?
-
-```{r out.width="55%"}
-knitr::include_graphics("figs/lc_model.png")
-```
-
-```{r out.width="45%"}
-knitr::include_graphics("figs/matrix_21.png")
-```
-
----
-## Age-structured matrix models
-
-
-#### How many individuals will be in the population next year?
-
-```{r out.width="55%"}
-knitr::include_graphics("figs/lc_model.png")
-```
-
-```{r out.width="45%"}
-knitr::include_graphics("figs/matrix_32.png")
-```
-
----
-## Age-structured matrix models
-
-#### Rather than separately modeling fecundity and juvenile survival, Leslie matrices often include **recruitment**
-
-- $\Large F_x$: Recruitment (or sometimes **F**ertility)
-
-- $\Large F_x = m_xP_0$
+## Stage-structured matrix
 
 $$\LARGE \mathbf A = \begin{bmatrix}
     F_1 & F_2 & F_3\\
     P_1 & 0 & 0\\
     0 &P_2 & 0
-\end{bmatrix}$$
-
-
----
-## Age-structured matrix models
-
-####  Recruitment doesn't have to be estimated from the life table
-
-#### Birds:
-
-- Clutch size  
-
-- Nest survival  
-
-- Chick survival  
-
-- Juvenile survival  
-
-$$\LARGE F = cs \times ns \times chs \times js$$
-
-$$\LARGE \mathbf A = \begin{bmatrix}
-    F_1 & F_2 & F_3\\
-    P_1 & 0 & 0\\
-    0 &P_2 & 0
-\end{bmatrix}$$
-
----
-## Age-structured matrix models
-
-####  Recruitment doesn't have to be estimated from the life table
-
-#### Plants:
-
-- Seed production  
-
-- Seed survival  
-
-- Germination rate  
-
-- Seedling survival  
-
-$$\LARGE F = sp \times sds \times gr \times sls$$
-
-$$\LARGE \mathbf A = \begin{bmatrix}
-    F_1 & F_2 & F_3\\
-    P_1 & 0 & 0\\
-    0 &P_2 & 0
-\end{bmatrix}$$
-
----
-## Projecting abundance
-
-#### The Leslie matrix can be used to project abundance
-
-$$\LARGE \mathbf N_t = \begin{bmatrix}
-    n_{1,t}\\
-    n_{2,t}\\
-    n_{3,t}
+\end{bmatrix} \rightarrow
+\mathbf A = \begin{bmatrix}
+    P_1 & F_2 & F_3\\
+    G_1 & P_2 & 0\\
+    0 & G_2 & P_3
 \end{bmatrix}$$
 <br/>
+- $\large F_x$ is still **recruitment**, the number of offspring recruited into stage class 1 per adult in stage $\large x$  
 
-```{r out.width="70%"}
-knitr::include_graphics("figs/age_diagram.png")
-```
+- $\large P_x$ is the probability of **surviving** from year $\large t$ until year $\large t+1$ and **remaining** in stage $\large x$  
+
+- $\large G_x$ is the probability of **growing and surviving** to stage $\large x + 1$ during $\large t$ to  $\large t+1$ 
+
 
 ---
-## Projecting abundance
+## Stage-structured matrix model
 
-#### The Leslie matrix can be used to project abundance  
-
---
-- multiply the Leslie matrix
-
-$$\Large \mathbf A = \begin{bmatrix}
-    F_1 & F_2 & F_3\\
-    P_1 & 0 & 0\\
-    0 &P_2 & 0
-\end{bmatrix}$$
-
---
-- by the abundance matrix
-
-$$\Large \mathbf N_t = \begin{bmatrix}
+$$\Large \mathbf N_{t+1} = \mathbf A \times \mathbf N_t$$
+$$\LARGE = \begin{bmatrix}
+    P_1 & F_2 & F_3\\
+    G_1 & P_2 & 0\\
+    0 & G_2 & P_3
+\end{bmatrix} \times 
+\begin{bmatrix} 
     n_{1,t}\\
     n_{2,t}\\
     n_{3,t}
 \end{bmatrix}$$
 
-using the rules of matrix multiplication
+<br/>
+#### Matrix multiplication is the  same as in the Leslie matrix model!! 
 
 ---
-## Projecting abundance
+## Common teasel example
 
-#### Population abundance is projected through time using matrix multiplication
+.pull-left[
+```{r out.width = "80%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/5/56/Dipsacus_fullonum_002.JPG")
+```
+]
 
-$$\Large \mathbf N_{t+1} = \mathbf A \times \mathbf N_t$$ 
+.pull-right[
 
+- *Dypsacus sylvestris*
+
+- native to Europe
+
+- invasive species in United States
+
+- stage-structured dynamics studied intensively by Patricia Werner and Hal Caswell
+]
+
+
+???
+
+Image courtesy of H. Zell, via Wikicommons
+
+---
+## Common teasel example
+
+.pull-left[
+```{r out.width = "80%"}
+knitr::include_graphics("figs/teasel_rosette.png")
+```
+]
+
+.pull-right[
+
+#### Complex stage structure
+
+1) Dormant 1st year seeds  
+
+2) Dormant 2nd year seeds  
+
+3) Small rosettes $(< 2.5cm)$  
+
+4) Medium rosettes $2.5-18.9cm$  
+
+5) Large rosettes $\geq 19cm$  
+
+6) Flowering plants  
+]
+
+---
+## Common teasel example
+
+.pull-left[
+```{r out.width = "80%"}
+knitr::include_graphics("figs/teasel_states.png")
+```
+]
+
+.pull-right[
+
+#### Complex stage structure
+
+1) Dormant 1st year seeds  
+
+2) Dormant 2nd year seeds  
+
+3) Small rosettes $(< 2.5cm)$  
+
+4) Medium rosettes $2.5-18.9cm$  
+
+5) Large rosettes $\geq 19cm$  
+
+6) Flowering plants  
+]
+
+---
+## Common teasel example
+
+<br/>
+ 
+```{r}
+library(kableExtra)
+teasel <- data.frame(seed1 = c(0, 0.966, 0.013, 0.007, 0.001, 0),
+                 seed2 = c(0, 0, 0.01, 0, 0, 0),
+                 sr = c(0, 0, 0.125, 0.125, 0, 0),
+                 mr = c(0, 0, 0, 0.238, 0.245, 0.023),
+                 lr = c(0, 0, 0, 0, 0.167, 0.75),
+                 fl = c(322.28, 0, 3.448, 30.17, 0.862, 0))
+
+teasel1 <- teasel
+names(teasel1) <- c("Seed 1", "Seed 2", "Small rosette", "Medium rosette", "Large rosette", "Flowering")
+
+teasel1 %>%
+  knitr::kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 15) 
+```
+
+---
+## Common teasel example
+
+.pull-left[
+```{r}
+teasel_seed1 <- dplyr::mutate(teasel, seed1 = cell_spec(teasel$seed1, "html", background = c("transparent", "red", "orange", "yellow", "green", "transparent")))
+
+
+names(teasel_seed1) <- c("Seed 1", "Seed 2", "Small rosette", "Medium rosette", "Large rosette", "Flowering")
+
+
+teasel_seed1 %>%
+  knitr::kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 14) 
+```
+]
+
+.pull-right[
+```{r out.width = "75%", fig.align = 'right'}
+knitr::include_graphics("figs/teasel_states_from1.png")
+```
+]
+
+
+---
+## Common teasel example
+
+.pull-left[
+```{r}
+teasel_seed2 <- dplyr::mutate(teasel, seed2 = cell_spec(teasel$seed2, "html", background = c("transparent", "transparent", "red", "transparent", "transparent", "transparent")))
+
+
+names(teasel_seed2) <- c("Seed 1", "Seed 2", "Small rosette", "Medium rosette", "Large rosette", "Flowering")
+
+
+teasel_seed2 %>%
+  knitr::kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 14) 
+```
+]
+
+.pull-right[
+```{r out.width = "75%", fig.align = 'right'}
+knitr::include_graphics("figs/teasel_states_from2.png")
+```
+]
+
+---
+## Common teasel example
+
+.pull-left[
+```{r}
+teasel_sr <- dplyr::mutate(teasel, sr = cell_spec(teasel$sr, "html", background = c("transparent", "transparent", "red", "orange", "transparent", "transparent")))
+
+
+names(teasel_sr) <- c("Seed 1", "Seed 2", "Small rosette", "Medium rosette", "Large rosette", "Flowering")
+
+
+teasel_sr %>%
+  knitr::kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 14) 
+```
+]
+
+.pull-right[
+```{r out.width = "75%", fig.align = 'right'}
+knitr::include_graphics("figs/teasel_states_from3.png")
+```
+]
+
+---
+## Common teasel example
+
+.pull-left[
+```{r}
+teasel_mr <- dplyr::mutate(teasel, mr = cell_spec(teasel$mr, "html", background = c("transparent", "transparent", "transparent", "red", "orange", "yellow")))
+
+
+names(teasel_mr) <- c("Seed 1", "Seed 2", "Small rosette", "Medium rosette", "Large rosette", "Flowering")
+
+
+teasel_mr %>%
+  knitr::kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 14) 
+```
+]
+
+.pull-right[
+```{r out.width = "75%", fig.align = 'right'}
+knitr::include_graphics("figs/teasel_states_from4.png")
+```
+]
+
+---
+## Common teasel example
+
+.pull-left[
+```{r}
+teasel_lr <- dplyr::mutate(teasel, lr = cell_spec(teasel$lr, "html", background = c("transparent", "transparent", "transparent", "transparent", "red", "orange")))
+
+
+names(teasel_lr) <- c("Seed 1", "Seed 2", "Small rosette", "Medium rosette", "Large rosette", "Flowering")
+
+
+teasel_lr %>%
+  knitr::kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 14) 
+```
+]
+
+.pull-right[
+```{r out.width = "75%", fig.align = 'right'}
+knitr::include_graphics("figs/teasel_states_from5.png")
+```
+]
+
+---
+## Common teasel example
+
+.pull-left[
+```{r}
+teasel_fl <- dplyr::mutate(teasel, fl = cell_spec(teasel$fl, "html", background = c("red", "transparent", "orange", "yellow", "green", "transparent")))
+
+
+names(teasel_fl) <- c("Seed 1", "Seed 2", "Small rosette", "Medium rosette", "Large rosette", "Flowering")
+
+
+teasel_fl %>%
+  knitr::kable("html", align = 'c', escape = FALSE) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 14) 
+```
+]
+
+.pull-right[
+```{r out.width = "75%", fig.align = 'right'}
+knitr::include_graphics("figs/teasel_states_from6.png")
+```
+]
+
+
+---
+## Common teasel example
+
+#### What happens to a newly established population?
+
+- Assume population starts with 100 1st year seeds
+
+<br/>
+
+--
 $$\Large \begin{bmatrix}
-    n_{1,t+1}\\
-    n_{2,t+1}\\
-    n_{3,t+1}
-\end{bmatrix}\Large =  \begin{bmatrix}
-    F_1 & F_2 & F_3\\
-    P_1 & 0 & 0\\
-    0 &P_2 & 0
+    0 & 0 & 0 &0 & 0 & 322.38\\
+    0.966 & 0 & 0 & 0 & 0 & 0\\
+    0.013 & 0.01 & 0.125 & 0 & 0 & 3.448\\
+    0.007 & 0 & 0.125 & 0.238 & 0 & 30.17\\
+    0.001 & 0 & 0 & 0.245 & 0.167 & 0.862\\
+    0 & 0 & 0 & 0.023 & 0.75 & 0\\
 \end{bmatrix} \times \begin{bmatrix}
-    n_{1,t}\\
-    n_{2,t}\\
-    n_{3,t}
+    100\\
+    0\\
+    0\\
+    0\\
+    0\\
+    0
 \end{bmatrix}$$
+
+
+---
+## Common teasel example
+
+<br/>
+```{r}
+A <- matrix(c(0, 0, 0,0, 0, 322.38,
+    0.966, 0, 0, 0, 0, 0,
+    0.013, 0.01, 0.125, 0, 0, 3.448,
+    0.007 , 0 , 0.125 , 0.238 , 0 , 30.17,
+    0.001 , 0 , 0 , 0.245 , 0.167 , 0.862,
+    0 , 0 , 0 , 0.023 , 0.75 , 0), nrow = 6, byrow = TRUE)
+
+N1 <- c(100, 0, 0, 0, 0, 0)
+N <- matrix(NA, nrow = 6, ncol = 25)
+N[,1] <- N1
+
+for(t in 2:25){
+  N[,t] <- A %*% N[,t-1]
+}
+
+N.tot <- apply(N, 2, sum)
+
+stage_dist <- apply(N, 1, function(x) x/N.tot)
+
+teasel_df <- data.frame(Year = 1:25,
+                        N = c(t(N)),
+                        SSD = c(stage_dist),
+                        Stage = rep(c("Seed 1", "Seed 2", 
+                                      "Small rosette", "Medium rosette", 
+                                      "Large rosette", "Flowering"), each = 25))
+```
+
+```{r fig.height= 5, fig.width=8}
+ggplot(teasel_df, aes(x = Year, y = log(N), color = Stage)) + geom_path(size = 1) +
+  scale_color_manual(values = WILD3810_colors$value) +
+  scale_y_continuous("log(N)")
+```
+
+---
+## Common teasel example
+<br/>
+
+```{r fig.height= 5, fig.width=8}
+ggplot(teasel_df, aes(x = Year, y = log(N), color = Stage)) + 
+  geom_rect(aes(xmin = -Inf, xmax = 11, ymin = -Inf, ymax = Inf), fill = "grey70", color = "grey70") + 
+  geom_path(size = 1) +
+  scale_color_manual(values = WILD3810_colors$value) +
+  scale_y_continuous("log(N)") +
+  annotate("text", x = 5, y = 18, label = "Transient \ndynamics", color = "grey20", size = 8)
+```
+
+---
+## Common teasel example
 
 <br/>
 
-Notice that the inner dimensions match
-
----
-## Projecting abundance
-
-#### Population abundance is projected through time using matrix multiplication
-
-```{r out.width="80%"}
-knitr::include_graphics("figs/matrix_n1.png")
+```{r fig.height= 5, fig.width=8}
+ggplot(teasel_df, aes(x = Year, y = SSD, color = Stage)) + 
+  geom_rect(aes(xmin = -Inf, xmax = 11, ymin = -Inf, ymax = Inf), fill = "grey70", color = "grey70") + 
+  geom_path(size = 1) +
+  scale_color_manual(values = WILD3810_colors$value) +
+  scale_y_continuous(expression(paste("Proportion of population (", N[x]/N[total], ")")), 
+                     limits = c(0, 1.5)) +
+  annotate("text", x = 5, y = 1.25, label = "Transient \ndynamics", color = "grey20", size = 8)
 ```
 
----
-## Projecting abundance
-
-#### Population abundance is projected through time using matrix multiplication
-
-```{r out.width="80%"}
-knitr::include_graphics("figs/matrix_n2.png")
-```
+--
+**Stable stage distribution**
 
 
 ---
-## Projecting abundance
+# Common teasel example
 
-#### Population abundance is projected through time using matrix multiplication
+```{r fig.height= 5, fig.width=8}
+lambda <- data.frame(Year = 1:24,
+                     lambda = numeric(24))
+for(t in 1:24){
+  lambda$lambda[t] <- N.tot[t+1]/N.tot[t]
+}
 
-```{r out.width="80%"}
-knitr::include_graphics("figs/matrix_n3.png")
+ggplot(lambda, aes(x = Year, y = lambda)) + 
+  geom_rect(aes(xmin = -Inf, xmax = 11, ymin = -Inf, ymax = Inf), fill = "grey70", color = "grey70") + 
+  geom_path(size = 1, color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
+  scale_y_continuous(expression(lambda)) +
+  annotate("text", x = 7, y = 17, label = "Transient \ndynamics", color = "grey20", size = 8) +
+  annotate("text", x = 18, y = 5, label = expression(paste("Asymptotic ", lambda, "= 2.20")), size = 8)
 ```
+
+**Asymptotic growth rate**
+
+---
+## Management questions
+
+#### What is the short-term growth of this population given the current age/stage structure?  
+
+--
+#### What is the long-term growth of this population given the current vital rates?
+
+--
+#### Which age/stage contributes most to future population growth? 
+
+--
+#### Which vital rates have the biggest effect on future growth?  
+
+--
+#### How would future  population dynamics change if different vital rates were changed?  
+>>>>>>> 6a2860326049d9c169963d26b42a83faef7adb1e
 

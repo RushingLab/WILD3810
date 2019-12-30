@@ -3,8 +3,9 @@
   <head>
     <title>Lecture 7</title>
     <meta charset="utf-8">
-    <meta name="author" content="   WILD3810 (Spring 2019)" />
+    <meta name="author" content="   WILD3810 (Spring 2020)" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
     <link rel="stylesheet" href="WILD3810.css" type="text/css" />
     <link rel="stylesheet" href="WILD3810-fonts.css" type="text/css" />
   </head>
@@ -13,693 +14,1919 @@
 class: center, middle, inverse, title-slide
 
 # Lecture 7
-## Dynamics of small populations
-### <br/><br/><br/>WILD3810 (Spring 2019)
+## Life tables
+### <br/><br/><br/>WILD3810 (Spring 2020)
 
 ---
 
 
 
-&lt;style type="text/css"&gt;
-.remark-slide-content {
-    font-size: 25px;
-}
-&lt;/style&gt;
-
-## Readings
-
-&gt; Mills 224-243
-
----
-# Stochasticity and extinction risk
-
-Over a long enough time scales, the fate of any population that is subject to stochasticity is *extinction*  
-
-&lt;img src="extinction_1000.gif" height="300" style="display: block; margin: auto;" /&gt;
 
 
----
-# Stochasticity and extinction risk
+## Assumptions of the B-D models
 
-Stochasticity, particularly demographic stochasticity, is most consequential at small population sizes  
-
-&lt;img src="dem_plot10.gif" height="300" style="display: block; margin: auto;" /&gt;
----
-## Genetic stochasticity 
-
-In addition to demographic and environmental stochasticity, **genetic stochasticity** also increases extinction risk for small populations  
-&lt;br/&gt;  
+#### Remember from the lecture 3 that our simple models of population growth were based on the following assumptions:  
 
 --
-Genetic drift leads to random accumulation and expression of harmful alleles, which can reduce demographic rates `\(^1\)`  
+1) Population closed to immigration and emigration  
 &lt;br/&gt;
 
 --
-Inbreeding depression can also lead to expression of harmful alleles
-
-???
-`\(^1\)` This is very similar to demographic stochasticity - just by chance, it is possible to get a string of bad luck, in this case expression of alleles that are harmful  
-
-Like demographic stochasticity, drift is more likely to be consequential at small population sizes  
-
----
-class: inverse, middle, center
-# Extinction vortex
-
-
----
-## Extinction vortex
-
-As populations decrease in size, they reach a point where **environmental stochasticity**, **demographic stochasticity**, and **genetic stochasticity** interact to drive populations towards extinction
-  
-
-&lt;img src="extinction_vortex.png" width="500" height="300" style="display: block; margin: auto;" /&gt;
-
----
-## Extinction vortex
-
-The danger with the extinction vortex is that focusing on a single factor (e.g., deterministic cause of decline) is not enough   
+2) Model pertains to only the limiting sex, usually females  
 &lt;br/&gt;
 
 --
-Once a population is small, removing the cause of decline will not remove the stochastic threats  
+3) Birth and death rates are independent of an individual’s age or biological stage  
 &lt;br/&gt;
 
 --
-All threats have to be managed and considered together 
+4) Birth and death rates are constant
+
 
 ---
-## What is a "small" population?
+## Assumptions of the B-D models
 
-#### Detecting when species have entered the extinction vortex is difficult  
+#### In lectures 4 and 5, we learned about ways to model dynamics that do not meet assumption 4:  
 
---
-#### But risk of exinction is related to population size  
 
-+ small populations are at higher risk than large ones   
+1) Population closed to immigration and emigration  
 &lt;br/&gt;
 
 
---
-#### What defines a "small" population? 
+2) Model pertains to only the limiting sex, usually females  
+&lt;br/&gt;
 
----
-## What is a "small" population?
 
-#### This is a difficult question because "small" is a relative term  
+3) Birth and death rates are independent of an individual’s age or biological stage  
+&lt;br/&gt;
 
---
-#### "Small" compared to what? 
 
---
-+ Historical population size?  
-
-&lt;img src="Lecture7_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
-
----
-## What is a "small" population?
-
-#### This is a difficult question because "small" is a relative term  
-
-#### "Small" compared to what? 
-
-+ Historical population size?
-
-+ Other species?  
-
-&lt;img src="Lecture7_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+**4) Birth and death rates are constant**
 
 ???
 
-Species 1 is declining but is still more common than species 2, which has been stable for 60 years despite being rare. Which species would we consider more at risk of extinction? 
+In lecture 4, we learned about ways that birth and death rates might vary stochastically  
+
+In lecture 5, we learned about why birth and death rates might change as a function of abundance  
+
 
 ---
-## What is a "small" population?
+## Assumptions of the B-D models
 
-#### This is a difficult question because "small" is a relative term  
-
-#### "Small" compared to what? 
-
-+ Historical population size?
-
-+ Other species?
-
-+ Management standards? 
-
-&lt;img src="Lecture7_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
-
-???
-
-If species 1 is mallards, we might consider this a very small population size relative to management objectives. If species 2 is cougar, we might consider this to be a relatively large population relative to management objectives. 
-
----
-## What is a "small" population?
-
-There is a long history of trying to define the minimum abundance that avoids extinction (*minimum viable population*):
-
-1) 50-500 rules (Soule 1980; Frankel &amp; Soule 1981):  
-
-&gt; Effective population size `\((N_e)\)` of 50 needed to avoid negative consequences of inbreeding depression; `\(N_e=500\)` needed for maintenence of genetic diversity to allow adapation `\(^1\)` 
+#### Over the coming weeks, we will learn about why and how to relax assumption 3:  
 
 
-
---
-Focused on captive breeding not wild populations  
-&lt;br/&gt;
-
---
-`\(N_e=500\)` probably too small for wild populations subject to stochasticity
-
-???
-
-`\(^1\)` Effective population size is a concept from population genetics that refers to the size of an idealized population (i.e., one that meets all the Hardy-Weinberg assumptions) that would genetic drift at a rate equal to that of the observed population
-
-`\(N_e=50\)` translates to about 200-250 individuals
-
----
-## What is a "small" population?
-
-There is a long history of trying to define the minimum abundance that avoids extinction (*minimum viable population*):
-
-1) 50-500 rules (Soule 1980; Frankel &amp; Soule 1981)
-
-2) 1400-4000 (Brook et al. 2006; Traill et al. 2007): 
-
-&gt; 1400-4000 individuals found to promote low risk of extinction over moderate timescales (20-100 years)
-
-
---
-Improvement over 50-500 rule because focuses is on "risk of extinction" rather than on abundance itself  
-
-Good rule-of-thumb but not a magic number  
-
----
-## Problems with MVP approach
-
---
-1) We probably don't want to aim for the *minimum* population size  
-&lt;br/&gt;
-
---
-2) There is not really a single minimum number of individuals (uncertainty!)  
-&lt;br/&gt;
-
---
-3) Populations provide ecological functions that may not be met at low population sizes  
+1) Population closed to immigration and emigration  
 &lt;br/&gt;
 
 
---
-Many factors influence risk of extinction so maintenence of a population should consider multiple risk factors
+2) Model pertains to only the limiting sex, usually females  
+&lt;br/&gt;
+
+
+**3) Birth and death rates are independent of an individual’s age or biological stage**  
+&lt;br/&gt;
+
+
+4) Birth and death rates are constant
+
 
 ---
 class: inverse, center, middle
 
-# Predictors of exinction risk
+# Structured populations
 
 ---
-## Predictors of exinction risk
+## Age-structured populations
 
-1)  Abundance  
+#### Survival and birth rates often vary with age
 
-* smaller populations are at higher risk of extinction than larger ones
+.left-column[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/d/d2/Anser_caerulescens_CT4.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
 
-&lt;img src="dem_plot10.gif" height="300" style="display: block; margin: auto;" /&gt;
+.right-column[
+&lt;img src="figs/goose_survivorship.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Image courtesy of Cephas, from Wikimedia Commons
+
+Figure from Rockwell et al. (1985) *Evolution*
 
 ---
-## Predictors of exinction risk
+## Stage-structured populations
 
-1)  Abundance  
+#### In some cases, age is not a relevant predictor of survival and birth rates   
 
-2)  Range size  
+--
+#### Instead, survival and birth rates vary with **stage**
 
-* Species restricted to small area/highly specialized are often at a higher risk of extinction than widespread species  
+--
+- life cycle stage
 
 .pull-left[
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/f/f7/Kirtland%27s_warbler.jpg" width="80%" style="display: block; margin: auto;" /&gt;
+&lt;img src="figs/lifecycle_diagram.jpg" width="75%" style="display: block; margin: auto;" /&gt;
 ]
 
 .pull-right[
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Dendroica_kirtlandii_map.svg" width="60%" style="display: block; margin: auto;" /&gt;
+&lt;img src="figs/lifecycle.gif" width="75%" style="display: block; margin: auto;" /&gt;
 ]
-???
-Image courtesy of USFWS via Wikicommons
-
 
 ---
-## Predictors of exinction risk
+## Stage-structured populations
 
-1)  Abundance  
+#### In some cases, age is not a relevant predictor of survival and birth rates   
 
-2)  Range size  
+#### Instead, survival and birth rates vary with **stage**
 
-* Species restricted to small area/highly specialized are often at a higher risk of extinction than widespread species  
+- life cycle stage
 
-    a) small range and specialization are generally correlated with population size  
---
-    b) the restricted habitats used by these species are at higher risk of catestrophic loss  
+- size 
 
----
-## Predictors of exinction risk
+.left-column[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/a/af/Gasterosteus_aculeatus_t%C3%BCsk%C3%A9s_pik%C3%B3.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
 
-1)  Abundance  
-
-2)  Range size  
-
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/d/d3/Attwater%27s_Prairie_Chicken.jpg" width="80%" style="display: block; margin: auto;" /&gt;
+.right-column[
+&lt;img src="figs/stickleback_fecundity.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
 
 ???
 
-[Attwater's prairie chicken](https://en.wikipedia.org/wiki/Attwater%27s_prairie_chicken) (*Tympanuchus cupido attwateri*) is an endangered subspecies of the greater prairie chicken. Historically, the subspecies was found along the Gulf coast from Louisiana to Mexico (6 million acres). Today, it is restricted to a small wildlife refuge near Eagle Lake, Texas and a few small areas of private lands. Around 1900, there were an estimated 1,000,000 Attwater's praire chickens, a number that declines to 8,700 by 1937 due to habitat loss and invasive species. By 1967, there were only 1,070 birds and by 2003 there were fewer than 50. In 2016, flooding destroyed all nests and in 2017 Hurricane Harey killed at least 32 birds, leaving only 5-12 chickens in the wild. 
-
-Image courtesy of Lavendowski, George (USFWS), via Wikimedia Commons
-
-
----
-## Predictors of exinction risk
-
-1)  Abundance  
-
-2)  Range size  
-
-3) Population growth rate  
-
-* Species with low and/or highly variable growth rates are at higher risk of exinction than species with stable and/or high growth rates  
-
-&lt;img src="high_var.gif" width="25%" style="display: block; margin: auto;" /&gt;
-
----
-## Predictors of exinction risk
-
-1)  Abundance  
-
-2)  Range size  
-
-3) Population growth rate  
-
-4) Body size  
-
-* Population growth rate and abundance tend to decrease with increasing body size so large-bodied species are generallly at higher risk than small bodied species
-
----
-## Predictors of exinction risk
-
-1)  Abundance  
-
-2)  Range size  
-
-3) Population growth rate  
-
-4) Body size  
-
-5) Movement  
-
-* Species that are able to colonize new habitats are generally at lower risk of exintinction because:
-
-    a) Better able to colonize suitable habitat; and  
-    b) Increased gene flow limits drift/inbreeding depression  
+Image courtesy of Kókay Szabolcs, via Wikimedia Commons
+Figure from Moser et al. (2012)
 
 ---
 class: inverse, center, middle
 
-# Population viability analysis
+# Age-structured populations
 
 ---
-## Population viability analysis
+## Age-structured populations
 
-The above criteria have proven useful for predicting which species are vulnerable to extinction  
-&lt;br/&gt;
+#### **Life tables**  
 
---
-Due to the complex and interacting factors that determine exinctition risk, these criteria are often too simple to accurately assess true risk of exinction   
-&lt;br/&gt;
+- earliest accounting tool for calculating age-specific survival and mortality  
+
 
 --
-When data are available, a more useful tool for predicting extinction risk is *population viability analysis* (PVA)  
-&lt;br/&gt;
+#### Applications to:  
+
+-  Human demography  
+
+- Insurance industry (actuarial sciences)  
+
+- Health professions  
+
+
+--
+[Pearl and Parker (1921)](https://www.journals.uchicago.edu/doi/pdfplus/10.1086/279836) were the first to calculate a non-human life table  
+- *Drosophila melanogaster* (a fruit fly)  
+
+- Since used in ecology, evolution, and natural resource management  
 
 ---
-## Population viability analysis
+## Life tables
 
-PVA is a tool (or more accurately a set of methods) that:  
+#### Cohort life table
 
-&gt; use data and models to estimate the likelihoods of a population crossing thresholds of viability within various time spans, and to give insights into factors that constitute the biggest threats `\(^1\)`  
+- follow group of individuals born within short period (a **cohort**) until each individual's death  
 
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/c/ce/Furbish_lousewort_%2837055906572%29.jpg" width="45%" style="display: block; margin: auto;" /&gt;
+--
+- develop life table for groups of individuals with similar traits (e.g., one for males, one for females)  
+
+--
+- **longitudinal** study design  
+
+&lt;img src="Lecture7_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Life tables
+
+- `\(\Large x\)`: age of individuals
+
+- `\(\Large N_x\)`: number of individuals observed alive at age `\(\Large x\)` (sometimes called `\(\Large S_x\)`)
+&lt;br/&gt;
+
+
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
 
 ???
 
-Furbish lousewort (*Pedicularis furbishiae*) is a perennial plant endemic to Maine that was the subject of an early use of PVA  
-
-Image courtesy of USFWS NE Region, via wikicommons
+`\(S_x\)` stands for number of *survivors* at age `\(x\)`
 
 ---
-## Population viability analysis
+## Life tables
 
-PVA is a tool (or more accurately a set of methods) that:  
+- `\(\Large l_x\)`: Probability of surviving to age `\(\Large x\)`
 
-&gt; use data and models to estimate the likelihoods of a population crossing thresholds of viability within various time spans, and to give insights into factors that constitute the biggest threats `\(^1\)`  
+    + Can also be interpreted as the proportion of individuals still alive at age `\(x\)`
 
-
+- `\(\Large l_x = N_x/N_0\)`
 &lt;br/&gt;
 
-Unlike minimum viable populations, PVA provides a means of determining "population viability" without the need to set a threshold abundance
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Life tables
+
+- `\(\Large l_x\)`: Probability of surviving to age `\(\Large x\)`
+
+- `\(\Large l_x = N_x/N_0\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Life tables
+
+- `\(\Large l_x\)`: Probability of surviving to age `\(\Large x\)`
+
+- `\(\Large l_x = N_x/N_0\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Life tables
+
+- `\(\Large l_x\)`: Probability of surviving to age `\(\Large x\)`
+
+- `\(\Large l_x = N_x/N_0\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Life tables
+
+- `\(\Large l_x\)`: Probability of surviving to age `\(\Large x\)`
+
+- `\(\Large l_x = N_x/N_0\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Life tables
+
+- `\(\Large l_x\)`: Probability of surviving to age `\(\Large x\)`
+
+- `\(\Large l_x = N_x/N_0\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+exclude: true
+
+## Life tables
+
+
+.left-column[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Phlox_drummondii_-_Archer_FL_02.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+&lt;img src="figs/phlox_lt.png" width="80%" style="display: block; margin: auto;" /&gt;
+]
+
 
 ???
 
-`\(^1\)` quoted from Mills pg 227  
+Image courtesy of Ebyabe, from Wikimedia Commons
 
-In lab, we will practice implementing a PVA using R. For now, we will discuss the different parts of the definition, different types of PVA, and how PVA is used to inform management decisions.
+from Leverich &amp; Leven (1979) *American Naturalist*
+
+---
+## Life tables
+
+.left-column[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/f/f6/Phlox_drummondii_-_Archer_FL_02.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+&lt;img src="figs/phlox_survivorship.png" width="60%" style="display: block; margin: auto;" /&gt;
+]
+
+
+???
+
+Image courtesy of Ebyabe, from Wikimedia Commons
+
+from Leverich &amp; Leven (1979) *American Naturalist*
+
+---
+## Life tables
+
+- `\(\Large P_x\)`: Probability of surviving **from** age `\(x\)` **to** the next age (of those alive at age `\(x\)`)
+
+
+- `\(\Large P_x = l_{x+1}/l_x\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+
+---
+## Life tables
+
+- `\(\Large P_x\)`: Probability of surviving **from** age `\(x\)` **to** the next age (of those alive at age `\(x\)`)
+
+
+- `\(\Large P_x = l_{x+1}/l_x\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.667 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Life tables
+
+- `\(\Large P_x\)`: Probability of surviving **from** age `\(x\)` **to** the next age (of those alive at age `\(x\)`)
+
+
+- `\(\Large P_x = l_{x+1}/l_x\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.667 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Life tables
+
+- `\(\Large P_x\)`: Probability of surviving **from** age `\(x\)` **to** the next age (of those alive at age `\(x\)`)
+
+
+- `\(\Large P_x = l_{x+1}/l_x\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.667 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Life tables
+
+### Age-specific survival of fallow deer (*Dama dama*)
+
+.left-column[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Fallow_deer_in_field.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+&lt;img src="figs/dama_survival.png" width="70%" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Image courtesy of Johann-Nikolaus Andreae, via Wikimedia Commons
+Figure from McElligott et al. (2002) *Proc Royal Society B*
+
+---
+## Life tables
+
+- `\(\Large q_x\)`: Probability of dying **between** age `\(x\)` the next age (of those alive at age `\(x\)`)
+
+
+- `\(\Large q_x = 1 - P_x\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.667 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Life tables
+
+- `\(\Large q_x\)`: Probability of dying **between** age `\(x\)` the next age (of those alive at age `\(x\)`)
+
+
+- `\(\Large q_x = 1 - P_x\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.667 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.333 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Life tables
+
+- `\(\Large q_x\)`: Probability of dying **between** age `\(x\)` the next age (of those alive at age `\(x\)`)
+
+
+- `\(\Large q_x = 1 - P_x\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.667 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.333 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Life tables
+
+- `\(\Large q_x\)`: Probability of dying **between** age `\(x\)` the next age (of those alive at age `\(x\)`)
+
+
+- `\(\Large q_x = 1 - P_x\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.667 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.333 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+exclude: true
+
+## Life tables
+
+- `\(\Large H_x\)`: Hazard (i.e., risk)  of dying **between** age `\(x\)` the next age (of those alive at age `\(x\)`)
+
+
+- `\(\Large H_x = -log(P_x)\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(q_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(H_x\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.29 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.667 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.333 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.4 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.8 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.22 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Inf &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Life tables
+
+#### Cohort tables
+
+- Assume that all live individuals are available for observation at every age until death  
+
+
+- Most readily applied to:  
+
+    + Human populations (e.g., CDC NCHS)  
+    + Plants  
+    + Sessile animals  
+    + Mobile animals on small islands with high observer detection  
+    + Animals in captivity (zoos)  
+
+---
+## Life tables
+
+#### Static tables
+
+- assess number of individuals of known age at one point in time or the age of individuals dying at any point in time
+
+&lt;img src="Lecture7_files/figure-html/unnamed-chunk-31-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Static life tables
+
+- `\(\Large a_x\)`: Deaths between age `\(\large x-1\)` and age `\(\Large x\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(a_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+
+`\(\large \sum_{x=0}^{max(x)} a_x = 57\)`
+
+---
+## Static life tables
+
+- `\(\Large a_x\)`: Deaths between age `\(\large x-1\)` and age `\(\Large x\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(a_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 57 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 57-25=32 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 32-15=17 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17-10=7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7-7=0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+`\(\large \sum_{x=0}^{max(x)} a_x = 57\)`
+
+---
+## Static life tables
+
+- `\(\Large a_x\)`: Deaths between age `\(\large x-1\)` and age `\(\Large x\)`
+&lt;br/&gt;
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(a_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(P_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; etc. &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 57 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.56 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 25 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 57-25=32 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.56 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.54 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 15 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 32-15=17 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.30 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 10 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 17-10=7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.12 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 7-7=0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+## Static life tables
+
+#### Static life tables most readily applied to:
+
+- Plants and animals where age can be accurately determined for all individuals at a given moment in time  
+
+- e.g., using the rings/layering in trees, teeth, otoliths, horns, and maybe even telomere length on genes
+
+
+---
+## Static life tables
+
+#### Static life table assumptions:
+
+- All individuals have equivalent availability for observation, regardless of age  
+
+- Stable age distribution  
+
+- Age-specific survival `\(\Large (P_x)\)` does not change over time  
+
+    + If it does, time effects may appear as ‘age effects’ and lead to biased results
 
 ---
 class: inverse, middle, center
-# Components of a PVA
+
+# Survivorship curves
 
 ---
-## Components of a PVA
+## Survivorship curves
+
+&lt;img src="Lecture7_files/figure-html/unnamed-chunk-35-1.png" style="display: block; margin: auto;" /&gt;
 
 --
-1) Viability  
+#### **Type II Survivorship curve** (Pearl 1928)
 
-- The first step of a PVA is defining what we mean by viable  
-
---
-- This is an abundance level that we want to maintain our population at or above  
-
---
-- In the most simple case, a viable means not extinct `\((N &gt; 0)\)`   
-
-
---
-Rather than `\((N &gt; 0)\)` we may also want keep abundance above some level where, e.g.
-
---
-- Allee effects might kick in  
-
---
-- ecological functions are detrimented  
-
---
-- monitoring becomes unreliable  
 
 ---
-## Components of a PVA
+## Survivorship curves
 
-1) Viability  
+&lt;img src="Lecture7_files/figure-html/unnamed-chunk-36-1.png" style="display: block; margin: auto;" /&gt;
 
-Thus, PVA is usually based on *quasi-extinction* thresholds that are `\(&gt; 0\)`  
+---
+## Survivorship curves
 
-Below these thresholds, some management action `\(^1\)` might be triggered to prevent absolute extinction  
+### What types of species do you expect have type 1 survivorship curves?
+
+--
+&lt;img src="figs/sweden_survivorship.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+---
+## Survivorship curves
+
+### What types of species do you expect have type 2 survivorship curves?
+
+--
+.left-column[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Eastern_Grey_Squirrel_in_St_James%27s_Park%2C_London_-_Nov_2006_edit.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.right-column[
+&lt;img src="figs/squirell_survivorship.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
 
 ???
 
-`\(^1\)` captive breeding or special management actions
+Image courtesy of Diliff, from Wikimedia Commons  
+
+Figure from Barkalow et al. (1970)
 
 ---
-## Components of a PVA
+## Survivorship curves
 
-1) Viability  
-&lt;br/&gt;
-
-2) Timeframe  
-
-- As we learned earlier, over long enough time periods, every population will go extinct  
+### What types of species do you expect have type 3 survivorship curves?
 
 --
-- Critical to determine the specific timeframe *relevant to our management objectives*  
+.left-column[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/8/89/Little_Bluestem_P7280448.JPG" width="100%" style="display: block; margin: auto;" /&gt;
+]
 
-
----
-## Components of a PVA
-
-1) Viability  
-
-2) Timeframe  
-
-
-One of the central issues with any type of prediction is that predictions are less certain the farther in the future we try to predict  
-
-- The longer the time frame, the more ways there are for stochastic sources of variation to accumulate  
-
-&lt;img src="Lecture7_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto;" /&gt;
-
----
-## Components of a PVA
-
-1) Viability  
-&lt;br/&gt;
-
-2) Timeframe  
-
-Most PVAs incorporate both short-term and long-term objectives  
-
---
-- Long-term objectives are generally based soley on biology - maintaining populations above the quasi-extinction threshold for several decades  
-
---
-- Short-term goals are more focused on political, legal, and social realities - what *can* we do now to maintain or increase population viability?  
-
-
----
-## Components of a PVA
-
-1) Viability  
-&lt;br/&gt;
-
-2) Timeframe  
-
-By monitoring the population and re-running the PVA with new data, managers can assess whether short-term actions are helping (or hurting) meet long-term objectives.
-
----
-## Components of a PVA
-
-1) Viability  
-&lt;br/&gt;
-
-2) Timeframe  
-&lt;br/&gt;
-
-3) Likelihood of risk  
-
-- The reason we need PVA is that we cannot say with certainty what will happen in the future due to stochasticity `\(^1\)`  
-
---
-- PVAs are based on estimating probabilities of meeting viability objectives over our defined timeframes  
-- These probabilities capture the inherent *uncertainty* in our predictions  
+.right-column[
+&lt;img src="figs/plant_survivorship.png" width="50%" style="display: block; margin: auto;" /&gt;
+]
 
 ???
 
-`\(^1\)` as well as deterministic processes that may occur in the future
+Image courtesy of Chris Light, from Wikimedia Commons  
+
+Figure from Lauenroth &amp; Adler (2008)
+
+---
+class: middle, center, inverse
+
+# Life expectancy
+
+---
+## Life expectancy
+
+#### Life Expectancy  
+
+&gt; The average length of time an individual is expected to live, given they are currently `\(x\)` years old  
+
+
+- Directly related to the probability of surviving to a given age  
+
+
+--
+#### Utah has the lowest per capita crude death rate in the U.S. (averaged across all ages)  
+
+--
+### Can Utahns expect to live longer than in all other states? 
+
+???
+
+crude death rate means the average death rate across all individuals in the population, regardless of age  
+
+---
+## Life expectancy
+
+#### To estimate life expectancy, start with `\(\Large l_x\)`
+
+- `\(\Large l_x\)` = Proportion of individuals still alive at age `\(\Large x\)`
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Life expectancy
+
+- `\(\Large L_x\)`: Average proportion of living individuals across successive age classes  
+
+- `\(\Large L_x = \frac{l_x+l_{x+1}}{2}\)`
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(L_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.875 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.65 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Life expectancy
+
+- `\(\Large T_x\)`: total proportion of living individuals from age `\(x\)` to `\(max(x)\)`
+
+
+&lt;img src="Lecture7_files/figure-html/unnamed-chunk-44-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+## Life expectancy
+
+- `\(\Large T_x\)`: total proportion of living individuals from age `\(x\)` to `\(max(x)\)`
+
+
+&lt;img src="Lecture7_files/figure-html/unnamed-chunk-45-1.png" style="display: block; margin: auto;" /&gt;
 
 
 ---
-## Components of a PVA
+## Life expectancy
 
-1) Viability  
+- `\(\Large T_x\)`: total proportion of living individuals from age `\(x\)` to `\(max(x)\)`
+
+- `\(\Large T_x = \sum_x^{max(x)}L_x\)`
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(L_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(T_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.875 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.23 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.65 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.35 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt;  &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+## Life expectancy
+
+- `\(\Large E_x\)`: Number of additional years an individual of age `\(x\)` is expected to survive
+
+- `\(\Large E_x = T_x/l_x\)`
+
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; \(x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(N_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(l_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(L_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(T_x\) &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; \(E_x\) &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.875 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.23 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 2.23 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.75 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.65 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.35 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.93 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.50 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.5 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.7 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 1.17 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.40 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.2 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; 0.00 &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; - &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Utah life expectancy
+
+#### Utah has the lowest per capita crude death rate d in the U.S  
+
+### Can Utahns expect to live longer than all other states?
+
+--
+### Not exactly
+
+- Life expectancy of a newborn Utahn is 80.2  
 &lt;br/&gt;
 
-2) Timeframe  
-&lt;br/&gt;
-
-3) Likelihood of risk  
-
-- The likelihood of risk can be expressed in different ways  
+--
+- Ranked 10th in the U.S., not first  
 
 ---
-## Components of a PVA
+## Utah life expectancy
 
-1) Viability  
-&lt;br/&gt;
-
-2) Timeframe  
-&lt;br/&gt;
-
-3) Likelihood of risk  
-
-- Overall quasi-extiction probability   
-
-&lt;img src="dem_plot10.gif" height="150" style="display: block; margin: auto;" /&gt;
----
-## Components of a PVA
-
-1) Viability  
-&lt;br/&gt;
-
-2) Timeframe  
-&lt;br/&gt;
-
-3) Likelihood of risk  
-
-- Cumulative probability of declining below the quasi-extinction threshold   
-
-&lt;img src="Lecture7_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
-
-
----
-## Components of a PVA
-
-1) Viability  
-&lt;br/&gt;
-
-2) Timeframe  
-&lt;br/&gt;
-
-3) Likelihood of risk  
-
-In all cases, it's important to remember that these are *probabililities* - we don't know exactly how things will turn out  
-&lt;br/&gt;
+#### Why is Utah’s crude per capita death rate `\(\Large d\)` so low?  
 
 --
-PVA can be used to estimate these probabilities but they cannot be used to tell us what level of risk we are willing to accept. That is a value judgement. 
+#### Because Utah has the highest birth rate and consequently the youngest age structure
 
----
-class: inverse, center, middle
+- % of Utahns &lt; 18 yrs old is 32%  
 
-# Types of PVA
-
----
-## Types of PVA 
-
-Once we have established our quasi-exinction thresholds, timeframes, and likelihoods of risk, we can build the PVA  
-&lt;br/&gt;
+- % of U.S. &lt; 18 yrs old is 25%  
 
 --
-As mentioned above, PVA actually refers to a variety of modeling techniques  
-&lt;br/&gt;
+- % of Utahns ≥ 65 is 11%  
 
---
-The type of PVA we choose usually depends on the available data  
-
----
-## Types of PVA
-
-### Time-series
-
-The most straightforward type of PVA is based on a time series of abundance data  
-
-- use data to estimate `\(r\)` and `\(\sigma^2\)`
-
-&lt;img src="Lecture7_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
-
----
-## Types of PVA
-
-### Time-series
-
-Use `\(r\)` and `\(\sigma^2\)` to **simulate** future dynamics
-
-&lt;img src="Lecture7_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
-
----
-## Types of PVA
-
-### Time-series
-
-Summarize simulated populations to predict future dynamics:  
-
-- 39% probability of extinction  
-
-- 58% probability of `\(N&lt;10\)`  
-
-- 75% probability of `\(N&lt;20\)`  
-
----
-## Types of PVA  
-
-### Time-series  
-
-More complex time-series PVAs can account for:  
-
-- Density-dependence  
-
-- Changes in `\(r\)` over time  
-
-- Effects of management actions  
-
----
-## Types of PVA
-
-### Demographically-explicit 
-
-Rather than model `\(r\)`, model `\(b\)` and `\(d\)` directly  
-
---
-- Incorporate variance, density-dependence, and covariation in vital rates  
-
---
-- Mechanistic management predictions  
-
---
-- Possible to include effects of genetic processes (e.g., inbreeding depression) on vital rates  
-
----
-## Types of PVA
-
-### Demographically-explicit 
-
-Rather than model `\(r\)`, model `\(b\)` and `\(d\)` directly  
-
-### But
-
-- require lots of data  
-
-- challenging to construct  
-
----
-## Types of PVA
-
-### Spatial 
-
-In addition to `\(b\)` and `\(d\)`, viability influenced by movement:  
-
-- immigration and emigration  
+- % of U.S. ≥ 65 = 15%  
 
 
 --
-Spatially-explicit PVAs model *how many* individuals and *where* they are  
+#### Young individuals have highest chances of survival 
 
-- allow locally-extinct patches to become re-colonized  
-
-- allow gene flow to add genetic variation  
-
----
-## Considerations for using PVA
-
-1) Data quality  
-
---
-- Time frame  
-
---
-- Sampling error  
-
----
-## Considerations for using PVA
-
-1) Data quality
-
-2) Uncertainty
-
---
-- Do we need accurate predictions of extinction risk? Or is relative risk be enough? 
-
---
-- Account for uncertainty using simulations
-
----
-## Considerations for using PVA
-
-1) Data quality
-
-2) Uncertainty
-
-3) Other sources of information
-
---
-- Expert opinion
-
---
-- Rules-of-thumb
+#### Having many young individuals in a population will skew the crude average `\(\Large d\)`
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({

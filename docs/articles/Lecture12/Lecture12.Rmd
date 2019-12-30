@@ -1,7 +1,7 @@
 ---
 title: "Lecture 12"
-subtitle: "Stage-structed populations"
-author: "<br/><br/><br/>WILD3810 (Spring 2019)"
+subtitle: "Reproductive value, sensitivity, and elasticity"
+author: "<br/><br/><br/>WILD3810 (Spring 2020)"
 output:
   xaringan::moon_reader:
     css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
@@ -19,400 +19,23 @@ library(WILD3810)
 library(gganimate)
 ```
 
+## Readings
 
-## Leslie matrix 
-
-#### Leslie matrices are defined as :   
-
-- square matrix that summarizes the demography of **age**-specific life cycles  
-
-- one column for each **age** class
-
-- matrix elements contain **age**-specific birth and survival rates   
-
-- individuals cannot stay in the same **age**-class for more than a single time step $^1$
-<br/> 
-<br/> 
-$$\LARGE \mathbf A = \begin{bmatrix}
-    F_1 & F_2 & F_3\\
-    P_1 & 0 & 0\\
-    0 &P_2 & 0
-\end{bmatrix}$$
-
-???
-
-$^1$ In some cases, for example when we define identify individuals juveniles (age 1), pre-adults (age 2), and adults (age 3+), the last element in the Leslie matrix might not be zero. Individuals can remain in the "adult" class for more than 1 year  
-
----
-## Stage-structured populations
-
-#### In some cases, age is not a relevant predictor of survival and birth rates   
-
---
-#### Instead, survival and birth rates vary with **stage**
-
---
-- life cycle stage
-
-.pull-left[
-```{r, out.width="75%"}
-knitr::include_graphics("figs/lifecycle_diagram.jpg")
-```
-]
-
-.pull-right[
-```{r, out.width="75%"}
-knitr::include_graphics("figs/lifecycle.gif")
-```
-]
-
----
-## Stage-structured populations
-
-#### In some cases, age is not a relevant predictor of survival and birth rates   
-
-#### Instead, survival and birth rates vary with **stage**
-
-- life cycle stage
-
-- size 
-
-.left-column[
-```{r, out.width="100%"}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/a/af/Gasterosteus_aculeatus_t%C3%BCsk%C3%A9s_pik%C3%B3.jpg")
-```
-]
-
-.right-column[
-```{r, out.width="60%"}
-knitr::include_graphics("figs/stickleback_fecundity.png")
-```
-]
-
-???
-
-Image courtesy of Kókay Szabolcs, via Wikimedia Commons
-Figure from Moser et al. (2012)
-
----
-## Stage-structured populations
-
-#### L. Lefkovitch relaxed an assumption of the age-structured matrix model developed by Leslie  
-
---
-#### **Lefkovitch matrices ** allow individuals to remain in life-stages (or size classes) longer than one time step 
-
---
-#### Useful for plants and animals with stage-dependent demography
-
-```{r, out.width="60%"}
-knitr::include_graphics("figs/stage_diagram.png")
-```
-
----
-## Stage-structured matrix
-
-$$\LARGE \mathbf A = \begin{bmatrix}
-    F_1 & F_2 & F_3\\
-    P_1 & 0 & 0\\
-    0 &P_2 & 0
-\end{bmatrix} \rightarrow
-\mathbf A = \begin{bmatrix}
-    P_1 & F_2 & F_3\\
-    G_1 & P_2 & 0\\
-    0 & G_2 & P_3
-\end{bmatrix}$$
-<br/>
-- $\large F_x$ is still **recruitment**, the number of offspring recruited into stage class 1 per adult in stage $\large x$  
-
-- $\large P_x$ is the probability of **surviving** from year $\large t$ until year $\large t+1$ and **remaining** in stage $\large x$  
-
-- $\large G_x$ is the probability of **growing and surviving** to stage $\large x + 1$ during $\large t$ to  $\large t+1$ 
+> Mills 103-109
 
 
 ---
-## Stage-structured matrix model
+## Management questions
 
-$$\Large \mathbf N_{t+1} = \mathbf A \times \mathbf N_t$$
-$$\LARGE = \begin{bmatrix}
-    P_1 & F_2 & F_3\\
-    G_1 & P_2 & 0\\
-    0 & G_2 & P_3
-\end{bmatrix} \times 
-\begin{bmatrix} 
-    n_{1,t}\\
-    n_{2,t}\\
-    n_{3,t}
-\end{bmatrix}$$
+#### What is the short-term growth of this population given the current age/stage structure?  
 
-<br/>
-#### Matrix multiplication is the  same as in the Leslie matrix model!! 
+#### What is the long-term growth of this population given the current vital rates?
 
----
-## Common teasel example
+#### Which age/stage contributes most to future population growth? 
 
-.pull-left[
-```{r out.width = "80%"}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/5/56/Dipsacus_fullonum_002.JPG")
-```
-]
+#### Which vital rates have the biggest effect on future growth?  
 
-.pull-right[
-
-- *Dypsacus sylvestris*
-
-- native to Europe
-
-- invasive species in United States
-
-- stage-structured dynamics studied intensively by Patricia Werner and Hal Caswell
-]
-
-
-???
-
-Image courtesy of H. Zell, via Wikicommons
-
----
-## Common teasel example
-
-.pull-left[
-```{r out.width = "80%"}
-knitr::include_graphics("figs/teasel_rosette.png")
-```
-]
-
-.pull-right[
-
-#### Complex stage structure
-
-1) Dormant 1st year seeds  
-
-2) Dormant 2nd year seeds  
-
-3) Small rosettes $(< 2.5cm)$  
-
-4) Medium rosettes $2.5-18.9cm$  
-
-5) Large rosettes $\geq 19cm$  
-
-6) Flowering plants  
-]
-
----
-## Common teasel example
-
-.pull-left[
-```{r out.width = "80%"}
-knitr::include_graphics("figs/teasel_states.png")
-```
-]
-
-.pull-right[
-
-#### Complex stage structure
-
-1) Dormant 1st year seeds  
-
-2) Dormant 2nd year seeds  
-
-3) Small rosettes $(< 2.5cm)$  
-
-4) Medium rosettes $2.5-18.9cm$  
-
-5) Large rosettes $\geq 19cm$  
-
-6) Flowering plants  
-]
-
----
-## Common teasel example
-
-<br/>
- 
-```{r}
-library(kableExtra)
-teasel <- data.frame(seed1 = c(0, 0.966, 0.013, 0.007, 0.001, 0),
-                 seed2 = c(0, 0, 0.01, 0, 0, 0),
-                 sr = c(0, 0, 0.125, 0.125, 0, 0),
-                 mr = c(0, 0, 0, 0.238, 0.245, 0.023),
-                 lr = c(0, 0, 0, 0, 0.167, 0.75),
-                 fl = c(322.28, 0, 3.448, 30.17, 0.862, 0))
-
-teasel1 <- teasel
-names(teasel1) <- c("Seed 1", "Seed 2", "Small rosette", "Medium rosette", "Large rosette", "Flowering")
-
-teasel1 %>%
-  knitr::kable("html", align = 'c', escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 15) 
-```
-
----
-## Common teasel example
-
-.pull-left[
-```{r}
-teasel_seed1 <- dplyr::mutate(teasel, seed1 = cell_spec(teasel$seed1, "html", background = c("transparent", "red", "orange", "yellow", "green", "transparent")))
-
-
-names(teasel_seed1) <- c("Seed 1", "Seed 2", "Small rosette", "Medium rosette", "Large rosette", "Flowering")
-
-
-teasel_seed1 %>%
-  knitr::kable("html", align = 'c', escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 14) 
-```
-]
-
-.pull-right[
-```{r out.width = "75%", fig.align = 'right'}
-knitr::include_graphics("figs/teasel_states_from1.png")
-```
-]
-
-
----
-## Common teasel example
-
-.pull-left[
-```{r}
-teasel_seed2 <- dplyr::mutate(teasel, seed2 = cell_spec(teasel$seed2, "html", background = c("transparent", "transparent", "red", "transparent", "transparent", "transparent")))
-
-
-names(teasel_seed2) <- c("Seed 1", "Seed 2", "Small rosette", "Medium rosette", "Large rosette", "Flowering")
-
-
-teasel_seed2 %>%
-  knitr::kable("html", align = 'c', escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 14) 
-```
-]
-
-.pull-right[
-```{r out.width = "75%", fig.align = 'right'}
-knitr::include_graphics("figs/teasel_states_from2.png")
-```
-]
-
----
-## Common teasel example
-
-.pull-left[
-```{r}
-teasel_sr <- dplyr::mutate(teasel, sr = cell_spec(teasel$sr, "html", background = c("transparent", "transparent", "red", "orange", "transparent", "transparent")))
-
-
-names(teasel_sr) <- c("Seed 1", "Seed 2", "Small rosette", "Medium rosette", "Large rosette", "Flowering")
-
-
-teasel_sr %>%
-  knitr::kable("html", align = 'c', escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 14) 
-```
-]
-
-.pull-right[
-```{r out.width = "75%", fig.align = 'right'}
-knitr::include_graphics("figs/teasel_states_from3.png")
-```
-]
-
----
-## Common teasel example
-
-.pull-left[
-```{r}
-teasel_mr <- dplyr::mutate(teasel, mr = cell_spec(teasel$mr, "html", background = c("transparent", "transparent", "transparent", "red", "orange", "yellow")))
-
-
-names(teasel_mr) <- c("Seed 1", "Seed 2", "Small rosette", "Medium rosette", "Large rosette", "Flowering")
-
-
-teasel_mr %>%
-  knitr::kable("html", align = 'c', escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 14) 
-```
-]
-
-.pull-right[
-```{r out.width = "75%", fig.align = 'right'}
-knitr::include_graphics("figs/teasel_states_from4.png")
-```
-]
-
----
-## Common teasel example
-
-.pull-left[
-```{r}
-teasel_lr <- dplyr::mutate(teasel, lr = cell_spec(teasel$lr, "html", background = c("transparent", "transparent", "transparent", "transparent", "red", "orange")))
-
-
-names(teasel_lr) <- c("Seed 1", "Seed 2", "Small rosette", "Medium rosette", "Large rosette", "Flowering")
-
-
-teasel_lr %>%
-  knitr::kable("html", align = 'c', escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 14) 
-```
-]
-
-.pull-right[
-```{r out.width = "75%", fig.align = 'right'}
-knitr::include_graphics("figs/teasel_states_from5.png")
-```
-]
-
----
-## Common teasel example
-
-.pull-left[
-```{r}
-teasel_fl <- dplyr::mutate(teasel, fl = cell_spec(teasel$fl, "html", background = c("red", "transparent", "orange", "yellow", "green", "transparent")))
-
-
-names(teasel_fl) <- c("Seed 1", "Seed 2", "Small rosette", "Medium rosette", "Large rosette", "Flowering")
-
-
-teasel_fl %>%
-  knitr::kable("html", align = 'c', escape = FALSE) %>%
-  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"),  font_size = 14) 
-```
-]
-
-.pull-right[
-```{r out.width = "75%", fig.align = 'right'}
-knitr::include_graphics("figs/teasel_states_from6.png")
-```
-]
-
-
----
-## Common teasel example
-
-#### What happens to a newly established population?
-
-- Assume population starts with 100 1st year seeds
-
-<br/>
-
---
-$$\Large \begin{bmatrix}
-    0 & 0 & 0 &0 & 0 & 322.38\\
-    0.966 & 0 & 0 & 0 & 0 & 0\\
-    0.013 & 0.01 & 0.125 & 0 & 0 & 3.448\\
-    0.007 & 0 & 0.125 & 0.238 & 0 & 30.17\\
-    0.001 & 0 & 0 & 0.245 & 0.167 & 0.862\\
-    0 & 0 & 0 & 0.023 & 0.75 & 0\\
-\end{bmatrix} \times \begin{bmatrix}
-    100\\
-    0\\
-    0\\
-    0\\
-    0\\
-    0
-\end{bmatrix}$$
-
+#### How would future  population dynamics change if different vital rates were changed?  
 
 ---
 ## Common teasel example
@@ -453,71 +76,564 @@ ggplot(teasel_df, aes(x = Year, y = log(N), color = Stage)) + geom_path(size = 1
 ```
 
 ---
-## Common teasel example
-<br/>
-
-```{r fig.height= 5, fig.width=8}
-ggplot(teasel_df, aes(x = Year, y = log(N), color = Stage)) + 
-  geom_rect(aes(xmin = -Inf, xmax = 11, ymin = -Inf, ymax = Inf), fill = "grey70", color = "grey70") + 
-  geom_path(size = 1) +
-  scale_color_manual(values = WILD3810_colors$value) +
-  scale_y_continuous("log(N)") +
-  annotate("text", x = 5, y = 18, label = "Transient \ndynamics", color = "grey20", size = 8)
-```
-
----
-## Common teasel example
+## How does initial stage-distribution effect growth?
 
 <br/>
+```{r}
+A <- matrix(c(0, 0, 0,0, 0, 322.38,
+    0.966, 0, 0, 0, 0, 0,
+    0.013, 0.01, 0.125, 0, 0, 3.448,
+    0.007 , 0 , 0.125 , 0.238 , 0 , 30.17,
+    0.001 , 0 , 0 , 0.245 , 0.167 , 0.862,
+    0 , 0 , 0 , 0.023 , 0.75 , 0), nrow = 6, byrow = TRUE)
 
-```{r fig.height= 5, fig.width=8}
-ggplot(teasel_df, aes(x = Year, y = SSD, color = Stage)) + 
-  geom_rect(aes(xmin = -Inf, xmax = 11, ymin = -Inf, ymax = Inf), fill = "grey70", color = "grey70") + 
-  geom_path(size = 1) +
-  scale_color_manual(values = WILD3810_colors$value) +
-  scale_y_continuous(expression(paste("Proportion of population (", N[x]/N[total], ")")), 
-                     limits = c(0, 1.5)) +
-  annotate("text", x = 5, y = 1.25, label = "Transient \ndynamics", color = "grey20", size = 8)
-```
+N1.1 <- c(100, 0, 0, 0, 0, 0)
+N1.2 <- c(0, 100, 0, 0, 0, 0)
+N1.3 <- c(0, 0, 100, 0, 0, 0)
+N1.4 <- c(0, 0, 0, 100, 0, 0)
+N1.5 <- c(0, 0, 0, 0, 100, 0)
+N1.6 <- c(0, 0, 0, 0, 0, 100)
 
---
-**Stable stage distribution**
+N.mat1 <- N.mat2 <- N.mat3 <- N.mat4 <- N.mat5 <- N.mat6 <- matrix(NA, nrow = 6, ncol = 25)
+N.mat1[,1] <- N1.1
+N.mat2[,1] <- N1.2
+N.mat3[,1] <- N1.3
+N.mat4[,1] <- N1.4
+N.mat5[,1] <- N1.5
+N.mat6[,1] <- N1.6
 
-
----
-# Common teasel example
-
-```{r fig.height= 5, fig.width=8}
-lambda <- data.frame(Year = 1:24,
-                     lambda = numeric(24))
-for(t in 1:24){
-  lambda$lambda[t] <- N.tot[t+1]/N.tot[t]
+for(t in 2:25){
+  N.mat1[,t] <- A %*% N.mat1[,t-1]
+  N.mat2[,t] <- A %*% N.mat2[,t-1]
+  N.mat3[,t] <- A %*% N.mat3[,t-1]
+  N.mat4[,t] <- A %*% N.mat4[,t-1]
+  N.mat5[,t] <- A %*% N.mat5[,t-1]
+  N.mat6[,t] <- A %*% N.mat6[,t-1]
 }
 
-ggplot(lambda, aes(x = Year, y = lambda)) + 
-  geom_rect(aes(xmin = -Inf, xmax = 11, ymin = -Inf, ymax = Inf), fill = "grey70", color = "grey70") + 
-  geom_path(size = 1, color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
-  scale_y_continuous(expression(lambda)) +
-  annotate("text", x = 7, y = 17, label = "Transient \ndynamics", color = "grey20", size = 8) +
-  annotate("text", x = 18, y = 5, label = expression(paste("Asymptotic ", lambda, "= 2.20")), size = 8)
+N.tot1 <- apply(N.mat1, 2, sum)
+N.tot2 <- apply(N.mat2, 2, sum)
+N.tot3 <- apply(N.mat3, 2, sum)
+N.tot4 <- apply(N.mat4, 2, sum)
+N.tot5 <- apply(N.mat5, 2, sum)
+N.tot6 <- apply(N.mat6, 2, sum)
+
+teasel_df <- data.frame(Year = 1:25,
+                        N = c(N.tot1, N.tot2, N.tot3, N.tot4, N.tot5, N.tot6),
+                        Initial = rep(c("100 seed 1", "100 seed 2", 
+                                      "100 small rosette", "100 medium rosette", 
+                                      "100 large rosette", "100 flowering"), each = 25))
 ```
 
-**Asymptotic growth rate**
+```{r fig.height= 4, fig.width=6.5}
+ggplot(teasel_df, aes(x = Year, y = log(N), color = Initial)) + geom_path(size = 1) +
+  scale_color_manual(values = WILD3810_colors$value) +
+  scale_y_continuous("log(N)")
+```
+
+--
+#### All populations reach the same stable stage distribution and have the same $\Large \lambda_{SSD}$
+
+--
+- But they do not have the same $\Large N_T$
 
 ---
-## Management questions
+class: center, middle, inverse
 
-#### What is the short-term growth of this population given the current age/stage structure?  
+# Reproductive value
 
---
-#### What is the long-term growth of this population given the current vital rates?
+---
+## Reproductive value
 
---
-#### Which age/stage contributes most to future population growth? 
-
---
-#### Which vital rates have the biggest effect on future growth?  
+> the number of offspring that an individual is expected to contribute to a population over its remaining life span (after adjusting for the growth rate of the population)
 
 --
-#### How would future  population dynamics change if different vital rates were changed?  
+
+#### Intuitive, but complex to compute
+
+--
+#### Factors that influence reproductive value:
+
+--
+- Expected future reproductive output
+<br/>
+
+--
+- Survival probability
+<br/>
+
+--
+- Age at maturity
+<br/>
+
+--
+- Population growth rate
+
+    + if a population is growing, future offspring will be smaller contribution to $N$
+    + if a population is shrinking, future offspringwill be larger contribution to $N$
+
+---
+## Reproductive value
+
+#### Teasel example
+
+- Dormant seeds, year 1: $\Large 1.00$
+
+- Dormant seeds, year 2: $\Large 0.04$
+
+- Small rosette: $\Large 9.19$
+
+- Medium rosette: $\Large 152.4$
+
+- Large rosette: $\Large 972.1$
+
+- Flowering plant: $\Large 2,633$
+
+---
+## Reproductive value
+
+.left-column[
+```{r out.width="100%"}
+knitr::include_graphics("figs/lobiopa.jpg")
+```
+]
+
+.right-column[
+```{r out.width="100%"}
+knitr::include_graphics("figs/lobiopa_rv.PNG")
+```
+]
+
+???
+
+Image courtesy of Scott Justis
+
+Figure from Greco et al. (2017) *Life history traits and life table analysis of Lobiopa insularis (Coleoptera: Nitidulidae) fed on strawberry* PlosOne
+
+---
+## Reproductive value
+
+.left-column[
+```{r out.width="100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/e/ea/Forest_elephant.jpg")
+```
+]
+
+.right-column[
+```{r out.width="100%"}
+knitr::include_graphics("figs/elephant_rv.PNG")
+```
+]
+
+???
+
+Image courtesy of dsg-photo.com, via Wikicommons
+
+Figure from Turkalo et al. (2018) *Demography of a forest elephant population* PlosOne
+---
+class: center, middle, inverse
+
+# Population inertia
+
+```{r}
+A <- matrix(c(0, 0.44, 0.62, 0.62, 0.62, 0.62, 0.62, 0.62, 0.22,
+    0.69, 0, 0, 0, 0, 0, 0, 0, 0,
+    0, 0.77, 0, 0, 0, 0, 0, 0, 0,
+    0, 0, 0.77, 0, 0, 0, 0, 0, 0,
+    0, 0, 0, 0.77, 0, 0, 0, 0, 0,
+    0, 0, 0, 0, 0.77, 0, 0, 0, 0,
+    0, 0, 0, 0, 0, 0.77, 0, 0, 0,
+    0, 0, 0, 0, 0, 0, 0.77, 0, 0,
+    0, 0, 0, 0, 0, 0, 0, 0.55, 0.37), nrow = 9, byrow = TRUE)
+
+N.sad <- popbio::stable.stage(A) * 100
+
+N1.j <- c(rep(0, 8), 100)
+N1.a <- c(0, 0, 100, rep(0, 6))
+
+N.mat1 <- N.mat2 <- N.mat3 <- matrix(NA, nrow = 9, ncol = 25)
+N.mat1[,1] <- N.sad
+N.mat2[,1] <- N1.j
+N.mat3[,1] <- N1.a
+
+for(t in 2:25){
+  N.mat1[,t] <- A %*% N.mat1[,t-1]
+  N.mat2[,t] <- A %*% N.mat2[,t-1]
+  N.mat3[,t] <- A %*% N.mat3[,t-1]
+}
+
+N.tot1 <- apply(N.mat1, 2, sum)
+N.tot2 <- apply(N.mat2, 2, sum)
+N.tot3 <- apply(N.mat3, 2, sum)
+
+wolf_sad <- data.frame(Year = 1:25,
+                        N = N.tot1)
+wolf_df <- data.frame(Year = 1:25,
+                        N = c(N.tot2, N.tot3),
+                         Initial = rep(c("100 age 9", "100 age 3"), each = 25))
+```
+
+---
+## Population inertia
+
+> difference between the long-term population size of a population that experiences transient dynamics and the long-term population size of a population that grows at the SSD
+
+```{r fig.height= 5, fig.width=8}
+ggplot(wolf_sad, aes(x = Year, y = N)) + 
+      geom_path(size = 1.5, color = "grey50") +
+  geom_path(data = wolf_df, aes(x = Year, y = N, color = Initial), size = 1.5) +
+  scale_y_continuous("N")
+```
+
+---
+## Population inertia
+
+#### Grey wolf population matrix 
+
+$$\mathbf A = \begin{bmatrix}
+    0 & 0.44 & 0.62 & 0.62 & 0.62 & 0.62 & 0.62 & 0.62 & 0.22\\
+    0.69 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+    0 & 0.77 & 0 & 0 & 0 & 0 & 0 & 0 & 0\\
+    0 & 0 & 0.77 & 0 & 0 & 0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0.77 & 0 & 0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0 & 0.77 & 0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0 & 0 & 0.77 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0 & 0 & 0 & 0.77 & 0 & 0\\
+    0 & 0 & 0 & 0 & 0 & 0 & 0 & 0.55 & 0.37
+\end{bmatrix}$$
+
+--
+$$\large \lambda_{SAD} = 1.097$$
+
+--
+#### Reproductive values: 
+$$\large [1.00, 1.59, 1.69, 1.61, 1.49, 1.31, 1.07, 0.72, 0.30]$$
+
+???
+
+Adapted from Carroll et al. (2003) *Cons Biol*
+
+---
+## Population inertia
+
+#### What is the projected growth if reintroduced population starts at SAD? 
+
+.left-column[
+#### SAD:
+$$\large \begin{bmatrix}
+    0.33\\
+    0.21\\
+    0.15\\
+    0.10\\
+    0.07\\
+    0.05\\
+    0.04\\
+    0.03\\
+    0.02
+\end{bmatrix}$$
+]
+
+.right-column[
+<br/>
+<br/>
+```{r fig.height= 4, fig.width=6.5, fig.align='left'}
+ggplot(wolf_sad, aes(x = Year, y = N)) + geom_path(size = 1) +
+  scale_color_manual(values = WILD3810_colors$value) +
+  scale_y_continuous("N")
+```
+]
+
+
+---
+## Population inertia
+
+#### What is the projected growth if reintroduced population starts with all 9 year olds?
+
+.left-column[
+$$\large \begin{bmatrix}
+    0\\
+    0\\
+    0\\
+    0\\
+    0\\
+    0\\
+    0\\
+    0\\
+    1
+\end{bmatrix}$$
+]  
+
+.right-column[
+<br/>
+<br/>
+```{r fig.height= 4, fig.width=6.5, fig.align='left'}
+ggplot(wolf_sad, aes(x = Year, y = N)) + 
+  geom_path(size = 1.5, color = "grey50") +
+  geom_path(data = wolf_df[wolf_df$Initial=="100 age 9",], 
+            aes(x = Year, y = N), 
+            size = 1.5, color = WILD3810_colors$value[WILD3810_colors$name=="primary"]) +
+  scale_y_continuous("N")
+```
+]
+
+---
+## Population inertia
+
+#### What is the projected growth if reintroduced population starts with all 3 year olds?
+
+.left-column[
+$$\large \begin{bmatrix}
+    0\\
+    0\\
+    1\\
+    0\\
+    0\\
+    0\\
+    0\\
+    0\\
+    0
+\end{bmatrix}$$
+]  
+
+.right-column[
+<br/>
+<br/>
+```{r fig.height= 4, fig.width=6.5, fig.align='left'}
+ggplot(wolf_sad, aes(x = Year, y = N)) + 
+  geom_path(size = 1.5, color = "grey50") +
+  geom_path(data = wolf_df[wolf_df$Initial=="100 age 9",], 
+            aes(x = Year, y = N), 
+            size = 1.5, color = WILD3810_colors$value[WILD3810_colors$name=="primary"]) +
+    geom_path(data = wolf_df[wolf_df$Initial=="100 age 3",], 
+            aes(x = Year, y = N), 
+            size = 1.5, color = WILD3810_colors$value[WILD3810_colors$name=="warning"]) +
+  scale_y_continuous("N")
+```
+]
+
+---
+## Population inertia and reproductive value in practice
+
+#### What age/stage distribution will lead to largest $\large N$ for introduced population?
+
+#### What age/stage should be the target for reducing invasive species?
+
+#### What age/stage distribution can be harvested to maintain stable population of game species? 
+
+```{r out.width = "50%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/2/21/Mule_Deer_Herd_%2815382464835%29.jpg")
+```
+
+???
+Image courtesy of USFWS Mountain-Prairie via WikiCommons
+
+---
+class: center, middle, inverse
+
+# Sensitivity and elasticity
+
+---
+## Sensitivity
+
+#### Remember that $\Large \lambda$ is determined by the birth and death rates of a population
+
+$$\Large \lambda = 1 + b - d$$
+
+--
+#### As managers, we might want to increase or decrease $\Large \lambda$ of certain species by manipulating age-specific $\large b$ and $\large d$ rates
+
+#### But $\lambda$ does not respond equally to all vital rates 
+
+- in some cases, a small change in adult survival may result in a large change in $\large \lambda$
+
+- in other cases, a small change in fecundity or juvenile survival may result in a large change in $\large \lambda$
+
+#### Which vital rates should we focus our management efforts on? 
+
+---
+## Sensitivity
+
+#### Sensitivity
+
+> the change in $\large \lambda$ caused by a small change in a vital rate
+
+$$\Large s_{i,j} = \frac{\delta \lambda}{\delta a_{i,j}} = \frac{v_iw_j}{\sum_{k=1}v_kw_k}$$
+
+where $v_i$ and $w_j$ are the reproductive value and stable stage distribution of stage $i$
+
+--
+- large reproductive values or large stable stable distribution lead to large sensitivity
+
+---
+## Sensitivity
+
+.pull-left[
+
+```{r out.width="70%", fig.align='left'}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/b/be/Grasfrosch-Rana-temporaria-side.jpg")
+```
+
+**Common frog (*Rana temporaria*)**
+
+3 stages: 
+
+- pre-juvenile (egg - tadpole)
+
+- juvenile (tadpole - 2 years)
+
+- adult (> 2 years)
+]
+
+.pull-right[
+<br/>
+<br/>
+<br/>
+$$\Large \mathbf A = \begin{bmatrix}
+    0 & 52 & 279.5\\
+    0.019 & 0.25 & 0\\
+    0 & 0.08 & 0.43\\
+\end{bmatrix}$$
+
+<br/>
+
+$$\LARGE \lambda = 1.338$$
+]
+
+???
+
+Image courtesy of H. Krisp, via Wikicommons
+
+```{r include=FALSE}
+A <- matrix(c(0, 52, 279.5,
+              0.019, 0.25, 0,
+              0, 0.08, 0.43), nrow = 3, byrow = TRUE)
+
+lambda <- popbio::lambda(A)
+
+Aprime <- matrix(c(0, 52, 279.5,
+                   0.029, 0.25, 0,
+                   0, 0.08, 0.43), nrow = 3, byrow = TRUE)
+
+
+popbio::lambda(Aprime)
+```
+
+
+---
+## Estimating sensitivity
+
+
+#### By hand
+
+$$\Large a_{2,1} = 0.019, \lambda = 1.338$$
+
+--
+$$\Large a_{2,1}' = 0.029, \lambda = 1.571$$
+
+$$\Large s_{2,1} = \frac{1.571 - 1.338}{0.01} = 23.3$$
+--
+
+#### Analytically
+
+`popbio::sensitivity(A)[2,1] = 26.05`
+
+
+```{r include=FALSE}
+A <- matrix(c(0, 52, 279.5,
+              0.019, 0.25, 0,
+              0, 0.08, 0.43), nrow = 3, byrow = TRUE)
+
+popbio::lambda(A)
+
+Aprime <- matrix(c(0, 52.01, 279.5,
+                   0.019, 0.25, 0,
+                   0, 0.08, 0.43), nrow = 3, byrow = TRUE)
+
+
+popbio::lambda(Aprime)
+```
+
+
+---
+## Estimating sensitivity
+
+
+#### By hand
+
+$$\Large a_{1,2} = 52, \lambda = 1.338$$
+
+--
+$$\Large a_{1,2}' = 52.01, \lambda = 1.338$$
+
+$$\Large s_{1,2} = \frac{1.338 - 1.338}{0.01} = 0.00$$
+--
+
+#### Analytically
+
+`popbio::sensitivity(A)[1,2] = 0.006`
+
+
+---
+## Elasticity
+
+#### Does it make sense to compare a change of 0.01 in a survival value to a change of 0.01 in fecundity?
+
+- 0.01 is about 52% of 0.019
+
+- 0.01 is about 0.02% of 52
+
+
+--
+#### Elasticity
+
+> the change in $\large \lambda$ caused by a small *proportional* change in a vital rate
+
+$$\Large e_{i,j} = s_{i,j} \bigg[\frac{a_{i,j}}{\lambda}\bigg]$$
+
+- Elasticity scales sensitivity to account for the magnitude of the vital rate
+
+---
+## Elasticity
+
+#### Common frog example
+
+##### By hand
+$$\Large e_{2,1} = 26.05 \bigg[\frac{0.019}{1.338}\bigg] = 0.3699$$
+
+$$\Large e_{2,1} = 0.006 \bigg[\frac{52}{1.338}\bigg] = 0.2332$$
+
+--
+
+##### Analytically 
+
+`popbio::elasticity(A)[2,1] = 0.3699`
+
+`popbio::elasticity(A)[1,2] = 0.251`
+
+
+---
+## Life history variation
+
+#### Organisms have limited resources to investment between growth, reproduction, and survivorship
+
+--
+
+#### Evolution selects for different combinations of *life history traits*
+
+> Demographic traits that influence fitness (i.e., $\lambda$)
+
+- size at birth  
+- growth pattern  
+- age at maturity  
+- fecundity schedule  
+- mortality schedule  
+- length of life  
+
+--
+
+#### Trade-offs between traits directly related to sensitivity/elasticity
+
+--
+
+#### We'll explore variation in life history traits during the next lecture
 

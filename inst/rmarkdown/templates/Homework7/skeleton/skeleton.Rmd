@@ -1,10 +1,9 @@
 ---
-title: "Management recommendations to reduce abundance of a native nest parasite, the Brown-headed cowbird"
+title: "Sustainabile harvest recommendations for *Thrinax imaginarium*"
 author: "YOUR NAME HERE"
 output: html_document
 
 ## Do not change anything in the YAML header
-fontsize: 12pt
 indent: true
 ---
 
@@ -15,14 +14,80 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, messag
 library(WILD3810)
 ```
 
+```{r demography, include = FALSE}
 
+```
 
-```{r include = FALSE}
-# Include any code you used to complete your analysis here
-# Note that because `include = FALSE` this code will not show up in your final document
-# However, because R will run this code before creating the text and figures
-#    this code will be available for you to include summary statistics in the text
-#    and for inserting figures
+```{r sim_params, include = FALSE}
+#############################################
+### Change these values to change the 
+###   harvest levels until you find a 
+###   combination that meets the objectives
+###   of the assignment
+#############################################
+
+## Annual number of seeds collected
+s <- 1000
+
+## Number of adult trees harvested during each interval
+h <- 5
+
+## Interval length
+harvest.interval <- 1
+```
+
+```{r simulation, echo = FALSE, eval = FALSE}
+## Number of years
+nYears <- 50
+
+## Matrix to store stage-specific abundances
+N <- matrix(NA, nrow = nrow(A), ncol = nYears)
+
+## Matrix to store annual harvest levels
+H <- matrix(0, nrow =  nrow(A), ncol = nYears)
+
+## Annual number of seeds collected
+H[1,] <- s
+
+## Number of adults harvested at each interval
+H[5, seq(from = 1, to = nYears, by = harvest.interval)] <- h
+
+## Data frame to store realized harvest and population growth
+harvest_df <- data.frame(Year = seq(1:(nYears - 1)),
+                         Seeds = numeric(length = nYears - 1),
+                         SeedsCollected = H[1,2:nYears],
+                         Adults = numeric(length = nYears - 1),
+                         AdultsHarvested = numeric(length = nYears - 1),
+                         N = numeric(length = nYears - 1))
+
+for(t in 2:nYears){
+  ## Project population (fill this in!)
+  N[,t] <- ?
+  
+  ## Make sure abundance isn't < 0
+  N[which(N[,t] < 0),t] <- 0
+  
+  ## Realized population size
+  harvest_df$N[t-1] <- sum(N[,t])
+  
+  ## Number of seeds in population 
+  harvest_df$Seeds[t-1] <- N[1, t]
+  
+  ## Number of adults in population 
+  harvest_df$Adults[t-1] <- N[nrow(A), t]
+  
+  ## Number of adults collected
+  harvest_df$AdultsHarvested[t - 1] <- min(H[nrow(A),t], N[nrow(A),t])
+}
+
+## Average growth rate in final 6 years of simulation
+lambda <- (harvest_df$N[nYears-1]/harvest_df$N[nYears-6])^(1/6)
+
+## Caculate profit
+timber.profit <- sum(harvest_df$AdultsHarvested)*10
+
+seed.profit <- sum(harvest_df$SeedsCollected) * 0.05
+
 ```
 
 Type your recommendations here (**delete all of the the included text after you have read it!**). Be sure to refer to the instructions provided by the writing center for help on how to format your recommendations and what information needs to be included. 
@@ -30,7 +95,23 @@ Type your recommendations here (**delete all of the the included text after you 
 After you have a draft ready, you may schedule an appointment with the science writing center to get feedback on the draft. If you do this and document it, you will receive 4 bonus points on the assignment. 
 
 
-```{r out.width="75%", echo = FALSE}
-# Include code to create your figure here
+```{r adult.fig, out.width="75%", echo = FALSE, eval = FALSE}
+# Modify the code to create figure showing change in the number of adults over time
+ggplot(data = ?, aes(x = ?, y = ?)) + 
+  geom_path() + 
+  geom_point(size = 2, color = "white") + 
+  geom_point(size = 1.5) +
+  labs(subtitle = paste0("Timber profit = $", timber.profit))
+
+```
+
+```{r seed.fig, out.width="75%", echo = FALSE, eval = FALSE}
+# Modify the code to create figure showing change in the number of seeds over time
+ggplot(data = ?, aes(x = ?, y = ?)) + 
+  geom_path() + 
+  geom_point(size = 2, color = "white") + 
+  geom_point(size = 1.5) +
+  labs(subtitle = paste0("Seed profit = $", seed.profit))
+
 ```
 

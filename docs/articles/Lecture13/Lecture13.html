@@ -3,8 +3,9 @@
   <head>
     <title>Lecture 13</title>
     <meta charset="utf-8">
-    <meta name="author" content="   WILD3810 (Spring 2019)" />
+    <meta name="author" content="   WILD3810 (Spring 2020)" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <script src="libs/kePrint/kePrint.js"></script>
     <link rel="stylesheet" href="WILD3810.css" type="text/css" />
     <link rel="stylesheet" href="WILD3810-fonts.css" type="text/css" />
   </head>
@@ -13,432 +14,19 @@
 class: center, middle, inverse, title-slide
 
 # Lecture 13
-## Reproductive value, sensitivity, and elasticity
-### <br/><br/><br/>WILD3810 (Spring 2019)
+## Life history variation
+### <br/><br/><br/>WILD3810 (Spring 2020)
 
 ---
 
 
 
 
-## Readings
-
-&gt; Mills 103-109
-
-
----
-## Management questions
-
-#### What is the short-term growth of this population given the current age/stage structure?  
-
-#### What is the long-term growth of this population given the current vital rates?
-
-#### Which age/stage contributes most to future population growth? 
-
-#### Which vital rates have the biggest effect on future growth?  
-
-#### How would future  population dynamics change if different vital rates were changed?  
-
----
-## Common teasel example
-
-&lt;br/&gt;
-
-
-&lt;img src="Lecture13_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
-
----
-## How does initial stage-distribution effect growth?
-
-&lt;br/&gt;
-
-
-&lt;img src="Lecture13_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
-
---
-#### All populations reach the same stable stage distribution and have the same `\(\Large \lambda_{SSD}\)`
-
---
-- But they do not have the same `\(\Large N_T\)`
-
----
-class: center, middle, inverse
-
-# Reproductive value
-
----
-## Reproductive value
-
-&gt; the number of offspring that an individual is expected to contribute to a population over its remaining life span (after adjusting for the growth rate of the population)
-
---
-
-#### Intuitive, but complex to compute
-
---
-#### Factors that influence reproductive value:
-
---
-- Expected future reproductive output
-&lt;br/&gt;
-
---
-- Survival probability
-&lt;br/&gt;
-
---
-- Age at maturity
-&lt;br/&gt;
-
---
-- Population growth rate
-
-    + if a population is growing, future offspring will be smaller contribution to `\(N\)`
-    + if a population is shrinking, future offspringwill be larger contribution to `\(N\)`
-
----
-## Reproductive value
-
-#### Teasel example
-
-- Dormant seeds, year 1: `\(\Large 1.00\)`
-
-- Dormant seeds, year 2: `\(\Large 0.04\)`
-
-- Small rosette: `\(\Large 9.19\)`
-
-- Medium rosette: `\(\Large 152.4\)`
-
-- Large rosette: `\(\Large 972.1\)`
-
-- Flowering plant: `\(\Large 2,633\)`
-
----
-## Reproductive value
-
-.left-column[
-&lt;img src="figs/lobiopa.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
-.right-column[
-&lt;img src="figs/lobiopa_rv.PNG" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
-???
-
-Image courtesty of Scott Justis
-
-Figure from Greco et al. (2017) *Life history traits and life table analysis of Lobiopa insularis (Coleoptera: Nitidulidae) fed on strawberry* PlosOne
-
----
-## Reproductive value
-
-.left-column[
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Forest_elephant.jpg" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
-.right-column[
-&lt;img src="figs/elephant_rv.PNG" width="100%" style="display: block; margin: auto;" /&gt;
-]
-
-???
-
-Image courtesty of dsg-photo.com, via Wikicommons
-
-Figure from Turkalo et al. (2018) *Demography of a forest elephant population* PlosOne
----
-class: center, middle, inverse
-
-# Population inertia
-
-
-
----
-## Population inertia
-
-&gt; difference between the long-term population size of a population that experiences transient dynamics and the long-term population size of a population that grows at the SSD
-
-&lt;img src="Lecture13_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
-
----
-## Population inertia
-
-#### Grey wolf population matrix 
-
-`$$\large \mathbf A = \begin{bmatrix}
-    0 &amp; 0.44 &amp; 0.62 &amp; 0.62 &amp; 0.62 &amp; 0.62 &amp; 0.62 &amp; 0.62 &amp; 0.22\\
-    0.69 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
-    0 &amp; 0.77 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
-    0 &amp; 0 &amp; 0.77 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
-    0 &amp; 0 &amp; 0 &amp; 0.77 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
-    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.77 &amp; 0 &amp; 0 &amp; 0 &amp; 0\\
-    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.77 &amp; 0 &amp; 0 &amp; 0\\
-    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.77 &amp; 0 &amp; 0\\
-    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.55 &amp; 0.37
-\end{bmatrix}$$`
-
---
-`$$\LARGE \lambda_{SAD} = 1.097$$`
-
---
-#### Reproductive values: 
-`$$\Large [1.00, 1.59, 1.69, 1.61, 1.49, 1.31, 1.07, 0.72, 0.30]$$`
-
-???
-
-Adapted from Carroll et al. (2003) *Cons Biol*
-
----
-## Population inertia
-
-#### What is the projected growth if reintroduced population starts at SAD? 
-
-.left-column[
-#### SAD:
-`$$\large \begin{bmatrix}
-    0.33\\
-    0.21\\
-    0.15\\
-    0.10\\
-    0.07\\
-    0.05\\
-    0.04\\
-    0.03\\
-    0.02
-\end{bmatrix}$$`
-]
-
-.right-column[
-&lt;br/&gt;
-&lt;br/&gt;
-&lt;img src="Lecture13_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto auto auto 0;" /&gt;
-]
-
-
----
-## Population inertia
-
-#### What is the projected growth if reintroduced population starts with all 9 year olds?
-
-.left-column[
-`$$\large \begin{bmatrix}
-    0\\
-    0\\
-    0\\
-    0\\
-    0\\
-    0\\
-    0\\
-    0\\
-    1
-\end{bmatrix}$$`
-]  
-
-.right-column[
-&lt;br/&gt;
-&lt;br/&gt;
-&lt;img src="Lecture13_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto auto auto 0;" /&gt;
-]
-
----
-## Population inertia
-
-#### What is the projected growth if reintroduced population starts with all 3 year olds?
-
-.left-column[
-`$$\large \begin{bmatrix}
-    0\\
-    0\\
-    1\\
-    0\\
-    0\\
-    0\\
-    0\\
-    0\\
-    0
-\end{bmatrix}$$`
-]  
-
-.right-column[
-&lt;br/&gt;
-&lt;br/&gt;
-&lt;img src="Lecture13_files/figure-html/unnamed-chunk-13-1.png" style="display: block; margin: auto auto auto 0;" /&gt;
-]
-
----
-## Population intertia and reproductive value in practice
-
-#### What age/stage distribution will lead to largest `\(\large N\)` for introduced population?
-
-#### What age/stage should be the target for reducing invasive species?
-
-#### What age/stage distribution can be harvested to maintain stable population of game species? 
-
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/2/21/Mule_Deer_Herd_%2815382464835%29.jpg" width="50%" style="display: block; margin: auto;" /&gt;
-
-???
-Image courtesy of USFWS Mountain-Prairie via WikiCommons
-
----
-class: center, middle, inverse
-
-# Sensitivity and elasticity
-
----
-## Sensitivity
-
-#### Remember that `\(\Large \lambda\)` is determined by the birth and death rates of a population
-
-`$$\Large \lambda = 1 + b - d$$`
-
---
-#### As managers, we might want to increase or decrease `\(\Large \lambda\)` of certain species by manipulating age-specific `\(\large b\)` and `\(\large d\)` rates
-
-#### But `\(\lambda\)` does not respond equally to all vital rates 
-
-- in some cases, a small change in adult survival may result in a large change in `\(\large \lambda\)`
-
-- in other cases, a small change in fecundity or juvenile survival may result in a large change in `\(\large \lambda\)`
-
-#### Which vital rates should we focus our management efforts on? 
-
----
-## Sensitivity
-
-#### Sensitivity
-
-&gt; the change in `\(\large \lambda\)` caused by a small change in a vital rate
-
-`$$\Large s_{i,j} = \frac{\delta \lambda}{\delta a_{i,j}} = \frac{v_iw_j}{\sum_{k=1}v_kw_k}$$`
-
-where `\(v_i\)` and `\(w_j\)` are the reproductive value and stable stage distribution of stage `\(i\)`
-
---
-- large reproductive values or large stable stable distribution lead to large sensitivity
-
----
-## Sensitivity
-
-.pull-left[
-
-&lt;img src="https://upload.wikimedia.org/wikipedia/commons/b/be/Grasfrosch-Rana-temporaria-side.jpg" width="70%" style="display: block; margin: auto auto auto 0;" /&gt;
-
-**Common frog (*Rana temporaria*)**
-
-3 stages: 
-
-- pre-juvenile (egg - tadpole)
-
-- juvenile (tadpole - 2 years)
-
-- adult (&gt; 2 years)
-]
-
-.pull-right[
-&lt;br/&gt;
-&lt;br/&gt;
-&lt;br/&gt;
-`$$\Large \mathbf A = \begin{bmatrix}
-    0 &amp; 52 &amp; 279.5\\
-    0.019 &amp; 0.25 &amp; 0\\
-    0 &amp; 0.08 &amp; 0.43\\
-\end{bmatrix}$$`
-
-&lt;br/&gt;
-
-`$$\LARGE \lambda = 1.338$$`
-]
-
-???
-
-Image courtesy of H. Krisp, via Wikicommons
-
-
-
-
----
-## Estimating sensitivity
-
-
-#### By hand
-
-`$$\Large a_{2,1} = 0.019, \lambda = 1.338$$`
-
---
-`$$\Large a_{2,1}' = 0.029, \lambda = 1.571$$`
-
-`$$\Large s_{2,1} = \frac{1.571 - 1.338}{0.01} = 23.3$$`
---
-
-#### Analytically
-
-`popbio::sensitivity(A)[2,1] = 26.05`
-
-
-
-
-
----
-## Estimating sensitivity
-
-
-#### By hand
-
-`$$\Large a_{1,2} = 52, \lambda = 1.338$$`
-
---
-`$$\Large a_{1,2}' = 52.01, \lambda = 1.338$$`
-
-`$$\Large s_{1,2} = \frac{1.338 - 1.338}{0.01} = 0.00$$`
---
-
-#### Analytically
-
-`popbio::sensitivity(A)[1,2] = 0.006`
-
-
----
-## Elasticity
-
-#### Does it make sense to compare a change of 0.01 in a survival value to a change of 0.01 in fecundity?
-
-- 0.01 is about 52% of 0.019
-
-- 0.01 is about 0.02% of 52
-
-
---
-#### Elasticity
-
-&gt; the change in `\(\large \lambda\)` caused by a small *proportional* change in a vital rate
-
-`$$\Large e_{i,j} = s_{i,j} \bigg[\frac{a_{i,j}}{\lambda}\bigg]$$`
-
-- Elasticity scales sensitivity to account for the magnitude of the vital rate
-
----
-## Elasticity
-
-#### Common frog example
-
-##### By hand
-`$$\Large e_{2,1} = 26.05 \bigg[\frac{0.019}{1.338}\bigg] = 0.3699$$`
-
-`$$\Large e_{2,1} = 0.006 \bigg[\frac{52}{1.338}\bigg] = 0.2332$$`
-
---
-
-##### Analytically 
-
-`popbio::elasticity(A)[2,1] = 0.3699`
-
-`popbio::elasticity(A)[1,2] = 0.251`
-
-
----
 ## Life history variation
 
 #### Organisms have limited resources to investment between growth, reproduction, and survivorship
+
+- **Trade offs**
 
 --
 
@@ -453,13 +41,310 @@ Image courtesy of H. Krisp, via Wikicommons
 - mortality schedule  
 - length of life  
 
---
-
-#### Trade-offs between traits directly related to sensitivity/elasticity
 
 --
+#### Selection favors life history combinations that maximize the per capita growth rate 
 
-#### We'll explore variation in life history traits during the next lecture
+---
+## Life history variation
+
+
+#### Which species has higher fecundity?
+
+#### Which species has a higher age at first reproduction?
+
+#### Which species lives longer?
+
+.pull-left[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/BRACHYLAGUS_IDAHOENSIS.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+
+.pull-right[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Black-bear_with_her_cub.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Life history variation
+
+
+#### Which species has higher fecundity?
+
+#### Which species has a higher age at first reproduction?
+
+#### Which species lives longer?
+
+.pull-left[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/1/10/Green-winged_teal_FWS_18507.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+
+.pull-right[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Northern_Pintails_%28Male_%26_Female%29_I_IMG_0911.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Life history variation
+
+
+#### Which species has higher fecundity?
+
+#### Which species has a higher age at first reproduction?
+
+#### Which species lives longer?
+
+.pull-left[
+&lt;img src="figs/cutthroat.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.pull-right[
+&lt;img src="figs/lake_trout.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+class: inverse, middle, center
+
+# Life history trade offs
+
+---
+## Life history trade offs
+
+#### Current reproduction vs. future reproduction
+
+.pull-left[
+#### Semelparity
+&lt;img src="figs/Reproductive_effort_semelparous.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+
+.pull-right[
+#### Iteroparity
+&lt;img src="figs/Reproductive_effort_iteroparous.svg.png" width="100%" style="display: block; margin: auto auto auto 0;" /&gt;
+]
+
+
+---
+## Life history trade offs
+
+#### Offspring quantity vs. quality (Lack 1954,1968)
+
+.pull-left[
+&lt;img src="figs/clutch_size.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+
+.pull-right[
+&lt;img src="figs/The-Lack-clutch.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+
+
+---
+## r-K selection 
+
+#### Arises directly from logistic population growth model (MacArthur &amp; Wilson 1967; Pianka 1970)
+
+- `\(\large r_0\)`: density-independent rate of population growth
+
+- `\(\large K\)`: carrying capacity
+
+
+--
+#### Evolution of life history strategies leads to:
+
+**r-selected species**  
+
+- selection for ability to colonize and reproduce rapidly  
+
+- good colonizers, poor competitors  
+
+
+--
+**K-selected species**
+
+- selection for ability to contribute to `\(N\)` when the population is near `\(K\)`  
+
+- good competitors, poor colonizers  
+
+
+---
+## Life history trade offs
+
+#### Predictions (based on Pianka 1970)
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 16px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt;  &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; r-selection &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; K-selection &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Mortality &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Variable &amp;amp; unpredictable &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Constant &amp;amp; predictable &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Population size &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Variable &amp;amp; below K &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Constant &amp;amp; close to K &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Competition &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Variable &amp;amp; weak &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Strong &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Selection favors &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Rapid development, early reproduction, small body size, semelparity &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Slow development, delayed reproduction, large body size, iteroparity &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Length of life &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Short &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Long &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Leads to... &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; High productivity &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; High efficiency &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+---
+## r-K selection
+
+
+#### The predictions of r-K selection stimulated vast amounts of research on life history evolution
+
+--
+#### But...
+
+- Many species don't fall neatly into these categories (combinations of r-selected traits and K-selected traits)
+
+- Predictions are vague enough that many different results are "consistent" with them
+
+- Carrying-capacity is not a demographic parameter so traits that influence resource use do not directly translate to a specific K
+
+---
+class: inverse, middle, center
+
+# Fast-slow continuum
+
+---
+## Fast-slow continuum
+
+#### More recent studies view life history variation as existing on a continuum:
+
+&lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 16px; margin-left: auto; margin-right: auto;"&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:center;"&gt; Slow species &lt;/th&gt;
+   &lt;th style="text-align:center;"&gt; Fast species &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Low reproductive effort &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; High reproduction &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Delayed maturity &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Early maturity &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; High survival &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Low survival &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:center;"&gt; Long generation time &lt;/td&gt;
+   &lt;td style="text-align:center;"&gt; Short generation time &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+---
+## Fast-slow continuum in birds
+
+
+.pull-left[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/c/c4/American_Redstart_%2836640045423%29.jpg" width="80%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="figs/chandler-robbins.jpg" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+.pull-right[
+&lt;img src="figs/fast_slow_birds.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+
+---
+## Fast-slow continuum in mammals
+
+
+.pull-left[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/7/76/TiptonKangarooRat.jpg" width="80%" style="display: block; margin: auto;" /&gt;
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Forest_elephant.jpg" width="80%" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+.pull-right[
+
+##### Age at 1st reproduction vs. adult body mass
+
+&lt;img src="figs/mammal1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+##### Adult lifespan vs. adult body mass
+
+&lt;img src="figs/mammal2.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+]
+
+
+---
+## Fast-slow continuum and elasticities
+
+#### Is the fast-slow continuum related to which vital rates influence `\(\large \lambda\)`?
+
+- Explicit connection between evolved pattern of life history vital rates and impact on population dynamics
+
+- Elasticities are useful to guide conservation &amp; management
+
+---
+## Fast-slow continuum and elasticities
+
+&lt;img src="figs/elasticities_birds.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+## Fast-slow continuum and elasticities
+
+&lt;img src="figs/elasticities_mammals.png" width="30%" style="display: block; margin: auto;" /&gt;
+
+---
+## Fast-slow continuum and elasticities
+
+&lt;img src="figs/elasticities_plants.png" width="30%" style="display: block; margin: auto;" /&gt;
+
+---
+## Fast-slow continuum and management
+
+#### Distinctive demographic elasticity patterns across bird, mammal, and plant life histories
+
+- Elasticities can be reasonably assessed from limited knowledge of an organisms life history (e.g., clutch size, age at maturity, etc.)
+
+- Managers can assess whether to focus on managing survival (e.g., through harvest or wintering habitat) or reproduction (e.g., spring and summer habitat) 
+
+- Very important for the conservation of rare species
+
+    + Detailed demographic studies not possible
     </textarea>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
