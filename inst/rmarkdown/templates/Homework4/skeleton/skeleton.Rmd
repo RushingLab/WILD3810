@@ -1,5 +1,5 @@
 ---
-title: "Building and interpreting static life tables"
+title: "Population viability analysis for the violet-winged checkerspot"
 author: "YOUR NAME HERE"
 output: html_document
 
@@ -13,95 +13,26 @@ indent: true
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, message = FALSE)
 library(WILD3810)
-library(dplyr)
-```
-
-
-In this assignment, you will use the data we collected from the Logan Cemetery to create several life tables and explore patterns of survivorship for Logan residents. Follow the instructions closely to create the life tables and output as directed. As you go, you will be asked to answer questions about the data. Enter your answers in **bold** below the question.
-
-In the chunk below, enter the code from the in-class lab activity. Again, you do not need to copy code the prints the data frame objects. **Be sure to include comments about what each line does in order to recieve full credit on the assignment!**
-
-```{r}
-# Include code from the in-class activity here
-```
-
-```{r fig.width = 6, fig.height=6}
-# Enter figure code here
-```
-
-> 1) What type of survivorship curve describes the mortality schedule for females that died before 1900? 
-
-**Type answer here**
-
-In the chunk below, use the code you created above to create life tables for:
-
-- females that died between 1901 and 1945 (call it `lt_f2`)
-
-- females that died after 1945 (call it `lt_f3`)
-
-- males that died before 1901 (call it `lt_m1`)
-
-- males that died between 1901 and 1945 (call it `lt_m2`)
-
-- males that died after 1945 (call it `lt_m3`)
-
-This code will need to: filter the original `lt_data` object to include only the individuals within each cohort, create the empty life table data frame, and fill in the life table. **Hint - RStudio has a "find and replace" function, which you can access by clicking on the magnifying class above. You can use this function to easily change, for example all instances of `f1` to `f2`**
-
-```{r f2}
-# Create lt_f2 here
-```
-
-```{r f3}
-# Create lt_f3 here
-```
-
-```{r m1}
-# Create lt_m1 here
-```
-
-```{r m2}
-# Create lt_m2 here
-```
-
-```{r m3}
-# Create lt_m3 here
 ```
 
 
 
-Next, combine the life tables into a single data frame. To do this, using the `bind_rows()` function. If you need help with how to use this function, look at the help documentaiton using `?bind_rows`
-
-```{r}
-lt <- bind_rows()
+```{r include = FALSE}
+# Include any code you used to complete your analysis here
+# Note that because `include = FALSE` this code will not show up in your final document
+# However, because R will run this code before creating the text and figures
+#    this code will be available for you to include summary statistics in the text
+#    and for inserting figures
 ```
 
-Finally, change the `?` in the code below to create a single plot with the survivorship curves and data points for each cohort. To aid visualizing the differences between groups, use attributes (arguments inside the `aes()` function) to make:
+Type your recommendations here (**delete all of the the included text after you have read it!**). Be sure to refer to the instructions provided by the writing center for help on how to format your recommendations and what information needs to be included. 
 
-- the color of each line correspond to each cohort ("pre-1900", "1901-1945", "post-1945"); and 
+After you have a draft ready, you may schedule an appointment with the science writing center to get feedback on the draft. If you do this and document it, you will receive 4 bonus points on the assignment. 
 
-- line type correspond to males vs. females
 
-After you have completed the code, change `eval = FALSE` to `eval = TRUE` in the chunk options.
-
-```{r eval = FALSE, fig.width=6, fig.height=6}
-ggplot(data = lt, aes(x = ?, y = ?, color = ?, linetype = ?)) +
-  geom_?(size = 1) +
-  geom_?() +
-  scale_linetype_manual(values = c("solid", "longdash"))
+```{r out.width="75%", echo = FALSE}
+# Uncomment the following line when you create the final document so your figure is included
+# knitr::include_graphics("alternative_pva.png")
 ```
 
-## Questions
 
-> 3) How have patterns of survivorship changed over time? Which age classes do these changes correspond to?  
-
-**Type answer here**
-
-> 4) What are some possible explanations for the changes you identified above? List at least 3 explanations and explain briefly how each one might lead to the changes you referenced above. 
-
-**Type answer here**
-
-> 5) Do males and females show different survivorship patterns? How have these differences changed over time?  
-
-**Type answer here**
-
-> 6) What are some possible explanations for differences in survivorship between males and females? Why might these differences have changed over time? List at least 3 explanations and explain briefly how each one might lead to the changes you referenced above.

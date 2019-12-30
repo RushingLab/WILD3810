@@ -1,5 +1,5 @@
 ---
-title: "Homework 7: Metapopulation dynamics"
+title: "Management recommendations to reduce abundance of a native nest parasite, the Brown-headed cowbird"
 author: "YOUR NAME HERE"
 output: html_document
 
@@ -11,176 +11,26 @@ indent: true
 ```{r setup, include = FALSE}
 ## Do not change anything in this chunk
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, message = FALSE, eval = FALSE)
+knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, message = FALSE)
 library(WILD3810)
 ```
 
-***
-**Due before 2:30pm Monday April 8**
-
-In this homework assignment, you will use `R` to explore how different factors (number of patches, extinction/colonization rate) influence metapopulation dynamics. 
-
-**Important** - after completing the code, change `eval = FALSE` to `eval = TRUE` in the setup chunk options above (line 14)
-
-Refer to the [instructions for submitting homework assignments](https://rushinglab.github.io/WILD3810/articles/homework.html) prior to submission
-
-***
 
 
-First, make sure you have:
-
-> 1a) Changed the `author` field in the YAML header to your name;
-
-> 1b) Clicked `Knit` to check that you can create a html document from the .Rmd file;
-
-> 1c) Save the .Rmd file as `LastnameFirstname-homework7.Rmd` in a directory named `LastNameFirstName-Homework7`
-
-If you have any problems with these steps, be sure to get help from either the instructor or the TA.
-
-### Metapopulation persistence
-
-In the chunk below, follow the instructions to estimate the probability of metapopulation persistence for metapopulations composed on different numbers of patches. Remember that:
-
-$$\LARGE Pr(persistence) = 1 - \epsilon^n$$
-
-```{r}
-## Range of extinction probabilities
-epsilon <- seq(0.1, 0.9, by = 0.05)
-
-## For each extinction probability, estimate the probability of metapopulaiton persistence for:
-## 2 patch metapopulation
-persistence2 <- ?
-
-## 4 patch metapopulation
-persistence4 <- ?
-
-## 8 patch metapopulation
-persistence8 <- ?
-
-## 16 patch metapopulation
-persistence16 <- ?
-  
-## Create data frame with persistence probabilities
-persistence_df <- data.frame(epsilon = epsilon,
-                             persistence = c(?, ?, ?, ?),
-                             Patches = rep(c("2","4","8","16"), each = length(epsilon)))
+```{r include = FALSE}
+# Include any code you used to complete your analysis here
+# Note that because `include = FALSE` this code will not show up in your final document
+# However, because R will run this code before creating the text and figures
+#    this code will be available for you to include summary statistics in the text
+#    and for inserting figures
 ```
 
-Next, complete the `ggplot2` code below to visualize how persistence probability changes as a function of patch-level extinction probability for different number of patches:
+Type your recommendations here (**delete all of the the included text after you have read it!**). Be sure to refer to the instructions provided by the writing center for help on how to format your recommendations and what information needs to be included. 
 
-```{r}
-## Plot probabilities
-ggplot(persistence_df, aes(x = ?, y = ?, color = ?)) +
-  geom_line(size = 2)
+After you have a draft ready, you may schedule an appointment with the science writing center to get feedback on the draft. If you do this and document it, you will receive 4 bonus points on the assignment. 
+
+
+```{r out.width="75%", echo = FALSE}
+# Include code to create your figure here
 ```
 
-> 2a) Briefly explain why the probability of persistence increases as the number of patches increases. 
-
-**Type answer here**
-
-> 2b) Is this change linear or non-linear (i.e., does adding one additional patch always increase persistence by the same amount, regardless of how many patches there are?)? If not, what implications does this fact have for management of species in a patchy environment? 
-
-**Type answer here**
-
-### Metapopulation equilibrium dynamics
-
-In lecture, we learned that a metapopulation with constant extinction and colonization probabilities will exhibit an equilibrium number of occupied patches. Complete the code below to simulate the patch occupancy dynamics over 25 years of a metapopulation with 100 patches, $\gamma = 0.7$, and $\epsilon = 0.4$:
-
-```{r}
-nPatches <- ?
-nYears <- ?
-gamma <- ?
-eps <- ?
-```
-
-In the next chunk, you will create a matrix to store the occupancy state (0 = unoccupied, 1 = occupied) for each patch over the 25 year period. This code will also randomly generated the first year occupancy status for each patch:
-
-```{r}
-### Replace the question marks so the matrix has one row per patch and one column per year
-### DO NOT REPLACE THE QUESTION MARKS WITH NUMBERS!!!!
-z <- matrix(NA, nrow = ?, ncol = ?)
-
-### You also need a vector to store the proportion of patches occupied in each year
-psi <- numeric(length = ?)
-
-### This line will randomly fill in the occupancy state in year 1
-z[,1] <- rbinom(n = nPatches, size = 1, prob = 0.1)
-
-### This code will estimate the proportion of patches that are occupied in year 1
-psi[1] <- mean(z[,1])
-```
-
-In years 2-25, the probability that unoccupied patches are colonized is:
-
-$$\Large \gamma \psi_{t-1}$$
-
-and the probability that occupied states **stay* occupied is:
-
-$$\Large 1 - \epsilon$$
-
-So to simulate patch occupancy in each year, we in theory need to know its current state so that we know which probability to use. Unfortunately, because the occupancy status of each patch is randomly generated, we don't know for sure which patches are occupied and which aren't. Rather than go through each patch one by one and figure out what probability to use, we can use a clever trick. Assume that $z_{it}$ indicates that occupancy state of patch $i$ in year $t$ ($z_{it} = 0$ if the patch is not occupied and $z_{it} = 1$ if it is). In this case: 
-
-$$\Large Pr(z_{i,t+1}=1) = (1-z_{i,t})\gamma\psi_t + z_{i,t}(1 - \epsilon)$$
-
-Although this looks complicated, it's actually quite simple. If the patch is currently occupied, the $1- z_{it}$ in the first term ($(1-z_{i,t})\gamma\psi_t$) is 0 and the entire first term is 0. Thus, the probability that the patch remains occupied equals $1(1 - \epsilon) = 1 - \epsilon$. 
-
-If the patch is currently unoccupied, the $z_{it}$ in the second term is 0 and the entire second term is 0. Thus, the probability that the patch is colonized equals $(1-0)\gamma\psi_t = \gamma\psi_t$. 
-
-So as long as we know the $z_{i,t}$ values, we can estimate the probability that each patch is occupied using a single line of code. In the chunk below, translate the above equation into functioning `R` code:
-
-```{r}
-for(t in 2:nYears){
-  ## Randomly generate occupancy status in year t based on z[,t-1] and psi[t-1]
-  z[,t] <- rbinom(n = nPatches, size = 1, prob = ?)
-  
-  ## Calculate the proportion of patches occupied in year t
-  psi[t] <- ?
-}
-```
-
-Next, visualize the changes in $\psi$ over time:
-
-```{r fig.width= 6, fig.height=6}
-## Create a data frame storing the year (1:nYears) and psi values
-psi_df <- data.frame(Year = 1:?,
-                     psi = ?)
-
-## Create a ggplot2 object with the visualized changes over time
-p <- ggplot(psi_df, aes(x = ?, y = ?)) +
-        geom_line() +
-        scale_y_continuous(expression(psi))
-
-## Print the plot
-p
-```
-
-> 3a) Is $psi$ the same in every year? Why or why not
-
-**Type answer here**
-
-In class, we learned that the equilibrium patch occupancy could be estimated as:
-
-$$\Large \hat{\psi} = 1 - \frac{\epsilon}{\gamma}$$
-
-Calculate $\hat{\psi}$ for this metapopulation:
-
-```{r}
-psi.hat <- ?
-```
-
-The following lines of code will add a horizontal line corresponding to $\hat{\psi}$ to your plot:
-
-```{r fig.width=6, fig.height=6}
-p <- p + geom_hline(yintercept = psi.hat)
-p
-```
-
-> 3b) How do the simulated patch dynamics compare to $\hat{\psi}$? 
-
-**Type answer here**
-
-Although it may not be obvious, the Levins metapopulation model shares a lot in common with the logistic growth model. 
-
-> 3c) How do the parameters is the Levins model correspond to the instrinsic growth rate $r$ in the logistic model? What parameter corresponds to the carrying capacity $K$? Explain your answer in words or equations. 
-
-**Type answer here**

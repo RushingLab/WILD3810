@@ -1,0 +1,251 @@
+---
+title: "Modeling population dynamics using matrix projection models"
+author: "WILD3810: Plant and animal populations"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lab5}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>", 
+  warning = FALSE, 
+  message = FALSE
+)
+library(WILD3810)
+```
+
+In this lab, you will build a matrix population model from published demographic data. This lab will help get you started on how to build the matrix and explore its properties. You will then complete the exercise as part of this week's homework assignment. If you complete the entire assignment during lab, that is fine. Otherwise, you will need to complete the assignment on your own. 
+
+***
+**Objectives**
+
+* Build a matrix population model using published demographic data
+
+* Practice adding data to a matrix using `for` loops
+
+* Practice visualizing data using `ggplot2`
+
+* `R` functions used in this exercise:  
+    + `matrix()`
+    + `rowSums()`
+    
+***
+
+# Set up
+
+1) Log in to R Studio Cloud
+
+2) Create a new project called `LastnameFirstname-Lab6`
+
+***
+
+**Note**: You will use the homework 6 template to complete the rest of this lab activity. You can copy the code below to your assignment template to start the assignment. However, you **do not** need to copy code the prints objects, only the code the creates or manipulates the objects.
+
+***
+3) Create a new R Markdown file from the Homework-4 template:
+
+    3a) Click `File -> New File -> R Markdown`  
+    
+    3b) Click `From Template` and scroll down to `WILD3810-Homework6`  
+    
+    3c) In the `Name` box, type `LastnameFirstname-Homework6`  
+    
+    3d) Click `Ok`
+
+4) Ensure that you can `Knit` the file
+
+    4a) Change "YOUR NAME HERE" in the header section to your name  
+    
+    4b) Click `Knit` to make sure you can knit the .Rmd file  
+
+5) Follow along with the instructions below to complete the assignment
+
+    
+## Modeling the dynamics of a long-lived tropical tree 
+
+The Choco palm (*Astrocaryum mexicanum*) is an abundant medium-sized (maximum 10 m tall) understory tree native to rainforests in Mexico and Central America. 
+
+```{r echo = FALSE, out.width="75%", fig.align='center', fig.cap="Astrocaryum_mexicanum. Photo courtesy of Daderot  via Wikicommons"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/b/b0/Astrocaryum_mexicanum_-_Marie_Selby_Botanical_Gardens_-_Sarasota%2C_Florida_-_DSC01156.jpg")
+```
+
+Between 1975 and 1981, researchers from the Universidad Nacional Autonoma de Mexico studied the demography of this species on 6 plots located within the Los Tuxlas biological field station in the state of Veracruz, MX[^1]. The plots were located in mature tracts of forest with no signs of recent disturbance. At the beginning of the study, each individual tree in each plot was classified as an infant (1-8 years old), juvenile (8-5 years old), immature (non-reproductive, 16-25 years old), or mature (older than 25) based on size and leaf production. Additionally, each tree was marked and mapped. Survivorship was estimated by tracking each marked individual at 6 month (infants) or 12 month intervals. The researchers also recorded leaf and trunk growth to estimate the proportion of individuals that transitioned to the next stage during each interval. Information on fecundity was obtained by recording the number of infructescences and fruits for each reproducing individual. Estimates of the stage-specific vital rates are provided in the table below.  
+
+[^1]: Data used in this project are from Pinero D., Martinez-Ramos M., and Sarukhan J. (1984). A Population Model of Astrocaryum Mexicanum and a Sensitivity Analysis of its Finite Rate of Increase. *Journal of Ecology*, 72, 977-991.
+
+```{r echo = FALSE}
+library(kableExtra)
+
+palm_vr <- data.frame(Stage = c("Fruit", "Infant", "Juvenile", "Immature", paste0("Mature ", seq(1:10))),
+                      Survival = c(0.0000, 0.8540, 0.9188, 0.9517, 0.9093, 0.8810, 0.8817, 0.8660, 0.8868, 0.8490, 0.8377, 0.8605, 0.8767, 0.9990),
+                      Growth = c(0.03672, 0.01173, 0.05300, 0.03900, 0.07600, 0.10300, 0.11500, 0.11600, 0.10100, 0.13100, 0.12900, 0.11700, 0.08800, 0),
+                      Fecundity = c(0.00000, 0.00000, 0.0000, 0.0000, 0.1767, 1.865, 8.3033, 12.405, 15.6183, 20.112, 18.2733, 22.0033, 20.9017, 11.900))
+
+kable(palm_vr, align = "c", format = 'html') %>%
+  kable_styling(full_width = F) %>%
+  footnote(number = c("Survival is the probability that in individual currently in stage i survives and remains in stage i", 
+                      "Growth is the probability that in individual currently in stage i survives and grows to stage i + 1",
+                      "Fecundity is the product of the probability of reproduction and the number of fruits per reproductive individual")
+           )
+```
+
+You will use these estimates to build a matrix population model for *Astrocaryum mexicanum*. 
+
+### Estimating relevant vital rates 
+
+Your goal is to convert the values in the above table into the relevant entries of a matrix that describes stage-specific demographic rates. 
+
+***
+
+**Before moving on, answer question 1 on the homework file**
+
+***
+
+To create the matrix, you will need to take the vital rates in the table above and combine them to create the relevant matrix.
+
+### Creating matrices in `R`
+
+So far in this class, we have learned to create vector objects and data frames. For this lab, we will need to create a different type of object - matrices. Creating a matrix can be done using the `matrix()` function. This function takes a vector that includes all of the values that make up the matrix (remember - to create a vector, use the `c()` function) as well as the number of rows and columns that define the matrix. For example:
+
+```{r echo = TRUE}
+(A <- matrix(c(0, 2, 4,
+              0.25, 0, 0,
+              0, 0.5, 0), nrow = 3, ncol = 3, byrow = TRUE))
+```
+
+Notice that the values within the `c()` function form a single vector even though I entered the values on three lines. Putting them on different lines is not necessary but does make it easier to keep track of how the final matrix is organized (in this case, a $3x3$ matrix with values `0, 2, 4` on the first row, `0.25, 0, 0` on the second row, and `0, 0.5, 0` on the third row). One important behavior of this function is that by default, `matrix()` will create the matrix *by column*. We entered our data as rows so we need to specify `byrow = TRUE`. If we did not use this option, we would get:
+
+```{r echo = TRUE}
+(A <- matrix(c(0, 2, 4,
+              0.25, 0, 0,
+              0, 0.5, 0), nrow = 3, ncol = 3))
+```
+
+Not the matrix we wanted! Be very careful about this option when you are creating matrices of your own. 
+
+In your homework template, enter the code necessary to create a matrix describing the demographic rates of *Astrocaryum mexicanum* (call this matrix `A`) and answer question 2. **Note that your code should not be placed inside of parentheses like the code above. This is done so that the resulting matrix was printed to the console when created. You do not need to print the matrix in the homework template**
+
+## Projecting the matrix
+
+With the matrix now created, you can predict the future dynamics of the hypothetical *Astrocaryum mexicanum* population. At this point, we don't know how long it will take the population to reach equilibrium so we'll project the matrix for 250 years just to be safe:
+
+```{r eval = FALSE}
+nYears <- ?
+```
+
+Next, we'll create a matrix to store the stage-specific abundances in each year. That means the matrix will need to have one row for each year and one column for each stage:
+
+```{r eval = FALSE}
+N <- matrix(NA, nrow = ?, ncol = ?)
+```
+
+Next, we need to fill in the initial population size. Let's assume that in the first year there are 1400 individuals, with 74% in the fruit stage and the remaining split evenly between the other 13 stages. We can enter these values as a single vector and use the `rep()` function to avoid a lot of typing:
+
+```{r eval = FALSE}
+N[1,] <- c(?, rep(?, ?))
+```
+
+Copy the three lines of code above into the chunk called `init_N` and replace the question marks with the correct values. 
+
+
+Now you are ready to simulate future population sizes. You will need to do this using a `for` loop. Remember that:
+
+$$\large \mathbf N_{t + 1} = \mathbf A \times \mathbf N_t$$
+
+where $\mathbf N_{t}$ is the matrix containing the current stage-specific abundance and $\mathbf A$ is the population matrix. 
+
+***
+
+**Matrix multiplication in `R`**: To do matrix multiplication in `R`, you will need a special function: `%*%`. Remember to put your matrices in the correct order! ($\mathbf A \times \mathbf N$ is **not** the same as $\mathbf N \times \mathbf A$) 
+
+***
+
+Complete the code below to run your loop:
+
+```{r eval = FALSE}
+for(t in 2:?){
+  N[t,] <- ?
+}
+```
+
+## Examining the growth of *Astrocaryum mexicanum*
+
+Now that you have projected population size, you can examine the dynamics of this population. 
+
+### Transient dynamics
+
+Because we started the population at a random stage distribution, your population likely underwent some period of transient dynamics. To examine how long these dynamics lasted, you first need to create a data frame with the stage-specific abundances:
+
+```{r eval = FALSE}
+N_df <- data.frame(Year = 1:nYears,
+                   N = c(N),
+                   Stage = rep(c("Fruit", "Infant", "Juvenile", "Immature", paste0("Mature ", seq(1:10))), each = nYears))
+```
+
+Now complete the following code to plot the **log of N** for each stage:
+
+```{r eval = FALSE}
+ggplot(?, aes(x = ?, y = ?, color = ?)) + geom_path() +
+  scale_color_manual(values = c("#E41A1C", "#79577C", "#3C899E", "#49A75A", 
+                                "#6F8273", "#9F5196", "#DF6F32", "#FFA60F", 
+                                "#FFF52F", "#CFA42D", "#B25C3F", "#E4779C", 
+                                "#D28AB0",  "#999999"))
+```
+
+After you have made the plot, answer questions 3a and 3b in the homework.
+
+### Stable stage distribution
+
+Next, we'll use the final population size to estimate the stable stage distribution of the population. To do this, first subset the stage-specific abundances in the final year of the simulation:
+
+```{r eval = FALSE}
+nFinal <- N[?,]
+```
+
+To estimate the proportion of the population in each stage, we can simply divide the `nFinal` vector by the total number of individuals in the population. How can you compute the total population size from the `nFinal` vector (hint - use a built-in function we learned earlier in the semester)? Once you have computed `Ntot`, estimate the stable stage distribution:
+
+```{r eval = FALSE}
+Ntot <- ?
+ssd <- ?/?
+```
+
+In your homework template, create the code necessary to estimate the stage distribution in each year and answer questions 4a & 4b.
+
+### Asymptotic $\large \lambda$
+
+Next, estimate the asymptotic growth rate. Remember, at equilibrium the growth rate should be the same in every year and can be calculated as:
+
+$$\LARGE \lambda = \frac{N_{t+1}}{N_t}$$
+You already have the total population size at the end of the simulation (year 250), which we will use as $N_{t+1}$ in the equation above. So now we just need to estimate $N_{t}$:
+
+```{r eval = FALSE}
+nt <- N[?,]
+Nt <- ?
+
+lambda <- ?/?
+```
+
+In your homework template, create the code necessary to estimate $\lambda$ and answer questions 5a & 5b.
+
+### Population inertia
+
+Now that you know the SSD for this population, simulate the dynamics of a second population that also starts with 1400 individuals but at the SSD. Copy the necessary code from above and paste it into the chunk titled `N_SSD`. Next, change the names of the objects so that the original simulation results aren't lost (call `N` `Nssd`). Finally, change the initial population size to match the SSD you estimated above (hint: you can get a vector of abundances that correspond to the SSD by multiplying 1400 by the `ssd` object)
+
+Once you have completed the new simulation, use the code below to create a single data frame with the total population sizes in each year from both simulations:
+
+```{r eval = FALSE}
+N_tot <- rowSums(N)
+
+N_tot_ssd <- rowSums(Nssd)
+
+N_ssd_df <- data.frame(Year = 1:nYears,
+                       N = c(N_tot, N_tot_ssd),
+                       Initial = rep(c("Random", "SSD"), each = nYears))
+```
+
+Finally, use `ggplot2` to plot the log population size across years for each simulated population. Make sure the color of each line corresponds to the initial conditions and then answer questions 6a-6c. 
+

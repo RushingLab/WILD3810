@@ -57,21 +57,26 @@ Before getting into the ecological principles, let's see how the function works 
 
 - `variance.r`: the magnitude of environmental stochasticity on the population growth
 
-- `K`: the carrying capacity
+In addition to the required arguments, you can optionally supply a carrying capacity `K`. When `K` is not supplied, the function assumes that growth is density independent. When `K` is supplied the model assumes logistic growth
 
-In the R script you just created, run the following code: 
+***
+**Thought question**: The `r0` argument has slightly different meanings depending on whether `K` is supplied. How would you interpret the `r0` parameter in each case?
+
+***
+
+To see how the function works, run the following code in the R script you just created: 
 
 ```{r fig.width=8, fig.height=8}
 library(WILD3810)
-sim_test <- pva(N0 = 5, number.of.years = 100, 
-                r0 = 0.4, variance.r = 0.075, K = 50)
+sim_test <- pva(N0 = 20, number.of.years = 100, 
+                r0 = 0.05, variance.r = 0.05)
 ```
 
 The function returns two types of output. Most obviously, the function returns three plots:
 
 1) The top left plot shows the predicted (line) and actual (points) growth rates $r$ as a function of population size
 
-3) The top right plot shows the change in abundance over time for all simulated populations
+3) The top right plot shows the change in abundance over time for 100 simulated populations
 
 4) The bottom plot shows the cumulative probability of extinction over time 
 
@@ -95,7 +100,7 @@ In the remainder of this lab, we will vary the input parameters and use the outp
 
 ## Factor 1: Growth rate
 
-First let's see how the expected low-density growth rate (`r0`) influences extinction risk. To do this, we will simulate several data sets that vary `r0` but are the same in every other way. To start, change `r0` to 0.1, leaving the other parameters the same as above.
+First let's see how the expected low-density growth rate (`r0`) influences extinction risk. To do this, we will simulate several data sets that vary `r0` but are the same in every other way. To start, change `r0` to 0.01, leaving the other parameters the same as above.
 
 ***
 **Prediction**: Do you expect extinction risk to be higher, lower, or the same than the previous simulation? Why?  
@@ -103,65 +108,37 @@ First let's see how the expected low-density growth rate (`r0`) influences extin
 ***
 
 ```{r eval = FALSE}
-sim_r.1 <- pva(N0 = 5, number.of.years = 100, 
-                r0 = 0.1, variance.r = 0.075, K = 50)
+sim_r.1 <- pva(N0 = 20, number.of.years = 100, 
+                r0 = 0.01, variance.r = 0.05)
 ```
 
 Were you correct?  
 
-Now make $r$ bigger. Choose a value of $r0 > 0.4$. Call the new object `sim_r.2`. 
+Now make $r0$ bigger. Choose a value of $r0 > 0.1$. Call the new object `sim_r.2`. 
 
 ***
 **Prediction**: How will a larger growth rate influence extinction risk?  
 
 ***
 
-Finally, make $r$ smaller. Run simulations called `sim_r.3` with $r = 0$ and `sim_r.4` with $r < 0$. 
+Finally, make $r0$ negative. Run a simulation called `sim_r.3` with $r0 < 0$. 
 
 ***
-**Interpretation**: What happens to populations that have negative or positive values of `r0`?  
+**Interpretation**: What happens to populations that have negative values of `r0`? Did they all go extinct? Why or why not? 
 
-How does the time to extinction change as a function of $r$?  
+How does the time to extinction change as a function of $r0$?  
 
 ***
 
 Before moving on, use the `dplyr` function `bind_rows` to create a new data frame that contains all of the simulations created in this section. Call the new data frame `sim_r`. 
 
-## Factor 2: Carrying capacity
-
-Next, let's vary `K`. To start, leave the other options the same as in `sim_r.1` but with `K=150`:
-
-```{r eval = FALSE}
-sim_K.1 <- pva(N0 = 5, number.of.years = 100, 
-                r0 = 0.1, variance.r = 0.075, K = 150)
-```
-
-What happened to extinction probability relative to `K = 50`? To make sure the previous result wasn't a fluke, increase `K` again and see if the pattern holds:
-
-```{r eval = FALSE}
-sim_K.2 <- pva(N0 = 5, number.of.years = 100, 
-                r0 = 0.1, variance.r = 0.075, K = 500)
-```
-
-
-***
-**Interpretation**: Why did larger `K` influence extinction probability? Did extinction probability continue to change as `K` increased? Why or why not?
-
-Why do the populations go above `K` if that is the maximum abundance the environment can support?  
-
-Why do the populations show predictable patterns of increase and decrease around `K`?  
-
-***
-
-Before moving on, use the `dplyr` function `bind_rows` to create a new data frame that contains all of the simulations created in this section. Call the new data frame `sim_K`. 
-
-## Factor 3: Variability in `r`
+## Factor 2: Variability in `r0`
 
 Now let's change `variance.r`. First, create a simulation with no environmental stochasticity:
 
 ```{r eval = FALSE}
-sim_var_r.1 <- pva(N0 = 5, number.of.years = 100, 
-                   r0 = 0.4, variance.r = 0, K = 150)
+sim_var_r.1 <- pva(N0 = 20, number.of.years = 100, 
+                   r0 = 0.05, variance.r = 0)
 ```
 
 You can see if the top left figure that the actual growth rates in each year were exactly equal to the predicted values - no stochasticity in the mean population growth rate. Yet the population size figure still shows populations going up and down. Why is that?
@@ -169,15 +146,15 @@ You can see if the top left figure that the actual growth rates in each year wer
 Now increase `variance.r` relative to the earlier simulations:
 
 ```{r eval = FALSE}
-sim_var_r.2 <- pva(N0 = 5, number.of.years = 100, 
-                   r0 = 0.4, variance.r = 0.1, K = 150)
+sim_var_r.2 <- pva(N0 = 20, number.of.years = 100, 
+                   r0 = 0.05, variance.r = 0.2)
 ```
 
 What happened to extinction risk? Again, let's see if that pattern holds:
 
 ```{r eval = FALSE}
-sim_var_r.3 <- pva(N0 = 5, number.of.years = 100, 
-                   r0 = 0.4, variance.r = 0.2, K = 150)
+sim_var_r.3 <- pva(N0 = 20, number.of.years = 100, 
+                   r0 = 0.05, variance.r = 0.6)
 ```
 
 Run a few more simulations with increasing values of `variance.r`. Does the general pattern you saw on the previous simulations hold?
@@ -187,9 +164,9 @@ Run a few more simulations with increasing values of `variance.r`. Does the gene
 
 ***
 
-### Factor 3b: Demographic stochasticity
+### Factor 2b: Demographic stochasticity
 
-Before moving on from the question of stochasticity, let's look more closely at the role of demographic stochasticity by removing environmental stochasticity from the model (`variance.r = 0`) and observing how demographic stochasticity influences extinction risk at different carrying capacities. Start with a large K (`K=500`):
+Before moving on from the question of stochasticity, let's look more closely at the role of demographic stochasticity by removing environmental stochasticity from the model (`variance.r = 0`) and observing how demographic stochasticity influences extinction risk at different carrying capacities:
 
 ***
 **Prediction**: At large sizes, do you expect demographic stochasticity to have important consequences for extinction risk?  
@@ -198,10 +175,10 @@ Before moving on from the question of stochasticity, let's look more closely at 
 
 ```{r eval = FALSE}
 sim_var_r.4 <- pva(N0 = 500, number.of.years = 100, 
-                r0 = 0.4, variance.r = 0, K = 500)
+                r0 = 0.05, variance.r = 0)
 ```
 
-Now change `K=50`:
+Now change `N0=5`:
 
 ***
 **Prediction**: Will the extinction risk of this population be greater than 0?  
@@ -209,15 +186,8 @@ Now change `K=50`:
 ***
 
 ```{r eval = FALSE}
-sim_var_r.5 <- pva(N0 = 50, number.of.years = 100, 
-                r0 = 0.1, variance.r = 0, K = 50)
-```
-
-Finally, `N0=10`:
-
-```{r eval = FALSE}
-sim_var_r.6 <- pva(N0 = 10, number.of.years = 100, 
-                r0 = 0.1, variance.r = 0, K = 10)
+sim_var_r.5 <- pva(N0 = 5, number.of.years = 100, 
+                r0 = 0.05, variance.r = 0)
 ```
 
 
@@ -230,49 +200,38 @@ How does `r0` influence how vulnerable populations are to demographic stochastic
 
 Before moving on, use the `dplyr` function `bind_rows` to create a new data frame that contains all of the simulations created in this section. Call the new data frame `sim_var_r`. 
 
-## Factor 4: Initial population size
+## Factor 3: Carrying capacity
 
-So far, all of the simulations have been started with very small initial sizes (`N0 = 5`). Next examine how the initial population size influences extinction risk. 
-
-***
-**Prediction**: How do you predict the probability of extinction will change as initial population size increases?  
-
-***
+Next, let's add `K` to the model. Remember that now the model includes density dependence so the meaning of `r0` is slightly different. To start, leave the other options the same as in `sim_r.1` but with `K=150` and `r0=0.1`:
 
 ```{r eval = FALSE}
-sim_var_r.2 <- pva(N0 = 20, number.of.years = 100, 
-                   r0 = 0.4, variance.r = 0.2, K = 150)
+sim_K.1 <- pva(N0 = 20, number.of.years = 100, 
+                r0 = 0.1, variance.r = 0.05, K = 150)
 ```
 
-Were you right? 
-
-Increase `N0` again to make sure it wasn't a fluke:
+What happened to extinction probability relative to the density-independent model? To make sure the previous result wasn't a fluke, increase `K` again and see if the pattern holds:
 
 ```{r eval = FALSE}
-sim_N0.2 <- pva(N0 = 50, number.of.years = 100, 
-                r0 = 0.4, variance.r = 0.2, K = 150)
-```
-
-What if `N0 > K`?
-
-```{r eval = FALSE}
-sim_N0.3 <- pva(N0 = 250, number.of.years = 100, 
-                r0 = 0.4, variance.r = 0.2, K = 150)
+sim_K.2 <- pva(N0 = 20, number.of.years = 100, 
+                r0 = 0.1, variance.r = 0.05, K = 500)
 ```
 
 
 ***
-**Interpretation**: Why does increasing population size influence extinction risk?  
+**Interpretation**: Why does adding density dependence to the model influence extinction probability? Did extinction probability continue to change as `K` increased? Why or why not?
+
+Why do the populations go above `K` if that is the maximum abundance the environment can support?  
+
+Why do the populations show predictable patterns of increase and decrease around `K`?  
 
 ***
 
-
-Before moving on, use the `dplyr` function `bind_rows` to create a new data frame that contains all of the simulations you have created so far. Call the new data frame `sim_N0`. 
+Before moving on, use the `dplyr` function `bind_rows` to create a new data frame that contains all of the simulations created in this section. Call the new data frame `sim_K`. 
 
 
 ## Factor 5: Strenth of density dependence
 
-Finally, let's see how the strength of density-dependence influence extinction risk. Remember from [lecture 4](https://rushinglab.github.io/WILD3810/articles/Lecture4/Lecture4.html#1) the theta-Ricker growth model:
+Finally, let's see how the strength of density-dependence influence extinction risk. Remember from [lecture 5](https://rushinglab.github.io/WILD3810/articles/Lecture5/Lecture5.html#1) the theta-Ricker growth model:
 
 $$\Large N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \bigg[\frac{N}{K}\bigg]^\theta\bigg)\bigg]}$$
 
@@ -310,7 +269,15 @@ ggplot(df4, aes(N, r)) + geom_path(color = WILD3810_colors$value[WILD3810_colors
     geom_hline(yintercept = 0, linetype = "longdash", color = "gray50")
 ```
 
-Let's see how the shape of the density-dependence curve influences extinction risk. First, let's explore $\theta < 1$.
+Let's see how the shape of the density-dependence curve influences extinction risk. First, let's explore $\theta < 1$. First, let's run a model with $\theta = 1$
+
+```{r eval = FALSE}
+sim_theta.1 <- pva(N0 = 250, number.of.years = 100, 
+                r0 = 0.1, variance.r = 0.2, K = 50, theta = 1)
+```
+
+
+Next, let's explore $\theta < 1$.
 
 ***
 **Prediction**: Do you expect extinction risk to be higher, lower, or the same than the previous simulation? Why?  
@@ -318,15 +285,15 @@ Let's see how the shape of the density-dependence curve influences extinction ri
 ***
 
 ```{r eval = FALSE}
-sim_theta.1 <- pva(N0 = 250, number.of.years = 100, 
-                r0 = 0.4, variance.r = 0.2, K = 150, theta = 0.75)
+sim_theta.2 <- pva(N0 = 250, number.of.years = 100, 
+                r0 = 0.1, variance.r = 0.2, K = 50, theta = 0.75)
 ```
 
 Again, make $\theta$ smaller to see if the pattern holds:
 
 ```{r eval = FALSE}
-sim_theta.2 <- pva(N0 = 250, number.of.years = 100, 
-                r0 = 0.4, variance.r = 0.2, K = 150, theta = 0.25)
+sim_theta.3 <- pva(N0 = 250, number.of.years = 100, 
+                r0 = 0.1, variance.r = 0.2, K = 50, theta = 0.25)
 ```
 
 Was your prediction correct? 
@@ -334,15 +301,15 @@ Was your prediction correct?
 Now try $\theta > 1$:
 
 ```{r eval = FALSE}
-sim_theta.3 <- pva(N0 = 250, number.of.years = 100, 
-                r0 = 0.4, variance.r = 0.2, K = 150, theta = 1.25)
+sim_theta.4 <- pva(N0 = 250, number.of.years = 100, 
+                r0 = 0.1, variance.r = 0.2, K = 50, theta = 1.25)
 ```
 
 And even larger:
 
 ```{r eval = FALSE}
-sim_theta.4 <- pva(N0 = 250, number.of.years = 100, 
-                r0 = 0.4, variance.r = 0.2, K = 150, theta = 1.75)
+sim_theta.5 <- pva(N0 = 250, number.of.years = 100, 
+                r0 = 0.1, variance.r = 0.2, K = 50, theta = 1.75)
 ```
 
 Before moving on, use the `dplyr` function `bind_rows` to create a new data frame that contains all of the simulations created in this section. Call the new data frame `sim_dd`. 
@@ -353,11 +320,11 @@ So far, we have only varied one parameter at a time. On your own, play with diff
 
 ## Putting it all together
 
-On your own, create a new data frame that contains all of the simulated results (add any that you created in the previou section):
+On your own, create a new data frame that contains all of the simulated results (add any that you created in the previous section):
 
 ```{r eval = FALSE}
 
-sim_pva <- bind_rows(sim_test, sim_r, sim_K, sim_var_r, sim_N0, sim_dd)
+sim_pva <- bind_rows(sim_test, sim_r, sim_var_r, sim_K, sim_dd)
 ```
 
 Now create your own plots showing the relationship between extinction probability/time to extinction and the parameters you varied in the simulations. Using the following code as a guide:
@@ -383,17 +350,14 @@ ggplot(obs_N, aes(x = Year, y = N)) + geom_line(color = "grey50") +
   geom_point(size = 3, color = WILD3810_colors$value[WILD3810_colors$name=="primary"])
 ```
 
-After the initial drop in the population size, a working group made up of elected officials and appointed agency officials was formed to set management objectives and decide on management actions to ensure the long-term persistence of this species. The working group, afraid that setting specific management objectives might set themselves up for failure, decided on two vague objectives:
+After the initial drop in the population size, a working group made up of elected officials and appointed agency officials was formed to set management objectives and decide on management actions to ensure the long-term persistence of this species. The working group, afraid that setting specific management objectives might set themselves up for failure, decided on the following vague objective:
 
-1) Ensure high probability that the species will not go extinct in the near future 
+> Ensure high probability that the species will not go extinct in the near future 
 
-2) Ensure reasonable probability that the species does not drop below the monitoring threshold of 10
-
-The second objective was created because once the population drops below 10 individuals, it becomes very difficult to find and count individuals. Therefore, maintaining the population above this quasi-extinction threshold was viewed as an important objective for accurately monitoring future population size. 
 
 ### Turning the objectives into actions
 
-Because the working group contained no ecologists, the members had to out-source the hard work of actually predicting the future dynamics of the checkerspot. As the agency's most promising young entomologist and an expert in population viability analysis, you have been asked to conduct a study and provide the working group with a specific recommendation for how to meet the two management objectives.  
+Because the working group contained no ecologists, the members had to out-source the hard work of actually predicting the future dynamics of the checkerspot. As the agency's most promising young entomologist and an expert in population viability analysis, you have been asked to conduct a study and provide the working group with a specific recommendation for how to meet the management objective.  
 
 In order to provide the working group with a scientifically-sound recommendation, you pull together all of the data you can find on the violet-winged checkerspot. These data include:
 
@@ -448,7 +412,7 @@ Inside the main code chunk of the homework template, use the above data to estim
 
 5) The function requires an estimate of the fire frequency. Think of this as the *probability* of a fire any given year. Did this frequency change before and after the development? 
 
-6) The working group was vague about the time frame and acceptable extinction probability. You will have to decide what time frame and risk correspond to "near future" and "high probability" (or "reasonable probability" for the monitoring threshold). In your recommendation, you will need state the time frane you chose and justify this choice. 
+6) The working group was vague about the time frame and acceptable extinction probability. You will have to decide what time frame and risk correspond to "near future" and "high probability". You may also set a quasi-extinction threshold that this > 0 if you choose. In your recommendation, **you will need state the time frame and extinction threshold you chose and justify these choices**. 
 
 Once you have code that creates all of the objects you need to run the function, you can run it using:
 
@@ -456,9 +420,9 @@ Once you have code that creates all of the objects you need to run the function,
 base_pva <- baseline_pva(...)
 ```
 
-Subsituting `...` for the required arguments.  
+Substituting `...` for the required arguments.  
 
-In addition to the figure showing the predicted dynamics of the simulated populations, the `base_pva` object is a data frame containing the final abundance of each simulated population, whether the population ended below the extinction threshold, and the number of years it took for the "extinct" populations to go extinct. You can use this object to estimate the probability of quasi-extinction and median time to extinction:
+In addition to the figure showing the predicted dynamics of the simulated populations, the `base_pva` object is a data frame containing the final abundance of each simulated population, whether the population ended below the extinction threshold, and the number of years it took for the "extinct" populations to go extinct. You can use this object to estimate the probability of extinction and median time to extinction:
 
 ```{r eval = FALSE}
 mean(base_pva$Extinct)
@@ -470,8 +434,6 @@ median(base_pva$year0, na.rm = TRUE) # Note that you need the `na.rm = TRUE` for
 mean(base_pva$Extinct)` `` (including the single backticks before and after the code!), which would print the baseline extinction probability when you knit the document. This will save you a lot of copying/pasting, reduce typos, and ensure that if you change the code, the text will automatically be updated with the new results.   
 
 ***
-
-At this stage, you should also create object called `base_monitoring_pva` with the monitoring threshold used as the `extinction.threshold` argument. 
 
 ## Management actions
 
@@ -487,8 +449,6 @@ Due to the stochasticity inherent to the dynamics of this species, it's hard to 
 - `fire.prob` - the future fire frequency due to fire management
 
 This function will also return a data frame with the same information as `baseline_pva`, which will allow you estimate the extinction probability and time to extinction for the management scenario you created. In addition, it will save the figure to the folder where your .Rmd file is located (the figure will be called `alternative_pva.png`). 
-
-You should also run the function with `extinction.threshold=10` to check the monitoring objective..  
 
 Of course, management costs money and money is limited. Every 1% increase in `K` costs \$500 and every 1% decrease in fire frequency costs \$1500. The total available funds for this project is \$100,000. If the proposed combination of increased `K` and decreased fire probability exceeds the total cost, you will get an error message stating that you need to either reduce `K` or allow a higher fire probability. 
 
