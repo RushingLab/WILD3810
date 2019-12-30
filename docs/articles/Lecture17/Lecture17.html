@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Lecture 17</title>
+    <meta charset="utf-8">
+    <meta name="author" content="   WILD3810 (Spring 2019)" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link rel="stylesheet" href="WILD3810.css" type="text/css" />
+    <link rel="stylesheet" href="WILD3810-fonts.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Lecture 17
+## Source-sink dynamics
+### <br/><br/><br/>WILD3810 (Spring 2019)
+
+---
+
+
+
+
+## Readings
+
+&gt; ### Mills 188-194
+
+---
+## Metapopulations
+
+#### Focus of Levins metapopulation models and mainland-island model is on colonization and extinction
+
+- Consider only presence and complete absence
+
+
+--
+#### In reality, `\(\large \lambda\)` within patches is governed by:
+
+- Births
+
+- Immigration
+
+- Deaths
+
+- Emigration
+
+
+--
+#### How does movement interact with local birth/death processes to determine `\(\large \lambda\)`?
+
+---
+class: inverse, middle, center
+
+# Source-sink dynamics
+
+---
+## Source-sink dynamics
+
+#### Variation in habitat quality and biotic interactions (competition, predation, etc.) lead to patch-specific demography
+
+--
+#### Source populations:
+
+- `\(\large b &gt; d\)`
+
+- produce a net surplus of individuals
+
+
+--
+#### Sink populations
+
+- `\(\large d &gt; b\)`
+
+- produce a net deficit of individuals
+
+---
+## Source-sink dynamics
+
+#### In high-quality source habitat, dominant individuals prevent young/inferior individuals from settling 
+- *despotism*
+
+
+--
+#### Dispersing individuals forced to move from sources to sinks
+
+- dispersal can ‘rescue’ sinks from extinction
+
+- sinks can have `\(\large \lambda &gt; 1\)` but would decline without influx of immigrants
+
+
+--
+#### Sources and sinks **cannot** be identified based on:
+
+- abundance
+
+- `\(\large \lambda\)`
+
+
+---
+## Source-sink dynamics
+
+#### "Contribution" metric `\((\large C)\)`
+
+`$$\Large C_i = R_i + E_i$$`
+
+- `\(\large R_i\)`: Self-recruitment rate
+
+- `\(\large E_i\)`: Emigration rate
+
+---
+## Source-sink dynamics
+
+#### "Contribution" metric `\((\large C)\)`
+
+- Sources: 
+    + `\(\large C_i &gt; 1\)`
+    + contribute more individuals to the metapopulation (births and emigration) than lose to mortality
+
+- Sinks: 
+    + `\(\large C_i &lt; 1\)`
+    + lose more individuals to mortality than contribute to metapopulation
+  
+    
+--
+#### How can `\(\large C_i\)` be measured?
+
+---
+## Source-sink dynamics
+
+#### Self-recruitment rate `\(\large R_i\)`
+.pull-left[
+- `\(\large \lambda_i - I_i\)`
+
+- `\(\large I_i\)` measured via:
+    + telemetry
+]    
+
+.pull-right[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/2/2a/Handheld_telemetry.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+???
+Image courtesy of Red Wolf Recovery Program, via Wikimedia Commons
+
+---
+## Source-sink dynamics
+
+#### Self-recruitment rate `\(\large R_i\)`
+.pull-left[
+- `\(\large \lambda_i - I_i\)`
+
+- `\(\large I_i\)` measured via:
+    + telemetry    
+    + genetics
+]
+
+.pull-right[
+&lt;img src="figs/snp_map.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Image courtesy of [https://theconversation.com/heres-how-genetics-helped-crack-the-history-of-human-migration-52918](https://theconversation.com/heres-how-genetics-helped-crack-the-history-of-human-migration-52918)
+
+---
+## Source-sink dynamics
+
+#### Self-recruitment rate `\(\large R_i\)`
+.pull-left[
+- `\(\large \lambda_i - I_i\)`
+
+- `\(\large I_i\)` measured via:
+    + telemetry    
+    + genetics
+    + mark-recapture
+]
+
+.pull-right[
+&lt;img src="figs/Sutherland_connectivity.png" width="120%" style="display: block; margin: auto;" /&gt;
+]
+
+???
+
+Figure from: Royle, J.A., Fuller, A.K. and Sutherland, C., 2018. Unifying population and landscape ecology with spatial capture–recapture. *Ecography*, 41(3), pp.444-456.
+
+
+---
+## Source-sink dynamics
+
+#### Self-recruitment rate `\(\large R_i\)`
+
+.pull-left[
+- `\(\large \lambda_i - I_i\)`
+
+- `\(\large I_i\)` measured via:
+    + telemetry    
+    + genetics
+    + mark-recapture    
+    + stable isotopes
+]
+
+.pull-right[
+&lt;img src="figs/hma_NAmer copy.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+---
+## Source-sink dynamics
+
+#### Emigration rate `\(\large E_i\)`
+
+- `\(\large \epsilon_i \sum_{y \neq x} \phi^{xy}_i\)`
+
+- `\(\large \epsilon_i\)` (prob. emigration) and `\(\phi^{xy}_i\)` measured via:
+    + telemetry
+    + mark-recapture
+
+---
+## Source-sink dynamics
+
+#### Cougars in Yellowstone National Park (Newby et al. 2012)
+.pull-left[
+- `\(\large \lambda = 1.1\)`
+
+- `\(\large I = 0.13\)`
+
+- `\(\large \epsilon = 0.17\)`
+
+- `\(\large \phi = 0.59\)`
+]
+
+.pull-right[
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Mountain_Lion_in_Grand_Teton_National_Park.jpg" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+&lt;br/&gt;
+
+--
+`$$\Large C = (1.11 - 0.13) + (0.17 \times 0.59) = 1.08$$`
+
+???
+
+Image courtesy of the US National Park Service, via Wikicommons
+
+---
+## Source-sink dynamics
+
+#### Wood thrush (*Hylocichla mustelina*)
+
+- In patches with `\(\large R &gt; 1\)`, fecundity/juvenile survival drives population dynamics
+
+- In patches with `\(\large R &lt; 1\)`, adult survival drives dynamics
+
+- Immigration rate is not related to `\(\large R\)`
+
+&lt;img src="figs/plot_contr.png" width="50%" style="display: block; margin: auto;" /&gt;
+
+???
+Figure from Rushing et al. (2017)
+
+---
+## Source-sink dynamics
+
+#### Modeling source-sink dynamics using matrix models 
+
+&lt;img src="figs/ss_matrix.png" width="40%" style="display: block; margin: auto;" /&gt;
+
+--
+`$$\LARGE \mathbf B = \begin{bmatrix}
+    R_1 &amp; 0 &amp; 0\\
+    E_{12} &amp; R_2 &amp; 0\\
+    E_{13} &amp; 0 &amp; R_3
+\end{bmatrix}$$`
+
+---
+## Source-sink dynamics
+
+`$$\LARGE \begin{bmatrix}
+    n_{1,t+1}\\
+    n_{2,t+1}\\
+    n_{3,t+1}\end{bmatrix}=
+    \begin{bmatrix}
+    R_1 &amp; 0 &amp; 0\\
+    E_{12} &amp; R_2 &amp; 0\\
+    E_{13} &amp; 0 &amp; R_3
+\end{bmatrix} \times \begin{bmatrix}
+    n_{1,t}\\
+    n_{2,t}\\
+    n_{3,t} \end{bmatrix}$$`
+
+
+- In this example, what do the vectors of population abundance represent?
+
+---
+## Source-sink dynamics
+
+`$$\LARGE \begin{bmatrix}
+    660\\
+    330\\
+    110\end{bmatrix}=
+    \begin{bmatrix}
+    1.1 &amp; 0 &amp; 0\\
+    0.1 &amp; 0.9 &amp; 0\\
+    0.05 &amp; 0 &amp; 0.8
+\end{bmatrix} \times \begin{bmatrix}
+    600\\
+    300\\
+    100 \end{bmatrix}$$`
+
+
+
+
+
+- Metapopulation growth rate: `popbio::lambda(B) = ` 1.1 
+
+- Reproductive value: `popbio::reproductive.value(B) = ` 1, 0.5, 0.17
+
+---
+class: center, middle, inverse
+
+# Ecological traps
+
+---
+## Ecological traps
+
+#### Animals attracted to a habitat because food resources or nesting cover appear to be high-quality
+
+- Habitat cues that were reliable in the past become unreliable 
+
+- Often, anthropogenic changes to landscape impede successful completion of reproductive cycle
+
+- Over-abundance of cowbirds (nest parasites), meso-predators (e.g., skunks, raccoons), anthro-predators (e.g., housecats)
+
+- Traps look like sources to the animal, but demographically they behave like sinks
+
+---
+## Ecological traps
+
+#### Polarized light
+
+- For many insects, horizontal polarized light indicates the presence of rivers/steams for mating and egg laying 
+
+- Many windows and even asphalt also produce horizontal light, attracting insects which lay their eggs on articificial surfaces
+
+&lt;img src="figs/mayflies.jpg" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+## Ecological traps
+
+#### Grassland mowing
+
+- Many grassland birds nest in tall, dense grass
+
+- If these grasses are available early in the season but are then mowed after nesting has commenced, individuals may lose their entire clutch without enough time to renest
+
+&lt;img src="https://upload.wikimedia.org/wikipedia/commons/1/18/Bobolink_%288931393007%29.jpg" width="50%" style="display: block; margin: auto;" /&gt;
+
+???
+Image courtesy of CheepShot, via Wikicommons
+
+---
+## Source-sink dynamics and management
+
+#### Overall metapopulation dynamics in a source-sink system depend on:
+
+- The net balance of `\(B\)`, `\(D\)`, `\(I\)`, and `\(E\)` amongst all source and sink populations in the region (habitat component)
+
+- Environmental stochasticity (temporal environmental component)
+
+- Demographic stochasticity (bad luck component)
+
+---
+## Source-sink dynamics and management
+
+#### Source habitats could mistakenly be ignored if managers preserve habitat with highest abundance abundant (B. van Horne 1983 J. Wildlife Management)
+
+- Sink habitats may have high abundance if individuals forced into them (despotism)
+
+- Ecological traps may result in misleading indicators of habitat quality
+
+
+--
+#### If source habitats are not protected, the whole source-sink metapopulation could become threatened and collapse 
+
+
+--
+#### Must consider where species most productive (i.e., where `\(\lambda \geq 1\)`), on average, in a changing environment
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
