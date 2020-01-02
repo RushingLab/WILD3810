@@ -104,7 +104,6 @@ knitr::include_graphics("figs/cutthroat.png")
 ```
 ]
 
-
 .pull-right[
 ```{r out.width="100%"}
 knitr::include_graphics("figs/lake_trout.png")
@@ -202,7 +201,6 @@ names(rk) <- c("", "r-selection", "K-selection")
 rk%>%
   kable("html", align = 'c', escape = FALSE) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE, font_size = 16) 
-  
 ```
 
 

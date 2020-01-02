@@ -1,5 +1,5 @@
 ---
-title: "Management recommendations to reduce abundance of a native nest parasite, the Brown-headed cowbird"
+title: "Homework 6: Modeling population dynamics using matrix projection models"
 author: "YOUR NAME HERE"
 output: html_document
 
@@ -13,24 +13,102 @@ indent: true
 options(htmltools.dir.version = FALSE)
 knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, message = FALSE)
 library(WILD3810)
+library(dplyr)
 ```
 
 
+In this assignment, you will build a matrix population model and then project the dynamics on the population into the future. As you go, you will be asked to answer questions about the ecology and dynamics of the population. Enter your answers in **bold** below the question.
 
-```{r include = FALSE}
-# Include any code you used to complete your analysis here
-# Note that because `include = FALSE` this code will not show up in your final document
-# However, because R will run this code before creating the text and figures
-#    this code will be available for you to include summary statistics in the text
-#    and for inserting figures
+In the chunk below, enter the code from the in-class lab activity. Again, you do not need to copy code the prints the data frame objects. **Be sure to include comments about what each line does in order to recieve full credit on the assignment!**
+
+> 1) What stage classes are included in the matrix model? What are the dimensions of the model? 
+
+**Type answer here**
+
+
+In the chunk below, enter the code needed to create the projection matrix. 
+
+```{r Amat}
+# Enter the data needed to create the matrix here
 ```
 
-Type your recommendations here (**delete all of the the included text after you have read it!**). Be sure to refer to the instructions provided by the writing center for help on how to format your recommendations and what information needs to be included. 
 
-After you have a draft ready, you may schedule an appointment with the science writing center to get feedback on the draft. If you do this and document it, you will receive 4 bonus points on the assignment. 
+> 2) We learned about two types of matrices that are used to model population dynamics. What type of population matrix describes the dynamics of the *Astrocaryum mexicanum* population? 
 
+**Type answer here**
 
-```{r out.width="75%", echo = FALSE}
-# Include code to create your figure here
+## Project population growth
+
+```{r init_N}
+# Enter code to generate initial stage sizes
 ```
+
+Enter the code project population size here:
+
+```{r proj_N}
+# Enter code to project population size 
+```
+
+## Transient dynamics
+
+```{r transient, fig.width=6, fig.height=6}
+# Enter code to create transient dynamics plot here
+```
+
+> 3a) Based on the plot you just created, did the population reach equilibrium? How can you tell?
+
+**Type answer here**
+
+> 3b) Approximately how long did your population take the reach the equilibrium?
+
+**Type answer here**
+
+### Stable stage distribution
+
+```{r SSD, fig.width=6, fig.height=6}
+# Enter code to estimate the stable stage distribution here
+```
+
+> 4a) At equilibrium, which stage is the most common in the population?
+
+**Type answer here**
+
+> 4a) At equilibrium, which stage is the least common in the population?
+
+**Type answer here**
+
+### Asymptotic $\large \lambda$
+
+```{r lambda, fig.width=6, fig.height=6}
+# Insert code to estimate and visualize lambda here
+```
+
+> 5a) What is the asymptotic growth rate of this population? Is the population growing or shrinking? At what rate?
+
+**Type answer here**
+
+> 5b) By the end of the simulation, there are over 50,000 individuals in the population. Would you expect the population to grow to this size in nature? What major assumption have we made in this model? What factors might slow the growth rate over time?
+
+**Type answer here**
+
+### Population inertia
+
+Now start a new population with 5000 individuals but at (or close to) the SSD. Copy the necessary code below:
+
+```{r N_SSD, fig.width=6, fig.height=6}
+# Insert code to simulate a new population that starts at the SSD
+```
+
+
+> 6a) Did the populations grow at the same asympoptic rate? 
+
+**Type answer here**
+
+> 6b) Did the populations reach the same final population size? How does the difference between your random initial stage distribution and the SSD effect the population intertia?   
+
+**Type answer here**
+
+> 6c) What do your results tell you about the reproductive values of each stage? What do you think contributes to the differences in reproductive values among the stages? 
+
+**Type answer here**
 

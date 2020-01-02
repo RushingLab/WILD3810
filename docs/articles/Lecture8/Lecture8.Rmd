@@ -189,7 +189,6 @@ df3 %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) 
 ```
 
-
 #### Individual 1
 
 - Captured on occasion 1  

@@ -13,7 +13,7 @@
 #' @param extinction.threshold Threshold abundance used to determine a population "extinct" (default = 0)
 #' @export
 
-pva <- function(N0, number.of.years, number.of.populations = 500,
+pva <- function(N0, number.of.years, number.of.populations = 100,
                 r0, variance.r = 0, K = NULL, Allee = NULL, theta = 1,
                 extinction.threshold = 0){
 
@@ -67,11 +67,12 @@ pva <- function(N0, number.of.years, number.of.populations = 500,
 
   if(is.null(K)){
     q <- ggplot2::ggplot(N_df, ggplot2::aes(x = Year, y = N, group = Population)) +
-      ggplot2::geom_path(alpha = 0.1, size = 0.8, color = WILD6900_colors$value[WILD6900_colors$name == "warning"]) +
+      ggplot2::geom_path(alpha = 0.3, size = 0.8, color = WILD6900_colors$value[WILD6900_colors$name == "warning"]) +
+      ggplot2::scale_y_continuous(limits = c(0, N0*10)) +
       ggplot2::geom_hline(yintercept = extinction.threshold, color = "grey60", linetype = "dashed")
   }else{
     q <- ggplot2::ggplot(N_df, ggplot2::aes(x = Year, y = N, group = Population)) +
-      ggplot2::geom_path(alpha = 0.1, size = 0.8, color = WILD6900_colors$value[WILD6900_colors$name == "warning"]) +
+      ggplot2::geom_path(alpha = 0.3, size = 0.8, color = WILD6900_colors$value[WILD6900_colors$name == "warning"]) +
       ggplot2::geom_hline(yintercept = extinction.threshold, color = "grey60", linetype = "dashed") +
       ggplot2::geom_hline(yintercept = K, color = "grey60")
   }
@@ -82,6 +83,8 @@ pva <- function(N0, number.of.years, number.of.populations = 500,
     scale_y_continuous("Cumulative probability \nof extinction")
 
   print(cowplot::plot_grid(r.plot, q, s))
+
+
   dd <- ifelse(is.null(K), "No", "Yes")
   K <- ifelse(is.null(K), NA, K)
   suppressWarnings(x <- apply(N, 2, function(x) min(which(x <= extinction.threshold))))

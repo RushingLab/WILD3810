@@ -26,6 +26,7 @@ library(gganimate)
 ---
 ## Life tables
 
+
 #### Last lecture, we learned *why* and *how* to estimate age-specific patterns of survival and mortality  
 
 .left-column[
@@ -261,3 +262,4 @@ knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/c/cf/Fla
 knitr::include_graphics("figs/canada_schedule.png")
 ```
 ]
+

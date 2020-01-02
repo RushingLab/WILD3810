@@ -10,6 +10,9 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+
+header-includes:
+  - \usepackage{nicematrix}
 ---
 
 ```{r setup, include = FALSE}
@@ -18,7 +21,6 @@ knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message
 library(WILD3810)
 library(gganimate)
 ```
-
 
 ## Leslie matrix 
 
@@ -520,4 +522,5 @@ ggplot(lambda, aes(x = Year, y = lambda)) +
 
 --
 #### How would future  population dynamics change if different vital rates were changed?  
+>>>>>>> 6a2860326049d9c169963d26b42a83faef7adb1e
 
