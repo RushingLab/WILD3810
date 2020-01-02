@@ -33,7 +33,21 @@ navbar:
         - text: "Lecture 5: Density-dependent population growth"
           href: articles/Lecture5/Lecture5.html
         - text: "Lecture 6: Dynamics of small populations"
-          href: articles/Lecture6/Lecture6.html
+          href: articles/Lecture6/lecture6.html
+        - text: "Lecture 7: Life tables"
+          href: articles/Lecture7/Lecture7.html
+        - text: "Lecture 8: Survival estimation"
+          href: articles/Lecture8/Lecture8.html
+        - text: "Lecture 9: Reproduction"
+          href: articles/Lecture9/Lecture9.html
+        - text: "Lecture 10: Matrix population models"
+          href: articles/Lecture10/Lecture10.html
+        - text: "Lecture 11: Stage-structured populations"
+          href: articles/Lecture11/Lecture11.html
+        - text: "Lecture 12: Reproductive value, sensitivity, and elasticity"
+          href: articles/Lecture12/Lecture12.html
+        - text: "Lecture 13: Life history variation"
+          href: articles/Lecture13/Lecture13.html
     - icon: fas fa-desktop
       text: "Labs"
       menu:
@@ -47,13 +61,14 @@ navbar:
           href: articles/lab2.html
         - text: "Lab 3: Modeling population growth (continued)"
           href: articles/lab3.html
-<<<<<<< HEAD
         - text: "Lab 4: Population viability analysis"
           href: articles/lab4.html
-=======
+        - text: "Lab 5: Creating and interpreting a life table"
+          href: articles/lab5_life_tables.html
+        - text: "Lab 6: Modeling population dynamics using matrix projection models"
+          href: articles/lab6_matrix_models.html
         - text: "Lab 7: Applications of matrix population models - Sustainable tree harvest"
           href: articles/lab7_tree_harvest.html
->>>>>>> 6a2860326049d9c169963d26b42a83faef7adb1e
     - icon: fas fa-pencil-square-o
       text: "Assignments"
       href: articles/homework.html

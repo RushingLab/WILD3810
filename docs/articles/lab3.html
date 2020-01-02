@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lab 3: Modeling density-dependent growth • WILD3810</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Lab 3: Modeling density-dependent growth">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -88,6 +89,27 @@
     <li>
       <a href="../articles/Lecture6/Lecture6.html">Lecture 6: Dynamics of small populations</a>
     </li>
+    <li>
+      <a href="../articles/Lecture7/Lecture7.html">Lecture 7: Life tables</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture8/Lecture8.html">Lecture 8: Survival estimation</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture9/Lecture9.html">Lecture 9: Reproduction</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture10/Lecture10.html">Lecture 10: Matrix population models</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture11/Lecture11.html">Lecture 11: Stage-structured populations</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture12/Lecture12.html">Lecture 12: Reproductive value, sensitivity, and elasticity</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture13/Lecture13.html">Lecture 13: Life history variation</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -117,6 +139,15 @@
     <li>
       <a href="../articles/lab4.html">Lab 4: Population viability analysis</a>
     </li>
+    <li>
+      <a href="../articles/lab5_life_tables.html">Lab 5: Creating and interpreting a life table</a>
+    </li>
+    <li>
+      <a href="../articles/lab6_matrix_models.html">Lab 6: Modeling population dynamics using matrix projection models</a>
+    </li>
+    <li>
+      <a href="../articles/lab7_tree_harvest.html">Lab 7: Applications of matrix population models - Sustainable tree harvest</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -135,6 +166,7 @@
 <!--/.navbar -->
 
       
+
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -156,7 +188,8 @@
 <p><strong>Objectives</strong></p>
 <ul>
 <li><p>Model and visualize density-dependent population growth</p></li>
-<li>Learn/review basic data manipulation tasks, including:
+<li>
+<p>Learn/review basic data manipulation tasks, including:</p>
 <ul>
 <li>Subsetting vectors</li>
 <li>Creating and subsetting data frames</li>
@@ -165,18 +198,18 @@
 </ul>
 </li>
 <li>
-<code>R</code> functions used in this exercise:
+<p><code>R</code> functions used in this exercise:</p>
 <ul>
-<li><code><a href="https://www.rdocumentation.org/packages/base/topics/library">library()</a></code></li>
-<li><code><a href="https://www.rdocumentation.org/packages/utils/topics/data">data()</a></code></li>
-<li><code><a href="https://www.rdocumentation.org/packages/utils/topics/head">head()</a></code></li>
-<li><code><a href="https://www.rdocumentation.org/packages/utils/topics/str">str()</a></code></li>
-<li><code><a href="https://www.rdocumentation.org/packages/base/topics/summary">summary()</a></code></li>
-<li><code><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/library.html">library()</a></code></li>
+<li><code><a href="https://rdrr.io/r/utils/data.html">data()</a></code></li>
+<li><code><a href="https://rdrr.io/r/utils/head.html">head()</a></code></li>
+<li><code><a href="https://rdrr.io/r/utils/str.html">str()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code></li>
 <li><code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code></li>
 <li><code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code></li>
 <li><code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot2::ggplot()</a></code></li>
-<li><code><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code></li>
 <li><code>for()</code></li>
 <li><code><a href="https://dplyr.tidyverse.org/reference/bind.html">dplyr::bind_rows()</a></code></li>
 <li><code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code></li>
@@ -206,9 +239,11 @@
 </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
       </div>
 
 </div>
+
 
 
       <footer><div class="copyright">
@@ -216,12 +251,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>
