@@ -199,7 +199,7 @@ See the main [R Markdown page](http://yihui.name/knitr/options/) for a complete 
 
 > 9) Create a new code chunk in the space below and set the chunk options to ensure that the code runs but is not shown in the html document. Inside of the chunk, copy the following line of code: `date <- Sys.Date()`
 
-> 10a) In the space below, type "I completed this assignment on " and then include a inline code that prints the `date` object you created in the chunk above
+> 10) In the space below, type "I completed this assignment on " and then include a inline code that prints the `date` object you created in the chunk above
 
 > Bonus: What did the code inside the chunk do? What did the inline code do? What will happen if you re-knit the document tomorrow?
 

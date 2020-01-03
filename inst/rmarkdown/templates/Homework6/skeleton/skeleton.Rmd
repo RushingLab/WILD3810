@@ -19,9 +19,17 @@ library(dplyr)
 
 In this assignment, you will build a matrix population model and then project the dynamics on the population into the future. As you go, you will be asked to answer questions about the ecology and dynamics of the population. Enter your answers in **bold** below the question.
 
+First, make sure you have:
+
+> 1a) Changed the `author` field in the YAML header to your name;
+
+> 1b) Clicked `Knit` to check that you can create a html document from the .Rmd file (you can keep the knitted version open while you work through the assignment to make reading the instructions easier);
+
+> 1c) Saved the .Rmd file as `LastnameFirstname-homework3.Rmd` in a project named `LastNameFirstName-Lab3`
+
 In the chunk below, enter the code from the in-class lab activity. Again, you do not need to copy code the prints the data frame objects. **Be sure to include comments about what each line does in order to recieve full credit on the assignment!**
 
-> 1) What stage classes are included in the matrix model? What are the dimensions of the model? 
+> 2) What stage classes are included in the matrix model? What are the dimensions of the model? 
 
 **Type answer here**
 
@@ -33,7 +41,7 @@ In the chunk below, enter the code needed to create the projection matrix.
 ```
 
 
-> 2) We learned about two types of matrices that are used to model population dynamics. What type of population matrix describes the dynamics of the *Astrocaryum mexicanum* population? 
+> 3) We learned about two types of matrices that are used to model population dynamics. What type of population matrix describes the dynamics of the *Astrocaryum mexicanum* population? 
 
 **Type answer here**
 
@@ -55,11 +63,11 @@ Enter the code project population size here:
 # Enter code to create transient dynamics plot here
 ```
 
-> 3a) Based on the plot you just created, did the population reach equilibrium? How can you tell?
+> 4a) Based on the plot you just created, did the population reach equilibrium? How can you tell?
 
 **Type answer here**
 
-> 3b) Approximately how long did your population take the reach the equilibrium?
+> 4b) Approximately how long did your population take the reach the equilibrium?
 
 **Type answer here**
 
@@ -69,11 +77,11 @@ Enter the code project population size here:
 # Enter code to estimate the stable stage distribution here
 ```
 
-> 4a) At equilibrium, which stage is the most common in the population?
+> 5a) At equilibrium, which stage is the most common in the population?
 
 **Type answer here**
 
-> 4a) At equilibrium, which stage is the least common in the population?
+> 5a) At equilibrium, which stage is the least common in the population?
 
 **Type answer here**
 
@@ -83,32 +91,31 @@ Enter the code project population size here:
 # Insert code to estimate and visualize lambda here
 ```
 
-> 5a) What is the asymptotic growth rate of this population? Is the population growing or shrinking? At what rate?
+> 6a) What is the asymptotic growth rate of this population? Is the population growing or shrinking? At what rate?
 
 **Type answer here**
 
-> 5b) By the end of the simulation, there are over 50,000 individuals in the population. Would you expect the population to grow to this size in nature? What major assumption have we made in this model? What factors might slow the growth rate over time?
+> 6b) By the end of the simulation, there are over 50,000 individuals in the population. Would you expect the population to grow to this size in nature? What major assumption have we made in this model? What factors might slow the growth rate over time?
 
 **Type answer here**
 
 ### Population inertia
 
-Now start a new population with 5000 individuals but at (or close to) the SSD. Copy the necessary code below:
 
 ```{r N_SSD, fig.width=6, fig.height=6}
 # Insert code to simulate a new population that starts at the SSD
 ```
 
 
-> 6a) Did the populations grow at the same asympoptic rate? 
+> 7a) Did the populations grow at the same asympoptic rate? 
 
 **Type answer here**
 
-> 6b) Did the populations reach the same final population size? How does the difference between your random initial stage distribution and the SSD effect the population intertia?   
+> 7b) Did the populations reach the same final population size? How does the difference between your initial stage distribution and the SSD effect the population intertia?   
 
 **Type answer here**
 
-> 6c) What do your results tell you about the reproductive values of each stage? What do you think contributes to the differences in reproductive values among the stages? 
+> 7c) What do your results tell you about the reproductive values of each stage? What do you think contributes to the differences in reproductive values among the stages? 
 
 **Type answer here**
 
