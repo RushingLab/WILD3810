@@ -33,7 +33,7 @@ navbar:
         - text: "Lecture 5: Density-dependent population growth"
           href: articles/Lecture5/Lecture5.html
         - text: "Lecture 6: Dynamics of small populations"
-          href: articles/Lecture6/Lecture6.html
+          href: articles/Lecture6/lecture6.html
         - text: "Lecture 7: Life tables"
           href: articles/Lecture7/Lecture7.html
         - text: "Lecture 8: Survival estimation"
