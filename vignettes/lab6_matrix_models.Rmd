@@ -101,7 +101,7 @@ Your goal is to convert the values in the above table into the relevant entries 
 
 ***
 
-**Before moving on, answer question 1 on the homework file**
+**Before moving on, answer question 2 on the homework file**
 
 ***
 
@@ -127,7 +127,7 @@ Notice that the values within the `c()` function form a single vector even thoug
 
 Not the matrix we wanted! Be very careful about this option when you are creating matrices of your own. 
 
-In your homework template, enter the code necessary to create a matrix describing the demographic rates of *Astrocaryum mexicanum* (call this matrix `A`) and answer question 2. **Note that your code should not be placed inside of parentheses like the code above. This is done so that the resulting matrix was printed to the console when created. You do not need to print the matrix in the homework template**
+In your homework template, enter the code necessary to create a matrix describing the demographic rates of *Astrocaryum mexicanum* (call this matrix `A`) and answer question 3. **Note that your code should not be placed inside of parentheses like the code above. This is done so that the resulting matrix was printed to the console when created. You do not need to print the matrix in the homework template**
 
 ## Projecting the matrix
 
@@ -189,14 +189,14 @@ N_df <- data.frame(Year = 1:nYears,
 Now complete the following code to plot the **log of N** for each stage:
 
 ```{r eval = FALSE}
-ggplot(?, aes(x = ?, y = ?, color = ?)) + geom_path() +
+ggplot(data = ?, aes(x = ?, y = ?, color = ?)) + geom_path() +
   scale_color_manual(values = c("#E41A1C", "#79577C", "#3C899E", "#49A75A", 
                                 "#6F8273", "#9F5196", "#DF6F32", "#FFA60F", 
                                 "#FFF52F", "#CFA42D", "#B25C3F", "#E4779C", 
                                 "#D28AB0",  "#999999"))
 ```
 
-After you have made the plot, answer questions 3a and 3b in the homework.
+After you have made the plot, answer questions 4a and 4b in the homework.
 
 ### Stable stage distribution
 
@@ -229,7 +229,7 @@ Nt <- ?
 lambda <- ?/?
 ```
 
-In your homework template, create the code necessary to estimate $\lambda$ and answer questions 5a & 5b.
+In your homework template, create the code necessary to estimate $\lambda$ and answer questions 6a & 6b.
 
 ### Population inertia
 
@@ -244,8 +244,8 @@ N_tot_ssd <- rowSums(Nssd)
 
 N_ssd_df <- data.frame(Year = 1:nYears,
                        N = c(N_tot, N_tot_ssd),
-                       Initial = rep(c("Random", "SSD"), each = nYears))
+                       Initial = rep(c("Fruit", "SSD"), each = nYears))
 ```
 
-Finally, use `ggplot2` to plot the log population size across years for each simulated population. Make sure the color of each line corresponds to the initial conditions and then answer questions 6a-6c. 
+Finally, use `ggplot2` to plot the log population size across years for each simulated population. Make sure the color of each line corresponds to the initial conditions and then answer questions 7a-7c. 
 
