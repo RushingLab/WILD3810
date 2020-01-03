@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lab 7: Applications of matrix population models - Sustainable tree harvest • WILD3810</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Lab 7: Applications of matrix population models - Sustainable tree harvest">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -166,7 +165,6 @@
 <!--/.navbar -->
 
       
-
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -190,13 +188,13 @@
 <li><p>Conduct a sensitivity analysis and simulations to make management recommendations to allow sustainable harvest of seeds and adults</p></li>
 <li><p>Practice visualizing data using <code>ggplot2</code></p></li>
 <li>
-<p><code>R</code> functions used in this exercise:</p>
+<code>R</code> functions used in this exercise:
 <ul>
-<li><code><a href="https://rdrr.io/pkg/popbio/man/lambda.html">popbio::lambda()</a></code></li>
-<li><code><a href="https://rdrr.io/pkg/popbio/man/elasticity.html">popbio::elasticity()</a></code></li>
-<li><code><a href="https://rdrr.io/pkg/popbio/man/reproductive.value.html">popbio::reproductive.value()</a></code></li>
-<li><code><a href="https://rdrr.io/pkg/popbio/man/stable.stage.html">popbio::stable.stage()</a></code></li>
-<li><code><a href="https://rdrr.io/pkg/popbio/man/generation.time.html">popbio::generation.time()</a></code></li>
+<li><code><a href="https://www.rdocumentation.org/packages/popbio/topics/lambda">popbio::lambda()</a></code></li>
+<li><code><a href="https://www.rdocumentation.org/packages/popbio/topics/elasticity">popbio::elasticity()</a></code></li>
+<li><code><a href="https://www.rdocumentation.org/packages/popbio/topics/reproductive.value">popbio::reproductive.value()</a></code></li>
+<li><code><a href="https://www.rdocumentation.org/packages/popbio/topics/stable.stage">popbio::stable.stage()</a></code></li>
+<li><code><a href="https://www.rdocumentation.org/packages/popbio/topics/generation.time">popbio::generation.time()</a></code></li>
 </ul>
 </li>
 </ul>
@@ -250,12 +248,12 @@ Demography of <em>Thrinax imaginarium</em> life stages. Values inside the circle
 <a href="#ecology-of-thrinax-imaginarium" class="anchor"></a>Ecology of <em>Thrinax imaginarium</em>
 </h2>
 <p>During the last lab, we calculated several properties of a demographic matrix by hand, including the asymptotic growth rate and stable stage distribution. Fortunately, there is an <code>R</code> package called <code>popbio</code> that will do these calculations (and many more) for us. For example, you can calculate <span class="math inline">\(\lambda\)</span> and the stable stage distribution of the matrix you just created using:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(popbio)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>lambda &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/popbio/man/lambda.html">lambda</a></span>(A)</span>
-<span id="cb1-3"><a href="#cb1-3"></a>ssd &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/popbio/man/stable.stage.html">stable.stage</a></span>(A)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(popbio)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2">lambda &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/lambda">lambda</a></span>(A)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">ssd &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/stable.stage">stable.stage</a></span>(A)</a></code></pre></div>
 <p>The <code>popbio</code> package has a number of other useful functions, for example estimating the reproductive value of each stage and the generation time of a population:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>rv &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/popbio/man/reproductive.value.html">reproductive.value</a></span>(A)</span>
-<span id="cb2-2"><a href="#cb2-2"></a>gt &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/popbio/man/generation.time.html">generation.time</a></span>(A)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">rv &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/reproductive.value">reproductive.value</a></span>(A)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">gt &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/generation.time">generation.time</a></span>(A)</a></code></pre></div>
 <hr>
 <p><strong>Look at the output from the functions above. What can you say about the ecology and life history of this species from this information?</strong></p>
 <hr>
@@ -266,9 +264,9 @@ Demography of <em>Thrinax imaginarium</em> life stages. Values inside the circle
 <p>In lecture, we learned about the concepts of <em>sensitivity</em> and <em>elasticity</em>. Remember that sensitivity is the change in <span class="math inline">\(\lambda\)</span> caused by a small change in a vital rate and can be estimated analytically using:</p>
 <p><span class="math display">\[\Large s_{i,j} = \frac{\delta \lambda}{\delta a_{i,j}} = \frac{v_iw_j}{\sum_{k=1}v_kw_k}\]</span></p>
 <p>We also learned how to do this by hand but luckily that’s not necessary. We can instead use:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>sens &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/popbio/man/sensitivity.html">sensitivity</a></span>(A)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">sens &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/sensitivity">sensitivity</a></span>(A)</a></code></pre></div>
 <p>As we saw in lecture, sensitivity is not always the most useful metric for understanding which vital rates are most important for influencing <span class="math inline">\(\lambda\)</span>. Instead, most natural resource management studies focus on elasticity, which is the change in <span class="math inline">\(\lambda\)</span> caused by a small <em>proportional</em> change in a vital rate. As you probably guessed, <code>popbio</code> also does this calculation:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>elas &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/popbio/man/elasticity.html">elasticity</a></span>(A)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">elas &lt;-<span class="st"> </span>popbio<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/popbio/topics/elasticity">elasticity</a></span>(A)</a></code></pre></div>
 <hr>
 <p><strong>Based on the estimated elasticities, which vital rates do you expect to have the biggest influence on population growth of <em>T. imaginarium</em>?</strong></p>
 <hr>
@@ -325,7 +323,6 @@ Demography of <em>Thrinax imaginarium</em> life stages. Values inside the circle
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -345,20 +342,17 @@ Demography of <em>Thrinax imaginarium</em> life stages. Values inside the circle
 </div>
 
 
-
       <footer><div class="copyright">
   <p>Developed by Clark Rushing.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
 </div>
-
       </footer>
 </div>
 
   
-
 
   </body>
 </html>

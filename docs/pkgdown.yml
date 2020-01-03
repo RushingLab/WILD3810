@@ -1,7 +1,9 @@
-pandoc: 2.7.3
-pkgdown: 1.4.1
-pkgdown_sha: ~
+pandoc: '2.3'
+pkgdown: 1.2.0.9000
+pkgdown_sha: c980e84a573614087c6e151d5e6e19a22748b761
 articles:
+  competition: competition.html
+  exam1_2019: exams/exam1_2019.html
   homework: homework.html
   lab0: lab0.html
   lab1: lab1.html
@@ -11,7 +13,6 @@ articles:
   lab5_life_tables: lab5_life_tables.html
   lab6_matrix_models: lab6_matrix_models.html
   lab7_tree_harvest: lab7_tree_harvest.html
-  matrix_models2: matrix_models2.html
   rmarkdown_intro: rmarkdown_intro.html
   schedule: schedule.html
   syllabus: syllabus.html
