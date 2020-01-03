@@ -87,7 +87,7 @@
       <a href="../articles/Lecture5/Lecture5.html">Lecture 5: Density-dependent population growth</a>
     </li>
     <li>
-      <a href="../articles/Lecture6/Lecture6.html">Lecture 6: Dynamics of small populations</a>
+      <a href="../articles/Lecture6/lecture6.html">Lecture 6: Dynamics of small populations</a>
     </li>
     <li>
       <a href="../articles/Lecture7/Lecture7.html">Lecture 7: Life tables</a>
@@ -469,7 +469,7 @@ Mature 10
 <a href="#estimating-relevant-vital-rates" class="anchor"></a>Estimating relevant vital rates</h3>
 <p>Your goal is to convert the values in the above table into the relevant entries of a matrix that describes stage-specific demographic rates.</p>
 <hr>
-<p><strong>Before moving on, answer question 1 on the homework file</strong></p>
+<p><strong>Before moving on, answer question 2 on the homework file</strong></p>
 <hr>
 <p>To create the matrix, you will need to take the vital rates in the table above and combine them to create the relevant matrix.</p>
 </div>
@@ -494,7 +494,7 @@ Mature 10
 <span id="cb2-6"><a href="#cb2-6"></a><span class="co">#&gt; [2,]    2 0.00  0.5</span></span>
 <span id="cb2-7"><a href="#cb2-7"></a><span class="co">#&gt; [3,]    4 0.00  0.0</span></span></code></pre></div>
 <p>Not the matrix we wanted! Be very careful about this option when you are creating matrices of your own.</p>
-<p>In your homework template, enter the code necessary to create a matrix describing the demographic rates of <em>Astrocaryum mexicanum</em> (call this matrix <code>A</code>) and answer question 2. <strong>Note that your code should not be placed inside of parentheses like the code above. This is done so that the resulting matrix was printed to the console when created. You do not need to print the matrix in the homework template</strong></p>
+<p>In your homework template, enter the code necessary to create a matrix describing the demographic rates of <em>Astrocaryum mexicanum</em> (call this matrix <code>A</code>) and answer question 3. <strong>Note that your code should not be placed inside of parentheses like the code above. This is done so that the resulting matrix was printed to the console when created. You do not need to print the matrix in the homework template</strong></p>
 </div>
 </div>
 <div id="projecting-the-matrix" class="section level2">
@@ -531,12 +531,12 @@ Mature 10
 <span id="cb7-2"><a href="#cb7-2"></a>                   <span class="dt">N =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(N),</span>
 <span id="cb7-3"><a href="#cb7-3"></a>                   <span class="dt">Stage =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Fruit"</span>, <span class="st">"Infant"</span>, <span class="st">"Juvenile"</span>, <span class="st">"Immature"</span>, <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="st">"Mature "</span>, <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>))), <span class="dt">each =</span> nYears))</span></code></pre></div>
 <p>Now complete the following code to plot the <strong>log of N</strong> for each stage:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">ggplot</span>(?, <span class="kw">aes</span>(<span class="dt">x =</span> ?, <span class="dt">y =</span> ?, <span class="dt">color =</span> ?)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_path</span>() <span class="op">+</span></span>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> ?, <span class="kw">aes</span>(<span class="dt">x =</span> ?, <span class="dt">y =</span> ?, <span class="dt">color =</span> ?)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_path</span>() <span class="op">+</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a><span class="st">  </span><span class="kw">scale_color_manual</span>(<span class="dt">values =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"#E41A1C"</span>, <span class="st">"#79577C"</span>, <span class="st">"#3C899E"</span>, <span class="st">"#49A75A"</span>, </span>
 <span id="cb8-3"><a href="#cb8-3"></a>                                <span class="st">"#6F8273"</span>, <span class="st">"#9F5196"</span>, <span class="st">"#DF6F32"</span>, <span class="st">"#FFA60F"</span>, </span>
 <span id="cb8-4"><a href="#cb8-4"></a>                                <span class="st">"#FFF52F"</span>, <span class="st">"#CFA42D"</span>, <span class="st">"#B25C3F"</span>, <span class="st">"#E4779C"</span>, </span>
 <span id="cb8-5"><a href="#cb8-5"></a>                                <span class="st">"#D28AB0"</span>,  <span class="st">"#999999"</span>))</span></code></pre></div>
-<p>After you have made the plot, answer questions 3a and 3b in the homework.</p>
+<p>After you have made the plot, answer questions 4a and 4b in the homework.</p>
 </div>
 <div id="stable-stage-distribution" class="section level3">
 <h3 class="hasAnchor">
@@ -558,7 +558,7 @@ Mature 10
 <span id="cb11-2"><a href="#cb11-2"></a>Nt &lt;-<span class="st"> </span>?</span>
 <span id="cb11-3"><a href="#cb11-3"></a></span>
 <span id="cb11-4"><a href="#cb11-4"></a>lambda &lt;-<span class="st"> </span>?<span class="op">/</span>?</span></code></pre></div>
-<p>In your homework template, create the code necessary to estimate <span class="math inline">\(\lambda\)</span> and answer questions 5a &amp; 5b.</p>
+<p>In your homework template, create the code necessary to estimate <span class="math inline">\(\lambda\)</span> and answer questions 6a &amp; 6b.</p>
 </div>
 <div id="population-inertia" class="section level3">
 <h3 class="hasAnchor">
@@ -571,8 +571,8 @@ Mature 10
 <span id="cb12-4"><a href="#cb12-4"></a></span>
 <span id="cb12-5"><a href="#cb12-5"></a>N_ssd_df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">Year =</span> <span class="dv">1</span><span class="op">:</span>nYears,</span>
 <span id="cb12-6"><a href="#cb12-6"></a>                       <span class="dt">N =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(N_tot, N_tot_ssd),</span>
-<span id="cb12-7"><a href="#cb12-7"></a>                       <span class="dt">Initial =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Random"</span>, <span class="st">"SSD"</span>), <span class="dt">each =</span> nYears))</span></code></pre></div>
-<p>Finally, use <code>ggplot2</code> to plot the log population size across years for each simulated population. Make sure the color of each line corresponds to the initial conditions and then answer questions 6a-6c.</p>
+<span id="cb12-7"><a href="#cb12-7"></a>                       <span class="dt">Initial =</span> <span class="kw"><a href="https://rdrr.io/r/base/rep.html">rep</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Fruit"</span>, <span class="st">"SSD"</span>), <span class="dt">each =</span> nYears))</span></code></pre></div>
+<p>Finally, use <code>ggplot2</code> to plot the log population size across years for each simulated population. Make sure the color of each line corresponds to the initial conditions and then answer questions 7a-7c.</p>
 </div>
 </div>
 </div>
