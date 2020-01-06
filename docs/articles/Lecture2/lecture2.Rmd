@@ -230,7 +230,7 @@ class: inverse, center, middle
 
 **Excercise**  
 <br/>
-1) Divide into groups of (about) 3
+1) Divide into groups of (about) 4
 
 <br/>
 2) Remove all of the beans from the cup and count
