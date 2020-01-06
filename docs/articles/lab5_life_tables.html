@@ -7,9 +7,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lab 5: Creating and interpreting a life table • WILD3810</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Lab 5: Creating and interpreting a life table">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -166,7 +165,6 @@
 <!--/.navbar -->
 
       
-
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
@@ -208,10 +206,10 @@
 <div id="reading-in-the-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#reading-in-the-data" class="anchor"></a>Reading in the data</h2>
-<p>All of the birth and death data you collected last week has been compiled and included as a data frame in the <code>WILD3810</code> package. You can read the data by copying the following lines to the first chunk in your homework 5 template (note, you do not need to copy the <code><a href="https://rdrr.io/r/utils/head.html">head(lt_data)</a></code> line to your homework):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(WILD3810)</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"lt_data"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(lt_data)</span></code></pre></div>
+<p>All of the birth and death data you collected last week has been compiled and included as a data frame in the <code>WILD3810</code> package. You can read the data by copying the following lines to the first chunk in your homework 5 template (note, you do not need to copy the <code><a href="https://www.rdocumentation.org/packages/utils/topics/head">head(lt_data)</a></code> line to your homework):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(WILD3810)</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"lt_data"</span>)</a>
+<a class="sourceLine" id="cb1-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(lt_data)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">byear</th>
@@ -255,7 +253,7 @@
 <div id="adding-age-at-death" class="section level2">
 <h2 class="hasAnchor">
 <a href="#adding-age-at-death" class="anchor"></a>Adding age at death</h2>
-<p>The <code><a href="https://rdrr.io/r/utils/head.html">head()</a></code> function shows the first 6 rows the <code>lt_data</code> object, allowing us to see that there are 3 columns:</p>
+<p>The <code><a href="https://www.rdocumentation.org/packages/utils/topics/head">head()</a></code> function shows the first 6 rows the <code>lt_data</code> object, allowing us to see that there are 3 columns:</p>
 <ul>
 <li><p><code>byear</code>: The birth year of each individual</p></li>
 <li><p><code>dyear</code>: The death year of each individual</p></li>
@@ -264,27 +262,27 @@
 <p>To build the life table, we will need at least one more piece of information <span class="math inline">\(-\)</span> age at death. We can roughly estimate age at death as <code>dyear - byear</code> (for the most accurate ages we would want to include day and month in this calculation but just using year will be accurate enough for our purposes).</p>
 <p>Fortunately <code>R</code> makes it easy to calculate age at death with a single line of code. Remember that the <code>dplyr</code> function <code>mutate</code> is used to add a new column to a data frame. We give <code>mutate</code> the name of the data frame we want to add a column to, the name of the new column, and the values for the new column.</p>
 <p>Copy the following line of code into your homework 5 file and the complete it to create the new variable:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</span>
-<span id="cb2-2"><a href="#cb2-2"></a>lt_data &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(lt_data, <span class="dt">age =</span> )</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">lt_data &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(lt_data, <span class="dt">age =</span> )</a></code></pre></div>
 </div>
 <div id="checking-the-data-for-accuracy" class="section level2">
 <h2 class="hasAnchor">
 <a href="#checking-the-data-for-accuracy" class="anchor"></a>Checking the data for accuracy</h2>
 <p>It is almost assured that mistakes will occur during data entry <span class="math inline">\(-\)</span> typos are an inevitable part of transfering data from field sheets to digital files. Whenever you are working with raw data, you should <em>always</em> check the data to see if there are any obvious mistakes. For example, we know that age at death has to be a positive number. Use the following code to make a histogram of the age data and see if there are any negative values:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw"><a href="https://rdrr.io/r/graphics/hist.html">hist</a></span>(lt_data<span class="op">$</span>age)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/hist">hist</a></span>(lt_data<span class="op">$</span>age)</a></code></pre></div>
 <p><img src="lab5_life_tables_files/figure-html/unnamed-chunk-5-1.png" width="576"></p>
 <p>Oops, looks like there are a few negative values. These are most likely due to typos in the data entry <span class="math inline">\(-\)</span> for example entering <code>1952</code> instead of <code>1852</code> for the birth year. At this stage, we have two options: modify the correct entries or remove them. To modify the entries, we need to be very sure that we know the correct values or else we just creating a different type of “wrong” data. Because we have a lot of data to work with (removing 3 entries won’t have a big impact on our conclusions), we will simply remove the individuals with negative ages. To that, we’ll use our old friend <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code>. Copy the following line into your homework and complete the missing arguments:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>lt_data &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(lt_data, )</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">lt_data &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(lt_data, )</a></code></pre></div>
 </div>
 <div id="subsetting-the-cohorts" class="section level2">
 <h2 class="hasAnchor">
 <a href="#subsetting-the-cohorts" class="anchor"></a>Subsetting the cohorts</h2>
 <p>One purpose of this lab is to examine how survivorship differs between males and females and how survivorship has changed over time. That means we need to subset the data frame to create new data frames that contain only the demographic data for the individuals in each cohort.</p>
 <p>To look at changes over time, we’ll divide the data into individuals that died before 1901, individuals that died between 1901 and 1945, and individuals that died after 1945. For each of these time periods, we’ll look at the data for males and females separately. To make the subsetting easier, let’s create a vector with the cutoff years for each cohort. Copy the following code into your homework file:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>cohort &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1900</span>, <span class="dv">1945</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">cohort &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1900</span>, <span class="dv">1945</span>)</a></code></pre></div>
 <p>Now we can create new data frames, one for each group, using the <code>filter</code> function. For example, we can subset the data for females that died before 1901 using:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>f1 &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(lt_data, sex <span class="op">==</span><span class="st"> "Female"</span> <span class="op">&amp;</span><span class="st"> </span>dyear <span class="op">&lt;=</span><span class="st"> </span>cohort[<span class="dv">1</span>])</span></code></pre></div>
-<p>Make sure you understand what this function is doing. <code>filter</code> requires the original data frame we want to filter, in this case <code>lt_data</code>. Then we provide conditional statements (statements that return <code>TRUE</code> or <code>FALSE</code> for each individual) that determine how we want to filter the data. In this case, we want females (<code>sex == "Female"</code>. Remember that when you ask <code>R</code> is something is equal to something else you need to use the double equal signs!) <strong>and</strong> (<code><a href="https://rdrr.io/r/base/Logic.html">&amp;</a></code>) death year less than 1901 (<code>dyear &lt;= cohort[1]</code>). Remember that <code>cohort[1]</code> will return the first value of the cohort object, in this case <code>1900</code>. We can death years that are less than or equal to (<code><a href="https://rdrr.io/r/base/Comparison.html">&lt;=</a></code>) this value.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">f1 &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(lt_data, sex <span class="op">==</span><span class="st"> "Female"</span> <span class="op">&amp;</span><span class="st"> </span>dyear <span class="op">&lt;=</span><span class="st"> </span>cohort[<span class="dv">1</span>])</a></code></pre></div>
+<p>Make sure you understand what this function is doing. <code>filter</code> requires the original data frame we want to filter, in this case <code>lt_data</code>. Then we provide conditional statements (statements that return <code>TRUE</code> or <code>FALSE</code> for each individual) that determine how we want to filter the data. In this case, we want females (<code>sex == "Female"</code>. Remember that when you ask <code>R</code> is something is equal to something else you need to use the double equal signs!) <strong>and</strong> (<code>&amp;</code>) death year less than 1901 (<code>dyear &lt;= cohort[1]</code>). Remember that <code>cohort[1]</code> will return the first value of the cohort object, in this case <code>1900</code>. We can death years that are less than or equal to (<code>&lt;=</code>) this value.</p>
 <p>In your homework assignment file, modify the above to create data frames called <code>f2</code>, <code>f3</code>, <code>m1</code>, <code>m2</code>, and <code>m3</code> that contain the demographic data for males and females from the other cohorts.</p>
 </div>
 <div id="building-a-life-table" class="section level2">
@@ -292,12 +290,12 @@
 <a href="#building-a-life-table" class="anchor"></a>Building a life table</h2>
 <p>Now you’re ready to build a life table for each group. This lab document will walk you through building a life table for the a single cohort. You will then make the remaining life tables on your own.</p>
 <p>We will start by making an empty life table and then filling in the correct values for each column. This data frame needs to define the age classes for the life table and contain the appropriate life table columns. For this analysis, we’ll use 10-year age classes (e.g., 0-9, 10-19, 20-29, etc) and define separate columns for the minimum and maximum age the correspond to each row:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>lt_f1 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(<span class="dt">sex =</span> <span class="st">"Female"</span>,</span>
-<span id="cb7-2"><a href="#cb7-2"></a>                    <span class="dt">cohort =</span> <span class="st">"pre-1900"</span>,</span>
-<span id="cb7-3"><a href="#cb7-3"></a>                    <span class="dt">class =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>), </span>
-<span id="cb7-4"><a href="#cb7-4"></a>                    <span class="dt">min.age =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">110</span>, <span class="dt">by =</span> <span class="dv">10</span>),</span>
-<span id="cb7-5"><a href="#cb7-5"></a>                    <span class="dt">max.age =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dt">from =</span> <span class="dv">9</span>, <span class="dt">to =</span> <span class="dv">119</span>, <span class="dt">by =</span> <span class="dv">10</span>))</span>
-<span id="cb7-6"><a href="#cb7-6"></a>lt_f1</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">lt_f1 &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(<span class="dt">sex =</span> <span class="st">"Female"</span>,</a>
+<a class="sourceLine" id="cb7-2" data-line-number="2">                    <span class="dt">cohort =</span> <span class="st">"pre-1900"</span>,</a>
+<a class="sourceLine" id="cb7-3" data-line-number="3">                    <span class="dt">class =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dv">1</span><span class="op">:</span><span class="dv">12</span>), </a>
+<a class="sourceLine" id="cb7-4" data-line-number="4">                    <span class="dt">min.age =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dt">from =</span> <span class="dv">0</span>, <span class="dt">to =</span> <span class="dv">110</span>, <span class="dt">by =</span> <span class="dv">10</span>),</a>
+<a class="sourceLine" id="cb7-5" data-line-number="5">                    <span class="dt">max.age =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dt">from =</span> <span class="dv">9</span>, <span class="dt">to =</span> <span class="dv">119</span>, <span class="dt">by =</span> <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb7-6" data-line-number="6">lt_f1</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">sex</th>
@@ -393,7 +391,7 @@
 </tr>
 </tbody>
 </table>
-<p>Here, we use the <code><a href="https://rdrr.io/r/base/seq.html">seq()</a></code> function to create a sequence of numbers corresponding to either the minimum or maximum age for each class. We also use the <code>by</code> argument to tell the function to make the sequence by 10’s (i.e., 0, 10, 20, etc.). We also add columns to keep track of which group this life table corresponds to.</p>
+<p>Here, we use the <code><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq()</a></code> function to create a sequence of numbers corresponding to either the minimum or maximum age for each class. We also use the <code>by</code> argument to tell the function to make the sequence by 10’s (i.e., 0, 10, 20, etc.). We also add columns to keep track of which group this life table corresponds to.</p>
 <p>As we learned in lecture, the static life table starts with three main columns:</p>
 <ul>
 <li><p><span class="math inline">\(\large a_x\)</span> - the number of deaths within each age class</p></li>
@@ -401,10 +399,10 @@
 <li><p><span class="math inline">\(\large l_x\)</span> - the proportion of individuals surviving to each age class</p></li>
 </ul>
 <p>We will use <code>mutate</code> to add empty columns for each of these variables to the life table:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>lt_f1 &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(lt_f1, <span class="dt">ax =</span> <span class="kw"><a href="https://rdrr.io/r/base/integer.html">integer</a></span>(<span class="dt">length =</span> <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(lt_f1)),</span>
-<span id="cb8-2"><a href="#cb8-2"></a>                       <span class="dt">Nx =</span> <span class="kw"><a href="https://rdrr.io/r/base/integer.html">integer</a></span>(<span class="dt">length =</span> <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(lt_f1)),</span>
-<span id="cb8-3"><a href="#cb8-3"></a>                       <span class="dt">lx =</span> <span class="kw"><a href="https://rdrr.io/r/base/numeric.html">numeric</a></span>(<span class="dt">length =</span> <span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(lt_f1)))</span>
-<span id="cb8-4"><a href="#cb8-4"></a>lt_f1</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">lt_f1 &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(lt_f1, <span class="dt">ax =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/integer">integer</a></span>(<span class="dt">length =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(lt_f1)),</a>
+<a class="sourceLine" id="cb8-2" data-line-number="2">                       <span class="dt">Nx =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/integer">integer</a></span>(<span class="dt">length =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(lt_f1)),</a>
+<a class="sourceLine" id="cb8-3" data-line-number="3">                       <span class="dt">lx =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/numeric">numeric</a></span>(<span class="dt">length =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(lt_f1)))</a>
+<a class="sourceLine" id="cb8-4" data-line-number="4">lt_f1</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">sex</th>
@@ -540,13 +538,13 @@
 </tbody>
 </table>
 <p>Both the <code>integer</code> and <code>numeric</code> functions create empty vectors that can store either integer values or numeric values. We need to tell <code>R</code> how long those vectors are using the <code>length</code> argument. In this case, we know the length of the vectors needs to equal the number of rows in the data frame.</p>
-<p>Now we’re ready to fill in the values for each column. The first values of <span class="math inline">\(N_x\)</span> and <span class="math inline">\(l_x\)</span> are relatively straightforward. We know that the <code>f1</code> dataframe contains one row for each individual in the cohort. That means that we start with <code><a href="https://rdrr.io/r/base/nrow.html">nrow(f1)</a></code> individuals:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>lt_f1<span class="op">$</span>Nx[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(f1)</span></code></pre></div>
+<p>Now we’re ready to fill in the values for each column. The first values of <span class="math inline">\(N_x\)</span> and <span class="math inline">\(l_x\)</span> are relatively straightforward. We know that the <code>f1</code> dataframe contains one row for each individual in the cohort. That means that we start with <code><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow(f1)</a></code> individuals:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">lt_f1<span class="op">$</span>Nx[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(f1)</a></code></pre></div>
 <p>We also know that <span class="math inline">\(l_1\)</span> always equals 1:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>lt_f1<span class="op">$</span>lx[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">lt_f1<span class="op">$</span>lx[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="dv">1</span></a></code></pre></div>
 <p>How do we fill in <span class="math inline">\(a_1\)</span>? We need to know how many individuals died between the ages of 0 and 9. There are many ways to estimate this but we’ll use a combination of two functions you are already familiar with: <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> and <code>nrow</code>.</p>
 <p>First, we can filter the <code>f1</code> data frame to contain only individuals that died between the ages of 0 and 9. Instead of writing <code>0</code> and <code>9</code> by hand, we’ll use the <code>min.age</code> and <code>max.age</code> columns in the data frame (you’ll see why in a minute):</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(f1, age <span class="op">&gt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>min.age[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&lt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>max.age[<span class="dv">1</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(f1, age <span class="op">&gt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>min.age[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&lt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>max.age[<span class="dv">1</span>])</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="right">byear</th>
@@ -587,28 +585,28 @@
 </tr>
 </tbody>
 </table>
-<p>Now many individuals is this? Since there is one row each individual, <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> will give us the correct number. We can nest the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function inside of <code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code> to get the number of individuals with a single line of code:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>lt_f1<span class="op">$</span>ax[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(f1, age <span class="op">&gt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>min.age[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&lt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>max.age[<span class="dv">1</span>]))</span></code></pre></div>
+<p>Now many individuals is this? Since there is one row each individual, <code><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow()</a></code> will give us the correct number. We can nest the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function inside of <code><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow()</a></code> to get the number of individuals with a single line of code:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">lt_f1<span class="op">$</span>ax[<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(f1, age <span class="op">&gt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>min.age[<span class="dv">1</span>] <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&lt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>max.age[<span class="dv">1</span>]))</a></code></pre></div>
 <p>Now let’s think through how to get the second row filled in. <strong>Do not copy this code into your homework. We’ll use this to think through how to fill in the remaining years, then create a more automated way of completing these tasks</strong>.</p>
 <p>We know that <span class="math inline">\(N_2 = N_1 - a_1\)</span> (the number of individuals that survive to the second age class is equal to the number that started in age-class 1 minus the individuals that died while in the first age-class). So:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>lt_f1<span class="op">$</span>Nx[<span class="dv">2</span>] &lt;-<span class="st"> </span>lt_f1<span class="op">$</span>Nx[<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>lt_f1<span class="op">$</span>ax[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">lt_f1<span class="op">$</span>Nx[<span class="dv">2</span>] &lt;-<span class="st"> </span>lt_f1<span class="op">$</span>Nx[<span class="dv">1</span>] <span class="op">-</span><span class="st"> </span>lt_f1<span class="op">$</span>ax[<span class="dv">1</span>]</a></code></pre></div>
 <p>We also know that <span class="math inline">\(l_2 = \frac{N_2}{N_1}\)</span>, so:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>lt_f1<span class="op">$</span>lx[<span class="dv">2</span>] &lt;-<span class="st"> </span>lt_f1<span class="op">$</span>Nx[<span class="dv">2</span>]<span class="op">/</span>lt_f1<span class="op">$</span>Nx[<span class="dv">1</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">lt_f1<span class="op">$</span>lx[<span class="dv">2</span>] &lt;-<span class="st"> </span>lt_f1<span class="op">$</span>Nx[<span class="dv">2</span>]<span class="op">/</span>lt_f1<span class="op">$</span>Nx[<span class="dv">1</span>]</a></code></pre></div>
 <p>And:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>lt_f1<span class="op">$</span>ax[<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(f1, age <span class="op">&gt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>min.age[<span class="dv">2</span>] <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&lt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>max.age[<span class="dv">2</span>]))</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">lt_f1<span class="op">$</span>ax[<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(f1, age <span class="op">&gt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>min.age[<span class="dv">2</span>] <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&lt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>max.age[<span class="dv">2</span>]))</a></code></pre></div>
 <p>We <em>could</em> copy these lines for each age class (2,3,…,12) and change the index number each time. But that’s a lot of work and we’ll probably make mistakes. So instead, we’ll use a <code>for</code> loop:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(lt_f1)){</span>
-<span id="cb16-2"><a href="#cb16-2"></a>  <span class="co">## Nx for class i as a function of Nx and ax in the previous class</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a>  lt_f1<span class="op">$</span>Nx[i] &lt;-<span class="st"> </span>lt_f1<span class="op">$</span>Nx[i<span class="dv">-1</span>] <span class="op">-</span><span class="st"> </span>lt_f1<span class="op">$</span>ax[i<span class="dv">-1</span>]</span>
-<span id="cb16-4"><a href="#cb16-4"></a>  </span>
-<span id="cb16-5"><a href="#cb16-5"></a>  <span class="co">## lx for class i as a function of Nx[i] and Nx[1]</span></span>
-<span id="cb16-6"><a href="#cb16-6"></a>  lt_f1<span class="op">$</span>lx[i] &lt;-<span class="st"> </span>lt_f1<span class="op">$</span>Nx[i]<span class="op">/</span>lt_f1<span class="op">$</span>Nx[<span class="dv">1</span>]</span>
-<span id="cb16-7"><a href="#cb16-7"></a>  </span>
-<span id="cb16-8"><a href="#cb16-8"></a>  <span class="co">## ax for class i based on the min.age and max.age values in row i</span></span>
-<span id="cb16-9"><a href="#cb16-9"></a>  lt_f1<span class="op">$</span>ax[i] &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(f1, age <span class="op">&gt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>min.age[i] <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&lt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>max.age[i]))</span>
-<span id="cb16-10"><a href="#cb16-10"></a>}</span>
-<span id="cb16-11"><a href="#cb16-11"></a></span>
-<span id="cb16-12"><a href="#cb16-12"></a>lt_f1</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="cf">for</span>(i <span class="cf">in</span> <span class="dv">2</span><span class="op">:</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(lt_f1)){</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">  <span class="co">## Nx for class i as a function of Nx and ax in the previous class</span></a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">  lt_f1<span class="op">$</span>Nx[i] &lt;-<span class="st"> </span>lt_f1<span class="op">$</span>Nx[i<span class="dv">-1</span>] <span class="op">-</span><span class="st"> </span>lt_f1<span class="op">$</span>ax[i<span class="dv">-1</span>]</a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">  </a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">  <span class="co">## lx for class i as a function of Nx[i] and Nx[1]</span></a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">  lt_f1<span class="op">$</span>lx[i] &lt;-<span class="st"> </span>lt_f1<span class="op">$</span>Nx[i]<span class="op">/</span>lt_f1<span class="op">$</span>Nx[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb16-7" data-line-number="7">  </a>
+<a class="sourceLine" id="cb16-8" data-line-number="8">  <span class="co">## ax for class i based on the min.age and max.age values in row i</span></a>
+<a class="sourceLine" id="cb16-9" data-line-number="9">  lt_f1<span class="op">$</span>ax[i] &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nrow">nrow</a></span>(<span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(f1, age <span class="op">&gt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>min.age[i] <span class="op">&amp;</span><span class="st"> </span>age <span class="op">&lt;=</span><span class="st"> </span>lt_f1<span class="op">$</span>max.age[i]))</a>
+<a class="sourceLine" id="cb16-10" data-line-number="10">}</a>
+<a class="sourceLine" id="cb16-11" data-line-number="11"></a>
+<a class="sourceLine" id="cb16-12" data-line-number="12">lt_f1</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">sex</th>
@@ -748,10 +746,10 @@
 <h3 class="hasAnchor">
 <a href="#visualizing-the-survivorship-curve" class="anchor"></a>Visualizing the survivorship curve</h3>
 <p>With the life table created, we can use <code>ggplot2</code> to plot the survivorship curve for this cohort. Add the following line to the first figure chunk in your homework assignent (look for the chuck that says <code>Enter figure code here</code>):</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">ggplot</span>(<span class="dt">data =</span> lt_f1, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">y =</span> <span class="kw"><a href="https://rdrr.io/r/base/Log.html">log</a></span>(lx))) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb17-2"><a href="#cb17-2"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb17-4"><a href="#cb17-4"></a><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw"><a href="https://rdrr.io/r/base/seq.html">seq</a></span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">12</span>, <span class="dt">by =</span> <span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">ggplot</span>(<span class="dt">data =</span> lt_f1, <span class="kw">aes</span>(<span class="dt">x =</span> class, <span class="dt">y =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Log">log</a></span>(lx))) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="st">  </span><span class="kw">geom_line</span>(<span class="dt">size =</span> <span class="dv">1</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb17-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb17-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_continuous</span>(<span class="dt">breaks =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/seq">seq</a></span>(<span class="dt">from =</span> <span class="dv">1</span>, <span class="dt">to =</span> <span class="dv">12</span>, <span class="dt">by =</span> <span class="dv">1</span>))</a></code></pre></div>
 <p><img src="lab5_life_tables_files/figure-html/unnamed-chunk-24-1.png" width="576"></p>
 <p>Notice that we can convert <span class="math inline">\(l_x\)</span> into <span class="math inline">\(log(l_x)\)</span> within the <code>ggplot</code> function.</p>
 </div>
@@ -766,7 +764,6 @@
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -788,20 +785,17 @@
 </div>
 
 
-
       <footer><div class="copyright">
   <p>Developed by Clark Rushing.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
 </div>
-
       </footer>
 </div>
 
   
-
 
   </body>
 </html>
