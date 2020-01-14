@@ -386,7 +386,7 @@ $$\frac{N_{t+\Delta}-N_t}{(t+\Delta)-t} = N_t \times r$$
 
 #### How does $\large r$ compare to $\large \lambda$? 
 
-$$\Large r = log(\lambda)$$
+$$\Large r = ln(\lambda)$$
 $$\Large \lambda = e^r$$
 
 --
