@@ -51,7 +51,7 @@ baseline_pva <- function(number.of.years, number.of.populations, b0, d0, varianc
                                  number.of.years = number.of.years, number.of.populations=number.of.populations,
                                  fire.b = fire.b, fire.d = fire.d)
   baseline = list(baseline_N = baseline_N, baseline_summary = baseline_summary)
-  if(extinction.threshold==0) saveRDS(baseline, "baseline.rds")
+  saveRDS(baseline, "baseline.rds")
 
 
   p <- ggplot2::ggplot() +
