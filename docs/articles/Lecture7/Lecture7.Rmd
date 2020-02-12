@@ -112,7 +112,7 @@ knitr::include_graphics("figs/goose_survivorship.png")
 
 ???
 
-Image courtesy of Cephas, from Wikimedia Commons
+Image courtesy of Cephas, from Wikimedia Commons  
 
 Figure from Rockwell et al. (1985) *Evolution*
 
@@ -209,7 +209,7 @@ class: inverse, center, middle
 --
 - **longitudinal** study design  
 
-```{r fig.width=6, fig.height=4, fig.retina=TRUE}
+```{r fig.width=6, fig.height=4}
 long <- data.frame(Time = seq(0, 100),
                    Age = seq(0, 100))
 
