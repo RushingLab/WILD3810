@@ -134,7 +134,7 @@ knitr::include_graphics("figs/mainland.png")
 
 #### Immigration curves should be lower for **far** islands than for **near** ones:
 
-- distant islands are less likely to be colonized
+- distant islands are less likely to be colonized than near ones
 
 ```{r fig.width=8, fig.height=5}
 S <- seq(0, 2, by = 0.1)
