@@ -20,7 +20,7 @@ library(gganimate)
 ```
 
 
-## Assumptions of the B-D models
+## Assumptions of the density-independent models
 
 #### Remember from the lecture 3 that our simple models of population growth were based on the following assumptions:  
 
@@ -41,7 +41,7 @@ library(gganimate)
 
 
 ---
-## Assumptions of the B-D models
+## Assumptions of the density-independent models
 
 #### In lectures 4 and 5, we learned about ways to model dynamics that do not meet assumption 4:  
 
@@ -68,7 +68,7 @@ In lecture 5, we learned about ways that birth and death rates might vary stocha
 
 
 ---
-## Assumptions of the B-D models
+## Assumptions of the density-independent models
 
 #### Over the coming weeks, we will learn about why and how to relax assumption 3:  
 
@@ -637,7 +637,7 @@ start <- data.frame(Time = c(0, 10, 20, 30, 40),
 ggplot(long, aes(x = Time, y = Age)) +
   scale_x_continuous(limits = c(0, 100)) +
   scale_y_continuous(limits = c(0, 100)) +
-    geom_polygon(data = poly, aes(x = x, y = y), fill = "grey95", color = "grey80") +
+    geom_polygon(data = poly, aes(x = x, y = y), fill = "grey95", color = "grey79") +
     geom_rect(aes(xmin = 40, xmax = 55, ymin = -Inf, ymax = Inf), fill = "white", color = "black") +
   geom_segment(aes(x = -Inf, xend = 15, y = 5, yend = 25), size = 2,
                color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
@@ -772,14 +772,14 @@ cowplot::plot_grid(p1, p2)
 
 ```{r fig.height=5 ,fig.width=7}
 age <- seq(from = 0, to = 1, length.out = 100)
-survI <- -0.1*age^7
+survI <- -0.1 * age ^ 7
 survII <- -0.1*age
 survIII <- -0.1*age^0.1
 
 surv_df <- data.frame(Age = age, surv = c(survI, survII, survIII),
                      Type = rep(c("I", "II", "III"), each = length(age)))
 
-ggplot(surv_df, aes(Age, surv, color = Type, label = Type)) + geom_line(size = 1.5) +
+ggplot(surv_df, aes(Age, surv, color = Type, label = Type)) + geom_line(size = 1.6) +
   scale_y_continuous(expression(paste("log(", l[x], ") 'Survivorship'"))) 
 ```
 
