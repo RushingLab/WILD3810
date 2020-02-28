@@ -1,0 +1,323 @@
+---
+title: "Homework 10: Inter-specific competition"
+author: "YOUR NAME HERE"
+output: html_document
+
+## Do not change anything in the YAML header
+fontsize: 12pt
+indent: true
+---
+
+```{r setup, include = FALSE}
+## Do not change anything in this chunk
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, message = FALSE)
+library(WILD3810)
+```
+
+***
+**Due before 2:30pm Monday April 20**
+
+In this homework assignment, you will use `R` to explore the dynamics of two competing species. 
+
+**Important** - after completing the code, change `eval = FALSE` to `eval = TRUE` in the setup chunk options above (line 14)
+
+Refer to the [instructions for submitting homework assignments](https://rushinglab.github.io/WILD3810/articles/homework.html) prior to submission
+
+***
+
+
+First, make sure you have:
+
+> 1a) Changed the `author` field in the YAML header to your name;
+
+> 1b) Clicked `Knit` to check that you can create a html document from the .Rmd file;
+
+> 1c) Saved the .Rmd file as `LastnameFirstname-homework10.Rmd` in a project named `LastNameFirstName-Lab14`
+
+If you have any problems with these steps, be sure to get help from either the instructor or the TA
+
+### Inter-specific competition
+
+> 2) Based on the information in Table 1, which species do you think is the stronger competitor? Briefly explain your answer
+
+**Type answer here**
+
+```{r isocline, fig.width=6, fig.height=6, eval = FALSE}
+### Create K1, r1, and a12
+
+### Create K2, r2, and a21
+
+
+### Change `eval = FALSE` to `eval = TRUE` on line 46 so the following code will run
+isocline <- ggplot(data.frame(N1 = 0:600, 
+                          N2 = 0:600), aes(x = N1, y = N2)) +
+              geom_segment(aes(y = 0, x = K1, yend = K1/a21, xend =0)) +
+              geom_segment(aes(y = K2, x = 0, yend = 0, xend = K2/a12), linetype = "longdash") +
+              scale_x_continuous(breaks = c(K1, K2/a12)) +
+              scale_y_continuous(breaks = c(K2, K1/a21))
+
+(isocline1 <- isocline + annotate("text", x = 120, y = 120, label = "A", size = 10) +
+  annotate("text", x = 75, y = 75, label = "B", size = 10) +
+  annotate("text", x = 99, y = 97, label = "C", size = 10))
+  
+```
+
+
+
+> 3a) In the figure above, the solid line corresponds to species 1 and the dashed line corresponds to species 2. In the region labeled A, what can you say about both species relative to their capacities? If the experiment starts with both species' abundances in this region, what will be the outcome?
+
+**Type answer here**
+
+> 3b) In the region labeled B, what can you say about both species relative to their capacities? If the experiment starts with both species' abundances in this region, what will be the outcome?
+
+**Type answer here**
+
+> 3c) In the region labeled C, what can you say about both species relative to their capacities? If the experiment starts with both species' abundances in this region, what will be the outcome?
+
+**Type answer here**
+
+
+```{r experiment1, fig.width=6, fig.height=6, eval = FALSE}
+## Empty vectors to store abundances
+N1 <- N2 <- numeric(length = 500)
+
+## Replace the question marks below with initial abundances for each species
+N1[1] <- ?
+N2[1] <- ?
+
+## Project abundance of both species using L-V model
+for(t in 2:500){
+  dN1dt <- r1 * N1[t-1] * ((K1 - (N1[t-1] + a21 * N2[t-1]))/K1)
+  N1[t] <- N1[t-1] + dN1dt 
+  
+  dN2dt <- r2 * N2[t-1] * ((K2 - (N2[t-1] + a12 * N1[t-1]))/K2)
+  N2[t] <- N2[t-1] + dN2dt 
+}
+
+## Store as data frame
+N_df <- data.frame(N1 = N1, N2 = N2)
+
+isocline1 + 
+  geom_path(data = N_df, aes(x = N1, y = N2), color = "red", size = 2) +
+  geom_point(data = N_df[1,], aes(x = N1, y = N2), color = "black", size = 4)
+```
+
+> 4a) What region did you start your experiment in (indicated by the black dot)? Where did the populations end up (indicated by the end of the red line)? Briefly explain the path that the populations took from the starting conditions to the end conditions (relative to their competitive abilities and carrying capacities). 
+
+**Type answer here**
+
+> 4b) What is the ecological term for the outcome of these two species' interaction?
+
+**Type answer here**
+
+## When competitive exclusion is not a given
+
+> 5) Based on the information in Table 2, which species do you think is the stronger competitor? Briefly explain your answer
+
+**Type answer here**
+
+```{r isocline2, fig.width=6, fig.height=6, eval = FALSE}
+### Create K1, r1, and a12
+
+### Create K2, r2, and a21
+
+
+### Change `eval = FALSE` to `eval = TRUE` on line 46 so the following code will run
+isocline2 <- ggplot(data.frame(N1 = 0:600, 
+                          N2 = 0:600), aes(x = N1, y = N2)) +
+              geom_segment(aes(y = 0, x = K1, yend = K1/a21, xend =0)) +
+              geom_segment(aes(y = K2, x = 0, yend = 0, xend = K2/a12), linetype = "longdash") +
+              scale_x_continuous(breaks = c(K1, K2/a12)) +
+              scale_y_continuous(breaks = c(K2, K1/a21))
+
+(isocline3 <- isocline2 + annotate("text", x = 150, y = 150, label = "A", size = 10) +
+  annotate("text", x = 75, y = 75, label = "B", size = 10) +
+  annotate("text", x = 10, y = 220, label = "C", size = 10) +
+  annotate("text", x = 210, y = 10, label = "D", size = 10))
+```
+
+
+> 6) Based on the figure above, what do you predict the long-term outcome of these species' interaction to be (Will one species drive the other to extinction? Which species will win?)? Briefly explain your answer
+
+**Type answer here**
+
+```{r experiment2, fig.width=6, fig.height=6, eval = FALSE}
+## Empty vectors to store abundances
+N1 <- N2 <- numeric(length = 500)
+
+## Replace the question marks below with initial abundances for each species
+N1[1] <- ?
+N2[1] <- ?
+
+## Project abundance of both species using L-V model
+for(t in 2:500){
+  dN1dt <- r1 * N1[t-1] * ((K1 - (N1[t-1] + a21 * N2[t-1]))/K1)
+  N1[t] <- N1[t-1] + dN1dt 
+  
+  dN2dt <- r2 * N2[t-1] * ((K2 - (N2[t-1] + a12 * N1[t-1]))/K2)
+  N2[t] <- N2[t-1] + dN2dt 
+}
+
+## Store as data frame
+N_df <- data.frame(N1 = N1, N2 = N2)
+
+isocline3 + 
+  geom_path(data = N_df, aes(x = N1, y = N2), color = "red", size = 2) +
+  geom_point(data = N_df[1,], aes(x = N1, y = N2), color = "black", size = 4)
+```
+
+
+> 7a) Which species won the interaction? 
+
+**Type answer here**
+
+```{r experiment3, fig.width=6, fig.height=6, eval = FALSE}
+## Empty vectors to store abundances
+N1 <- N2 <- numeric(length = 500)
+
+## Replace the question marks below with initial abundances for each species
+N1[1] <- ?
+N2[1] <- ?
+
+## Project abundance of both species using L-V model
+for(t in 2:500){
+  dN1dt <- r1 * N1[t-1] * ((K1 - (N1[t-1] + a21 * N2[t-1]))/K1)
+  N1[t] <- N1[t-1] + dN1dt 
+  
+  dN2dt <- r2 * N2[t-1] * ((K2 - (N2[t-1] + a12 * N1[t-1]))/K2)
+  N2[t] <- N2[t-1] + dN2dt 
+}
+
+## Store as data frame
+N_df <- data.frame(N1 = N1, N2 = N2)
+
+isocline3 + 
+  geom_path(data = N_df, aes(x = N1, y = N2), color = "red", size = 2) +
+  geom_point(data = N_df[1,], aes(x = N1, y = N2), color = "black", size = 4)
+```
+
+> 7b) Did starting the species in a different quadrant lead to different long-term outcomes? What does this imply about the interactions between the two species? Specifically, what does this imply about the relative strength of intra- vs. inter-specific competition?
+
+**Type answer here**
+
+> 8) Based on the information in Table 3, which species do you think is the stronger competitor? Briefly explain your answer
+
+**Type answer here**
+
+```{r isocline3, fig.width=6, fig.height=6, eval = FALSE}
+### Create K1, r1, and a12
+
+### Create K2, r2, and a21
+
+
+### Change `eval = FALSE` to `eval = TRUE` on line 46 so the following code will run
+isocline2 <- ggplot(data.frame(N1 = 0:600, 
+                          N2 = 0:600), aes(x = N1, y = N2)) +
+              geom_segment(aes(y = 0, x = K1, yend = K1/a21, xend =0)) +
+              geom_segment(aes(y = K2, x = 0, yend = 0, xend = K2/a12), linetype = "longdash") +
+              scale_x_continuous(breaks = c(K1, K2/a12)) +
+              scale_y_continuous(breaks = c(K2, K1/a21))
+
+(isocline3 <- isocline2 + annotate("text", x = 120, y = 90, label = "A", size = 10) +
+  annotate("text", x = 75, y = 60, label = "B", size = 10) +
+  annotate("text", x = 10, y = 160, label = "C", size = 10) +
+  annotate("text", x = 172, y = 10, label = "D", size = 10))
+```
+
+
+> 9) Based on the figure above, what do you predict the long-term outcome of these species' interaction to be (Will one species drive the other to extinction? Which species will win?)? Briefly explain your answer
+
+**Type answer here**
+
+```{r experiment4, fig.width=6, fig.height=6, eval = FALSE}
+## Empty vectors to store abundances
+N1 <- N2 <- numeric(length = 500)
+
+## Replace the question marks below with initial abundances for each species
+N1[1] <- ?
+N2[1] <- ?
+
+## Project abundance of both species using L-V model
+for(t in 2:500){
+  dN1dt <- r1 * N1[t-1] * ((K1 - (N1[t-1] + a21 * N2[t-1]))/K1)
+  N1[t] <- N1[t-1] + dN1dt 
+  
+  dN2dt <- r2 * N2[t-1] * ((K2 - (N2[t-1] + a12 * N1[t-1]))/K2)
+  N2[t] <- N2[t-1] + dN2dt 
+}
+
+## Store as data frame
+N_df <- data.frame(N1 = N1, N2 = N2)
+
+isocline3 + 
+  geom_path(data = N_df, aes(x = N1, y = N2), color = "red", size = 2) +
+  geom_point(data = N_df[1,], aes(x = N1, y = N2), color = "black", size = 4)
+```
+
+
+> 10a) Which species won the interaction? 
+
+**Type answer here**
+
+```{r experiment5, fig.width=6, fig.height=6, eval = FALSE}
+## Empty vectors to store abundances
+N1 <- N2 <- numeric(length = 500)
+
+## Replace the question marks below with initial abundances for each species
+N1[1] <- ?
+N2[1] <- ?
+
+## Project abundance of both species using L-V model
+for(t in 2:500){
+  dN1dt <- r1 * N1[t-1] * ((K1 - (N1[t-1] + a21 * N2[t-1]))/K1)
+  N1[t] <- N1[t-1] + dN1dt 
+  
+  dN2dt <- r2 * N2[t-1] * ((K2 - (N2[t-1] + a12 * N1[t-1]))/K2)
+  N2[t] <- N2[t-1] + dN2dt 
+}
+
+## Store as data frame
+N_df <- data.frame(N1 = N1, N2 = N2)
+
+isocline3 + 
+  geom_path(data = N_df, aes(x = N1, y = N2), color = "red", size = 2) +
+  geom_point(data = N_df[1,], aes(x = N1, y = N2), color = "black", size = 4)
+```
+
+> 10b) Did starting the species in a different quadrant lead to different long-term outcomes? What does this imply about the interactions between the two species?
+
+**Type answer here**
+
+> 10c) Is the equilibrium condition (where the lines cross) have the same number of species 1 as species2? What does this imply about the competitive abilities of the two species? 
+
+**Type answer here**
+
+> 10d) Are there any initial values that allow the two species to coexist? Use the chunk below to play with the model and test your answer. Do these conditions seem realistic in a natural setting?
+
+**Type answer here**
+
+```{r experiment6, fig.width=6, fig.height=6, eval = FALSE}
+## Empty vectors to store abundances
+N1 <- N2 <- numeric(length = 500)
+
+## Replace the question marks below with initial abundances for each species
+N1[1] <- ?
+N2[1] <- ?
+
+## Project abundance of both species using L-V model
+for(t in 2:500){
+  dN1dt <- r1 * N1[t-1] * ((K1 - (N1[t-1] + a21 * N2[t-1]))/K1)
+  N1[t] <- N1[t-1] + dN1dt 
+  
+  dN2dt <- r2 * N2[t-1] * ((K2 - (N2[t-1] + a12 * N1[t-1]))/K2)
+  N2[t] <- N2[t-1] + dN2dt 
+}
+
+## Store as data frame
+N_df <- data.frame(N1 = N1, N2 = N2)
+
+isocline3 + 
+  geom_path(data = N_df, aes(x = N1, y = N2), color = "red", size = 2) +
+  geom_point(data = N_df[1,], aes(x = N1, y = N2), color = "black", size = 4)
+```

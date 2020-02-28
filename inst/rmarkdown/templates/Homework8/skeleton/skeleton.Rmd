@@ -1,5 +1,5 @@
 ---
-title: "Homework 7: Metapopulation dynamics"
+title: "Homework 8: Metapopulation dynamics"
 author: "YOUR NAME HERE"
 output: html_document
 
@@ -16,7 +16,7 @@ library(WILD3810)
 ```
 
 ***
-**Due before 2:30pm Monday April 8**
+**Due before 2:30pm Monday April 6**
 
 In this homework assignment, you will use `R` to explore how different factors (number of patches, extinction/colonization rate) influence metapopulation dynamics. 
 

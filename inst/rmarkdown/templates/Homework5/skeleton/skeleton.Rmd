@@ -21,6 +21,8 @@ In this assignment, you will use the data we collected from the Logan Cemetery t
 
 In the chunk below, enter the code from the in-class lab activity. Again, you do not need to copy code the prints the data frame objects. **Be sure to include comments about what each line does in order to recieve full credit on the assignment!**
 
+**Due before 2:30pm Monday March 16**
+
 ```{r}
 # Include code from the in-class activity here
 ```
