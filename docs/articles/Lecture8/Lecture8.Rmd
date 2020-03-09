@@ -766,7 +766,7 @@ lt%>%
 
 - With unbiased estimates of $\Large P_x$, can obtain unbiased estimates of $\Large l_x$ and $\Large q_x$
 
-- $\Large l_0 = 1$, $\Large l_{x+1} = 1_xP_x$
+- $\Large l_0 = 1$, $\Large l_{x+1} = l_xP_x$
 
 - $\Large q_{x} = 1- P_x$
 <br/>
