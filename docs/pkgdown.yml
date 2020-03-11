@@ -2,17 +2,19 @@ pandoc: 2.3.1
 pkgdown: 1.2.0.9000
 pkgdown_sha: c980e84a573614087c6e151d5e6e19a22748b761
 articles:
-  competition: competition.html
   exam1_2019: exams/exam1_2019.html
   homework: homework.html
   lab0: lab0.html
   lab1: lab1.html
+  lab10_competition: lab10_competition.html
   lab2: lab2.html
   lab3: lab3.html
   lab4: lab4.html
   lab5_life_tables: lab5_life_tables.html
   lab6_matrix_models: lab6_matrix_models.html
   lab7_tree_harvest: lab7_tree_harvest.html
+  lab8_metapopulation_dynamics: lab8_metapopulation_dynamics.html
+  lab9_source-sink: lab9_source-sink.html
   rmarkdown_intro: rmarkdown_intro.html
   schedule: schedule.html
   syllabus: syllabus.html

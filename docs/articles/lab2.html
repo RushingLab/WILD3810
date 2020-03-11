@@ -115,6 +115,18 @@
     <li>
       <a href="../articles/Lecture15/Lecture15.html">Lecture 15: Metapopulation dynamics II</a>
     </li>
+    <li>
+      <a href="../articles/Lecture16/Lecture16.html">Lecture 16: Source-sink dynamics</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture17/Lecture17.html">Lecture 17: Interspecific interactions</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture18/Lecture18.html">Lecture 18: Interspecific interactions: Predation</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture19/Lecture19.html">Lecture 19: Interspecific interactions: Predation, part II</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -152,6 +164,15 @@
     </li>
     <li>
       <a href="../articles/lab7_tree_harvest.html">Lab 7: Applications of matrix population models - Sustainable tree harvest</a>
+    </li>
+    <li>
+      <a href="../articles/lab8_metapopulation_dynamics.html">Lab 8: Metapopulation dynamics</a>
+    </li>
+    <li>
+      <a href="../articles/lab9_source-sink.html">Lab 9: Source-sink dynamics</a>
+    </li>
+    <li>
+      <a href="../articles/lab10_competition.html">Lab 10: Competition</a>
     </li>
   </ul>
 </li>
@@ -325,10 +346,10 @@ Image courtesy of Charles J Sharp via Wikicommons (CC BY-SA 4.0)
 <a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt; # … with 39 more rows</span></a></code></pre></div>
 <p>However, an easier way of doing this is using <code>data.frame$column</code> (where <code>data.frame</code> is the name of the data frame object and <code>column</code> is the name of the column). For example,</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">ut_dove_counts<span class="op">$</span>Year</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co">#&gt;  [1] 1968 1969 1970 1971 1972 1973 1974 1975 1976 1977 1978 1979 1980 1981</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt; [15] 1982 1983 1984 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; [29] 1996 1997 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009</span></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt; [43] 2010 2011 2012 2013 2014 2015 2016</span></a></code></pre></div>
+<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co">#&gt;  [1] 1968 1969 1970 1971 1972 1973 1974 1975 1976 1977 1978 1979 1980 1981 1982</span></a>
+<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt; [16] 1983 1984 1985 1986 1987 1988 1989 1990 1991 1992 1993 1994 1995 1996 1997</span></a>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt; [31] 1998 1999 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010 2011 2012</span></a>
+<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt; [46] 2013 2014 2015 2016</span></a></code></pre></div>
 <p>Notice that if you hit <code>tab</code> after you type the <code>$</code>, RStudio will bring up all of the columns and you can use the up or down buttons to find the one you want.</p>
 <p>Sometimes you may want to select more than one column. The easiest way to do that is to use the <code><a href="https://dplyr.tidyverse.org/reference/select.html">select()</a></code> function in the <code>dplyr</code> package:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</a>

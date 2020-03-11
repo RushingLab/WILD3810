@@ -1,7 +1,7 @@
 ---
 title: "Lecture 17"
-subtitle: "Source-sink dynamics"
-author: "<br/><br/><br/>WILD3810 (Spring 2019)"
+subtitle: "Interspecific interactions"
+author: "<br/><br/><br/>WILD3810 (Spring 2020)"
 output:
   xaringan::moon_reader:
     css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
@@ -19,390 +19,529 @@ library(WILD3810)
 library(gganimate)
 ```
 
-## Readings
+## Interspecific interactions
 
-> ### Mills 188-194
-
----
-## Metapopulations
-
-#### Focus of Levins metapopulation models and mainland-island model is on colonization and extinction
-
-- Consider only presence and complete absence
-
+#### Thus far, we have focus on the dynamics of populations composed of a single species
 
 --
-#### In reality, $\large \lambda$ within patches is governed by:
-
-- Births
-
-- Immigration
-
-- Deaths
-
-- Emigration
-
-
---
-#### How does movement interact with local birth/death processes to determine $\large \lambda$?
-
----
-class: inverse, middle, center
-
-# Source-sink dynamics
-
----
-## Source-sink dynamics
-
-#### Variation in habitat quality and biotic interactions (competition, predation, etc.) lead to patch-specific demography
-
---
-#### Source populations:
-
-- $\large b > d$
-
-- produce a net surplus of individuals
-
-
---
-#### Sink populations
-
-- $\large d > b$
-
-- produce a net deficit of individuals
-
----
-## Source-sink dynamics
-
-#### In high-quality source habitat, dominant individuals prevent young/inferior individuals from settling 
-- *despotism*
-
-
---
-#### Dispersing individuals forced to move from sources to sinks
-
-- dispersal can ‘rescue’ sinks from extinction
-
-- sinks can have $\large \lambda > 1$ but would decline without influx of immigrants
-
-
---
-#### Sources and sinks **cannot** be identified based on:
-
-- abundance
-
-- $\large \lambda$
-
-
----
-## Source-sink dynamics
-
-#### "Contribution" metric $(\large C)$
-
-$$\Large C_i = R_i + E_i$$
-
-- $\large R_i$: Self-recruitment rate
-
-- $\large E_i$: Emigration rate
-
----
-## Source-sink dynamics
-
-#### "Contribution" metric $(\large C)$
-
-- Sources: 
-    + $\large C_i > 1$
-    + contribute more individuals to the metapopulation (births and emigration) than lose to mortality
-
-- Sinks: 
-    + $\large C_i < 1$
-    + lose more individuals to mortality than contribute to metapopulation
-  
-    
---
-#### How can $\large C_i$ be measured?
-
----
-## Source-sink dynamics
-
-#### Self-recruitment rate $\large R_i$
-.pull-left[
-- $\large \lambda_i - I_i$
-
-- $\large I_i$ measured via:
-    + telemetry
-]    
-
-.pull-right[
-```{r out.width="100%", fig.align='center'}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/2/2a/Handheld_telemetry.jpg")
-```
-]
-
-???
-Image courtesy of Red Wolf Recovery Program, via Wikimedia Commons
-
----
-## Source-sink dynamics
-
-#### Self-recruitment rate $\large R_i$
-.pull-left[
-- $\large \lambda_i - I_i$
-
-- $\large I_i$ measured via:
-    + telemetry    
-    + genetics
-]
-
-.pull-right[
-```{r out.width="100%", fig.align='center'}
-knitr::include_graphics("figs/snp_map.png")
-```
-]
-
-???
-
-Image courtesy of [https://theconversation.com/heres-how-genetics-helped-crack-the-history-of-human-migration-52918](https://theconversation.com/heres-how-genetics-helped-crack-the-history-of-human-migration-52918)
-
----
-## Source-sink dynamics
-
-#### Self-recruitment rate $\large R_i$
-.pull-left[
-- $\large \lambda_i - I_i$
-
-- $\large I_i$ measured via:
-    + telemetry    
-    + genetics
-    + mark-recapture
-]
-
-.pull-right[
-```{r out.width="120%", fig.align='center'}
-knitr::include_graphics("figs/Sutherland_connectivity.png")
-```
-]
-
-???
-
-Figure from: Royle, J.A., Fuller, A.K. and Sutherland, C., 2018. Unifying population and landscape ecology with spatial capture–recapture. *Ecography*, 41(3), pp.444-456.
-
-
----
-## Source-sink dynamics
-
-#### Self-recruitment rate $\large R_i$
-
-.pull-left[
-- $\large \lambda_i - I_i$
-
-- $\large I_i$ measured via:
-    + telemetry    
-    + genetics
-    + mark-recapture    
-    + stable isotopes
-]
-
-.pull-right[
-```{r out.width="100%", fig.align='center'}
-knitr::include_graphics("figs/hma_NAmer copy.jpg")
-```
-]
-
----
-## Source-sink dynamics
-
-#### Emigration rate $\large E_i$
-
-- $\large \epsilon_i \sum_{j \neq i} \phi^{ij}_i$
-
-- $\large \epsilon_i$ (prob. emigration) and $\phi^{ij}_i$ measured via:
-    + telemetry
-    + mark-recapture
-
----
-## Source-sink dynamics
-
-#### Cougars in Yellowstone National Park (Newby et al. 2012)
-.pull-left[
-- $\large \lambda = 1.1$
-
-- $\large I = 0.13$
-
-- $\large \epsilon = 0.17$
-
-- $\large \phi = 0.59$
-]
-
-.pull-right[
-```{r out.width = "100%"}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/e/e5/Mountain_Lion_in_Grand_Teton_National_Park.jpg")
-```
-]
-
-<br/>
-
---
-$$\Large C = (1.11 - 0.13) + (0.17 \times 0.59) = 1.08$$
-
-???
-
-Image courtesy of the US National Park Service, via Wikicommons
-
----
-## Source-sink dynamics
-
-#### Wood thrush (*Hylocichla mustelina*)
-
-- In patches with $\large R > 1$, fecundity/juvenile survival drives population dynamics
-
-- In patches with $\large R < 1$, adult survival drives dynamics
-
-- Immigration rate is not related to $\large R$
-
-```{r out.width = "50%"}
-knitr::include_graphics("figs/plot_contr.png")
-```
-
-???
-Figure from Rushing et al. (2017)
-
----
-## Source-sink dynamics
-
-#### Modeling source-sink dynamics using matrix models 
-
-```{r out.width="40%"}
-knitr::include_graphics("figs/ss_matrix.png")
-```
-
---
-$$\LARGE \mathbf B = \begin{bmatrix}
-    R_1 & 0 & 0\\
-    E_{12} & R_2 & 0\\
-    E_{13} & 0 & R_3
-\end{bmatrix}$$
-
----
-## Source-sink dynamics
-
-$$\LARGE \begin{bmatrix}
-    n_{1,t+1}\\
-    n_{2,t+1}\\
-    n_{3,t+1}\end{bmatrix}=
-    \begin{bmatrix}
-    R_1 & 0 & 0\\
-    E_{12} & R_2 & 0\\
-    E_{13} & 0 & R_3
-\end{bmatrix} \times \begin{bmatrix}
-    n_{1,t}\\
-    n_{2,t}\\
-    n_{3,t} \end{bmatrix}$$
-
-
-- In this example, what do the vectors of population abundance represent?
-
----
-## Source-sink dynamics
-
-$$\LARGE \begin{bmatrix}
-    660\\
-    330\\
-    110\end{bmatrix}=
-    \begin{bmatrix}
-    1.1 & 0 & 0\\
-    0.1 & 0.9 & 0\\
-    0.05 & 0 & 0.8
-\end{bmatrix} \times \begin{bmatrix}
-    600\\
-    300\\
-    100 \end{bmatrix}$$
-
-
-
-```{r include = FALSE}
-B <- matrix(c(1.1, 0, 0, 
-              0.1, 0.9, 0,
-              0.05, 0, 0.8), nrow = 3, byrow = FALSE)
-```
-
-- Metapopulation growth rate: `popbio::lambda(B) = ` `r popbio::lambda(B)` 
-
-- Reproductive value: `popbio::reproductive.value(B) = ` `r round(popbio::reproductive.value(B), 2)`
-
----
-class: center, middle, inverse
-
-# Ecological traps
-
----
-## Ecological traps
-
-#### Animals attracted to a habitat because food resources or nesting cover appear to be high-quality
-
-- Habitat cues that were reliable in the past become unreliable 
-
-- Often, anthropogenic changes to landscape impede successful completion of reproductive cycle
-
-- Over-abundance of cowbirds (nest parasites), meso-predators (e.g., skunks, racoons), anthro-predators (e.g., housecats)
-
-- Traps look like sources to the animal, but demographically they behave like sinks
-
----
-## Ecological traps
-
-#### Polarized light
-
-- For many insects, horizontal polarized light indicates the presence of rivers/steams for mating and egg laying 
-
-- Many windows and even asphalt also produce horizontal light, attracting insects which lay their eggs on artificial surfaces
-
-```{r out.width="60%"}
-knitr::include_graphics("figs/mayflies.jpg")
-```
-
----
-## Ecological traps
-
-#### Grassland mowing
-
-- Many grassland birds nest in tall, dense grass
-
-- If these grasses are available early in the season but are then mowed after nesting has commenced, individuals may lose their entire clutch without enough time to renest
+#### But species exist within a **community**
 
 ```{r out.width="50%"}
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/1/18/Bobolink_%288931393007%29.jpg")
+
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/b/b0/Food_Web.svg")
 ```
 
-???
-Image courtesy of CheepShot, via Wikicommons
-
 ---
-## Source-sink dynamics and management
+## Interspecific interactions
 
-#### Overall metapopulation dynamics in a source-sink system depend on:
+#### Interactions among different species can increase or decrease vital rates
 
-- The net balance of $B$, $D$, $I$, and $E$ amongst all source and sink populations in the region (habitat component)
+- Fecundity
 
-- Environmental stochasticity (temporal environmental component)
+- Growth 
 
-- Demographic stochasticity (bad luck component)
-
----
-## Source-sink dynamics and management
-
-#### Source habitats could mistakenly be ignored if managers preserve habitat with highest abundance abundant (B. van Horne 1983 J. Wildlife Management)
-
-- Sink habitats may have high abundance if individuals forced into them (despotism)
-
-- Ecological traps may result in misleading indicators of habitat quality
+- Survival
 
 
 --
-#### If source habitats are not protected, the whole source-sink metapopulation could become threatened and collapse 
+#### Interactions come in many different forms
+
+---
+## Interspecific interactions
+
+#### Interactions come in many different forms
+<br/>
+
+```{r}
+library(kableExtra)
+interactions <- data.frame(A = c("+", "+", "+", "0", "-"),
+                           B = c("+", "0", "-", "-", "-"),
+                           Type = c("Mutualism", "Commensalism", "Contramensalism", "Amensalism", "Competition"))
+
+names(interactions) <- c("Species A", "Species B", "Interaction type")
+kable(interactions, align = 'c', format = 'html') %>%
+  kable_styling("striped", full_width = F) 
+```
+
+---
+## Interspecific interactions
+
+#### Interactions come in many different forms
+<br/>
+
+```{r}
+library(kableExtra)
+interactions <- data.frame(A = c("+", "+", "+", "0", "-"),
+                           B = c("+", "0", "-", "-", "-"),
+                           Type = c("Mutualism", "Commensalism", "Contramensalism", "Amensalism", "Competition"))
+
+names(interactions) <- c("Species A", "Species B", "Interaction type")
+kable(interactions, align = 'c', format = 'html') %>%
+  kable_styling("striped", full_width = F) %>%
+  row_spec(5, bold = T, color = "white", background = "#446E9B")
+```
+
+---
+class: middle, center, inverse
+
+# Interspecific competition
+
+---
+## Interspecific competition
+
+#### Direct
+
+**Interference competition**
+
+> individuals actively prevent others from attaining a resource in a given area or territory
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/X4J7DqSkkrU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+---
+## Interspecific competition
+
+#### Direct
+
+**Interference competition**
+
+> individuals actively prevent others from attaining a resource in a given area or territory
+
+
+*Allelopathy*: one plant releases toxic chemicals that poison the soil for others
+
+```{r out.width="55%"}
+knitr::include_graphics("figs/manzanita.jpg")
+```
+
+---
+## Interspecific competition
+
+#### Indirect
+
+**Exploitation competition**: 
+
+> consumption of limited resource by individuals makes it more difficult for others to attain the resource (scramble competition)
+
+
+**Pre-emptive competition**: 
+
+> competition for space (e.g., nest sites)
+
+
+---
+class: inverse, center, middle
+
+# The niche
+
+---
+## The niche
+
+#### What is a niche?
+
+--
+- Niche = habitat where a species lives (Grinnell 1917)
+    + e.g., the forest canopy 
+
+--
+- Niche = trophic position; an organism’s role (Elton 1927)
+    + e.g., birds of prey
+
+--
+- Niche = “n-dimensional hypervolume” (Hutchinson 1957)
+    + the multi-dimensional resources (e.g., temperature, precipitation, light, etc.) required by a species to persist
 
 
 --
-#### Must consider where species most productive (i.e., where $\lambda \geq 1$), on average, in a changing environment
+#### Competition arises from niche overlap
+
+---
+## The Hutchinsonian niche
+
+#### Niche dimensions are environmental factors (temperature, precipitation, light, etc.)
+
+#### Niche dimensions can be visualized as “resource axes”
+
+```{r out.width="70%"}
+knitr::include_graphics("figs/niche1.png")
+```
 
 
+---
+## Competition and the niche 
+
+#### **Fundamental niche**:
+
+> Total range of environmental conditions that allow population persistence
+
+
+--
+#### Strength of competition between co-occurring species is related to the degree of overlap between their fundamental niches
+
+- which set of species compete more strongly?
+<br/>
+<br/>
+
+```{r out.width="80%"}
+knitr::include_graphics("figs/niche_competition.png")
+```
+
+---
+## Competition and the niche 
+
+#### Competition keeps species from occupying all of their fundamental niche
+
+#### **Realized niche**:
+
+> Portion of fundamental niche occupied after interactions w/ other species
+
+
+```{r out.width="60%"}
+knitr::include_graphics("figs/realized_niche.png")
+```
+
+---
+## Competition and the niche 
+
+.pull-left[
+#### Classic experiment:
+
+- Joseph Connell (1961)
+
+- Barnacles
+    + *Balanus balanoides*
+    + *Chthalamus stellatus* 
+
+- Fundamental niches overlap
+
+- Competition w/ *Balanus* restricts *Chthamalus* to upper rocks (realized niche)
+]
+
+.pull-right[
+```{r out.width="100%"}
+knitr::include_graphics("figs/barnacles.png")
+```
+]
+
+---
+## Modeling competition
+
+#### How can interspecific competition be modeled?
+
+--
+#### We aleady learned about modeling *intra*specific competition
+
+$$\large \frac{dN}{dt} = r_0N\bigg(1-\frac{N}{K}\bigg)$$
+
+```{r fig.height=3, fig.width=5}
+K <- 1000
+df1 <- data.frame(N = NA, t = seq(1:100), pop = "1")
+
+df2 <- data.frame(N = NA, t = seq(1:100), pop = "2")
+
+df2$N[1] <- 5
+
+df1$N[1] <- 1500
+
+for(t in 2:nrow(df2)){
+  r <- 0.15*(1-df1$N[t-1]/K)
+  df1$N[t] <- df1$N[t-1] * exp(r)
+  
+  r2 <- 0.15*(1-df2$N[t-1]/K)
+  df2$N[t] <- df2$N[t-1] * exp(r2)
+  
+}
+
+df1$dNdt <- df1$N*(1-df1$N/K)
+df2$dNdt <- df2$N*(1-df2$N/K)
+
+df <- dplyr::bind_rows(df1, df2)
+
+(m <- ggplot(df, aes(t, N, color = pop)) + 
+      geom_hline(yintercept = c(K), linetype = "longdash", color = "grey20") +
+      geom_path(size = 2) +
+      scale_y_continuous(breaks = c(K), labels = c("K")) +
+      scale_x_continuous("Time") +
+      theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()) +
+  guides(size = FALSE, color = FALSE))
+```
+
+--
+```{r out.width="80%"}
+knitr::include_graphics("figs/logistic_isocline.png")
+```
+
+---
+## Interspecific competition
+
+#### If competing species are ecologically identical (use the same resources)
+- Inter-specific competition is equivalent to intra-specific competition
+
+- Each organism competes with all organisms of both species
+
+- Population growth rate of each species is determined by the sum of numbers of both species combined:
+
+$$\large \frac{dN_1}{dt} = r_1N_1\bigg(1-\frac{N_1 + N_2}{K_1}\bigg)$$
+
+$$\large \frac{dN_2}{dt} = r_2N_2\bigg(1-\frac{N_1 + N_2}{K_2}\bigg)$$
+---
+## Interspecific competition
+
+#### Isocline of single species logistic model 
+
+```{r out.width="80%"}
+knitr::include_graphics("figs/logistic_isocline.png")
+```
+
+--
+#### Becomes two-dimensional
+- on the isocline, $\frac{dN}{dt} = 0$
+
+```{r out.width="45%"}
+knitr::include_graphics("figs/isoclines.png")
+```
+
+---
+## Interspecific competition
+
+#### When species utilize the same niche:
+
+- Species with higher carrying capacity will competitively exclude the other 
+
+- Higher $K$ means that a species can endure more crowding than the other, given the environment (e.g., more effective at getting the resources) 
+
+.pull-left[
+```{r out.width="60%"}
+knitr::include_graphics("figs/isoclines2.png")
+```
+]
+
+.pull-right[
+```{r out.width="100%"}
+knitr::include_graphics("figs/competitive_exclusion.png")
+```
+]
+
+---
+## Interspecific competition
+
+Competitive Exclusion Principle was first eluded to by Grinnell (1904):
+
+> "Two species of approximately the same food habits are not likely to remain long evenly balanced in numbers in the same region. One will crowd out the other; the one longest exposed to local conditions, and hence best fitted, though ever so slightly, will survive, to the exclusion of any less favored would-be invader"
+
+---
+## Interspecific competition
+
+#### What if two competitors do not occupy the same niche? 
+- Effect of numbers of another species will not be equivalent to numbers of conspecifics
+
+- The force of interspecific competition will be < intraspecific competition because the other species occupies a (somewhat) different niche whereas conspecifics occupy the same niche
+
+```{r out.width="80%"}
+knitr::include_graphics("figs/niche_competition.png")
+```
+
+---
+## Interspecific competition
+
+#### Two individuals independently developed the same model during the 1920s and 1930s to accommodate the realities of competitive species occupying different niches 
+
+- Alfred J. Lotka and Vito Volterra
+
+- Lotka-Volterra competition model
+
+
+$$\large \frac{dN_1}{dt} = r_1N_1\bigg(\frac{K_1 - [N_1 + \alpha N_2]}{K_1}\bigg)$$
+
+$$\large \frac{dN_2}{dt} = r_2N_2\bigg( \frac{K_2 - [N_2 + \beta N_1]}{K_2}\bigg)$$
+
+- Competition coefficients
+    + $\alpha$ is the effect of species 2 on 1
+    + $\beta$ is the effect of species 1 on 2
+
+---
+## Lotka-Volterra competition model
+
+$$\large \frac{dN_1}{dt} = r_1N_1\bigg(\frac{K_1 - [N_1 + \alpha N_2]}{K_1}\bigg)$$
+
+$$\large \frac{dN_2}{dt} = r_2N_2\bigg( \frac{K_2 - [N_2 + \beta N_1]}{K_2}\bigg)$$
+
+- $\large \alpha < 0$ = Mutualism
+
+- $\large 0 < \alpha < 1$ = interspecific comp < intraspecific comp
+ 
+- $\large \alpha > 1$ = interspecific comp > intraspecific comp (rare) 
+
+- same relationships can be written for $\large \beta$
+
+---
+## Lotka-Volterra competition model
+
+#### Can set Lotka-Volterra differential equations to 0 and solve for long-term equilibrium solutions of competition
+
+$$\large 0 = r_1N_1\bigg(\frac{K_1 - [N_1 + \alpha N_2]}{K_1}\bigg)$$
+
+$$\large 0 = r_2N_2\bigg( \frac{K_2 - [N_2 + \beta N_1]}{K_2}\bigg)$$
+
+--
+$$\large \hat{N}_1 = K_1 - \alpha N_2$$
+
+$$\large \hat{N}_2 = K_2 - \beta N_1$$
+
+--
+- Equilibrium solutions depend on:
+    + carrying capacities
+
+    + competition coefficients
+
+    + abundance of other species
+
+---
+## Lotka-Volterra competition model
+
+#### Scenario 1: Isoclines do not cross, and that for species 1 is higher than that for 2
+
+.pull-left[
+```{r out.width="80%"}
+knitr::include_graphics("figs/spp1_wins.png")
+```
+]
+
+.pull-right[
+```{r out.width="100%"}
+knitr::include_graphics("figs/spp1_wins2.png")
+```
+]
+
+- Species 1 wins and competitively excludes 2 
+
+---
+## Lotka-Volterra competition model
+
+#### Scenario 2: Isoclines do not cross, and that for species 2 is higher than that for 1
+
+
+.pull-left[
+```{r out.width="80%"}
+knitr::include_graphics("figs/spp2_wins.png")
+```
+]
+
+.pull-right[
+```{r out.width="100%"}
+knitr::include_graphics("figs/spp2_wins2.png")
+```
+]
+
+- Species 2 wins and competitively excludes 1 
+
+
+---
+## Lotka-Volterra competition model
+
+#### Scenario 3: Isoclines cross, intraspecific comp stronger than interspecific comp
+
+
+.pull-left[
+```{r out.width="80%"}
+knitr::include_graphics("figs/coexist.png")
+```
+]
+
+.pull-right[
+```{r out.width="100%"}
+knitr::include_graphics("figs/coexist2.png")
+```
+]
+
+- Stable equilibrium with coexistence
+
+---
+## Coexistence
+
+#### How to avoid competitive exclusion?
+
+--
+#### Reduce niche overlap (niche differentiation)
+- **Spatially**
+
+
+.pull-left[
+Forage in the open
+```{r out.width="80%"}
+knitr::include_graphics("figs/mouse1.png")
+```
+]
+
+.pull-right[
+Forage under shrubs
+```{r out.width="80%"}
+knitr::include_graphics("figs/mouse2.png")
+```
+]
+
+
+---
+## Coexistence
+
+#### How to avoid competitive exclusion?
+
+#### Reduce niche overlap (niche differentiation)
+- **Temporally**
+
+
+.pull-left[
+Forage during the day
+```{r out.width="80%"}
+knitr::include_graphics("figs/TREE.png")
+```
+]
+
+.pull-right[
+Forage at night
+```{r out.width="80%"}
+knitr::include_graphics("figs/CONH.png")
+```
+]
+
+
+---
+## Coexistence
+
+#### How to avoid competitive exclusion?
+
+#### Reduce niche overlap (niche differentiation)
+- **Temporally**
+
+
+.pull-left[
+Warm season 
+```{r out.width="80%"}
+knitr::include_graphics("figs/warm.png")
+```
+]
+
+.pull-right[
+Cool season
+```{r out.width="80%"}
+knitr::include_graphics("figs/cool.png")
+```
+]
+
+
+---
+## Coexistence
+
+.pull-left[
+#### Many factors can result in niche differentiation
+
+#### Over evolutionary time, species have partitioned the available niches on Earth
+
+#### Species with sufficiently different ‘realized’ niches can coexist
+]
+
+.pull-right[
+```{r out.width="80%"}
+knitr::include_graphics("figs/finches.png")
+```
+]
