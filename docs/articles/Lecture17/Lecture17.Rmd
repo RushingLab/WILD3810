@@ -1,7 +1,7 @@
 ---
 title: "Lecture 17"
 subtitle: "Source-sink dynamics"
-author: "<br/><br/><br/>WILD3810 (Spring 2019)"
+author: "<br/><br/><br/>WILD3810 (Spring 2020)"
 output:
   xaringan::moon_reader:
     css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
@@ -368,7 +368,7 @@ knitr::include_graphics("figs/mayflies.jpg")
 
 - Many grassland birds nest in tall, dense grass
 
-- If these grasses are available early in the season but are then mowed after nesting has commenced, individuals may lose their entire clutch without enough time to renest
+- If these grasses are available early in the season but are then mowed after nesting has commenced, individuals may lose their entire clutch without enough time to re-nest
 
 ```{r out.width="50%"}
 knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/1/18/Bobolink_%288931393007%29.jpg")

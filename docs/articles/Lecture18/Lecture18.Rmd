@@ -1,7 +1,7 @@
 ---
 title: "Lecture 18"
 subtitle: "Interspecific interactions"
-author: "<br/><br/><br/>WILD3810 (Spring 2019)"
+author: "<br/><br/><br/>WILD3810 (Spring 2020)"
 output:
   xaringan::moon_reader:
     css: ["default", "WILD3810.css", "WILD3810-fonts.css"]

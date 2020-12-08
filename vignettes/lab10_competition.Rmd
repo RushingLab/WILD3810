@@ -1,0 +1,196 @@
+---
+title: "Interspecific interactions: Competition"
+author: "WILD3810: Plant and animal populations"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lab9}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>", 
+  warning = FALSE, 
+  message = FALSE
+)
+library(WILD3810)
+```
+
+In this lab, you will explore how the relative strength of intra- vs. inter-specific competition influences the joint dynamics of two competing species. 
+
+***
+**Objectives**
+
+* Model the dynamics of a competing species using Lotka-Voltera models
+
+***
+
+### Creating the homework assignment
+
+To complete this week's homework assignment, you will follow along with the instructions below, entering code and answering questions in the `.Rmd` file for homework 9. From within Rstudio cloud:
+
+1) Click on the `WILD3810` link under spaces
+
+2) Click the blue `New project` button at the top of the screen
+
+3) Rename the project `LastnameFirstname-HW10`
+
+4) Navigate to `New file -> R Markdown -> From Template`
+
+5) Scroll down to find `WILD3810-Homework10`
+
+6) In the `Name` box type `LastnameFirstname-HW10`
+
+7) Click `Ok`
+
+## The species
+
+In this lab, we'll imagine we have data on two competing frog species. The species inhabit the same breeding ponds and compete with each other for similar, though not totally overlapping, food resources. To start, we'll assume the following parameters correspond to the two species in the pond where we are conducting our experiment:
+
+```{r echo = FALSE}
+library(kableExtra)
+frog_df <- data.frame(Parameter = c("K", "r", "a"),
+                      A = c(200, 0.1, 1.2),
+                      B = c(200, 0.1, 0.9))
+
+names(frog_df) <- c("Parameter", "Species 1", "Species 2")
+
+knitr::kable(frog_df, format= 'html', align = 'c',
+             caption = "Demographic parameters of two competing frog species") %>% 
+  kableExtra::footnote(number = c("K = carrying capacity", "r = population growth rate", "a = relatives strength of inter-specific competition"))
+```
+
+Remember from the lecture the Lotka-Voltera competition model (written in a slightly different format here):
+
+$$\large \frac{dN_1}{dt} = r_AN_1\bigg(\frac{K_1 - [N_1 + a_{21} N_2]}{K_1}\bigg)$$
+
+$$\large \frac{dN_2}{dt} = r_2N_2\bigg( \frac{K_2 - [N_2 + a_{12} N_1]}{K_2}\bigg)$$
+
+So $a_{12}$ is the effect that adding one individual of species 1 has on the growth rate of species 2 (inter-specific competition) and $a_{21}$ is the effect that adding one individual of species 2 has on the growth rate of species 1. 
+
+***
+Using the information above, answer question 2 on the homework assignment
+
+***
+
+In the chunk named 'isocline', create objects to store the carrying capacity, growth rate, and competitive ability of each species. 
+
+***
+Be sure to change `eval = FALSE` to `eval = TRUE` on line 46 and then knit the document. Use the figure that is created by that chunk to answer questions 3a-3c
+
+***
+
+
+In the chunk named 'experiment1', set the initial abundances of each population to any value of your choosing. Change `eval = FALSE` to `eval = TRUE` in the chunk options and then knit the document to run the code. 
+
+***
+Use the figure that is created by the `experiment1` chunk to answer questions 4a-4b
+
+***
+
+## When competitive exclusion is not a given
+
+Now imagine two species with slightly different competitive abilities:
+
+```{r echo = FALSE}
+library(kableExtra)
+frog_df <- data.frame(Parameter = c("K", "r", "a"),
+                      A = c(200, 0.1, 0.85),
+                      B = c(200, 0.1, 0.75))
+
+names(frog_df) <- c("Parameter", "Species 1", "Species 2")
+
+knitr::kable(frog_df, format= 'html', align = 'c',
+             caption = "Demographic parameters of two competing frog species") %>% 
+  kableExtra::footnote(number = c("K = carrying capacity", "r = population growth rate", "a = relatives strength of inter-specific competition"))
+```
+
+***
+Using the information above, answer question 5 on the homework assignment
+
+***
+
+In the chunk named 'isocline2', create objects to store the carrying capacity, growth rate, and competitive ability of the new species. 
+
+***
+Be sure to change `eval = FALSE` to `eval = TRUE` in the chunk options and then knit the document. Use the figure that is created by that chunk to answer question 6
+
+***
+
+In the chunk named 'experiment2', set the initial abundances of each population to any value of your choosing. Change `eval = FALSE` to `eval = TRUE` in the chunk options and then knit the document to run the code. 
+
+***
+Use the figure that is created by the `experiment2` chunk to answer question 7a
+
+***
+
+Now start with different initial conditions. In the chunk named 'experiment3', set the initial abundances of each population start in a different quadrant of the graph. Change `eval = FALSE` to `eval = TRUE` in the chunk options and then knit the document to run the code. 
+
+***
+Use the figure that is created by the `experiment3` chunk to answer question 7b
+
+*** 
+
+Finally, we'll imagine a new pair of species with the following parameters:
+
+```{r echo = FALSE}
+library(kableExtra)
+frog_df <- data.frame(Parameter = c("K", "r", "a"),
+                      A = c(200, 0.1, 1.2),
+                      B = c(200, 0.1, 1.4))
+
+names(frog_df) <- c("Parameter", "Species 1", "Species 2")
+
+knitr::kable(frog_df, format= 'html', align = 'c',
+             caption = "Demographic parameters of two competing frog species") %>% 
+  kableExtra::footnote(number = c("K = carrying capacity", "r = population growth rate", "a = relatives strength of inter-specific competition"))
+```
+
+***
+Using the information above, answer question 8 on the homework assignment
+
+***
+
+In the chunk named 'isocline3', create objects to store the carrying capacity, growth rate, and competitive ability of the new species. 
+
+***
+Be sure to change `eval = FALSE` to `eval = TRUE` in the chunk options and then knit the document. Use the figure that is created by that chunk to answer question 9
+
+***
+
+
+In the chunk named 'experiment4', set the initial abundances of each population so that species 1 starts at a low abundance and species 2 starts at a high abundance (aim to start on the left hand side of regions A or B or within region C). Change `eval = FALSE` to `eval = TRUE` in the chunk options and then knit the document to run the code. 
+
+***
+Use the figure that is created by the `experiment4` chunk to answer question 10a
+
+***
+
+Now start with different initial conditions. In the chunk named 'experiment5', set the initial abundances of each population start in a different quadrant of the graph (aim to start on the right side with high abundance of species 1 and low abundance of species 2). Change `eval = FALSE` to `eval = TRUE` in the chunk options and then knit the document to run the code. 
+
+***
+Use the figure that is created by the `experiment5` chunk to answer question 10b
+
+*** 
+
+### Turning in your assignment
+
+1) In the `Files` pane (bottom right), navigate to the `LastnameFirstname_HW10.Rmd` and `LastnameFirstname_HW10.html` files
+
+2) Click on the square button next to each file to select them
+
+3) Click on the `More` button
+
+4) Click `Export`
+
+5) Select the location on your computer where you want to save the .zip file
+
+6) Decompress the .zip file
+
+7) Log in to Canvas
+
+8) Go to `Homework 10` assignment page
+
+9) Upload your files
