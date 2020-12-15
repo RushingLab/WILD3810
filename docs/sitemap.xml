@@ -10,9 +10,6 @@
     <loc>http://rushinglab.github.io/WILD3810/reference/alternative_pva.html</loc>
   </url>
   <url>
-    <loc>http://rushinglab.github.io/WILD3810/reference/alternative_variance_pva.html</loc>
-  </url>
-  <url>
     <loc>http://rushinglab.github.io/WILD3810/reference/baseline_pva.html</loc>
   </url>
   <url>
@@ -25,12 +22,6 @@
     <loc>http://rushinglab.github.io/WILD3810/reference/pva.html</loc>
   </url>
   <url>
-    <loc>http://rushinglab.github.io/WILD3810/articles/competition.html</loc>
-  </url>
-  <url>
-    <loc>http://rushinglab.github.io/WILD3810/articles/exams/exam1_2019.html</loc>
-  </url>
-  <url>
     <loc>http://rushinglab.github.io/WILD3810/articles/homework.html</loc>
   </url>
   <url>
@@ -38,6 +29,9 @@
   </url>
   <url>
     <loc>http://rushinglab.github.io/WILD3810/articles/lab1.html</loc>
+  </url>
+  <url>
+    <loc>http://rushinglab.github.io/WILD3810/articles/lab10_competition.html</loc>
   </url>
   <url>
     <loc>http://rushinglab.github.io/WILD3810/articles/lab2.html</loc>
@@ -56,6 +50,15 @@
   </url>
   <url>
     <loc>http://rushinglab.github.io/WILD3810/articles/lab7_tree_harvest.html</loc>
+  </url>
+  <url>
+    <loc>http://rushinglab.github.io/WILD3810/articles/lab8_metapopulation_dynamics.html</loc>
+  </url>
+  <url>
+    <loc>http://rushinglab.github.io/WILD3810/articles/lab9_source-sink.html</loc>
+  </url>
+  <url>
+    <loc>http://rushinglab.github.io/WILD3810/articles/matrix_models2.html</loc>
   </url>
   <url>
     <loc>http://rushinglab.github.io/WILD3810/articles/rmarkdown_intro.html</loc>

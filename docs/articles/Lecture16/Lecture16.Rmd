@@ -1,7 +1,7 @@
 ---
 title: "Lecture 16"
-subtitle: "Metapopulation dynamics II"
-author: "<br/><br/><br/>WILD3810 (Spring 2019)"
+subtitle: "Source-sink dynamics"
+author: "<br/><br/><br/>WILD3810 (Spring 2020)"
 output:
   xaringan::moon_reader:
     css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
@@ -19,309 +19,390 @@ library(WILD3810)
 library(gganimate)
 ```
 
-## Reading
+## Readings
 
-> ### Mills 188-196
-
-
----
-## Assumptions of the Levins model
-
-- $\large \gamma$ and $\large \epsilon$ are the same for every patch  
-<br/>
-- $\large \gamma$ and $\large \epsilon$ are constant over time  
-<br/>
-- $\large \gamma$ and $\large \epsilon$ are independent of patch size  
-<br/>
-- $\large \gamma$ and $\large \epsilon$ are independent of distance of patch to other patches  
-<br/>
-- $\large \gamma$ and $\large \epsilon$ are independent of population density  
-<br/>
-- Local birth-death dynamics are ignored  
-
+> ### Mills 188-194
 
 ---
-## Assumptions of the Levins model
+## Metapopulations
 
-- $\large \mathbf \gamma$ **and** $\large \mathbf \epsilon$ **are the same for every patch**  
-<br/>
-- $\large \gamma$ and $\large \epsilon$ are constant over time  
-<br/>
-- $\large \mathbf \gamma$ **and** $\large \mathbf \epsilon$ **are independent of patch size**  
-<br/>
-- $\large \gamma$ **and** $\large \epsilon$ **are independent of distance of patch to other patches**  
-<br/>
-- $\large \gamma$ and $\large \epsilon$ are independent of population density  
-<br/>
-- Local birth-death dynamics are ignored  
+#### Focus of Levins metapopulation models and mainland-island model is on colonization and extinction
 
----
-## Island biogeography
+- Consider only presence and complete absence
 
-#### About the same time Levins was developing the concept of Metapopulation dynamics, Robert MacArthur and E.O. Wilson were developing their theory of Island Biogeography (1963, 1967)
-
-
-```{r fig.width=8, fig.height=5}
-S <- seq(0, 2, by = 0.1)
-bio_df <- data.frame(S = S,
-                     Rate = c(exp(-S), exp(S)/max(exp(S))),
-                     rate = rep(c("Immigration", "Extinction"), each = length(S)),
-                     max = apply(cbind(exp(-S), exp(S)/max(exp(S))), 1, max),
-                     min = apply(cbind(exp(-S), exp(S)/max(exp(S))), 1, min))
-
-ggplot(bio_df, aes(x = S, y = Rate, color = rate)) +
-  geom_line(size = 2) +
-  theme(axis.ticks = element_blank(),
-        axis.text = element_blank())
-```
-
----
-## Island biogeography
-
-```{r fig.width=8, fig.height=5}
-ggplot(bio_df, aes(x = S, y = Rate, color = rate)) +
-  geom_line(size = 2) +
-  theme(axis.ticks = element_blank(),
-        axis.text = element_blank())
-```
-
-- **Immigration curve**: successful colonization decreases as number of species increases because niches and habitats become filled
-
-- **Extinction curve**: competition increases with increasing number of species, leads to higher extinction rate
-
----
-## Island biogeography
-
-```{r fig.width=8, fig.height=5}
-ggplot(bio_df, aes(x = S, y = Rate, color = rate)) +
-  geom_line(size = 2) +
-  theme(axis.ticks = element_blank(),
-        axis.text = element_blank()) +
-  geom_ribbon(data=subset(bio_df, S <= 1), 
-          aes(ymin=min,ymax=max), fill=WILD3810_colors$value[WILD3810_colors$name=="warning"], color = NA, alpha=0.15) +
-    geom_ribbon(data=subset(bio_df, S >= 1), 
-          aes(ymin=min,ymax=max), fill=WILD3810_colors$value[WILD3810_colors$name=="primary"], color = NA, alpha=0.15) 
-```
-
-$$\LARGE \Delta S = Imm - Ext$$
-
----
-## Island biogeography
-
-```{r fig.width=8, fig.height=5}
-ggplot(bio_df, aes(x = S, y = Rate, color = rate)) +
-  geom_segment(aes(y = -Inf, yend = 0.375, x = 1, xend = 1)) +
-  geom_line(size = 2) +
-  theme(axis.ticks = element_blank(),
-        axis.text = element_blank()) +
-  geom_ribbon(data=subset(bio_df, S <= 1), 
-          aes(ymin=min,ymax=max), fill=WILD3810_colors$value[WILD3810_colors$name=="warning"], color = NA, alpha=0.15) +
-    geom_ribbon(data=subset(bio_df, S >= 1), 
-          aes(ymin=min,ymax=max), fill=WILD3810_colors$value[WILD3810_colors$name=="primary"], color = NA, alpha=0.15) 
-```
-
-$$\LARGE \Delta S = Imm - Ext$$
-
----
-## Island biogeography
-
-```{r out.width="35%"}
-knitr::include_graphics("figs/mainland.png")
-```
-
----
-## Island biogeography
-
-#### Immigration curves should be lower for **far** islands than for **near** ones:
-
-- distant islands are less likely to be colonized
-
-```{r fig.width=8, fig.height=5}
-S <- seq(0, 2, by = 0.1)
-bio_df <- data.frame(S = S,
-                     Rate = c(exp(-S), exp(-S)/2, exp(S)/max(exp(S))),
-                     rate = rep(c("Immigration", "Immigration", "Emigration"), each = length(S)),
-                     distance = rep(c("Near", "Far", "Near"), each = length(S)))
-
-ggplot(bio_df, aes(x = S, y = Rate, color = rate, linetype = distance)) +
-  geom_segment(aes(y = -Inf, yend = 0.375, x = 1, xend = 1)) +
-  geom_segment(aes(y = -Inf, yend = 0.26, x = 0.65, xend = 0.65)) +
-  scale_linetype_manual(values = c("dashed", "solid")) +
-  geom_line(size = 2) +
-  scale_x_continuous(breaks = c(0.65, 1), labels = c("S[f]", "S[n]")) +
-  theme(axis.ticks.y = element_blank(),
-        axis.text.y = element_blank())
-```
-
-
----
-## Island biogeography
-
-#### Immigration curves should be lower for **small** islands than **large** ones:
-
-- smaller islands offer a smaller target to find 
-
-```{r fig.width=8, fig.height=5}
-S <- seq(0, 2, by = 0.1)
-bio_df <- data.frame(S = S,
-                     Rate = c(exp(-S), exp(-S)/2, exp(S)/max(exp(S))),
-                     rate = rep(c("Immigration", "Immigration", "Emigration"), 
-                                each = length(S)),
-                     Size = rep(c("Big", "Small", "Big"), each = length(S)))
-
-ggplot(bio_df, aes(x = S, y = Rate, color = rate, linetype = Size)) +
-  geom_segment(aes(y = -Inf, yend = 0.375, x = 1, xend = 1)) +
-  geom_segment(aes(y = -Inf, yend = 0.26, x = 0.65, xend = 0.65)) +
-  scale_linetype_manual(values = c("solid", "dashed")) +
-  geom_line(size = 2) +
-  scale_x_continuous(breaks = c(0.65, 1), labels = c("S[s]", "S[l]")) +
-  theme(axis.ticks.y = element_blank(),
-        axis.text.y = element_blank())
-```
-
-
-
----
-## Island biogeography
-
-#### Extinction curves should be higher for **small** islands than for **large** ones:
-
-- Small islands support smaller population sizes; increased risk of extinction via demographic stochasticity 
-
-```{r fig.width=8, fig.height=5}
-S <- seq(0, 2, by = 0.1)
-bio_df <- data.frame(S = S,
-                     Rate = c(exp(-S), exp(S)/max(exp(S)), exp(S)/max(exp(S))/2),
-                     rate = rep(c("Immigration", "Emigration", "Emigration"), 
-                                each = length(S)),
-                     Size = rep(c("Small", "Small", "Big"), each = length(S)))
-
-ggplot(bio_df, aes(x = S, y = Rate, color = rate, linetype = Size)) +
-  geom_segment(aes(y = -Inf, yend = 0.375, x = 1, xend = 1)) +
-  geom_segment(aes(y = -Inf, yend = 0.26, x = 1.35, xend = 1.35)) +
-  scale_linetype_manual(values = c("dashed", "solid")) +
-  geom_line(size = 2) +
-  scale_x_continuous(breaks = c(1, 1.35), labels = c("S[s]", "S[l]")) +
-  theme(axis.ticks.y = element_blank(),
-        axis.text.y = element_blank())
-```
-
-
----
-## Island biogeography
-
-.pull-left[
-```{r out.width="100%"}
-knitr::include_graphics("figs/S_eq.png")
-```
-]
-
-.pull-left[
-```{r out.width="70%"}
-knitr::include_graphics("figs/mainland.png")
-```
-]
-
----
-## Island biogeography
-
-#### How can the predictions of island biogeography be tested experimentally?
 
 --
-- Wilson andhis grad student Daniel Simberloff de-faunated small clumps of mangroves in Florida bay that differed in their distance from the mainland
+#### In reality, $\large \lambda$ within patches is governed by:
 
+- Births
+
+- Immigration
+
+- Deaths
+
+- Emigration
+
+
+--
+#### How does movement interact with local birth/death processes to determine $\large \lambda$?
+
+---
+class: inverse, middle, center
+
+# Source-sink dynamics
+
+---
+## Source-sink dynamics
+
+#### Variation in habitat quality and biotic interactions (competition, predation, etc.) lead to patch-specific demography
+
+--
+#### Source populations:
+
+- $\large b > d$
+
+- produce a net surplus of individuals
+
+
+--
+#### Sink populations
+
+- $\large d > b$
+
+- produce a net deficit of individuals
+
+---
+## Source-sink dynamics
+
+#### In high-quality source habitat, dominant individuals prevent young/inferior individuals from settling 
+- *despotism*
+
+
+--
+#### Dispersing individuals forced to move from sources to sinks
+
+- dispersal can ‘rescue’ sinks from extinction
+
+- sinks can have $\large \lambda > 1$ but would decline without influx of immigrants
+
+
+--
+#### Sources and sinks **cannot** be identified based on:
+
+- abundance
+
+- $\large \lambda$
+
+
+---
+## Source-sink dynamics
+
+#### "Contribution" metric $(\large C)$
+
+$$\Large C_i = R_i + E_i$$
+
+- $\large R_i$: Self-recruitment rate
+
+- $\large E_i$: Emigration rate
+
+---
+## Source-sink dynamics
+
+#### "Contribution" metric $(\large C)$
+
+- Sources: 
+    + $\large C_i > 1$
+    + contribute more individuals to the metapopulation (births and emigration) than lose to mortality
+
+- Sinks: 
+    + $\large C_i < 1$
+    + lose more individuals to mortality than contribute to metapopulation
+  
+    
+--
+#### How can $\large C_i$ be measured?
+
+---
+## Source-sink dynamics
+
+#### Self-recruitment rate $\large R_i$
 .pull-left[
-```{r out.width="90%"}
-knitr::include_graphics("figs/mangrove.png")
+- $\large \lambda_i - I_i$
+
+- $\large I_i$ measured via:
+    + telemetry
+]    
+
+.pull-right[
+```{r out.width="100%", fig.align='center'}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/2/2a/Handheld_telemetry.jpg")
 ```
 ]
 
+???
+Image courtesy of Red Wolf Recovery Program, via Wikimedia Commons
+
+---
+## Source-sink dynamics
+
+#### Self-recruitment rate $\large R_i$
 .pull-left[
-```{r out.width="80%"}
-knitr::include_graphics("figs/wilson_simberloff.png")
+- $\large \lambda_i - I_i$
+
+- $\large I_i$ measured via:
+    + telemetry    
+    + genetics
+]
+
+.pull-right[
+```{r out.width="100%", fig.align='center'}
+knitr::include_graphics("figs/snp_map.png")
+```
+]
+
+???
+
+Image courtesy of [https://theconversation.com/heres-how-genetics-helped-crack-the-history-of-human-migration-52918](https://theconversation.com/heres-how-genetics-helped-crack-the-history-of-human-migration-52918)
+
+---
+## Source-sink dynamics
+
+#### Self-recruitment rate $\large R_i$
+.pull-left[
+- $\large \lambda_i - I_i$
+
+- $\large I_i$ measured via:
+    + telemetry    
+    + genetics
+    + mark-recapture
+]
+
+.pull-right[
+```{r out.width="120%", fig.align='center'}
+knitr::include_graphics("figs/Sutherland_connectivity.png")
+```
+]
+
+???
+
+Figure from: Royle, J.A., Fuller, A.K. and Sutherland, C., 2018. Unifying population and landscape ecology with spatial capture–recapture. *Ecography*, 41(3), pp.444-456.
+
+
+---
+## Source-sink dynamics
+
+#### Self-recruitment rate $\large R_i$
+
+.pull-left[
+- $\large \lambda_i - I_i$
+
+- $\large I_i$ measured via:
+    + telemetry    
+    + genetics
+    + mark-recapture    
+    + stable isotopes
+]
+
+.pull-right[
+```{r out.width="100%", fig.align='center'}
+knitr::include_graphics("figs/hma_NAmer copy.jpg")
 ```
 ]
 
 ---
-## Island biogeography
+## Source-sink dynamics
 
-- **Prediction 1**: insect diversity would attain pre-removal levels
+#### Emigration rate $\large E_i$
 
-- **Prediction 2**: close islands would be colonized more quickly compared tomore distant islands 
+- $\large \epsilon_i \sum_{j \neq i} \phi^{ij}_i$
 
+- $\large \epsilon_i$ (prob. emigration) and $\phi^{ij}_i$ measured via:
+    + telemetry
+    + mark-recapture
+
+---
+## Source-sink dynamics
+
+#### Cougars in Yellowstone National Park (Newby et al. 2012)
 .pull-left[
-```{r out.width="90%"}
-knitr::include_graphics("figs/mangrove.png")
+- $\large \lambda = 1.1$
+
+- $\large I = 0.13$
+
+- $\large \epsilon = 0.17$
+
+- $\large \phi = 0.59$
+]
+
+.pull-right[
+```{r out.width = "100%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/e/e5/Mountain_Lion_in_Grand_Teton_National_Park.jpg")
 ```
 ]
 
-.pull-left[
-```{r out.width="80%"}
-knitr::include_graphics("figs/wilson_simberloff.png")
-```
-]
+<br/>
+
+--
+$$\Large C = (1.11 - 0.13) + (0.17 \times 0.59) = 1.08$$
+
+???
+
+Image courtesy of the US National Park Service, via Wikicommons
 
 ---
-## Island biogeography
+## Source-sink dynamics
 
-```{r out.width="80%"}
-knitr::include_graphics("figs/wilson_simberloff2.png")
+#### Wood thrush (*Hylocichla mustelina*)
+
+- In patches with $\large R > 1$, fecundity/juvenile survival drives population dynamics
+
+- In patches with $\large R < 1$, adult survival drives dynamics
+
+- Immigration rate is not related to $\large R$
+
+```{r out.width = "50%"}
+knitr::include_graphics("figs/plot_contr.png")
+```
+
+???
+Figure from Rushing et al. (2017)
+
+---
+## Source-sink dynamics
+
+#### Modeling source-sink dynamics using matrix models 
+
+```{r out.width="40%"}
+knitr::include_graphics("figs/ss_matrix.png")
+```
+
+--
+$$\LARGE \mathbf B = \begin{bmatrix}
+    R_1 & 0 & 0\\
+    E_{12} & R_2 & 0\\
+    E_{13} & 0 & R_3
+\end{bmatrix}$$
+
+---
+## Source-sink dynamics
+
+$$\LARGE \begin{bmatrix}
+    n_{1,t+1}\\
+    n_{2,t+1}\\
+    n_{3,t+1}\end{bmatrix}=
+    \begin{bmatrix}
+    R_1 & 0 & 0\\
+    E_{12} & R_2 & 0\\
+    E_{13} & 0 & R_3
+\end{bmatrix} \times \begin{bmatrix}
+    n_{1,t}\\
+    n_{2,t}\\
+    n_{3,t} \end{bmatrix}$$
+
+
+- In this example, what do the vectors of population abundance represent?
+
+---
+## Source-sink dynamics
+
+$$\LARGE \begin{bmatrix}
+    660\\
+    330\\
+    110\end{bmatrix}=
+    \begin{bmatrix}
+    1.1 & 0 & 0\\
+    0.1 & 0.9 & 0\\
+    0.05 & 0 & 0.8
+\end{bmatrix} \times \begin{bmatrix}
+    600\\
+    300\\
+    100 \end{bmatrix}$$
+
+
+
+```{r include = FALSE}
+B <- matrix(c(1.1, 0, 0, 
+              0.1, 0.9, 0,
+              0.05, 0, 0.8), nrow = 3, byrow = FALSE)
+```
+
+- Metapopulation growth rate: `popbio::lambda(B) = ` `r popbio::lambda(B)` 
+
+- Reproductive value: `popbio::reproductive.value(B) = ` `r round(popbio::reproductive.value(B), 2)`
+
+---
+class: center, middle, inverse
+
+# Ecological traps
+
+---
+## Ecological traps
+
+#### Animals attracted to a habitat because food resources or nesting cover appear to be high-quality
+
+- Habitat cues that were reliable in the past become unreliable 
+
+- Often, anthropogenic changes to landscape impede successful completion of reproductive cycle
+
+- Over-abundance of cowbirds (nest parasites), meso-predators (e.g., skunks, racoons), anthro-predators (e.g., housecats)
+
+- Traps look like sources to the animal, but demographically they behave like sinks
+
+---
+## Ecological traps
+
+#### Polarized light
+
+- For many insects, horizontal polarized light indicates the presence of rivers/steams for mating and egg laying 
+
+- Many windows and even asphalt also produce horizontal light, attracting insects which lay their eggs on artificial surfaces
+
+```{r out.width="60%"}
+knitr::include_graphics("figs/mayflies.jpg")
 ```
 
 ---
-## Island biogeography
+## Ecological traps
 
-#### Island Biogeography led to concept of **Mainland-Island metapopulation structure** 
+#### Grassland mowing
+
+- Many grassland birds nest in tall, dense grass
+
+- If these grasses are available early in the season but are then mowed after nesting has commenced, individuals may lose their entire clutch without enough time to renest
 
 ```{r out.width="50%"}
-knitr::include_graphics("figs/mainland_source.png")
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/1/18/Bobolink_%288931393007%29.jpg")
 ```
 
----
-## Mainland-island
-
-#### Large, stable Mainland population:
-
-- Provides a constant supply of dispersing individuals
-
-
-- Colonization does not depend on fraction of islands occupied because colonization largely comes from the mainland
-
-$$\LARGE \hat{\psi} = \frac{\gamma}{\gamma + \epsilon}$$
-
-- Guarantees that at least some islands are occupied because of continual flood of immigration from mainland
+???
+Image courtesy of CheepShot, via Wikicommons
 
 ---
-## Implications of IB and M-I for habitat conservation
+## Source-sink dynamics and management
 
-#### Preserving single large refuge and tract of habitat
-- Supports greater local abundance
+#### Overall metapopulation dynamics in a source-sink system depend on:
 
-- Has low chance of local extinction 
+- The net balance of $B$, $D$, $I$, and $E$ amongst all source and sink populations in the region (habitat component)
 
-- Supports more species
+- Environmental stochasticity (temporal environmental component)
+
+- Demographic stochasticity (bad luck component)
 
 ---
-## Implications of IB and M-I for habitat conservation
+## Source-sink dynamics and management
 
-#### Preserving single large refuge and tract of habitat
-- Supports greater local abundance
+#### Source habitats could mistakenly be ignored if managers preserve habitat with highest abundance abundant (B. van Horne 1983 J. Wildlife Management)
 
-- Has low chance of local extinction 
+- Sink habitats may have high abundance if individuals forced into them (despotism)
 
-- Supports more species
-
-- Vulnerable to isolated catastrophe
+- Ecological traps may result in misleading indicators of habitat quality
 
 
 --
-#### Preserving several small tracts of habitat 
+#### If source habitats are not protected, the whole source-sink metapopulation could become threatened and collapse 
 
-- Higher chance of local extinctions
 
-- More robust to isolated catastrophes
-
-- Connectivity amongst habitat patches is crucial
-
+--
+#### Must consider where species most productive (i.e., where $\lambda \geq 1$), on average, in a changing environment
 
 

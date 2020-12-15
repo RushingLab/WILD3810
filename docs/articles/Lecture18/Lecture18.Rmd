@@ -1,6 +1,10 @@
 ---
 title: "Lecture 18"
+<<<<<<< HEAD
 subtitle: "Interspecific interactions"
+=======
+subtitle: "Interspecific interactions: Predation"
+>>>>>>> 5574edd7fe912a3269261d268fc8f26b0196581a
 author: "<br/><br/><br/>WILD3810 (Spring 2020)"
 output:
   xaringan::moon_reader:
@@ -19,32 +23,10 @@ library(WILD3810)
 library(gganimate)
 ```
 
-## Interspecific interactions
+## Readings
 
-#### Thus far, we have focus on the dynamics of populations composed of a single species
+> ### Mills 142-153
 
---
-#### But species exist within a **community**
-
-```{r out.width="50%"}
-
-knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/b/b0/Food_Web.svg")
-```
-
----
-## Interspecific interactions
-
-#### Interactions among different species can increase or decrease vital rates
-
-- Fecundity
-
-- Growth 
-
-- Survival
-
-
---
-#### Interactions come in many different forms
 
 ---
 ## Interspecific interactions
@@ -78,470 +60,706 @@ interactions <- data.frame(A = c("+", "+", "+", "0", "-"),
 names(interactions) <- c("Species A", "Species B", "Interaction type")
 kable(interactions, align = 'c', format = 'html') %>%
   kable_styling("striped", full_width = F) %>%
-  row_spec(5, bold = T, color = "white", background = "#446E9B")
+  row_spec(3, bold = T, color = "white", background = "#446E9B")
 ```
 
 ---
 class: middle, center, inverse
 
-# Interspecific competition
+# Predation
 
 ---
-## Interspecific competition
+## Predation
 
-#### Direct
-
-**Interference competition**
-
-> individuals actively prevent others from attaining a resource in a given area or territory
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/X4J7DqSkkrU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-
----
-## Interspecific competition
-
-#### Direct
-
-**Interference competition**
-
-> individuals actively prevent others from attaining a resource in a given area or territory
-
-
-*Allelopathy*: one plant releases toxic chemicals that poison the soil for others
-
-```{r out.width="55%"}
-knitr::include_graphics("figs/manzanita.jpg")
-```
-
----
-## Interspecific competition
-
-#### Indirect
-
-**Exploitation competition**: 
-
-> consumption of limited resource by individuals makes it more difficult for others to attain the resource (scramble competition)
-
-
-**Pre-emptive competition**: 
-
-> competition for space (e.g., nest sites)
-
-
----
-class: inverse, center, middle
-
-# The niche
-
----
-## The niche
-
-#### What is a niche?
-
---
-- Niche = habitat where a species lives (Grinnell 1917)
-    + e.g., the forest canopy 
-
---
-- Niche = trophic position; an organism’s role (Elton 1927)
-    + e.g., birds of prey
-
---
-- Niche = “n-dimensional hypervolume” (Hutchinson 1957)
-    + the multi-dimensional resources (e.g., temperature, precipitation, light, etc.) required by a species to persist
-
-
---
-#### Competition arises from niche overlap
-
----
-## The Hutchinsonian niche
-
-#### Niche dimensions are environmental factors (temperature, precipitation, light, etc.)
-
-#### Niche dimensions can be visualized as “resource axes”
-
-```{r out.width="70%"}
-knitr::include_graphics("figs/niche1.png")
-```
-
-
----
-## Competition and the niche 
-
-#### **Fundamental niche**:
-
-> Total range of environmental conditions that allow population persistence
-
-
---
-#### Strength of competition between co-occurring species is related to the degree of overlap between their fundamental niches
-
-- which set of species compete more strongly?
-<br/>
-<br/>
-
-```{r out.width="80%"}
-knitr::include_graphics("figs/niche_competition.png")
-```
-
----
-## Competition and the niche 
-
-#### Competition keeps species from occupying all of their fundamental niche
-
-#### **Realized niche**:
-
-> Portion of fundamental niche occupied after interactions w/ other species
-
-
-```{r out.width="60%"}
-knitr::include_graphics("figs/realized_niche.png")
-```
-
----
-## Competition and the niche 
-
-.pull-left[
-#### Classic experiment:
-
-- Joseph Connell (1961)
-
-- Barnacles
-    + *Balanus balanoides*
-    + *Chthalamus stellatus* 
-
-- Fundamental niches overlap
-
-- Competition w/ *Balanus* restricts *Chthamalus* to upper rocks (realized niche)
-]
-
-.pull-right[
-```{r out.width="100%"}
-knitr::include_graphics("figs/barnacles.png")
-```
-]
-
----
-## Modeling competition
-
-#### How can interspecific competition be modeled?
-
---
-#### We aleady learned about modeling *intra*specific competition
-
-$$\large \frac{dN}{dt} = r_0N\bigg(1-\frac{N}{K}\bigg)$$
-
-```{r fig.height=3, fig.width=5}
-K <- 1000
-df1 <- data.frame(N = NA, t = seq(1:100), pop = "1")
-
-df2 <- data.frame(N = NA, t = seq(1:100), pop = "2")
-
-df2$N[1] <- 5
-
-df1$N[1] <- 1500
-
-for(t in 2:nrow(df2)){
-  r <- 0.15*(1-df1$N[t-1]/K)
-  df1$N[t] <- df1$N[t-1] * exp(r)
-  
-  r2 <- 0.15*(1-df2$N[t-1]/K)
-  df2$N[t] <- df2$N[t-1] * exp(r2)
-  
-}
-
-df1$dNdt <- df1$N*(1-df1$N/K)
-df2$dNdt <- df2$N*(1-df2$N/K)
-
-df <- dplyr::bind_rows(df1, df2)
-
-(m <- ggplot(df, aes(t, N, color = pop)) + 
-      geom_hline(yintercept = c(K), linetype = "longdash", color = "grey20") +
-      geom_path(size = 2) +
-      scale_y_continuous(breaks = c(K), labels = c("K")) +
-      scale_x_continuous("Time") +
-      theme(axis.text.x = element_blank(), axis.ticks.x = element_blank()) +
-  guides(size = FALSE, color = FALSE))
-```
-
---
-```{r out.width="80%"}
-knitr::include_graphics("figs/logistic_isocline.png")
-```
-
----
-## Interspecific competition
-
-#### If competing species are ecologically identical (use the same resources)
-- Inter-specific competition is equivalent to intra-specific competition
-
-- Each organism competes with all organisms of both species
-
-- Population growth rate of each species is determined by the sum of numbers of both species combined:
-
-$$\large \frac{dN_1}{dt} = r_1N_1\bigg(1-\frac{N_1 + N_2}{K_1}\bigg)$$
-
-$$\large \frac{dN_2}{dt} = r_2N_2\bigg(1-\frac{N_1 + N_2}{K_2}\bigg)$$
----
-## Interspecific competition
-
-#### Isocline of single species logistic model 
-
-```{r out.width="80%"}
-knitr::include_graphics("figs/logistic_isocline.png")
-```
-
---
-#### Becomes two-dimensional
-- on the isocline, $\frac{dN}{dt} = 0$
-
-```{r out.width="45%"}
-knitr::include_graphics("figs/isoclines.png")
-```
-
----
-## Interspecific competition
-
-#### When species utilize the same niche:
-
-- Species with higher carrying capacity will competitively exclude the other 
-
-- Higher $K$ means that a species can endure more crowding than the other, given the environment (e.g., more effective at getting the resources) 
-
-.pull-left[
-```{r out.width="60%"}
-knitr::include_graphics("figs/isoclines2.png")
-```
-]
-
-.pull-right[
-```{r out.width="100%"}
-knitr::include_graphics("figs/competitive_exclusion.png")
-```
-]
-
----
-## Interspecific competition
-
-Competitive Exclusion Principle was first eluded to by Grinnell (1904):
-
-> "Two species of approximately the same food habits are not likely to remain long evenly balanced in numbers in the same region. One will crowd out the other; the one longest exposed to local conditions, and hence best fitted, though ever so slightly, will survive, to the exclusion of any less favored would-be invader"
-
----
-## Interspecific competition
-
-#### What if two competitors do not occupy the same niche? 
-- Effect of numbers of another species will not be equivalent to numbers of conspecifics
-
-- The force of interspecific competition will be < intraspecific competition because the other species occupies a (somewhat) different niche whereas conspecifics occupy the same niche
-
-```{r out.width="80%"}
-knitr::include_graphics("figs/niche_competition.png")
-```
-
----
-## Interspecific competition
-
-#### Two individuals independently developed the same model during the 1920s and 1930s to accommodate the realities of competitive species occupying different niches 
-
-- Alfred J. Lotka and Vito Volterra
-
-- Lotka-Volterra competition model
-
-
-$$\large \frac{dN_1}{dt} = r_1N_1\bigg(\frac{K_1 - [N_1 + \alpha N_2]}{K_1}\bigg)$$
-
-$$\large \frac{dN_2}{dt} = r_2N_2\bigg( \frac{K_2 - [N_2 + \beta N_1]}{K_2}\bigg)$$
-
-- Competition coefficients
-    + $\alpha$ is the effect of species 2 on 1
-    + $\beta$ is the effect of species 1 on 2
-
----
-## Lotka-Volterra competition model
-
-$$\large \frac{dN_1}{dt} = r_1N_1\bigg(\frac{K_1 - [N_1 + \alpha N_2]}{K_1}\bigg)$$
-
-$$\large \frac{dN_2}{dt} = r_2N_2\bigg( \frac{K_2 - [N_2 + \beta N_1]}{K_2}\bigg)$$
-
-- $\large \alpha < 0$ = Mutualism
-
-- $\large 0 < \alpha < 1$ = interspecific comp < intraspecific comp
+<iframe width="560" height="315" align="center" src="https://www.youtube.com/embed/Rv9hn4IGofM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
  
-- $\large \alpha > 1$ = interspecific comp > intraspecific comp (rare) 
-
-- same relationships can be written for $\large \beta$
 
 ---
-## Lotka-Volterra competition model
+## Predation
 
-#### Can set Lotka-Volterra differential equations to 0 and solve for long-term equilibrium solutions of competition
+#### Important, widespread effects on:
 
-$$\large 0 = r_1N_1\bigg(\frac{K_1 - [N_1 + \alpha N_2]}{K_1}\bigg)$$
+- Evolution of behavior, morphology, physiology
 
-$$\large 0 = r_2N_2\bigg( \frac{K_2 - [N_2 + \beta N_1]}{K_2}\bigg)$$
+.pull-left[
+**Semelparity**  
+
+- Synchronous and massive production of offspring
+
+- Predators readily become full (satiated) 
+
+- Most offspring escape and survive
+]
+
+.pull-right[
+```{r out.width="75%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/3/3b/Agave_July_2011-1.jpg")
+```
+]
+
+???
+
+Image courtesy of 
+
+---
+## Predation
+
+#### Important, widespread effects on:
+
+- Evolution of behavior, morphology, physiology
+
+.pull-left[
+**Behavior**  
+
+- Adult birds feign injury to lure predators away from nest 
+
+]
+
+.pull-right[
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OUKieDNDWCs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+]
+
+---
+## Predation
+
+#### Important, widespread effects on:
+
+- Evolution of behavior, morphology, physiology
+
+.pull-left[
+**Behavior**  
+
+- Group hunting
+
+]
+
+.pull-right[
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Ai3eVjr0Pzg?start=17" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+]
+
+
+---
+## Predation
+
+#### Important, widespread effects on:
+
+- Evolution of behavior, morphology, physiology
+
+.pull-left[
+**Physical defense**  
+
+```{r out.width="80%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/7/76/Negev_Tortoise_Luxor.JPG")
+```
+]
+
+.pull-right[
+```{r out.width="80%"}
+knitr::include_graphics("figs/cactus.png")
+```
+]
+
+---
+## Predation
+
+#### Important, widespread effects on:
+
+- Evolution of behavior, morphology, physiology
+
+.pull-left[
+**Chemical defense**  
+
+```{r out.width="80%"}
+knitr::include_graphics("figs/poison_ivy.png")
+```
+
+]
+
+.pull-right[
+<br/>
+```{r out.width="80%"}
+knitr::include_graphics("figs/dart_frog.png")
+```
+]
+
+---
+## Predation
+
+#### Important, widespread effects on:
+
+- Evolution of behavior, morphology, physiology
+
+.pull-left[
+**Camouflage**  
+
+```{r out.width="80%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/1/18/Crocodylus_acutus_camouflage.jpg")
+```
+]
+
+.pull-right[
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_gyHNYtLgWo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+]
+
+---
+## Predation
+
+#### Important, widespread effects on:
+
+- Evolution of behavior, morphology, physiology
+
+.pull-left[
+**Aposematic coloration**  
+
+```{r out.width="80%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/c/cb/Micrurus_tener.jpg")
+```
+]
+
+.pull-right[
+```{r out.width="80%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/4/4a/Xystodesmid_Catoctin_Mountain_Park.jpg")
+```
+]
+
+
+---
+## Predation
+
+#### Important, widespread effects on:
+
+- Evolution of behavior, morphology, physiology
+
+.pull-left[
+**Mimicry**  
+
+- *Batesian* mimicry: harmless species mimic poisonous/unpalatable species
+```{r out.width="80%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/c/cb/Micrurus_tener.jpg")
+```
+]
+
+.pull-right[
+<br/>
+<br/>
+```{r out.width="70%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/a/aa/Red_milk_snake.JPG")
+```
+]
+
+---
+## Predation
+
+#### Important, widespread effects on:
+
+- Evolution of behavior, morphology, physiology
+
+.pull-left[
+**Mimicry**  
+
+- *Mullerian* mimicry: convergence of several harmful species on same pattern
+
+]
+
+.pull-right[
+```{r out.width="80%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/6/6e/M%C3%BCllerian_mimicry_%2832149192376%29.jpg")
+```
+]
+
+
+---
+## Predation
+
+#### Important, widespread effects on:
+
+- Evolution of behavior, morphology, physiology
+
+.pull-left[
+**Physiology**  
+
+```{r out.width="80%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/9/90/Antilocapra_americana_pair_%28crop%29.jpg")
+```
+
+]
+
+.pull-right[
+```{r out.width="80%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/6/61/Falco_peregrinus_-Morro_Rock%2C_Morro_Bay%2C_California%2C_USA_-flying-8.jpg")
+```
+]
+
+---
+## Predation
+
+#### Important, widespread effects on:
+
+- Community structure
+    + Picky predators can promote coexistence among competing prey species when the dominant competitor is the preferred prey (i.e. ‘competitive exclusion’ is prevented by predator)
 
 --
-$$\large \hat{N}_1 = K_1 - \alpha N_2$$
+.pull-left[
+**The predator**  
 
-$$\large \hat{N}_2 = K_2 - \beta N_1$$
+```{r out.width="80%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/a/ad/Orange_Starfish_at_Olympic_National_Park.jpg")
+```
+
+]
+
+.pull-right[
+**The prey**  
+
+```{r out.width="80%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/2/23/Acorn_Barnacles_%28Balanus_perforatus%29_group%2C_Irvine.jpg")
+```
+]
+
+
+---
+## Predation
+
+#### Important, widespread effects on:
+
+- Community structure
+
+.pull-left[
+- In the presence of starfish, mussels and barnacles coexist
+
+- If starfish are experimentally removed, competitive exclusion of barnacles
+    + mussels are the dominant competitor but also the preferred prey
+
+- *competitor-mediated coexistance*
+]
+
+.pull-right[
+
+```{r out.width="80%"}
+knitr::include_graphics("figs/cmc.png")
+```
+]
+
+---
+## Predation
+
+#### Important, widespread effects on:
+
+- Regulation of abundance and population dynamics of both predator and prey
+
 
 --
-- Equilibrium solutions depend on:
-    + carrying capacities
-
-    + competition coefficients
-
-    + abundance of other species
-
----
-## Lotka-Volterra competition model
-
-#### Scenario 1: Isoclines do not cross, and that for species 1 is higher than that for 2
-
-.pull-left[
-```{r out.width="80%"}
-knitr::include_graphics("figs/spp1_wins.png")
-```
-]
-
-.pull-right[
-```{r out.width="100%"}
-knitr::include_graphics("figs/spp1_wins2.png")
-```
-]
-
-- Species 1 wins and competitively excludes 2 
-
----
-## Lotka-Volterra competition model
-
-#### Scenario 2: Isoclines do not cross, and that for species 2 is higher than that for 1
-
-
-.pull-left[
-```{r out.width="80%"}
-knitr::include_graphics("figs/spp2_wins.png")
-```
-]
-
-.pull-right[
-```{r out.width="100%"}
-knitr::include_graphics("figs/spp2_wins2.png")
-```
-]
-
-- Species 2 wins and competitively excludes 1 
-
-
----
-## Lotka-Volterra competition model
-
-#### Scenario 3: Isoclines cross, intraspecific comp stronger than interspecific comp
-
-
-.pull-left[
-```{r out.width="80%"}
-knitr::include_graphics("figs/coexist.png")
-```
-]
-
-.pull-right[
-```{r out.width="100%"}
-knitr::include_graphics("figs/coexist2.png")
-```
-]
-
-- Stable equilibrium with coexistence
-
----
-## Coexistence
-
-#### How to avoid competitive exclusion?
+#### Do predators control the abundance of their prey?
 
 --
-#### Reduce niche overlap (niche differentiation)
-- **Spatially**
+##### Yes
 
+- Introduced rats, mongoose, and cats have caused the extinction of at least 43 bird species
+
+```{r out.width="30%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/c/c2/Feral_Cat_%285573630708%29.jpg")
+```
+
+---
+## Predation
+
+#### Important, widespread effects on:
+
+- Regulation of abundance and population dynamics of both predator and prey
+
+
+#### Do predators control the abundance of their prey?
+
+##### Yes
+
+- Invasive brown tree snakes caused the extinction of 10 bird species on the island of Guam
+
+```{r out.width="40%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/8/8a/Brown_tree_snake_%28Boiga_irregularis%29_%288387580552%29.jpg")
+```
+
+---
+## Predation
+
+#### Important, widespread effects on:
+
+- Regulation of abundance and population dynamics of both predator and prey
+
+
+#### Do predators control the abundance of their prey?
+
+##### Yes
+
+- Mesopredator release
 
 .pull-left[
-Forage in the open
-```{r out.width="80%"}
-knitr::include_graphics("figs/mouse1.png")
+```{r out.width="75%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/f/f5/Kojote2010.JPG")
 ```
 ]
 
 .pull-right[
-Forage under shrubs
-```{r out.width="80%"}
-knitr::include_graphics("figs/mouse2.png")
+```{r out.width="75%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/6/69/Raccoons_eat_deer.png")
 ```
 ]
 
 
 ---
-## Coexistence
+## Predation
 
-#### How to avoid competitive exclusion?
+#### Important, widespread effects on:
 
-#### Reduce niche overlap (niche differentiation)
-- **Temporally**
+- Regulation of abundance and population dynamics of both predator and prey
+
+
+#### Do predators control the abundance of their prey?
+
+#### Maybe?
 
 
 .pull-left[
-Forage during the day
-```{r out.width="80%"}
-knitr::include_graphics("figs/TREE.png")
+```{r out.width="75%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/d/dc/Eurasian_wolf.JPG")
 ```
 ]
 
 .pull-right[
-Forage at night
+```{r out.width="75%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/c/c9/Moose-Gustav.jpg")
+```
+]
+
+---
+## Predation
+
+#### Important, widespread effects on:
+
+- Regulation of abundance and population dynamics of both predator and prey
+
+
+#### Do predators control the abundance of their prey?
+
+- On Island Royale, wolf/moose populations are linked but also influenced by vegetation and winter severity
+
+```{r out.width="40%"}
+knitr::include_graphics("figs/wolf_moose.png")
+```
+
+---
+class: inverse, middle, center
+
+# How do predators impact prey population?
+
+---
+## How do predators impact prey population?
+
+#### Predation rate $(\large P)$
+
+> Percentage of prey population killed per unit time
+
+$$\large P = \frac{\#\; prey\; killed}{Prey\; abundance} \times 100$$
+
+--
+- Number of prey killed = numerical response $\times$ functional response
+
+---
+class: inverse, middle, center
+
+# Numerical response
+
+---
+## Numerical response
+
+#### Change in number of predators as prey abundance changes
+
+- Number of predators present at a given prey density
+
+--
+- Function of how prey influence $B$ $D$ of predator
+
+```{r fig.width=6, fig.height=4}
+d <- seq(from = 0, to = 2.5, by = 0.1)
+nr1 <- 0.19 * d
+
+nr_df <- data.frame(d = d, 
+                    nr = nr1,
+                    response = "linear")
+
+ggplot(nr_df, aes(x = d, y = nr, color = response)) +
+  geom_line(size = 2) +
+  guides(color = FALSE) +
+  scale_y_continuous("Numerical response") +
+  scale_x_continuous("Prey Density") +
+  theme(axis.text.y = element_blank())
+```
+
+
+---
+## Numerical response
+
+#### Change in number of predators as prey abundance changes
+
+- Number of predators present at a given prey density
+
+- Function of how prey influence $B$ $D$ of predator
+
+- Predators may also congregate at prey source: *aggregative response*
+
+```{r fig.width=6, fig.height=4}
+nr2 <- 1/ (1 + exp(-2 * d)) - 0.5
+
+nr_df2 <- data.frame(d = d, 
+                    nr = nr2,
+                    response = "move")
+
+nr_df2 <- dplyr::bind_rows(nr_df, nr_df2)
+ggplot(nr_df2, aes(x = d, y = nr, color = response)) +
+  geom_line(size = 2) +
+  guides(color = FALSE) +
+  scale_y_continuous("Numerical response") +
+  scale_x_continuous("Prey Density") +
+  theme(axis.text.y = element_blank())
+```
+
+---
+## Numerical response
+
+#### When introduced prey lead to large numerical response of predators, native prey can suffer
+
+- high abundance of predators leads to unsustainable predation on native prey
+
+-  **hyperpredation**
+
+.pull-left[
 ```{r out.width="80%"}
-knitr::include_graphics("figs/CONH.png")
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/9/9b/Wild_hog_%286887959199%29.jpg")
+```
+]
+
+.pull-left[
+```{r out.width="40%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/f/f4/Golden_eagle_at_ACES_%2811809%29.jpg")
+```
+
+```{r out.width="40%"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/9/97/Urocyon_littoralis_standing.jpg")
+```
+
+]
+
+---
+class: inverse, middle, center
+
+# Functional response
+
+---
+## Functional response
+
+#### Also known as the *kill rate*
+
+> number of prey killed per predator per unit of time
+
+- as number of prey increases, kills rate should change 
+    + search time
+    + handling time
+    + satiation
+
+
+--
+#### Type II
+
+```{r fig.width=5, fig.height=3}
+a <- 1.2
+fr <- a * d / (1 + a * d)
+
+fr_df <- data.frame(d = d, 
+                    fr = fr,
+                    response = "Type II")
+
+ggplot(fr_df, aes(x = d, y = fr, color = response)) +
+  geom_line(size = 2) +
+  guides(color = FALSE) +
+  scale_y_continuous("Functional response") +
+  scale_x_continuous("Prey Density") +
+  theme(axis.text.y = element_blank())
+```
+
+---
+## Functional response
+
+#### Also known as the *kill rate*
+
+> number of prey killed per predator per unit of time
+
+- as number of prey increases, kills rate should change 
+    + search time
+    + handling time
+    + satiation
+
+
+#### Type III
+
+```{r fig.width=5, fig.height=3}
+a <- 0.4
+fr2 <- a * d^2 / (1 + a * d^2)
+
+
+fr_df2 <- data.frame(d = d, 
+                    fr = fr2,
+                    response = "Type III")
+
+fr_df3 <- dplyr::bind_rows(fr_df, fr_df2)
+ggplot(fr_df3, aes(x = d, y = fr, color = response)) +
+  geom_line(size = 2) +
+  guides(color = FALSE) +
+  scale_y_continuous("Functional response") +
+  scale_x_continuous("Prey Density") +
+  theme(axis.text.y = element_blank())
+```
+
+---
+class: inverse, middle, center
+
+# Total predation rate
+
+---
+## Total predation rate
+
+$$\large P = \frac{Numerical\;response \times\;functional\;response}{Prey\; abundance} \times 100$$
+--
+.pull-left[
+```{r fig.height=2.5, fig.width=4, fig.align='center'}
+nr3 <- 0.45
+pr <- (nr3 * fr) / d
+
+pr_df <- data.frame(d = d, 
+                    nr = nr3,
+                    fr = fr,
+                    pr = pr)
+ggplot(pr_df, aes(x = d, y = nr)) +
+  geom_line(size = 2) +
+  scale_y_continuous("Numerical response")+
+  scale_x_continuous("")+
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_text(size = 16))
+```
+
+```{r fig.height=2.5, fig.width=4, fig.align='center'}
+ggplot(pr_df, aes(x = d, y = fr)) +
+  geom_line(size = 2)+
+  scale_y_continuous("Functional response")+
+  scale_x_continuous("Prey density") +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_text(size = 16))
+```
+]
+
+--
+.pull-right[
+<br/>
+<br/>
+
+```{r fig.height=3.5, fig.width=4.5}
+ggplot(pr_df, aes(x = d, y = pr)) +
+  geom_line(size = 2) +
+  scale_y_continuous("Total predation rate") +
+  scale_x_continuous("Prey density")+
+  theme(axis.text.y = element_blank())
 ```
 ]
 
 
 ---
-## Coexistence
+## Total predation rate
 
-#### How to avoid competitive exclusion?
-
-#### Reduce niche overlap (niche differentiation)
-- **Temporally**
-
+$$\large P = \frac{Numerical\;response \times\;functional\;response}{Prey\; abundance} \times 100$$
 
 .pull-left[
-Warm season 
-```{r out.width="80%"}
-knitr::include_graphics("figs/warm.png")
-```
+As prey numbers increase:
+- predation rate goes down
+
+- survival rate increases
+
+- prey population "escapes" regulation by predator
+
+
+As prey numbers decrease:
+- predation rate goes up
+
+- survival rate decreases
+
+- prey population declines (Allee effect)
 ]
 
 .pull-right[
-Cool season
-```{r out.width="80%"}
-knitr::include_graphics("figs/cool.png")
+<br/>
+<br/>
+
+```{r fig.height=3.5, fig.width=4.5}
+ggplot(pr_df, aes(x = d, y = pr)) +
+  geom_line(size = 2) +
+  scale_y_continuous("Total predation rate") +
+  scale_x_continuous("Prey density")+
+  theme(axis.text.y = element_blank())
 ```
 ]
+
 
 
 ---
-## Coexistence
+## Total predation rate
+
+$$\large P = \frac{Numerical\;response \times\;functional\;response}{Prey\; abundance} \times 100$$
 
 .pull-left[
-#### Many factors can result in niche differentiation
+```{r fig.height=2.5, fig.width=4, fig.align='center'}
+pr <- (nr2 * fr) / d
 
-#### Over evolutionary time, species have partitioned the available niches on Earth
+pr_df <- data.frame(d = d, 
+                    nr = nr2,
+                    fr = fr,
+                    pr = pr)
+ggplot(pr_df, aes(x = d, y = nr)) +
+  geom_line(size = 2) +
+  scale_y_continuous("Numerical response")+
+  scale_x_continuous("")+
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_text(size = 16))
+```
 
-#### Species with sufficiently different ‘realized’ niches can coexist
-]
-
-.pull-right[
-```{r out.width="80%"}
-knitr::include_graphics("figs/finches.png")
+```{r fig.height=2.5, fig.width=4, fig.align='center'}
+ggplot(pr_df, aes(x = d, y = fr)) +
+  geom_line(size = 2)+
+  scale_y_continuous("Functional response")+
+  scale_x_continuous("Prey density") +
+  theme(axis.text.y = element_blank(),
+        axis.title.y = element_text(size = 16))
 ```
 ]
+
+--
+.pull-right[
+<br/>
+<br/>
+
+```{r fig.height=3.5, fig.width=4.5}
+ggplot(pr_df, aes(x = d, y = pr)) +
+  geom_line(size = 2) +
+  scale_y_continuous("Total predation rate") +
+  scale_x_continuous("Prey density")+
+  theme(axis.text.y = element_blank())
+```
+]
+
+---
+## Predation
+
+#### Other considerations
+
+- Is increased predation compensated by higher fecundity?
+
+- Which individuals are killed?
+
+- Human dimensions
+

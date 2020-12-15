@@ -1,0 +1,48 @@
+---
+title: "Lab 8: Metapopulation Dynamics"
+subtitle: "WILD3810: Plant and animal populations"
+author: "Spring 2020"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Lab3}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(WILD3810)
+```
+
+
+This week, we will combine the in-class lab activity with homework 8. To create this homework:
+
+1) Log in to R Studio Cloud
+
+2) Create a new project called `LastnameFirstname-Lab8`
+
+3) Create a new R Markdown file from the Homework-2 template:
+
+    3a) Click `File -> New File -> R Markdown`  
+    
+    3b) Click `From Template` and scroll down to `WILD3810-Homework8`  
+    
+    3c) In the `Name` box, type `LastnameFirstname-Homework8`  
+    
+    3d) Click `Ok`
+
+4) Ensure that you can `Knit` the file
+
+    4a) Change "YOUR NAME HERE" in the header section to your name  
+    
+    4b) Click `Knit` to make sure you can knit the .Rmd file  
+    
+5) Complete the assignment as directed in the .Rmd file
+
+6) Follow the [instructions for submission](https://rushinglab.github.io/WILD3810/articles/homework.html) to upload your completed assignment to Canvas
+
+
+

@@ -33,9 +33,15 @@ First, make sure you have:
 
 > 1b) Clicked `Knit` to check that you can create a html document from the .Rmd file;
 
+<<<<<<< HEAD
 > 1c) Save the .Rmd file as `LastnameFirstname-homework10.Rmd`
 
 If you have any problems with these steps, be sure to get help from either the instructor or the TA.
+=======
+> 1c) Saved the .Rmd file as `LastnameFirstname-homework10.Rmd` in a project named `LastNameFirstName-Lab14`
+
+If you have any problems with these steps, be sure to get help from either the instructor or the TA
+>>>>>>> 5574edd7fe912a3269261d268fc8f26b0196581a
 
 ### Inter-specific competition
 

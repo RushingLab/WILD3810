@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lab 1: Introduction to mark-recapture - estimating abundance • WILD3810</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Lab 1: Introduction to mark-recapture - estimating abundance">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">WILD3810</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2021.1</span>
       </span>
     </div>
 
@@ -109,6 +110,24 @@
     <li>
       <a href="../articles/Lecture13/Lecture13.html">Lecture 13: Life history variation</a>
     </li>
+    <li>
+      <a href="../articles/Lecture14/Lecture14.html">Lecture 14: Metapopulation dynamics</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture15/Lecture15.html">Lecture 15: Metapopulation dynamics II</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture16/Lecture16.html">Lecture 16: Source-sink dynamics</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture17/Lecture17.html">Lecture 17: Interspecific interactions</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture18/Lecture18.html">Lecture 18: Interspecific interactions: Predation</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture19/Lecture19.html">Lecture 19: Interspecific interactions: Predation, part II</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -147,6 +166,15 @@
     <li>
       <a href="../articles/lab7_tree_harvest.html">Lab 7: Applications of matrix population models - Sustainable tree harvest</a>
     </li>
+    <li>
+      <a href="../articles/lab8_metapopulation_dynamics.html">Lab 8: Metapopulation dynamics</a>
+    </li>
+    <li>
+      <a href="../articles/lab9_source-sink.html">Lab 9: Source-sink dynamics</a>
+    </li>
+    <li>
+      <a href="../articles/lab10_competition.html">Lab 10: Competition</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -165,7 +193,9 @@
 <!--/.navbar -->
 
       
-      </header><script src="lab1_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
+
+      </header><script src="lab1_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="lab1_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="lab1_files/anchor-sections-1.0/anchor-sections.js"></script><script src="lab1_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Lab 1: Introduction to mark-recapture - estimating abundance</h1>
@@ -200,10 +230,10 @@
 <li>
 <code>R</code> functions used in this exercise:
 <ul>
-<li><code><a href="https://www.rdocumentation.org/packages/base/topics/prod">prod()</a></code></li>
-<li><code><a href="https://www.rdocumentation.org/packages/base/topics/Round">round()</a></code></li>
-<li><code><a href="https://www.rdocumentation.org/packages/base/topics/c">c()</a></code></li>
-<li><code><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/prod.html">prod()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/Round.html">round()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/c.html">c()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code></li>
 </ul>
 </li>
 </ul>
@@ -227,15 +257,15 @@
 <p><span class="math display">\[N = \frac{n_1n_2}{m_2}\]</span></p>
 <p>where <span class="math inline">\(n_1\)</span> is the number of individuals captured (and marked) on the first sampling occasion, <span class="math inline">\(n_2\)</span> is the number of individuals captured on the second sampling occasion, and <span class="math inline">\(m_2\)</span> is the number of marked individuals in the second sample.</p>
 <p>Let’s use <code>R</code>to estimate N for some made up data. In the script you just opened, create three new objects that represent the parameters in the Lincoln-Peterson estimator. Modify the following code to tell <code>R</code>that we captured 44 individuals on the first occasion, 32 on the second, and of those 32 sampled on the second occasion, 15 were marked:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">n1 &lt;-</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">n2 &lt;-</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="st">  </span></a>
-<a class="sourceLine" id="cb1-5" data-line-number="5">m2 &lt;-<span class="st"> </span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>n1 &lt;-</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>n2 &lt;-</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="st">  </span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>m2 &lt;-<span class="st"> </span></span></code></pre></div>
 <p>Remember that R will ignore any code that follows a <code>#</code>. Before moving on, use comments to define what each object represents (e.g., <code>Number of individuals captured on first occasion</code>, <code>Number of individuals captured on second occasion</code>, <code>Number of previously marked individuals captured on second occasion</code>)</p>
 <p>After entering the code and comments, highlight all three lines and then click <code>Ctrl + Enter</code> (or <code>command + return</code> on Mac) to run the code. Note that you should see the code in the console.</p>
 <p>Now add a new line of code (put your cursor at the end of the <code>m2 &lt;-</code> line and hit enter) and estimate <span class="math inline">\(N\)</span> from our newly created objects using the Lincoln-Peterson:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">N &lt;-<span class="st"> </span>n1 <span class="op">*</span><span class="st"> </span>n2 <span class="op">/</span><span class="st"> </span>m2</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>N &lt;-<span class="st"> </span>n1 <span class="op">*</span><span class="st"> </span>n2 <span class="op">/</span><span class="st"> </span>m2</span></code></pre></div>
 <p>What is the estimated abundance of this population?</p>
 <p>Remember that, in addition to our estimate of N, we always need to know something about how certain we are in the estimate. On your own, create a new object called <code>varN</code> to calculate the variance of our estimated N, remembering that:</p>
 <p><span class="math display">\[\large var(\hat{N}) = \frac{(n_1 + 1)(n_2+1)(n_1-m_2)(n_2-m_2)}{(m_2+1)^2(m_2+2)}\]</span></p>
@@ -250,6 +280,9 @@
 <p>In the 1930’s, a mathematician at the University of Wisconsin named Zoe Emily Schnabel, expanded on the Lincoln-Peterson method to include <span class="math inline">\(&gt;2\)</span> occasions. The Schnabel method uses three pieces of information collected at each occasion: <strong><span class="math inline">\(C_t\)</span></strong>, the number of captured individuals during occasion <span class="math inline">\(t\)</span>; <strong><span class="math inline">\(R_t\)</span></strong>, the number of recaptures captured during occasion <span class="math inline">\(t\)</span>; and <strong><span class="math inline">\(M_t\)</span></strong>, the number of individuals marked in the population at occasion <span class="math inline">\(t\)</span> (or, the total number of marked individuals at risk of being captured on occasion <span class="math inline">\(t\)</span>). Using these data, the Schnabel estimator is:</p>
 <p><span class="math display">\[\hat{N} = \frac{\sum_t(C_t \times M_t)}{\sum_t R_t}\]</span> <em>Remember that <span class="math inline">\(\sum_t\)</span> means the sum of the values across at <span class="math inline">\(T\)</span> occasions.</em></p>
 <p>To better understand what each of these data mean, we will use an example from <a href="http://docs.wixstatic.com/ugd/95e73b_6d832c61405d4b3cbd9d99bbb4530f7b.pdf">Powell &amp; Gale (2015)</a> (pages 96-97). Students on a research trip to Puerto Rico did a 3-day mark-recapture study to estimate the number of Cuban rock iguanas (<em>Cyclura nubila</em>) on the island Isla Magueyes. On the first day, the students observed and marked (using latex paint) 155 iguanas. On the second day, they observed 175 individuals (109 marked and 66 unmarked; note that the 66 unmarked individuals were captured, marked, and released). On the third day, they observed 131 individuals (116 marked and 15 unmarked).</p>
+<pre><code>#&gt; Registered S3 method overwritten by 'rvest':
+#&gt;   method            from
+#&gt;   read_xml.response xml2</code></pre>
 <table class="table table table-striped table-hover table-condensed table-responsive">
 <thead><tr>
 <th style="text-align:center;">
@@ -299,22 +332,22 @@ Animal with marks
 </tbody>
 </table>
 <p>In this example, <span class="math inline">\(C_t =\)</span></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">Ct &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">155</span>, <span class="dv">175</span>, <span class="dv">131</span>) <span class="co"># Number of captures during each occassion</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>Ct &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">155</span>, <span class="dv">175</span>, <span class="dv">131</span>) <span class="co"># Number of captures during each occassion</span></span></code></pre></div>
 <p>and <span class="math inline">\(R_t =\)</span></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">Rt &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">109</span>, <span class="dv">116</span>) <span class="co"># Number of recaptures during each occassion</span></a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>Rt &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">109</span>, <span class="dv">116</span>) <span class="co"># Number of recaptures during each occassion</span></span></code></pre></div>
 <p>What is <span class="math inline">\(M_t\)</span>? On the first day, there are no previously marked individuals so <span class="math inline">\(M_1=0\)</span>. On the second day, there are 155 marked individuals in the population (all of the individuals marked on day 1) so <span class="math inline">\(M_2=155\)</span>. On day 3, the students could have observed individuals marked on the first day or individuals marked on the second day (<span class="math inline">\(175-109=66\)</span> individuals marked on day 2) so <span class="math inline">\(M_3 = 155 + 66 = 221\)</span>. So:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">Mt &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>, <span class="dv">155</span>, <span class="dv">221</span>) <span class="co"># Number of recaptures during each occassion</span></a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>Mt &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>, <span class="dv">155</span>, <span class="dv">221</span>) <span class="co"># Number of recaptures during each occassion</span></span></code></pre></div>
 <p>Now to estimate <span class="math inline">\(\hat{N}\)</span>. We <em>could</em> do it by hand:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">N &lt;-<span class="st"> </span>((<span class="dv">155</span><span class="op">*</span><span class="dv">0</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">175</span> <span class="op">*</span><span class="st"> </span><span class="dv">155</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">131</span> <span class="op">*</span><span class="st"> </span><span class="dv">221</span>)) <span class="op">/</span><span class="st"> </span>(<span class="dv">0</span> <span class="op">+</span><span class="st"> </span><span class="dv">109</span> <span class="op">+</span><span class="st"> </span><span class="dv">116</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a></span>
+<span id="cb7-2"><a href="#cb7-2"></a>N &lt;-<span class="st"> </span>((<span class="dv">155</span><span class="op">*</span><span class="dv">0</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">175</span> <span class="op">*</span><span class="st"> </span><span class="dv">155</span>) <span class="op">+</span><span class="st"> </span>(<span class="dv">131</span> <span class="op">*</span><span class="st"> </span><span class="dv">221</span>)) <span class="op">/</span><span class="st"> </span>(<span class="dv">0</span> <span class="op">+</span><span class="st"> </span><span class="dv">109</span> <span class="op">+</span><span class="st"> </span><span class="dv">116</span>)</span></code></pre></div>
 <p>However, that is <em>a lot</em> of typing and it’s pretty likely we would make a mistake somewhere along the way (typos or misplaced parentheses). <code>R</code> is clever enough to allow us to use the previously created vectors. First, let’s see what happens when we multiply two vectors together:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">Ct <span class="op">*</span><span class="st"> </span>Mt</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co">#&gt; [1]     0 27125 28951</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>Ct <span class="op">*</span><span class="st"> </span>Mt</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co">#&gt; [1]     0 27125 28951</span></span></code></pre></div>
 <p>As you can see, we created a new vector that is the same length as the original vectors (3). When you multiply (or add, subtract, or divide) two vectors, <code>R</code> multiplies the first element of first vector times the first element of the second vector, the second element of first vector times the second element of the second vector, the third element of first vector times the third element of the second vector, etc, and then combines them into a new vector.</p>
-<p>We can also use the <code><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum()</a></code> function to add up all of the elements of a vector (similar to the <code><a href="https://www.rdocumentation.org/packages/base/topics/prod">prod()</a></code> function we saw earlier). So:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">N &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(Ct <span class="op">*</span><span class="st"> </span>Mt) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(Rt)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="dt">x =</span> N, <span class="dt">digits =</span> <span class="dv">0</span>)</a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="co">#&gt; [1] 249</span></a></code></pre></div>
+<p>We can also use the <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> function to add up all of the elements of a vector (similar to the <code><a href="https://rdrr.io/r/base/prod.html">prod()</a></code> function we saw earlier). So:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>N &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(Ct <span class="op">*</span><span class="st"> </span>Mt) <span class="op">/</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(Rt)</span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="dt">x =</span> N, <span class="dt">digits =</span> <span class="dv">0</span>)</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt; [1] 249</span></span></code></pre></div>
 <p>Much easier!</p>
 <div id="properties-of-the-lincoln-peterson-estimator" class="section level2">
 <h2 class="hasAnchor">
@@ -341,6 +374,7 @@ Animal with marks
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -362,17 +396,20 @@ Animal with marks
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Clark Rushing.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

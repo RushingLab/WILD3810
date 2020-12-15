@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lab 4: Population viability analysis • WILD3810</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Lab 4: Population viability analysis">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">WILD3810</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2021.1</span>
       </span>
     </div>
 
@@ -109,6 +110,24 @@
     <li>
       <a href="../articles/Lecture13/Lecture13.html">Lecture 13: Life history variation</a>
     </li>
+    <li>
+      <a href="../articles/Lecture14/Lecture14.html">Lecture 14: Metapopulation dynamics</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture15/Lecture15.html">Lecture 15: Metapopulation dynamics II</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture16/Lecture16.html">Lecture 16: Source-sink dynamics</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture17/Lecture17.html">Lecture 17: Interspecific interactions</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture18/Lecture18.html">Lecture 18: Interspecific interactions: Predation</a>
+    </li>
+    <li>
+      <a href="../articles/Lecture19/Lecture19.html">Lecture 19: Interspecific interactions: Predation, part II</a>
+    </li>
   </ul>
 </li>
 <li class="dropdown">
@@ -147,6 +166,15 @@
     <li>
       <a href="../articles/lab7_tree_harvest.html">Lab 7: Applications of matrix population models - Sustainable tree harvest</a>
     </li>
+    <li>
+      <a href="../articles/lab8_metapopulation_dynamics.html">Lab 8: Metapopulation dynamics</a>
+    </li>
+    <li>
+      <a href="../articles/lab9_source-sink.html">Lab 9: Source-sink dynamics</a>
+    </li>
+    <li>
+      <a href="../articles/lab10_competition.html">Lab 10: Competition</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -165,7 +193,9 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+
+      </header><script src="lab4_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="lab4_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="lab4_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Lab 4: Population viability analysis</h1>
@@ -187,7 +217,7 @@
 <li><p>Predict extinction risk using population viability analysis</p></li>
 <li><p>Build intuition about the ecological factors that influence extinction risk</p></li>
 <li>
-<code>R</code> functions used in this exercise:
+<p><code>R</code> functions used in this exercise:</p>
 <ul>
 <li><code><a href="../reference/pva.html">WILD3810::pva()</a></code></li>
 </ul>
@@ -222,10 +252,10 @@
 <p><strong>Thought question</strong>: The <code>r0</code> argument has slightly different meanings depending on whether <code>K</code> is supplied. How would you interpret the <code>r0</code> parameter in each case?</p>
 <hr>
 <p>To see how the function works, run the following code in the R script you just created:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(WILD3810)</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">sim_test &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">20</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">                <span class="dt">r0 =</span> <span class="fl">0.05</span>, <span class="dt">variance.r =</span> <span class="fl">0.05</span>)</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="co">#&gt; Warning: Removed 3497 rows containing missing values (geom_path).</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(WILD3810)</span>
+<span id="cb1-2"><a href="#cb1-2"></a>sim_test &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">20</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </span>
+<span id="cb1-3"><a href="#cb1-3"></a>                <span class="dt">r0 =</span> <span class="fl">0.05</span>, <span class="dt">variance.r =</span> <span class="fl">0.05</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="co">#&gt; Warning: Removed 3785 row(s) containing missing values (geom_path).</span></span></code></pre></div>
 <p><img src="lab4_files/figure-html/unnamed-chunk-1-1.png" width="768"></p>
 <p>The function returns two types of output. Most obviously, the function returns three plots:</p>
 <ol style="list-style-type: decimal">
@@ -234,7 +264,7 @@
 <li><p>The bottom plot shows the cumulative probability of extinction over time</p></li>
 </ol>
 <p>In addition to the figures, the newly created <code>sim_test</code> object is a data frame that contains some useful summaries of the simulation:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">sim_test</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>sim_test</span></code></pre></div>
 <table class="table">
 <thead><tr>
 <th style="text-align:right;">
@@ -288,10 +318,10 @@ NA
 1
 </td>
 <td style="text-align:right;">
-0.29
+0.23
 </td>
 <td style="text-align:right;">
-30
+17
 </td>
 </tr></tbody>
 </table>
@@ -309,8 +339,8 @@ NA
 <hr>
 <p><strong>Prediction</strong>: Do you expect extinction risk to be higher, lower, or the same than the previous simulation? Why?</p>
 <hr>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">sim_r<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">20</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">                <span class="dt">r0 =</span> <span class="fl">0.01</span>, <span class="dt">variance.r =</span> <span class="fl">0.05</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>sim_r<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">20</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </span>
+<span id="cb3-2"><a href="#cb3-2"></a>                <span class="dt">r0 =</span> <span class="fl">0.01</span>, <span class="dt">variance.r =</span> <span class="fl">0.05</span>)</span></code></pre></div>
 <p>Were you correct?</p>
 <p>Now make <span class="math inline">\(r0\)</span> bigger. Choose a value of <span class="math inline">\(r0 &gt; 0.1\)</span>. Call the new object <code>sim_r.2</code>.</p>
 <hr>
@@ -328,15 +358,15 @@ NA
 <a href="#factor-2-variability-in-r0" class="anchor"></a>Factor 2: Variability in <code>r0</code>
 </h2>
 <p>Now let’s change <code>variance.r</code>. First, create a simulation with no environmental stochasticity:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">sim_var_r<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">20</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">                   <span class="dt">r0 =</span> <span class="fl">0.05</span>, <span class="dt">variance.r =</span> <span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>sim_var_r<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">20</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </span>
+<span id="cb4-2"><a href="#cb4-2"></a>                   <span class="dt">r0 =</span> <span class="fl">0.05</span>, <span class="dt">variance.r =</span> <span class="dv">0</span>)</span></code></pre></div>
 <p>You can see if the top left figure that the actual growth rates in each year were exactly equal to the predicted values - no stochasticity in the mean population growth rate. Yet the population size figure still shows populations going up and down. Why is that?</p>
 <p>Now increase <code>variance.r</code> relative to the earlier simulations:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">sim_var_r<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">20</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">                   <span class="dt">r0 =</span> <span class="fl">0.05</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>sim_var_r<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">20</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </span>
+<span id="cb5-2"><a href="#cb5-2"></a>                   <span class="dt">r0 =</span> <span class="fl">0.05</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>)</span></code></pre></div>
 <p>What happened to extinction risk? Again, let’s see if that pattern holds:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">sim_var_r<span class="fl">.3</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">20</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">                   <span class="dt">r0 =</span> <span class="fl">0.05</span>, <span class="dt">variance.r =</span> <span class="fl">0.6</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>sim_var_r<span class="fl">.3</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">20</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </span>
+<span id="cb6-2"><a href="#cb6-2"></a>                   <span class="dt">r0 =</span> <span class="fl">0.05</span>, <span class="dt">variance.r =</span> <span class="fl">0.6</span>)</span></code></pre></div>
 <p>Run a few more simulations with increasing values of <code>variance.r</code>. Does the general pattern you saw on the previous simulations hold?</p>
 <hr>
 <p><strong>Interpretation</strong>: Why does increasing stochasticity influence probability of extinction?</p>
@@ -348,14 +378,14 @@ NA
 <hr>
 <p><strong>Prediction</strong>: At large sizes, do you expect demographic stochasticity to have important consequences for extinction risk?</p>
 <hr>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">sim_var_r<span class="fl">.4</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">500</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">                <span class="dt">r0 =</span> <span class="fl">0.05</span>, <span class="dt">variance.r =</span> <span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>sim_var_r<span class="fl">.4</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">500</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </span>
+<span id="cb7-2"><a href="#cb7-2"></a>                <span class="dt">r0 =</span> <span class="fl">0.05</span>, <span class="dt">variance.r =</span> <span class="dv">0</span>)</span></code></pre></div>
 <p>Now change <code>N0=5</code>:</p>
 <hr>
 <p><strong>Prediction</strong>: Will the extinction risk of this population be greater than 0?</p>
 <hr>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">sim_var_r<span class="fl">.5</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">5</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb8-2" data-line-number="2">                <span class="dt">r0 =</span> <span class="fl">0.05</span>, <span class="dt">variance.r =</span> <span class="dv">0</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>sim_var_r<span class="fl">.5</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">5</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </span>
+<span id="cb8-2"><a href="#cb8-2"></a>                <span class="dt">r0 =</span> <span class="fl">0.05</span>, <span class="dt">variance.r =</span> <span class="dv">0</span>)</span></code></pre></div>
 <hr>
 <p><strong>Interpretation</strong>: Why are small populations more vulnerable to demographic stochasticity?</p>
 <p>How does <code>r0</code> influence how vulnerable populations are to demographic stochasticity?</p>
@@ -367,11 +397,11 @@ NA
 <h2 class="hasAnchor">
 <a href="#factor-3-carrying-capacity" class="anchor"></a>Factor 3: Carrying capacity</h2>
 <p>Next, let’s add <code>K</code> to the model. Remember that now the model includes density dependence so the meaning of <code>r0</code> is slightly different. To start, leave the other options the same as in <code>sim_r.1</code> but with <code>K=150</code> and <code>r0=0.1</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">sim_K<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">20</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">                <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.05</span>, <span class="dt">K =</span> <span class="dv">150</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>sim_K<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">20</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </span>
+<span id="cb9-2"><a href="#cb9-2"></a>                <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.05</span>, <span class="dt">K =</span> <span class="dv">150</span>)</span></code></pre></div>
 <p>What happened to extinction probability relative to the density-independent model? To make sure the previous result wasn’t a fluke, increase <code>K</code> again and see if the pattern holds:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">sim_K<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">20</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">                <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.05</span>, <span class="dt">K =</span> <span class="dv">500</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>sim_K<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">20</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </span>
+<span id="cb10-2"><a href="#cb10-2"></a>                <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.05</span>, <span class="dt">K =</span> <span class="dv">500</span>)</span></code></pre></div>
 <hr>
 <p><strong>Interpretation</strong>: Why does adding density dependence to the model influence extinction probability? Did extinction probability continue to change as <code>K</code> increased? Why or why not?</p>
 <p>Why do the populations go above <code>K</code> if that is the maximum abundance the environment can support?</p>
@@ -389,24 +419,24 @@ NA
 <p>If <span class="math inline">\(\theta &lt; 1\)</span>, resources quickly become scarce, and <span class="math inline">\(r\)</span> is suppressed even at low <span class="math inline">\(N\)</span></p>
 <p><img src="lab4_files/figure-html/unnamed-chunk-13-1.png" width="768"></p>
 <p>Let’s see how the shape of the density-dependence curve influences extinction risk. First, let’s explore <span class="math inline">\(\theta &lt; 1\)</span>. First, let’s run a model with <span class="math inline">\(\theta = 1\)</span></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">sim_theta<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">250</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb11-2" data-line-number="2">                <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>, <span class="dt">K =</span> <span class="dv">50</span>, <span class="dt">theta =</span> <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>sim_theta<span class="fl">.1</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">250</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </span>
+<span id="cb11-2"><a href="#cb11-2"></a>                <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>, <span class="dt">K =</span> <span class="dv">50</span>, <span class="dt">theta =</span> <span class="dv">1</span>)</span></code></pre></div>
 <p>Next, let’s explore <span class="math inline">\(\theta &lt; 1\)</span>.</p>
 <hr>
 <p><strong>Prediction</strong>: Do you expect extinction risk to be higher, lower, or the same than the previous simulation? Why?</p>
 <hr>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">sim_theta<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">250</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb12-2" data-line-number="2">                <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>, <span class="dt">K =</span> <span class="dv">50</span>, <span class="dt">theta =</span> <span class="fl">0.75</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>sim_theta<span class="fl">.2</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">250</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </span>
+<span id="cb12-2"><a href="#cb12-2"></a>                <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>, <span class="dt">K =</span> <span class="dv">50</span>, <span class="dt">theta =</span> <span class="fl">0.75</span>)</span></code></pre></div>
 <p>Again, make <span class="math inline">\(\theta\)</span> smaller to see if the pattern holds:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">sim_theta<span class="fl">.3</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">250</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">                <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>, <span class="dt">K =</span> <span class="dv">50</span>, <span class="dt">theta =</span> <span class="fl">0.25</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>sim_theta<span class="fl">.3</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">250</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </span>
+<span id="cb13-2"><a href="#cb13-2"></a>                <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>, <span class="dt">K =</span> <span class="dv">50</span>, <span class="dt">theta =</span> <span class="fl">0.25</span>)</span></code></pre></div>
 <p>Was your prediction correct?</p>
 <p>Now try <span class="math inline">\(\theta &gt; 1\)</span>:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">sim_theta<span class="fl">.4</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">250</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">                <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>, <span class="dt">K =</span> <span class="dv">50</span>, <span class="dt">theta =</span> <span class="fl">1.25</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>sim_theta<span class="fl">.4</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">250</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </span>
+<span id="cb14-2"><a href="#cb14-2"></a>                <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>, <span class="dt">K =</span> <span class="dv">50</span>, <span class="dt">theta =</span> <span class="fl">1.25</span>)</span></code></pre></div>
 <p>And even larger:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">sim_theta<span class="fl">.5</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">250</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">                <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>, <span class="dt">K =</span> <span class="dv">50</span>, <span class="dt">theta =</span> <span class="fl">1.75</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>sim_theta<span class="fl">.5</span> &lt;-<span class="st"> </span><span class="kw"><a href="../reference/pva.html">pva</a></span>(<span class="dt">N0 =</span> <span class="dv">250</span>, <span class="dt">number.of.years =</span> <span class="dv">100</span>, </span>
+<span id="cb15-2"><a href="#cb15-2"></a>                <span class="dt">r0 =</span> <span class="fl">0.1</span>, <span class="dt">variance.r =</span> <span class="fl">0.2</span>, <span class="dt">K =</span> <span class="dv">50</span>, <span class="dt">theta =</span> <span class="fl">1.75</span>)</span></code></pre></div>
 <p>Before moving on, use the <code>dplyr</code> function <code>bind_rows</code> to create a new data frame that contains all of the simulations created in this section. Call the new data frame <code>sim_dd</code>.</p>
 </div>
 <div id="on-your-own" class="section level2">
@@ -418,10 +448,10 @@ NA
 <h2 class="hasAnchor">
 <a href="#putting-it-all-together" class="anchor"></a>Putting it all together</h2>
 <p>On your own, create a new data frame that contains all of the simulated results (add any that you created in the previous section):</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb16-2" data-line-number="2">sim_pva &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(sim_test, sim_r, sim_var_r, sim_K, sim_dd)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a></span>
+<span id="cb16-2"><a href="#cb16-2"></a>sim_pva &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(sim_test, sim_r, sim_var_r, sim_K, sim_dd)</span></code></pre></div>
 <p>Now create your own plots showing the relationship between extinction probability/time to extinction and the parameters you varied in the simulations. Using the following code as a guide:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">ggplot</span>(sim_pva, <span class="kw">aes</span>(<span class="dt">x =</span> prob.extinct, <span class="dt">y =</span> variance.r, <span class="dt">size =</span> N0)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">ggplot</span>(sim_pva, <span class="kw">aes</span>(<span class="dt">x =</span> prob.extinct, <span class="dt">y =</span> variance.r, <span class="dt">size =</span> N0)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</span></code></pre></div>
 </div>
 </div>
 <div id="homework-3-population-viability-of-the-violet-winged-checkerspot" class="section level1">
@@ -446,7 +476,7 @@ NA
 <ul>
 <li>The observed counts of individuals in each year since 1980. These are stored in a data frame which can be accessed directly in <code>R</code>. The data frame contains the <code>Year</code>, abundance (<code>N</code>), and whether the count was conducted before or after the housing developments were built.</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="st">"obs_N"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(<span class="st">"obs_N"</span>)</span></code></pre></div>
 <ul>
 <li>
 <p>Data from two master’s theses on the birth and death rates before and after the developments were built:</p>
@@ -485,18 +515,18 @@ NA
 <p>Inside the main code chunk of the homework template, use the above data to estimate the parameters required by the <code><a href="../reference/baseline_pva.html">baseline_pva()</a></code> function. Keep in mind:</p>
 <ol style="list-style-type: decimal">
 <li><p>In that code chunk, create objects that correspond to either values you need in order to estimate the required information (e.g., <code>B_before &lt;- c(260, 484)</code>, <code>pr.fire &lt;- ?/?</code>). You can then use these objects later when predicting extinction risk.</p></li>
-<li><p>Remember that the code inserted here needs to stand alone in order for the document to knit. That means you need to load any required packages (using <code><a href="https://www.rdocumentation.org/packages/base/topics/library">library(dplyr)</a></code>) <strong>inside of .Rmd file itself</strong>. Having the package loaded in your current working environment is not enough.</p></li>
-<li><p>The carrying capacity in this case refers to <code>K</code> <em>after</em> the housing development was built. You have enough information to estimate this by estimating <code>K</code> <em>before</em> the housing development and then reducing that by the amount of habitat that was lost. Use the <code><a href="https://www.rdocumentation.org/packages/stats/topics/filter">filter()</a></code> function from the <code>dplyr</code> package to filter just the observed counts before the housing development. Then estimate <code>K</code> as the mean of those counts</p></li>
+<li><p>Remember that the code inserted here needs to stand alone in order for the document to knit. That means you need to load any required packages (using <code><a href="https://rdrr.io/r/base/library.html">library(dplyr)</a></code>) <strong>inside of .Rmd file itself</strong>. Having the package loaded in your current working environment is not enough.</p></li>
+<li><p>The carrying capacity in this case refers to <code>K</code> <em>after</em> the housing development was built. You have enough information to estimate this by estimating <code>K</code> <em>before</em> the housing development and then reducing that by the amount of habitat that was lost. Use the <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> function from the <code>dplyr</code> package to filter just the observed counts before the housing development. Then estimate <code>K</code> as the mean of those counts</p></li>
 <li><p>The baseline birth and death rates as well as the rates in fire years can be estimated from the observed number of births and deaths. Did those rates change before and after the development? Use your best scientific judgement to answer this. Were those rates different in fire years? To estimate these rates, create vectors that hold the observed births or deaths and the observed abundance in each of those years. Then estimate the mean birth rate or death rate from these objects.</p></li>
 <li><p>The function requires an estimate of the fire frequency. Think of this as the <em>probability</em> of a fire any given year. Did this frequency change before and after the development?</p></li>
 <li><p>The working group was vague about the time frame and acceptable extinction probability. You will have to decide what time frame and risk correspond to “near future” and “high probability”. You may also set a quasi-extinction threshold that this &gt; 0 if you choose. In your recommendation, <strong>you will need state the time frame and extinction threshold you chose and justify these choices</strong>.</p></li>
 </ol>
 <p>Once you have code that creates all of the objects you need to run the function, you can run it using:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1">base_pva &lt;-<span class="st"> </span><span class="kw"><a href="../reference/baseline_pva.html">baseline_pva</a></span>(...)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>base_pva &lt;-<span class="st"> </span><span class="kw"><a href="../reference/baseline_pva.html">baseline_pva</a></span>(...)</span></code></pre></div>
 <p>Substituting <code>...</code> for the required arguments.</p>
 <p>In addition to the figure showing the predicted dynamics of the simulated populations, the <code>base_pva</code> object is a data frame containing the final abundance of each simulated population, whether the population ended below the extinction threshold, and the number of years it took for the “extinct” populations to go extinct. You can use this object to estimate the probability of extinction and median time to extinction:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/mean">mean</a></span>(base_pva<span class="op">$</span>Extinct)</a>
-<a class="sourceLine" id="cb20-2" data-line-number="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/stats/topics/median">median</a></span>(base_pva<span class="op">$</span>year0, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="co"># Note that you need the `na.rm = TRUE` for this function to work</span></a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="kw"><a href="https://rdrr.io/r/base/mean.html">mean</a></span>(base_pva<span class="op">$</span>Extinct)</span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="kw"><a href="https://rdrr.io/r/stats/median.html">median</a></span>(base_pva<span class="op">$</span>year0, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>) <span class="co"># Note that you need the `na.rm = TRUE` for this function to work</span></span></code></pre></div>
 <hr>
 <p><strong>Note that</strong> within the text of your .Rmd file (i.e., inside your actual recommendation) you can access these values by inserting the <code>R</code> code as follows: <code>`r mean(base_pva$Extinct)`</code> (including the single backticks before and after the code!), which would print the baseline extinction probability when you knit the document. This will save you a lot of copying/pasting, reduce typos, and ensure that if you change the code, the text will automatically be updated with the new results.</p>
 <hr>
@@ -531,6 +561,7 @@ NA
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -562,17 +593,20 @@ NA
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Clark Rushing.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

@@ -19,6 +19,8 @@ library(dplyr)
 
 In this assignment, you will build a matrix population model and then project the dynamics on the population into the future. As you go, you will be asked to answer questions about the ecology and dynamics of the population. Enter your answers in **bold** below the question.
 
+**Due before 2:30pm March 23**
+
 First, make sure you have:
 
 > 1a) Changed the `author` field in the YAML header to your name;
