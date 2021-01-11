@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
     <title>Lecture 3</title>
-    <meta charset="utf-8">
-    <meta name="author" content="   WILD3810 (Spring 2020)" />
+    <meta charset="utf-8" />
+    <meta name="author" content="   WILD3810 (Spring 2021)" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+    <script src="libs/anchor-sections/anchor-sections.js"></script>
     <link rel="stylesheet" href="WILD3810.css" type="text/css" />
     <link rel="stylesheet" href="WILD3810-fonts.css" type="text/css" />
   </head>
@@ -14,7 +16,7 @@ class: center, middle, inverse, title-slide
 
 # Lecture 3
 ## Density-independent population growth
-### <br/><br/><br/>WILD3810 (Spring 2020)
+### <br/><br/><br/>WILD3810 (Spring 2021)
 
 ---
 
@@ -142,7 +144,7 @@ Which can be simplied to:
 #### `\(\lambda\)` is referred to as the **finite rate of population growth**
 
 ---
-## Properties of `\(\huge \lambda\)`
+## Properties of `\(\large \lambda\)`
 
 --
 &lt;br/&gt;
@@ -160,7 +162,7 @@ Which can be simplied to:
 --
 - What happens to the abundance of the population under each scenario? `\(^1\)`
 
-&lt;img src="lecture3_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture3_files/figure-html/unnamed-chunk-3-1.png" width="252" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -183,7 +185,7 @@ First, write the forumula for `\(N_{t+2}\)` from `\(N_{t+1}\)`:
 --
 We know that `\(N_{t+1} = N_t \times \lambda\)` so:
 
-`$$\Large N_{t+2} = (N_t \times \lambda) \times \lambda$$`
+`$$\Large N_{t+2} = \underbrace{(N_t \times \lambda)}_{N_{t+1}} \times \lambda$$`
 --
 which simplifies to: 
 
@@ -244,7 +246,7 @@ For example, humans and bacteria
 
 We *could* model the growth of birth-flow populations using the discrete model and by making `\(\Delta_t\)` very small. 
 
-&lt;img src="lecture3_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture3_files/figure-html/unnamed-chunk-4-1.png" width="432" style="display: block; margin: auto;" /&gt;
 
 In this figure, `\(\Delta_t = 5\)` and `\(\Delta_N\)` = 8.94 individuals `\(^3\)`. So the population increased by about 61% over a 5 year period. What if we make `\(\Delta_t\)` smaller?
 
@@ -257,7 +259,7 @@ In this figure, `\(\Delta_t = 5\)` and `\(\Delta_N\)` = 8.94 individuals `\(^3\)
 
 `\(\Delta_t = 1\)`:
 
-&lt;img src="lecture3_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture3_files/figure-html/unnamed-chunk-5-1.png" width="432" style="display: block; margin: auto;" /&gt;
 
 `\(\Delta_N\)` = 1.46 `\(^4\)`
 
@@ -270,7 +272,7 @@ In this figure, `\(\Delta_t = 5\)` and `\(\Delta_N\)` = 8.94 individuals `\(^3\)
 
 `\(\Delta_t = 0.25\)`: 
 
-&lt;img src="lecture3_files/figure-html/unnamed-chunk-6-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture3_files/figure-html/unnamed-chunk-6-1.png" width="432" style="display: block; margin: auto;" /&gt;
 
 `\(\Delta_N\)` = 0.33
 
@@ -293,7 +295,7 @@ Populations with `\(r=0\)` remain at the same population size. Populations with 
 
 `$$N_{t+1} = N_t \times \lambda = N_t \times (1 + b - d)$$`
 
-Call `\(b-d=r\)`, so:
+Call `\(b-d=r_1\)`, so:
 
 `$$N_{t+1} = N_t \times (1 + r_1)$$`
 where `\(r_1\)` refers to the special case when `\(\Delta_t = 1\)`. 
@@ -374,7 +376,7 @@ Start by dividing both sides by `\(N_0\)`:
 ---
 ## Doubling time
 
-&lt;img src="lecture3_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture3_files/figure-html/unnamed-chunk-7-1.png" width="576" style="display: block; margin: auto;" /&gt;
 
 Relatively small changes in `\(r\)` can have profound effects on population doubling time `\(^7\)`:
 
@@ -404,7 +406,7 @@ Density-independent population models result in **exponential** growth `\(^8\)`
 
 ???
 
-`\(^8\)` Technically, exponential growth refers to continuous processes) whereas the same process in discrete models is referred to as **geometric** growth  
+`\(^8\)` Technically, exponential growth refers to continuous processes, whereas the same process in discrete models is referred to as **geometric** growth  
 
 `\(^9\)` If multiplicative growth is confusing, think about it this way: half of 4 is 2 but half of 100 is 50. In both cases, the proportion is the same (half) but the value is different (2 vs. 50). So doubling a population of size 2 leads to 4 individuals, then to 8, then to 16, then to 32...
 
@@ -416,15 +418,15 @@ Exponential growth has profound implications
 Imagine putting $1000 in a investment that grows by 6.5% per year:
 
 --
-+ After 10 years, the investment will be worth $1912.69 (~90% return)  
++ After 10 years, the investment will be worth $1877.14 (~90% return)  
 &lt;br/&gt;
 
 --
-+ After 20 years, the investment will be worth $3658.38 (~265% return)  
++ After 20 years, the investment will be worth $3523.65 (~265% return)  
 &lt;br/&gt;
 
 --
-+ After 30 years, the investment will be worth $6997.33 (~600% return)!  
++ After 30 years, the investment will be worth $6614.37 (~660% return)!  
 
 ???
 
@@ -506,6 +508,7 @@ What was the growth rate of the sheep and pheasant populations?
 
 Constant means they do not vary over time or space, across individuals, and are density-independent
     </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
@@ -515,16 +518,74 @@ Constant means they do not vary over time or space, across individuals, and are 
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
-(function() {
-  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
   if (!r) return;
   s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
   d.head.appendChild(s);
-})();</script>
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
   for (i = 0; i < codes.length;) {
     code = codes[i];
     if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
@@ -538,7 +599,8 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     i++;
   }
-})();
+};
+slideshow._releaseMath(document);
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

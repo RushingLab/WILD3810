@@ -236,7 +236,7 @@ It's also possible to use more than one geometry:
 ggplot(data = ut_dove_counts, aes(x = Year, y = Count)) + geom_line() + geom_point()
 ```
 
-This is reasonable figure showing changes in collared-dove counts across time. But `ggplot2` makes it very easy to tweak the way the data is visualized (maybe too easy, you can spend *a lot* of time tweaking minor details). For example, maybe we want to scale the size of the points based on the size of the counts (so larger points are displayed using larger points). Because we want to map an *attribute* (size) to a variable (count), we make this change inside of `aes`:
+This is reasonable figure showing changes in collared-dove counts across time. But `ggplot2` makes it very easy to tweak the way the data is visualized (maybe too easy, you can spend *a lot* of time tweaking minor details). For example, maybe we want to scale the size of the points based on the size of the counts (so larger counts are displayed using larger points). Because we want to map an *attribute* (size) to a variable (count), we make this change inside of `aes`:
 
 ```{r fig.width=8, fig.height=6}
 ggplot(data = ut_dove_counts, aes(x = Year, y = Count, size = Count)) + geom_line() + geom_point()

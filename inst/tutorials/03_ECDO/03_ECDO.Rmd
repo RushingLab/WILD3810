@@ -1,0 +1,710 @@
+---
+title: "Lab 2: Modeling and visualizing population growth"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: false
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+library(ggplot2)
+library(WILD3810)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+gradethis::gradethis_setup()
+```
+
+## Overview {data-progressive=TRUE}
+
+In this lab, you will learn to model and predict the growth of plant and animal populations using `R`. Continuing from the first lab, we will continue learning how to use `R` to create and manipulate objects, with a particular focus on moving from vector objects to data frames. We will also learn about some basic plotting functions to visualize the dynamics of our study populations. 
+
+***
+**Objectives**
+
+* Model and visualize density-independent population growth 
+
+* Learn/review basic data manipulation tasks, including:  
+    + Subsetting vectors
+    + Creating and subsetting data frames
+    + Create summaries of raw data
+    + Saving data
+  
+  
+* `R` functions used in this exercise:  
+    + `library()`
+    + `data()`
+    + `head()`
+    + `str()`
+    + `summary()`
+    + `nrow()`
+    + `dplyr::select()`
+    + `dplyr::filter()`
+    + `ggplot2::ggplot()`
+    + `data.frame()`
+    + `for()`
+    + `dplyr::bind_rows()`
+    + `dplyr::mutate()`
+
+
+***
+    
+## Modeling exponential population growth
+
+```{r echo = FALSE, out.width=400, fig.cap="Image courtesy of Charles J Sharp via Wikicommons (CC BY-SA 4.0)"}
+knitr::include_graphics("https://upload.wikimedia.org/wikipedia/commons/0/0b/Eurasian_collared-dove_%28Streptopelia_decaocto%29.jpg")
+```
+
+For this exercise, we will use data from the North American [Breeding Bird Survey](https://www.mbr-pwrc.usgs.gov/bbs/) to model and visualize the rapid population growth of Eurasian collared-doves (*Streptopelia decaocto*) in the state of Utah. Eurasian collared-doves are an introduced species that, as you will soon see, have been rapidly expanding westward across the United States since they were introduced in Florida in the early 1990's.  
+
+The Breeding Bird Survey is a roadside monitoring program conducted by volunteers across North America every year since the late 1960's. Each survey route is 25 miles long and surveyors stop every 0.5 mile (50 stops total) to count every bird they see or hear. For this lab, we will use the average number of doves counted in each year across all BBS routes that are located in Utah.
+
+### Loading packages
+
+A summary of the Utah collared-dove counts is included in the course package `WILD3810`.  
+
+One thing we did not discuss in lab 1 was what packages are and how to access their content in your current `R` environment (remember that every time you open RStudio, it creates a new "environment". This environment stores all of the objects you create during that R session).  
+
+Packages are ways to share custom `R` functions and data that do not come with `R` itself. Packages allow anyone to contribute useful code and data for other `R` users to use as part of their analyses. The `install.packages()` function downloads the package onto your computer.
+
+It's important to realize that installing a package does not automatically make it's code and data available with your current `R` session. When you open `R`, you have to *load* the package in order to make its functions and data available in the current session. Packages are loaded using the `library()` function with the package name as the argument: 
+
+```{r library, exersise = TRUE}
+## Load the package to make data and code available in current R environment
+library(WILD3810)
+
+## Load a visualization package for later in the tutorial
+library(ggplot2)
+```
+
+### Loading the data
+
+Now that we have loaded the `WILD3810` package, we can load the dove data using the `data()` function. This function is used to load data objects that come with packages:
+
+```{r load, exercise = TRUE, exercise.setup = "library"}
+data("ut_dove_counts")
+```
+
+Notice that in the `Environment` tab in the top right panel of you RStudio window, you now see an object called `ut_dove_counts`. This object holds the data values we will use in this exercise. 
+
+### Introduction to data frames
+
+In the [first lab](https://rushinglab.github.io/WILD3810/articles/lab1.html), we learned about one particular class of `R` object - vectors. Vectors hold a string of values as a single object. Although useful for many applications, vectors are limited in their ability to store multiple types of data (numeric and character).  
+
+This is where data frames become useful. Perhaps the most common type data object you will use in `R` is the data frame. Data frames are tabular objects (rows and columns) similar in structure to spreadsheets (think Excel or GoogleSheets). In effect, data frames store multiple vectors - each column of the data frame is a vector. As such, each column can be a different class (numeric, character, etc.) but all values within a column must be the same class. Just as the first row of an Excel spreadsheet can be a list of column names, each column in a data frame has a name that (hopefully) provides information about what the values in that column represent.  
+
+To see how data frames work, let's view the `ut_dove_counts` object. We can do this in several ways
+
+- the `head()`function will print the first 6 rows of the data frame  
+
+- the `tail()`function will print the last 6 rows of the data frame
+
+```{r head, exercise = TRUE, exercise.setup = "load"}
+head(ut_dove_counts)
+
+tail(ut_dove_counts)
+```
+
+We can see that `ut_dove_counts` contains two columns: 
+
+- `Year`
+
+- `Count`
+
+We can also see that there weren't many collared-doves in Utah in the late 1960's/early 1970's. 
+
+### Introduction to data frames (continued)
+
+Several other useful functions for investigating the structure of data frames are `str()` and `summary()`
+
+```{r str, exercise = TRUE, exercise.setup = "load"}
+
+str(ut_dove_counts)
+
+summary(ut_dove_counts)
+```
+
+`str()` tells us about the structure of the data frame, in this case that `Year` is an integer object (only whole numbers) and `Count` is numeric. For both types of data, `summary()` provides some simple summary statistics for each variable. 
+
+Another useful function is `nrow()`, which tells us now many rows are in the data frame (similar to `length()` for vectors):
+
+```{r nrow, exercise = TRUE, exercise.setup = "load"}
+nrow(ut_dove_counts)
+```
+
+Because the `ut_dove_counts` data frame has one row per year, the `nrow()` function is very useful to determining how many years of BBS data we have (**remember that!**). 
+
+### Subsetting data frames
+
+As you will see shortly, one of the most common tasks when working with data frames is creating new objects from *parts* of the full data frame. This task involves subsetting the data frame - selecting specific rows and columns. There are **many** ways of subsetting data frames in `R`, too many to discuss so we will only learn about a few. 
+
+### Selecting columns
+
+First, we may want to select a subset of all of the columns in a big data frame. Data frames are essentially tables, which means we can reference both rows and columns by their number: `data.frame[row#, column#]`.  
+
+The row and column numbers have to be put inside of square brackets following the name of the data frame object:
+- The row number always comes first and the column number second  
+
+- If you want to select all rows of a specific column, you just leave the `row#` blank 
+
+For example, if we wanted a vector containing all of the years the BBS data was collected:
+
+```{r subset1, exercise = TRUE, exercise.setup = "load"}
+ut_dove_counts[,1]
+```
+
+### Selecting columns (continued)
+
+An easier way of doing this is using `data.frame$column` (where `data.frame` is the name of the data frame object and `column` is the name of the column):
+
+```{r subset2, exercise = TRUE, exercise.setup = "load"}
+ut_dove_counts$Year
+```
+
+Notice that if you hit `tab` after you type the `$`, RStudio will bring up all of the columns and you can use the up or down buttons to find the one you want. 
+
+### Selecting columns (continued)
+
+Sometimes you may want to select more than one column. The easiest way to do that is to use the `select()` function in the `dplyr` package:
+
+```{r select, exercise = TRUE, exercise.setup = "load"}
+library(dplyr)
+
+select(.data = ut_dove_counts, Count, Year)
+
+```
+
+Notice that select requires us to first provide the data frame object (`.data = ut_dove_counts`) and then we provide the column names (unquoted!) we want to select. In this case we selected both columns but changed in the order. You can also use select to remove columns:
+
+```{r select2, exercise = TRUE, exercise.setup = "load"}
+select(.data = ut_dove_counts, -Year)
+```
+
+### Filtering rows
+
+To select specific rows, we can use the `row#` method we learned above, this time leaving the columns blank:
+
+```{r rowsubset, exercise = TRUE, exercise.setup = "load"}
+ut_dove_counts[1,]
+```
+
+If we want more than one row, we just put in a vector with all of the rows we want:
+
+```{r rowssubset, exercise = TRUE, exercise.setup = "load"}
+ut_dove_counts[1:2,]
+
+ut_dove_counts[c(1,30),]
+```
+
+Note that we can use the square brackets to also subset vectors, in which case we don't need the comma as long as you tell `R` which column you want first:
+
+```{r vsubset, exercise = TRUE, exercise.setup = "load"}
+ut_dove_counts$Count[1]
+```
+
+### Filtering rows (continued)
+
+Sometimes, we may not know the specific row number(s) we want but we do know the value of one of the columns we want to keep. Using the `filter()` function in the `dplyr` package allows us to filter rows based on the value of one of the variables. 
+
+For example, if we want just the 2004 count, we use:
+
+```{r filter, exercise = TRUE, exercise.setup = "load"}
+filter(ut_dove_counts, Year == 2004)
+```
+
+***
+Notice the need for two equals signs (`==`) when telling `R` we want the row where `Year` *equals* 2. 
+***
+
+### Filtering rows (continued)
+
+Filter makes it very easy to select multiple rows using operators like greater than, less than, etc. 
+
+```{r filter2, exercise = TRUE, exercise.setup = "load"}
+filter(ut_dove_counts, Year > 2004)
+```
+
+or a more complicated example:
+
+```{r filter3, exercise = TRUE, exercise.setup = "load"}
+filter(ut_dove_counts, Year < 1972 | Year > 2010)
+```
+
+***
+`R` treats the `|` symbol as *or* (so in this case years before 1972 *or* after 2010). 
+
+Note that we have to include `Year` on both sides of the `|`!
+***
+
+## Visualizing data frames using `ggplot2`
+
+`R` has very powerful graphing capabilities that make it possible to create data visualizations for reports or publications. As with most tasks in `R`, there are many ways to create graphs. For example, in the last lab we used the `hist()` function to create a histogram of the 1000 simulated estimates of $\hat{N}$. For the remainder of the course, we will focus on learning how to make figures using the `ggplot2` package. 
+
+### Brief introduction to `ggplot2`
+
+The power and flexibility of `ggplot2` come from it's consistent structure. Although a bit confusing at first, once you get the hang of it, the structure actually makes it quite easy to create highly customized visualizations. All plots created using `ggplot2` use the same underlying structure:
+
+$$\underbrace{ggplot}_{initiate\; plot}(\underbrace{data = df}_{data\;frame},\; \underbrace{aes(x =\; , y = \;)}_{plot\; attributes}) + \underbrace{geom\_line()}_{geometry}$$
+
+The `ggplot()` function initiates a new plot. In this function, you tell `ggplot2` what data frame you will be using for the plot and you tell it how to map attributes of the data to the visual properties of the figures. Attributes are mapped inside the `aes()` argument. Attributes usually include location (`x-axis` and `y-axis` placement), color, size, shape, line type, and many others. **In general, each attribute will be mapped to one column of your data frame.** 
+
+### Initiating a `ggplot2`
+
+The `ggplot()` function simply initiates a graph - if you run just that portion of the code you will get a blank graph. We can see that by creating a new plot showing the relationship between `Year` (the x-axis of the plot) and `Count` (the y-axis): 
+
+```{r ggplot, exercise = TRUE, fig.width=8, fig.height=6, exercise.setup = "load"}
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count))
+```
+
+You can see that `ggplot` created a figure with the correct axes and labels. But no data. That's because we didn't tell `ggplot` what type of *geometry* to use to represent the data. 
+
+### Geometries
+
+Geometry refers to the  type geometric object(s) we want to use to display the data. Common geometries include points (e.g., scatter plot), lines (e.g., time series), and bars (e.g., histograms). There are many others. Once we add a geometry, we can see the data:
+
+```{r geometry, exercise = TRUE, fig.width=8, fig.height=6, exercise.setup = "load"}
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count)) + geom_point()
+```
+
+### Geometries (continued)
+
+In this case, a line graph might make more sense:
+
+```{r geometry2, exercise = TRUE, fig.width=8, fig.height=6, exercise.setup = "load"}
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count)) + geom_line()
+```
+
+It's also possible to use more than one geometry:
+
+```{r geometry3, exercise = TRUE, fig.width=8, fig.height=6, exercise.setup = "load"}
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count)) + geom_line() + geom_point()
+```
+
+This is reasonable figure showing changes in collared-dove counts across time. But `ggplot2` makes it very easy to tweak the way the data is visualized (maybe too easy, you can spend *a lot* of time tweaking minor details). 
+
+### Tweaking your graph
+
+For example, maybe we want to scale the size of the points based on the size of the counts (so larger counts are displayed using larger points).  
+
+Because we want to map an *attribute* (size) to a *variable* (count), we make this change inside of `aes`:
+
+```{r size, exercise = TRUE, fig.width=8, fig.height=6, exercise.setup = "load"}
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count, size = Count)) + geom_line() + geom_point()
+```
+
+### Tweaking your graph (continued)
+
+The previous graph is not exactly what we wanted. Both the line width and the point size are now a function of `Count`.  
+
+To make just the points a function of count, we specify `size = Count` inside of the `geom_point()` function (anything in the `ggplot()` function will apply to all geoms):
+
+```{r size2, exercise = TRUE, fig.width=8, fig.height=6, exercise.setup = "load"}
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count)) + geom_line() + geom_point(aes(size = Count))
+```
+
+***
+The key point here - take note of this! - is that when we want to change the way the figure looks (size, color, width, etc) **based on values in the data frame**, the aesthetic **goes inside the `aes()` function**
+***
+
+### Other aesthetic options
+
+Sometimes, we just to make all the points bigger or change the color of all points. 
+
+In this case, we are **not** mapping a variable to an attribute. So these changes happen **outside** of the `aes()` argument:
+
+```{r color, exercise = TRUE, fig.width=8, fig.height=6, exercise.setup = "load"}
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count)) + geom_line(color = "grey50") + geom_point(color = "red")
+```
+
+**Be sure you understand the difference between the code that made this figure and the code we used in the previous example!**
+
+### Other aesthetic options
+
+One last example. My personal opinion is that points plotted over a line look a little better when there is a little white space between the line and the point. 
+
+In `ggplot2` a hack to do that is to put white points *underneath* the red points that are slightly bigger than the red points. 
+
+To this we add another `geom_point()` but manually change the size to be slightly bigger than the red points. Also note that `ggplot2` adds the geometries in the order that they are included in the code so we need to add the white points before the red points:
+
+```{r whitepoints, exercise = TRUE, fig.width=8, fig.height=6, exercise.setup = "load"}
+ggplot(data = ut_dove_counts, aes(x = Year, y = Count)) + geom_line(color = "grey50") + geom_point(color = "white", size = 4.5) + geom_point(color = "red", size = 3)
+```
+
+Notice that in this case, we aren't mapping size to any data so we include it outside of `aes()`.
+
+## Estimating $\large \lambda$ and future population size
+
+In the next homework, we will use the BBS counts to estimate the population growth rate of Eurasian collared-doves in Utah and predict the future population size using the exponential growth model. To create this homework:
+
+1) Create a new R Markdown file from the Homework-2 template:
+
+    1a) Click `File -> New File -> R Markdown`  
+    
+    1b) Click `From Template` and scroll down to `WILD3810-Homework2`  
+    
+    1c) In the `Name` box, type `LastnameFirstname-Homework2`  
+    
+    1d) Click `Ok`
+
+2) Ensure that you can `Knit` the file
+
+    2a) Change "YOUR NAME HERE" in the header section to your name  
+    
+    2b) Click `Knit` to make sure you can knit the .Rmd file  
+    
+    2c) Save the .Rmd file as `LastnameFirstname-homework1.Rmd` in a project named `LastNameFirstName-Lab2`
+    
+3) Complete the assignment as directed in this tutorial
+
+If you have any problems with these steps, be sure to get help from either the instructor or the TA
+
+### Predicting future population size
+
+For this homework, you will be acting as the lead avian ecologist for DWR, tasked with objective of predicting the future population size of Eurasian collared-doves within the state. To accomplish this task, you will first need to know the population growth rate of the dove population. Remember from lecture 3 that:
+
+$$\Large \lambda = \bigg(\frac{N_{T}}{N_0}\bigg)^{\frac{1}{T}}$$
+
+Let's use the dove counts to estimate $\lambda$ for this population. 
+
+Remember that $T$ is the number of years over which we want to estimate growth. Since the `ut_dove_counts` data frame has one row for each year, we can easily estimate the total number of years using `nrow()`. But first, load the data. 
+
+Copy the following code to the `setup` chunk in the homework file
+
+```{r}
+## Load the WILD3810 package to make data and code available in current R environment
+library(WILD3810)
+
+## Load the data
+data("ut_dove_counts")
+```
+
+### How many years of data are there?
+
+In the box below, use the `nrow` function to create object called `t` that contains the number of years (Note that `T` is reserved in `R` as shorthand for `TRUE` so we can't use that as the object name)
+
+```{r t, exercise = TRUE, exercise.setup = "load"}
+t <- 
+```
+
+```{r t-solution}
+t <- nrow(ut_dove_counts)
+```
+ 
+```{r t-code-check}
+grade_code()
+```
+
+### Intial population size
+
+Now we can create the objects to calculate $\lambda$. 
+
+Note that in the equation for $\lambda$, we have to divide by `N0`, which means it can't be 0 (even though we started with no doves in the state). 
+
+So instead we'll give it a value of 1, which won't make much difference. In the box below, create an object called `N0` and give it a value of 1 
+
+```{r N0, exercise = TRUE, exercise.setup = "load"}
+t <- nrow(ut_dove_counts)
+
+N0 <- 
+```
+
+```{r N0-solution}
+N0 <- 1
+```
+ 
+```{r N0-code-check}
+grade_code()
+```
+
+
+## Final population size 
+
+Now create an object `NT` and use the subsetting rules we learned earlier to give it a value equal the dove count in the final year of data
+
+```{r NT, exercise = TRUE, exercise.setup = "load"}
+t <- nrow(ut_dove_counts)
+
+N0 <- 1
+
+NT <- 
+```
+
+<div id="NT-hint">
+**Hints:**  
+
+1) In this case, we can use the `data.frame$column.name` subsetting method
+
+2) `data.frame$column.name` returns a vector, so we can use vector subsetting (i.e., `[]`) to get the correct count
+
+3) Remember that you already created an object called `t` indicating how many years of data there are so use that object to get the final year count
+
+
+</div>
+
+```{r NT-solution}
+N0 <- 1
+
+NT <- ut_dove_counts$Count[t]
+```
+ 
+```{r NT-code-check}
+grade_code()
+```
+
+### Estimating $\large \lambda$
+
+Now we can estimate $\lambda$:
+
+In the box below, create an object called `lambda` and use the equation above to estimate the population growth rate from the objects you created in the previous steps
+
+```{r lambda, exercise = TRUE, exercise.setup = "load"}
+t <- nrow(ut_dove_counts)
+
+N0 <- 1
+
+NT <- ut_dove_counts$Count[t]
+
+lambda <- 
+```
+
+<div id="lambda-hint">
+To raise something to a power in `R`, use the `^` symbol (and remember order of operations! **P**lease **E**xcuse **M**y **D**ear **A**unt **S**ally)
+
+</div>
+
+```{r lambda-solution}
+t <- nrow(ut_dove_counts)
+
+N0 <- 1
+
+NT <- ut_dove_counts$Count[t]
+
+lambda <- (NT/N0) ^ (1/t)
+```
+ 
+```{r lambda-code-check}
+grade_code()
+```
+
+Copy these lines to the `calc_lambda` chunk in the homework file and run them. Use the output to answer question 
+1 in the homework. 
+
+### Refining your estimate
+
+The $\lambda$ you just estimated is not really an accurate reflection of the actual growth rate because for the first several decades, there were no doves at all. Once the doves arrived in Utah, their population growth was much more explosive. It is probably more instructive to estimate the rate of population growth for only the years when doves were counted in the state (`Count > 0`). 
+
+In the box below, use the `filter()` function to create a new data frame called `ut_dove_counts2` containing only the non-zero counts. **What arguments do you need to provide to `filter()` to create the data frame we want?**
+
+```{r NewCounts, exercise = TRUE, exercise.setup = "load"}
+library(dplyr)
+
+ut_dove_counts2 <- filter(.data = , )
+```
+
+### Re-calculating $\large \lambda$
+
+Now recycle the code you created earlier to re-estimate $\lambda$ (hint: you'll need t, N0, and NT)
+
+```{r lambda2, exercise = TRUE, exercise.setup = "load"}
+library(dplyr)
+
+ut_dove_counts2 <- filter(.data = ut_dove_counts, Count > 0)
+
+
+```
+
+<div id="lambda2-hint">
+You'll need to make a new `t`, a new `N0`, and a new `NT`
+
+</div>
+
+Copy this code to the `newlambda` chunk and use the output to answer question 2 in the homework assignment
+
+***
+Remember that instead of typing the new value of the new $\lambda$ you estimated, you can include a small bit of `R` code so that when you knit the document, the correct value is displayed. You would do this by typing `` `r "\u0060r round(lambda2, 2)\u0060"` `` within your answer (assuming the object that contains the new estimate of $\lambda$ is called `lambda2`)
+
+***
+
+## Predicting future population size
+
+Your bosses at DWR want to know what the size of the collared-dove population will be over the next 20 years. Assuming they keep growing at the rate estimated in the previous step, you can use the discrete population growth model to predict annual counts of collared-doves over this time period (for now, we'll ignore the fact that BBS counts are an **index** of abundance and not an **estimate**). Remember that:
+
+$$N_{t+1} = N_t \times \lambda$$
+
+So if we start with the average count in 2015 (the last year we have data), we can simply use the $\lambda$ estimate to predict the count in 2016. Then we use the 2016 prediction to predict the 2017 count. And we continue until we reach the predicted 2035 count. To do this, we need to learn a new `R` skill - writing `for` loops. 
+
+### Creating an new data frame
+
+The first step in our prediction is to create a new data frame that will contain the predicted counts in each year.  
+
+Creating a new data frame is done using the `data.frame()` function.  
+
+In this function, we provide the name of each column followed by a vector containing the values of that column. Just like naming vector objects, **the column names cannot start with a number and should not contain spaces**. 
+
+```{r df, exercise=TRUE, echo = TRUE}
+## Create the new data frame 
+predicted_doves <- data.frame(Year = seq(from = 2015, to = 2035), 
+                              Count = NA)
+```
+
+We give this data frame the same column names as the original `ut_dove_counts` data frame. Unlike when creating objects (where we use the `<-` operator), you **must** use an equals sign to create columns in a data frame. 
+
+To fill in the `Year` column, we use the `seq()` function which creates a sequence of values between the `from` and `to` values that are supplied as arguments:
+
+```{r}
+seq(from = 2015, to = 2035)
+```
+
+We start this sequence at 2015 since that's the last year we have counts for (and the first one we'll use to predict future counts). 
+
+In the `Count` column, we simply gave it a value of `NA`, which in `R` is how you code "missing" data (in this case it's not missing, we just haven't created it yet). Essentially, this creates an empty vector that we will in next. Note that is we give a single value when creating the column, `R` will recycle that value for each element in the vector. 
+
+### Initial population size
+
+The `Count` column in our new data frame is not totally unknown - we do know the count in 2015. We can fill in that value using the subsetting rules that we have already learned:
+
+In the box below, use the subsetting rules we've learned to fill in the first count value of the new data frame using the last count of the `ut_dove_counts` data frame
+
+```{r doves2015, exercise = TRUE, exercise.setup = "load"}
+## Create the new data frame 
+predicted_doves <- data.frame(Year = seq(from = 2015, to = 2035), 
+                              Count = NA)
+
+## Fill in the 2015 count based on the value in the original data frame
+predicted_doves$Count[1] <- 
+
+```
+
+<div id="doves2015-hint">
+The `nrow()` function is your friend!
+
+</div>
+
+
+### Filling in the predicted counts
+
+As mentioned earlier, we need to multiply population size in each year by $lambda$ in order to predict population size the next year. We *could* do that by typing `count[2] <- count[1] * lambda`, then `count[3] <- count[2] * lambda`, then `count[4] <- count[3] * lambda`, ..., `count[20] <- count[19] * lambda`.
+
+But that's a lot of typing. And you can hopefully see the pattern. If `t` is the year we're predicting population size for, each line above is just `count[t] <- count[t-1] * lambda`. We can take advantage of that pattern to avoid having to copy, paste, change the number 20 times. 
+
+`for` loops allow us to give `R` a chunk of code, run that code a set number of times, and each time change the *index* values that control how the code is run. In our case, we need to run `count[t] <- count[t-1] * lambda` 20 times (once for each year), each time changing the *index* value $t$ ($2, 3, 4, 5,...,20$). The following code does exactly that using a `for` loop:
+
+
+```{r predicted_doves, exercise = TRUE, exercise.setup = "load"}
+## Create the new data frame 
+predicted_doves <- data.frame(Year = seq(from = 2015, to = 2035), 
+                              Count = NA)
+
+## Fill in the 2015 count based on the value in the original data frame
+predicted_doves$Count[1] <- ut_dove_counts$Count[nrow(ut_dove_counts)]
+  
+## Fill in predicted counts
+for(t in seq(from = 2, to = nrow(predicted_doves))){
+  predicted_doves$Count[t] <- predicted_doves$Count[t - 1] * lambda
+}
+```
+
+Inside the `for()` function, we first provide the *index* that will change each time we loop through the code. In this case, we call the index `t` (though we could call it `i` or `j` or `year` or whatever we want). When we place this index symbol in the code, `R` will replace it with a number. Essentially, at the beginning of each loop `R` creates in objected called `t` and assigns it a specific value (e.g. `t <- 2`). 
+
+After providing the index, we tell `R` what values we want the index to take by providing a sequence of numbers. In this case, we want to predict counts in rows 2-21 of our data frame so we provide a sequence from 2 to 21 (again using the `seq()` function). The `in` between the index and the sequence is `R`'s way of saying `t` will take each value *in* the sequence 2-21. 
+
+The `for(t in seq(from = 2, to = nrow(predicted_doves)))` sets up the parameters of the loop. After that line we enclose the code we want to run within each loop between curly brackets (`{}`). In this case, we just use the single line that fills in the predicted counts based on the previous year's count, making sure to include the index `t` in the appropriate places. 
+
+Copy this code to the chunk named `predicted_doves` in the homework file and answer questions 3a-3c
+
+
+### Combining the data frames
+
+Before we visualize the predicted counts, let's combine the newly create data frame with the original data so our figure shows the entire time series in one plot. First, we need to remove the first row of the `predicted_doves` data frame so we don't duplicate the 2015 count:
+
+In the box below, use the `filter()` function to include only years > 2015 in the `predicted_doves` data frame
+
+```{r pred, exercise = FALSE, echo=FALSE}
+library(WILD3810)
+data("ut_dove_counts")
+## Create the new data frame 
+predicted_doves <- data.frame(Year = seq(from = 2015, to = 2035), 
+                              Count = NA)
+
+## Fill in the 2015 count based on the value in the original data frame
+predicted_doves$Count[1] <- ut_dove_counts$Count[nrow(ut_dove_counts)]
+  
+## Fill in predicted counts
+for(t in seq(from = 2, to = nrow(predicted_doves))){
+  predicted_doves$Count[t] <- predicted_doves$Count[t - 1] * lambda
+}
+```
+
+```{r filter_pred, exercise = TRUE, exercise.setup = "pred"}
+predicted_doves <- filter(predicted_doves, )
+```
+
+### Adding columns
+
+Before we combine the data frames, let's add a new column to each one that tells us whether the counts are predictions or actual counts. The `dplyr` package has a useful function for adding columns to a data frame called `mutate()`. This function take the original data frame, the name of the new column and the values of the new variable as arguments:
+
+In the box below, the `mutate()` function has been completed for the `ut_dove_counts` data frame to add a column called `Type` that will contain the character string `Count` for each row, indicating that these are the observed counts. 
+
+Complete the `mutate()` function for the `predicted_doves` data frame to add the `Type` column but with `Predicted` as the value:
+
+```{r add_column, exercise = TRUE, exercise.setup = "pred"}
+predicted_doves <- filter(predicted_doves, Year > 2015)
+
+## Add column indicating columns are observed counts
+ut_dove_counts <- mutate(ut_dove_counts, Type = "Count")
+
+## Add column indicating columns are predicted counts
+predicted_doves <- mutate(predicted_doves, )
+
+```
+
+### Combining the data frames
+
+Now we can combine the data frames using the `bind_rows` function from the `dplyr` package:
+
+```{r bind, exercise = TRUE, exercise.setup = "pred"}
+predicted_doves <- filter(predicted_doves, Year > 2015)
+
+## Add column indicating columns are observed counts
+ut_dove_counts <- mutate(ut_dove_counts, Type = "Count")
+
+## Add column indicating columns are predicted counts
+predicted_doves <- mutate(predicted_doves, )
+
+## Combine data frames
+all_doves <- bind_rows(ut_dove_counts, predicted_doves)
+
+```
+
+`bind_rows()` takes two or more data frames as arguments and put them together as a single data frame by stacking them on atop the other (if the data frames do not have the same columns, `bind_rows` includes all columns in all data frames and fills in `NA` values for the missing values).
+
+### Visualizing the predictions
+
+Now we can use `ggplot2` to visualize the predicted counts. To make it easier to visually tell which points are observed counts vs predictions, we'll use the `aes()` function to tell `ggplot2` to map the color of each point to the `Type` column in the data frame. However, we'll modify it slightly by mapping the color of the points to the type of count (count vs. prediction)
+
+In the box below, fill in the missing parts of the code below (indicated by `?`) to show `Year` on the x-axis, `Count` on the `y-axis`, and both a line and points for each count. Color the points based on the type of count (`Count` or `Predicted`)
+
+```{r viz, exercise = TRUE, exercise.setup = "pred"}
+predicted_doves <- filter(predicted_doves, Year > 2015)
+
+## Add column indicating columns are observed counts
+ut_dove_counts <- mutate(ut_dove_counts, Type = "Count")
+
+## Add column indicating columns are predicted counts
+predicted_doves <- mutate(predicted_doves, )
+
+## Combine data frames
+all_doves <- bind_rows(ut_dove_counts, predicted_doves)
+
+ggplot(data = ?, aes(x = ?, y = Count)) + geom_?(color = "grey50") + 
+  geom_?(aes(color = ?), size = 3)
+
+```
+
+Copy this code to the `viz` chunk in the homework file. Run the code. If you did everything correctly, you should get a graph of the predicted dove counts when you knit the document. That's a lot of doves!
+
+## Turning in your assignment
+
+Click the `knit` button on the homework file and make sure you can produce an html file with all of your answers and the final plot. If you have any trouble, let the instructor or TA know. 
+
+Once you are able to successfully knit the document, follow the [instructions for submission](https://rushinglab.github.io/WILD3810/articles/homework.html) to upload your completed assignment to Canvas

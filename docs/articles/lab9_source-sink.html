@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Source-sink metapopulation dynamics • WILD3810</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Source-sink metapopulation dynamics">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">WILD3810</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2021.1</span>
       </span>
     </div>
 
@@ -192,7 +193,9 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+
+      </header><script src="lab9_source-sink_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="lab9_source-sink_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="lab9_source-sink_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Source-sink metapopulation dynamics</h1>
@@ -217,7 +220,7 @@
 <div id="creating-the-homework-assignment" class="section level3">
 <h3 class="hasAnchor">
 <a href="#creating-the-homework-assignment" class="anchor"></a>Creating the homework assignment</h3>
-<p>To complete this week’s homework assignment, you will follow along with the instructions below, entering code and answering questions in the <code>.Rmd</code> file for homework 8. From within Rstudio cloud:</p>
+<p>&lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD To complete this week’s homework assignment, you will follow along with the instructions below, entering code and answering questions in the <code>.Rmd</code> file for homework 9. From within Rstudio cloud: ======= To complete this week’s homework assignment, you will follow along with the instructions below, entering code and answering questions in the <code>.Rmd</code> file for homework 8. From within Rstudio cloud: &gt;&gt;&gt;&gt;&gt;&gt;&gt; 5574edd7fe912a3269261d268fc8f26b0196581a</p>
 <ol style="list-style-type: decimal">
 <li><p>Click on the <code>WILD3810</code> link under spaces</p></li>
 <li><p>Click the blue <code>New project</code> button at the top of the screen</p></li>
@@ -355,8 +358,8 @@ Matrix of dispersal rates (D) between each of the 3 populations
 <ol style="list-style-type: decimal">
 <li><p>Use the table to calculate all of the relevant <span class="math inline">\(R_i\)</span> values. Be sure you create an object corresponding to each value and give it an easily-understood name.</p></li>
 <li><p>Using the rates estimated in step 1, create a matrix describing the dynamics of this metapopulation. Name this matrix <code>B</code> and make sure that there is one row and one column for each population.</p></li>
-<li><p>Use the <code><a href="https://www.rdocumentation.org/packages/popbio/topics/lambda">popbio::lambda()</a></code> function to calculate the long-term growth rate of this source-sink metapopulation. Store this value in an object named <code>lambda1</code></p></li>
-<li><p>Use the <code><a href="https://www.rdocumentation.org/packages/popbio/topics/stable.stage">popbio::stable.stage()</a></code> function to calculate the long-term “stable stage distribution” of this source-sink metapopulation. Store this value in an object named <code>ssd1</code></p></li>
+<li><p>Use the <code><a href="https://rdrr.io/pkg/popbio/man/lambda.html">popbio::lambda()</a></code> function to calculate the long-term growth rate of this source-sink metapopulation. Store this value in an object named <code>lambda1</code></p></li>
+<li><p>Use the <code><a href="https://rdrr.io/pkg/popbio/man/stable.stage.html">popbio::stable.stage()</a></code> function to calculate the long-term “stable stage distribution” of this source-sink metapopulation. Store this value in an object named <code>ssd1</code></p></li>
 <li><p>Answer questions 3a-3d on the homework assignment</p></li>
 </ol>
 <hr>
@@ -369,8 +372,8 @@ Matrix of dispersal rates (D) between each of the 3 populations
 <p>Assume that the metapopulation experiences some type of habitat degradation that reduces connectivity among the patches. Specifically, no individuals can disperse from patch 2 to patch 1 and the dispersal rate from patch 2 to patch 3 is reduced to 1%. In the <code>R</code> chunk of your homework assignment named <code>source</code>:</p>
 <ol style="list-style-type: decimal">
 <li><p>Create a new matrix describing the dynamics of the metapopulation. Call the matrix <code>B2</code></p></li>
-<li><p>Use the <code><a href="https://www.rdocumentation.org/packages/popbio/topics/lambda">popbio::lambda()</a></code> function to calculate the new long-term growth rate of the source-sink metapopulation. Store this value in an object named <code>lambda2</code></p></li>
-<li><p>Use the <code><a href="https://www.rdocumentation.org/packages/popbio/topics/stable.stage">popbio::stable.stage()</a></code> function to calculate the new long-term “stable stage distribution” of this source-sink metapopulation. Store this value in an object named <code>ssd2</code></p></li>
+<li><p>Use the <code><a href="https://rdrr.io/pkg/popbio/man/lambda.html">popbio::lambda()</a></code> function to calculate the new long-term growth rate of the source-sink metapopulation. Store this value in an object named <code>lambda2</code></p></li>
+<li><p>Use the <code><a href="https://rdrr.io/pkg/popbio/man/stable.stage.html">popbio::stable.stage()</a></code> function to calculate the new long-term “stable stage distribution” of this source-sink metapopulation. Store this value in an object named <code>ssd2</code></p></li>
 <li><p>Answer questions 4a-4c on the homework assignment</p></li>
 </ol>
 <hr>
@@ -379,7 +382,7 @@ Matrix of dispersal rates (D) between each of the 3 populations
 <p>Using the matrix <code>B</code> as a starting point, what happens if the birth rate of population 2 declines to 0.24. In the <code>R</code> chunk of your homework assignment named <code>source2</code>:</p>
 <ol style="list-style-type: decimal">
 <li><p>Create a new matrix describing the dynamics of the metapopulation. Call the matrix <code>B3</code></p></li>
-<li><p>Use the <code><a href="https://www.rdocumentation.org/packages/popbio/topics/lambda">popbio::lambda()</a></code> function to calculate the new long-term growth rate of the source-sink metapopulation. Store this value in an object named <code>lambda3</code></p></li>
+<li><p>Use the <code><a href="https://rdrr.io/pkg/popbio/man/lambda.html">popbio::lambda()</a></code> function to calculate the new long-term growth rate of the source-sink metapopulation. Store this value in an object named <code>lambda3</code></p></li>
 <li><p>Answer questions 5a-5b on the homework assignment</p></li>
 </ol>
 <hr>
@@ -392,8 +395,8 @@ Matrix of dispersal rates (D) between each of the 3 populations
 <p>Assume that population 3 experiences some type of habitat degradation that reduces the birth rate by 25%. In the <code>R</code> chunk of your homework assignment named `sink:</p>
 <ol style="list-style-type: decimal">
 <li><p>Create a new matrix describing the dynamics of the metapopulation. Call the matrix <code>B4</code></p></li>
-<li><p>Use the <code><a href="https://www.rdocumentation.org/packages/popbio/topics/lambda">popbio::lambda()</a></code> function to calculate the new long-term growth rate of the source-sink metapopulation. Store this value in an object named <code>lambda4</code></p></li>
-<li><p>Use the <code><a href="https://www.rdocumentation.org/packages/popbio/topics/stable.stage">popbio::stable.stage()</a></code> function to calculate the new long-term “stable stage distribution” of this source-sink metapopulation. Store this value in an object named <code>ssd4</code></p></li>
+<li><p>Use the <code><a href="https://rdrr.io/pkg/popbio/man/lambda.html">popbio::lambda()</a></code> function to calculate the new long-term growth rate of the source-sink metapopulation. Store this value in an object named <code>lambda4</code></p></li>
+<li><p>Use the <code><a href="https://rdrr.io/pkg/popbio/man/stable.stage.html">popbio::stable.stage()</a></code> function to calculate the new long-term “stable stage distribution” of this source-sink metapopulation. Store this value in an object named <code>ssd4</code></p></li>
 <li><p>Answer questions 6a-6c on the homework assignment</p></li>
 </ol>
 <hr>
@@ -416,6 +419,7 @@ Matrix of dispersal rates (D) between each of the 3 populations
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -430,17 +434,20 @@ Matrix of dispersal rates (D) between each of the 3 populations
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Clark Rushing.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

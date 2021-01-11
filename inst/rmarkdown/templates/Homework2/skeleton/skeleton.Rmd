@@ -11,21 +11,16 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, messag
 library(WILD3810)
 ```
 
-**Due before 2:30pm Monday February 3**
+**Due before 2:30pm Monday February 15**
 
 In this homework assignment, you will become more familiar with using `R` and R Markdown to analyze and visualize data and report your results. To accomplish these goals, we will continue our discussion of estimating population growth.  
 
-First, make sure you have:
-
-> 1a) Changed the `author` field in the YAML header to your name;
-
-> 1b) Clicked `Knit` to check that you can create a html document from the .Rmd file;
-
-> 1c) Save the .Rmd file as `LastnameFirstname-homework2.Rmd` in a project named `LastNameFirstName-Lab2`
-
-If you have any problems with these steps, be sure to get help from either the instructor or the TA.
-
 # Predicting future population size
+
+```{r setup}
+
+```
+
 
 For this homework, you will be acting as the lead avian ecologist for DWR, tasked with objective of predicting the future population size of Eurasian collared-doves within the state. To accomplish this task, you will first need to know the population growth rate of the dove population. Remember from lecture 3 that:
 
@@ -43,153 +38,46 @@ data("ut_dove_counts")
 
 > 2) In the chunk below, use the `nrow` function to create object called t that contains the number of years (Note that `T` is reserved in `R` as shorthand for `TRUE` so we can't use that as the object name)
 
-```{r t}
-
-```
-
-Now we can create objects with the first ($N_0$) and last ($N_T$) counts. Note that in the equation for lambda, we have to divide by `N0` so it can't be 0 even though we started with no doves. So instead we'll call it 1, which won't make much difference
-
-> 3a) In the chunk below, create an object called `N0` and give it a value of 1 
-
-> 3b) Create an object called `NT` and use the subsetting rules we learned in lab to give it a value equal the dove count in the final year of data (hint - you already created an object indicating how many years of data there are so use that object to get the final year count) 
-
-```{r N}
+```{r calc_lambda}
 
 ```
 
 
-Now we can estimate $\lambda$:
-
-> 4a) In the chunk below, create an object called `lambda` and use the equation above to estimate the population growth rate from the objects you created in steps 2 & 3
 
 ```{r lambda}
 
 ```
 
-> 4b) Over the 48 years of the Breeding Bird Survey, what was the (approximate) annual percent increase in the Utah Collared-dove population? Write you answer in bold below
+> 1) Over the 48 years of the Breeding Bird Survey, what was the (approximate) annual percent increase in the Utah Collared-dove population? Write you answer in bold below
 
 
-But that's not really a very accurate reflection of the actual growth rate because for the first several decades, there were no doves at all. Once the doves arrived in Utah, their population growth was much more explosive. It is probably more instructive to estimate the rate of population growth for only the years when doves were counted in the state (`Count > 0`). 
-
-> 5) Use the `filter()` function to create a new data frame called `ut_dove_counts2` containing only the non-zero counts. **What arguments do you need to provide to `filter()` to create the data frame we want?**
-
-```{r NewCounts}
-library(dplyr)
+```{r newlambda}
 
 ```
 
 
-> 6a) Recycle the code you created earlier to re-estimate $\lambda$ (hint: you'll need t, N0, and NT)
-
-```{r lambda2}
-
-```
-
-> 6b) What was the (approximate) annual percent increase in the Utah Collared-dove population once the species arrived in Utah? Write you answer in bold below
+> 2) What was the (approximate) growth rate of the Utah Collared-dove population once the species arrived in Utah? Write you answer in bold below
 
 ## Predicting future population size
 
-Your bosses at DWR want to know what the size of the collared-dove population will be over the next 20 years. Assuming they keep growing at the rate estimated in step 6 above, you can use the discrete population growth model to predict annual counts of collared-doves over this time period (for now, we'll ignore the fact that BBS counts are an **index** of abundance and not an **estimate**). Remember that:
-
-$$N_{t+1} = N_t \times \lambda$$
-
-So if we start with the average count in 2015 (the last year we have data for), we can simply use the $\lambda$ estimate to predict the count in 2016. Then we use the 2016 prediction to predict the 2017 count. And we continue until we reach the predicted 2035 count. To do this, we need to learn a new `R` skill - writing `for` loops. 
-
-### Creating an new data frame
-
-The first step in our prediction is to create a new data frame that will contain the predicted counts in each year. Creating a new data frame is done using the `data.frame()` function. In this function, we provide the name of each column followed by a vector containing the values of that column. Just like naming vector objects, the column names cannot start with a number and should not contain spaces. 
-
-```{r echo = TRUE}
-## Create the new data frame 
-predicted_doves <- data.frame(Year = seq(from = 2015, to = 2035), 
-                              Count = NA)
-```
-
-We give this data frame the same column names as the original `ut_dove_counts` data frame. Unlike when creating objects (where we use the `<-` operator), you **must** use an equals sign to create each column in a data frame. To fill in the `Year` column, we use the `seq()` function which creates a sequence of values between the `from` and `to` values that are supplied as arguments:
-
-```{r}
-seq(from = 2015, to = 2035)
-```
-
-We start this sequence at 2015 since that's the last year we have counts for (and the first one we'll use to predict future counts). In the `Count` column, we simply gave it a value of `NA`, which in `R` is how you code "missing" data (in this case it's not missing, we just haven't created it yet). Essentially, this creates an empty vector that we will in next. Note that is we give a single value when creating the column, `R` will recycle that value for each element in the vector. 
-
-The `Count` column is not totally unknown - we do know the count in 2015. We can fill in that value using the subsetting rules that we have already learned:
-
-> 7) Using the subsetting rules we've learned, fill in the first count value of the new dataframe (i.e., `predicted_doves$Count[1]`) using the last count of the `ut_dove_counts` data frame
-
-```{r}
-## Fill in the 2015 count based on the value in the original data frame
-
-```
-
-### Filling in the predicted counts
-
-`for` loops allow us to give `R` a chunk of code, run that code a set number of times, and each time the code is run change the values that need to be changed. In our case, we need to run `count[t] <- count[t-1] * lambda` 20 times (once for each year), each time changing the value of $t$ ($2, 3, 4, 5,...,20$). The following code does exactly that using a `for` loop:
-
-> 8a) Change `eval = FALSE` to `eval = TRUE` in the chunk below. Then read and make sure you understand how the `for` loop works
-
 ```{r predicted_doves, eval = FALSE}
-## Fill in predicted counts
-for(t in seq(from = 2, to = nrow(predicted_doves))){
-  predicted_doves$Count[t] <- predicted_doves$Count[t - 1] * lambda
-}
+
 ```
 
-Inside the `for()` function, we first provide the *index* that will change each time we loop through the code. In this case, we call the index `t` (though we could call it `i` or `j` or `year` or whatever we want). When we place this index symbol in the code, `R` will replace it with a number. Essentially, at the beginning of each loop `R` creates in objected called `t` and assigns it a specific value (e.g. `t <- 2`). 
+> 3a) Nowhere in the above code did we write the number `21`. How does `R` know what the maximum value of the sequence should be? Write your answer in bold below
 
-After providing the index, we tell `R` what values we want the index to take by providing a sequence of numbers. In this case, we want to predict counts in rows 2-21 of our data frame so we provide a sequence from 2 to 21 (again using the `seq()` function). The `in` between the index and the sequence is `R`'s way of saying `t` will take each value *in* the sequence 2-21. 
+> 3b) What is the advantage of NOT just writing `21` in the code? Write your answer in bold below
 
-The `for(t in seq(from = 2, to = nrow(predicted_doves)))` sets up the parameters of the loop. After that line we enclose the code we want to run within each loop between curly brackets (`{}`). In this case, we just use the single line that fills in the predicted counts based on the previous year's count, making sure to include the index `t` in the appropriate places. 
-
-> 8b) Nowhere in the above code did we write the number `21`. How does `R` know what the maximum value of the sequence should be? Write your answer in bold below
-
-> 8c) What is the advantage of NOT just writing `21` in the code? Write your answer in bold below
-
-> 8d) In the chunk below, write a line of `R` code that will print the predicted count in the year 2035
+> 3c) In the chunk below, write a line of `R` code that will print the predicted count in the year 2035
 
 ```{r prediction}
 
 ```
 
+## Visualizing the predictions
 
-### Combining the data frames
+```{r viz, fig.width=8, fig.height=6}
 
-Before we visualize the predicted counts, let's combine the newly create data frame with the original data so our figure shows the entire time series in one plot. First, we need to remove the first row of the `predicted_doves` data frame so we don't duplicate the 2015 count:
-
-> 9a) In the chunk below, use the `filter()` function to include only years > 2015 in the `predicted_doves` data frame
-
-```{r}
-
-```
-
-Before we combine the data frames, let's add a new column to each one that tells us whether the counts are predictions or actual counts. The `dplyr` package has a useful function for adding columns to a data frame called `mutate()`. This function take the original data frame, the name of the new column and the values of the new variable as arguments:
-
-> 9b) Change `eval = FALSE` to `eval = TRUE` in the chunk below.
-
-```{r eval = FALSE}
-predicted_doves <- mutate(predicted_doves, Type = "Predicted")
-ut_dove_counts <- mutate(ut_dove_counts, Type = "Count")
-```
-
-Here, we added a new column called `Type` to both data frames and gave a value of `Predicted` for the predicted counts and `Count` for the actual counts (remember that `R` will recycle the single value for each row of the data frame). Now we can combine the data frames using the `bind_rows` function from the `dplyr` package:
-
-> 9c) Change `eval = FALSE` to `eval = TRUE` in the chunk below.
-
-```{r eval = FALSE}
-all_doves <- bind_rows(ut_dove_counts, predicted_doves)
-```
-
-`bind_rows()` takes two or more data frames as arguments and put them together as a single data frame by stacking them on atop the other (if the data frames do not have the same columns, `bind_rows` includes all columns in all data frames and fills in `NA` values for the missing values).
-
-Now we can use the same plotting code as we did in lab to visualize the predicted counts. However, we'll modify it slightly by mapping the color of the points to the type of count (count vs. prediction)
-
-> 10a) Fill in the missing parts of the code below (indicated by `?`) to show `Year` on the x-axis, `Count` on the `y-axis` with both a line and points for each count. Color the points based on the type of count (`Count` or `Predicted`)
-
-> 10b) Change `eval = FALSE` to `eval = TRUE`
-
-```{r fig.width=8, fig.height=6, eval = FALSE}
-ggplot(data = ?, aes(x = ?, y = Count)) + geom_?(color = "grey50") + 
-  geom_?(aes(color = ?), size = 3)
 ```
 
 If you did everything correctly, you should get a graph of the predicted dove counts when you knit the document. That's a lot of doves!

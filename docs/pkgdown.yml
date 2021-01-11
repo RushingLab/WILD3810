@@ -1,8 +1,7 @@
-pandoc: 2.3.1
-pkgdown: 1.2.0.9000
-pkgdown_sha: c980e84a573614087c6e151d5e6e19a22748b761
+pandoc: 2.7.3
+pkgdown: 1.6.1
+pkgdown_sha: ~
 articles:
-  exam1_2019: exams/exam1_2019.html
   homework: homework.html
   lab0: lab0.html
   lab1: lab1.html
@@ -15,9 +14,11 @@ articles:
   lab7_tree_harvest: lab7_tree_harvest.html
   lab8_metapopulation_dynamics: lab8_metapopulation_dynamics.html
   lab9_source-sink: lab9_source-sink.html
+  matrix_models2: matrix_models2.html
   rmarkdown_intro: rmarkdown_intro.html
   schedule: schedule.html
   syllabus: syllabus.html
+last_built: 2020-12-28T20:12Z
 urls:
   reference: http://rushinglab.github.io/WILD3810/reference
   article: http://rushinglab.github.io/WILD3810/articles

@@ -7,8 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lab 0: Introduction to R and R Markdown • WILD3810</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- sticky kit --><script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../pkgdown.js"></script><meta property="og:title" content="Lab 0: Introduction to R and R Markdown">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
@@ -30,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">WILD3810</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2020.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">2021.1</span>
       </span>
     </div>
 
@@ -192,7 +193,9 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+
+      </header><script src="lab0_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="lab0_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
+<script src="lab0_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>Lab 0: Introduction to R and R Markdown</h1>
@@ -266,7 +269,7 @@
 <p>As a statistical programming tool, one thing R is very good at is doing math. So as a starting point, let’s treat <code>R</code>like a fancy calculator.</p>
 <p>We interact with this calculator by typing numbers and operators (+, -, *, /) into the <code>Console</code> window.</p>
 <p>Let’s try it - in the bottom left window (the Console), write the <code>R</code>code required to add two plus two and then press enter:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></span></code></pre></div>
 <p>When you run the code, you should see the answer printed below the window. Play with your code a bit - try changing the number and the operators and then run the code again.</p>
 </div>
 <div id="creating-objects" class="section level2">
@@ -274,7 +277,7 @@
 <a href="#creating-objects" class="anchor"></a>Creating objects</h2>
 <p>We can run <code>R</code>like a calculator by typing equations directly into the console and then printing the answer. But usually we don’t want to just do a calculation and see the answer. Instead, we assign <em>values</em> to <em>objects</em>. That object is then saved in R’s memory which allows us to use that object later in our analysis.</p>
 <p>This probably seems a bit confusing so let’s try it. The following code creates an <em>object</em> called <code>x</code> and <em>assigns</em> it a value of <code>3</code>:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">3</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>x &lt;-<span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <p>The operator <code>&lt;-</code> is how we do assignments in R. Whatever is to the left of <code>&lt;-</code> is the object’s name and whatever is to the right is the value. As we will see later, objects can be much more complex than simply a number but for now, we’ll keep it simple.</p>
 <p><strong>You try it - change the code to create an object called <code>new.x</code>. Instead of assigning <code>new.x</code> a number, give it a calculation, for example <code>25/5</code>. What do you think the value of <code>new.x</code> is?</strong></p>
 </div>
@@ -282,12 +285,12 @@
 <h2 class="hasAnchor">
 <a href="#working-with-objects" class="anchor"></a>Working with objects</h2>
 <p>In the exercise above, you may have noticed that after running the code, <code>R</code>did not print anything. That is because we simply told <code>R</code>to create the object (in the top right window, if you click on the <code>Environment</code> tab, you should see <code>x</code> and <code>new.x</code>). Now that it is stored in R’s memory, we can do a lot of things with it. For one, we can print it to see the value. To do that, we simply type the name of the object and run the code:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">new.x &lt;-<span class="st"> </span><span class="dv">25</span><span class="op">/</span><span class="dv">5</span></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">new.x</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="co">#&gt; [1] 5</span></a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>new.x &lt;-<span class="st"> </span><span class="dv">25</span><span class="op">/</span><span class="dv">5</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>new.x</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="co">#&gt; [1] 5</span></span></code></pre></div>
 <p>We can also use objects to create new objects. <em>What do you think the following code does?</em></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb4-2" data-line-number="2">y &lt;-<span class="st"> </span>x<span class="op">*</span><span class="dv">4</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>x &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>y &lt;-<span class="st"> </span>x<span class="op">*</span><span class="dv">4</span></span></code></pre></div>
 <p>After running it, print the new object <code>y</code> to see its value. Were you right?</p>
 </div>
 <div id="naming-objects" class="section level2">
@@ -309,28 +312,28 @@
 <a href="#built-in-functions" class="anchor"></a>Built-in functions</h2>
 <p>The power of <code>R</code> is most apparent in the large number of built-in functions that are available for users.<br>
 Functions are small bits of code that perform a specific task. Most functions accept one or more inputs called arguments and return a value or a new object.</p>
-<p>For example, instead of type <code>x * y</code> to multiply two objects, we could use the <code><a href="https://www.rdocumentation.org/packages/base/topics/prod">prod()</a></code> function:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">12</span></a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">y &lt;-<span class="st"> </span><span class="dv">4</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5">product_xy &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/prod">prod</a></span>(x, y)</a>
-<a class="sourceLine" id="cb5-6" data-line-number="6">product_xy</a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; [1] 48</span></a></code></pre></div>
+<p>For example, instead of type <code>x * y</code> to multiply two objects, we could use the <code><a href="https://rdrr.io/r/base/prod.html">prod()</a></code> function:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>x &lt;-<span class="st"> </span><span class="dv">12</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a>y &lt;-<span class="st"> </span><span class="dv">4</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a>product_xy &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/prod.html">prod</a></span>(x, y)</span>
+<span id="cb5-6"><a href="#cb5-6"></a>product_xy</span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">#&gt; [1] 48</span></span></code></pre></div>
 <p>Here, we provided <code>x</code> and <code>y</code> as <em>arguments</em> and <code>prod</code> created a new object called <code>product_xy</code> which is the product of our two value. It may seem silly to use a function in this case (it didn’t save us much work after all) but this type of function can be useful if you had a longer set of values and didn’t want to type them manually to get the product</p>
 <p>Every function takes a different set of arguments and in most cases you will need to look what those arguments are. The best way to get help for a specific function is to type a question mark followed by the function name, which will bring up a help page in the bottom right panel. For example, the <code>round</code> function rounds a number to a specified number of decimal places. This is a useful function when we don’t want to print a really large number of digits:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">?round</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>?round</span></code></pre></div>
 <p>So we see <code>round</code> takes an argument called <code>x</code>, which is the number we want to round, and the number of <code>digits</code> we want to round to. If you provide the arguments in the exact same order as they are defined you don’t have to name them. For example, :</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">y &lt;-<span class="st"> </span><span class="dv">3</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">z &lt;-<span class="st"> </span>x<span class="op">/</span>y</a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(z, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt; [1] 0.33</span></a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>y &lt;-<span class="st"> </span><span class="dv">3</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a>z &lt;-<span class="st"> </span>x<span class="op">/</span>y</span>
+<span id="cb7-5"><a href="#cb7-5"></a></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(z, <span class="dv">2</span>)</span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="co">#&gt; [1] 0.33</span></span></code></pre></div>
 <p>If you do name the arguments, you can switch their order:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/Round">round</a></span>(<span class="dt">digits =</span> <span class="dv">0</span>, <span class="dt">x =</span> z)</a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="co">#&gt; [1] 0</span></a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw"><a href="https://rdrr.io/r/base/Round.html">round</a></span>(<span class="dt">digits =</span> <span class="dv">0</span>, <span class="dt">x =</span> z)</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="co">#&gt; [1] 0</span></span></code></pre></div>
 <p>Although you don’t have to name arguments, it’s a good idea to get in the habit of naming them. This will make you code easier to read, will help avoid mistakes that can occur when you don’t put the arguments in the correct order, and makes it easier to trouble shoot code that doesn’t do what you expect it to do.</p>
 </div>
 </div>
@@ -338,38 +341,38 @@ Functions are small bits of code that perform a specific task. Most functions ac
 <h1 class="hasAnchor">
 <a href="#vectors" class="anchor"></a>Vectors</h1>
 <p>So far, we have only been working with objects that store a single number. However, often it is more convenient to store a string of numbers as a single object. In <code>R</code>, these strings are called <em>vectors</em> and they are created by enclosing the string between <code>c(</code> and <code>)</code>:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2">x</a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="co">#&gt; [1] 3 5 2 5</span></a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>x &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">2</span>,<span class="dv">5</span>)</span>
+<span id="cb9-2"><a href="#cb9-2"></a>x</span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="co">#&gt; [1] 3 5 2 5</span></span></code></pre></div>
 <p>A vector can also contain characters (though you cannot mix numbers and characters in the same vector!):</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">occasions &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Occasion1"</span>, <span class="st">"Occasion2"</span>, <span class="st">"Occasion3"</span>)</a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">occasions</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3"><span class="co">#&gt; [1] "Occasion1" "Occasion2" "Occasion3"</span></a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>occasions &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Occasion1"</span>, <span class="st">"Occasion2"</span>, <span class="st">"Occasion3"</span>)</span>
+<span id="cb10-2"><a href="#cb10-2"></a>occasions</span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="co">#&gt; [1] "Occasion1" "Occasion2" "Occasion3"</span></span></code></pre></div>
 <p>The quotes around “Occasion1”, “Occasion2”, and “Occasion3” are critical. Without the quotes <code>R</code> will assume there are objects called <code>Occasion1</code>, <code>Occasion2</code> and <code>Occasion3</code>. As these objects don’t exist in <code>R</code>’s memory, there will be an error message.</p>
-<p>Vectors can be any length (including 1. In fact, the numeric objects we’ve been working with are just vectors with length 1). The function <code><a href="https://www.rdocumentation.org/packages/base/topics/length">length()</a></code> tells you how long a vector is:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/length">length</a></span>(x)</a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="co">#&gt; [1] 4</span></a></code></pre></div>
-<p>The function <code><a href="https://www.rdocumentation.org/packages/base/topics/class">class()</a></code> indicates the class (the type of element) of an object:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">class</a></span>(x)</a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co">#&gt; [1] "numeric"</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/class">class</a></span>(occasions)</a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co">#&gt; [1] "character"</span></a></code></pre></div>
+<p>Vectors can be any length (including 1. In fact, the numeric objects we’ve been working with are just vectors with length 1). The function <code><a href="https://rdrr.io/r/base/length.html">length()</a></code> tells you how long a vector is:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw"><a href="https://rdrr.io/r/base/length.html">length</a></span>(x)</span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="co">#&gt; [1] 4</span></span></code></pre></div>
+<p>The function <code><a href="https://rdrr.io/r/base/class.html">class()</a></code> indicates the class (the type of element) of an object:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw"><a href="https://rdrr.io/r/base/class.html">class</a></span>(x)</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#&gt; [1] "numeric"</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="kw"><a href="https://rdrr.io/r/base/class.html">class</a></span>(occasions)</span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co">#&gt; [1] "character"</span></span></code></pre></div>
 <p>What is the class of a vector with both numeric and characters entries? Hint:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">mixed &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">"3"</span>, <span class="st">"4"</span>)</a></code></pre></div>
-<p>You can also use the <code><a href="https://www.rdocumentation.org/packages/base/topics/c">c()</a></code> function to add other elements to your vector:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">y &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(x, <span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">3</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>mixed &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">"3"</span>, <span class="st">"4"</span>)</span></code></pre></div>
+<p>You can also use the <code><a href="https://rdrr.io/r/base/c.html">c()</a></code> function to add other elements to your vector:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>y &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(x, <span class="dv">4</span>,<span class="dv">8</span>,<span class="dv">3</span>)</span></code></pre></div>
 <p>Vectors are one of the many data structures that R uses. Other important ones are lists, matrices, data frames, factors, and arrays. We will learn about each of those data structures as we encounter them in our exercises.</p>
 <div id="commenting-your-code" class="section level2">
 <h2 class="hasAnchor">
 <a href="#commenting-your-code" class="anchor"></a>Commenting your code</h2>
 <p>R will ignore any code that follows a <code>#</code>. This is <em>very</em> useful for making your code more readable for both yourself and others. Use comments to remind yourself what a newly created object is, to explain what a line of code does, to leave yourself a reminder for later, etc. For example, in the previous code, it might be a good idea to use comments to define what each object represents:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">n &lt;-<span class="st"> </span><span class="dv">25</span>       <span class="co"># Number of individuals counted during survey</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb15-3" data-line-number="3">A &lt;-<span class="st"> </span><span class="fl">2.5</span>      <span class="co"># Area surveyed </span></a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb15-5" data-line-number="5">dens &lt;-<span class="st"> </span>n<span class="op">/</span>A   <span class="co"># Density (individuals per ha)</span></a>
-<a class="sourceLine" id="cb15-6" data-line-number="6">dens</a>
-<a class="sourceLine" id="cb15-7" data-line-number="7"><span class="co">#&gt; [1] 10</span></a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>n &lt;-<span class="st"> </span><span class="dv">25</span>       <span class="co"># Number of individuals counted during survey</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a></span>
+<span id="cb15-3"><a href="#cb15-3"></a>A &lt;-<span class="st"> </span><span class="fl">2.5</span>      <span class="co"># Area surveyed </span></span>
+<span id="cb15-4"><a href="#cb15-4"></a></span>
+<span id="cb15-5"><a href="#cb15-5"></a>dens &lt;-<span class="st"> </span>n<span class="op">/</span>A   <span class="co"># Density (individuals per ha)</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>dens</span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="co">#&gt; [1] 10</span></span></code></pre></div>
 <p>If you take nothing else from this lab, get in the habit of commenting code! It will save you lots of headaches throughout the semester.</p>
 </div>
 </div>
@@ -402,6 +405,7 @@ Functions are small bits of code that perform a specific task. Most functions ac
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+
         <div id="tocnav">
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
@@ -436,17 +440,20 @@ Functions are small bits of code that perform a specific task. Most functions ac
 </div>
 
 
+
       <footer><div class="copyright">
   <p>Developed by Clark Rushing.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.2.0.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
+
       </footer>
 </div>
 
   
+
 
   </body>
 </html>

@@ -1,5 +1,5 @@
 ---
-title: "Gentle introduction to R"
+title: "Lab 0: Gentle introduction to R"
 output: learnr::tutorial
 runtime: shiny_prerendered
 ---
@@ -9,28 +9,63 @@ library(learnr)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+## Overview {data-progressive=TRUE}
+
+This tutorial is meant to help you start learning the basics of `R` 
+
+***
+**Objectives**
+
+* What is `R` and why are we learning it?
+
+* Basic `R` concepts, including:  
+    + Basic arithmetic
+    + Create objects
+    + Numeric objects
+    + Character objects
+    + Vector algebra
+    
+***
+
 ## What is R?
 
-R is 
+R is a free, open-source programming language and software environment for statistical computing, bioinformatics, visualization and general computing.  
+
+It is based on an ever-expanding set of analytical packages that perform specific analytical, plotting, and other programming tasks. 
 
 ## Why R?
 
-R is free(!), runs on pretty much every operating system, and has a huge user base. 
+R is free(!), runs on pretty much every operating system, and has a huge user base.  
 
-R is far from the only programming language that can be used to accomplish these tasks. But it is the most widely used language in the fields of ecology, evolution, and wildlife sciences. If you plan to pursue a career in any of these fields, proficiency in R is quickly becoming a prerequisite for many jobs. 
+R is far from the only programming language for working with data. But it is the most widely used language in the fields of ecology, evolution, and wildlife sciences. If you plan to pursue a career in any of these fields, proficiency in `R`is quickly becoming a prerequisite for many jobs.  
 
-Even if you don't pursue a career in one of these fields, the ability to manipulate, analyze, and visualize data (otherwise known as *data science*) is an extremely marketable skill in many professions right now. 
+Even if you don't pursue a career in one of these fields, the ability to manipulate, analyze, and visualize data (otherwise known as *data science*) is an extremely marketable skill in many professions right now.  
 
 ## Where to get help
+
+We will go over the basics of using `R` during lab sessions but there are many good online resources for learning `R` and getting help. A few of my favorites include: 
+
+- Tom Edward's online [Learning R](http://learnr.usu.edu/) course (from which much of this material is borrowed)  
+
+
+- [Data Analysis and Visualization in R for Ecologists](https://datacarpentry.org/R-ecology-lesson/) (also from which much of this material is borrowed)  
+
+Of course, if you encounter error messages you don't understand or need help figuring out how to accomplish something in `R`, `google` is your best friend (even the most experienced `R` users use google on a daily basis). The key to finding answers on google is asking the right questions. Because we will not spend much time on this topic in lab, please refer to these links for advice on formulating `R`-related questions:
+
+- [How to ask for R help](https://blog.revolutionanalytics.com/2014/01/how-to-ask-for-r-help.html)
+
+- [Seeking help](https://datacarpentry.org/R-ecology-lesson/00-before-we-start.html#seeking_help) from Data Analysis and Visualization in R for Ecologists 
 
 
 ## Using R - the very basics 
 
-As a statistical programming tool, one thing R is very good at is doing math. So as a starting point, let's treat R like a fancy calculator. 
+As a statistical programming tool, one thing R is very good at is doing math. So as a starting point, let's treat `R` like a fancy calculator. 
 
-We interact with this calculator by typing numbers and operators (+, -, *, /) into the `Console` window.
+We interact with this calculator by typing numbers and operators (+, -, *, /) into the `Console` window 
 
-Let's try it - in the window below (the Console), write the R code required to add two plus two and then click `Run Code`:
+> For the purposes of this tutorial, we'll use built in code boxes like the one below as if it were the console. However, everything you type here could go directly into the console window  (the bottom left pane) in RStudio
+
+Let's try it - in the window below, write the R code required to add two plus two and then click `Run Code`:
 
 ```{r two-plus-two, exercise=TRUE}
 
@@ -40,7 +75,7 @@ When you run the code, you should see the answer printed below the window. Play 
 
 ## Creating objects
 
-We can run R like a calculator by typing equations directly into the console and then printing the answer. But usually we don't want to just do a calculation and see the answer. Instead, we assign *values* to *objects*. That object is then saved in R's memory which allows us to use that object later in our analysis. 
+We can run `R` like a calculator by typing equations directly into the console and then printing the answer. But usually we don't want to just do a calculation and see the answer. Instead, we assign *values* to *objects*. That object is then saved in R's memory which allows us to use that object later in our analysis. 
 
 This probably seems a bit confusing so let's try it. The following code creates an *object* called `x` and *assigns* it a value of `3`: 
 
@@ -72,114 +107,204 @@ After running it, print the new object `y` to see its value. Were you right?
 
 ## Naming objects
 
-It's a good idea to give objects names that tell you something about what the object represents. Names can be as long as you want them to be but should not have spaces (also remember long names require more typing so brevity is a good rule of thumb). Names also cannot start with a number and R is case-sensitive so, for example, `Apple` is *not* the same as `apple`. 
+It's a good idea to give objects names that tell you something about what the object represents. When creating object names, remember that:
 
-## Exercise 1: Lincoln-Peterson estimator
+1) Names can be as long as you want them but rememberthat long names require more typing (so brevity is a good rule of thumb)  
 
-Remember from lecture 2 how we use the Lincoln-Peterson method to estimate the abundance of a closed population using mark-recapture data. As a reminder, the Lincoln-Peterson estimator is:
+2) Names cannot have spaces  
 
-$$N = \frac{n_1n_2}{m_2}$$
+3) Names cannot start with a number
 
-where $n_1$ is the number of individuals captured (and marked) on the first sampling occasion, $n_2$ is the number of individuals captured on the second sampling occasion, and $m_2$ is the number of marked individuals in the second sample. 
-
-Let's use R to estimate N for some made up data. Modify the following code to tell R that we captured 45 individuals on the first occasion, 32 on the second, and of those 32 sampled on the second occasion, 15 were marked:
-
-```{r LP, exercise=TRUE}
-n1 <-
-
-n2 <-
-  
-m2 <- 
-```
-
-Now add a new line of code below `m2 <- ` to estimate $N$ from our newly created objects. 
-
-## Commenting your code
-
-R will ignore any code that follows a `#`. This is *very* useful for making your code more readable for both yourself and others. Use comments to remind yourself what a newly created object is, to explain what a line of code does, to leave yourself a reminder for later, etc. For example, in the previous code, it might be a good idea to use comments to define what each object represents:
-
-```{r LP_comment, exercise=TRUE}
-n1 <- 45     # Number of individuals captured on first occasion
-
-n2 <- 32     # Number of individuals captured on second occasion
-  
-m2 <- 15     # Number of previously marked individuals captured on second occasion
-```
-
-Notice that when you run this code, R ignores our comments. 
+4) R is case-sensitive so, for example, `Apple` is *not* the same as `apple`. 
 
 ## Built-in functions
 
 The power of `R` is most apparent in the large number of built-in functions that are available for users.  
+
 Functions are small bits of code that perform a specific task. Most functions accept one or more inputs called arguments and return a value or a new object.  
 
-In the Lincoln-Peterson example, rather than typing `n1 * n2` we could use the function `prod()`. Prod takes as arguments 2 or more numbers (separated by commas) and returns the product:
+For example, instead of type `x * y` to multiply two objects, we could use the `prod()` function:
 
-```{r product, exercise=FALSE}
-n1 <- 45     # Number of individuals captured on first occasion
+```{r product, echo=TRUE,exercise=TRUE}
+x <- 12
 
-n2 <- 32     # Number of individuals captured on second occasion
+y <- 4
 
-numerator <- prod(n1, n2)
-numerator
-
+product_xy <- prod(x, y)
+product_xy
 ```
 
-Here, we provided `n1` and `n2` are arguments and `prod` created a new object called `numerator` which is the product of our two value. It may seem silly to use a function in this case (it didn't save us much work afterall) but this type of function can be useful if you had a longer set of values and didn't want to type them manually to get the product
+Here, we provided `x` and `y` as *arguments* and `prod` created a new object called `product_xy` which is the product of our two value. It may seem silly to use a function in this case (it didn't save us much work after all) but this type of function can be useful if you had a longer set of values and didn't want to type them manually to get the product
 
-### Built-in functions
+## Built-in functions
 
-Every function takes a different set of arguments and in most cases you will need to look what those arguments are. The best way to get help for a specific function is to type a question mark followed by the function name:
+Every function takes a different set of arguments and in most cases you will need to look what those arguments are.  
 
-```{r help}
-?prod
+The best way to get help for a specific function is to type a question mark followed by the function name, which will bring up a help page in the bottom right panel.  
+
+For example, the `round` function rounds a number to a specified number of decimal places. This is a useful function when we don't want to print a really large number of digits:
+
+```{r help, exercise=TRUE}
+?round
 ```
 
-If you provide the arguments in the exact same order as they are defined you don’t have to name them:
+So we see `round` takes an argument called `x`, which is the number we want to round, and the number of `digits` we want to round to. 
 
-round(3.14159, 2)
 
-#> [1] 3.14
+## Built-in functions
 
-And if you do name the arguments, you can switch their order:
+If you provide the arguments in the exact same order as they are defined you don’t have to name them. For example:
 
-round(digits = 2, x = 3.14159)
 
-#> [1] 3.14
+```{r round, exercise=TRUE}
+x <- 1
+y <- 3
 
-It’s good practice to put the non-optional arguments (like the number you’re rounding) first in your function call, and to specify the names of all optional arguments. If you don’t, someone reading your code might have to look up the definition of a function with unfamiliar arguments to understand what you’re doing.
+z <- x/y
 
-```{r prod, exercise=TRUE}
-n1 <- 45     # Number of individuals captured on first occasion
-
-n2 <- 32     # Number of individuals captured on second occasion
-
-numerator <- prod(n1, n2)
-
-numerator
+round(z, 2)
 ```
 
-*You can include any number of single or multiple choice questions as a quiz. Use the `question` function to define a question and the `quiz` function for grouping multiple questions together.*
+If you do name the arguments, you can switch their order:
 
-Some questions to verify that you understand the purposes of various base and recommended R packages:
+```{r round2, exercise=TRUE}
+x <- 1
+y <- 3
 
-```{r quiz}
-quiz(
-  question("Which package contains functions for installing other R packages?",
-    answer("base"),
-    answer("tools"),
-    answer("utils", correct = TRUE),
-    answer("codetools")
-  ),
-  question("Which of the R packages listed below are used to create plots?",
-    answer("lattice", correct = TRUE),
-    answer("tools"),
-    answer("stats"),
-    answer("grid", correct = TRUE)
-  )
-)
+z <- x/y
+
+round(digits = 0, x = z)
 ```
 
-## Assignment
+Although you don't have to name arguments, it’s a good idea to get in the habit of naming them. This will make you code easier to read, will help avoid mistakes that can occur when you don't put the arguments in the correct order, and makes it easier to trouble shoot code that doesn't do what you expect it to do. 
 
-Each week
+## Vectors
+
+So far, we have only been working with objects that store a single number. However, often it is more convenient to store a string of numbers as a single object. In `R`, these strings are called *vectors* and they are created by enclosing the string between `c(` and `)`:
+
+```{r vector, exercise=TRUE}
+x <- c(3,5,2,5)
+x
+```
+
+## Vectors
+
+A vector can also contain characters (though you cannot mix numbers and characters in the same vector!):
+
+```{r vector2, exercise=TRUE}
+occasions <- c("Occasion1", "Occasion2", "Occasion3")
+occasions
+```
+
+The quotes around “Occasion1”, “Occasion2”, and "Occasion3" are critical. Without the quotes `R` will assume there are objects called `Occasion1`, `Occasion2` and `Occasion3`. As these objects don’t exist in `R`’s memory, there will be an error message.  
+
+## Vectors
+
+Vectors can be any length (including 1. In fact, the numeric objects we've been working with are just vectors with length 1). The function `length()` tells you how long a vector is:
+
+```{r vector3, exercise=TRUE}
+x <- c(3,5,2,5)
+
+length(x)
+```
+
+## Vectors
+
+The function `class()` indicates the class (the type of element) of an object:
+
+```{r vector4, exercise=TRUE}
+x <- c(3,5,2,5)
+
+class(x)
+```
+
+```{r vector5, exercise=TRUE}
+occasions <- c("Occasion1", "Occasion2", "Occasion3")
+
+class(occasions)
+```
+
+## Vectors
+
+What is the class of a vector with both numeric and characters entries? Hint:
+
+```{r vector6, exercise=TRUE}
+mixed <- c(1, 2, "3", "4")
+```
+
+## Vectors
+
+You can also use the `c()` function to add other elements to your vector:
+
+```{r vector7, exercise=TRUE}
+x <- c(3,5,2,5)
+y <- c(x, 4,8,3)
+y
+```
+
+Vectors are one of the many data structures that R uses. Other important ones are lists, matrices, data frames, factors, and arrays. We will learn about each of those data structures as we encounter them in our exercises. 
+
+## Commenting your code
+
+`R` will ignore any code that follows a `#`.  
+
+This is *very* useful for making your code more readable for both yourself and others. Use comments to remind yourself what a newly created object is, to explain what a line of code does, to leave yourself a reminder for later, etc. For example, in the previous code, it might be a good idea to use comments to define what each object represents:
+
+```{r comment, exercise=TRUE}
+n <- 25       # Number of individuals counted during survey
+
+A <- 2.5      # Area surveyed 
+
+dens <- n/A   # Density (individuals per ha)
+dens
+```
+
+If you take nothing else from this lab, get in the habit of commenting code! It will save you lots of headaches throughout the semester.
+
+## Using scripts instead of the console
+
+The console is useful for doing simple tasks but as our analyses become more complicated, the console is not very efficient. What if you need to go back and change a line of code? What if you want to show your code to someone else to get help?
+
+Instead of using the console, most of our work will be done using scripts. Scripts are special files that us to write, save, and run many lines of code. Scripts can be saved so you can work on them later or send them to collaborators.  
+
+To create a script, click `File -> New File -> R Script`. This new file should show up in a new window. 
+
+## Using scripts instead of the console
+
+Re-write some piece of the code you created above to the newly created script. After entering the code, highlight all lines and then click `Ctrl + Enter` (or `command + return` on Mac) to run the code. Note that you should see the code in the console.   
+
+## Using scripts instead of the console
+
+Next, save the script by clicking `File -> Save`. Name the script `lab1.R` and click `Save`. In the `Files` pane at the bottom right, you should see the newly created file in your current working directory. If this were an actual analysis or homework, you could now close the script and open later to continue working where you left off. 
+
+## Introduction to R Markdown
+
+Throughout the semester, you will be creating homework documents using R Markdown. 
+
+What is R Markdown? Glad you asked. Click on the link below for an overview. **When you're finished, come back to this tutorial and go to the next section.**
+
+[Introduction to R Markdown](https://rushinglab.github.io/WILD3810/articles/rmarkdown_intro.html)
+
+## WILD3810 lab assignments
+
+All lab assignments for this course will be create, completed, and turned in using the same steps. To make sure we're all on the same page about these steps, we'll go through them with a small practice homework assignment. To create this homework:
+
+1) Create a new R Markdown file from the Homework-0 template:
+
+    1a) Click `File -> New File -> R Markdown`  
+    
+    1b) Click `From Template` and scroll down to `WILD3810-Homework0`  
+    
+    1c) In the `Name` box, type `LastnameFirstname-Homework0`  
+    
+    1d) Click `Ok`
+
+2) Ensure that you can `Knit` the file
+
+    2a) Change "YOUR NAME HERE" in the header section to your name  
+    
+    2b) Click `Knit` to make sure you can knit the .Rmd file  
+    
+3) Complete the assignment as directed in the .Rmd file
+
+4) Follow the [instructions for submission](https://rushinglab.github.io/WILD3810/articles/homework.html) to upload your completed assignment to Canvas

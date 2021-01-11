@@ -1,7 +1,7 @@
 ---
 title: "Lecture 17"
-subtitle: "Interspecific interactions"
-author: "<br/><br/><br/>WILD3810 (Spring 2020)"
+subtitle: "Source-sink dynamics"
+author: "<br/><br/><br/>WILD3810 (Spring 2021)"
 output:
   xaringan::moon_reader:
     css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
@@ -14,7 +14,7 @@ output:
 
 ```{r setup, include = FALSE}
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE, fig.retina = 2)
 library(WILD3810)
 library(gganimate)
 ```
@@ -465,6 +465,10 @@ knitr::include_graphics("figs/coexist2.png")
 #### Reduce niche overlap (niche differentiation)
 - **Spatially**
 
+<<<<<<< HEAD
+- If these grasses are available early in the season but are then mowed after nesting has commenced, individuals may lose their entire clutch without enough time to re-nest
+=======
+>>>>>>> 5574edd7fe912a3269261d268fc8f26b0196581a
 
 .pull-left[
 Forage in the open

@@ -31,7 +31,11 @@ In this lab, you will continue to learn about the dynamics of multiple interacti
 
 ### Creating the homework assignment
 
+<<<<<<< HEAD
+To complete this week's homework assignment, you will follow along with the instructions below, entering code and answering questions in the `.Rmd` file for homework 9. From within Rstudio cloud:
+=======
 To complete this week's homework assignment, you will follow along with the instructions below, entering code and answering questions in the `.Rmd` file for homework 8. From within Rstudio cloud:
+>>>>>>> 5574edd7fe912a3269261d268fc8f26b0196581a
 
 1) Click on the `WILD3810` link under spaces
 

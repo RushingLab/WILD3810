@@ -4,8 +4,21 @@
 \alias{get_N}
 \title{get_N}
 \usage{
-get_N(N0, number.of.years, b0, variance.b, d0, variance.d, K = NULL,
-  theta = 1, fire.prob, fire.b, fire.d, d.slope, seed)
+get_N(
+  N0,
+  number.of.years,
+  b0,
+  variance.b,
+  d0,
+  variance.d,
+  K = NULL,
+  theta = 1,
+  fire.prob,
+  fire.b,
+  fire.d,
+  d.slope,
+  seed
+)
 }
 \description{
 get_N

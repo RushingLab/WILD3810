@@ -1,7 +1,7 @@
 ---
 title: "Lecture 18"
-subtitle: "Interspecific interactions: Predation"
-author: "<br/><br/><br/>WILD3810 (Spring 2020)"
+subtitle: "Interspecific interactions"
+author: "<br/><br/><br/>WILD3810 (Spring 2021)"
 output:
   xaringan::moon_reader:
     css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
@@ -14,7 +14,7 @@ output:
 
 ```{r setup, include = FALSE}
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE, fig.retina = 2)
 library(WILD3810)
 library(gganimate)
 ```

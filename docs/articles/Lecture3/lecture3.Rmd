@@ -1,7 +1,7 @@
 ---
 title: "Lecture 3"
 subtitle: "Density-independent population growth"
-author: "<br/><br/><br/>WILD3810 (Spring 2020)"
+author: "<br/><br/><br/>WILD3810 (Spring 2021)"
 output:
   xaringan::moon_reader:
     css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
@@ -14,7 +14,7 @@ output:
 
 ```{r setup, include = FALSE}
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE, fig.retina = 2)
 library(WILD3810)
 library(gganimate)
 ```
@@ -144,7 +144,7 @@ $$\Large N_{t+1} = N_t \times \underbrace{(1 + b - d)}_{\lambda}$$
 #### $\lambda$ is referred to as the **finite rate of population growth**
 
 ---
-## Properties of $\huge \lambda$
+## Properties of $\large \lambda$
 
 --
 <br/>
@@ -208,7 +208,7 @@ $$\Large N_{t+2} = N_{t+1} \times \lambda$$
 --
 We know that $N_{t+1} = N_t \times \lambda$ so:
 
-$$\Large N_{t+2} = (N_t \times \lambda) \times \lambda$$
+$$\Large N_{t+2} = \underbrace{(N_t \times \lambda)}_{N_{t+1}} \times \lambda$$
 --
 which simplifies to: 
 
@@ -356,7 +356,7 @@ $^5$ For more details about how to derive the continous time model from the disc
 
 $$N_{t+1} = N_t \times \lambda = N_t \times (1 + b - d)$$
 
-Call $b-d=r$, so:
+Call $b-d=r_1$, so:
 
 $$N_{t+1} = N_t \times (1 + r_1)$$
 where $r_1$ refers to the special case when $\Delta_t = 1$. 
@@ -507,7 +507,7 @@ Density-independent population models result in **exponential** growth $^8$
 
 ???
 
-$^8$ Technically, exponential growth refers to continuous processes) whereas the same process in discrete models is referred to as **geometric** growth  
+$^8$ Technically, exponential growth refers to continuous processes, whereas the same process in discrete models is referred to as **geometric** growth  
 
 $^9$ If multiplicative growth is confusing, think about it this way: half of 4 is 2 but half of 100 is 50. In both cases, the proportion is the same (half) but the value is different (2 vs. 50). So doubling a population of size 2 leads to 4 individuals, then to 8, then to 16, then to 32...
 
@@ -519,15 +519,15 @@ Exponential growth has profound implications
 Imagine putting $1000 in a investment that grows by 6.5% per year:
 
 --
-+ After 10 years, the investment will be worth $`r round(1000 * 1.067^10,2)` (~90% return)  
++ After 10 years, the investment will be worth $`r round(1000 * 1.065^10,2)` (~90% return)  
 <br/>
 
 --
-+ After 20 years, the investment will be worth $`r round(1000 * 1.067^20,2)` (~265% return)  
++ After 20 years, the investment will be worth $`r round(1000 * 1.065^20,2)` (~265% return)  
 <br/>
 
 --
-+ After 30 years, the investment will be worth $`r round(1000 * 1.067^30,2)` (~600% return)!  
++ After 30 years, the investment will be worth $`r round(1000 * 1.065^30,2)` (~660% return)!  
 
 ???
 

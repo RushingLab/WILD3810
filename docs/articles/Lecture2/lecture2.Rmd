@@ -1,7 +1,7 @@
 ---
 title: "Lecture 2"
 subtitle: "How many are there? Estimating abundance"
-author: "<br/><br/><br/>WILD3810 (Spring 2020)"
+author: "<br/><br/><br/>WILD3810 (Spring 2021)"
 output:
   xaringan::moon_reader:
     css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
@@ -14,7 +14,7 @@ output:
 
 ```{r setup, include = FALSE}
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE, fig.retina = 2)
 library(WILD3810)
 # library(gganimate)
 ```
@@ -226,27 +226,6 @@ class: inverse, center, middle
 #### When counts are equal to the true number of individuals, this is referred to as a **census**
 
 ---
-## Census
-
-**Excercise**  
-<br/>
-1) Divide into groups of (about) 4
-
-<br/>
-2) Remove all of the beans from the cup and count
-
-<br/>
-3) Record how many beans are in the cup $(N)$  
-<br/>
-4) Return all of the beans to the cup
-
-???
-
-This is a complete census. What are the advantages? Disadvantages?  
-
-Do you think your count is exactly equal to $N$ (i.e., no counting mistakes?)
-
----
 ## Complete vs. sample plot census
 
 #### **Complete census**  
@@ -274,29 +253,6 @@ $$\Large \hat{N} = \frac{C}{P_{area}}$$
 --
 - $\Large \hat{N} = 23/0.1 = 230$  
 
----
-## Sample plot census
-
-####  **Exercise**  
-<br/>
-1) Divide back into your groups  
-<br/>
-2) Place your empty cup on the scale and press 'Tare'  
-<br/>
-3) Remove a portion of the beans from the first cup and place them in the empty cup; record the weight  
-<br/>
-4) Count and record the number of beans you removed  
-<br/>
-5) Estimate $\hat{N}$ using: $^1$
-$$\hat{N} = \frac{number\; of\; beans\; removed}{weight/100}$$
-<br/>
-6) Leave the beans in their current cups
-
-???
-
-$^1$ Each cup started with approximately 100g of beans so $weight/100$ is the proportion of the beans you sampled. So the number of beans you removed $=C$ and $weight/100=P_{area}$
-
-How close was your estimate to the true $N$? Why was it not exactly the same?  
 
 ---
 class: inverse, center, middle
@@ -472,18 +428,6 @@ Image courtesy of: GlacierNPS, via Wikimedia Commons
 
 #### *What ties all of these methods together is that we have individual-level capture-histories*  
 
----
-## Capture-mark-recapture
-
-#### **Exercise**  
-<br/>
-1) Divide into groups your groups  
-<br/>
-2) Record how many beans you removed in the previoius exercise (call this $n_1$)  
-<br/>
-3) Count the same number of black-eyed peas and put them back in the original cup (these are your marked individuals)  
-<br/>
-4) Cover and shake/stir the cup 
 
 ---
 ## Lincoln-Peterson (LP) model
@@ -593,25 +537,6 @@ knitr::include_graphics("LP.png")
 ???
 
 Modified from Powell & Gale pg 93
-
----
-## Lincoln-Peterson model
-
-**Exercise**  
-
-1) Take a second handful of beans from the cup  
-<br/>
-2) Count and record the total number of beans (this is $n_2$)  
-<br/>
-3) Count and record the number of black-eyed peas in the sample (this is $m_2$)  
-<br/>
-4) Estimate $\hat{N}$ using the formula above $^{12}$  
-
-???
-
-$^{12}$ How close was your estimate to the true $N$?
-
-How did the number of beans you removed influence your estimate of $N$
 
 ---
 class: inverse, middle, center

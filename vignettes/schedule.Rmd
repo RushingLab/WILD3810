@@ -23,73 +23,83 @@ knitr::opts_chunk$set(
 
 ```{r lecture_schedule, echo = FALSE}
 library(kableExtra)
-schedule <- data.frame(Week = c("1 (Jan. 6 & 8)", "2 (Jan. 13 & 15)", "3 (Jan. 20 & 22)", "4 (Jan. 27 & 29)",
-                                "5 (Feb. 3 & 5)", "6 (Feb. 10 & 12)", "7 (Feb. 17 & 19)", "8 (Feb. 24 & 26)",
-                                "9 (Mar. 2 & 4)", "10 (Mar. 9 & 11)", "11 (Mar. 16 & 18)", "12 (Mar. 23 & 25)",
-                                "13 (Mar. 30 & Arp. 1)", "14 (Apr. 6 & 8)", "15 (Apr. 13 & 15)", "16 (Apr. 20 & 22)"),
-                       M = c("Intro to WILD3810", 
-                             "Abundance (continued)", 
-                             "MLK Holiday - no class", 
-                             "Density-dependent population growth", 
-                              "Guest lecture - scientific writing", 
-                              "Review Exam 1", 
-                             "President's Day - no class", "Survival estimation",
-                             "Spring break - no class", "Age-structured dynamics", 
-                             "Sensitivity and elasticity", "Exam 2",
-                             "Metapopulation dynamics", "Occupancy", 
-                             "Competition", "Harvest dynamics"),
-                       W = c("Abundance", 
-                             "Density-independent population growth", 
-                             "Stochastic population dynamics",
-                              "Dynamics of small populations",
-                             "Exam 1", "Life tables", 
-                             "Life-history diversity", 
-                             "Buffer", "Spring break - no class", "Matrix models",
-                             "Life history strategies", "Review exam 2",
-                             "Source-sink dynamics", "Buffer", 
-                             "Predator-prey dynamics", "No class"))
+schedule <- data.frame(Week = c("1 (Jan. 18 & 20)", "2 (Jan. 25 & 27)", "3 (Feb. 1 & 3)", "4 (Feb. 8 & 10)",
+                                "5 (Feb. 15 & 17)", "6 (Feb. 22 & 24)", "7 (Mar. 1 & 3)", "8 (Mar. 8 & 10)",
+                                "9 (Mar. 15 & 17)", "10 (Mar. 22 & 24)", "11 (Mar. 29 & 31)", "12 (Apr. 5 & 7)",
+                                "13 (Apr. 12 & 14)", "14 (Apr. 19 & 21)", "15 (Apr. 26 & 28)"),
+                       M = c("No class", # Jan 18
+                             "Abundance", # Jan 25
+                             "Density-independent population growth", # Feb 1
+                             "Density-dependent population growth", #Feb 8
+                             "President's Day - no class", # Feb 15
+                             "Exam 1", # Feb 22
+                             "Life tables", # Mar 1
+                             "Reproduction", # Mar 8
+                             "Matrix models (continued)", # Mar 15
+                             "Sensitivity and elasticity", # Mar 22
+                             "Review", # Mar 29
+                             "Review Exam 2", # Apr 5
+                             "Metapopulation dynamics (continued)", # Apr 12
+                             "Competition", # Apr 19
+                              "Review" #Apr 26
+                             ),
+                       W = c("Intro to WILD3810", # Jan 20
+                             "Abundance (continued)", # Jan 27
+                              "Stochastic population dynamics", # Feb 3
+                              "Dynamics of small populations", # Feb 10
+                               "Buffer", # Feb 17
+                              "Review Exam 1", # Feb 24
+                              "Survival estimation", # Mar 3
+                             "Matrix models", # Mar 10
+                             "Age-structured dynamics", # Mar 17
+                              "Life-history diversity", # Mar 24
+                             "Exam 2", # Mar 31
+                             "Metapopulation dynamics", # Apr 7
+                             "Source-sink dynamics", # Apr 14
+                             "Predator-prey dynamics", # Apr 21
+                             "No class" # Apr 28
+                             ))
 
 schedule %>%
   kable("html", col.names = c("Week (dates)", "M", "W"), align = 'c') %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) %>%
   add_header_above(c("", "Lecture" = 2))  %>%
-  group_rows("Unit 1: Dynamics of unstructured populations", 1,5, label_row_css = "background-color: #333333; color: #eeeeee;") %>%
-  group_rows("Unit 2: Dynamics of structured populations", 6,12, label_row_css = "background-color: #333333; color: #eeeeee;") %>%
-  group_rows("Unit 3: Spatial dynamics", 13, 14, label_row_css = "background-color: #333333; color: #eeeeee;") %>%
-  group_rows("Unit 4: Species interactions", 15, 16, label_row_css = "background-color: #333333; color: #eeeeee;")
+  group_rows("Unit 1: Dynamics of unstructured populations", 1,6, label_row_css = "background-color: #333333; color: #eeeeee;") %>%
+  group_rows("Unit 2: Dynamics of structured populations", 7,11, label_row_css = "background-color: #333333; color: #eeeeee;") %>%
+  group_rows("Unit 3: Spatial dynamics", 12, 13, label_row_css = "background-color: #333333; color: #eeeeee;") %>%
+  group_rows("Unit 4: Species interactions", 14, 15, label_row_css = "background-color: #333333; color: #eeeeee;")
 
 ```
 
 # LAB SCHEDULE
 ```{r lab_schedule, echo = FALSE}
 library(kableExtra)
-labs <- data.frame(Week = c("1 (Jan. 6)", "2 (Jan. 13)", "3 (Jan. 20)", "4 (Jan. 27)",
-                                "5 (Feb. 3)", "6 (Feb. 10)", "7 (Feb. 17)", "8 (Feb. 24)",
-                                "9 (Mar. 2)", "10 (Mar. 9)", "11 (Mar. 16)", "12 (Mar. 23)",
-                                "13 (Mar. 30)", "14 (Apr. 6)", "15 (Apr. 13)", "16 (Apr. 20)"),
-                   Topic = c("Introduction to R/R Markdown", 
-                             "Introduction to R (cont.)/Abundance estimation", 
-                             "MLK Holiday - no lab",  
-                             "Introduction to R/Modeling population growth",
-                             "Modeling population growth (continued)", 
-                             "Population viability analysis", 
-                             "President's Day - no lab", 
-                             "Life tables",
-                             "Spring break - no lab", 
-                             "Survival estimation", 
-                             "Matrix population projections", 
-                             "Elasticity analysis and comparison of life history strategies",
-                             "Metapopulation models", 
-                             "Occupancy models", 
-                             "Compensatory predation", 
-                             "Harvest dynamics"))
+labs <- data.frame(Week = c("1 (Jan. 18)", "2 (Jan. 25)", "3 (Feb. 1)", "4 (Feb. 8)",
+                                "5 (Feb. 15)", "6 (Feb. 22)", "7 (Mar. 1)", "8 (Mar. 8)",
+                                "9 (Mar. 15)", "10 (Mar. 22)", "11 (Mar. 29)", "12 (Apr. 5)",
+                                "13 (Apr. 12)", "14 (Apr. 19)", "15 (Apr. 26)"),
+                   Topic = c("No lab", #1
+                             "Introduction to R/R Markdown", #2
+                             "Introduction to R (cont.)/Abundance estimation", #3
+                             "Introduction to R/Modeling population growth", #4
+                             "President's Day - no lab", #5
+                             "Modeling population growth (continued)", #6
+                             "Population viability analysis", #7
+                             "Life tables", #8
+                             "Survival estimation", #9 
+                             "Matrix population projections", #10 
+                             "Elasticity analysis and comparison of life history strategies", #11
+                             "Metapopulation models", #12
+                             "Occupancy models", #13
+                             "Compensatory predation", #14
+                             "No lab"))
 
 labs %>%
   kable("html", col.names = c("Week (date)", "Topic"), align = 'c') %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = TRUE) %>%
   group_rows("Unit 1: Dynamics of unstructured populations", 1,6, label_row_css = "background-color: #333333; color: #eeeeee;") %>%
-  group_rows("Unit 2: Dynamics of structured populations", 7,12, label_row_css = "background-color: #333333; color: #eeeeee;") %>%
-  group_rows("Unit 3: Spatial dynamics", 13, 14, label_row_css = "background-color: #333333; color: #eeeeee;") %>%
-  group_rows("Unit 4: Species interactions", 15, 16, label_row_css = "background-color: #333333; color: #eeeeee;")
+  group_rows("Unit 2: Dynamics of structured populations", 7,11, label_row_css = "background-color: #333333; color: #eeeeee;") %>%
+  group_rows("Unit 3: Spatial dynamics", 12, 13, label_row_css = "background-color: #333333; color: #eeeeee;") %>%
+  group_rows("Unit 4: Species interactions", 14, 15, label_row_css = "background-color: #333333; color: #eeeeee;")
 
 ```
