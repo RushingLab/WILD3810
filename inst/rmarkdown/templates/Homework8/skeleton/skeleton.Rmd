@@ -87,10 +87,10 @@ ggplot(persistence_df, aes(x = ?, y = ?, color = ?)) +
 In lecture, we learned that a metapopulation with constant extinction and colonization probabilities will exhibit an equilibrium number of occupied patches. Complete the code below to simulate the patch occupancy dynamics over 25 years of a metapopulation with 100 patches, $\gamma = 0.7$, and $\epsilon = 0.4$:
 
 ```{r}
-nPatches <- ?
-nYears <- ?
-gamma <- ?
-eps <- ?
+nPatches <- 100
+nYears <- 25
+gamma <- 0.7
+eps <- 0.4
 ```
 
 In the next chunk, you will create a matrix to store the occupancy state (0 = unoccupied, 1 = occupied) for each patch over the 25 year period. This code will also randomly generated the first year occupancy status for each patch:
@@ -98,10 +98,10 @@ In the next chunk, you will create a matrix to store the occupancy state (0 = un
 ```{r}
 ### Replace the question marks so the matrix has one row per patch and one column per year
 ### DO NOT REPLACE THE QUESTION MARKS WITH NUMBERS!!!!
-z <- matrix(NA, nrow = ?, ncol = ?)
+z <- matrix(NA, nrow = nPatches, ncol = nYears)
 
 ### You also need a vector to store the proportion of patches occupied in each year
-psi <- numeric(length = ?)
+psi <- numeric(length = nYears)
 
 ### This line will randomly fill in the occupancy state in year 1
 z[,1] <- rbinom(n = nPatches, size = 1, prob = 0.1)

@@ -97,7 +97,7 @@ Enter the code project population size here:
 
 **Type answer here**
 
-> 6b) By the end of the simulation, there are over 50,000 individuals in the population. Would you expect the population to grow to this size in nature? What major assumption have we made in this model? What factors might slow the growth rate over time?
+> 6b) By the end of the simulation, there are over 5,000 individuals in the population. Would you expect the population to grow to this size in nature? What major assumption have we made in this model? What factors might slow the growth rate over time?
 
 **Type answer here**
 
