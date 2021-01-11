@@ -4,8 +4,12 @@
 \alias{alternative_pva}
 \title{alternative_pva}
 \usage{
-alternative_pva(K = NULL, fire.prob = 0.25, tot_cost = 1e+05,
-  extinction.threshold = NULL)
+alternative_pva(
+  K = NULL,
+  fire.prob = 0.25,
+  tot_cost = 1e+05,
+  extinction.threshold = NULL
+)
 }
 \description{
 alternative_pva

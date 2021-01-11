@@ -1,7 +1,7 @@
 ---
 title: "Syllabus"
 subtitle: "WILD3810: Plant and animal populations"
-author: "Spring 2020"
+author: "Spring 2021"
 output: 
   rmarkdown::html_vignette:
     keep_md: yes
@@ -18,22 +18,25 @@ knitr::opts_chunk$set(
 )
 ```
 
+> The COVID-19 pandemic has forced many changes to our lives, including to the ways we teach and learn. I have attempted to make changes to the format and materials for this course to make online learning more effective and inclusive. However, I have no doubt that unforeseen issues will arise throughout the semester. For this reason, the materials and policies outlined in the syllabus are subject to change at the discretion of the instructor. Feedback about what is working and what is not working is encouraged to assist with making necessary changes. Bottom line - we're all in this together, each doing their best. My goal is to help you learn and to that end, I promise to flexible with accommodating unique circumstances caused by the pandemic. In return, I ask the same of you. 
+
 # LOGISTICS
 
-**Lecture**: Monday and Wednesday 10:30-11:20 NR 217  
-**Lab**: Monday 2:30-4:20 LSB 225  
-**Credits**: 3  
+Due to the COVID-19 pandemic, this course will be taught online for the spring 2021 semester. Zoom links for lectures and labs can be found on the course Canvas page. Live (i.e., synchronous) lectures and labs will be broadcast based on the following schedule:
+
+**Lecture**: Monday and Wednesday 10:30-11:20   
+**Lab**: Monday 2:30-4:20  
+
+I will also record each lecture and lab and post the video on Canvas for anyone who cannot attend in person.
 
 # INSTRUCTOR
 Dr. Clark Rushing  
 [clark.rushing@usu.edu](clark.rushing@usu.edu)  
-**Office**: NR 146  
 **Office hours**: Monday and Wednesday 1:00-2:30
 
 # TEACHING ASSISTANT
 Kim Savides  
 [kim.savides@gmail.com](kim.savides@gmail.com)   
-**Office**: JQL 145   
 **Office hours**: Tuesday 10-12 or by appointment
 
 # PREREQUISITES
@@ -61,15 +64,17 @@ c.	Graphical presentation of data and statistical results
 
 ## Lectures
 
-Lectures will cover basic concepts regarding the dynamics of plant and animal populations. Mastering these topics is critical to doing well in the course so lecture attendance will count towards a small portion of your grade (~0.2% of your final grade per lecture) as an incentive for attending. 
+Lectures will cover basic concepts regarding the dynamics of plant and animal populations. Mastering these topics is critical to doing well in the course and live lectures will include interactive activities to help students master the material. For these reasons, lecture attendance is highly encouraged. 
+
+For the most part, lectures will be taught synchronously to give students the opportunity to actively engage with the instructor and ask questions during lecture. However, I will also record the in-class lectures and post them to Canvas for students who would like to re-watch any of the topics. Throughout semester, I will also try to post a series of pre-recorded "mini lectures" to provide additional details and context for challenging topics.
 
 ## Labs
 
-Labs will consist primarily of computer-oriented sessions designed to help solidify the topics presented in lecture. All computer-based lab activities will use the free programming language [R](https://cran.r-project.org/). In addition, we will run R using [RStudio](https://www.rstudio.com/), a powerful *integrated development environment* (IDE) for R. Labs will meet in Life Sciences Building 225.  You are welcome to use your own personal laptop computer (see below for instructions for installing R and RStudio if you plan to use your own computer). Much of the demonstration of how demography and population dynamics are monitored and assessed in the field will be covered in WILD 2400 and WILD 4750.   
+Labs will consist primarily of computer-oriented sessions designed to help solidify the topics presented in lecture. All computer-based lab activities will use the free programming language [R](https://cran.r-project.org/). In addition, we will run R using [RStudio](https://www.rstudio.com/), a powerful *integrated development environment* (IDE) for R. See below for details about accessing and using RStudio.
 
 No previous experience with R is expected for this course. Lab activities, particularly those early in the semester, will be specifically designed to reinforce lecture topics as well as to introduce students to manipulating, analyzing, and visualizing data using R. 
 
-During lab, students will work through pre-written code with the help of instructors. These activities will involve analyzing and visualizing data to deepen understanding of concepts presented in lecture. 
+During lab, students will work through pre-written code with the help of instructors. These activities will involve analyzing and visualizing data to deepen understanding of concepts presented in lecture. As for lectures, labs will mostly be taught sychronously, giving students the ability to directly engage with the instructors and each other. Live labs may also be supplemented by pre-recorded videos to provide extra explanations and context for certain topics. 
 
 ### Homework assignments
 
@@ -81,36 +86,36 @@ Graded lab assignments will involve a combination of:
 
 Each assignment will consist of a [R Markdown template](https://rushinglab.github.io/WILD3810/articles/homework.html) with questions and code. Portions of each assignment can be completed during lab. The remainder of the assignment will require students to take the results from their lab activities and complete assignments outside of class. Out-of-class work can either be completed on your own computer or by using the [computer lab facilities](http://qcnr.usu.edu/quinney/computerlab_hours) in the Quinney Library. 
 
-All lab assignments must be turned in by the beginning of lab the following week.  **Late assignments are docked 20% of the grade for each day late.**  
+All lab assignments must be turned in by the beginning of lab the following week.  
 
 ## Quizzes
 
-Each week, students will be given a 10-question electronic quiz consisting of multiple choice, fill-in-the-blank, matching, or TRUE/FALSE questions. Quizzes will be posted to Canvas and must be completed within one week of posting. Students may use lecture notes, textbooks, or the internet to answer questions but you must take the quiz yourself. **Students may not work together on quizzes.**
+Each week, students will be given a 10-question electronic quiz consisting of multiple choice, fill-in-the-blank, matching, or TRUE/FALSE questions. These quizzes are meant primarily to reinforce lecture materials and to give students an idea of what to expect exam questions to look like. Quizzes will be posted to Canvas and must be completed within one week of posting. Students may use lecture notes, textbooks, or the internet to answer questions but you must take the quiz yourself. **Students may not work together on quizzes.**
 
 **Quizzes that are not completed within one week will receive a grade of 0**
 
 ## Exams
 
-This course will have two mid-term exams (worth 10% of your grade each) and one final exam (worth 25% of your grade). All exams will be cumulative to some extent because the major topics in the course build off of each other so understanding the topics covered later in the semester requires understanding the topics covered earlier in the semester. However, exams 2 and 3 will tend to focus on material covered since the previous exam. 
+This course will have two mid-term exams (worth 12.5% of your grade each) and one final exam (worth 12.5% of your grade). All exams will be cumulative to some extent because the major topics in the course build off of each other so understanding the topics covered later in the semester requires understanding the topics covered earlier in the semester. Exams 2 & 3, however, will mostly focus on material covered since the preceeding exam.
 
 # COURSE RESOURCES
 
 ## Lecture and lab materials
 
-PDF copies of each lecture will be posted on Canvas prior to class. Students are encouraged to download/print lectures ahead of class to aid notetaking. Please note, however, that lecture slides will not contain all of the details that will be discussed during lecture. Therefore, reviewing the slides is *not* a substitute for attending class. 
+PDF copies of each lecture will be posted on Canvas prior to class. Please note, however, that lecture slides will not contain all of the details that will be discussed during lecture. Therefore, reviewing the slides is *not* a substitute for attending class or watching the recorded lectures. 
 
 Lab materials will also be distributed through Canvas prior to each lab. These materials will consist of files containing data and code. These materials can be downloaded prior to or at the beginning of lab. 
 
 ## Textbooks
 
-The primary text for this course is: 
+Although no textbooks are required for this course, the material will closely follow: 
 
 > Mills, L.S. 2012. *Conservation of Wildlife Populations: Demography, Genetics, and Management.*
 Blackwell Publishing, Malden, MA
 
-New and used copies can be bought or rented from [Amazon](https://www.amazon.com/Conservation-Wildlife-Populations-Demography-Management/dp/0470671491/ref=sr_1_5?ie=UTF8&qid=1541177542&sr=8-5&keywords=mills+conservation). If you find a cheap copy of the first edition, that is fine. 
+so a copy of this book may be useful. New and used copies can be bought or rented from [Amazon](https://www.amazon.com/Conservation-Wildlife-Populations-Demography-Management/dp/0470671491/ref=sr_1_5?ie=UTF8&qid=1541177542&sr=8-5&keywords=mills+conservation). If you find a cheap copy of the first edition, that is fine. 
 
-Additional readings will be assigned from:
+Occasionally, readings will be assigned from:
 
 > Powell, L.A. and Gale, G.A. 2015. *Estimation of Parameters for Animal Populations: A Primer for the Rest of Us.* Caught Napping Publications. Lincoln, NE
 
@@ -122,7 +127,7 @@ All computer-based lab activities will use the free programming language [R](htt
 
 ### Option 1: RStudio Cloud (recommended)
 
-The easiest way to access R, RStudio, and all of the lab materials for WILD3810 is to use [RStudio Cloud](https://rstudio.cloud/). RStudio Cloud provides a fully operational instance of RStudio If you wish to use RStudio Cloud that can be accessed from any computer with an internet connection. Once logged in, you will have access to the WILD3810 workspace, which will have all necessary packages and materials pre-installed. You can start your homework assignments on the lab computers, save your work, and pick up right where you left off from your personal computer. No need to install anything, no configuration issues, no problems. If you wish to use RStudio Cloud, follow these steps:
+The easiest way to access R, RStudio, and all of the lab materials for WILD3810 is to use [RStudio Cloud](https://rstudio.cloud/). RStudio Cloud provides a fully operational instance of RStudio that can be accessed from any computer with an internet connection. Once logged in, you will have access to the WILD3810 workspace, which will have all necessary packages and materials pre-installed. You can start your homework assignments on one computer, save your work, and pick up right where you left off from another computer. No need to install anything, no configuration issues, no problems. If you wish to use RStudio Cloud, follow these steps:
 
 1) Create an RStudio Cloud account. Go to the [RStudio Cloud](https://rstudio.cloud/) website. At the top right, click `Sign up` and follow the instructions to create an account
 
@@ -148,7 +153,7 @@ If you encounter any problems with the previous steps, please contact me prior t
 
 ### Option 3: Use the lab computers (not recommended)
 
-Students are not required to install software on their own computers or use RStudio Cloud. All lab computers in LSB and the Quinney Library have R and RStudio installed on them and students can use these computers to complete all lab activities. However, the LSB computers are not accessible outside of class time so students wishing to use this option will need to save their work on a thumb drive (or email it to themselves) and then complete assignments on computers in the Quinney Library (or any other computer with R and RStudio installed on them). Be warned, however, that **there is no guarantee that lab computers have updated software or packages** which can cause problems accessing course material. For this reason, option 3 is not recommended. 
+Students are not required to install software on their own computers or use RStudio Cloud. All lab computers in LSB and the Quinney Library have R and RStudio installed on them and students can use these computers to complete all lab activities. Be warned, however, that **there is no guarantee that lab computers have updated software or packages** which can cause problems accessing course material. For this reason, option 3 is not recommended. 
 
 # HONORS STUDENTS
 
@@ -157,32 +162,31 @@ This class is offered as an Honors Class on a contract basis. Those students wis
 
 # ATTENDANCE 
 
-If you have an anticipated absence, please notify me at least 1 day prior to the absence. It is your responsibility to make up for the materials missed in the event of a lecture or lab absence.  Your attendance on specified exam dates is mandatory.  Exams will be announced at least 1 week prior to the exam date in class.  Make-up exams will be administered in only the most extreme circumstances.  Excuses for absence due to illness, death in the family, or other unanticipated events will be handled on a case-by-case basis and must be documented.    
+If you have an anticipated absence, please notify me at least 1 day prior to the absence. It is your responsibility to make up for the materials missed in the event of a lecture or lab absence. Exams will be announced at least 1 week prior to the exam date in class. Excuses for absence due to illness, death in the family, or other unanticipated events will be handled on a case-by-case basis.    
 
 # GRADING
 
 Your course grade will be based on the following:  
 
-* Lab assignments (10 total, 20 points each) - 200 points (40%)
-* Quizzes (10 total, 5 points each) - 50 points (10%)
-* Midterm exams (2 total, 50 points each) - 100 points (20%)
-* Final exam - 125 points (25%)
-* Lecture attendance - 25 points (5%)
+* Lab assignments (10 total, 20 points each) - 200 points (50%)
+* Quizzes (10 total, 5 points each) - 50 points (12.5%)
+* Midterm exams (2 total, 50 points each) - 100 points (25%)
+* Final exam - 50 points (12.5%)
   
 
 # GRADING SCALE
 
-```{r grading, echo=FALSE}
+```{r grading, echo=FALSE, warning=FALSE, message=FALSE}
 library(kableExtra)
 grades <- data.frame(Grade = c("A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "F"),
                        Percent = c("93-100%", "90-92.9%", 
                                    "87-89.9%", "83-86.9%", "80-82.9%", 
                                    "77-79.9%", "73-76.9%", "70-72.9%",
                                    "67-69.9%", "60-66.9%", "59.9% and below"),
-                       Points = c("465-500", "450-464", 
-                                  "435-449", "415-434", "400-414", 
-                                  "385-399", "365-384", "350-364",
-                                  "335-349", "300-334", "0-299"))
+                       Points = c("372-400", "360-371", 
+                                  "348-359", "332-347", "320-331", 
+                                  "308-319", "292-307", "280-291",
+                                  "268-279", "240-267", "0-239"))
 
 grades %>%
   kable("html", col.names = c("GRADE", "% RANGE", "POINT RANGE"), align = 'c') %>%

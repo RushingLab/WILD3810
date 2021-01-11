@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
     <title>Lecture 5</title>
-    <meta charset="utf-8">
-    <meta name="author" content="   WILD3810 (Spring 2020)" />
+    <meta charset="utf-8" />
+    <meta name="author" content="   WILD3810 (Spring 2021)" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+    <script src="libs/anchor-sections/anchor-sections.js"></script>
     <link rel="stylesheet" href="WILD3810.css" type="text/css" />
     <link rel="stylesheet" href="WILD3810-fonts.css" type="text/css" />
   </head>
@@ -14,7 +16,7 @@ class: center, middle, inverse, title-slide
 
 # Lecture 5
 ## Density-dependent population growth
-### <br/><br/><br/>WILD3810 (Spring 2020)
+### <br/><br/><br/>WILD3810 (Spring 2021)
 
 ---
 
@@ -30,7 +32,7 @@ class: center, middle, inverse, title-slide
 
 In lecture 3, we learned about population growth models that assume demographic rates are unrelated to population size
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-1-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-1-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -38,7 +40,7 @@ In lecture 3, we learned about population growth models that assume demographic 
 
 We also learned that this assumption leads to exponential population growth
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-2-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Limitless population growth?
@@ -80,6 +82,7 @@ class: inverse
 
 --
 ### As the population grows, competition, disease, and predation increase
+
 
 ---
 ## Competition
@@ -153,13 +156,14 @@ Ecologists generally distinguish between two types of competition:
 ???
 
 Image courtesy of Muhammad Mahdi Karim, via Wikimedia Commons
+
 ---
 ## Competition
 
 As population size increases, the resources available to each individual will eventually shrink to the point where demographic parameters are negatively effected  
 
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-7-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Competition
@@ -168,78 +172,43 @@ As population size increases, the resources available to each individual will ev
 
 + Increased density can also increase rates of disease transmission or predation
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-8-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-8-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 ---
-## Carrying-capacity
+## Population regulation
 
-#### Remember that the population growth rate `\(\large r = b -d\)`  
-&lt;br/&gt;
-
---
-#### If `\(\large b = d\)`:  
-
---
-+ `\(\Large r = 0\)`  
-
---
-+ population remains stable  
-
-
---
-#### If `\(\large b \gt d\)`:  
-
---
-+ `\(\Large r \gt 0\)`  
-
---
-+ population will grow  
-
-
---
-#### If `\(\large d \gt b\)`:  
-
---
-+ `\(\Large r \lt 0\)`  
-
---
-+ population will decrease  
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-9-1.png" width="576" style="display: block; margin: auto;" /&gt;
 
 ---
-## Carrying-capacity
+## Population regulation
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-9-1.png" style="display: block; margin: auto;" /&gt;
-
----
-## Carrying-capacity
-
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-10-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-10-1.png" width="576" style="display: block; margin: auto;" /&gt;
 
 ???
 
-Left of the intersection, `\(r\)` is positive so the population will grow
+Left of the intersection, population growth rate is positive so the population will grow
 
 ---
-## Carrying-capacity
+## Population regulation
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-11-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-11-1.png" width="576" style="display: block; margin: auto;" /&gt;
 
 ???
 
-Right of the intersection, `\(r\)` is negative so the population will shrink
+Right of the intersection, population growth is negative so the population will shrink
 
 ---
-## Carrying capacity
+## Population regulation
 
 Carrying capacity `\(K\)`:
 
 &gt; the population size that the environment can maintain `\(^1\)`
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-12-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-12-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 ???
 
-`\(^1\)` At the intersection, `\(r\)` is 0 so the population will be stable
+`\(^1\)` At the intersection, population growth is 0 so the population will be stable
 
 ---
 ## Population regulation vs limitation
@@ -263,57 +232,120 @@ The density-dependent processes we just learned about are called **regulating** 
 ---
 class: inverse, middle, center
 
-# Models of density-dependent population growth
+# Modeling density-dependent population growth
 
 ---
-## Models of D-D population growth
+## Modeling D-D population growth
 
-Remember the (continuous time) density-independent model of population growth:  
+### Remember the (continuous time) density-independent model of population growth:  
 
 `$$\Large \frac{dN}{dt} = N \times r$$`  
 
-How can we modify this equation to include density-dependence?  
+--
+### How can we modify this equation to include density-dependence?  
 
-To start, remember what density-dependence means:
+--
+### To start, remember what density-dependence means:
 
 &gt; the rate of population growth changes as population size increases
 
 ---
-## Models of D-D population growth
+## Modeling D-D population growth
 
-A good starting point for this is a linear response that looks something like this:
+### First, let's modify the density-independent model is a small but useful way:
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+`$$\Large \frac{1}{N}\frac{dN}{dt} = r$$`
+
+--
+(Note that all we did was divide both sides by `\(N\)`)  
+
+--
+### How do we interpret this equation?
 
 ---
-## Models of D-D population growth
+## Modeling D-D population growth
 
-#### How do we add this relationship to our model?  
+`$$\Large \frac{1}{N}\frac{\color{red}{dN}}{dt} = \color{red}{r}$$`
+
+&gt; There are `\(r\)` new individuals added to the population
+
+---
+## Modeling D-D population growth
+
+`$$\Large \frac{1}{N}\frac{dN}{\color{red}{dt}} = r$$`
+
+&gt; There are `\(r\)` new individuals added to the population
+
+&gt; every time step (e.g., hour, day, week, etc.)
+
+
+---
+## Modeling D-D population growth
+
+`$$\Large \color{red}{\frac{1}{N}}\frac{dN}{dt} = r$$`
+
+&gt; There are `\(r\)` new individuals added to the population
+
+&gt; every time step (e.g., hour, day, week, etc.)
+
+&gt; **per individual** currently in the population  
+
+
+--
+### So this formulation tells us the *per capita* (i.e., per individual) rate of growth when there are `\(\large N\)` individuals currently in the population
+
+--
++ For example, if `\(r = 1\)`, each individual replaces itself at each time step
+
+--
++ Note that the growth rate will **always** be `\(r\)`, no matter how many individuals are in the population
+
+---
+## Modeling D-D population growth
+
+It's also helpful to visualize this equation:
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-14-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+---
+## Modeling D-D population growth
+
+#### How do we add density-dependence to our model?  
 
 --
 
 #### Remember the equation for a line: `\(^3\)`  
 
-`$$\Large y = ax + b$$`  
+`$$\Large y = a + bx$$`  
 --
 
-#### In our model, we can write this as: `\(^4\)`  
+#### So one way to include density-dependence is: `\(^4\)`  
 
-`$$\Large r = aN + c$$`.
+`$$\Large \frac{1}{N} \frac{dN}{dt} = r + cN$$`.
 
 ???
 
-`\(^3\)` is the y-intercept (the value of `\(y\)` when `\(x=0\)`) and `\(a\)` is the slope (the change in `\(r\)` per unit change is `\(x\)`).  
+`\(^3\)` `\(a\)` is the y-intercept (the value of `\(y\)` when `\(x=0\)`) and `\(b\)` is the slope (the change in `\(y\)` per unit change is `\(x\)`).  
 
-`\(^4\)`I changed the y-intercept to `\(c\)` to ensure that it is not confused with the birth rate `\(b\)`
+`\(^4\)`I changed the slope to `\(c\)` to ensure that it is not confused with the birth rate `\(b\)`
 
 ---
-## Models of D-D population growth
+## Modeling D-D population growth
 
-#### In our population model, `\(\large c\)` represents the rate of increase when the population is 0  
+### Again, it might help to visualize this equation:
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-15-1.png" width="504" style="display: block; margin: auto;" /&gt;
 
 --
 
+So now, the *per capita* growth rate `\(\Big(\frac{1}{N} \frac{dN}{dt}\Big)\)` decreases as `\(N\)` increases
+
+---
+## Modeling D-D population growth
+
+#### In the new population model, `\(\large r\)` represents the rate of increase when the population size is 0 (i.e., the y-intercept) 
+
+--
 #### We can see in the figure that this is the largest value of `\(\large r\)` the population can experience  
 
 --
@@ -322,117 +354,178 @@ A good starting point for this is a linear response that looks something like th
 --
 + Because `\(r_0\)` the maximum rate of increase (nothing limiting population growth), it is equivalent to `\(r\)` in the D-I model  
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-15-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-16-1.png" width="288" style="display: block; margin: auto;" /&gt;
+
+---
+## Modeling D-D population growth
+
+#### What is `\(\large c\)`?
+
+--
++ The slope of the relationship between `\(\large \frac{1}{N} \frac{dN}{dt}\)` and `\(\large N\)`
+
++ i.e., the amount by which population growth changes for every individual added to the population
+
+--
+
++ In this case, it has to be negative (growth rate decreases as `\(N\)` increases)  
+
+
+--
+
+#### Notice also that there is a point where the line crosses the x-axis (growth rate = 0):
+
+--
+`$$\Large \frac{1}{N} \frac{dN}{dt} = r_0 + c N^* = 0$$`
+--
+solving for `\(N^*\)`, we can see that:
+
+
+`$$\Large N^* = -\frac{r_0}{c}$$`
+
+---
+## Modeling D-D population growth
+
+#### What is `\(\large c\)`?
+
++ The slope of the relationship between `\(\large \frac{1}{N} \frac{dN}{dt}\)` and `\(\large N\)`
+
++ i.e., the amount by which population growth changes for every individual added to the population
+
+
++ In this case, it has to be negative (growth rate decreases as `\(N\)` increases)  
+
+
+
+#### Notice also that there is a point where the line crosses the x-axis (growth rate = 0):
+
+`$$\Large \frac{1}{N} \frac{dN}{dt} = r_0 + c N^* = 0$$`
+
+solving for `\(N^*\)`, we can see that:
+
+
+`$$\Large N^* = -\frac{r_0}{c} = \color{red}K$$`
+
+---
+## Modeling D-D population growth
+
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-17-1.png" width="504" style="display: block; margin: auto;" /&gt;
+
+
 ---
 ## Models of D-D population growth
 
-#### What is `\(\large a\)`, the slope of the relationship between `\(\large r\)` and `\(\large N\)`?  
+We now have a full equation for the relationship between `\(\large \frac{1}{N} \frac{dN}{dt}\)` and `\(\large N\)`:
+
+`$$\Large \frac{1}{N} \frac{dN}{dt} = r_0 + cN$$`
+--
+How does this work?  
 
 --
-+ It has to be negative `\((r\)` has to decrease as `\(N\)` increases)  
-
-
---
-
-#### Remember that `\(\large r=0\)` when `\(\large N=K\)`, so:
-
-`$$\Large 0 = aK + r_0$$`
-
-therefore,
+&lt;br&gt;
+If `\(r_0 = 1\)` and `\(c = -0.001\)`, what is the population growth rate when `\(N=100\)`?  
 
 --
-
-`$$\Large a = -\frac{r_0}{K}$$`
-
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
-
----
-## Models of D-D population growth
-
-#### We now have a full equation for the relationship between `\(\large r\)` and `\(\large N\)`:
-
-`$$\Large r = -\frac{r_0}{K}N + r_0$$`
-
-which simplifies to: `\(^5\)`   
-
-`$$\Large r = r_0 \bigg(1-\frac{N}{K}\bigg)$$`
-
-???
-
-`\(^5\)` Details about model derivation: 
-
-`$$r = -\frac{r_0}{K}N + r_0$$`
-
-simplifies to:
-
-`$$r = r_0 -\frac{r_0}{K}N$$`
-
-simplifies to:
-
-`$$r = r_0 \bigg(1-\frac{1}{K}N\bigg)$$`
-
-simplifies to:
-
-`$$r = r_0 \bigg(1-\frac{N}{K}\bigg)$$`
-
----
-## Models of D-D population growth
-
-#### How does this work?  
-
---
-
-#### Assume `\(\large r_0 = 1\)` and `\(\large K = 1000\)`  
-
---
-What is the population growth rate when `\(\large N=100\)`?  
-
-+ `\(\large r = 1 - \frac{100}{1000}=\)` 0.9  
++ `\(\large \frac{1}{N} \frac{dN}{dt} = 1 - 0.001 \times 100 =\)` 0.9  
 
 
 --
 What about when `\(N=500\)`?  
 
-+ `\(\large r = 1 - \frac{500}{1000}=\)` 0.5  
+--
++ `\(\large \frac{1}{N} \frac{dN}{dt} = 1 - 0.001 \times 500=\)` 0.5  
 
 
 --
 When `\(N=1000\)`?  
 
-+ `\(\large r = 1 - \frac{1000}{1000}=\)` 0
+--
++ `\(\large \frac{1}{N} \frac{dN}{dt} = 1 - 0.001 \times 1000=\)` 0
 
 ---
 ## Models of D-D population growth
 
-#### Now let's insert our new equation for `\(\Large r\)` into the population growth model:
-
-`$$\Large \frac{dN}{dt} = N \times r_0 \bigg(1-\frac{N}{K}\bigg)$$`
+#### How do we use the density-dependent growth rate model to project population size?
 
 --
+#### Multiply both sides by `\(N\)` 
 
-#### This is called the **logistic growth model**  
+`$$\Large \frac{dN}{dt} = N \times \Big(r_0 + cN\Big)$$`
+
+--
+#### Now read this as:
 
 ---
 ## Models of D-D population growth
 
-#### How does this work? Again, `\(\large r_0 = 1\)` and `\(\large K = 1000\)`  
+#### How do we use the density-dependent growth rate model to project population size?
+
+#### Multiply both sides by `\(N\)` 
+
+`$$\Large \color{red}{\frac{dN}{dt}} = N \times \Big(r_0 + c N\Big)$$`
+
+#### Now read this as:
+
+&gt; The change in population size per time step
+
+
+---
+## Models of D-D population growth
+
+#### How do we use the density-dependent growth rate model to project population size?
+
+#### Multiply both sides by `\(N\)` 
+
+`$$\Large \frac{dN}{dt} = \color{red}{N} \times \Big(r_0 + c N\Big)$$`
+
+#### Now read this as:
+
+&gt; The change in population size per time step
+
+&gt; equals the current population size
+
+
+---
+## Models of D-D population growth
+
+#### How do we use the density-dependent growth rate model to project population size?
+
+#### Multiply both sides by `\(N\)` 
+
+`$$\Large \frac{dN}{dt} = N \times \color{red}{\Big(r_0 + c N\Big)}$$`
+
+#### Now read this as:
+
+&gt; The change in population size per time step
+
+&gt; equals the current population size
+
+&gt; times the growth rate when population size equals N  
+
+--
++ This is called the **logistic growth model**  
+
+---
+## Models of D-D population growth
+
+#### How does this work? Again, `\(\large r_0 = 1\)` and `\(\large c = -0.001\)`  
 
 --
 What is `\(\frac{dN}{dt}\)` when `\(N=100\)`?  
 
-+ `\(\large \frac{dN}{dt} = 100 \times 1 \bigg(1-\frac{100}{1000}\bigg)=\)` 90  
++ `\(\large \frac{dN}{dt} = 100 \times \bigg(1 - 0.001 \times 100\bigg)=\)` 90  
 
 
 --
 What about when `\(N=500\)`?  
 
-+ `\(\large \frac{dN}{dt} = 500 \times 1 \bigg(1-\frac{500}{1000}\bigg)=\)` 250  
++ `\(\large \frac{dN}{dt} = 100 \times \bigg(1 - 0.001 \times 500\bigg)=\)` 250  
 
 
 --
 When `\(N=1000\)`?  
 
-+ `\(\large \frac{dN}{dt} = 1000 \times 1 \bigg(1-\frac{1000}{1000}\bigg)=\)` 0
++ `\(\large \frac{dN}{dt} = 100 \times \bigg(1 - 0.001 \times 1000\bigg)=\)` 0
 
 ???
 
@@ -444,7 +537,7 @@ What happens to `\(\frac{dN}{dt}\)` when `\(N &gt; K\)`?
 
 #### How does this work? `\(^6\)`
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-17-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-18-1.png" width="576" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -455,7 +548,7 @@ What happens to `\(\frac{dN}{dt}\)` when `\(N &gt; K\)`?
 
 #### How does this work? `\(^6\)`
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-18-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-19-1.png" width="576" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -470,51 +563,8 @@ Above `\(K\)`, the rate of change becomes negative
 ## Models of D-D population growth
 
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-19-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-20-1.png" width="792" style="display: block; margin: auto;" /&gt;
 
----
-class: inverse, center, middle
-
-# Non-linear effects
-
----
-## Non-linear effects
-
-#### The logistic model assumes that `\(\Large r\)` decreases linearly with increasing `\(\large N\)`  
-
---
-#### In reality, this relationship is not likely to be linear, for example:  
-
---
-+ `\(\large r\)` might not change much (or at all) until population size is high enough that resources start to become limited  
-
---
-+ `\(\large r\)` decrease very quickly if resources are used rapidly by additional individuals  
-
-
---
-#### We can make the logistic model more flexible by adding a new term, `\(\large \theta\)`: `\(^7\)`
-
-`$$\Large \frac{dN}{dt} = r_0N\bigg(1-\bigg[\frac{N}{K}\bigg]^\theta\bigg)$$`
-
-???
-
-`\(^7\)` When `\(\theta = 1\)`, this model is the original logistic model
-
----
-## Non-linear effects
-
-#### When `\(\large \theta &gt; 1\)`, `\(\Large r\)` does not respond to `\(\large N\)` until `\(\large N\)` is big enough that resources become limiting
-
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-20-1.png" style="display: block; margin: auto;" /&gt;
-
----
-## Non-linear effects
-
-#### If `\(\large \theta &lt; 1\)`, resources quickly become scarce, and `\(\Large r\)` is suppressed even at low `\(\large N\)`
-
-
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-21-1.png" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse, middle, center
@@ -528,7 +578,7 @@ class: inverse, middle, center
 
 + This is called *negative* density dependence   
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-22-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-21-1.png" width="432" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Allee effects
@@ -542,7 +592,7 @@ class: inverse, middle, center
 
 + Positive relationships between `\(\large N\)` and `\(\large d\)` or `\(\large b\)` generally occur at small population sizes
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-23-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-22-1.png" width="360" style="display: block; margin: auto;" /&gt;
 
 ---
 ## Allee effects
@@ -579,7 +629,7 @@ class: inverse, middle, center
 
 When abundance drops below the minimum viable population (MVP), the population will likely approach extinction without help!
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-24-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-23-1.png" width="432" style="display: block; margin: auto;" /&gt;
 
 ---
 class: inverse, center, middle
@@ -604,28 +654,20 @@ class: inverse, center, middle
 
 and:  
 
-`$$\Large r = r_0\bigg(1 - \frac{N}{K}\bigg)$$`
+`$$\Large r = \frac{1}{N} \frac{dN}{dt} = r_0 + cN$$`
 
 ---
 ## Discrete dynamics
 
 #### Therefore, one discrete-time density-dependent growth model is:   
 
-`$$\Large N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \frac{N}{K}\bigg)\bigg]}$$`
+`$$\Large N_{t+1}=N_t e^{\Big[r_0 + cN\Big]}$$`
 
 #### This known as the **Ricker model**  
 
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-25-1.png" style="display: block; margin: auto;" /&gt;
-
----
-## Discrete dynamics
-
-Any adjustment that can be made to the continuous time logistic model can also be made to the Ricker model  
-
-`$$\Large N_{t+1}=N_t e^{\bigg[r_0\bigg(1 - \bigg[\frac{N}{K}\bigg]^\theta\bigg)\bigg]}$$`
-
-&lt;img src="Lecture5_files/figure-html/unnamed-chunk-26-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="Lecture5_files/figure-html/unnamed-chunk-24-1.png" width="360" style="display: block; margin: auto;" /&gt;
     </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
@@ -635,16 +677,74 @@ Any adjustment that can be made to the continuous time logistic model can also b
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
-(function() {
-  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
   if (!r) return;
   s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
   d.head.appendChild(s);
-})();</script>
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
   for (i = 0; i < codes.length;) {
     code = codes[i];
     if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
@@ -658,7 +758,8 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     i++;
   }
-})();
+};
+slideshow._releaseMath(document);
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

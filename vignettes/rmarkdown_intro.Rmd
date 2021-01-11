@@ -1,6 +1,6 @@
 ---
 title: "Introduction to R Markdown"
-subtitle: "WILD2900"
+subtitle: "WILD3810"
 date: "updated on `r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 Before we discuss what R Markdown is, we need to discuss what Markdown is. What is Markdown? Let's start with what it's not.  
 
-Many of you have probably created a report or a paper using a word processor like Microsoft Word or Google Docs. Word processors are referred to as "what you see is what you get" (*wysiwyg*) text editors. This means that when you hightlight text and click the `boldface` icon in Word, the text appears bold on your screen. All sorts of other formatting options, incluing making headers, inserting figures, adding page numbers, etc., are possible by clicking on buttons. There is code behind the scenes that creates these changes but users don't see the code, only the formatting output. This makes *wysiwyg* editors relatively easy to use for beginners. But for more advanced users, it can actually be problematic. Have you ever had Word act in ways that you don't fully understand? Of course! We all have. Have you ever tried opening a `.docx` file using an older version of Word, only to find that it doesn't look the way thought it would? Have you ever inserted a figure only to have it jump to another page or get 'anchored' to the bottom of a page? These are just a few of the problems that occur when your document has a bunch of hidden formatting code that you cannot see or understand.  
+Many of you have probably created a report or a paper using a word processor like Microsoft Word or Google Docs. Word processors are referred to as "what you see is what you get" (*wysiwyg*) text editors. This means that when you highlight text and click the `boldface` icon in Word, the text appears bold on your screen. All sorts of other formatting options, including making headers, inserting figures, adding page numbers, etc., are possible by clicking on buttons. There is code behind the scenes that creates these changes but users don't see the code, only the formatting output. This makes *wysiwyg* editors relatively easy to use for beginners. But for more advanced users, it can actually be problematic. Have you ever had Word act in ways that you don't fully understand? Of course! We all have. Have you ever tried opening a `.docx` file using an older version of Word, only to find that it doesn't look the way thought it would? Have you ever inserted a figure only to have it jump to another page or get 'anchored' to the bottom of a page? These are just a few of the problems that occur when your document has a bunch of hidden formatting code that you cannot see or understand.  
 
 Markdown is different. Markdown files are plain text files, meaning that they be created and edited using text editors (like NotePad on Windows or TextEdit on Mac). The biggest difference between Markdown files and Word documents is that formatting Markdown documents occurs in the document itself rather than behind the scenes. So to make something **boldface** you have to tell Markdown to do that by putting two `**asterisks**` on either side of the word or phrase. *Italics* is done by putting one `*asterisk*` around the text. [Hyperlinks](https://en.wikipedia.org/wiki/Markdown) are written like this: `[Hyperlinks](https://en.wikipedia.org/wiki/Markdown)`. These are just a few of the many formatting options you can include in a Markdown document. We'll learn about options like headers, lists, mathematical symbols and equations, and figures later in this tutorial and throughout the semester.
 
@@ -34,15 +34,15 @@ In this course, we will use a specific 'flavor' of Markdown called 'R Markdown'.
 
 R Markdown has many advantages compared to creating reports in Word or GoogleDocs. These advantages include:
 
-1) **Versatility**- Want to convert a Word document into pdf? That's not too hard. But pdf to Word? That's a pain. PDF to HTML? Maybe you know how to do that but I don't. With R Markdown, we can change between these formats with a single click (or a single line of code). You can even convert them into pretty nice slideshows.  
+1) **Versatility**- Want to convert a Word document into pdf? That's not too hard. But pdf to Word? That's a pain. PDF to HTML? Maybe you know how to do that but I don't. With R Markdown, we can change between these formats with a single click (or a single line of code). You can even convert them into pretty nice slide shows.  
 
 2) **Embed code in text** - After running an analysis, how do you get your results into Word? Type them by hand? Copy-and-paste? Both are a pain and error prone. Rerun your analysis using new data? Oops, now you have to copy and paste those new results and figures. With R Markdown, we embed code directly into the text so results and figures get added to our reports automatically. That means no copying and pasting and updating reports as new results come in is pain free.  
 
-3) **Annotate your code** - Using the `#` is great for adding small annotations to your R scripts and you should defitinely get in the habitat of doing that. But sometimes you need to add a lot of details to help other users (or your future self) make sense of complex code. R Markdown allows you to create documents with as much text and formatting as you need, along with the code.  
+3) **Annotate your code** - Using the `#` is great for adding small annotations to your R scripts and you should definitely get in the habitat of doing that. But sometimes you need to add a lot of details to help other users (or your future self) make sense of complex code. R Markdown allows you to create documents with as much text and formatting as you need, along with the code.  
 
-4) **Version control** - Tired of saving `manuscript_v1.doc`, `manuscript_v2.doc`, `manuscript_final.doc`, `manuscript_final_v2.doc`? Then version control is for you. We won't go into the specfics here but R Markdown allows you to seamlessly use version control systems like git and Github to document changes to your reports.  
+4) **Version control** - Tired of saving `manuscript_v1.doc`, `manuscript_v2.doc`, `manuscript_final.doc`, `manuscript_final_v2.doc`? Then version control is for you. We won't go into the specifics here but R Markdown allows you to seamlessly use version control systems like git and Github to document changes to your reports.  
 
-5) **Edit as text files** - R Markdown files are most easily created and editted within RStudio but you don't have to do it that way. They can be opened and edited in base R and even using text editors. This means you can create and edit them on any platform (Windows, Mac, Linux) using free software that is already installed on the computer
+5) **Edit as text files** - R Markdown files are most easily created and edited within RStudio but you don't have to do it that way. They can be opened and edited in base R and even using text editors. This means you can create and edit them on any platform (Windows, Mac, Linux) using free software that is already installed on the computer
 
 6) **Stability** - How many of us have had Word crash while we're working on a paper? Did you save as you were working? Hope so. Because R Markdown files are smaller and more lightweight, they tend not to cause your computer to crash as you're working on them. 
 
@@ -52,17 +52,17 @@ R Markdown has many advantages compared to creating reports in Word or GoogleDoc
 
 There are a few disadvantages to R Markdown.
 
-1) **Your advisor doesn't use it** - Try sending a `.Rmd` file to your advisor to get feedback. I'll wait... Like it or not, most folks still use word processors, so if you adopt R Markdown you will still have to create and edit Word documents for some collaborators who are stuck in their ways
+1) **Your adviser doesn't use it** - Try sending a `.Rmd` file to your adviser to get feedback. I'll wait... Like it or not, most folks still use word processors, so if you adopt R Markdown you will still have to create and edit Word documents for some collaborators who are stuck in their ways
 
-2) **No track changes** - Even if you're lucky to have an advisor who will review a `.Rmd` file, you won't get nice track changes like in Word. There are alternative to this (version control helps) but not are quite as easy as track changes. 
+2) **No track changes** - Even if you're lucky to have an adviser who will review a `.Rmd` file, you won't get nice track changes like in Word. There are alternative to this (version control helps) but not are quite as easy as track changes. 
 
 3) **Fewer formatting options** - For better or worse, you have a more limited set of formatting options with R Markdown. That can be constraining (but often it's actually freeing!)
 
-4) **There's a learning curve** - You already know how to use Word. R Markdown is new. How do you make something bold? How do you insert equations? How do you get figures to go at the end of your document? At first, you will almost certaintly have to google almost every thing you need to do in R Markdown (this is why number 1 is a problem). Most of it is pretty simple but it still means the going can be slow at first. 
+4) **There's a learning curve** - You already know how to use Word. R Markdown is new. How do you make something bold? How do you insert equations? How do you get figures to go at the end of your document? At first, you will almost certainly have to google almost every thing you need to do in R Markdown (this is why number 1 is a problem). Most of it is pretty simple but it still means the going can be slow at first. 
 
 # Authoring R Markdown files
 
-Understanding what R Markdown files are and why they are so useful will become more clear as you learn to create and edit these documents. So without futher ado, let's create an new R Markdown file and do some basic editing. 
+Understanding what R Markdown files are and why they are so useful will become more clear as you learn to create and edit these documents. So without further ado, let's create an new R Markdown file and do some basic editing. 
 
 ## Step 1: Create a new R Markdown file using the homework template
 
@@ -101,3 +101,238 @@ Congratulations, you just created your first R Markdown file!
 ## Completing the homework
 
 Assuming that you were to knit the `LastnameFirstname-homework0.html` document, you can keep the knitted version open while you work through the assignment. Follow the instructions on the html page and complete the assignment within the .Rmd file.
+
+# Basic formatting
+
+## The YAML header
+
+At the top of your `.Rmd` file, you should see several line in between three blue dashes:
+```
+---
+title: "Test document"
+author: "Clark Rushing"
+output: html_document
+---
+```
+
+This is called the "YAML header" and it's where we can control a lot of the major formatting options for our documents. For example, to change the output to pdf, just switch `html_document` for `pdf_document` (note, you may need to install a Latex distribution to knit to pdf. If you get an error message at this step, see suggestions [here](https://bookdown.org/yihui/rmarkdown/installation.html)) and then click the `Knit` button again
+
+Pretty cool, right?
+
+The YAML header allows to control many "high level" options for our document. For example, to change the font size, type the following directly under the `output: pdf_document` argument:
+
+```
+fontsize: 12pt
+```
+Check to see that the font size changed by clicking `Knit`. 
+
+Changing font type is a little trickier. Behind the scenes, R Markdown turns your document into Latex code (another), which is then converted into a pdf. You don't need to know much about Latex (though a little knowledge is helpful) but this conversion does mean that our formatting options have to passed to the Latex convector in specific ways. To tell Latex that we want to use `Arial` font, we have to modify the `output:` argument as follows:
+
+```
+title: "WILD6900"
+subtitle: "Homework 1"
+author: "YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document:
+    latex_engine: xelatex
+
+mainfont: Arial
+```
+
+Make sure you include the spaces to indent `pdf_document:` and `latex_engine: xelatex`. 
+
+To indent the first line of each paragraph, add the following to the header:
+
+```
+indent: true
+```
+
+There many possible options for the header (see [here](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf) for additional examples). We'll learn more about some of these options later in the semester. 
+
+## Headers
+
+Using headers is a natural way to break up a document or report into smaller sections. You can include headers by putting one or more `#` signs in front of text. One `#` is a main header, `##` is the secondary header, etc.
+
+# Header 1
+
+## Header 2
+
+###  Header 3
+
+## Paragraph and line breaks
+
+When writing chunks of text in R Markdown (e.g., a report or manuscript), you can create new paragraphs by leaving an empty line between each paragraph:
+
+```
+This is one paragraph.
+
+This is the next paragraph
+```
+
+If you want to force a line break, include two spaces at the end of the line where you want the break:
+
+```
+This is one line  
+This is the next line
+```
+
+## **Bold**, *Italics*, 
+
+As mentioned earlier, create **boldface** by surrounding text with two asterisks (`**bold**`) and use single asterisks for *italics* (`*italics*`)
+
+## Code type
+
+To highlight code (note, this does not actually insert functioning code, just formats text to show that it is code rather than plain text), surround the text with back ticks ": `mean()`
+
+You can include multiple lines of code by including three back ticks on the line before the code and then three back ticks on the line after the code:
+
+```
+Multiple lines of code
+look like 
+this
+```
+
+## Bulleted lists
+
+* Bulleted lists can be included by starting a line with an asterisk
+
+* You can also start the lines with a single dash `-`
+
+  + for sub-bullets, indent the line and start it with `+`
+    - for sub-sub-bullets, indent twice (press `tab` two times) and start with `-`
+
+## Numbered lists
+
+1. Numbered lists look like this
+
+2. You can also include sub-levels in number lists
+    i) these can be lower case roman numerals  
+    a. or lowercase letters  
+      B. or uppercase letters  
+    
+## Quotations
+
+You highlight quotations by starting the line with `>`, which produces:
+
+>All models are wrong
+
+## Hyperlinks
+
+Insert hyperlinks by putting the text you want displayed in square brackets followed by the link in parentheses: `[RStudio cheatsheet](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)`
+
+## Equations
+
+Inserting equations in R Markdown is where knowing some Latex really comes in handy because equations are written using Latex code. For the most part, this is not too difficult but if you need to insert complex equations you will probably need to look up the code for some symbols. There are many good resources for if you google "latex equations" or something similar.
+
+### Inline vs. block equations
+
+You can include equations either inline ($e = mc^2$) or as a stand-alone block:
+
+$$e=mc^2$$
+
+Inline equations are added by putting a single dollar sign `$` on either side of the equation (`$e=mc^2$`). Equation blocks are create by starting and ending a new line with double dollar signs
+
+`$$e=mc^2$$`
+
+## Greek letters
+
+Statistical models include a lot of Greek letters ($\alpha, \beta, \gamma$, etc.). You can add Greek letters to an equation by typing a backslash `\` followed by the name of the letter `\alpha`. Uppercase and lower case letters are possible by capitalizing the name ($\Delta$ = `$\Delta$`) or not ($\delta$ = `$\delta$`).
+
+## Subscripts and superscripts
+
+You can add superscripts using the `^` ($\pi r^2$=`$\pi r^2$`) symbol and subscripts using an underscore `_` ($N_t$ = `$N_t$`). 
+
+If the superscript or subscript includes more than one character, put the entire script within curly brackets `{}`: $N_t-1 \neq N_{t-1}$ is `$N_t-1 \neq N_{t-1}$`
+
+## Brackets and parentheses
+
+You can add normal sized brackets and parenthesis just by typing them into the equation: $(x + y)$ = `(x + y)`
+
+If you need bigger sizes, using `$\big($`, `$\bigg($`, and `$\Bigg($` produces $\big($, $\bigg($, and $\Bigg($ (switch the opening parenthesis for a closing parenthesis or square bracket as needed)
+
+## Fractions
+
+Fractions can either be inline ($1/n$ = `$1/n$`) or stacked ($\frac{1}{n}$ = `$\frac{1}{n}$`). For stacked equations, the terms in the first curly brackets are the numerator and the terms in the second curly brackets are the denominator. 
+
+
+## Operators
+
+Pretty much every operator you could need can be written in latex. Some common ones include $\times$ (`$\times$`), $\lt$ (`$\lt$`), $\gt$ (`$\gt$`), $\leq$ (`$\leq$`), $\geq$ (`$\geq$`), $\neq$ (`$\neq$`), $\sum$ (`$\sum$`), $\prod$ (`$\prod$`), $\infty$ (`$\infty$`), and $\propto$ (`$\propto$`).
+
+See [here](http://web.ift.uib.no/Teori/KURS/WRK/TeX/symALL.html) for a list of other operators. 
+
+# Adding code
+
+The ability to format and create pdf and html documents is great but the real strength of R Markdown is the ability to include and run code within your document. Code can be included **inline** or in **chunks**
+
+## Inline code
+
+Inline code is useful to including (simple) `R` output directly into the text. Inline code can be added by enclosing `R` code between `` `r "\u0060r"` `` and `` `r "\u0060"` ``. For example, typing `` `r "\u0060r mean(c(3,7,4,7,9))\u0060"` `` will compute and print the mean of the given vector. That is, it will print `r mean(c(3,7,4,7,9))` instead of the code itself. This can be very useful for including summary statistics in reports. 
+
+For example, if we have a vector indicating the number of individuals captured at each occasion during a mark-recapture study (e.g., `n <- c(155, 132, 147, 163)`) and we want to include the number of occasions in a report, instead of typing `4`, we can type `` `r "\u0060r length(n)\u0060"` ``. Not only does this prevent typos, it is extremely useful if `length(n)` might change in the future. Instead of manually changing the number of occasions, we just re-render the document and the new number of occasions will be printed automatically. 
+
+## Code chunks
+
+For more complicated code, it is generally more useful to use **chunks** than inline code. Chunks start on a separate line with `` `r "\u0060\u0060\u0060{r}"` `` and end with a `` `r "\u0060\u0060\u0060"` `` on its own line (instead of doing this manually, you can click the `Insert` button at the top right of script window, then click `R`). In between these two lines, you can include as many lines of code as you want. For example,
+
+`` `r "\u0060\u0060\u0060{r}"` ``  
+`` `r "n1 <- 44     # Number of individuals captured on first occasion"` ``  
+`` `r "n2 <- 32     # Number of individuals captured on second occasion"` ``  
+`` `r "m2 <- 15     # Number of previously marked individuals captured on second occasion"` ``  
+`` `r "N <- n1 * n2 / m2     # Lincoln-Peterson estimate of abundance "` ``  
+`` `r "\u0060\u0060\u0060"` ``
+
+### Chunk options
+
+Code chunks can take a lot of options to control how the code is run and what is displayed in the documents. These options go after `{r` and before the closing `}` (to see all the options put your cursor after the `{r`, hit the space bar, then hit `tab`). For example:
+
+- `echo = FALSE` shows the output of the code but not the code itself  
+
+- `include = FALSE` runs the code but doe not display the code *or* the output (useful for chunks that read or format data)
+
+- `eval = FALSE` shows the code but does not run it (useful for showing code)
+
+- `warning = FALSE` and `message = FALSE` can be include to ensure that error messages and warnings are not printed, which can be useful for cleaning up the appearance of documents
+
+- `cache = TRUE` save the results of the `R` code and doesn't rerun the chunk unless the code is changed (useful for chunks that take a long time to run)  
+
+- `out.height` and `out.width` control the size of figures in a pdf document in inches or centimeters (e.g., `out.height = "3in", notice the quotation marks)
+
+See the main [R Markdown page](http://yihui.name/knitr/options/) for a complete list of possible options.
+
+### Setting defaults for all chunks
+
+Often it is useful to set the default behavior for all chunks rather that including, for example, `warning = FALSE` at the beginning of each one. To do this, you can include a chunk at the beginning of the document:
+
+`` `r "\u0060\u0060\u0060{r include = FALSE}"` ``  
+`` `r "opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE)"` ``  
+`` `r "\u0060\u0060\u0060"` ``
+
+
+Any options can be included in this chuck to set the default behaviors. You can over-ride these defaults within chunks as needed. You can also load common packages in this chunk to streamline chunks later in the document. 
+
+### Tables
+
+To nicely print matrices and data frames in R Markdown document, use the `kable()` function:
+
+```{r echo = TRUE}
+library(knitr)
+kable(head(mtcars))
+```
+
+The `kableExtra` package provides even more advanced options for creating nice looking tables. See [here](https://haozhu233.github.io/kableExtra/awesome_table_in_html.html) for an overview of options provided by this package. 
+
+# Additional resources
+
+From the RStudio tool bar, click `Help -> Cheatsheets` and then select the `R Markdown cheat sheet` (lots of other good cheat sheets there as well)
+
+RStudio's [R Markdown](https://rmarkdown.rstudio.com/lesson-1.html) tutorial  
+
+Tom Edward's [R Markdown](http://learnr.usu.edu/r_markdown/1_1_markdown.php) tutorial  
+
+Coding Club's [Getting Started with R Markdown](https://ourcodingclub.github.io/2016/11/24/rmarkdown-1.html)  
+
+Cosma Shalizi's [Using R Markdown for Class Reports](http://www.stat.cmu.edu/~cshalizi/rmarkdown)
+
+

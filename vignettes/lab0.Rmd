@@ -21,14 +21,16 @@ In this lab, we will learn some basic `R` and learn how to create documents usin
 ***
 **Objectives**
 
-* Learn basic :  
+* What is `R` and why are we learning it?
+
+* Basic `R` concepts, including:  
     + Basic arithmetic
     + Create objects
     + Numeric objects
     + Character objects
-    
-* Learn to create documents using RMarkdown:  
     + Vector algebra
+    
+* Learn to create documents using RMarkdown
 
 ***
 
@@ -37,6 +39,10 @@ In this lab, we will learn some basic `R` and learn how to create documents usin
 1) Log in to R Studio Cloud
 
 2) Create a new project called `LastnameFirstname-Lab0`
+
+3) Go to the `Tutorials` pane in the top right
+
+4) Click on `01_IntroR`
 
     
 ## What is R?

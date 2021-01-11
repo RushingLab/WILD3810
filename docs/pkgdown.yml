@@ -1,5 +1,5 @@
 pandoc: 2.7.3
-pkgdown: 1.4.1
+pkgdown: 1.6.1
 pkgdown_sha: ~
 articles:
   homework: homework.html
@@ -18,6 +18,7 @@ articles:
   rmarkdown_intro: rmarkdown_intro.html
   schedule: schedule.html
   syllabus: syllabus.html
+last_built: 2020-12-28T20:12Z
 urls:
   reference: http://rushinglab.github.io/WILD3810/reference
   article: http://rushinglab.github.io/WILD3810/articles

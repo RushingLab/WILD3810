@@ -1,7 +1,7 @@
 ---
 title: "Lecture 6"
 subtitle: "Dynamics of small populations"
-author: "<br/><br/><br/>WILD3810 (Spring 2020)"
+author: "<br/><br/><br/>WILD3810 (Spring 2021)"
 output:
   xaringan::moon_reader:
     css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
@@ -14,7 +14,7 @@ output:
 
 ```{r setup, include = FALSE}
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message=FALSE, fig.retina = 2)
 library(WILD3810)
 library(gganimate)
 ```
@@ -100,7 +100,7 @@ All threats have to be managed and considered together
 #### Detecting when species have entered the extinction vortex is difficult  
 
 --
-#### But risk of exinction is related to population size  
+#### But risk of extinction is related to population size  
 
 + small populations are at higher risk than large ones   
 <br/>
@@ -188,7 +188,7 @@ There is a long history of trying to define the minimum abundance that avoids ex
 
 1) 50-500 rules (Soule 1980; Frankel & Soule 1981):  
 
-> Effective population size $(N_e)$ of 50 needed to avoid negative consequences of inbreeding depression; $N_e=500$ needed for maintenence of genetic diversity to allow adapation $^1$ 
+> Effective population size $(N_e)$ of 50 needed to avoid negative consequences of inbreeding depression; $N_e=500$ needed for maintenance of genetic diversity to allow adaptation $^1$ 
 
 
 
@@ -244,10 +244,10 @@ Many factors influence risk of extinction so maintenance of a population should 
 ---
 class: inverse, center, middle
 
-# Predictors of exinction risk
+# Predictors of extinction risk
 
 ---
-## Predictors of exinction risk
+## Predictors of extinction risk
 
 1)  Abundance  
 
@@ -258,7 +258,7 @@ knitr::include_graphics("dem_plot10.gif")
 ```
 
 ---
-## Predictors of exinction risk
+## Predictors of extinction risk
 
 1)  Abundance  
 
@@ -282,7 +282,7 @@ Image courtesy of USFWS via Wikicommons
 
 
 ---
-## Predictors of exinction risk
+## Predictors of extinction risk
 
 1)  Abundance  
 
@@ -295,7 +295,7 @@ Image courtesy of USFWS via Wikicommons
     b) the restricted habitats used by these species are at higher risk of catastrophic loss  
 
 ---
-## Predictors of exinction risk
+## Predictors of extinction risk
 
 1)  Abundance  
 
@@ -313,7 +313,7 @@ Image courtesy of Lavendowski, George (USFWS), via Wikimedia Commons
 
 
 ---
-## Predictors of exinction risk
+## Predictors of extinction risk
 
 1)  Abundance  
 
@@ -328,7 +328,7 @@ knitr::include_graphics("high_var.gif")
 ```
 
 ---
-## Predictors of exinction risk
+## Predictors of extinction risk
 
 1)  Abundance  
 
@@ -341,7 +341,7 @@ knitr::include_graphics("high_var.gif")
 * Population growth rate and abundance tend to decrease with increasing body size so large-bodied species are generally at higher risk than small bodied species
 
 ---
-## Predictors of exinction risk
+## Predictors of extinction risk
 
 1)  Abundance  
 
@@ -587,7 +587,7 @@ knitr::include_graphics("dem_plot10.gif")
 cum_extinct <- data.frame(qe = dnorm(x = seq(1:60), 0, 20))
 
 ggplot(cum_extinct, aes(x = qe)) + stat_ecdf(geom = "step") +
-  scale_y_continuous("Cummulative \nextict. prob.") +
+  scale_y_continuous("Cumulative \nextict. prob.") +
   scale_x_continuous("Time", labels = c(0, 5, 10, 15, 20))
 ```
 
@@ -603,7 +603,7 @@ ggplot(cum_extinct, aes(x = qe)) + stat_ecdf(geom = "step") +
 
 3) Likelihood of risk  
 
-In all cases, it's important to remember that these are *probabililities* - we don't know exactly how things will turn out  
+In all cases, it's important to remember that these are *probabilities* - we don't know exactly how things will turn out  
 <br/>
 
 --
@@ -769,7 +769,7 @@ Spatially-explicit PVAs model *how many* individuals and *where* they are
 2) Uncertainty
 
 --
-- Do we need accurate predictions of extinction risk? Or is relative risk be enough? 
+- Do we need accurate predictions of extinction risk? Or is relative risk enough? 
 
 --
 - Account for uncertainty using simulations

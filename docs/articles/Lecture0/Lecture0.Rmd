@@ -1,7 +1,7 @@
 ---
 title: "Lecture 0"
 subtitle: "Course overview"
-author: "<br/><br/><br/>WILD3810 (Spring 2020)"
+author: "<br/><br/><br/>WILD3810 (Spring 2021)"
 output:
   xaringan::moon_reader:
     css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
@@ -22,8 +22,8 @@ library(WILD3810)
 
 # LOGISTICS
 
-**Lecture**: Monday and Wednesday 10:30-11:20 NR 217  
-**Lab**: Monday 2:30-4:20 LSB 225  
+**Lecture**: Monday and Wednesday 10:30-11:20  
+**Lab**: Monday 2:30-4:20  
 **Credits**: 3  
 
 ---
@@ -31,12 +31,12 @@ library(WILD3810)
 
 #### Dr. Clark Rushing  
 [clark.rushing@usu.edu](clark.rushing@usu.edu)   
-**Office**: NR 146   
+~~**Office**: NR 146~~   
 **Office hours**: Monday and Wednesday 1:00-2:30 (or by appointment)  
 
 #### Kim Savides (TA)  
 [kim.savides@gmail.com](kim.savides@gmail.com)   
-**Office**: JQL 145  
+~~**Office**: JQL 145~~  
 **Office hours**: By appointment
 
 

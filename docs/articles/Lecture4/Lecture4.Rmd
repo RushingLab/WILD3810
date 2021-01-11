@@ -1,7 +1,7 @@
 ---
 title: "Lecture 4"
 subtitle: "Stochasticity"
-author: "<br/><br/><br/>WILD3810 (Spring 2020)"
+author: "<br/><br/><br/>WILD3810 (Spring 2021)"
 output:
   xaringan::moon_reader:
     css: ["default", "WILD3810.css", "WILD3810-fonts.css"]
@@ -14,7 +14,7 @@ output:
 
 ```{r setup, echo=FALSE,warning=FALSE, message = FALSE}
 options(htmltools.dir.version = FALSE)
-knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message = FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', warning=FALSE, message = FALSE, fig.retina = 2)
 library(WILD3810)
 library(gganimate)
 ```
@@ -404,7 +404,7 @@ class: inverse, center, middle
 ---
 ## Demographic  stochasticity
 
-#### In the preceeding examples, we treated the demographic outomes (individual survival and reproductive success) at each time step as non-random variables  
+#### In the preceding examples, we treated the demographic outcomes (individual survival and reproductive success) at each time step as non-random variables  
 
 --
 + If the mean survival probability in a given year is 80%, then exactly 80% of the population survived and 20% died  
@@ -419,7 +419,7 @@ class: inverse, center, middle
 + we know that the probability of getting a heads is 50% 
 
 --
-+ but we would not be suprised to get 4 heads. Or 7  
++ but we would not be surprised to get 4 heads. Or 7  
 
 --
 + we wouldn't even be that surprised to get 2 or 9  
@@ -500,7 +500,7 @@ knitr::include_graphics("dem_plot500.gif")
 
 ???
 
-$^6$ Since each population starts with the same initial populaiton size, any differences at the end of the simulation are due to stochasticity  
+$^6$ Since each population starts with the same initial population size, any differences at the end of the simulation are due to stochasticity  
 
 ---
 ## Effects of demographic stochasticity
@@ -531,7 +531,7 @@ knitr::include_graphics("dem_plot10.gif")
 
 ???
 
-$^7$ Remember that if at any point during the timeseries $N=0$, the population is extinct. Because our model assumes no movement, a population that goes extinct stays extinct
+$^7$ Remember that if at any point during the time series $N=0$, the population is extinct. Because our model assumes no movement, a population that goes extinct stays extinct
 
 ---
 ## Effects of demographic stochasticity
@@ -543,7 +543,7 @@ At large abundances, this is much less likely
 ---
 ### Stochasticity and extinction risk over time
 
-Another important consequences of stochasticity is that, over long-enough time periods, populations that exeperience stochasticity (both demographic and environmental) will eventually go extinct  
+Another important consequences of stochasticity is that, over long-enough time periods, populations that experience stochasticity (both demographic and environmental) will eventually go extinct  
 <br/> 
 
 

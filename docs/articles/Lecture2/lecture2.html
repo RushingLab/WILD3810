@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
   <head>
     <title>Lecture 2</title>
-    <meta charset="utf-8">
-    <meta name="author" content="   WILD3810 (Spring 2020)" />
+    <meta charset="utf-8" />
+    <meta name="author" content="   WILD3810 (Spring 2021)" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+    <script src="libs/anchor-sections/anchor-sections.js"></script>
     <link rel="stylesheet" href="WILD3810.css" type="text/css" />
     <link rel="stylesheet" href="WILD3810-fonts.css" type="text/css" />
   </head>
@@ -14,7 +16,7 @@ class: center, middle, inverse, title-slide
 
 # Lecture 2
 ## How many are there? Estimating abundance
-### <br/><br/><br/>WILD3810 (Spring 2020)
+### <br/><br/><br/>WILD3810 (Spring 2021)
 
 ---
 
@@ -220,27 +222,6 @@ class: inverse, center, middle
 #### When counts are equal to the true number of individuals, this is referred to as a **census**
 
 ---
-## Census
-
-**Excercise**  
-&lt;br/&gt;
-1) Divide into groups of (about) 4
-
-&lt;br/&gt;
-2) Remove all of the beans from the cup and count
-
-&lt;br/&gt;
-3) Record how many beans are in the cup `\((N)\)`  
-&lt;br/&gt;
-4) Return all of the beans to the cup
-
-???
-
-This is a complete census. What are the advantages? Disadvantages?  
-
-Do you think your count is exactly equal to `\(N\)` (i.e., no counting mistakes?)
-
----
 ## Complete vs. sample plot census
 
 #### **Complete census**  
@@ -268,29 +249,6 @@ C = N
 --
 - `\(\Large \hat{N} = 23/0.1 = 230\)`  
 
----
-## Sample plot census
-
-####  **Exercise**  
-&lt;br/&gt;
-1) Divide back into your groups  
-&lt;br/&gt;
-2) Place your empty cup on the scale and press 'Tare'  
-&lt;br/&gt;
-3) Remove a portion of the beans from the first cup and place them in the empty cup; record the weight  
-&lt;br/&gt;
-4) Count and record the number of beans you removed  
-&lt;br/&gt;
-5) Estimate `\(\hat{N}\)` using: `\(^1\)`
-`$$\hat{N} = \frac{number\; of\; beans\; removed}{weight/100}$$`
-&lt;br/&gt;
-6) Leave the beans in their current cups
-
-???
-
-`\(^1\)` Each cup started with approximately 100g of beans so `\(weight/100\)` is the proportion of the beans you sampled. So the number of beans you removed `\(=C\)` and `\(weight/100=P_{area}\)`
-
-How close was your estimate to the true `\(N\)`? Why was it not exactly the same?  
 
 ---
 class: inverse, center, middle
@@ -306,7 +264,7 @@ class: inverse, center, middle
 &lt;br/&gt;
 #### **Many** methods for doing so `\(^5\)`
 
-&lt;img src="lecture2_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture2_files/figure-html/unnamed-chunk-5-1.png" width="324" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -446,18 +404,6 @@ Image courtesy of: GlacierNPS, via Wikimedia Commons
 
 #### *What ties all of these methods together is that we have individual-level capture-histories*  
 
----
-## Capture-mark-recapture
-
-#### **Exercise**  
-&lt;br/&gt;
-1) Divide into groups your groups  
-&lt;br/&gt;
-2) Record how many beans you removed in the previoius exercise (call this `\(n_1\)`)  
-&lt;br/&gt;
-3) Count the same number of black-eyed peas and put them back in the original cup (these are your marked individuals)  
-&lt;br/&gt;
-4) Cover and shake/stir the cup 
 
 ---
 ## Lincoln-Peterson (LP) model
@@ -563,25 +509,6 @@ We can rearrange that to solve for `\(N\)`:
 Modified from Powell &amp; Gale pg 93
 
 ---
-## Lincoln-Peterson model
-
-**Exercise**  
-
-1) Take a second handful of beans from the cup  
-&lt;br/&gt;
-2) Count and record the total number of beans (this is `\(n_2\)`)  
-&lt;br/&gt;
-3) Count and record the number of black-eyed peas in the sample (this is `\(m_2\)`)  
-&lt;br/&gt;
-4) Estimate `\(\hat{N}\)` using the formula above `\(^{12}\)`  
-
-???
-
-`\(^{12}\)` How close was your estimate to the true `\(N\)`?
-
-How did the number of beans you removed influence your estimate of `\(N\)`
-
----
 class: inverse, middle, center
 
 # Uncertainty
@@ -632,7 +559,7 @@ We do a CMR study of two populations and estimate `\(\hat{N}_1 = 142\)` and `\(\
 
 Is `\(N_1 &lt; N_2\)`? 
 
-&lt;img src="lecture2_files/figure-html/unnamed-chunk-14-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture2_files/figure-html/unnamed-chunk-14-1.png" width="288" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -665,7 +592,7 @@ Uncertainty measures *on average* how far off our estimate is from the true valu
 
 `$$\large var(\hat{N}) = \frac{(n_1 + 1)(n_2+1)(n_1-m_2)(n_2-m_2)}{(m_2+1)^2(m_2+2)}$$`
 
-&lt;img src="lecture2_files/figure-html/unnamed-chunk-16-1.png" style="display: block; margin: auto;" /&gt;
+&lt;img src="lecture2_files/figure-html/unnamed-chunk-16-1.png" width="360" style="display: block; margin: auto;" /&gt;
 
 ???
 
@@ -752,6 +679,7 @@ What effects would violating these assumptions have on estimates of `\(N\)`?
 
 - Addressed by random sampling
     </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
 <script>var slideshow = remark.create({
 "highlightStyle": "github",
@@ -761,16 +689,74 @@ What effects would violating these assumptions have on estimates of `\(N\)`?
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));
 });
-(function() {
-  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
   if (!r) return;
   s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
   d.head.appendChild(s);
-})();</script>
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
 
 <script>
 (function() {
-  var i, text, code, codes = document.getElementsByTagName('code');
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
   for (i = 0; i < codes.length;) {
     code = codes[i];
     if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
@@ -784,7 +770,8 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     }
     i++;
   }
-})();
+};
+slideshow._releaseMath(document);
 </script>
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
