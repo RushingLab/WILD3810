@@ -21,40 +21,19 @@ In this homework assignment, you will become more familiar with using `R` and R 
 
 ```
 
-
-For this homework, you will be acting as the lead avian ecologist for DWR, tasked with objective of predicting the future population size of Eurasian collared-doves within the state. To accomplish this task, you will first need to know the population growth rate of the dove population. Remember from lecture 3 that:
-
-$$\Large \lambda = \bigg(\frac{N_{T}}{N_0}\bigg)^{\frac{1}{T}}$$
-
-Let's use the dove counts to estimate $\lambda$ for this population. Remember that $T$ is the number of years over which we want to estimate growth. Since the `ut_dove_counts` data frame has one row for each year, we can easily estimate the total number of years using `nrow()`. But first, load the data:
-
-```{r}
-## Load the WILD3810 package to make data and code available in current R environment
-library(WILD3810)
-
-## Load the data
-data("ut_dove_counts")
-```
-
-> 2) In the chunk below, use the `nrow` function to create object called t that contains the number of years (Note that `T` is reserved in `R` as shorthand for `TRUE` so we can't use that as the object name)
+## Estimate $\lambda$
 
 ```{r calc_lambda}
 
 ```
 
-
-
-```{r lambda}
-
-```
-
 > 1) Over the 48 years of the Breeding Bird Survey, what was the (approximate) annual percent increase in the Utah Collared-dove population? Write you answer in bold below
 
+## Re-calculating $\lambda$
 
 ```{r newlambda}
 
 ```
-
 
 > 2) What was the (approximate) growth rate of the Utah Collared-dove population once the species arrived in Utah? Write you answer in bold below
 

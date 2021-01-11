@@ -27,7 +27,7 @@ In this homework assignment, you will become more familiar with using `R` and R 
 
 ```
 
-> 1a) How many individuals do you expect to capture in $n1$? Type your answer below in bold (hint: use double asterisks before and after text to make it **bold**)
+> 1a) How many individuals do you expect to capture in $n1$? Type your answer below in bold (remember, use double asterisks before and after text to make it **bold**)
 
 > 1b) In the chunk below, use the `mean()` function to see if the average of the randomly generated values is close to the expected value (If you need help with this function, use `?mean()` to see the help documentation).
 

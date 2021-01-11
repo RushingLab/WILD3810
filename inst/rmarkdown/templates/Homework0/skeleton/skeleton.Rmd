@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, messag
 library(WILD3810)
 ```
 
-**Due before 2:30pm Monday January 13**
+**Due before 2:30pm Monday February 1**
 
 In this homework assignment, you will become more familiar with using `R` and R Markdown to complete lab assignments. Throughout the document, you will find directions that must be followed or questions that must be answered to receive credit on the assignment; these sections will be denoted using the following structure:
 

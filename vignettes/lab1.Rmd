@@ -18,62 +18,12 @@ knitr::opts_chunk$set(
 
 In this lab, we will continue learning how to use `R` to create and manipulate objects, with a particular focus on estimating abundance using the Lincoln-Peterson estimator. 
 
-***
-**Objectives**
-
-* Learn/review basic data types, including:  
-    + Scalars
-    + Vectors
-    + Numeric objects
-    + Character objects
-    
-* Learn/review basic data manipulation tasks, including:  
-    + Vector algebra
-  
-  
-* `R` functions used in this exercise:  
-    + `prod()`
-    + `round()`
-    + `c()`
-    + `sum()`
-
-
-***
-
 # Set up
 
-1) Log in to R Studio Cloud
+1) Log in to RStudio Cloud
 
 2) Create a new project called `LastnameFirstname-Lab1`
 
-3) Create a new R script file to store code from this lab:
+3) Go to the `Tutorials` pane in the top right
 
-    3a) Click `File -> New File -> R Script`
-    
-    3b) Save the script as `Lab1`
-    
-
-## Properties of the Lincoln-Peterson estimator
-
-In the next homework, we will use `R` to better understand the properties of the LP estimator. To create this homework:
-
-1) Create a new R Markdown file from the Homework-1 template:
-
-    1a) Click `File -> New File -> R Markdown`  
-    
-    1b) Click `From Template` and scroll down to `WILD3810-Homework1`  
-    
-    1c) In the `Name` box, type `LastnameFirstname-Homework1`  
-    
-    1d) Click `Ok`
-
-2) Ensure that you can `Knit` the file
-
-    2a) Change "YOUR NAME HERE" in the header section to your name  
-    
-    2b) Click `Knit` to make sure you can knit the .Rmd file  
-    
-3) Complete the assignment as directed in the .Rmd file
-
-4) Follow the [instructions for submission](https://rushinglab.github.io/WILD3810/articles/homework.html) to upload your completed assignment to Canvas
-
+4) Click on `02_LP`

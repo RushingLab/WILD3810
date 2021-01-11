@@ -109,7 +109,7 @@ After running it, print the new object `y` to see its value. Were you right?
 
 It's a good idea to give objects names that tell you something about what the object represents. When creating object names, remember that:
 
-1) Names can be as long as you want them but rememberthat long names require more typing (so brevity is a good rule of thumb)  
+1) Names can be as long as you want them but remember that long names require more typing (so brevity is a good rule of thumb)  
 
 2) Names cannot have spaces  
 
@@ -134,7 +134,7 @@ product_xy <- prod(x, y)
 product_xy
 ```
 
-Here, we provided `x` and `y` as *arguments* and `prod` created a new object called `product_xy` which is the product of our two value. It may seem silly to use a function in this case (it didn't save us much work after all) but this type of function can be useful if you had a longer set of values and didn't want to type them manually to get the product
+Here, we provided `x` and `y` as *arguments* and `prod()` created a new object called `product_xy` which is the product of our two value. It may seem silly to use a function in this case (it didn't save us much work after all) but this type of function can be useful if you had a longer set of values and didn't want to type them manually to get the product
 
 ## Built-in functions
 
@@ -148,7 +148,7 @@ For example, the `round` function rounds a number to a specified number of decim
 ?round
 ```
 
-So we see `round` takes an argument called `x`, which is the number we want to round, and the number of `digits` we want to round to. 
+The tutorials print the help files in a strange way so I also suggest copying that code and running it in the RStudio console for an easier-to-read version. Either way, we see `round` takes an argument called `x`, which is the number we want to round, and the number of `digits` we want to round to. 
 
 
 ## Built-in functions
@@ -173,7 +173,7 @@ y <- 3
 
 z <- x/y
 
-round(digits = 0, x = z)
+round(digits = 1, x = z)
 ```
 
 Although you don't have to name arguments, it’s a good idea to get in the habit of naming them. This will make you code easier to read, will help avoid mistakes that can occur when you don't put the arguments in the correct order, and makes it easier to trouble shoot code that doesn't do what you expect it to do. 
@@ -226,7 +226,7 @@ class(occasions)
 
 ## Vectors
 
-What is the class of a vector with both numeric and characters entries? Hint:
+Add a line of code to determine the class of a vector with both numeric and characters entries?:
 
 ```{r vector6, exercise=TRUE}
 mixed <- c(1, 2, "3", "4")

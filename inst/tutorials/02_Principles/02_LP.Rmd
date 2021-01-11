@@ -169,7 +169,7 @@ iguanas %>%
 
 ### The Schnabel method: entering the data
 
-Using what you have learned about creating vectors, complete the code below to create an object named `Ct` that contains the appropriate values for $C_t$:
+Using what you have learned about creating vectors, complete the code below to create an object named `Ct` that contains the appropriate values for $C_t$ (you can scroll up to see the table if you need to):
 
 ```{r Ct, exercise = TRUE}
 Ct <- c() # Number of captures during each occasion
@@ -199,7 +199,7 @@ grade_code()
 
 ### The Schnabel method: entering the data
 
-What is $M_t$? On the first day, there are no previously marked individuals so $M_1=0$. On the second day, there are 155 marked individuals in the population (all of the individuals marked on day 1) so $M_2=155$. On day 3, the students could have observed individuals marked on the first day or individuals marked on the second day ($175-109=66$ individuals marked on day 2) so $M_3 = 155 + 66 = 221$. So:
+What is $M_t$? On the first day, there are no previously marked individuals so $M_1=0$. On the second day, there are 155 marked individuals in the population (all of the individuals marked on day 1) so $M_2=155$. On day 3, the students could have observed individuals marked on the first day or individuals marked on the second day ($175-109=66$ new individuals marked on day 2) so $M_3 = 155 + 66 = 221$. So:
 
 ```{r Mt, exercise = TRUE}
 Mt <- c(0, 155, 221) # Number of individuals at risk of capture
@@ -298,7 +298,7 @@ If you have any problems with these steps, be sure to get help from either the i
 
 ### Lincoln-Peterson is unbiased when sample sizes are large
 
-When the number of individuals in the capture-recapture samples is large, the Lincoln-Peterson estimator returns an *unbiased* estimated of $N$. By unbiased, we mean that the Lincoln-Peterson estimator will *on average* match the true abundance of the population. It is important to note that bias applies to the average estimate:
+When the number of individuals in the capture-recapture samples is large, the Lincoln-Peterson estimator returns an *unbiased* estimate of $N$. By unbiased, we mean that the Lincoln-Peterson estimator will *on average* match the true abundance of the population. It is important to note that bias applies to the average estimate:
 
 > for any given sample, our estimate of $\hat{N}$ may be a little bigger or a little smaller than $N$. 
 
@@ -321,7 +321,7 @@ In the box below:
 
 ```
 
-Once you have completed these steps and the code runs correctly, copy and paste them to the `R` chunk named `setup` in the `LastnameFirstname-homework1.Rmd` file. 
+Once you have completed these steps and the code runs correctly, copy and paste them to the `R` chunk named `setup` in the homework file. 
 
 ### Number of simulations
 
@@ -333,7 +333,7 @@ Now we need to tell `R` how many simulated samples we want to take. In the box b
 
 ```
 
-Again, copy and paste this code to the `R` chunk named `setup` in the `LastnameFirstname-homework1.Rmd` file (place them on a line below the code you pasted in the previous step)
+Again, copy and paste this code to the `R` chunk named `setup` in the homework file (place them on a line below the code you pasted in the previous step)
 
 ### Simulating capture-recapture data
 
@@ -375,7 +375,7 @@ n1 <- rbinom(n = nSims, size = N, prob = p) # Simulate nSims values of n1
 
 Notice that in this case, we are sampling from the total population so `size = N`. When you run this line, you will get 1000 random values of `n1`. 
 
-Copy and paste the line that creates `n1` to the `R` chunk named `simulation` in the `LastnameFirstname-homework1.Rmd` file. 
+Copy and paste the line that creates `n1` to the `R` chunk named `simulation` in the homeowrk file. 
 
 Before proceeding, answer questions 1a and 1b in the `.Rmd` file.
 
@@ -401,9 +401,11 @@ m2 <- rbinom(n = nSims, size = , prob = p) # Simulate nSims values of m2
 
 <div id="m2-hint">
 Remember that we are **not** sampling $m2$ from the total population but from the *marked* population
+
+Also, when the `size` argument is a vector that is the same length as the `n` argument, `rbinom()` will sample from each value of the `size` vector
 </div>
 
-Copy and paste the line that creates `m2` to the `simulation` `R` chunk in the `LastnameFirstname-homework1.Rmd` file (below the code you already copied to that chunk). 
+Copy and paste the line that creates `m2` to the `simulation` `R` chunk in the homework file (below the code you already copied to that chunk). 
 
 ### Simulating capture-recapture data - `n2`
 
@@ -434,7 +436,7 @@ Now we can get $n2$ by adding `m2` and `nm2` (remember how adding vectors works 
 > Create a new object called `n2` that is the sum of `m2` and `nm2`
 
 
-Copy and paste the lines that create `nm2` and `n2` to the `simulation` `R` chunk in the `LastnameFirstname-homework1.Rmd` file. 
+Copy and paste the lines that create `nm2` and `n2` to the `simulation` `R` chunk in the homework file. 
 
 ### Simulating capture-recapture data - $\hat{N}$
 
@@ -460,15 +462,20 @@ Nhat <-
 
 Because $N$ is very big, our `Nhat` estimates should *on average* be unbiased. We can test this by taking the mean of all 1000 estimates (which should be very close to $N$). In the box above
 
-> Add a line that calculates the mean of the $\hat{N}$ values  
+> Add a line that calculates the mean of the $\hat{N}$ values and rerun the code 
 
-If our estimates are unbiased, the mean you just calculated should be very close to the true population size. We can calculate how are off our estimate is by taking the ratio of the mean value of $\hat{N}$ to the true value of $N$. c
+If our estimates are unbiased, the mean you just calculated should be very close to the true population size. We can calculate how are off our estimate is by taking the ratio of the mean value of $\hat{N}$ to the true value of $N$. 
 
-> Add a line to the box above that calculates this ratio  
+> Add a line to the box above that calculates this ratio and rerun the code
+
+***
+Notice that the output from `mean(Nhat)` probably changed a little bit when you reran the code. This is because our simulation is choosing new values of each object each time we run it, so our estimates will change slightly. You can re-run the code as many times you want to check that, even though the estimate change a little bit, they should all be pretty close to the true $N$  
+
+***
 
 If our estimates are unbiased (i.e., on average, our estimates equal the true population size), this ratio should be very close to 1. **Be sure you understand this point!**
 
-Once you have completed the code, copy the lines that estimate `Nhat`, mean of `Nhat`, and ratio to the `simulation` `R` chunk in the `LastnameFirstname-homework1.Rmd` file. 
+Once you have completed the code, copy the lines that estimate `Nhat`, mean of `Nhat`, and ratio to the `simulation` `R` chunk in the homework file. 
 
 ### Visualizing $\hat{N}$
 
@@ -585,7 +592,7 @@ Now let's make the population size really small.
 
 In the chunk named `chapman10` in the homework file:
 
-> Copy the code needed to simulate the L-P data (the code from the `chapman` chunk in the homework file)  
+> Copy the code needed to simulate the L-P data (the code from the `LP2` chunk in the homework file)  
 
 > Set `N <- 10` 
 
@@ -597,4 +604,6 @@ In the chunk named `chapman10` in the homework file:
 
 ## Turning in your assignment
 
-Follow the [instructions for submission](https://rushinglab.github.io/WILD3810/articles/homework.html) to upload your completed assignment to Canvas
+Click the `knit` button on the homework file and make sure you can produce an html file with all of your answers. If you have any trouble, let the instructor or TA know. 
+
+Once you are able to successfully knit the document, follow the [instructions for submission](https://rushinglab.github.io/WILD3810/articles/homework.html) to upload your completed assignment to Canvas
