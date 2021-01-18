@@ -1,0 +1,311 @@
+---
+title: "Lab 3: Modeling density-dependent growth"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Overview {data-progressive=TRUE}
+
+In the last homework assignment, you used an exponential growth model to predict the abundance of Eurasian collared-doves in Utah 20 years in the future. The model model predicted an *average* of 14,000 collared-doves at *each* BBS route, which is obviously way more doves than we expect to actually occur in Utah in 2035. At some point, resources will become limiting and population growth will slow.  
+
+In this lab, we will use BBS data from other states where collared-doves were introduced earlier than in Utah to explore what happens to this species as populations grow beyond their initially small sizes. 
+
+***
+**Objectives**
+
+* Model and visualize density-dependent population growth 
+
+* Learn/review basic data manipulation tasks, including:  
+    + Subsetting vectors
+    + Creating and subsetting data frames
+    + Create summaries of raw data
+    + Saving data
+  
+  
+* `R` functions used in this exercise:  
+    + `library()`
+    + `data()`
+    + `head()`
+    + `str()`
+    + `summary()`
+    + `nrow()`
+    + `dplyr::select()`
+    + `dplyr::filter()`
+    + `ggplot2::ggplot()`
+    + `data.frame()`
+    + `for()`
+    + `dplyr::bind_rows()`
+    + `dplyr::mutate()`
+    
+***
+
+## Creating the homework file 
+
+To create the homework assignment for this week:
+
+
+1) Create a new R Markdown file from the Homework-2 template:
+
+    1a) Click `File -> New File -> R Markdown`  
+    
+    1b) Click `From Template` and scroll down to `WILD3810-Homework3`  
+    
+    1c) In the `Name` box, type `LastnameFirstname-Homework3`  
+    
+    1d) Click `Ok`
+
+2) Ensure that you can `Knit` the file
+
+    2a) Change "YOUR NAME HERE" in the header section to your name  
+    
+    2b) Click `Knit` to make sure you can knit the .Rmd file  
+    
+    2c) Save the .Rmd file as `LastnameFirstname-homework3.Rmd` in a project named `LastNameFirstName-Lab3`
+    
+3) Complete the assignment as directed in this tutorial
+
+If you have any problems with these steps, be sure to get help from either the instructor or the TA
+
+
+## Density-dependent population growth  {data-progressive=TRUE}
+
+In [lecture 5](https://rushinglab.github.io/WILD3810/articles/Lecture5/Lecture5.html#1), we learned about an extension of the density-independent growth model called the **logistic growth model**:
+
+$$\Large \frac{dN}{dt} = N \times \Big(r_0 +cN\Big)$$
+
+where $r_0$ is the intrinsic rate of population growth (the rate when there is nothing limiting population growth) and $c$ is the change in growth rate for each individual added to the population. The logistic growth model indicates the number of individuals added to the population over a very small time period and is therefore most suited for **birth-flow** species (species that reproduce throughout the year). As population size approaches the carrying capacity, the population growth rate approaches 0, setting an upper-limit to population size. 
+
+The **Ricker model** is the discrete time version of the logistic growth model and is more appropriate for **birth-pulse** species that have distinct breeding seasons:
+
+$$\Large N_{t+1}=N_t e^{\Big[r_0 +cN\Big]}$$
+
+Based on this information, **answer question 1 in your homework file**. If you need to know more about collared-doves to answer this question, refer to this overview of [their ecology](https://www.allaboutbirds.org/guide/Eurasian_Collared-Dove/lifehistory)
+
+
+## Eurasian collared-dove growth in the Eastern US {data-progressive=TRUE}
+
+Both the logistic and Ricker models have the same underlying parameters - $r_0$ and $c$. Therefore, to use either model to predict population growth of collared-doves in Utah, we need estimates of these two quantities.  
+
+Because collared-doves do not appear to have reached their carrying capacity in Utah, we cannot use the Utah data to estimate $c$. However, in the eastern United States, collared-dove population growth does appear to have leveled off (they were originally introduced to the US in Florida so eastern populations have had more time to reach carrying capacity). Data on the eastern counts is stored in a separate data frame:
+
+```{r load, exercise = TRUE}
+# Load packages
+library(WILD3810)
+library(dplyr)
+
+# Load data
+data("all_dove_counts")
+data("ut_dove_counts")
+```
+
+Copy this code to the `setup` chunk in the homework file.
+
+```{r echo = FALSE, fig.height=6, fig.width=8, fig.cap="Average count of Eurasian collared-doves at BBS routes in the eastern United States"}
+library(WILD3810)
+data("all_dove_counts")
+ggplot(all_dove_counts, aes(x = Year, y = Count)) + geom_path()
+```
+
+As we saw in the Utah counts, the population increased rapidly after introduction but eventually stopped increasing and has remained relatively stable since the mid-1990's. We will use these data to estimate $r_0$ and $c$ (assuming that these parameters are the same or at least similar for doves in Utah and the eastern US).
+
+Before moving on, **answer question 2 in the homework file**
+
+
+### Plotting the relationship between $r_0$, $c$, and $N$
+
+Notice that we can re-arrange the Ricker growth model as follows:
+
+$$\Large log\Bigg(\frac{N_{t+1}}{N_t}\Bigg) = r_0 + cN \tag{1}$$
+
+Also notice that this is the equation for a line with y-intercept $=r_0$ and slope $c$. If we can plot $log\Bigg(\frac{N_{t+1}}{N_t}\Bigg)$ as a function of $N$, then a simple way to estimate the growth rate and carrying capacity is to choose values of $r_0$ and $c$ that correspond to a line that passes through these points. 
+
+The first step in this process is to calculate $log\Bigg(\frac{N_{t+1}}{N_t}\Bigg)$ for each year of data.  
+
+In the box below, do the following:
+
+> 1) Complete the `mutate()` arguments to create a new column in the data frame called `logN` and fill the column with `NA`  
+
+> 2) Complete the `for` loop code to estimate `logN` in each year. Remember that `logN[t]= Count[t+1] / Count[t]`. Use that relationship to fill in the missing index values in `all_dove_counts$Count[]` and `all_dove_counts$Count[]`  
+
+
+```{r logN, exercise = TRUE, exercise.setup = "load"}
+
+all_dove_counts <- filter(all_dove_counts, Year > 1985)
+
+all_dove_counts <- mutate(all_dove_counts, )
+
+for(t in 1:(nrow(all_dove_counts) - 1)){
+  all_dove_counts$logN[t] <- log(all_dove_counts$Count[] / all_dove_counts$Count[])
+}
+
+```
+
+```{r logN-solution}
+all_dove_counts <- filter(all_dove_counts, Year > 1985)
+
+all_dove_counts <- mutate(all_dove_counts, logN = NA)
+
+for(t in 1:(nrow(all_dove_counts) - 1)){
+  all_dove_counts$logN[t] <- log(all_dove_counts$Count[t + 1] / all_dove_counts$Count[t])
+}
+
+```
+ 
+```{r logN-code-check}
+grade_code()
+```
+
+Once you have completed the code above it, copy to the `logN` chunk in the homework file and answer questions 3a-b
+
+### Making the plot
+
+Now we can plot `logN` vs. `N` and choose values of $r_0$ and $c$. In the box below, complete the `ggplot()` function so that `Count` is plotted on the x-axis and `logN` is plotted on the y-axis 
+
+```{r logN2, echo = FALSE}
+library(WILD3810)
+data("all_dove_counts")
+
+all_dove_counts <- filter(all_dove_counts, Year > 1985)
+
+all_dove_counts <- mutate(all_dove_counts, logN = NA)
+
+for(t in 1:(nrow(all_dove_counts) - 1)){
+  all_dove_counts$logN[t] <- log(all_dove_counts$Count[t + 1] / all_dove_counts$Count[t])
+}
+
+```
+
+```{r plotN, exercise = TRUE, exercise.setup = "logN2", warning=FALSE, message = FALSE}
+r0 <- 0.1
+c <- -0.2
+ggplot(all_dove_counts, aes(x = , y = )) + 
+  geom_point() +
+  geom_hline(yintercept = 0, linetype = "longdash", color = "grey50") +
+  geom_abline(slope = c, intercept = r0, color = "red") +
+  stat_smooth(method = "lm")
+
+```
+
+The blue line shows the estimated relationship between `Count` and `logN`, while the red line shows the expected relationship for a given value of $r_0$ and $c$. Notice that the red line does not match the blue line. You can change the slope and intercept of the red line by changing the values of `r0` and `c` and recreating the plot.
+
+> Choose values of `r0` and `c` such that the red line and blue line are the same (or at least very close) 
+
+Once you have a line you are satisfied with, copy the code to the `plotN` chunk in the homework file
+
+## Predicting density-dependent dove growth in Utah {data-progressive=TRUE}
+
+Now we'll modify the code from lab 2 to predict the future dynamics of collared-doves in Utah. In the box below: 
+
+> 1) Enter the values of `r0` and `c` that you settled on above 
+
+> 2) Create a new data frame called `predicted_doves` with columns `Year` and `Count`. Complete the code so that `Year` is a sequence from 2015-2075 and `Count` is `NA`  
+
+> 3) The next line of code sets the first count in `predicted_doves` (`predicted_doves$Count[1]`) to the last count in `ut_dove_counts`. The index in the square brackets should therefore equal the number of years in `ut_dove_counts`. Replace the question mark in the square brackets with a function that will return the number of years in `ut_dove_counts`.
+
+> 4) Finally, replace the `?` in the last line of the `for` loop so that the current count (`predicted_doves$Count[t-1]`) is multiplied by the proper growth rate to predict `predicted_doves$Count[t]`.
+
+```{r predict_DD, exercise = TRUE, exercise.setup = "load"}
+r0 <-
+c <-
+  
+predicted_doves <- data.frame(Year = ,
+                              Count = )
+
+predicted_doves$Count[1] <- ut_dove_counts$Count[]
+
+for(t in 2:nrow(predicted_doves)){
+ r <- r0 - c * predicted_doves$Count[t-1]
+ predicted_doves$Count[t] <- predicted_doves$Count[t-1] * ?
+}
+```
+
+<div id="predict_DD-hint">
+**Hints:**  
+
+1) For the third question, how many rows are in `ut_dove_counts`?
+
+2) Notice that the code estimates `r` in each loop based on the current population size but we are using a discrete population model based on $\lambda$.  
+
+</div>
+
+
+### Preparing the data for visualization
+
+Finally, we'll visualize predicted growth of the dove population. In the box below,
+
+> 1) Enter the values of `r0` and `c` that you settled on above (sorry, it doesn't carry from one exercise to the next)
+
+> 2) Filter only years greater than 2015 in the `predicted_doves` data frame
+
+> 3) Add a column called `Type` to both data frames and give that variable a value of `Predicted` in `predicted_doves` and `Count` in `ut_doves_counts` (make sure you put "Predicted" and "Count" inside of quotation marks)
+
+> 4) Complete the `bind_rows()` function to create a new data frame with both the actual and predicted counts
+
+```{r vizDD, exercise = TRUE, exercise.setup = "load"}
+r0 <-
+c <-
+  
+predicted_doves <- data.frame(Year = seq(from = 2015, to = 2075),
+                              Count = NA)
+
+predicted_doves$Count[1] <- ut_dove_counts$Count[nrow(ut_dove_counts)]
+
+for(t in 2:nrow(predicted_doves)){
+ r <- r0 - c * predicted_doves$Count[t-1]
+ predicted_doves$Count[t] <- predicted_doves$Count[t-1] * exp(r)
+}
+
+predicted_doves <- filter(predicted_doves, ?)
+predicted_doves <- mutate(predicted_doves, Type = ?)
+ut_dove_counts <- mutate(ut_dove_counts, Type = ?)
+
+all_doves <- bind_rows()
+```
+
+### Visualizing predicted dove population growth
+
+Finally, modify the following `ggplot` code to:
+
+> 1) Fill in the missing `x=`, `y=`, `geom_?`'s, and `color=` to recreate the figure you made in lab 2. 
+
+> 2) You can add `geom_vline(xintercept = ?)` to your graph to approximate the year at which the population reaches carrying capacity. Add this line of code to your ggplot, replacing `?` with the year you think the population reaches its carrying capacity.
+
+```{r viz, exercise = TRUE, exercise.setup = "load"}
+r0 <-
+c <-
+  
+predicted_doves <- data.frame(Year = seq(from = 2015, to = 2075),
+                              Count = NA)
+
+predicted_doves$Count[1] <- ut_dove_counts$Count[nrow(ut_dove_counts)]
+
+for(t in 2:nrow(predicted_doves)){
+ r <- r0 - c * predicted_doves$Count[t-1]
+ predicted_doves$Count[t] <- predicted_doves$Count[t-1] * exp(r)
+}
+
+predicted_doves <- filter(predicted_doves, Year > 2015)
+predicted_doves <- mutate(predicted_doves, Type = "Predicted")
+ut_dove_counts <- mutate(ut_dove_counts, Type = "Count")
+
+all_doves <- bind_rows(ut_dove_counts, predicted_doves)
+
+ggplot(data = all_doves, aes(x = ?, y = ?)) + geom_?(color = "grey50") +
+  geom_?(color = "white", size = 4.5) + geom_?(aes(color = ?), size = 3)
+
+```
+
+Once you have completed the code, copy it to the `predict_DD` chunk and run the code. Use the output to answer questions 5a and 5b
+
+
+## Turning in your assignment
+
+Click the `knit` button on the homework file and make sure you can produce an html file with all of your answers and the final plot. If you have any trouble, let the instructor or TA know. 
+
+Once you are able to successfully knit the document, follow the [instructions for submission](https://rushinglab.github.io/WILD3810/articles/homework.html) to upload your completed assignment to Canvas
