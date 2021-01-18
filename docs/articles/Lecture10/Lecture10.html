@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Lecture 10</title>
     <meta charset="utf-8" />
-    <meta name="author" content="   WILD3810 (Spring 2020)" />
+    <meta name="author" content="   WILD3810 (Spring 2021)" />
     <link href="libs/remark-css/default.css" rel="stylesheet" />
     <script src="libs/kePrint/kePrint.js"></script>
+    <link href="libs/lightable/lightable.css" rel="stylesheet" />
     <link rel="stylesheet" href="WILD3810.css" type="text/css" />
     <link rel="stylesheet" href="WILD3810-fonts.css" type="text/css" />
   </head>
@@ -15,7 +16,7 @@ class: center, middle, inverse, title-slide
 
 # Lecture 10
 ## Matrix population models
-### <br/><br/><br/>WILD3810 (Spring 2020)
+### <br/><br/><br/>WILD3810 (Spring 2021)
 
 ---
 
@@ -97,17 +98,17 @@ What can you say about the reproductive and survival schedules of this populatio
 ---
 ## Age-structred demography
 
-#### List population abundance in discrete 1-year age classes `\(\LARGE (n_i)\)`  
+#### List population abundance in discrete 1-year age classes `\(\Large (n_i)\)`  
 
-- e.g., `\(\LARGE n_1\)`, `\(\LARGE n_2\)`, `\(\LARGE n_3\)`  
+- e.g., `\(\large n_1\)`, `\(\large n_2\)`, `\(\large n_3\)`  
 
-- `\(\LARGE n_i\)` is the number of individuals about to experience their `\(\LARGE i^{th}\)` birthday  
+- `\(\large n_i\)` is the number of individuals about to experience their `\(\large i^{th}\)` birthday  
 &lt;br/&gt;
 
 &lt;img src="figs/age_diagram.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
-## Age-structred demography
+## Age-structured demography
 
 &lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 16px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -146,7 +147,7 @@ What can you say about the reproductive and survival schedules of this populatio
 &lt;img src="figs/states.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
-## Age-structred demography
+## Age-structured demography
 
 &lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 16px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -186,7 +187,7 @@ What can you say about the reproductive and survival schedules of this populatio
 
 
 ---
-## Age-structred demography
+## Age-structured demography
 
 &lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 16px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -226,7 +227,7 @@ What can you say about the reproductive and survival schedules of this populatio
 
 
 ---
-## Age-structred demography
+## Age-structured demography
 
 &lt;table class="table table-striped table-hover table-condensed table-responsive" style="font-size: 16px; margin-left: auto; margin-right: auto;"&gt;
  &lt;thead&gt;
@@ -265,7 +266,7 @@ What can you say about the reproductive and survival schedules of this populatio
 
 
 ---
-## Age-structred demography
+## Age-structured demography
 
 #### How many individuals will be in the population next year?
 
@@ -276,7 +277,7 @@ What can you say about the reproductive and survival schedules of this populatio
 `\(\LARGE n_{1,t+1} = m_1P_0n_{1,t}+m_2P_0n_{2,t} + m_3P_0n_{3,t}\)`  
 
 ---
-## Age-structred demography
+## Age-structured demography
 
 #### How many individuals will be in the population next year?
 
@@ -287,7 +288,7 @@ What can you say about the reproductive and survival schedules of this populatio
 `\(\LARGE n_{2,t+1} =P_1n_{1,t}\)`  
 
 ---
-## Age-structred demography
+## Age-structured demography
 
 #### How many individuals will be in the population next year?
 
@@ -806,6 +807,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -823,17 +850,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {

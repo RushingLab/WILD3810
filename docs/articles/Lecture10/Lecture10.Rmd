@@ -78,11 +78,11 @@ What can you say about the reproductive and survival schedules of this populatio
 ---
 ## Age-structred demography
 
-#### List population abundance in discrete 1-year age classes $\LARGE (n_i)$  
+#### List population abundance in discrete 1-year age classes $\Large (n_i)$  
 
-- e.g., $\LARGE n_1$, $\LARGE n_2$, $\LARGE n_3$  
+- e.g., $\large n_1$, $\large n_2$, $\large n_3$  
 
-- $\LARGE n_i$ is the number of individuals about to experience their $\LARGE i^{th}$ birthday  
+- $\large n_i$ is the number of individuals about to experience their $\large i^{th}$ birthday  
 <br/>
 
 ```{r out.width="70%"}
@@ -90,7 +90,7 @@ knitr::include_graphics("figs/age_diagram.png")
 ```
 
 ---
-## Age-structred demography
+## Age-structured demography
 
 ```{r}
 lt %>%
@@ -105,7 +105,7 @@ knitr::include_graphics("figs/states.png")
 ```
 
 ---
-## Age-structred demography
+## Age-structured demography
 
 ```{r}
 lt <- data.frame(x = c(0,1,2,3),
@@ -130,7 +130,7 @@ knitr::include_graphics("figs/survival.png")
 
 
 ---
-## Age-structred demography
+## Age-structured demography
 
 ```{r}
 lt <- data.frame(x = c(0,1,2,3),
@@ -157,7 +157,7 @@ knitr::include_graphics("figs/repro2.png")
 
 
 ---
-## Age-structred demography
+## Age-structured demography
 
 ```{r}
 lt <- data.frame(x = c(0,1,2,3),
@@ -183,7 +183,7 @@ knitr::include_graphics("figs/lc_model.png")
 
 
 ---
-## Age-structred demography
+## Age-structured demography
 
 #### How many individuals will be in the population next year?
 
@@ -196,7 +196,7 @@ knitr::include_graphics("figs/n1.png")
 $\LARGE n_{1,t+1} = m_1P_0n_{1,t}+m_2P_0n_{2,t} + m_3P_0n_{3,t}$  
 
 ---
-## Age-structred demography
+## Age-structured demography
 
 #### How many individuals will be in the population next year?
 
@@ -209,7 +209,7 @@ $\LARGE n_{1,t+1} = m_1P_0n_{1,t}+m_2P_0n_{2,t} + m_3P_0n_{3,t}$
 $\LARGE n_{2,t+1} =P_1n_{1,t}$  
 
 ---
-## Age-structred demography
+## Age-structured demography
 
 #### How many individuals will be in the population next year?
 
