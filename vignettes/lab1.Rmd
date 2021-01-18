@@ -1,7 +1,7 @@
 ---
 title: "Lab 1: Introduction to mark-recapture - estimating abundance"
 subtitle: "WILD3810: Plant and animal populations"
-author: "Spring 2020"
+author: "Spring 2021"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Lab1}
@@ -26,4 +26,4 @@ In this lab, we will continue learning how to use `R` to create and manipulate o
 
 3) Go to the `Tutorials` pane in the top right
 
-4) Click on `02_LP`
+4) Click on `Lab 1: Introduction to mark-recapture - estimating abundance`

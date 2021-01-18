@@ -12,166 +12,55 @@ knitr::opts_chunk$set(echo = TRUE, fig.align = 'center', warning = FALSE, messag
 library(WILD3810)
 ```
 
-**Due before 2:30pm Monday February 10**
+**Due before 2:30pm Monday February 22**
 
 In this homework assignment, you will become more familiar with using `R` and R Markdown to complete lab assignments.  
 
-First, make sure you have:
+```{r setup}
 
-> 1a) Changed the `author` field in the YAML header to your name;
-
-> 1b) Clicked `Knit` to check that you can create a html document from the .Rmd file (you can keep the knitted version open while you work through the assignment to make reading the instructions easier);
-
-> 1c) Saved the .Rmd file as `LastnameFirstname-homework3.Rmd` in a project named `LastNameFirstName-Lab3`
-
-If you have any problems with these steps, be sure to get help from either the instructor or the TA
+```
 
 ## Density-dependent population growth  
 
-In [lecture 4](https://rushinglab.github.io/WILD3810/articles/Lecture4/Lecture4.html#1), we learned about an extension of the density-independent growth model called the **logistic growth model**:
 
-$$\Large \frac{dN}{dt} = N \times \Big(r_0 +cN\Big)$$
-
-where $r_0$ is the intrinsic rate of population growth (the rate when there is nothing limiting population growth) and $c$ is the change in growth rate for each individual added to the population. The logistic growth model indicates the number of individuals added to the population over a very small time period and is therefore most suited for **birth-flow** species (species that reproduce throughout the year). As population size approaches the carrying capacity, the population growth rate approaches 0, setting an upper-limit to population size. 
-
-The **Ricker model** is the discrete time version of the logistic growth model and is more appropriate for **birth-pulse** species that have distinct breeding seasons:
-
-$$\Large N_{t+1}=N_t e^{\Big[r_0 +cN\Big]}$$
-
-> 2) Which model do you think is more appropriate for modeling the dynamics of Eurasian collared-doves? Explain your answer below in **bold**.  
-
-If you need to know more about this species to answer this question, refer to this overview of [their ecology](https://www.allaboutbirds.org/guide/Eurasian_Collared-Dove/lifehistory)
+> 1) Which model, the logistic or Ricker, do you think is more appropriate for modeling the dynamics of Eurasian collared-doves? Explain your answer below in **bold**.  
 
 
 ## Eurasian collared-dove growth in the Eastern US
 
-Both the logistic and Ricker models have the same underlying parameters - $r_0$ and $c$. Therefore, to use either model to predict population growth of collared-doves in Utah, we need estimates of these two quantities.  
-
-Because collared-doves do not appear to have reached their carrying capacity in Utah, we cannot use the Utah data to estimate $c$. However, in the eastern United States, collared-dove population growth does appear to have leveled off (they were originally introduced to the US in Florida so eastern populations have had more time to reach carrying capacity). Data on the eastern counts is stored in a separate data frame:
-
-```{r}
-data("all_dove_counts")
-```
-
-```{r echo = FALSE, fig.height=6, fig.width=8, fig.cap="Average count of Eurasian collared-doves at BBS routes in the eastern United States"}
-ggplot(all_dove_counts, aes(x = Year, y = Count)) + geom_path()
-```
-
-As we saw in the Utah counts, the population increased rapidly after introduction but eventually stopped increasing and has remained relatively stable since the mid-1990's. We will use these data to estimate $r_0$ and $c$ (assuming that these parameters are the same or at least similar for doves in Utah and the eastern US).
-
-> 3) What might be some reasons that the dove populations in the eastern US stopped growing once they reached their carrying capacity? In other words, what factors might limit population growth at large population sizes? Provide your answer below in **bold**  
+> 2) What might be some reasons that the dove populations in the eastern US stopped growing once they reached their carrying capacity? In other words, what factors might limit population growth at large population sizes? Provide your answer below in **bold**  
 
 
 
 ### Plotting the relationship between $r_0$, $c$, and $N$
 
-Notice that we can re-arrange the Ricker growth model as follows:
+```{r logN}
 
-$$\Large log\Bigg(\frac{N_{t+1}}{N_t}\Bigg) = r_0 + cN \tag{1}$$
-
-Also notice that this the equation for a line with y-intercept $=r_0$ and slope $c$. If we can plot $log\Bigg(\frac{N_{t+1}}{N_t}\Bigg)$ as a function of $N$, then a simple way to estimate the growth rate and carrying capacity is to choose values of $r_0$ and $c$ that correspond to a line that passes through these points. 
-
-The first step in this process is to estimate $log\Bigg(\frac{N_{t+1}}{N_t}\Bigg)$ for each year of data.  
-
-In the chunk below, do the following:
-
-> 4a) Complete the `mutate()` arguments to create a new column in the data frame called `logN` and fill the column with `NA` (uncomment the line after you are done so R will run the code)
-
-> 4b) Complete the `for` loop code to estimate `logN` in each year. Remember that `logN[t]= Count[t+1] / Count[t]`. Use that relationship to change the `?`'s in `all_dove_counts$Count[?]` and `all_dove_counts$Count[?]` to the correct indexes (uncomment all lines in the loop after you are done so R will run the code).
-
-
-> 4c) Why was it necessary to filter only the counts in years > 1985? Hint: What is the value of `logN` from years 1968-1969. Write you answer in **bold** below.
-
-
-> 4d) In the `for` loop, the upper limit is set to `nrow(all_dove_counts) - 1`. What is the specific numeric value of this line of code and what does it correspond to in the data? Write your answer in **bold** below.
-
-```{r}
-library(dplyr)
-
-all_dove_counts <- filter(all_dove_counts, Year > 1985)
-
-# all_dove_counts <- mutate(all_dove_counts, ?)
-
-# for(t in 1:(nrow(all_dove_counts)-1)){
-#   all_dove_counts$logN[t] <- log(all_dove_counts$Count[?] / all_dove_counts$Count[?])
-# }
 
 ```
 
-Now we can plot `logN` vs. `N` and choose values of $r_0$ and $c$. In the chunk below:
+> 3a) Why was it necessary to filter only the counts in years > 1985? Hint: What is the value of `logN` from years 1968-1969. Write you answer in **bold** below.
 
-> 5a) Complete the `ggplot()` function so that `Count` is plotted on the x-axis and `logN` is plotted on the y-axis (uncomment the code so R will run it)
 
-The blue line shows the estimated relationship between `Count` and `logN`, which the red line shows the expected relationship for a given value of $r_0$ and $c$. Notice that the red line does not match the blue line. You can change the slope and intercept of the red line by changing the values of `r0` and `c` and recreating the plot.
+> 3b) In the `for` loop, the upper limit is set to `nrow(all_dove_counts) - 1`. What is the specific numeric value of this line of code and what does it correspond to in the data? Write your answer in **bold** below.
 
-> 5b) Choose values of `r0` and `c` such that the red line and blue line are the same (or at least very close) 
 
-```{r}
-r0 <- 0.1
-c <- -0.2
-# ggplot(all_dove_counts, aes(x = ?, y = ?)) + geom_point() +
-  # geom_hline(yintercept = 0, linetype = "longdash", color = "grey50") +
-  # geom_abline(slope = c, intercept = r0, color = "red") + 
-  # stat_smooth(method = "lm")
+```{r plotN}
 
 ```
 
-> 5c) Remember from lecture 5 that we can calculate the carrying capacity $K$ from $r_0$ and $c$. Based on your answer to 5b, what do you predict the carrying capacity is for collared doves in the eastern US?
+> 4a) In plain English, what is the ecological interpretation of the values of $r_0$ and $c$ that you chose? Write your answer below in **bold**
 
 
-> 5d) What do you predict the population size of collared-doves will be in Utah in 2035? Hint - you do not need to predict any new values to answer this question if we assume our estimates from the eastern population also apply to Utah doves.   
+> 4b) Remember from lecture 5 that we can calculate the carrying capacity $K$ from $r_0$ and $c$. Based on the values you chose for the above plot, what do you predict the carrying capacity is for collared doves in the eastern US? Write your answer below in **bold**
 
+## Predicting density-dependent dove growth
 
-Now modify the code from lab 2 to predict the future dynamics of collared-doves in Utah (uncomment all lines so that `R` will run them once you have filled in the missing parts): 
-
-> 6a) Create a new data frame called `predicted_doves` with columns `Year` and `Count`. Complete the code so that `Year` is a sequence from 2015-2075 and `Count` is `NA`  
-
-> 6b) The next line of code sets the first count in `predicted_doves` (`predicted_doves$Count[1]`) to the last count in `ut_dove_counts` (because we have 48 years of data, we subset the 48th element in the vector of counts `ut_dove_counts$Count[48]`). Rather than add up the number of years and type `48`, we could let `R` figure out how many years are in the data frame and then fill in this value inside the square brackets. What function could we use inside the square brackets to fill in the value of 48? Change the `48` to this function and provide the correct argument - Hint: how many rows are in `ut_dove_counts`?
-
-> 6c) Finally, replace the `?` so that the current count (`predicted_doves$Count[t-1]`) is multiplied by the proper growth rate to predict `predicted_doves$Count[t]`. Hint - notice that the code estimates `r` in each loop based on the current population size but we are using a discrete population model based on $\lambda$.  
-
-```{r}
-data("ut_dove_counts")
-
-# predicted_doves <- data.frame(Year = ?,
-#                               Count = ?)
-
-# predicted_doves$Count[1] <- ut_dove_counts$Count[48]
-
-# for(t in 2:nrow(predicted_doves)){
-#  r <- r0 - (r0/K) * predicted_doves$Count[t-1]
-#  predicted_doves$Count[t] <- predicted_doves$Count[t-1] * ?
-#}
-```
-
-Modify the following code to:
-
-> 7a) Filter only years greater than 2015 in the `predicted_doves` data frame
-
-> 7b) Add a column called `Type` to both data frames and give that variable a value of `Predicted` in `predicted_doves` and `Count` in `ut_doves_counts` (make sure you put "Predicted" and "Count" inside of quotation marks)
-
-> 7c) Complete the `bind_rows()` function to create a new data frame with both the actual and predicted counts
-
-```{r}
-# predicted_doves <- filter(predicted_doves, ?)
-# predicted_doves <- mutate(predicted_doves, Type = ?)
-# ut_dove_counts <- mutate(ut_dove_counts, Type = ?)
-
-# all_doves <- bind_rows()
-```
-
-Finally, modify the following code to:
-
-> 8a) Fill in the missing `x=`, `y=`, `geom_?`'s, and `color=` to recreate the figure you made in lab 2. Uncomment the lines so the code will run. 
-
-> 8b) Explain why `color =` goes outside the `aes()` function in the first and second geoms but inside `aes()` in the third. Answer in **bold** below
-
-```{r}
-# ggplot(data = all_doves, aes(x = ?, y = ?)) + geom_?(color = "grey50") +
-#   geom_?(color = "white", size = 4.5) + geom_?(aes(color = ?), size = 3)
+```{r predict_DD}
 
 ```
 
-> 9) In approximately what year to you predict the population will reach it's carrying capacity? Hint - you can add `geom_vline(xintercept = ?)` to your graph (replace `?` with the year you think the population reaches its carrying capacity) to plot a vertical line corresponding to your answer. Write your answer below in **bold**
 
+> 5a) In approximately what year to you predict the population will reach it's carrying capacity? Hint - you can add `geom_vline(xintercept = ?)` to your graph (replace `?` with the year you think the population reaches its carrying capacity) to plot a vertical line corresponding to your answer. Write your answer below in **bold**
 
+> 5b) The model we used to predict future abundance of collared doves is based on parameters estimated from past population growth of this species in the eastern United States. Is this a valid assumption? Why or why not? Write your answer below in **bold** (and note that there is no right or wrong answer. All models make assumptions that are, to some degree, wrong. The key question is, are they so wrong that we might come to the wrong conclusion?)

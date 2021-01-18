@@ -1,7 +1,7 @@
 ---
 title: "Lab 2: Modeling and visualizing population growth"
 subtitle: "WILD3810: Plant and animal populations"
-author: "Spring 2020"
+author: "Spring 2021"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Lab2}
@@ -28,4 +28,4 @@ In this lab, you will learn to model and predict the growth of plant and animal 
 
 3) Go to the `Tutorials` pane in the top right
 
-4) Click on `03_EUCO`
+4) Click on `Lab 2: Modeling and visualizing population growth`

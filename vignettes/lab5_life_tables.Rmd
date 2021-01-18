@@ -1,7 +1,7 @@
 ---
 title: "Lab 5: Creating and interpreting a life table"
 subtitle: "WILD3810: Plant and animal populations"
-author: "Spring 2019"
+author: "Spring 2021"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Lab4}
