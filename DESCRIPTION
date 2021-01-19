@@ -13,11 +13,13 @@ Imports:
     tidyr,
     usethis,
     cowplot,
-    popbio
+    popbio,
+    learnr
 RoxygenNote: 7.1.1
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    gradethis
 VignetteBuilder: knitr
 Depends: 
     R (>= 2.10)
