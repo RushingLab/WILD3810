@@ -18,7 +18,7 @@ In this homework assignment, you will become more familiar with using `R` and R 
 # Lincoln-Peterson is unbiased when sample sizes are large
 
 
-```{r setup}
+```{r input}
 
 ```
 

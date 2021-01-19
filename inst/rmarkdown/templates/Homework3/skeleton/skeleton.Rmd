@@ -16,7 +16,7 @@ library(WILD3810)
 
 In this homework assignment, you will become more familiar with using `R` and R Markdown to complete lab assignments.  
 
-```{r setup}
+```{r input}
 
 ```
 

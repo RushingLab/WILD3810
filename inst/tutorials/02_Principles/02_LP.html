@@ -406,7 +406,7 @@ round(x = , digits = )</code></pre>
 <div class="tutorial-exercise" data-label="Np" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"R code"}</script>
 </div>
-<p>Once you have completed these steps and the code runs correctly, copy and paste them to the <code>R</code> chunk named <code>setup</code> in the homework file.</p>
+<p>Once you have completed these steps and the code runs correctly, copy and paste them to the <code>R</code> chunk named <code>input</code> in the homework file.</p>
 </div>
 <div id="section-number-of-simulations" class="section level3">
 <h3>Number of simulations</h3>
@@ -417,7 +417,7 @@ round(x = , digits = )</code></pre>
 <div class="tutorial-exercise" data-label="nSims" data-completion="1" data-diagnostics="1" data-startover="1" data-lines="0">
 <script type="application/json" data-ui-opts="1">{"engine":"r","has_checker":false,"caption":"R code"}</script>
 </div>
-<p>Again, copy and paste this code to the <code>R</code> chunk named <code>setup</code> in the homework file (place them on a line below the code you pasted in the previous step)</p>
+<p>Again, copy and paste this code to the <code>R</code> chunk named <code>input</code> in the homework file (place them on a line below the code you pasted in the previous step)</p>
 </div>
 <div id="section-simulating-capture-recapture-data" class="section level3">
 <h3>Simulating capture-recapture data</h3>
@@ -447,7 +447,7 @@ n1 &lt;- rbinom(n = nSims, size = N, prob = p) # Simulate nSims values of n1</co
 <p>Copy and paste the line that creates <code>n1</code> to the <code>R</code> chunk named <code>simulation</code> in the homeowrk file.</p>
 <p>Before proceeding, answer questions 1a and 1b in the <code>.Rmd</code> file.</p>
 <blockquote>
-<p>Note that you will need to run the <code>setup</code> and <code>simulation</code> chunks (click the green arrow at the top right of the chunk) in order for your code in question 1b to run</p>
+<p>Note that you will need to run the <code>input</code> and <code>simulation</code> chunks (click the green arrow at the top right of the chunk) in order for your code in question 1b to run</p>
 </blockquote>
 </div>
 <div id="section-simulating-capture-recapture-data---n2" class="section level3">
@@ -573,7 +573,7 @@ abline(v = mean(Nhat), col = &quot;red&quot;)</code></pre>
 <div id="section-lincoln-peterson-is-biased-when-sample-sizes-are-small" class="section level3">
 <h3>Lincoln-Peterson is biased when sample sizes are small</h3>
 <p>Now that we have the code needed to simulate data to analyze with the L-P estimator, it’s easy to explore the well-known bias in the model when sample sizes are small. By biased, we mean that an estimator will systematically <em>overestimate</em> or <em>underestimate</em> the true value. We’ll explore bias in the L-P estimator by continuing the simulation exercise:</p>
-<p>In the homework file, copy the code from the chunks named <code>setup</code> and <code>simulation</code> into the chunk named <code>LP2</code></p>
+<p>In the homework file, copy the code from the chunks named <code>input</code> and <code>simulation</code> into the chunk named <code>LP2</code></p>
 <p>Next, change <span class="math inline">\(N\)</span> to 50 and run the code (click the green button at the top right of the chunk)</p>
 <p>Use the results from this code to answer question 2</p>
 </div>

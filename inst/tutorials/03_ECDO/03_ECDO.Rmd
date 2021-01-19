@@ -435,7 +435,7 @@ Let's use the dove counts to estimate $\lambda$ for this population.
 
 Remember that $T$ is the number of years over which we want to estimate growth. Since the `ut_dove_counts` data frame has one row for each year, we can easily estimate the total number of years using `nrow()`. But first, load the data. 
 
-Copy the following code to the `setup` chunk in the homework file
+Copy the following code to the `input` chunk in the homework file
 
 ```{r}
 ## Load the WILD3810 package to make data and code available in current R environment

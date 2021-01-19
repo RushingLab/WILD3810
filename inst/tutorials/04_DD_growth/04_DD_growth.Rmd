@@ -104,7 +104,7 @@ data("all_dove_counts")
 data("ut_dove_counts")
 ```
 
-Copy this code to the `setup` chunk in the homework file.
+Copy this code to the `input` chunk in the homework file.
 
 ```{r echo = FALSE, fig.height=6, fig.width=8, fig.cap="Average count of Eurasian collared-doves at BBS routes in the eastern United States"}
 library(WILD3810)

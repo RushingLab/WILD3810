@@ -476,7 +476,7 @@ ut_dove_counts[c(1,30),]</code></pre>
 <p><span class="math display">\[\Large \lambda = \bigg(\frac{N_{T}}{N_0}\bigg)^{\frac{1}{T}}\]</span></p>
 <p>Let’s use the dove counts to estimate <span class="math inline">\(\lambda\)</span> for this population.</p>
 <p>Remember that <span class="math inline">\(T\)</span> is the number of years over which we want to estimate growth. Since the <code>ut_dove_counts</code> data frame has one row for each year, we can easily estimate the total number of years using <code>nrow()</code>. But first, load the data.</p>
-<p>Copy the following code to the <code>setup</code> chunk in the homework file</p>
+<p>Copy the following code to the <code>input</code> chunk in the homework file</p>
 <pre class="r"><code>## Load the WILD3810 package to make data and code available in current R environment
 library(WILD3810)
 
@@ -565,6 +565,9 @@ NT &lt;- ut_dove_counts$Count[t]
 lambda &lt;- (NT/N0) ^ (1/t)</code></pre>
 </div>
 <p>Copy these lines to the <code>calc_lambda</code> chunk in the homework file and run them. Use the output to answer question 1 in the homework.</p>
+<hr />
+<p>Remember that instead of typing the value of <span class="math inline">\(\lambda\)</span> you estimated, you can include a small bit of <code>R</code> code so that when you knit the document, the correct value is displayed. You would do this by typing <code>`r round(lambda, 2)`</code> within your answer.</p>
+<hr />
 </div>
 <div id="section-refining-your-estimate" class="section level3">
 <h3>Refining your estimate</h3>
@@ -610,7 +613,7 @@ lambda2</code></pre>
 </div>
 <p>Copy this code to the <code>newlambda</code> chunk and use the output to answer question 2 in the homework assignment</p>
 <hr />
-<p>Remember that instead of typing the new value of <span class="math inline">\(\lambda\)</span> you estimated, you can include a small bit of <code>R</code> code so that when you knit the document, the correct value is displayed. You would do this by typing <code>`r round(lambda2, 2)`</code> within your answer (assuming the object that contains the new estimate of <span class="math inline">\(\lambda\)</span> is called <code>lambda2</code>)</p>
+<p>Remember again that there is no need to copy and paste the new value of <span class="math inline">\(\lambda\)</span> you estimated, you can include a small bit of <code>R</code> code so that when you knit the document, the correct value is displayed.</p>
 <hr />
 </div>
 </div>
@@ -1118,18 +1121,18 @@ learnr:::store_exercise_cache("subset1", list(setup = "## Load the package to ma
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "subset_return", 
     question = structure("What type of object does the code above return?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_78aaf9b", 
+    "character")), answers = list(structure(list(id = "lnr_ans_26bc06b", 
         option = "vector", value = "vector", label = structure("vector", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = structure("Use the str() function we learned about to see the class of this object", html = TRUE, class = c("html", 
         "character"))), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_2c474fc", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_cd3a788", 
         option = "data frame", value = "data frame", label = structure("data frame", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_9243ec2", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_cb8b48d", 
         option = "matrix", value = "matrix", label = structure("matrix", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = structure("Use the str() function we learned about to see the class of this object", html = TRUE, class = c("html", 
         "character"))), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_6690a22", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_e7df03a", 
         option = "character", value = "character", label = structure("character", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = structure("Use the str() function we learned about to see the class of this object", html = TRUE, class = c("html", 
         "character"))), class = c("tutorial_question_answer", 
@@ -1142,7 +1145,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
         answer = "subset_return-answer", question = "subset_return"), 
     loading = structure("<strong>Loading:<\u002fstrong> \nWhat type of object does the code above return?\n<br/><br/><br/>", html = TRUE, class = c("html", 
     "character")), random_answer_order = FALSE, allow_retry = FALSE, 
-    seed = 1770166453.6757, options = list()), class = c("learnr_radio", 
+    seed = 1488319577.80695, options = list()), class = c("learnr_radio", 
 "tutorial_question")))
 </script>
  
@@ -1189,18 +1192,18 @@ learnr:::store_exercise_cache("subset2", list(setup = "## Load the package to ma
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "subset_return2", 
     question = structure("What type of object does the code above return?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_2acf3a0", 
+    "character")), answers = list(structure(list(id = "lnr_ans_19f231f", 
         option = "vector", value = "vector", label = structure("vector", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_cd28e22", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_54582c0", 
         option = "data frame", value = "data frame", label = structure("data frame", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = structure("Use the str() function we learned about to see the class of this object", html = TRUE, class = c("html", 
         "character"))), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_cb4e0a", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_d52a970", 
         option = "matrix", value = "matrix", label = structure("matrix", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = structure("Use the str() function we learned about to see the class of this object", html = TRUE, class = c("html", 
         "character"))), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_fc1f7dc", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_309c324", 
         option = "character", value = "character", label = structure("character", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = structure("Use the str() function we learned about to see the class of this object", html = TRUE, class = c("html", 
         "character"))), class = c("tutorial_question_answer", 
@@ -1213,7 +1216,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
         answer = "subset_return2-answer", question = "subset_return2"), 
     loading = structure("<strong>Loading:<\u002fstrong> \nWhat type of object does the code above return?\n<br/><br/><br/>", html = TRUE, class = c("html", 
     "character")), random_answer_order = FALSE, allow_retry = FALSE, 
-    seed = 1965560629.08471, options = list()), class = c("learnr_radio", 
+    seed = 1160211712.45973, options = list()), class = c("learnr_radio", 
 "tutorial_question")))
 </script>
  
@@ -1302,18 +1305,18 @@ learnr:::store_exercise_cache("select2", list(setup = "## Load the package to ma
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "subset_return3", 
     question = structure("What type of object does <code>select()<\u002fcode> return?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_f3f10c7", 
+    "character")), answers = list(structure(list(id = "lnr_ans_b2e8f27", 
         option = "vector", value = "vector", label = structure("vector", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = structure("Use the str() function we learned about to see the class of this object", html = TRUE, class = c("html", 
         "character"))), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_901716f", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_4ac83f8", 
         option = "data frame", value = "data frame", label = structure("data frame", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_8d1ae6b", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a1ad614", 
         option = "matrix", value = "matrix", label = structure("matrix", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = structure("Use the str() function we learned about to see the class of this object", html = TRUE, class = c("html", 
         "character"))), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a886200", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_a0260f6", 
         option = "character", value = "character", label = structure("character", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = structure("Use the str() function we learned about to see the class of this object", html = TRUE, class = c("html", 
         "character"))), class = c("tutorial_question_answer", 
@@ -1326,7 +1329,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
         answer = "subset_return3-answer", question = "subset_return3"), 
     loading = structure("<strong>Loading:<\u002fstrong> \nWhat type of object does <code>select()<\u002fcode> return?\n<br/><br/><br/>", html = TRUE, class = c("html", 
     "character")), random_answer_order = FALSE, allow_retry = FALSE, 
-    seed = 1519073883.79263, options = list()), class = c("learnr_radio", 
+    seed = 1124578127.97633, options = list()), class = c("learnr_radio", 
 "tutorial_question")))
 </script>
  
@@ -1454,10 +1457,10 @@ learnr:::store_exercise_cache("vsubset", list(setup = "## Load the package to ma
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "subset_return4", 
     question = structure("Do these three methods return the same type of object?", html = TRUE, class = c("html", 
-    "character")), answers = list(structure(list(id = "lnr_ans_5d14a8a", 
+    "character")), answers = list(structure(list(id = "lnr_ans_45583fd", 
         option = "Yes", value = "Yes", label = structure("Yes", html = TRUE, class = c("html", 
         "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", 
-    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_48339b9", 
+    "tutorial_quiz_answer")), structure(list(id = "lnr_ans_c065e6b", 
         option = "No", value = "No", label = structure("No", html = TRUE, class = c("html", 
         "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
     "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", 
@@ -1469,7 +1472,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
         answer = "subset_return4-answer", question = "subset_return4"), 
     loading = structure("<strong>Loading:<\u002fstrong> \nDo these three methods return the same type of object?\n<br/><br/><br/>", html = TRUE, class = c("html", 
     "character")), random_answer_order = FALSE, allow_retry = FALSE, 
-    seed = 845534673.106267, options = list()), class = c("learnr_radio", 
+    seed = 1479428650.81109, options = list()), class = c("learnr_radio", 
 "tutorial_question")))
 </script>
  
@@ -2146,16 +2149,16 @@ learnr:::store_exercise_cache("NewCounts", list(setup = "## Load the package to 
  
 <script type="application/shiny-prerendered" data-context="server">
 learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label = "intro_year", question = structure("What year were collared-doves first detected in Utah?", html = TRUE, class = c("html", 
-"character")), answers = list(structure(list(id = "lnr_ans_ca698ad", 
+"character")), answers = list(structure(list(id = "lnr_ans_f4b2bb0", 
     option = "1968", value = "1968", label = structure("1968", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_fe1a0f2", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_35c0616", 
     option = "1993", value = "1993", label = structure("1993", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_ce8d52b", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_26274ec", 
     option = "2004", value = "2004", label = structure("2004", html = TRUE, class = c("html", 
     "character")), correct = TRUE, message = NULL), class = c("tutorial_question_answer", 
-"tutorial_quiz_answer")), structure(list(id = "lnr_ans_e1d73d", 
+"tutorial_quiz_answer")), structure(list(id = "lnr_ans_76d6ca6", 
     option = "2009", value = "2009", label = structure("2009", html = TRUE, class = c("html", 
     "character")), correct = FALSE, message = NULL), class = c("tutorial_question_answer", 
 "tutorial_quiz_answer"))), button_labels = list(submit = structure("Submit Answer", html = TRUE, class = c("html", 
@@ -2166,7 +2169,7 @@ learnr:::question_prerendered_chunk(structure(list(type = "learnr_radio", label 
 "character")), message = NULL, post_message = NULL), ids = list(
     answer = "intro_year-answer", question = "intro_year"), loading = structure("<strong>Loading:<\u002fstrong> \nWhat year were collared-doves first detected in Utah?\n<br/><br/><br/>", html = TRUE, class = c("html", 
 "character")), random_answer_order = FALSE, allow_retry = FALSE, 
-    seed = 29679774.4861793, options = list()), class = c("learnr_radio", 
+    seed = 1076059283.99892, options = list()), class = c("learnr_radio", 
 "tutorial_question")))
 </script>
  

@@ -321,7 +321,7 @@ In the box below:
 
 ```
 
-Once you have completed these steps and the code runs correctly, copy and paste them to the `R` chunk named `setup` in the homework file. 
+Once you have completed these steps and the code runs correctly, copy and paste them to the `R` chunk named `input` in the homework file. 
 
 ### Number of simulations
 
@@ -333,7 +333,7 @@ Now we need to tell `R` how many simulated samples we want to take. In the box b
 
 ```
 
-Again, copy and paste this code to the `R` chunk named `setup` in the homework file (place them on a line below the code you pasted in the previous step)
+Again, copy and paste this code to the `R` chunk named `input` in the homework file (place them on a line below the code you pasted in the previous step)
 
 ### Simulating capture-recapture data
 
@@ -379,7 +379,7 @@ Copy and paste the line that creates `n1` to the `R` chunk named `simulation` in
 
 Before proceeding, answer questions 1a and 1b in the `.Rmd` file.
 
-> Note that you will need to run the `setup` and `simulation` chunks (click the green arrow at the top right of the chunk) in order for your code in question 1b to run
+> Note that you will need to run the `input` and `simulation` chunks (click the green arrow at the top right of the chunk) in order for your code in question 1b to run
 
 ### Simulating capture-recapture data - `n2`
 
@@ -515,7 +515,7 @@ Copy the last three lines of code from the box above to the `simulation` `R` chu
 
 Now that we have the code needed to simulate data to analyze with the L-P estimator, it's easy to explore the well-known bias in the model when sample sizes are small. By biased, we mean that an estimator will systematically *overestimate* or *underestimate* the true value. We'll explore bias in the L-P estimator by continuing the simulation exercise:
 
-In the homework file, copy the code from the chunks named `setup` and `simulation` into the chunk named `LP2`  
+In the homework file, copy the code from the chunks named `input` and `simulation` into the chunk named `LP2`  
 
 Next, change $N$ to 50 and run the code (click the green button at the top right of the chunk)
 

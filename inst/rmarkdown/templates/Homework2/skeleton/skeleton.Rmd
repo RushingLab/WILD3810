@@ -17,7 +17,7 @@ In this homework assignment, you will become more familiar with using `R` and R 
 
 # Predicting future population size
 
-```{r setup}
+```{r input}
 
 ```
 
