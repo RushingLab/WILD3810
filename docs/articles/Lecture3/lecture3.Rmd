@@ -553,10 +553,10 @@ However, all populations have the potential for exponential growth under ideal c
 ---
 class: inverse, center, middle
 
-# Estimating $\huge \lambda$ and $\huge r$
+# Estimating $\LARGE \lambda$ and $\LARGE r$
 
 ---
-## Estimating $\LARGE \lambda$ and $\LARGE r$
+## Estimating $\Large \lambda$ and $\Large r$
 
 We can estimate $\lambda$ two ways depending on our interests and what type of data we have available  
 <br/>
@@ -572,7 +572,7 @@ More often, we have estimates of abundance at different points in time. To estim
 $$\Large \lambda = \frac{N_{t+1}}{N_t}$$
 
 ---
-## Estimating $\LARGE \lambda$ and $\LARGE r$
+## Estimating $\Large \lambda$ and $\Large r$
 
 If we have a longer series of abundance estimates $t= 1,2,3...T)$, we use:
 
