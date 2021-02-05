@@ -1,7 +1,7 @@
 ---
 title: "Lab 3: Modeling density-dependent growth"
 subtitle: "WILD3810: Plant and animal populations"
-author: "Spring 2021"
+author: "Spring 2020"
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Lab3}
@@ -21,13 +21,60 @@ In the last homework assignment, you used an exponential growth model to predict
 
 In this lab, we will use BBS data from other states where collared-doves were introduced earlier than in Utah to explore what happens to this species as populations grow beyond their initially small sizes. 
 
-# Set up
+***
+**Objectives**
 
-1) Log in to RStudio Cloud
+* Model and visualize density-dependent population growth 
+
+* Learn/review basic data manipulation tasks, including:  
+    + Subsetting vectors
+    + Creating and subsetting data frames
+    + Create summaries of raw data
+    + Saving data
+  
+  
+* `R` functions used in this exercise:  
+    + `library()`
+    + `data()`
+    + `head()`
+    + `str()`
+    + `summary()`
+    + `nrow()`
+    + `dplyr::select()`
+    + `dplyr::filter()`
+    + `ggplot2::ggplot()`
+    + `data.frame()`
+    + `for()`
+    + `dplyr::bind_rows()`
+    + `dplyr::mutate()`
+    
+***
+
+This week, we will combine the in-class lab activity with homework 3. To create this homework:
+
+1) Log in to R Studio Cloud
 
 2) Create a new project called `LastnameFirstname-Lab3`
 
-3) Go to the `Tutorials` pane in the top right
+3) Create a new R Markdown file from the Homework-2 template:
 
-4) Click on `Lab 3: Modeling density-dependent growth`
+    3a) Click `File -> New File -> R Markdown`  
+    
+    3b) Click `From Template` and scroll down to `WILD3810-Homework3`  
+    
+    3c) In the `Name` box, type `LastnameFirstname-Homework3`  
+    
+    3d) Click `Ok`
+
+4) Ensure that you can `Knit` the file
+
+    4a) Change "YOUR NAME HERE" in the header section to your name  
+    
+    4b) Click `Knit` to make sure you can knit the .Rmd file  
+    
+5) Complete the assignment as directed in the .Rmd file
+
+6) Follow the [instructions for submission](https://rushinglab.github.io/WILD3810/articles/homework.html) to upload your completed assignment to Canvas
+
+
 

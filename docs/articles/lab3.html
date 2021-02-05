@@ -199,7 +199,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 3: Modeling density-dependent growth</h1>
             <h3 class="subtitle">WILD3810: Plant and animal populations</h3>
-                        <h4 class="author">Spring 2021</h4>
+                        <h4 class="author">Spring 2020</h4>
             
       
       
@@ -211,23 +211,62 @@
     
 <p>In the last homework assignment, you used an exponential growth model to predict the abundance of Eurasian collared-doves in Utah 20 years in the future. The model model predicted an <em>average</em> of 14,000 collared-doves at <em>each</em> BBS route, which is obviously way more doves than we expect to actually occur in Utah in 2035. At some point, resources will become limiting and population growth will slow.</p>
 <p>In this lab, we will use BBS data from other states where collared-doves were introduced earlier than in Utah to explore what happens to this species as populations grow beyond their initially small sizes.</p>
-<div id="set-up" class="section level1">
-<h1 class="hasAnchor">
-<a href="#set-up" class="anchor"></a>Set up</h1>
+<hr>
+<p><strong>Objectives</strong></p>
+<ul>
+<li><p>Model and visualize density-dependent population growth</p></li>
+<li>Learn/review basic data manipulation tasks, including:
+<ul>
+<li>Subsetting vectors</li>
+<li>Creating and subsetting data frames</li>
+<li>Create summaries of raw data</li>
+<li>Saving data</li>
+</ul>
+</li>
+<li>
+<code>R</code> functions used in this exercise:
+<ul>
+<li><code><a href="https://rdrr.io/r/base/library.html">library()</a></code></li>
+<li><code><a href="https://rdrr.io/r/utils/data.html">data()</a></code></li>
+<li><code><a href="https://rdrr.io/r/utils/head.html">head()</a></code></li>
+<li><code><a href="https://rdrr.io/r/utils/str.html">str()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/summary.html">summary()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/nrow.html">nrow()</a></code></li>
+<li><code><a href="https://dplyr.tidyverse.org/reference/select.html">dplyr::select()</a></code></li>
+<li><code><a href="https://dplyr.tidyverse.org/reference/filter.html">dplyr::filter()</a></code></li>
+<li><code><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot2::ggplot()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/data.frame.html">data.frame()</a></code></li>
+<li><code>for()</code></li>
+<li><code><a href="https://dplyr.tidyverse.org/reference/bind.html">dplyr::bind_rows()</a></code></li>
+<li><code><a href="https://dplyr.tidyverse.org/reference/mutate.html">dplyr::mutate()</a></code></li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>This week, we will combine the in-class lab activity with homework 3. To create this homework:</p>
 <ol style="list-style-type: decimal">
-<li><p>Log in to RStudio Cloud</p></li>
+<li><p>Log in to R Studio Cloud</p></li>
 <li><p>Create a new project called <code>LastnameFirstname-Lab3</code></p></li>
-<li><p>Go to the <code>Tutorials</code> pane in the top right</p></li>
-<li><p>Click on <code>Lab 3: Modeling density-dependent growth</code></p></li>
+<li>
+<p>Create a new R Markdown file from the Homework-2 template:</p>
+<p>3a) Click <code>File -&gt; New File -&gt; R Markdown</code></p>
+<p>3b) Click <code>From Template</code> and scroll down to <code>WILD3810-Homework3</code></p>
+<p>3c) In the <code>Name</code> box, type <code>LastnameFirstname-Homework3</code></p>
+<p>3d) Click <code>Ok</code></p>
+</li>
+<li>
+<p>Ensure that you can <code>Knit</code> the file</p>
+<p>4a) Change “YOUR NAME HERE” in the header section to your name</p>
+<p>4b) Click <code>Knit</code> to make sure you can knit the .Rmd file</p>
+</li>
+<li><p>Complete the assignment as directed in the .Rmd file</p></li>
+<li><p>Follow the <a href="https://rushinglab.github.io/WILD3810/articles/homework.html">instructions for submission</a> to upload your completed assignment to Canvas</p></li>
 </ol>
 </div>
-  </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
-    </nav>
-</div>
+      </div>
 
 </div>
 

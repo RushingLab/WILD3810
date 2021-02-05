@@ -194,12 +194,13 @@
 
       
 
-      </header><div class="row">
+      </header><script src="lab1_files/kePrint-0.0.1/kePrint.js"></script><link href="lab1_files/lightable-0.0.1/lightable.css" rel="stylesheet">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 1: Introduction to mark-recapture - estimating abundance</h1>
             <h3 class="subtitle">WILD3810: Plant and animal populations</h3>
-                        <h4 class="author">Spring 2021</h4>
+                        <h4 class="author">Spring 2020</h4>
             
       
       
@@ -210,15 +211,169 @@
     
     
 <p>In this lab, we will continue learning how to use <code>R</code> to create and manipulate objects, with a particular focus on estimating abundance using the Lincoln-Peterson estimator.</p>
+<hr>
+<p><strong>Objectives</strong></p>
+<ul>
+<li>Learn/review basic data types, including:
+<ul>
+<li>Scalars</li>
+<li>Vectors</li>
+<li>Numeric objects</li>
+<li>Character objects</li>
+</ul>
+</li>
+<li>Learn/review basic data manipulation tasks, including:
+<ul>
+<li>Vector algebra</li>
+</ul>
+</li>
+<li>
+<code>R</code> functions used in this exercise:
+<ul>
+<li><code><a href="https://rdrr.io/r/base/prod.html">prod()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/Round.html">round()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/c.html">c()</a></code></li>
+<li><code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code></li>
+</ul>
+</li>
+</ul>
+<hr>
 <div id="set-up" class="section level1">
 <h1 class="hasAnchor">
 <a href="#set-up" class="anchor"></a>Set up</h1>
 <ol style="list-style-type: decimal">
-<li><p>Log in to RStudio Cloud</p></li>
+<li><p>Log in to R Studio Cloud</p></li>
 <li><p>Create a new project called <code>LastnameFirstname-Lab1</code></p></li>
-<li><p>Go to the <code>Tutorials</code> pane in the top right</p></li>
-<li><p>Click on <code>Lab 1: Introduction to mark-recapture - estimating abundance</code></p></li>
+<li>
+<p>Create a new R script file to store code from this lab:</p>
+<p>3a) Click <code>File -&gt; New File -&gt; R Script</code></p>
+<p>3b) Save the script as <code>Lab1</code></p>
+</li>
 </ol>
+<div id="the-lincoln-peterson-estimator" class="section level2">
+<h2 class="hasAnchor">
+<a href="#the-lincoln-peterson-estimator" class="anchor"></a>The Lincoln-Peterson estimator</h2>
+<p>Remember from lecture 2 that the Lincoln-Peterson method is used to estimate the abundance of a closed population using mark-recapture data. As a reminder, the Lincoln-Peterson estimator is:</p>
+<p><span class="math display">\[N = \frac{n_1n_2}{m_2}\]</span></p>
+<p>where <span class="math inline">\(n_1\)</span> is the number of individuals captured (and marked) on the first sampling occasion, <span class="math inline">\(n_2\)</span> is the number of individuals captured on the second sampling occasion, and <span class="math inline">\(m_2\)</span> is the number of marked individuals in the second sample.</p>
+<p>Let’s use <code>R</code>to estimate N for some made up data. In the script you just opened, create three new objects that represent the parameters in the Lincoln-Peterson estimator. Modify the following code to tell <code>R</code>that we captured 44 individuals on the first occasion, 32 on the second, and of those 32 sampled on the second occasion, 15 were marked:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">n1 &lt;-</a>
+<a class="sourceLine" id="cb1-2" data-line-number="2"></a>
+<a class="sourceLine" id="cb1-3" data-line-number="3">n2 &lt;-</a>
+<a class="sourceLine" id="cb1-4" data-line-number="4"><span class="st">  </span></a>
+<a class="sourceLine" id="cb1-5" data-line-number="5">m2 &lt;-<span class="st"> </span></a></code></pre></div>
+<p>Remember that R will ignore any code that follows a <code>#</code>. Before moving on, use comments to define what each object represents (e.g., <code>Number of individuals captured on first occasion</code>, <code>Number of individuals captured on second occasion</code>, <code>Number of previously marked individuals captured on second occasion</code>)</p>
+<p>After entering the code and comments, highlight all three lines and then click <code>Ctrl + Enter</code> (or <code>command + return</code> on Mac) to run the code. Note that you should see the code in the console.</p>
+<p>Now add a new line of code (put your cursor at the end of the <code>m2 &lt;-</code> line and hit enter) and estimate <span class="math inline">\(N\)</span> from our newly created objects using the Lincoln-Peterson:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">N</span> <span class="op">&lt;-</span> <span class="va">n1</span> <span class="op">*</span> <span class="va">n2</span> <span class="op">/</span> <span class="va">m2</span></code></pre></div>
+<p>What is the estimated abundance of this population?</p>
+<p>Remember that, in addition to our estimate of N, we always need to know something about how certain we are in the estimate. On your own, create a new object called <code>varN</code> to calculate the variance of our estimated N, remembering that:</p>
+<p><span class="math display">\[\large var(\hat{N}) = \frac{(n_1 + 1)(n_2+1)(n_1-m_2)(n_2-m_2)}{(m_2+1)^2(m_2+2)}\]</span></p>
+<p>Hints: Remember that the entire numerator (and denominator) needs to be contained within parentheses; to square something in <code>R</code>, use <code>^2</code></p>
+</div>
+</div>
+<div id="exercise-2-the-schnabel-method" class="section level1">
+<h1 class="hasAnchor">
+<a href="#exercise-2-the-schnabel-method" class="anchor"></a>Exercise 2: The Schnabel method</h1>
+<p>To better understand how we use vectors in <code>R</code> and to expand on our discussion of abundance estimation, we will learn how to use the <strong>Schnabel method</strong> to estimate <span class="math inline">\(N\)</span>.</p>
+<p>In many studies, researchers attempt to re-sight marked individuals on more than 2 occasions. Unfortunately, the Lincoln-Peterson method is restricted to data from only 2 capture occasions, meaning that to use it, we have to throw out data from occasions <span class="math inline">\(3,4,...,T\)</span>.</p>
+<p>In the 1930’s, a mathematician at the University of Wisconsin named Zoe Emily Schnabel, expanded on the Lincoln-Peterson method to include <span class="math inline">\(&gt;2\)</span> occasions. The Schnabel method uses three pieces of information collected at each occasion: <strong><span class="math inline">\(C_t\)</span></strong>, the number of captured individuals during occasion <span class="math inline">\(t\)</span>; <strong><span class="math inline">\(R_t\)</span></strong>, the number of recaptures captured during occasion <span class="math inline">\(t\)</span>; and <strong><span class="math inline">\(M_t\)</span></strong>, the number of individuals marked in the population at occasion <span class="math inline">\(t\)</span> (or, the total number of marked individuals at risk of being captured on occasion <span class="math inline">\(t\)</span>). Using these data, the Schnabel estimator is:</p>
+<p><span class="math display">\[\hat{N} = \frac{\sum_t(C_t \times M_t)}{\sum_t R_t}\]</span> <em>Remember that <span class="math inline">\(\sum_t\)</span> means the sum of the values across at <span class="math inline">\(T\)</span> occasions.</em></p>
+<p>To better understand what each of these data mean, we will use an example from <a href="http://docs.wixstatic.com/ugd/95e73b_6d832c61405d4b3cbd9d99bbb4530f7b.pdf">Powell &amp; Gale (2015)</a> (pages 96-97). Students on a research trip to Puerto Rico did a 3-day mark-recapture study to estimate the number of Cuban rock iguanas (<em>Cyclura nubila</em>) on the island Isla Magueyes. On the first day, the students observed and marked (using latex paint) 155 iguanas. On the second day, they observed 175 individuals (109 marked and 66 unmarked; note that the 66 unmarked individuals were captured, marked, and released). On the third day, they observed 131 individuals (116 marked and 15 unmarked).</p>
+<table class="table table table-striped table-hover table-condensed table-responsive">
+<thead><tr>
+<th style="text-align:center;">
+Day
+</th>
+<th style="text-align:center;">
+Animals Observed
+</th>
+<th style="text-align:center;">
+Animal with marks
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:center;">
+1
+</td>
+<td style="text-align:center;">
+155
+</td>
+<td style="text-align:center;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+2
+</td>
+<td style="text-align:center;">
+175
+</td>
+<td style="text-align:center;">
+109
+</td>
+</tr>
+<tr>
+<td style="text-align:center;">
+3
+</td>
+<td style="text-align:center;">
+131
+</td>
+<td style="text-align:center;">
+116
+</td>
+</tr>
+</tbody>
+</table>
+<p>In this example, <span class="math inline">\(C_t =\)</span></p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Ct</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">155</span>, <span class="fl">175</span>, <span class="fl">131</span><span class="op">)</span> <span class="co"># Number of captures during each occassion</span></code></pre></div>
+<p>and <span class="math inline">\(R_t =\)</span></p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Rt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">109</span>, <span class="fl">116</span><span class="op">)</span> <span class="co"># Number of recaptures during each occassion</span></code></pre></div>
+<p>What is <span class="math inline">\(M_t\)</span>? On the first day, there are no previously marked individuals so <span class="math inline">\(M_1=0\)</span>. On the second day, there are 155 marked individuals in the population (all of the individuals marked on day 1) so <span class="math inline">\(M_2=155\)</span>. On day 3, the students could have observed individuals marked on the first day or individuals marked on the second day (<span class="math inline">\(175-109=66\)</span> individuals marked on day 2) so <span class="math inline">\(M_3 = 155 + 66 = 221\)</span>. So:</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Mt</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">155</span>, <span class="fl">221</span><span class="op">)</span> <span class="co"># Number of recaptures during each occassion</span></code></pre></div>
+<p>Now to estimate <span class="math inline">\(\hat{N}\)</span>. We <em>could</em> do it by hand:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R">
+<span class="va">N</span> <span class="op">&lt;-</span> <span class="op">(</span><span class="op">(</span><span class="fl">155</span><span class="op">*</span><span class="fl">0</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">175</span> <span class="op">*</span> <span class="fl">155</span><span class="op">)</span> <span class="op">+</span> <span class="op">(</span><span class="fl">131</span> <span class="op">*</span> <span class="fl">221</span><span class="op">)</span><span class="op">)</span> <span class="op">/</span> <span class="op">(</span><span class="fl">0</span> <span class="op">+</span> <span class="fl">109</span> <span class="op">+</span> <span class="fl">116</span><span class="op">)</span></code></pre></div>
+<p>However, that is <em>a lot</em> of typing and it’s pretty likely we would make a mistake somewhere along the way (typos or misplaced parentheses). <code>R</code> is clever enough to allow us to use the previously created vectors. First, let’s see what happens when we multiply two vectors together:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">Ct</span> <span class="op">*</span> <span class="va">Mt</span>
+<span class="co">#&gt; [1]     0 27125 28951</span></code></pre></div>
+<p>As you can see, we created a new vector that is the same length as the original vectors (3). When you multiply (or add, subtract, or divide) two vectors, <code>R</code> multiplies the first element of first vector times the first element of the second vector, the second element of first vector times the second element of the second vector, the third element of first vector times the third element of the second vector, etc, and then combines them into a new vector.</p>
+<p>We can also use the <code><a href="https://rdrr.io/r/base/sum.html">sum()</a></code> function to add up all of the elements of a vector (similar to the <code><a href="https://rdrr.io/r/base/prod.html">prod()</a></code> function we saw earlier). So:</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">N</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Ct</span> <span class="op">*</span> <span class="va">Mt</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="va">Rt</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/base/Round.html">round</a></span><span class="op">(</span>x <span class="op">=</span> <span class="va">N</span>, digits <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>
+<span class="co">#&gt; [1] 249</span></code></pre></div>
+<p>Much easier!</p>
+<div id="properties-of-the-lincoln-peterson-estimator" class="section level2">
+<h2 class="hasAnchor">
+<a href="#properties-of-the-lincoln-peterson-estimator" class="anchor"></a>Properties of the Lincoln-Peterson estimator</h2>
+<p>In the next homework, we will use <code>R</code> to better understand the properties of the LP estimator. To create this homework:</p>
+<ol style="list-style-type: decimal">
+<li>
+<p>Create a new R Markdown file from the Homework-1 template:</p>
+<p>1a) Click <code>File -&gt; New File -&gt; R Markdown</code></p>
+<p>1b) Click <code>From Template</code> and scroll down to <code>WILD3810-Homework1</code></p>
+<p>1c) In the <code>Name</code> box, type <code>LastnameFirstname-Homework1</code></p>
+<p>1d) Click <code>Ok</code></p>
+</li>
+<li>
+<p>Ensure that you can <code>Knit</code> the file</p>
+<p>2a) Change “YOUR NAME HERE” in the header section to your name</p>
+<p>2b) Click <code>Knit</code> to make sure you can knit the .Rmd file</p>
+</li>
+<li><p>Complete the assignment as directed in the .Rmd file</p></li>
+<li><p>Follow the <a href="https://rushinglab.github.io/WILD3810/articles/homework.html">instructions for submission</a> to upload your completed assignment to Canvas</p></li>
+</ol>
+</div>
 </div>
   </div>
 

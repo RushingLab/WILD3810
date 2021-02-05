@@ -199,7 +199,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Lab 4: Population viability analysis</h1>
             <h3 class="subtitle">WILD3810: Plant and animal populations</h3>
-                        <h4 class="author">Spring 2021</h4>
+                        <h4 class="author">Spring 2020</h4>
             
       
       
@@ -255,7 +255,7 @@
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">WILD3810</span><span class="op">)</span>
 <span class="va">sim_test</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/pva.html">pva</a></span><span class="op">(</span>N0 <span class="op">=</span> <span class="fl">20</span>, number.of.years <span class="op">=</span> <span class="fl">100</span>, 
                 r0 <span class="op">=</span> <span class="fl">0.05</span>, variance.r <span class="op">=</span> <span class="fl">0.05</span><span class="op">)</span>
-<span class="co">#&gt; Warning: Removed 3131 row(s) containing missing values (geom_path).</span></code></pre></div>
+<span class="co">#&gt; Warning: Removed 2886 row(s) containing missing values (geom_path).</span></code></pre></div>
 <p><img src="lab4_files/figure-html/unnamed-chunk-1-1.png" width="768"></p>
 <p>The function returns two types of output. Most obviously, the function returns three plots:</p>
 <ol style="list-style-type: decimal">
@@ -319,10 +319,10 @@ NA
 1
 </td>
 <td style="text-align:right;">
-0.27
+0.33
 </td>
 <td style="text-align:right;">
-27
+21
 </td>
 </tr></tbody>
 </table>
@@ -464,7 +464,7 @@ NA
 <p>On your own, create a new data frame that contains all of the simulated results (add any that you created in the previous section):</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R">
-<span class="va">sim_pva</span> <span class="op">&lt;-</span> <span class="fu">bind_rows</span><span class="op">(</span><span class="va">sim_test</span>, <span class="va">sim_r</span>, <span class="va">sim_var_r</span>, <span class="va">sim_K</span>, <span class="va">sim_dd</span><span class="op">)</span></code></pre></div>
+<span class="va">sim_pva</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/bind.html">bind_rows</a></span><span class="op">(</span><span class="va">sim_test</span>, <span class="va">sim_r</span>, <span class="va">sim_var_r</span>, <span class="va">sim_K</span>, <span class="va">sim_dd</span><span class="op">)</span></code></pre></div>
 <p>Now create your own plots showing the relationship between extinction probability/time to extinction and the parameters you varied in the simulations. Using the following code as a guide:</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu">ggplot</span><span class="op">(</span><span class="va">sim_pva</span>, <span class="fu">aes</span><span class="op">(</span>x <span class="op">=</span> <span class="va">prob.extinct</span>, y <span class="op">=</span> <span class="va">variance.r</span>, size <span class="op">=</span> <span class="va">N0</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> <span class="fu">geom_point</span><span class="op">(</span><span class="op">)</span></code></pre></div>
@@ -533,7 +533,7 @@ NA
 <ol style="list-style-type: decimal">
 <li><p>In that code chunk, create objects that correspond to either values you need in order to estimate the required information (e.g., <code>B_before &lt;- c(260, 484)</code>, <code>pr.fire &lt;- ?/?</code>). You can then use these objects later when predicting extinction risk.</p></li>
 <li><p>Remember that the code inserted here needs to stand alone in order for the document to knit. That means you need to load any required packages (using <code><a href="https://dplyr.tidyverse.org">library(dplyr)</a></code>) <strong>inside of .Rmd file itself</strong>. Having the package loaded in your current working environment is not enough.</p></li>
-<li><p>The carrying capacity in this case refers to <code>K</code> <em>after</em> the housing development was built. You have enough information to estimate this by estimating <code>K</code> <em>before</em> the housing development and then reducing that by the amount of habitat that was lost. Use the <code><a href="https://rdrr.io/r/stats/filter.html">filter()</a></code> function from the <code>dplyr</code> package to filter just the observed counts before the housing development. Then estimate <code>K</code> as the mean of those counts</p></li>
+<li><p>The carrying capacity in this case refers to <code>K</code> <em>after</em> the housing development was built. You have enough information to estimate this by estimating <code>K</code> <em>before</em> the housing development and then reducing that by the amount of habitat that was lost. Use the <code><a href="https://dplyr.tidyverse.org/reference/filter.html">filter()</a></code> function from the <code>dplyr</code> package to filter just the observed counts before the housing development. Then estimate <code>K</code> as the mean of those counts</p></li>
 <li><p>The baseline birth and death rates as well as the rates in fire years can be estimated from the observed number of births and deaths. Did those rates change before and after the development? Use your best scientific judgement to answer this. Were those rates different in fire years? To estimate these rates, create vectors that hold the observed births or deaths and the observed abundance in each of those years. Then estimate the mean birth rate or death rate from these objects.</p></li>
 <li><p>The function requires an estimate of the fire frequency. Think of this as the <em>probability</em> of a fire any given year. Did this frequency change before and after the development?</p></li>
 <li><p>The working group was vague about the time frame and acceptable extinction probability. You will have to decide what time frame and risk correspond to “near future” and “high probability”. You may also set a quasi-extinction threshold that this &gt; 0 if you choose. In your recommendation, <strong>you will need state the time frame and extinction threshold you chose and justify these choices</strong>.</p></li>
