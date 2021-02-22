@@ -707,13 +707,13 @@ What is $\frac{dN}{dt}$ when $N=100$?
 --
 What about when $N=500$?  
 
-+ $\large \frac{dN}{dt} = 100 \times \bigg(1 - 0.001 \times 500\bigg)=$ `r 500*(1-0.001 * 500)`  
++ $\large \frac{dN}{dt} = 500 \times \bigg(1 - 0.001 \times 500\bigg)=$ `r 500*(1-0.001 * 500)`  
 
 
 --
 When $N=1000$?  
 
-+ $\large \frac{dN}{dt} = 100 \times \bigg(1 - 0.001 \times 1000\bigg)=$ `r 1000*(1-0.001 * 1000)`
++ $\large \frac{dN}{dt} = 1000 \times \bigg(1 - 0.001 \times 1000\bigg)=$ `r 1000*(1-0.001 * 1000)`
 
 ???
 
