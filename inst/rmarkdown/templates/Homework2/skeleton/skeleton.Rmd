@@ -101,7 +101,7 @@ The first step in our prediction is to create a new data frame that will contain
 
 ```{r echo = TRUE}
 ## Create the new data frame 
-predicted_doves <- data.frame(Year = seq(from = 2015, to = 2035), 
+predicted_doves <- data.frame(Year = seq(from = 2016, to = 2036), 
                               Count = NA)
 ```
 

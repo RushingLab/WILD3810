@@ -19,7 +19,9 @@ In this homework assignment, you will become more familiar with using `R` and R 
 
 
 ```{r input}
-
+N <- 10000
+p <- 0.4
+nSims <- 1000
 ```
 
 

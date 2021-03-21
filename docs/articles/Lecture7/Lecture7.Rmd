@@ -215,7 +215,7 @@ long <- data.frame(Time = seq(0, 100),
 
 poly <- data.frame(x = c(0, 20, 100, 100),
                    y = c(-Inf, -Inf, 75, 95))
-ggplot(long, aes(x = Time, y = Age)) +
+p <- ggplot(long, aes(x = Time, y = Age)) +
   scale_x_continuous(limits = c(0, 100)) +
   scale_y_continuous(limits = c(0, 100)) +
   geom_polygon(data = poly, aes(x = x, y = y), fill = "white", color = "black") +
@@ -237,6 +237,8 @@ ggplot(long, aes(x = Time, y = Age)) +
                color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
   theme(axis.text = element_blank(), axis.ticks = element_blank(),
         panel.background = element_rect(fill = "grey85"))
+ggsave(filename = "figs/long_cohort.png", plot = p, width = 6, height = 4, dpi = "retina")
+p
 ```
 
 ---
