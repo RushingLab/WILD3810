@@ -209,7 +209,7 @@ class: inverse, center, middle
 --
 - **longitudinal** study design  
 
-```{r fig.width=6, fig.height=4}
+```{r long_cohort, fig.width=6, fig.height=4}
 long <- data.frame(Time = seq(0, 100),
                    Age = seq(0, 100))
 
@@ -237,7 +237,6 @@ p <- ggplot(long, aes(x = Time, y = Age)) +
                color = WILD3810_colors$value[WILD3810_colors$name == "primary"]) +
   theme(axis.text = element_blank(), axis.ticks = element_blank(),
         panel.background = element_rect(fill = "grey85"))
-ggsave(filename = "figs/long_cohort.png", plot = p, width = 6, height = 4, dpi = "retina")
 p
 ```
 
@@ -627,7 +626,7 @@ lt6 %>%
 
 - assess number of individuals of known age at one point in time or the age of individuals dying at any point in time
 
-```{r fig.width=7, fig.height=5}
+```{r stat_cohort, fig.width=7, fig.height=5}
 long <- data.frame(Time = seq(0, 100),
                    Age = seq(0, 100))
 
@@ -749,7 +748,7 @@ class: inverse, middle, center
 ---
 ## Survivorship curves
 
-```{r fig.height=5 ,fig.width=9}
+```{r surv_curv1, fig.height=5 ,fig.width=9}
 age <- seq(from = 0, to = 10, length.out = 100)
 surv <- -1.2*age
 lx <- exp(surv)
@@ -772,7 +771,7 @@ cowplot::plot_grid(p1, p2)
 ---
 ## Survivorship curves
 
-```{r fig.height=5 ,fig.width=7}
+```{r surv_curve2, fig.height=5 ,fig.width=7}
 age <- seq(from = 0, to = 1, length.out = 100)
 survI <- -0.1 * age ^ 7
 survII <- -0.1*age
@@ -909,7 +908,7 @@ lt4 %>%
 - $\Large T_x$: total proportion of living individuals from age $x$ to $max(x)$
 
 
-```{r fig.height=6, fig.width=8}
+```{r Tx, fig.height=6, fig.width=8}
 ggplot(data.frame(x = c(0, 5)), aes(x)) +
   stat_function(fun = dnorm) + 
   stat_function(fun = dnorm, 
@@ -928,7 +927,7 @@ ggplot(data.frame(x = c(0, 5)), aes(x)) +
 - $\Large T_x$: total proportion of living individuals from age $x$ to $max(x)$
 
 
-```{r fig.height=6, fig.width=8}
+```{r Tx2, fig.height=6, fig.width=8}
 ggplot(data.frame(x = c(0, 5)), aes(x)) +
   stat_function(fun = dnorm) + 
   stat_function(fun = dnorm, 
